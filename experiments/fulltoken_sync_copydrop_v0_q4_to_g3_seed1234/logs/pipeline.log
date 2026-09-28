@@ -1,0 +1,195 @@
+Qwen/Gemma Full-Sync CPU tests passed
+[2026-09-21 16:00:05] AUDIT train: 3072 examples, 188449 mapped Gemma Options tokens
+[2026-09-21 16:00:07] AUDIT validation: 384 examples, 24190 mapped Gemma Options tokens
+[2026-09-21 16:00:09] AUDIT test: 384 examples, 22312 mapped Gemma Options tokens
+0, Tesla V100-PCIE-32GB, 22490 MiB
+[2026-09-21 16:00:10] START Qwen3-4B -> Gemma3-4B Full-Sync
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  29%|██▊       | 114/398 [00:00<00:00, 1070.45it/s]Loading weights:  56%|█████▌    | 223/398 [00:00<00:00, 1041.07it/s]Loading weights:  82%|████████▏ | 328/398 [00:00<00:00, 1042.36it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 1041.82it/s]
+[2026-09-21 16:00:25] Qwen native capture train: 2/2
+[2026-09-21 16:00:26] Qwen native capture validation: 2/2
+[2026-09-21 16:00:27] Qwen native capture test: 2/2
+Loading weights:   0%|          | 0/883 [00:00<?, ?it/s]Loading weights:   9%|▉         | 81/883 [00:00<00:00, 807.97it/s]Loading weights:  18%|█▊        | 162/883 [00:00<00:01, 698.66it/s]Loading weights:  26%|██▋       | 233/883 [00:00<00:00, 687.89it/s]Loading weights:  34%|███▍      | 303/883 [00:00<00:00, 648.81it/s]Loading weights:  42%|████▏     | 369/883 [00:00<00:00, 619.34it/s]Loading weights:  49%|████▉     | 434/883 [00:00<00:00, 628.35it/s]Loading weights:  79%|███████▉  | 697/883 [00:00<00:00, 1239.65it/s]Loading weights: 100%|██████████| 883/883 [00:00<00:00, 1050.83it/s]
+[2026-09-21 16:00:38] Gemma native capture train: 2/2
+[2026-09-21 16:00:40] Gemma native capture validation: 2/2
+[2026-09-21 16:00:42] Gemma native capture test: 2/2
+[2026-09-21 16:00:42] In-memory native capture completed: 6 samples; no KV files written
+Traceback (most recent call last):
+  File "/home/yezhe/异构模型/fulltoken_sync_copydrop_v0_q4_to_g3_seed1234/experiment.py", line 501, in <module>
+    main()
+  File "/home/yezhe/异构模型/fulltoken_sync_copydrop_v0_q4_to_g3_seed1234/experiment.py", line 491, in main
+    stage_a(cfg)
+  File "/home/yezhe/异构模型/fulltoken_sync_copydrop_v0_q4_to_g3_seed1234/experiment.py", line 336, in stage_a
+    norm = optimizer_step(cfg, module, optimizer, scaler)
+  File "/home/yezhe/异构模型/fulltoken_sync_copydrop_v0_q4_to_g3_seed1234/experiment.py", line 141, in optimizer_step
+    scaler.step(optimizer)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/amp/grad_scaler.py", line 457, in step
+    retval = self._maybe_opt_step(optimizer, optimizer_state, *args, **kwargs)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/amp/grad_scaler.py", line 352, in _maybe_opt_step
+    retval = optimizer.step(*args, **kwargs)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/optim/optimizer.py", line 487, in wrapper
+    out = func(*args, **kwargs)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/optim/optimizer.py", line 91, in _use_grad
+    ret = func(self, *args, **kwargs)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/optim/adamw.py", line 220, in step
+    adamw(
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/optim/optimizer.py", line 154, in maybe_fallback
+    return func(*args, **kwargs)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/optim/adamw.py", line 782, in adamw
+    func(
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/optim/adamw.py", line 606, in _multi_tensor_adamw
+    exp_avg_sq_sqrt = torch._foreach_sqrt(device_exp_avg_sqs)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 18.00 MiB. GPU 0 has a total capacity of 31.74 GiB of which 8.50 MiB is free. Process 4104479 has 11.52 MiB memory in use. Process 4009445 has 868.00 MiB memory in use. Process 4019117 has 8.91 GiB memory in use. Process 4079565 has 21.96 GiB memory in use. Of the allocated memory 21.39 GiB is allocated by PyTorch, and 194.22 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[2026-09-21 16:02:38] Waiting for Qwen-to-Llama PID 18220 to finish
+[2026-09-21 16:03:38] Waiting for Qwen-to-Llama PID 18220 to finish
+[2026-09-21 16:04:38] Waiting for Qwen-to-Llama PID 18220 to finish
+[2026-09-21 16:05:38] Waiting for Qwen-to-Llama PID 18220 to finish
+[2026-09-21 16:06:38] Waiting for Qwen-to-Llama PID 18220 to finish
+[2026-09-21 16:07:38] Waiting for Qwen-to-Llama PID 18220 to finish
+[2026-09-21 16:08:38] Waiting for Qwen-to-Llama PID 18220 to finish
+[2026-09-21 16:09:38] Waiting for Qwen-to-Llama PID 18220 to finish
+[2026-09-21 16:10:38] Waiting for Qwen-to-Llama PID 18220 to finish
+[2026-09-21 16:11:38] Waiting for Qwen-to-Llama PID 18220 to finish
+[2026-09-21 16:12:38] Waiting for Qwen-to-Llama PID 18220 to finish
+[2026-09-21 16:13:38] Waiting for Qwen-to-Llama PID 18220 to finish
+[2026-09-21 16:14:38] Waiting for Qwen-to-Llama PID 18220 to finish
+[2026-09-21 16:15:38] Qwen-to-Llama finished; retrying Qwen-to-Gemma
+Qwen/Gemma Full-Sync CPU tests passed
+[2026-09-21 16:16:09] AUDIT train: 3072 examples, 188449 mapped Gemma Options tokens
+[2026-09-21 16:16:11] AUDIT validation: 384 examples, 24190 mapped Gemma Options tokens
+[2026-09-21 16:16:13] AUDIT test: 384 examples, 22312 mapped Gemma Options tokens
+0, Tesla V100-PCIE-32GB, 31612 MiB
+[2026-09-21 16:16:14] START Qwen3-4B -> Gemma3-4B Full-Sync
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  23%|██▎       | 91/398 [00:00<00:00, 895.30it/s]Loading weights:  46%|████▌     | 182/398 [00:00<00:00, 903.22it/s]Loading weights:  73%|███████▎  | 289/398 [00:00<00:00, 963.23it/s]Loading weights:  97%|█████████▋| 388/398 [00:00<00:00, 962.34it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 971.87it/s]
+[2026-09-21 16:16:29] Qwen native capture train: 2/2
+[2026-09-21 16:16:29] Qwen native capture validation: 2/2
+[2026-09-21 16:16:30] Qwen native capture test: 2/2
+Loading weights:   0%|          | 0/883 [00:00<?, ?it/s]Loading weights:   9%|▉         | 81/883 [00:00<00:01, 785.55it/s]Loading weights:  18%|█▊        | 160/883 [00:00<00:01, 659.25it/s]Loading weights:  26%|██▌       | 228/883 [00:00<00:01, 633.79it/s]Loading weights:  33%|███▎      | 292/883 [00:00<00:00, 594.36it/s]Loading weights:  40%|████      | 354/883 [00:00<00:00, 580.36it/s]Loading weights:  49%|████▉     | 432/883 [00:00<00:00, 607.84it/s]Loading weights:  82%|████████▏ | 727/883 [00:00<00:00, 1291.35it/s]Loading weights: 100%|██████████| 883/883 [00:00<00:00, 1034.99it/s]
+[2026-09-21 16:16:41] Gemma native capture train: 2/2
+[2026-09-21 16:16:42] Gemma native capture validation: 2/2
+[2026-09-21 16:16:43] Gemma native capture test: 2/2
+[2026-09-21 16:16:43] In-memory native capture completed: 6 samples; no KV files written
+[2026-09-21 16:16:49] Stage-A epoch=1 step=1 train_samples=2/2
+[2026-09-21 16:16:50] validation evaluation 2/2
+[2026-09-21 16:16:52] Stage-A epoch=1 validation_accuracy=0.0000 k_nmse=0.7941 v_nmse=0.9831
+[2026-09-21 16:16:52] Stage-A selected epoch=1 step=1
+[2026-09-21 16:16:58] Stage-B epoch=1 step=1 train_samples=2/2
+[2026-09-21 16:16:59] validation evaluation 2/2
+[2026-09-21 16:16:59] Stage-B epoch=1 validation_accuracy=0.0000 choice_kl=0.8002
+[2026-09-21 16:16:59] Stage-B selected epoch=1 step=1
+[2026-09-21 16:17:04] test evaluation 2/2
+[2026-09-21 16:17:05] test evaluation 2/2
+[2026-09-21 16:17:05] FINAL Stage-A accuracy=0.0000 Stage-B accuracy=0.0000
+[2026-09-21 16:17:07] SMOKE COMPLETED; starting full study
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  26%|██▌       | 102/398 [00:00<00:00, 981.35it/s]Loading weights:  53%|█████▎    | 211/398 [00:00<00:00, 1042.16it/s]Loading weights:  79%|███████▉  | 316/398 [00:00<00:00, 1000.54it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 1025.46it/s]
+[2026-09-21 16:17:26] Qwen native capture train: 64/3072
+[2026-09-21 16:17:33] Qwen native capture train: 128/3072
+[2026-09-21 16:17:39] Qwen native capture train: 192/3072
+[2026-09-21 16:17:45] Qwen native capture train: 256/3072
+[2026-09-21 16:17:51] Qwen native capture train: 320/3072
+[2026-09-21 16:17:57] Qwen native capture train: 384/3072
+[2026-09-21 16:18:04] Qwen native capture train: 448/3072
+[2026-09-21 16:18:11] Qwen native capture train: 512/3072
+[2026-09-21 16:18:17] Qwen native capture train: 576/3072
+[2026-09-21 16:18:23] Qwen native capture train: 640/3072
+[2026-09-21 16:18:29] Qwen native capture train: 704/3072
+[2026-09-21 16:18:36] Qwen native capture train: 768/3072
+[2026-09-21 16:18:42] Qwen native capture train: 832/3072
+[2026-09-21 16:18:48] Qwen native capture train: 896/3072
+[2026-09-21 16:18:55] Qwen native capture train: 960/3072
+[2026-09-21 16:19:01] Qwen native capture train: 1024/3072
+[2026-09-21 16:19:07] Qwen native capture train: 1088/3072
+[2026-09-21 16:19:13] Qwen native capture train: 1152/3072
+[2026-09-21 16:19:20] Qwen native capture train: 1216/3072
+[2026-09-21 16:19:26] Qwen native capture train: 1280/3072
+[2026-09-21 16:19:33] Qwen native capture train: 1344/3072
+[2026-09-21 16:19:39] Qwen native capture train: 1408/3072
+[2026-09-21 16:19:46] Qwen native capture train: 1472/3072
+[2026-09-21 16:19:52] Qwen native capture train: 1536/3072
+[2026-09-21 16:19:59] Qwen native capture train: 1600/3072
+[2026-09-21 16:20:05] Qwen native capture train: 1664/3072
+[2026-09-21 16:20:12] Qwen native capture train: 1728/3072
+[2026-09-21 16:20:19] Qwen native capture train: 1792/3072
+[2026-09-21 16:20:25] Qwen native capture train: 1856/3072
+[2026-09-21 16:20:33] Qwen native capture train: 1920/3072
+[2026-09-21 16:20:40] Qwen native capture train: 1984/3072
+[2026-09-21 16:20:47] Qwen native capture train: 2048/3072
+[2026-09-21 16:20:54] Qwen native capture train: 2112/3072
+[2026-09-21 16:21:01] Qwen native capture train: 2176/3072
+[2026-09-21 16:21:08] Qwen native capture train: 2240/3072
+[2026-09-21 16:21:15] Qwen native capture train: 2304/3072
+[2026-09-21 16:21:22] Qwen native capture train: 2368/3072
+[2026-09-21 16:21:28] Qwen native capture train: 2432/3072
+[2026-09-21 16:21:35] Qwen native capture train: 2496/3072
+[2026-09-21 16:21:42] Qwen native capture train: 2560/3072
+[2026-09-21 16:21:48] Qwen native capture train: 2624/3072
+[2026-09-21 16:21:55] Qwen native capture train: 2688/3072
+[2026-09-21 16:22:02] Qwen native capture train: 2752/3072
+[2026-09-21 16:22:09] Qwen native capture train: 2816/3072
+[2026-09-21 16:22:15] Qwen native capture train: 2880/3072
+[2026-09-21 16:22:23] Qwen native capture train: 2944/3072
+[2026-09-21 16:22:30] Qwen native capture train: 3008/3072
+[2026-09-21 16:22:36] Qwen native capture train: 3072/3072
+[2026-09-21 16:22:43] Qwen native capture validation: 64/384
+[2026-09-21 16:22:49] Qwen native capture validation: 128/384
+[2026-09-21 16:22:57] Qwen native capture validation: 192/384
+[2026-09-21 16:23:04] Qwen native capture validation: 256/384
+[2026-09-21 16:23:11] Qwen native capture validation: 320/384
+[2026-09-21 16:23:18] Qwen native capture validation: 384/384
+[2026-09-21 16:23:25] Qwen native capture test: 64/384
+[2026-09-21 16:23:31] Qwen native capture test: 128/384
+[2026-09-21 16:23:40] Qwen native capture test: 192/384
+[2026-09-21 16:23:50] Qwen native capture test: 256/384
+[2026-09-21 16:23:58] Qwen native capture test: 320/384
+[2026-09-21 16:24:05] Qwen native capture test: 384/384
+Loading weights:   0%|          | 0/883 [00:00<?, ?it/s]Loading weights:   8%|▊         | 68/883 [00:00<00:01, 650.66it/s]Loading weights:  15%|█▌        | 134/883 [00:00<00:01, 634.84it/s]Loading weights:  24%|██▍       | 211/883 [00:00<00:01, 661.32it/s]Loading weights:  31%|███▏      | 278/883 [00:00<00:00, 624.46it/s]Loading weights:  39%|███▊      | 341/883 [00:00<00:00, 595.93it/s]Loading weights:  46%|████▌     | 406/883 [00:00<00:00, 611.90it/s]Loading weights:  67%|██████▋   | 588/883 [00:00<00:00, 984.29it/s]Loading weights:  96%|█████████▌| 846/883 [00:00<00:00, 1472.35it/s]Loading weights: 100%|██████████| 883/883 [00:00<00:00, 1017.15it/s]
+[2026-09-21 16:24:22] Gemma native capture train: 64/3072
+[2026-09-21 16:24:38] Gemma native capture train: 128/3072
+[2026-09-21 16:24:53] Gemma native capture train: 192/3072
+[2026-09-21 16:25:05] Gemma native capture train: 256/3072
+[2026-09-21 16:25:21] Gemma native capture train: 320/3072
+[2026-09-21 16:25:35] Gemma native capture train: 384/3072
+[2026-09-21 16:25:53] Gemma native capture train: 448/3072
+[2026-09-21 16:26:11] Gemma native capture train: 512/3072
+[2026-09-21 16:26:23] Gemma native capture train: 576/3072
+[2026-09-21 16:26:37] Gemma native capture train: 640/3072
+[2026-09-21 16:26:51] Gemma native capture train: 704/3072
+[2026-09-21 16:27:09] Gemma native capture train: 768/3072
+[2026-09-21 16:27:25] Gemma native capture train: 832/3072
+[2026-09-21 16:27:42] Gemma native capture train: 896/3072
+[2026-09-21 16:27:56] Gemma native capture train: 960/3072
+[2026-09-21 16:28:13] Gemma native capture train: 1024/3072
+[2026-09-21 16:28:29] Gemma native capture train: 1088/3072
+[2026-09-21 16:28:43] Gemma native capture train: 1152/3072
+[2026-09-21 16:29:00] Gemma native capture train: 1216/3072
+[2026-09-21 16:29:17] Gemma native capture train: 1280/3072
+[2026-09-21 16:29:34] Gemma native capture train: 1344/3072
+[2026-09-21 16:29:52] Gemma native capture train: 1408/3072
+[2026-09-21 16:30:08] Gemma native capture train: 1472/3072
+[2026-09-21 16:30:22] Gemma native capture train: 1536/3072
+[2026-09-21 16:30:38] Gemma native capture train: 1600/3072
+[2026-09-21 16:30:54] Gemma native capture train: 1664/3072
+[2026-09-21 16:31:14] Gemma native capture train: 1728/3072
+[2026-09-21 16:31:33] Gemma native capture train: 1792/3072
+[2026-09-21 16:31:49] Gemma native capture train: 1856/3072
+[2026-09-21 16:32:07] Gemma native capture train: 1920/3072
+[2026-09-21 16:32:25] Gemma native capture train: 1984/3072
+[2026-09-21 16:32:42] Gemma native capture train: 2048/3072
+[2026-09-21 16:32:57] Gemma native capture train: 2112/3072
+[2026-09-21 16:33:14] Gemma native capture train: 2176/3072
+[2026-09-21 16:33:26] Gemma native capture train: 2240/3072
+[2026-09-21 16:33:41] Gemma native capture train: 2304/3072
+[2026-09-21 16:33:59] Gemma native capture train: 2368/3072
+[2026-09-21 16:34:11] Gemma native capture train: 2432/3072
+[2026-09-21 16:34:26] Gemma native capture train: 2496/3072
+[2026-09-21 16:34:43] Gemma native capture train: 2560/3072
+[2026-09-21 16:34:56] Gemma native capture train: 2624/3072
+[2026-09-21 16:35:12] Gemma native capture train: 2688/3072
+[2026-09-21 16:35:27] Gemma native capture train: 2752/3072
+[2026-09-21 16:35:43] Gemma native capture train: 2816/3072
+[2026-09-21 16:35:58] Gemma native capture train: 2880/3072
+[2026-09-21 16:36:18] Gemma native capture train: 2944/3072
+[2026-09-21 16:36:35] Gemma native capture train: 3008/3072
+[2026-09-21 16:36:49] Gemma native capture train: 3072/3072
+[2026-09-21 16:37:03] Gemma native capture validation: 64/384
+[2026-09-21 16:37:20] Gemma native capture validation: 128/384
+run_pipeline.sh: line 12: 26948 Killed                  "$PY" -u experiment.py all

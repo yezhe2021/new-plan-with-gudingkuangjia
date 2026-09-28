@@ -1,0 +1,39 @@
+2026-09-22:10:36:52 WARNING  [config.evaluate_config:287] --limit SHOULD ONLY BE USED FOR TESTING. REAL METRICS SHOULD NOT BE COMPUTED USING LIMIT.
+2026-09-22:10:37:02 INFO     [_cli.run:388] Selected Tasks: ['gsm8k']
+2026-09-22:10:37:04 INFO     [evaluator:214] Setting random seed to 1234 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-09-22:10:37:04 WARNING  [evaluator:226] generation_kwargs: {'max_gen_toks': 32} specified through cli, these settings will update set parameters in yaml tasks. Ensure 'do_sample=True' for non-greedy decoding!
+2026-09-22:10:37:04 INFO     [evaluator:239] Initializing hf model, with arguments: {'pretrained': '/home/yezhe/all_models/models/Qwen/Qwen3-4B', 'dtype': 'float16'}
+2026-09-22:10:37:06 INFO     [models.huggingface:286] Using device 'cuda:0'
+2026-09-22:10:37:06 INFO     [models.huggingface:579] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:0'}
+Traceback (most recent call last):
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/__main__.py", line 14, in <module>
+    cli_evaluate()
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/__main__.py", line 10, in cli_evaluate
+    parser.execute(args)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/_cli/harness.py", line 60, in execute
+    args.func(args)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/_cli/run.py", line 391, in _execute
+    results = simple_evaluate(
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/utils.py", line 575, in _wrapper
+    return fn(*args, **kwargs)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/evaluator.py", line 242, in simple_evaluate
+    lm = lm_eval.api.registry.get_model(model).create_from_arg_obj(
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/api/model.py", line 169, in create_from_arg_obj
+    return cls(**arg_dict, **additional_config)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/models/huggingface.py", line 365, in __init__
+    self._create_model(
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/models/huggingface.py", line 814, in _create_model
+    self._model = self.AUTO_MODEL_CLASS.from_pretrained(
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/transformers/models/auto/auto_factory.py", line 405, in from_pretrained
+    return model_class.from_pretrained(
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4296, in from_pretrained
+    loading_info, disk_offload_index = cls._load_pretrained_model(model, state_dict, checkpoint_files, load_config)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4377, in _load_pretrained_model
+    caching_allocator_warmup(model, expanded_device_map, load_config.hf_quantizer)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/transformers/modeling_utils.py", line 5051, in caching_allocator_warmup
+    _ = torch.empty(int(byte_count // 2), dtype=torch.float16, device=device, requires_grad=False)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 7.49 GiB. GPU 0 has a total capacity of 31.74 GiB of which 628.50 MiB is free. Process 4104479 has 11.52 MiB memory in use. Process 380889 has 30.80 GiB memory in use. Process 433156 has 306.00 MiB memory in use. Of the allocated memory 0 bytes is allocated by PyTorch, and 0 bytes is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

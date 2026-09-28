@@ -1,0 +1,211 @@
+[2026-09-23 15:48:46] START Full-Sync Stage-B 4 epochs, 3072 train, 384 validation
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<01:00,  4.16it/s]Loading weights:  51%|█████     | 129/254 [00:00<00:00, 453.27it/s]Loading weights:  77%|███████▋  | 195/254 [00:00<00:00, 476.59it/s]Loading weights: 100%|██████████| 254/254 [00:00<00:00, 486.03it/s]Loading weights: 100%|██████████| 254/254 [00:00<00:00, 421.88it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<01:22,  4.81it/s]Loading weights:  37%|███▋      | 146/398 [00:00<00:00, 588.40it/s]Loading weights:  58%|█████▊    | 230/398 [00:00<00:00, 601.52it/s]Loading weights:  76%|███████▋  | 304/398 [00:00<00:00, 567.89it/s]Loading weights:  93%|█████████▎| 370/398 [00:00<00:00, 574.78it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 539.87it/s]
+Traceback (most recent call last):
+  File "/home/yezhe/异构模型/fulltoken_sync_copydrop_stageb4_l3_to_q4_seed1234/retrain_fullsync.py", line 386, in <module>
+    main()
+  File "/home/yezhe/异构模型/fulltoken_sync_copydrop_stageb4_l3_to_q4_seed1234/retrain_fullsync.py", line 382, in main
+    {"stage_a": stage_a, "stage_b": stage_b, "evaluate": evaluate}[args.action](cfg)
+  File "/home/yezhe/异构模型/fulltoken_sync_copydrop_stageb4_l3_to_q4_seed1234/retrain_fullsync.py", line 289, in stage_b
+    llama, qwen, tok_l, tok_q = models_and_tokens(cfg)
+  File "/home/yezhe/异构模型/fulltoken_sync_copydrop_stageb4_l3_to_q4_seed1234/retrain_fullsync.py", line 219, in models_and_tokens
+    qwen = load_model(cfg, "qwen")
+  File "/home/yezhe/异构模型/multidataset_obqa_arc_mmlupro_train1024_full28_mlp_l3_to_q4_seed1234/common.py", line 68, in load_model
+    attn_implementation=cfg["attention_implementation"]).to("cuda").eval().requires_grad_(False)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/transformers/modeling_utils.py", line 3701, in to
+    return super().to(*args, **kwargs)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1340, in to
+    return self._apply(convert)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 900, in _apply
+    module._apply(fn)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 900, in _apply
+    module._apply(fn)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 900, in _apply
+    module._apply(fn)
+  [Previous line repeated 2 more times]
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 927, in _apply
+    param_applied = fn(param)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1326, in convert
+    return t.to(
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB. GPU 0 has a total capacity of 31.74 GiB of which 22.50 MiB is free. Process 4104479 has 11.52 MiB memory in use. Process 776383 has 468.00 MiB memory in use. Process 1021653 has 16.84 GiB memory in use. Process 1042439 has 14.40 GiB memory in use. Of the allocated memory 14.05 GiB is allocated by PyTorch, and 55.31 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[2026-09-23 18:13:14] START Full-Sync Stage-B 4 epochs, 3072 train, 384 validation
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<00:59,  4.28it/s]Loading weights:  51%|█████     | 129/254 [00:00<00:00, 477.53it/s]Loading weights:  79%|███████▉  | 201/254 [00:00<00:00, 495.56it/s]Loading weights: 100%|██████████| 254/254 [00:00<00:00, 444.32it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<01:20,  4.92it/s]Loading weights:  39%|███▉      | 157/398 [00:00<00:00, 626.01it/s]Loading weights:  61%|██████    | 243/398 [00:00<00:00, 632.96it/s]Loading weights:  80%|████████  | 319/398 [00:00<00:00, 622.12it/s]Loading weights:  98%|█████████▊| 389/398 [00:00<00:00, 612.17it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 574.47it/s]
+[2026-09-23 18:14:58] Stage-B epoch=1 step=16 train_samples=128/3072
+[2026-09-23 18:16:26] Stage-B epoch=1 step=32 train_samples=256/3072
+[2026-09-23 18:17:52] Stage-B epoch=1 step=48 train_samples=384/3072
+[2026-09-23 18:19:19] Stage-B epoch=1 step=64 train_samples=512/3072
+[2026-09-23 18:20:44] Stage-B epoch=1 step=80 train_samples=640/3072
+[2026-09-23 18:22:08] Stage-B epoch=1 step=96 train_samples=768/3072
+[2026-09-23 18:23:33] Stage-B epoch=1 step=112 train_samples=896/3072
+[2026-09-23 18:24:59] Stage-B epoch=1 step=128 train_samples=1024/3072
+[2026-09-23 18:26:25] Stage-B epoch=1 step=144 train_samples=1152/3072
+[2026-09-23 18:27:52] Stage-B epoch=1 step=160 train_samples=1280/3072
+[2026-09-23 18:29:20] Stage-B epoch=1 step=176 train_samples=1408/3072
+[2026-09-23 18:30:46] Stage-B epoch=1 step=192 train_samples=1536/3072
+[2026-09-23 18:32:12] Stage-B epoch=1 step=208 train_samples=1664/3072
+[2026-09-23 18:33:40] Stage-B epoch=1 step=224 train_samples=1792/3072
+[2026-09-23 18:35:08] Stage-B epoch=1 step=240 train_samples=1920/3072
+[2026-09-23 18:36:33] Stage-B epoch=1 step=256 train_samples=2048/3072
+[2026-09-23 18:37:59] Stage-B epoch=1 step=272 train_samples=2176/3072
+[2026-09-23 18:39:24] Stage-B epoch=1 step=288 train_samples=2304/3072
+[2026-09-23 18:40:48] Stage-B epoch=1 step=304 train_samples=2432/3072
+[2026-09-23 18:42:13] Stage-B epoch=1 step=320 train_samples=2560/3072
+[2026-09-23 18:43:39] Stage-B epoch=1 step=336 train_samples=2688/3072
+[2026-09-23 18:45:04] Stage-B epoch=1 step=352 train_samples=2816/3072
+[2026-09-23 18:46:30] Stage-B epoch=1 step=368 train_samples=2944/3072
+[2026-09-23 18:47:58] Stage-B epoch=1 step=384 train_samples=3072/3072
+[2026-09-23 18:48:12] validation evaluation 32/384
+[2026-09-23 18:48:26] validation evaluation 64/384
+[2026-09-23 18:48:41] validation evaluation 96/384
+[2026-09-23 18:48:55] validation evaluation 128/384
+[2026-09-23 18:49:09] validation evaluation 160/384
+[2026-09-23 18:49:25] validation evaluation 192/384
+[2026-09-23 18:49:39] validation evaluation 224/384
+[2026-09-23 18:49:54] validation evaluation 256/384
+[2026-09-23 18:50:09] validation evaluation 288/384
+[2026-09-23 18:50:24] validation evaluation 320/384
+[2026-09-23 18:50:38] validation evaluation 352/384
+[2026-09-23 18:50:53] validation evaluation 384/384
+[2026-09-23 18:50:54] Stage-B epoch=1 validation_accuracy=0.5885 choice_kl=0.7096
+[2026-09-23 18:52:20] Stage-B epoch=2 step=400 train_samples=128/3072
+[2026-09-23 18:53:46] Stage-B epoch=2 step=416 train_samples=256/3072
+[2026-09-23 18:55:12] Stage-B epoch=2 step=432 train_samples=384/3072
+[2026-09-23 18:56:53] Stage-B epoch=2 step=448 train_samples=512/3072
+[2026-09-23 18:58:35] Stage-B epoch=2 step=464 train_samples=640/3072
+[2026-09-23 19:00:02] Stage-B epoch=2 step=480 train_samples=768/3072
+[2026-09-23 19:01:28] Stage-B epoch=2 step=496 train_samples=896/3072
+[2026-09-23 19:02:54] Stage-B epoch=2 step=512 train_samples=1024/3072
+[2026-09-23 19:04:21] Stage-B epoch=2 step=528 train_samples=1152/3072
+[2026-09-23 19:05:49] Stage-B epoch=2 step=544 train_samples=1280/3072
+[2026-09-23 19:07:15] Stage-B epoch=2 step=560 train_samples=1408/3072
+[2026-09-23 19:08:44] Stage-B epoch=2 step=576 train_samples=1536/3072
+[2026-09-23 19:10:15] Stage-B epoch=2 step=592 train_samples=1664/3072
+[2026-09-23 19:11:40] Stage-B epoch=2 step=608 train_samples=1792/3072
+[2026-09-23 19:13:04] Stage-B epoch=2 step=624 train_samples=1920/3072
+[2026-09-23 19:14:35] Stage-B epoch=2 step=640 train_samples=2048/3072
+[2026-09-23 19:16:14] Stage-B epoch=2 step=656 train_samples=2176/3072
+[2026-09-23 19:17:52] Stage-B epoch=2 step=672 train_samples=2304/3072
+[2026-09-23 19:19:22] Stage-B epoch=2 step=688 train_samples=2432/3072
+[2026-09-23 19:20:47] Stage-B epoch=2 step=704 train_samples=2560/3072
+[2026-09-23 19:22:12] Stage-B epoch=2 step=720 train_samples=2688/3072
+[2026-09-23 19:23:37] Stage-B epoch=2 step=736 train_samples=2816/3072
+[2026-09-23 19:25:00] Stage-B epoch=2 step=752 train_samples=2944/3072
+[2026-09-23 19:26:25] Stage-B epoch=2 step=768 train_samples=3072/3072
+[2026-09-23 19:26:40] validation evaluation 32/384
+[2026-09-23 19:26:54] validation evaluation 64/384
+[2026-09-23 19:27:09] validation evaluation 96/384
+[2026-09-23 19:27:22] validation evaluation 128/384
+[2026-09-23 19:27:37] validation evaluation 160/384
+[2026-09-23 19:27:53] validation evaluation 192/384
+[2026-09-23 19:28:08] validation evaluation 224/384
+[2026-09-23 19:28:23] validation evaluation 256/384
+[2026-09-23 19:28:38] validation evaluation 288/384
+[2026-09-23 19:28:52] validation evaluation 320/384
+[2026-09-23 19:29:07] validation evaluation 352/384
+[2026-09-23 19:29:22] validation evaluation 384/384
+[2026-09-23 19:29:22] Stage-B epoch=2 validation_accuracy=0.6068 choice_kl=0.6999
+[2026-09-23 19:30:47] Stage-B epoch=3 step=784 train_samples=128/3072
+[2026-09-23 19:32:13] Stage-B epoch=3 step=800 train_samples=256/3072
+[2026-09-23 19:33:39] Stage-B epoch=3 step=816 train_samples=384/3072
+[2026-09-23 19:35:06] Stage-B epoch=3 step=832 train_samples=512/3072
+[2026-09-23 19:36:32] Stage-B epoch=3 step=848 train_samples=640/3072
+[2026-09-23 19:38:00] Stage-B epoch=3 step=864 train_samples=768/3072
+[2026-09-23 19:39:27] Stage-B epoch=3 step=880 train_samples=896/3072
+[2026-09-23 19:40:57] Stage-B epoch=3 step=896 train_samples=1024/3072
+[2026-09-23 19:42:41] Stage-B epoch=3 step=912 train_samples=1152/3072
+[2026-09-23 19:44:11] Stage-B epoch=3 step=928 train_samples=1280/3072
+[2026-09-23 19:45:35] Stage-B epoch=3 step=944 train_samples=1408/3072
+[2026-09-23 19:47:01] Stage-B epoch=3 step=960 train_samples=1536/3072
+[2026-09-23 19:48:30] Stage-B epoch=3 step=976 train_samples=1664/3072
+[2026-09-23 19:49:57] Stage-B epoch=3 step=992 train_samples=1792/3072
+[2026-09-23 19:51:23] Stage-B epoch=3 step=1008 train_samples=1920/3072
+[2026-09-23 19:52:59] Stage-B epoch=3 step=1024 train_samples=2048/3072
+[2026-09-23 19:54:47] Stage-B epoch=3 step=1040 train_samples=2176/3072
+[2026-09-23 19:57:00] Stage-B epoch=3 step=1056 train_samples=2304/3072
+[2026-09-23 19:59:52] Stage-B epoch=3 step=1072 train_samples=2432/3072
+[2026-09-23 20:02:13] Stage-B epoch=3 step=1088 train_samples=2560/3072
+[2026-09-23 20:03:55] Stage-B epoch=3 step=1104 train_samples=2688/3072
+[2026-09-23 20:06:08] Stage-B epoch=3 step=1120 train_samples=2816/3072
+[2026-09-23 20:08:52] Stage-B epoch=3 step=1136 train_samples=2944/3072
+[2026-09-23 20:11:35] Stage-B epoch=3 step=1152 train_samples=3072/3072
+[2026-09-23 20:11:51] validation evaluation 32/384
+[2026-09-23 20:12:05] validation evaluation 64/384
+[2026-09-23 20:12:20] validation evaluation 96/384
+[2026-09-23 20:12:35] validation evaluation 128/384
+[2026-09-23 20:12:49] validation evaluation 160/384
+[2026-09-23 20:13:06] validation evaluation 192/384
+[2026-09-23 20:13:22] validation evaluation 224/384
+[2026-09-23 20:13:38] validation evaluation 256/384
+[2026-09-23 20:13:54] validation evaluation 288/384
+[2026-09-23 20:14:09] validation evaluation 320/384
+[2026-09-23 20:14:25] validation evaluation 352/384
+[2026-09-23 20:14:41] validation evaluation 384/384
+[2026-09-23 20:14:41] Stage-B epoch=3 validation_accuracy=0.5938 choice_kl=0.6832
+[2026-09-23 20:16:47] Stage-B epoch=4 step=1168 train_samples=128/3072
+[2026-09-23 20:19:32] Stage-B epoch=4 step=1184 train_samples=256/3072
+[2026-09-23 20:22:28] Stage-B epoch=4 step=1200 train_samples=384/3072
+[2026-09-23 20:25:19] Stage-B epoch=4 step=1216 train_samples=512/3072
+[2026-09-23 20:28:12] Stage-B epoch=4 step=1232 train_samples=640/3072
+[2026-09-23 20:31:04] Stage-B epoch=4 step=1248 train_samples=768/3072
+[2026-09-23 20:33:58] Stage-B epoch=4 step=1264 train_samples=896/3072
+[2026-09-23 20:36:05] Stage-B epoch=4 step=1280 train_samples=1024/3072
+[2026-09-23 20:37:32] Stage-B epoch=4 step=1296 train_samples=1152/3072
+[2026-09-23 20:38:56] Stage-B epoch=4 step=1312 train_samples=1280/3072
+[2026-09-23 20:40:22] Stage-B epoch=4 step=1328 train_samples=1408/3072
+[2026-09-23 20:41:51] Stage-B epoch=4 step=1344 train_samples=1536/3072
+[2026-09-23 20:43:19] Stage-B epoch=4 step=1360 train_samples=1664/3072
+[2026-09-23 20:44:51] Stage-B epoch=4 step=1376 train_samples=1792/3072
+[2026-09-23 20:46:17] Stage-B epoch=4 step=1392 train_samples=1920/3072
+[2026-09-23 20:47:41] Stage-B epoch=4 step=1408 train_samples=2048/3072
+[2026-09-23 20:49:05] Stage-B epoch=4 step=1424 train_samples=2176/3072
+[2026-09-23 20:50:29] Stage-B epoch=4 step=1440 train_samples=2304/3072
+[2026-09-23 20:51:56] Stage-B epoch=4 step=1456 train_samples=2432/3072
+[2026-09-23 20:53:21] Stage-B epoch=4 step=1472 train_samples=2560/3072
+[2026-09-23 20:54:46] Stage-B epoch=4 step=1488 train_samples=2688/3072
+[2026-09-23 20:56:10] Stage-B epoch=4 step=1504 train_samples=2816/3072
+[2026-09-23 20:57:37] Stage-B epoch=4 step=1520 train_samples=2944/3072
+[2026-09-23 20:59:04] Stage-B epoch=4 step=1536 train_samples=3072/3072
+[2026-09-23 20:59:18] validation evaluation 32/384
+[2026-09-23 20:59:32] validation evaluation 64/384
+[2026-09-23 20:59:47] validation evaluation 96/384
+[2026-09-23 21:00:01] validation evaluation 128/384
+[2026-09-23 21:00:15] validation evaluation 160/384
+[2026-09-23 21:00:31] validation evaluation 192/384
+[2026-09-23 21:00:46] validation evaluation 224/384
+[2026-09-23 21:01:00] validation evaluation 256/384
+[2026-09-23 21:01:16] validation evaluation 288/384
+[2026-09-23 21:01:30] validation evaluation 320/384
+[2026-09-23 21:01:45] validation evaluation 352/384
+[2026-09-23 21:02:00] validation evaluation 384/384
+[2026-09-23 21:02:00] Stage-B epoch=4 validation_accuracy=0.6068 choice_kl=0.7427
+[2026-09-23 21:02:00] Stage-B selected epoch=2 step=768
+[2026-09-23 21:02:01] START held-out test384
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<00:58,  4.32it/s]Loading weights:  51%|█████     | 129/254 [00:00<00:00, 488.26it/s]Loading weights:  80%|████████  | 204/254 [00:00<00:00, 496.28it/s]Loading weights: 100%|██████████| 254/254 [00:00<00:00, 446.91it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<01:24,  4.68it/s]Loading weights:  39%|███▉      | 157/398 [00:00<00:00, 611.16it/s]Loading weights:  61%|██████▏   | 244/398 [00:00<00:00, 634.68it/s]Loading weights:  81%|████████  | 322/398 [00:00<00:00, 615.60it/s]Loading weights:  98%|█████████▊| 392/398 [00:00<00:00, 619.51it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 568.48it/s]
+[2026-09-23 21:02:31] test evaluation 32/384
+[2026-09-23 21:02:44] test evaluation 64/384
+[2026-09-23 21:02:55] test evaluation 96/384
+[2026-09-23 21:03:07] test evaluation 128/384
+[2026-09-23 21:03:18] test evaluation 160/384
+[2026-09-23 21:03:31] test evaluation 192/384
+[2026-09-23 21:03:42] test evaluation 224/384
+[2026-09-23 21:03:54] test evaluation 256/384
+[2026-09-23 21:04:05] test evaluation 288/384
+[2026-09-23 21:04:17] test evaluation 320/384
+[2026-09-23 21:04:29] test evaluation 352/384
+[2026-09-23 21:04:40] test evaluation 384/384
+[2026-09-23 21:04:53] test evaluation 32/384
+[2026-09-23 21:05:08] test evaluation 64/384
+[2026-09-23 21:05:22] test evaluation 96/384
+[2026-09-23 21:05:36] test evaluation 128/384
+[2026-09-23 21:05:50] test evaluation 160/384
+[2026-09-23 21:06:05] test evaluation 192/384
+[2026-09-23 21:06:18] test evaluation 224/384
+[2026-09-23 21:06:32] test evaluation 256/384
+[2026-09-23 21:06:46] test evaluation 288/384
+[2026-09-23 21:07:00] test evaluation 320/384
+[2026-09-23 21:07:14] test evaluation 352/384
+[2026-09-23 21:07:28] test evaluation 384/384
+[2026-09-23 21:07:28] FINAL Stage-A accuracy=0.4427 Stage-B accuracy=0.6146
+[2026-09-23 21:07:29] ALL STAGES COMPLETED

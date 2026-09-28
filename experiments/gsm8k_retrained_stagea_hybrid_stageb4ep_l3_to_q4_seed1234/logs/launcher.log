@@ -1,0 +1,31 @@
+[2026-09-23 10:34:24] START CPU tests
+GSM8K reused Stage-A + four-epoch Hybrid Stage-B CPU tests passed
+[2026-09-23 10:34:28] START two-sample GPU smoke
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:  35%|███▌      | 90/254 [00:00<00:00, 872.24it/s]Loading weights:  75%|███████▍  | 190/254 [00:00<00:00, 944.40it/s]Loading weights: 100%|██████████| 254/254 [00:00<00:00, 910.71it/s]
+Traceback (most recent call last):
+  File "/home/yezhe/异构模型/gsm8k_retrained_stagea_hybrid_stageb4ep_l3_to_q4_seed1234/smoke.py", line 41, in <module>
+    main()
+  File "/home/yezhe/异构模型/gsm8k_retrained_stagea_hybrid_stageb4ep_l3_to_q4_seed1234/smoke.py", line 13, in main
+    pairs, _, tok = E.capture_pairs(train_rows[:2], manifest["train_indices"][:2], "smoke")
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/yezhe/异构模型/gsm8k_retrained_stagea_hybrid_stageb4ep_l3_to_q4_seed1234/experiment.py", line 27, in capture_pairs
+    llama, qwen = C.ref.load_model("llama"), C.ref.load_model("qwen")
+  File "/home/yezhe/异构模型/frozen_fullsync_newbenchmarks_l3_g3_to_q4_seed1234/evaluate.py", line 353, in load_model
+    return model.to("cuda").eval().requires_grad_(False)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/transformers/modeling_utils.py", line 3701, in to
+    return super().to(*args, **kwargs)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1340, in to
+    return self._apply(convert)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 900, in _apply
+    module._apply(fn)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 900, in _apply
+    module._apply(fn)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 900, in _apply
+    module._apply(fn)
+  [Previous line repeated 2 more times]
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 927, in _apply
+    param_applied = fn(param)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1326, in convert
+    return t.to(
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 48.00 MiB. GPU 0 has a total capacity of 31.74 GiB of which 6.50 MiB is free. Process 4104479 has 11.52 MiB memory in use. Process 776383 has 306.00 MiB memory in use. Process 887771 has 27.59 GiB memory in use. Process 920880 has 3.82 GiB memory in use. Of the allocated memory 3.50 GiB is allocated by PyTorch, and 21.84 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

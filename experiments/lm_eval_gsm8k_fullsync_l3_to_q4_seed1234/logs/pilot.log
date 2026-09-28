@@ -1,0 +1,306 @@
+lm-eval Full-Sync configuration tests passed
+2026-09-22:11:17:59 WARNING  [config.evaluate_config:287] --limit SHOULD ONLY BE USED FOR TESTING. REAL METRICS SHOULD NOT BE COMPUTED USING LIMIT.
+2026-09-22:11:18:09 INFO     [_cli.run:388] Selected Tasks: ['gsm8k']
+2026-09-22:11:18:09 WARNING  [evaluator:184] pretrained=/home/yezhe/all_models/models/LLM-Research/Llama-3___2-3B-Instruct appears to be an instruct or chat variant but chat template is
+        not applied. Recommend setting `apply_chat_template` (optionally `fewshot_as_multiturn`).
+2026-09-22:11:18:11 INFO     [evaluator:214] Setting random seed to 1234 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-09-22:11:18:11 INFO     [evaluator:239] Initializing hf model, with arguments: {'pretrained': '/home/yezhe/all_models/models/LLM-Research/Llama-3___2-3B-Instruct', 'dtype': 'float16'}
+2026-09-22:11:18:13 INFO     [models.huggingface:286] Using device 'cuda:0'
+2026-09-22:11:18:15 INFO     [models.huggingface:579] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:0'}
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<01:22,  3.07it/s]Loading weights:  12%|█▏        | 30/254 [00:00<00:02, 87.62it/s]Loading weights:  18%|█▊        | 46/254 [00:00<00:01, 105.71it/s]Loading weights:  24%|██▍       | 62/254 [00:00<00:01, 120.18it/s]Loading weights:  31%|███       | 78/254 [00:00<00:01, 122.85it/s]Loading weights:  37%|███▋      | 94/254 [00:00<00:01, 133.06it/s]Loading weights:  43%|████▎     | 109/254 [00:00<00:01, 136.62it/s]Loading weights:  49%|████▉     | 124/254 [00:01<00:01, 124.00it/s]Loading weights:  54%|█████▍    | 138/254 [00:01<00:00, 121.52it/s]Loading weights:  59%|█████▉    | 151/254 [00:01<00:00, 117.89it/s]Loading weights:  65%|██████▍   | 165/254 [00:01<00:00, 119.65it/s]Loading weights:  70%|███████   | 178/254 [00:01<00:00, 120.99it/s]Loading weights:  76%|███████▌  | 193/254 [00:01<00:00, 125.78it/s]Loading weights:  83%|████████▎ | 210/254 [00:01<00:00, 129.40it/s]Loading weights:  88%|████████▊ | 224/254 [00:01<00:00, 130.95it/s]Loading weights:  94%|█████████▎| 238/254 [00:02<00:00, 124.43it/s]Loading weights: 100%|██████████| 254/254 [00:02<00:00, 118.45it/s]
+'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/gsm8k/resolve/main/README.md
+Retrying in 1s [Retry 1/5].
+Traceback (most recent call last):
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/__main__.py", line 14, in <module>
+    cli_evaluate()
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/__main__.py", line 10, in cli_evaluate
+    parser.execute(args)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/_cli/harness.py", line 60, in execute
+    args.func(args)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/_cli/run.py", line 391, in _execute
+    results = simple_evaluate(
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/utils.py", line 575, in _wrapper
+    return fn(*args, **kwargs)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/evaluator.py", line 302, in simple_evaluate
+    loaded = task_manager.load(tasks)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/manager.py", line 208, in load
+    obj = self._load_spec(spec) if not isinstance(spec, (Task, Group)) else spec  # type:ignore[invalid-argument-type]
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/manager.py", line 154, in _load_spec
+    return self._factory.build(
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/_factory.py", line 61, in build
+    return self._build_task(entry, overrides)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/_factory.py", line 81, in _build_task
+    obj = ConfigurableTask(config=cfg)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/api/task.py", line 753, in __init__
+    self.download(self.config.dataset_kwargs)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/api/task.py", line 869, in download
+    self.dataset = datasets.load_dataset(
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/datasets/load.py", line 1688, in load_dataset
+    builder_instance = load_dataset_builder(
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/datasets/load.py", line 1315, in load_dataset_builder
+    dataset_module = dataset_module_factory(
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/datasets/load.py", line 1207, in dataset_module_factory
+    raise e1 from None
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/datasets/load.py", line 1114, in dataset_module_factory
+    dataset_readme_path = api.hf_hub_download(
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/huggingface_hub/hf_api.py", line 6188, in hf_hub_download
+    return hf_hub_download(
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 997, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1130, in _hf_hub_download_to_cache_dir
+    _get_metadata_or_catch_error(
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1669, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1591, in get_hf_file_metadata
+    response = _httpx_follow_relative_redirects_with_backoff(
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 685, in _httpx_follow_relative_redirects_with_backoff
+    response = http_backoff(
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 559, in http_backoff
+    return next(
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 467, in _http_backoff_base
+    response = client.request(method=method, url=url, **kwargs)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/httpx/_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/httpx/_client.py", line 901, in send
+    raise RuntimeError("Cannot send a request, as the client has been closed.")
+RuntimeError: Cannot send a request, as the client has been closed.
+lm-eval Full-Sync configuration tests passed
+2026-09-22:11:34:43 WARNING  [config.evaluate_config:287] --limit SHOULD ONLY BE USED FOR TESTING. REAL METRICS SHOULD NOT BE COMPUTED USING LIMIT.
+2026-09-22:11:34:53 INFO     [_cli.run:387] Including path: /home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/tasks
+2026-09-22:11:34:53 INFO     [_cli.run:388] Selected Tasks: ['gsm8k_local']
+2026-09-22:11:34:53 WARNING  [evaluator:184] pretrained=/home/yezhe/all_models/models/LLM-Research/Llama-3___2-3B-Instruct appears to be an instruct or chat variant but chat template is
+        not applied. Recommend setting `apply_chat_template` (optionally `fewshot_as_multiturn`).
+2026-09-22:11:34:55 INFO     [evaluator:214] Setting random seed to 1234 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-09-22:11:34:55 INFO     [evaluator:239] Initializing hf model, with arguments: {'pretrained': '/home/yezhe/all_models/models/LLM-Research/Llama-3___2-3B-Instruct', 'dtype': 'float16'}
+2026-09-22:11:34:56 INFO     [models.huggingface:286] Using device 'cuda:0'
+2026-09-22:11:34:59 INFO     [models.huggingface:579] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:0'}
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<00:57,  4.42it/s]Loading weights:  12%|█▏        | 30/254 [00:00<00:02, 99.52it/s]Loading weights:  19%|█▉        | 48/254 [00:00<00:01, 110.30it/s]Loading weights:  27%|██▋       | 68/254 [00:00<00:01, 130.99it/s]Loading weights:  33%|███▎      | 84/254 [00:00<00:01, 127.58it/s]Loading weights:  40%|████      | 102/254 [00:00<00:01, 129.29it/s]Loading weights:  47%|████▋     | 120/254 [00:01<00:01, 128.70it/s]Loading weights:  54%|█████▎    | 136/254 [00:01<00:00, 136.31it/s]Loading weights:  59%|█████▉    | 151/254 [00:01<00:00, 130.55it/s]Loading weights:  65%|██████▍   | 165/254 [00:01<00:00, 132.10it/s]Loading weights:  72%|███████▏  | 183/254 [00:01<00:00, 134.69it/s]Loading weights:  79%|███████▉  | 201/254 [00:01<00:00, 142.74it/s]Loading weights:  86%|████████▌ | 219/254 [00:01<00:00, 149.58it/s]Loading weights:  93%|█████████▎| 237/254 [00:01<00:00, 154.14it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 135.26it/s]
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 7473 examples [00:00, 155813.34 examples/s]
+Generating test split: 0 examples [00:00, ? examples/s]Generating test split: 1319 examples [00:00, 173730.91 examples/s]
+2026-09-22:11:35:03 INFO     [evaluator_utils:446] Selected tasks:
+2026-09-22:11:35:03 INFO     [evaluator_utils:480] Task: gsm8k_local (/home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/tasks/gsm8k_local.yaml)
+2026-09-22:11:35:03 INFO     [evaluator:314] gsm8k_local: Using gen_kwargs: {'until': ['Question:', '</s>', '<|im_end|>'], 'do_sample': False, 'temperature': 0.0}
+2026-09-22:11:35:03 WARNING  [evaluator:333] Overwriting default num_fewshot of gsm8k_local from 5 to 0
+2026-09-22:11:35:03 INFO     [api.task:312] Building contexts for gsm8k_local on rank 0...
+  0%|          | 0/10 [00:00<?, ?it/s]100%|██████████| 10/10 [00:00<00:00, 1159.32it/s]
+2026-09-22:11:35:03 INFO     [evaluator:585] Running generate_until requests
+Running generate_until requests:   0%|          | 0/10 [00:00<?, ?it/s][transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+Running generate_until requests:  10%|█         | 1/10 [00:01<00:16,  1.80s/it]Running generate_until requests:  20%|██        | 2/10 [00:09<00:41,  5.20s/it]Running generate_until requests:  30%|███       | 3/10 [00:12<00:29,  4.26s/it]Running generate_until requests:  40%|████      | 4/10 [00:20<00:33,  5.58s/it]Running generate_until requests:  50%|█████     | 5/10 [00:24<00:25,  5.11s/it]Running generate_until requests:  60%|██████    | 6/10 [00:31<00:23,  5.93s/it]Running generate_until requests:  70%|███████   | 7/10 [00:39<00:19,  6.45s/it]Running generate_until requests:  80%|████████  | 8/10 [00:41<00:09,  4.98s/it]Running generate_until requests:  90%|█████████ | 9/10 [00:48<00:05,  5.77s/it]Running generate_until requests: 100%|██████████| 10/10 [00:56<00:00,  6.31s/it]Running generate_until requests: 100%|██████████| 10/10 [00:56<00:00,  5.63s/it]
+fatal: not a git repository (or any of the parent directories): .git
+2026-09-22:11:36:00 INFO     [loggers.evaluation_tracker:247] Saving results aggregated
+2026-09-22:11:36:00 INFO     [loggers.evaluation_tracker:119] Saving per-task samples to /home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/results/llama_native_0shot_limit10/__home__yezhe__all_models__models__LLM-Research__Llama-3___2-3B-Instruct/*.jsonl
+hf ({'pretrained': '/home/yezhe/all_models/models/LLM-Research/Llama-3___2-3B-Instruct', 'dtype': 'float16'}), gen_kwargs: ({}), limit: 10.0, num_fewshot: 0, batch_size: 1
+|   Tasks   |Version|     Filter     |n-shot|  Metric   |   |Value|   |Stderr|
+|-----------|------:|----------------|-----:|-----------|---|----:|---|-----:|
+|gsm8k_local|      3|flexible-extract|     0|exact_match|↑  |  0.5|±  |0.1667|
+|           |       |strict-match    |     0|exact_match|↑  |  0.0|±  |0.0000|
+
+2026-09-22:11:36:02 WARNING  [config.evaluate_config:287] --limit SHOULD ONLY BE USED FOR TESTING. REAL METRICS SHOULD NOT BE COMPUTED USING LIMIT.
+2026-09-22:11:36:12 INFO     [_cli.run:387] Including path: /home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/tasks
+2026-09-22:11:36:12 INFO     [_cli.run:388] Selected Tasks: ['gsm8k_local']
+2026-09-22:11:36:14 INFO     [evaluator:214] Setting random seed to 1234 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-09-22:11:36:14 INFO     [evaluator:239] Initializing hf model, with arguments: {'pretrained': '/home/yezhe/all_models/models/Qwen/Qwen3-4B', 'dtype': 'float16'}
+2026-09-22:11:36:15 INFO     [models.huggingface:286] Using device 'cuda:0'
+2026-09-22:11:36:16 INFO     [models.huggingface:579] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:0'}
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<01:35,  4.14it/s]Loading weights:   7%|▋         | 26/398 [00:00<00:04, 89.79it/s]Loading weights:  12%|█▏        | 47/398 [00:00<00:02, 127.33it/s]Loading weights:  16%|█▌        | 63/398 [00:00<00:02, 134.31it/s]Loading weights:  20%|██        | 80/398 [00:00<00:02, 133.68it/s]Loading weights:  24%|██▍       | 95/398 [00:00<00:02, 137.08it/s]Loading weights:  28%|██▊       | 113/398 [00:00<00:01, 149.35it/s]Loading weights:  34%|███▍      | 135/398 [00:01<00:01, 157.16it/s]Loading weights:  39%|███▉      | 157/398 [00:01<00:01, 162.71it/s]Loading weights:  45%|████▍     | 179/398 [00:01<00:01, 166.44it/s]Loading weights:  49%|████▉     | 196/398 [00:01<00:01, 162.78it/s]Loading weights:  54%|█████▍    | 214/398 [00:01<00:01, 165.18it/s]Loading weights:  59%|█████▉    | 235/398 [00:01<00:00, 174.05it/s]Loading weights:  65%|██████▍   | 257/398 [00:01<00:00, 181.35it/s]Loading weights:  70%|███████   | 279/398 [00:01<00:00, 178.76it/s]Loading weights:  75%|███████▌  | 300/398 [00:01<00:00, 185.08it/s]Loading weights:  80%|████████  | 319/398 [00:02<00:00, 177.99it/s]Loading weights:  85%|████████▍ | 337/398 [00:02<00:00, 173.52it/s]Loading weights:  89%|████████▉ | 355/398 [00:02<00:00, 174.90it/s]Loading weights:  94%|█████████▎| 373/398 [00:02<00:00, 170.89it/s]Loading weights:  98%|█████████▊| 391/398 [00:02<00:00, 158.91it/s]Loading weights: 100%|██████████| 398/398 [00:02<00:00, 157.03it/s]
+2026-09-22:11:36:21 INFO     [evaluator_utils:446] Selected tasks:
+2026-09-22:11:36:21 INFO     [evaluator_utils:480] Task: gsm8k_local (/home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/tasks/gsm8k_local.yaml)
+2026-09-22:11:36:21 INFO     [evaluator:314] gsm8k_local: Using gen_kwargs: {'until': ['Question:', '</s>', '<|im_end|>'], 'do_sample': False, 'temperature': 0.0}
+2026-09-22:11:36:21 WARNING  [evaluator:333] Overwriting default num_fewshot of gsm8k_local from 5 to 0
+2026-09-22:11:36:21 INFO     [api.task:312] Building contexts for gsm8k_local on rank 0...
+  0%|          | 0/10 [00:00<?, ?it/s]100%|██████████| 10/10 [00:00<00:00, 1133.75it/s]
+2026-09-22:11:36:21 INFO     [evaluator:585] Running generate_until requests
+Running generate_until requests:   0%|          | 0/10 [00:00<?, ?it/s]Running generate_until requests:  10%|█         | 1/10 [00:13<02:00, 13.37s/it]Running generate_until requests:  20%|██        | 2/10 [00:25<01:41, 12.70s/it]Running generate_until requests:  30%|███       | 3/10 [00:37<01:27, 12.48s/it]Running generate_until requests:  40%|████      | 4/10 [00:43<00:58,  9.67s/it]Running generate_until requests:  50%|█████     | 5/10 [00:54<00:51, 10.24s/it]Running generate_until requests:  60%|██████    | 6/10 [01:06<00:43, 10.92s/it]Running generate_until requests:  70%|███████   | 7/10 [01:18<00:34, 11.35s/it]Running generate_until requests:  80%|████████  | 8/10 [01:25<00:19,  9.90s/it]Running generate_until requests:  90%|█████████ | 9/10 [01:28<00:07,  7.68s/it]Running generate_until requests: 100%|██████████| 10/10 [01:30<00:00,  5.96s/it]Running generate_until requests: 100%|██████████| 10/10 [01:30<00:00,  9.06s/it]
+fatal: not a git repository (or any of the parent directories): .git
+2026-09-22:11:37:53 INFO     [loggers.evaluation_tracker:247] Saving results aggregated
+2026-09-22:11:37:53 INFO     [loggers.evaluation_tracker:119] Saving per-task samples to /home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/results/qwen_native_hf_0shot_limit10/__home__yezhe__all_models__models__Qwen__Qwen3-4B/*.jsonl
+hf ({'pretrained': '/home/yezhe/all_models/models/Qwen/Qwen3-4B', 'dtype': 'float16'}), gen_kwargs: ({}), limit: 10.0, num_fewshot: 0, batch_size: 1
+|   Tasks   |Version|     Filter     |n-shot|  Metric   |   |Value|   |Stderr|
+|-----------|------:|----------------|-----:|-----------|---|----:|---|-----:|
+|gsm8k_local|      3|flexible-extract|     0|exact_match|↑  |  0.6|±  |0.1633|
+|           |       |strict-match    |     0|exact_match|↑  |  0.0|±  |0.0000|
+
+2026-09-22:11:37:58 WARNING  [config.evaluate_config:287] --limit SHOULD ONLY BE USED FOR TESTING. REAL METRICS SHOULD NOT BE COMPUTED USING LIMIT.
+2026-09-22:11:38:08 INFO     [_cli.run:387] Including path: /home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/tasks
+2026-09-22:11:38:08 INFO     [_cli.run:388] Selected Tasks: ['gsm8k_local']
+2026-09-22:11:38:08 INFO     [evaluator:214] Setting random seed to 1234 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-09-22:11:38:08 INFO     [evaluator:239] Initializing fullsync_l3_to_q4 model, with arguments: {'mode': 'native_qwen', 'max_gen_toks': 256, 'max_length': 32768, 'audit_path': '/home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/results/qwen_native_custom_audit.jsonl'}
+Traceback (most recent call last):
+  File "/home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/run_lm_eval.py", line 7, in <module>
+    cli_evaluate()
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/__main__.py", line 10, in cli_evaluate
+    parser.execute(args)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/_cli/harness.py", line 60, in execute
+    args.func(args)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/_cli/run.py", line 391, in _execute
+    results = simple_evaluate(
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/utils.py", line 575, in _wrapper
+    return fn(*args, **kwargs)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/evaluator.py", line 242, in simple_evaluate
+    lm = lm_eval.api.registry.get_model(model).create_from_arg_obj(
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/api/model.py", line 169, in create_from_arg_obj
+    return cls(**arg_dict, **additional_config)
+TypeError: FullSyncLM.__init__() got an unexpected keyword argument 'batch_size'
+2026-09-22:11:42:52 WARNING  [config.evaluate_config:287] --limit SHOULD ONLY BE USED FOR TESTING. REAL METRICS SHOULD NOT BE COMPUTED USING LIMIT.
+2026-09-22:11:43:02 INFO     [_cli.run:387] Including path: /home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/tasks
+2026-09-22:11:43:02 INFO     [_cli.run:388] Selected Tasks: ['gsm8k_local']
+2026-09-22:11:43:02 INFO     [evaluator:214] Setting random seed to 1234 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-09-22:11:43:02 INFO     [evaluator:239] Initializing fullsync_l3_to_q4 model, with arguments: {'mode': 'native_qwen', 'max_gen_toks': 256, 'max_length': 32768, 'audit_path': '/home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/results/qwen_native_custom_audit.jsonl'}
+2026-09-22:11:43:04 INFO     [evaluator_utils:446] Selected tasks:
+2026-09-22:11:43:04 INFO     [evaluator_utils:480] Task: gsm8k_local (/home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/tasks/gsm8k_local.yaml)
+2026-09-22:11:43:04 INFO     [evaluator:314] gsm8k_local: Using gen_kwargs: {'until': ['Question:', '</s>', '<|im_end|>'], 'do_sample': False, 'temperature': 0.0}
+2026-09-22:11:43:04 WARNING  [evaluator:333] Overwriting default num_fewshot of gsm8k_local from 5 to 0
+2026-09-22:11:43:04 INFO     [api.task:312] Building contexts for gsm8k_local on rank 0...
+  0%|          | 0/10 [00:00<?, ?it/s]100%|██████████| 10/10 [00:00<00:00, 1333.18it/s]
+2026-09-22:11:43:04 INFO     [evaluator:585] Running generate_until requests
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  28%|██▊       | 113/398 [00:00<00:00, 1078.72it/s]Loading weights:  56%|█████▌    | 221/398 [00:00<00:00, 1046.33it/s]Loading weights:  82%|████████▏ | 326/398 [00:00<00:00, 1005.12it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 1004.46it/s]
+fatal: not a git repository (or any of the parent directories): .git
+2026-09-22:11:45:05 INFO     [loggers.evaluation_tracker:247] Saving results aggregated
+2026-09-22:11:45:05 INFO     [loggers.evaluation_tracker:119] Saving per-task samples to /home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/results/qwen_native_custom_0shot_limit10/vdujuxrm/*.jsonl
+fullsync_l3_to_q4 ({'mode': 'native_qwen', 'max_gen_toks': 256, 'max_length': 32768, 'audit_path': '/home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/results/qwen_native_custom_audit.jsonl'}), gen_kwargs: ({}), limit: 10.0, num_fewshot: 0, batch_size: 1
+|   Tasks   |Version|     Filter     |n-shot|  Metric   |   |Value|   |Stderr|
+|-----------|------:|----------------|-----:|-----------|---|----:|---|-----:|
+|gsm8k_local|      3|flexible-extract|     0|exact_match|↑  |  0.5|±  |0.1667|
+|           |       |strict-match    |     0|exact_match|↑  |  0.0|±  |0.0000|
+
+Traceback (most recent call last):
+  File "/home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/compare_native.py", line 46, in <module>
+    raise RuntimeError("Custom native-Qwen generation does not exactly reproduce HF Qwen")
+RuntimeError: Custom native-Qwen generation does not exactly reproduce HF Qwen
+lm-eval Full-Sync configuration tests passed
+2026-09-22:11:50:04 WARNING  [config.evaluate_config:287] --limit SHOULD ONLY BE USED FOR TESTING. REAL METRICS SHOULD NOT BE COMPUTED USING LIMIT.
+2026-09-22:11:50:14 INFO     [_cli.run:387] Including path: /home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/tasks
+2026-09-22:11:50:14 INFO     [_cli.run:388] Selected Tasks: ['gsm8k_local']
+2026-09-22:11:50:14 WARNING  [evaluator:184] pretrained=/home/yezhe/all_models/models/LLM-Research/Llama-3___2-3B-Instruct appears to be an instruct or chat variant but chat template is
+        not applied. Recommend setting `apply_chat_template` (optionally `fewshot_as_multiturn`).
+2026-09-22:11:50:16 INFO     [evaluator:214] Setting random seed to 1234 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-09-22:11:50:16 INFO     [evaluator:239] Initializing hf model, with arguments: {'pretrained': '/home/yezhe/all_models/models/LLM-Research/Llama-3___2-3B-Instruct', 'dtype': 'float16', 'attn_implementation': 'eager'}
+2026-09-22:11:50:18 INFO     [models.huggingface:286] Using device 'cuda:0'
+2026-09-22:11:50:20 INFO     [models.huggingface:579] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:0'}
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<00:56,  4.51it/s]Loading weights:   9%|▉         | 23/254 [00:00<00:02, 86.54it/s]Loading weights:  15%|█▌        | 39/254 [00:00<00:02, 107.44it/s]Loading weights:  22%|██▏       | 57/254 [00:00<00:01, 124.15it/s]Loading weights:  28%|██▊       | 72/254 [00:00<00:01, 127.94it/s]Loading weights:  34%|███▍      | 86/254 [00:00<00:01, 114.00it/s]Loading weights:  40%|████      | 102/254 [00:00<00:01, 121.09it/s]Loading weights:  45%|████▌     | 115/254 [00:01<00:01, 122.80it/s]Loading weights:  51%|█████     | 129/254 [00:01<00:01, 118.41it/s]Loading weights:  58%|█████▊    | 147/254 [00:01<00:00, 132.80it/s]Loading weights:  63%|██████▎   | 161/254 [00:01<00:00, 133.58it/s]Loading weights:  69%|██████▉   | 175/254 [00:01<00:00, 125.85it/s]Loading weights:  76%|███████▌  | 192/254 [00:01<00:00, 127.73it/s]Loading weights:  83%|████████▎ | 210/254 [00:01<00:00, 119.58it/s]Loading weights:  90%|█████████ | 229/254 [00:01<00:00, 133.07it/s]Loading weights:  97%|█████████▋| 246/254 [00:02<00:00, 133.54it/s]Loading weights: 100%|██████████| 254/254 [00:02<00:00, 123.72it/s]
+2026-09-22:11:50:24 INFO     [evaluator_utils:446] Selected tasks:
+2026-09-22:11:50:24 INFO     [evaluator_utils:480] Task: gsm8k_local (/home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/tasks/gsm8k_local.yaml)
+2026-09-22:11:50:24 INFO     [evaluator:314] gsm8k_local: Using gen_kwargs: {'until': ['Question:', '</s>', '<|im_end|>'], 'do_sample': False, 'temperature': 0.0}
+2026-09-22:11:50:24 WARNING  [evaluator:333] Overwriting default num_fewshot of gsm8k_local from 5 to 0
+2026-09-22:11:50:24 INFO     [api.task:312] Building contexts for gsm8k_local on rank 0...
+  0%|          | 0/10 [00:00<?, ?it/s]100%|██████████| 10/10 [00:00<00:00, 1108.72it/s]
+2026-09-22:11:50:24 INFO     [evaluator:585] Running generate_until requests
+Running generate_until requests:   0%|          | 0/10 [00:00<?, ?it/s][transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+Running generate_until requests:  10%|█         | 1/10 [00:02<00:20,  2.26s/it]Running generate_until requests:  20%|██        | 2/10 [00:09<00:43,  5.39s/it]Running generate_until requests:  30%|███       | 3/10 [00:12<00:30,  4.35s/it]Running generate_until requests:  40%|████      | 4/10 [00:20<00:33,  5.60s/it]Running generate_until requests:  50%|█████     | 5/10 [00:24<00:25,  5.10s/it]Running generate_until requests:  60%|██████    | 6/10 [00:32<00:23,  5.92s/it]Running generate_until requests:  70%|███████   | 7/10 [00:39<00:19,  6.43s/it]Running generate_until requests:  80%|████████  | 8/10 [00:41<00:09,  4.96s/it]Running generate_until requests:  90%|█████████ | 9/10 [00:48<00:05,  5.75s/it]Running generate_until requests: 100%|██████████| 10/10 [00:56<00:00,  6.28s/it]Running generate_until requests: 100%|██████████| 10/10 [00:56<00:00,  5.64s/it]
+fatal: not a git repository (or any of the parent directories): .git
+2026-09-22:11:51:21 INFO     [loggers.evaluation_tracker:247] Saving results aggregated
+2026-09-22:11:51:21 INFO     [loggers.evaluation_tracker:119] Saving per-task samples to /home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/results/llama_native_eager_0shot_limit10/__home__yezhe__all_models__models__LLM-Research__Llama-3___2-3B-Instruct/*.jsonl
+hf ({'pretrained': '/home/yezhe/all_models/models/LLM-Research/Llama-3___2-3B-Instruct', 'dtype': 'float16', 'attn_implementation': 'eager'}), gen_kwargs: ({}), limit: 10.0, num_fewshot: 0, batch_size: 1
+|   Tasks   |Version|     Filter     |n-shot|  Metric   |   |Value|   |Stderr|
+|-----------|------:|----------------|-----:|-----------|---|----:|---|-----:|
+|gsm8k_local|      3|flexible-extract|     0|exact_match|↑  |  0.4|±  |0.1633|
+|           |       |strict-match    |     0|exact_match|↑  |  0.0|±  |0.0000|
+
+2026-09-22:11:51:22 WARNING  [config.evaluate_config:287] --limit SHOULD ONLY BE USED FOR TESTING. REAL METRICS SHOULD NOT BE COMPUTED USING LIMIT.
+2026-09-22:11:51:33 INFO     [_cli.run:387] Including path: /home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/tasks
+2026-09-22:11:51:33 INFO     [_cli.run:388] Selected Tasks: ['gsm8k_local']
+2026-09-22:11:51:34 INFO     [evaluator:214] Setting random seed to 1234 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-09-22:11:51:34 INFO     [evaluator:239] Initializing hf model, with arguments: {'pretrained': '/home/yezhe/all_models/models/Qwen/Qwen3-4B', 'dtype': 'float16', 'attn_implementation': 'eager'}
+2026-09-22:11:51:36 INFO     [models.huggingface:286] Using device 'cuda:0'
+2026-09-22:11:51:37 INFO     [models.huggingface:579] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:0'}
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<01:20,  4.94it/s]Loading weights:   6%|▋         | 25/398 [00:00<00:03, 96.40it/s]Loading weights:  10%|█         | 40/398 [00:00<00:03, 114.95it/s]Loading weights:  15%|█▍        | 58/398 [00:00<00:02, 119.96it/s]Loading weights:  20%|██        | 80/398 [00:00<00:02, 149.37it/s]Loading weights:  25%|██▍       | 99/398 [00:00<00:01, 157.89it/s]Loading weights:  29%|██▉       | 116/398 [00:00<00:01, 154.93it/s]Loading weights:  34%|███▍      | 135/398 [00:00<00:01, 161.89it/s]Loading weights:  38%|███▊      | 152/398 [00:01<00:01, 159.65it/s]Loading weights:  42%|████▏     | 169/398 [00:01<00:01, 152.81it/s]Loading weights:  47%|████▋     | 189/398 [00:01<00:01, 165.83it/s]Loading weights:  52%|█████▏    | 206/398 [00:01<00:01, 159.65it/s]Loading weights:  56%|█████▋    | 224/398 [00:01<00:01, 159.86it/s]Loading weights:  62%|██████▏   | 245/398 [00:01<00:00, 171.38it/s]Loading weights:  67%|██████▋   | 267/398 [00:01<00:00, 181.75it/s]Loading weights:  72%|███████▏  | 286/398 [00:01<00:00, 178.96it/s]Loading weights:  77%|███████▋  | 305/398 [00:01<00:00, 171.05it/s]Loading weights:  81%|████████  | 323/398 [00:02<00:00, 167.18it/s]Loading weights:  86%|████████▌ | 341/398 [00:02<00:00, 167.41it/s]Loading weights:  90%|████████▉ | 358/398 [00:02<00:00, 167.48it/s]Loading weights:  95%|█████████▍| 377/398 [00:02<00:00, 170.83it/s]Loading weights:  99%|█████████▉| 395/398 [00:02<00:00, 170.76it/s]Loading weights: 100%|██████████| 398/398 [00:02<00:00, 157.30it/s]
+2026-09-22:11:51:42 INFO     [evaluator_utils:446] Selected tasks:
+2026-09-22:11:51:42 INFO     [evaluator_utils:480] Task: gsm8k_local (/home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/tasks/gsm8k_local.yaml)
+2026-09-22:11:51:42 INFO     [evaluator:314] gsm8k_local: Using gen_kwargs: {'until': ['Question:', '</s>', '<|im_end|>'], 'do_sample': False, 'temperature': 0.0}
+2026-09-22:11:51:42 WARNING  [evaluator:333] Overwriting default num_fewshot of gsm8k_local from 5 to 0
+2026-09-22:11:51:42 INFO     [api.task:312] Building contexts for gsm8k_local on rank 0...
+  0%|          | 0/10 [00:00<?, ?it/s]100%|██████████| 10/10 [00:00<00:00, 1151.93it/s]
+2026-09-22:11:51:42 INFO     [evaluator:585] Running generate_until requests
+Running generate_until requests:   0%|          | 0/10 [00:00<?, ?it/s]Running generate_until requests:  10%|█         | 1/10 [00:15<02:23, 15.96s/it]Running generate_until requests:  20%|██        | 2/10 [00:30<02:02, 15.26s/it]Running generate_until requests:  30%|███       | 3/10 [00:45<01:45, 15.03s/it]Running generate_until requests:  40%|████      | 4/10 [01:00<01:29, 14.91s/it]Running generate_until requests:  50%|█████     | 5/10 [01:13<01:12, 14.42s/it]Running generate_until requests:  60%|██████    | 6/10 [01:28<00:57, 14.49s/it]Running generate_until requests:  70%|███████   | 7/10 [01:43<00:43, 14.56s/it]Running generate_until requests:  80%|████████  | 8/10 [01:51<00:25, 12.53s/it]Running generate_until requests:  90%|█████████ | 9/10 [01:54<00:09,  9.66s/it]Running generate_until requests: 100%|██████████| 10/10 [01:57<00:00,  7.46s/it]Running generate_until requests: 100%|██████████| 10/10 [01:57<00:00, 11.72s/it]
+fatal: not a git repository (or any of the parent directories): .git
+2026-09-22:11:53:40 INFO     [loggers.evaluation_tracker:247] Saving results aggregated
+2026-09-22:11:53:40 INFO     [loggers.evaluation_tracker:119] Saving per-task samples to /home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/results/qwen_native_hf_eager_0shot_limit10/__home__yezhe__all_models__models__Qwen__Qwen3-4B/*.jsonl
+hf ({'pretrained': '/home/yezhe/all_models/models/Qwen/Qwen3-4B', 'dtype': 'float16', 'attn_implementation': 'eager'}), gen_kwargs: ({}), limit: 10.0, num_fewshot: 0, batch_size: 1
+|   Tasks   |Version|     Filter     |n-shot|  Metric   |   |Value|   |Stderr|
+|-----------|------:|----------------|-----:|-----------|---|----:|---|-----:|
+|gsm8k_local|      3|flexible-extract|     0|exact_match|↑  |  0.6|±  |0.1633|
+|           |       |strict-match    |     0|exact_match|↑  |  0.0|±  |0.0000|
+
+2026-09-22:11:53:45 WARNING  [config.evaluate_config:287] --limit SHOULD ONLY BE USED FOR TESTING. REAL METRICS SHOULD NOT BE COMPUTED USING LIMIT.
+2026-09-22:11:53:55 INFO     [_cli.run:387] Including path: /home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/tasks
+2026-09-22:11:53:55 INFO     [_cli.run:388] Selected Tasks: ['gsm8k_local']
+2026-09-22:11:53:55 INFO     [evaluator:214] Setting random seed to 1234 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-09-22:11:53:55 INFO     [evaluator:239] Initializing fullsync_l3_to_q4 model, with arguments: {'mode': 'native_qwen', 'max_gen_toks': 256, 'max_length': 32768, 'audit_path': '/home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/results/qwen_native_custom_eager_audit.jsonl'}
+2026-09-22:11:53:56 INFO     [evaluator_utils:446] Selected tasks:
+2026-09-22:11:53:56 INFO     [evaluator_utils:480] Task: gsm8k_local (/home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/tasks/gsm8k_local.yaml)
+2026-09-22:11:53:56 INFO     [evaluator:314] gsm8k_local: Using gen_kwargs: {'until': ['Question:', '</s>', '<|im_end|>'], 'do_sample': False, 'temperature': 0.0}
+2026-09-22:11:53:56 WARNING  [evaluator:333] Overwriting default num_fewshot of gsm8k_local from 5 to 0
+2026-09-22:11:53:56 INFO     [api.task:312] Building contexts for gsm8k_local on rank 0...
+  0%|          | 0/10 [00:00<?, ?it/s]100%|██████████| 10/10 [00:00<00:00, 1156.57it/s]
+2026-09-22:11:53:56 INFO     [evaluator:585] Running generate_until requests
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  28%|██▊       | 113/398 [00:00<00:00, 1046.90it/s]Loading weights:  55%|█████▍    | 218/398 [00:00<00:00, 1030.62it/s]Loading weights:  81%|████████  | 322/398 [00:00<00:00, 1001.19it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 1028.17it/s]
+fatal: not a git repository (or any of the parent directories): .git
+2026-09-22:11:55:31 INFO     [loggers.evaluation_tracker:247] Saving results aggregated
+2026-09-22:11:55:31 INFO     [loggers.evaluation_tracker:119] Saving per-task samples to /home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/results/qwen_native_custom_eager_0shot_limit10/vdujuxrm/*.jsonl
+fullsync_l3_to_q4 ({'mode': 'native_qwen', 'max_gen_toks': 256, 'max_length': 32768, 'audit_path': '/home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/results/qwen_native_custom_eager_audit.jsonl'}), gen_kwargs: ({}), limit: 10.0, num_fewshot: 0, batch_size: 1
+|   Tasks   |Version|     Filter     |n-shot|  Metric   |   |Value|   |Stderr|
+|-----------|------:|----------------|-----:|-----------|---|----:|---|-----:|
+|gsm8k_local|      3|flexible-extract|     0|exact_match|↑  |  0.5|±  |0.1667|
+|           |       |strict-match    |     0|exact_match|↑  |  0.0|±  |0.0000|
+
+Traceback (most recent call last):
+  File "/home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/compare_native.py", line 46, in <module>
+    raise RuntimeError("Custom native-Qwen generation does not exactly reproduce HF Qwen")
+RuntimeError: Custom native-Qwen generation does not exactly reproduce HF Qwen
+2026-09-22:13:50:09 WARNING  [config.evaluate_config:287] --limit SHOULD ONLY BE USED FOR TESTING. REAL METRICS SHOULD NOT BE COMPUTED USING LIMIT.
+2026-09-22:13:50:19 INFO     [_cli.run:387] Including path: /home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/tasks
+2026-09-22:13:50:19 INFO     [_cli.run:388] Selected Tasks: ['gsm8k_local']
+2026-09-22:13:50:19 INFO     [evaluator:214] Setting random seed to 1234 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-09-22:13:50:19 INFO     [evaluator:239] Initializing fullsync_l3_to_q4 model, with arguments: {'mode': 'native_qwen', 'max_gen_toks': 256, 'max_length': 32768, 'audit_path': '/home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/results/qwen_native_custom_eager_eosfix_audit.jsonl'}
+2026-09-22:13:50:21 INFO     [evaluator_utils:446] Selected tasks:
+2026-09-22:13:50:21 INFO     [evaluator_utils:480] Task: gsm8k_local (/home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/tasks/gsm8k_local.yaml)
+2026-09-22:13:50:21 INFO     [evaluator:314] gsm8k_local: Using gen_kwargs: {'until': ['Question:', '</s>', '<|im_end|>'], 'do_sample': False, 'temperature': 0.0}
+2026-09-22:13:50:21 WARNING  [evaluator:333] Overwriting default num_fewshot of gsm8k_local from 5 to 0
+2026-09-22:13:50:21 INFO     [api.task:312] Building contexts for gsm8k_local on rank 0...
+  0%|          | 0/10 [00:00<?, ?it/s]100%|██████████| 10/10 [00:00<00:00, 1184.90it/s]
+2026-09-22:13:50:21 INFO     [evaluator:585] Running generate_until requests
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  28%|██▊       | 113/398 [00:00<00:00, 1101.50it/s]Loading weights:  56%|█████▋    | 224/398 [00:00<00:00, 1023.29it/s]Loading weights:  82%|████████▏ | 327/398 [00:00<00:00, 1016.48it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 1028.85it/s]
+fatal: not a git repository (or any of the parent directories): .git
+2026-09-22:13:51:57 INFO     [loggers.evaluation_tracker:247] Saving results aggregated
+2026-09-22:13:51:57 INFO     [loggers.evaluation_tracker:119] Saving per-task samples to /home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/results/qwen_native_custom_eager_eosfix_0shot_limit10/vdujuxrm/*.jsonl
+fullsync_l3_to_q4 ({'mode': 'native_qwen', 'max_gen_toks': 256, 'max_length': 32768, 'audit_path': '/home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/results/qwen_native_custom_eager_eosfix_audit.jsonl'}), gen_kwargs: ({}), limit: 10.0, num_fewshot: 0, batch_size: 1
+|   Tasks   |Version|     Filter     |n-shot|  Metric   |   |Value|   |Stderr|
+|-----------|------:|----------------|-----:|-----------|---|----:|---|-----:|
+|gsm8k_local|      3|flexible-extract|     0|exact_match|↑  |  0.6|±  |0.1633|
+|           |       |strict-match    |     0|exact_match|↑  |  0.0|±  |0.0000|
+
+Native-Qwen exact generation audit passed: 20/20
+2026-09-22:13:52:03 WARNING  [config.evaluate_config:287] --limit SHOULD ONLY BE USED FOR TESTING. REAL METRICS SHOULD NOT BE COMPUTED USING LIMIT.
+2026-09-22:13:52:12 INFO     [_cli.run:387] Including path: /home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/tasks
+2026-09-22:13:52:12 INFO     [_cli.run:388] Selected Tasks: ['gsm8k_local']
+2026-09-22:13:52:12 INFO     [evaluator:214] Setting random seed to 1234 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-09-22:13:52:12 INFO     [evaluator:239] Initializing fullsync_l3_to_q4 model, with arguments: {'mode': 'fullsync', 'max_gen_toks': 256, 'max_length': 32768, 'audit_path': '/home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/results/fullsync_backend_eager_eosfix_audit.jsonl'}
+2026-09-22:13:52:14 INFO     [evaluator_utils:446] Selected tasks:
+2026-09-22:13:52:14 INFO     [evaluator_utils:480] Task: gsm8k_local (/home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/tasks/gsm8k_local.yaml)
+2026-09-22:13:52:14 INFO     [evaluator:314] gsm8k_local: Using gen_kwargs: {'until': ['Question:', '</s>', '<|im_end|>'], 'do_sample': False, 'temperature': 0.0}
+2026-09-22:13:52:14 WARNING  [evaluator:333] Overwriting default num_fewshot of gsm8k_local from 5 to 0
+2026-09-22:13:52:14 INFO     [api.task:312] Building contexts for gsm8k_local on rank 0...
+  0%|          | 0/10 [00:00<?, ?it/s]100%|██████████| 10/10 [00:00<00:00, 1187.38it/s]
+2026-09-22:13:52:14 INFO     [evaluator:585] Running generate_until requests
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:  30%|██▉       | 75/254 [00:00<00:00, 706.38it/s]Loading weights:  61%|██████▏   | 156/254 [00:00<00:00, 760.53it/s]Loading weights:  93%|█████████▎| 235/254 [00:00<00:00, 760.68it/s]Loading weights: 100%|██████████| 254/254 [00:00<00:00, 770.58it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  23%|██▎       | 91/398 [00:00<00:00, 863.01it/s]Loading weights:  49%|████▊     | 194/398 [00:00<00:00, 958.97it/s]Loading weights:  75%|███████▌  | 300/398 [00:00<00:00, 985.91it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 970.05it/s]
+fatal: not a git repository (or any of the parent directories): .git
+2026-09-22:13:54:28 INFO     [loggers.evaluation_tracker:247] Saving results aggregated
+2026-09-22:13:54:28 INFO     [loggers.evaluation_tracker:119] Saving per-task samples to /home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/results/fullsync_genb_eager_eosfix_0shot_limit10/vdujuxrm/*.jsonl
+fullsync_l3_to_q4 ({'mode': 'fullsync', 'max_gen_toks': 256, 'max_length': 32768, 'audit_path': '/home/yezhe/异构模型/lm_eval_gsm8k_fullsync_l3_to_q4_seed1234/results/fullsync_backend_eager_eosfix_audit.jsonl'}), gen_kwargs: ({}), limit: 10.0, num_fewshot: 0, batch_size: 1
+|   Tasks   |Version|     Filter     |n-shot|  Metric   |   |Value|   |Stderr|
+|-----------|------:|----------------|-----:|-----------|---|----:|---|-----:|
+|gsm8k_local|      3|flexible-extract|     0|exact_match|↑  |  0.1|±  |0.1000|
+|           |       |strict-match    |     0|exact_match|↑  |  0.2|±  |0.1333|
+
+[2026-09-22 13:54:30] EOS-FIXED CUSTOM NATIVE AUDIT AND FULL-SYNC PILOT COMPLETED

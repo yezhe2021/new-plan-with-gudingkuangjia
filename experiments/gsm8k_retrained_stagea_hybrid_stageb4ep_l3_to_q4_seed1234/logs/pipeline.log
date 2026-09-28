@@ -1,0 +1,210 @@
+[2026-09-23 10:34:24] START CPU tests
+GSM8K reused Stage-A + four-epoch Hybrid Stage-B CPU tests passed
+[2026-09-23 10:34:28] START two-sample GPU smoke
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:  35%|███▌      | 90/254 [00:00<00:00, 872.24it/s]Loading weights:  75%|███████▍  | 190/254 [00:00<00:00, 944.40it/s]Loading weights: 100%|██████████| 254/254 [00:00<00:00, 910.71it/s]
+Traceback (most recent call last):
+  File "/home/yezhe/异构模型/gsm8k_retrained_stagea_hybrid_stageb4ep_l3_to_q4_seed1234/smoke.py", line 41, in <module>
+    main()
+  File "/home/yezhe/异构模型/gsm8k_retrained_stagea_hybrid_stageb4ep_l3_to_q4_seed1234/smoke.py", line 13, in main
+    pairs, _, tok = E.capture_pairs(train_rows[:2], manifest["train_indices"][:2], "smoke")
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/yezhe/异构模型/gsm8k_retrained_stagea_hybrid_stageb4ep_l3_to_q4_seed1234/experiment.py", line 27, in capture_pairs
+    llama, qwen = C.ref.load_model("llama"), C.ref.load_model("qwen")
+  File "/home/yezhe/异构模型/frozen_fullsync_newbenchmarks_l3_g3_to_q4_seed1234/evaluate.py", line 353, in load_model
+    return model.to("cuda").eval().requires_grad_(False)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/transformers/modeling_utils.py", line 3701, in to
+    return super().to(*args, **kwargs)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1340, in to
+    return self._apply(convert)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 900, in _apply
+    module._apply(fn)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 900, in _apply
+    module._apply(fn)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 900, in _apply
+    module._apply(fn)
+  [Previous line repeated 2 more times]
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 927, in _apply
+    param_applied = fn(param)
+  File "/home/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1326, in convert
+    return t.to(
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 48.00 MiB. GPU 0 has a total capacity of 31.74 GiB of which 6.50 MiB is free. Process 4104479 has 11.52 MiB memory in use. Process 776383 has 306.00 MiB memory in use. Process 887771 has 27.59 GiB memory in use. Process 920880 has 3.82 GiB memory in use. Of the allocated memory 3.50 GiB is allocated by PyTorch, and 21.84 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[2026-09-23 11:12:20] START CPU tests
+GSM8K reused Stage-A + four-epoch Hybrid Stage-B CPU tests passed
+[2026-09-23 11:12:25] START two-sample GPU smoke
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:  30%|██▉       | 75/254 [00:00<00:00, 697.88it/s]Loading weights:  61%|██████    | 154/254 [00:00<00:00, 734.26it/s]Loading weights:  92%|█████████▏| 234/254 [00:00<00:00, 747.98it/s]Loading weights: 100%|██████████| 254/254 [00:00<00:00, 757.14it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  26%|██▌       | 102/398 [00:00<00:00, 981.12it/s]Loading weights:  51%|█████     | 201/398 [00:00<00:00, 924.80it/s]Loading weights:  75%|███████▌  | 300/398 [00:00<00:00, 943.05it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 958.57it/s]
+[2026-09-23 11:12:40] smoke native pair capture 2/2
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  29%|██▊       | 114/398 [00:00<00:00, 1127.04it/s]Loading weights:  57%|█████▋    | 227/398 [00:00<00:00, 1113.94it/s]Loading weights:  85%|████████▌ | 339/398 [00:00<00:00, 1052.39it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 1063.21it/s]
+GSM8K reused Stage-A + four-epoch Hybrid Stage-B smoke passed
+[2026-09-23 11:12:50] START frozen GSM8K Stage-A, fresh four-epoch Hybrid Stage-B, and test128
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:  12%|█▏        | 31/254 [00:00<00:00, 303.40it/s]Loading weights:  26%|██▋       | 67/254 [00:00<00:00, 334.51it/s]Loading weights:  40%|████      | 102/254 [00:00<00:00, 328.22it/s]Loading weights:  53%|█████▎    | 135/254 [00:00<00:00, 312.78it/s]Loading weights:  66%|██████▌   | 167/254 [00:00<00:00, 304.00it/s]Loading weights:  79%|███████▉  | 201/254 [00:00<00:00, 311.46it/s]Loading weights:  92%|█████████▏| 233/254 [00:00<00:00, 308.12it/s]Loading weights: 100%|██████████| 254/254 [00:00<00:00, 323.26it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  23%|██▎       | 92/398 [00:00<00:00, 904.93it/s]Loading weights:  46%|████▌     | 183/398 [00:00<00:00, 847.36it/s]Loading weights:  67%|██████▋   | 268/398 [00:00<00:00, 833.52it/s]Loading weights:  89%|████████▉ | 356/398 [00:00<00:00, 849.08it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 860.65it/s]
+[2026-09-23 11:13:14] train native pair capture 32/1024
+[2026-09-23 11:13:18] train native pair capture 64/1024
+[2026-09-23 11:13:22] train native pair capture 96/1024
+[2026-09-23 11:13:26] train native pair capture 128/1024
+[2026-09-23 11:13:31] train native pair capture 160/1024
+[2026-09-23 11:13:35] train native pair capture 192/1024
+[2026-09-23 11:13:39] train native pair capture 224/1024
+[2026-09-23 11:13:43] train native pair capture 256/1024
+[2026-09-23 11:13:48] train native pair capture 288/1024
+[2026-09-23 11:13:52] train native pair capture 320/1024
+[2026-09-23 11:13:56] train native pair capture 352/1024
+[2026-09-23 11:14:01] train native pair capture 384/1024
+[2026-09-23 11:14:05] train native pair capture 416/1024
+[2026-09-23 11:14:09] train native pair capture 448/1024
+[2026-09-23 11:14:14] train native pair capture 480/1024
+[2026-09-23 11:14:18] train native pair capture 512/1024
+[2026-09-23 11:14:22] train native pair capture 544/1024
+[2026-09-23 11:14:27] train native pair capture 576/1024
+[2026-09-23 11:14:30] train native pair capture 608/1024
+[2026-09-23 11:14:35] train native pair capture 640/1024
+[2026-09-23 11:14:39] train native pair capture 672/1024
+[2026-09-23 11:14:43] train native pair capture 704/1024
+[2026-09-23 11:14:48] train native pair capture 736/1024
+[2026-09-23 11:14:52] train native pair capture 768/1024
+[2026-09-23 11:14:56] train native pair capture 800/1024
+[2026-09-23 11:15:01] train native pair capture 832/1024
+[2026-09-23 11:15:05] train native pair capture 864/1024
+[2026-09-23 11:15:09] train native pair capture 896/1024
+[2026-09-23 11:15:13] train native pair capture 928/1024
+[2026-09-23 11:15:17] train native pair capture 960/1024
+[2026-09-23 11:15:20] train native pair capture 992/1024
+[2026-09-23 11:15:24] train native pair capture 1024/1024
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:  37%|███▋      | 93/254 [00:00<00:00, 863.92it/s]Loading weights:  71%|███████   | 180/254 [00:00<00:00, 821.72it/s]Loading weights: 100%|██████████| 254/254 [00:00<00:00, 830.82it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  26%|██▌       | 102/398 [00:00<00:00, 974.01it/s]Loading weights:  50%|█████     | 200/398 [00:00<00:00, 960.98it/s]Loading weights:  75%|███████▍  | 298/398 [00:00<00:00, 958.98it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 993.14it/s]
+[2026-09-23 11:15:36] validation native pair capture 32/128
+[2026-09-23 11:15:40] validation native pair capture 64/128
+[2026-09-23 11:15:44] validation native pair capture 96/128
+[2026-09-23 11:15:48] validation native pair capture 128/128
+[2026-09-23 11:15:54] train selected Stage-A map 32/1024
+[2026-09-23 11:15:56] train selected Stage-A map 64/1024
+[2026-09-23 11:15:59] train selected Stage-A map 96/1024
+[2026-09-23 11:16:01] train selected Stage-A map 128/1024
+[2026-09-23 11:16:03] train selected Stage-A map 160/1024
+[2026-09-23 11:16:05] train selected Stage-A map 192/1024
+[2026-09-23 11:16:07] train selected Stage-A map 224/1024
+[2026-09-23 11:16:09] train selected Stage-A map 256/1024
+[2026-09-23 11:16:11] train selected Stage-A map 288/1024
+[2026-09-23 11:16:13] train selected Stage-A map 320/1024
+[2026-09-23 11:16:16] train selected Stage-A map 352/1024
+[2026-09-23 11:16:18] train selected Stage-A map 384/1024
+[2026-09-23 11:16:20] train selected Stage-A map 416/1024
+[2026-09-23 11:16:22] train selected Stage-A map 448/1024
+[2026-09-23 11:16:25] train selected Stage-A map 480/1024
+[2026-09-23 11:16:27] train selected Stage-A map 512/1024
+[2026-09-23 11:16:29] train selected Stage-A map 544/1024
+[2026-09-23 11:16:31] train selected Stage-A map 576/1024
+[2026-09-23 11:16:33] train selected Stage-A map 608/1024
+[2026-09-23 11:16:35] train selected Stage-A map 640/1024
+[2026-09-23 11:16:38] train selected Stage-A map 672/1024
+[2026-09-23 11:16:40] train selected Stage-A map 704/1024
+[2026-09-23 11:16:42] train selected Stage-A map 736/1024
+[2026-09-23 11:16:45] train selected Stage-A map 768/1024
+[2026-09-23 11:16:47] train selected Stage-A map 800/1024
+[2026-09-23 11:16:50] train selected Stage-A map 832/1024
+[2026-09-23 11:16:53] train selected Stage-A map 864/1024
+[2026-09-23 11:16:56] train selected Stage-A map 896/1024
+[2026-09-23 11:16:59] train selected Stage-A map 928/1024
+[2026-09-23 11:17:02] train selected Stage-A map 960/1024
+[2026-09-23 11:17:05] train selected Stage-A map 992/1024
+[2026-09-23 11:17:07] train selected Stage-A map 1024/1024
+[2026-09-23 11:17:10] validation selected Stage-A map 32/128
+[2026-09-23 11:17:12] validation selected Stage-A map 64/128
+[2026-09-23 11:17:14] validation selected Stage-A map 96/128
+[2026-09-23 11:17:16] validation selected Stage-A map 128/128
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  28%|██▊       | 113/398 [00:00<00:00, 1128.46it/s]Loading weights:  57%|█████▋    | 226/398 [00:00<00:00, 1060.36it/s]Loading weights:  84%|████████▍ | 334/398 [00:00<00:00, 1066.40it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 1095.33it/s]
+[2026-09-23 11:18:14] Hybrid epoch=1 step=16 samples=128/1024 loss=4.2431
+[2026-09-23 11:19:06] Hybrid epoch=1 step=32 samples=256/1024 loss=3.2799
+[2026-09-23 11:19:59] Hybrid epoch=1 step=48 samples=384/1024 loss=2.7130
+[2026-09-23 11:20:53] Hybrid epoch=1 step=64 samples=512/1024 loss=2.0937
+[2026-09-23 11:21:48] Hybrid epoch=1 step=80 samples=640/1024 loss=1.2367
+[2026-09-23 11:22:42] Hybrid epoch=1 step=96 samples=768/1024 loss=0.6792
+[2026-09-23 11:23:37] Hybrid epoch=1 step=112 samples=896/1024 loss=0.4210
+[2026-09-23 11:24:32] Hybrid epoch=1 step=128 samples=1024/1024 loss=0.4620
+[2026-09-23 11:26:22] Hybrid epoch=1 validation 16/128
+[2026-09-23 11:27:57] Hybrid epoch=1 validation 32/128
+[2026-09-23 11:29:25] Hybrid epoch=1 validation 48/128
+[2026-09-23 11:30:57] Hybrid epoch=1 validation 64/128
+[2026-09-23 11:32:55] Hybrid epoch=1 validation 80/128
+[2026-09-23 11:35:05] Hybrid epoch=1 validation 96/128
+[2026-09-23 11:36:46] Hybrid epoch=1 validation 112/128
+[2026-09-23 11:38:26] Hybrid epoch=1 validation 128/128
+[2026-09-23 11:39:20] Hybrid epoch=2 step=144 samples=128/1024 loss=0.3537
+[2026-09-23 11:40:15] Hybrid epoch=2 step=160 samples=256/1024 loss=0.4581
+[2026-09-23 11:41:09] Hybrid epoch=2 step=176 samples=384/1024 loss=0.3845
+[2026-09-23 11:42:07] Hybrid epoch=2 step=192 samples=512/1024 loss=0.2904
+[2026-09-23 11:43:07] Hybrid epoch=2 step=208 samples=640/1024 loss=0.3476
+[2026-09-23 11:44:08] Hybrid epoch=2 step=224 samples=768/1024 loss=0.2814
+[2026-09-23 11:45:09] Hybrid epoch=2 step=240 samples=896/1024 loss=0.3275
+[2026-09-23 11:46:04] Hybrid epoch=2 step=256 samples=1024/1024 loss=0.3381
+[2026-09-23 11:47:42] Hybrid epoch=2 validation 16/128
+[2026-09-23 11:49:39] Hybrid epoch=2 validation 32/128
+[2026-09-23 11:51:06] Hybrid epoch=2 validation 48/128
+[2026-09-23 11:52:32] Hybrid epoch=2 validation 64/128
+[2026-09-23 11:54:15] Hybrid epoch=2 validation 80/128
+[2026-09-23 11:55:52] Hybrid epoch=2 validation 96/128
+[2026-09-23 11:57:32] Hybrid epoch=2 validation 112/128
+[2026-09-23 11:59:12] Hybrid epoch=2 validation 128/128
+[2026-09-23 12:00:09] Hybrid epoch=3 step=272 samples=128/1024 loss=0.3080
+[2026-09-23 12:01:11] Hybrid epoch=3 step=288 samples=256/1024 loss=0.2196
+[2026-09-23 12:02:12] Hybrid epoch=3 step=304 samples=384/1024 loss=0.2386
+[2026-09-23 12:03:13] Hybrid epoch=3 step=320 samples=512/1024 loss=0.2347
+[2026-09-23 12:04:14] Hybrid epoch=3 step=336 samples=640/1024 loss=0.2821
+[2026-09-23 12:05:15] Hybrid epoch=3 step=352 samples=768/1024 loss=0.2371
+[2026-09-23 12:06:13] Hybrid epoch=3 step=368 samples=896/1024 loss=0.2637
+[2026-09-23 12:07:13] Hybrid epoch=3 step=384 samples=1024/1024 loss=0.2340
+[2026-09-23 12:09:08] Hybrid epoch=3 validation 16/128
+[2026-09-23 12:11:12] Hybrid epoch=3 validation 32/128
+[2026-09-23 12:12:38] Hybrid epoch=3 validation 48/128
+[2026-09-23 12:14:11] Hybrid epoch=3 validation 64/128
+[2026-09-23 12:15:48] Hybrid epoch=3 validation 80/128
+[2026-09-23 12:17:21] Hybrid epoch=3 validation 96/128
+[2026-09-23 12:19:11] Hybrid epoch=3 validation 112/128
+[2026-09-23 12:21:10] Hybrid epoch=3 validation 128/128
+[2026-09-23 12:22:11] Hybrid epoch=4 step=400 samples=128/1024 loss=0.2512
+[2026-09-23 12:23:11] Hybrid epoch=4 step=416 samples=256/1024 loss=0.2356
+[2026-09-23 12:24:12] Hybrid epoch=4 step=432 samples=384/1024 loss=0.2570
+[2026-09-23 12:25:09] Hybrid epoch=4 step=448 samples=512/1024 loss=0.1773
+[2026-09-23 12:26:09] Hybrid epoch=4 step=464 samples=640/1024 loss=0.2183
+[2026-09-23 12:27:04] Hybrid epoch=4 step=480 samples=768/1024 loss=0.1832
+[2026-09-23 12:27:58] Hybrid epoch=4 step=496 samples=896/1024 loss=0.1911
+[2026-09-23 12:28:52] Hybrid epoch=4 step=512 samples=1024/1024 loss=0.2252
+[2026-09-23 12:30:29] Hybrid epoch=4 validation 16/128
+[2026-09-23 12:32:27] Hybrid epoch=4 validation 32/128
+[2026-09-23 12:33:57] Hybrid epoch=4 validation 48/128
+[2026-09-23 12:35:30] Hybrid epoch=4 validation 64/128
+[2026-09-23 12:37:19] Hybrid epoch=4 validation 80/128
+[2026-09-23 12:39:01] Hybrid epoch=4 validation 96/128
+[2026-09-23 12:41:08] Hybrid epoch=4 validation 112/128
+[2026-09-23 12:43:00] Hybrid epoch=4 validation 128/128
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:  37%|███▋      | 93/254 [00:00<00:00, 902.89it/s]Loading weights:  72%|███████▏  | 184/254 [00:00<00:00, 902.75it/s]Loading weights: 100%|██████████| 254/254 [00:00<00:00, 903.42it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  26%|██▌       | 102/398 [00:00<00:00, 989.59it/s]Loading weights:  51%|█████     | 201/398 [00:00<00:00, 974.64it/s]Loading weights:  75%|███████▌  | 299/398 [00:00<00:00, 968.43it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 984.77it/s]
+[2026-09-23 12:43:13] test native pair capture 32/128
+[2026-09-23 12:43:17] test native pair capture 64/128
+[2026-09-23 12:43:21] test native pair capture 96/128
+[2026-09-23 12:43:25] test native pair capture 128/128
+[2026-09-23 12:43:27] test selected Stage-A map 32/128
+[2026-09-23 12:43:29] test selected Stage-A map 64/128
+[2026-09-23 12:43:31] test selected Stage-A map 96/128
+[2026-09-23 12:43:33] test selected Stage-A map 128/128
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  30%|██▉       | 119/398 [00:00<00:00, 1175.83it/s]Loading weights:  60%|█████▉    | 237/398 [00:00<00:00, 1141.69it/s]Loading weights:  88%|████████▊ | 352/398 [00:00<00:00, 1104.00it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 1105.22it/s]
+[2026-09-23 12:45:53] test generation 8/128
+[2026-09-23 12:48:38] test generation 16/128
+[2026-09-23 12:50:54] test generation 24/128
+[2026-09-23 12:53:09] test generation 32/128
+[2026-09-23 12:55:24] test generation 40/128
+[2026-09-23 12:58:09] test generation 48/128
+[2026-09-23 13:00:35] test generation 56/128
+[2026-09-23 13:02:54] test generation 64/128
+[2026-09-23 13:05:37] test generation 72/128
+[2026-09-23 13:07:59] test generation 80/128
+[2026-09-23 13:10:15] test generation 88/128
+[2026-09-23 13:13:08] test generation 96/128
+[2026-09-23 13:16:32] test generation 104/128
+[2026-09-23 13:20:15] test generation 112/128
+[2026-09-23 13:22:55] test generation 120/128
+[2026-09-23 13:25:07] test generation 128/128
+[2026-09-23 13:25:08] GSM8K REUSED STAGE-A + FOUR-EPOCH HYBRID STAGE-B COMPLETED
+[2026-09-23 13:25:12] ALL PIPELINE STAGES COMPLETED

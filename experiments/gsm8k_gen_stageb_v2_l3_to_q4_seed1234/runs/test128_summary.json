@@ -1,0 +1,129 @@
+{
+  "llama_native": {
+    "count": 128,
+    "strict_accuracy": 0.0,
+    "flexible_accuracy": 0.5234375,
+    "first_hash_accuracy": 0.0,
+    "mean_generated_tokens": 154.125,
+    "eos_rate": 0.6953125,
+    "stop_rate": 0.6953125,
+    "max_token_rate": 0.3046875
+  },
+  "qwen_native": {
+    "count": 128,
+    "strict_accuracy": 0.0,
+    "flexible_accuracy": 0.5625,
+    "first_hash_accuracy": 0.0,
+    "mean_generated_tokens": 211.7265625,
+    "eos_rate": 0.046875,
+    "stop_rate": 0.3125,
+    "max_token_rate": 0.6875
+  },
+  "stage_a": {
+    "count": 128,
+    "strict_accuracy": 0.0,
+    "flexible_accuracy": 0.015625,
+    "first_hash_accuracy": 0.0,
+    "mean_generated_tokens": 256.0,
+    "eos_rate": 0.0,
+    "stop_rate": 0.0,
+    "max_token_rate": 1.0
+  },
+  "old_gen_b": {
+    "count": 128,
+    "strict_accuracy": 0.234375,
+    "flexible_accuracy": 0.2265625,
+    "first_hash_accuracy": 0.234375,
+    "mean_generated_tokens": 256.0,
+    "eos_rate": 0.0,
+    "stop_rate": 0.0,
+    "max_token_rate": 1.0
+  },
+  "ce": {
+    "count": 128,
+    "strict_accuracy": 0.2265625,
+    "flexible_accuracy": 0.2578125,
+    "first_hash_accuracy": 0.2265625,
+    "mean_generated_tokens": 102.28125,
+    "eos_rate": 0.9453125,
+    "stop_rate": 0.9453125,
+    "max_token_rate": 0.0546875
+  },
+  "kl": {
+    "count": 128,
+    "strict_accuracy": 0.0,
+    "flexible_accuracy": 0.390625,
+    "first_hash_accuracy": 0.0,
+    "mean_generated_tokens": 166.6484375,
+    "eos_rate": 0.6875,
+    "stop_rate": 0.6875,
+    "max_token_rate": 0.3125
+  },
+  "hybrid": {
+    "count": 128,
+    "strict_accuracy": 0.0,
+    "flexible_accuracy": 0.3984375,
+    "first_hash_accuracy": 0.0,
+    "mean_generated_tokens": 155.609375,
+    "eos_rate": 0.765625,
+    "stop_rate": 0.765625,
+    "max_token_rate": 0.234375
+  },
+  "status": "completed",
+  "test_samples": 128,
+  "prompt": "Question: {question}\\nAnswer:",
+  "max_new_tokens": 256,
+  "stage_a_checkpoint": "/home/yezhe/异构模型/fulltoken_sync_copydrop_v0_l3_to_q4_seed1234/runs/retrain/stage_a/checkpoints/epoch_4.pt",
+  "old_gen_b_checkpoint": "/home/yezhe/异构模型/gsm8k_gen_stageb_train1024_l3_to_q4_seed1234/runs/study/checkpoints/final.pt",
+  "selections": {
+    "ce": {
+      "count": 128,
+      "strict_accuracy": 0.25,
+      "flexible_accuracy": 0.25,
+      "first_hash_accuracy": 0.25,
+      "mean_generated_tokens": 103.609375,
+      "eos_rate": 0.9296875,
+      "stop_rate": 0.9296875,
+      "max_token_rate": 0.0703125,
+      "trajectory_kl": 0.46530437492765486,
+      "answer_ce": 0.576638059457764,
+      "eos_ce": 0.005283937628973945,
+      "epoch": 2,
+      "step": 256,
+      "checkpoint": "/home/yezhe/异构模型/gsm8k_gen_stageb_v2_l3_to_q4_seed1234/runs/ce/checkpoints/epoch_2.pt"
+    },
+    "kl": {
+      "count": 128,
+      "strict_accuracy": 0.0,
+      "flexible_accuracy": 0.4765625,
+      "first_hash_accuracy": 0.0,
+      "mean_generated_tokens": 158.5546875,
+      "eos_rate": 0.7734375,
+      "stop_rate": 0.7734375,
+      "max_token_rate": 0.2265625,
+      "trajectory_kl": 0.21700779226375744,
+      "answer_ce": 1.033703574212268,
+      "eos_ce": 0.004577835325108026,
+      "epoch": 2,
+      "step": 256,
+      "checkpoint": "/home/yezhe/异构模型/gsm8k_gen_stageb_v2_l3_to_q4_seed1234/runs/kl/checkpoints/epoch_2.pt"
+    },
+    "hybrid": {
+      "count": 128,
+      "strict_accuracy": 0.0,
+      "flexible_accuracy": 0.4453125,
+      "first_hash_accuracy": 0.0,
+      "mean_generated_tokens": 154.46875,
+      "eos_rate": 0.7890625,
+      "stop_rate": 0.7890625,
+      "max_token_rate": 0.2109375,
+      "trajectory_kl": 0.21872920589521527,
+      "answer_ce": 0.8220641782972962,
+      "eos_ce": 0.004970077780853899,
+      "epoch": 2,
+      "step": 256,
+      "checkpoint": "/home/yezhe/异构模型/gsm8k_gen_stageb_v2_l3_to_q4_seed1234/runs/hybrid/checkpoints/epoch_2.pt"
+    }
+  },
+  "official_test_untouched_by_training": true
+}
