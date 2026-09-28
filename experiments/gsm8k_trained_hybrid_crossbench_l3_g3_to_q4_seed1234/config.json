@@ -1,0 +1,38 @@
+{
+  "seed": 1234,
+  "samples_per_dataset": 128,
+  "max_body_tokens": 2048,
+  "chunk_tokens": 64,
+  "old_test_manifest": "/home/yezhe/异构模型/multidataset_obqa_arc_mmlupro_train1024_full28_mlp_l3_to_q4_seed1234/runs/study/manifests/test.json",
+  "attention_implementation": "eager",
+  "models": {
+    "qwen": "/home/yezhe/all_models/models/Qwen/Qwen3-4B",
+    "llama": "/home/yezhe/all_models/models/LLM-Research/Llama-3___2-3B-Instruct",
+    "gemma": "/home/yezhe/all_models/models/LLM-Research/gemma-3-4b-it"
+  },
+  "datasets": {
+    "hellaswag": "/home/yezhe/all_models/datasets/modelscope/hellaswag/hellaswag_val.jsonl",
+    "gsm8k": "/home/yezhe/数据集/gsm8k/test.jsonl",
+    "longbench_v2": "/home/yezhe/all_models/datasets/ZhipuAI/LongBench-v2/data.json"
+  },
+  "experiments": {
+    "llama": "/home/yezhe/异构模型/fulltoken_sync_copydrop_v0_l3_to_q4_seed1234",
+    "gemma": "/home/yezhe/异构模型/fulltoken_sync_copydrop_v0_g3_to_q4_seed1234"
+  },
+  "bases": {
+    "llama": "/home/yezhe/异构模型/multidataset_obqa_arc_mmlupro_train1024_full28_mlp_l3_to_q4_seed1234",
+    "gemma": "/home/yezhe/异构模型/multidataset_obqa_arc_mmlupro_train1024_full34_headmix_g3_to_q4_seed1234"
+  },
+  "checkpoints": {
+    "llama": {
+      "stage_a": "/home/yezhe/异构模型/gsm8k_retrained_stagea_hybrid_stageb_l3_to_q4_seed1234/runs/stage_a/checkpoints/epoch_2.pt",
+      "hybrid_stage_b": "/home/yezhe/异构模型/gsm8k_retrained_stagea_hybrid_2048x4_l3_to_q4_seed1234/runs/hybrid/checkpoints/epoch_4.pt",
+      "purekl_stage_b": "/home/yezhe/异构模型/gsm8k_purekl_crossbench_l3_g3_to_q4_seed1234/llama_train/runs/hybrid/checkpoints/epoch_4.pt"
+    },
+    "gemma": {
+      "stage_a": "/home/yezhe/异构模型/gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234/runs/stage_a/checkpoints/epoch_2.pt",
+      "hybrid_stage_b": "/home/yezhe/异构模型/gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234/runs/hybrid/checkpoints/epoch_4.pt",
+      "purekl_stage_b": "/home/yezhe/异构模型/gsm8k_purekl_crossbench_l3_g3_to_q4_seed1234/gemma_train/runs/hybrid/checkpoints/epoch_4.pt"
+    }
+  }
+}
