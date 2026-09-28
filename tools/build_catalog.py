@@ -16,7 +16,10 @@ PREREQUISITES = {
     "multidataset_obqa_arc_mmlupro_train1024_full36_headmix_q4_to_g3_seed1234",
     "multidataset_obqa_arc_mmlupro_train1024_full36_mlp_q4_to_l3_seed1234",
 }
-SERVER_ONLY = "fulltoken_sync_copydrop_v0_q4_to_g3_seed1234"
+SERVER_ONLY = {
+    "fulltoken_sync_copydrop_v0_q4_to_g3_seed1234",
+    "gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234",
+}
 SERVER_LOG_SUPPLEMENTS = {
     "frozen_fullsync_newbenchmarks_l3_g3_to_q4_seed1234",
     "fulltoken_sync_copydrop_v0_g3_to_q4_seed1234",
@@ -32,7 +35,7 @@ CHINESE_SOURCE = {
 
 
 def source_path(name):
-    if name == SERVER_ONLY:
+    if name in SERVER_ONLY:
         return "/home/yezhe/异构模型/" + name
     if name in CHINESE_SOURCE:
         return "异构模型/" + name
@@ -80,7 +83,7 @@ def main():
                 continue
             relative = path.relative_to(ROOT).as_posix()
             data = path.read_bytes()
-            source = "server-a" if (name == SERVER_ONLY or
+            source = "server-a" if (name in SERVER_ONLY or
                        (name in SERVER_LOG_SUPPLEMENTS and
                         path.relative_to(directory).parts[0] == "logs")) else SOURCE_REPO
             files.append({"path": relative, "bytes": len(data),
@@ -91,8 +94,8 @@ def main():
             "name": name,
             "role": "code_prerequisite" if name in PREREQUISITES else "completed_experiment",
             "original_path": source_path(name),
-            "source_commit": None if name == SERVER_ONLY else SOURCE_COMMIT,
-            "source_repository": "server-a" if name == SERVER_ONLY else SOURCE_REPO,
+            "source_commit": None if name in SERVER_ONLY else SOURCE_COMMIT,
+            "source_repository": "server-a" if name in SERVER_ONLY else SOURCE_REPO,
             "files": files,
         })
 

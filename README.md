@@ -21,7 +21,8 @@ The first import was copied from `yezhe2021/weichaxun` branch
 Three GitHub snapshots with missing logs were supplemented with their
 corresponding lightweight server logs; file-level provenance is recorded in
 the manifest.
-The still-incomplete Gemma→Qwen GSM8K run is intentionally not included.
+The completed Gemma→Qwen GSM8K run was subsequently added from server A with
+its scripts, logs, and per-sample results.
 
 No model weights, checkpoints, KV caches, or temporary tensors are included.
 Some historical scripts contain absolute server paths and refer to checkpoints

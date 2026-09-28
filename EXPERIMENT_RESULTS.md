@@ -178,6 +178,34 @@ Automatically extracted metrics from the linked JSON:
 | `by_dataset.arc_challenge.both_stage_b_oracle_correct` | 96 |
 | `by_dataset.arc_challenge.stage_b_only_correct` | 12 |
 
+## gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234
+
+- Status: `completed` (archived result artifacts)
+- Original path: `/home/yezhe/异构模型/gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234`
+- Recorded configuration: seed=1234, train_samples=2048, val_samples=128, test_samples=128, stage_a_epochs=2, stage_b_epochs=4
+- Config: [config.json](experiments/gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234/config.json)
+- Summary: [selection_summary.json](experiments/gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234/runs/selection_summary.json)
+- Summary: [test128_summary.json](experiments/gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234/runs/test128_summary.json)
+- Per Sample: [test128_per_sample.jsonl](experiments/gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234/runs/test128_per_sample.jsonl)
+- Log: [launcher.log](experiments/gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234/logs/launcher.log)
+- Log: [pipeline.log](experiments/gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234/logs/pipeline.log)
+- Original report: [RESULTS.md](experiments/gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234/RESULTS.md)
+- Checkpoint selection: [hybrid/selection.json](experiments/gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234/runs/hybrid/selection.json)
+- Checkpoint selection: [stage_a/selection.json](experiments/gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234/runs/stage_a/selection.json)
+
+Automatically extracted metrics from the linked JSON:
+
+| JSON field | Value |
+|---|---:|
+| `gemma_stage_a.count` | 128 |
+| `gemma_stage_a.strict_accuracy` | 0.0 |
+| `gemma_stage_a.flexible_accuracy` | 0.0 |
+| `gemma_stage_a.first_hash_accuracy` | 0.0 |
+| `gemma_stage_a_hybrid2048x4.count` | 128 |
+| `gemma_stage_a_hybrid2048x4.strict_accuracy` | 0.0078125 |
+| `gemma_stage_a_hybrid2048x4.flexible_accuracy` | 0.671875 |
+| `gemma_stage_a_hybrid2048x4.first_hash_accuracy` | 0.0078125 |
+
 ## gsm8k_gen_stageb_train1024_l3_to_q4_seed1234
 
 - Status: `completed` (archived result artifacts)
