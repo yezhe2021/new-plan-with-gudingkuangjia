@@ -34,3 +34,85 @@ Traceback (most recent call last):
   File "/home/yezhe/异构模型/cross_sender_functional_equivalence_audit_gsm8k_seed1234/equivalence_audit.py", line 175, in logits_for
     if int(cache.get_seq_length())!=before: raise RuntimeError("Probe mutated frozen cache")
 RuntimeError: Probe mutated frozen cache
+[2026-09-29 10:37:42] START preflight
+[2026-09-29 10:37:46] preflight passed: {'both': 61, 'llama_only': 12, 'gemma_only': 25, 'neither': 30}
+[2026-09-29 10:37:47] DONE  preflight
+[2026-09-29 10:37:47] START capture_llama --smoke
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:  33%|███▎      | 85/254 [00:00<00:00, 845.68it/s]Loading weights:  68%|██████▊   | 172/254 [00:00<00:00, 827.58it/s]Loading weights: 100%|██████████| 254/254 [00:00<00:00, 822.68it/s]
+[2026-09-29 10:37:58] llama source capture 2/2
+[2026-09-29 10:38:05] DONE  capture_llama --smoke
+[2026-09-29 10:38:05] START capture_gemma --smoke
+Loading weights:   0%|          | 0/883 [00:00<?, ?it/s]Loading weights:  10%|█         | 92/883 [00:00<00:00, 835.94it/s]Loading weights:  20%|█▉        | 176/883 [00:00<00:01, 650.88it/s]Loading weights:  28%|██▊       | 244/883 [00:00<00:00, 652.75it/s]Loading weights:  35%|███▌      | 311/883 [00:00<00:00, 605.60it/s]Loading weights:  42%|████▏     | 373/883 [00:00<00:00, 600.66it/s]Loading weights:  49%|████▉     | 434/883 [00:00<00:00, 590.45it/s]Loading weights:  82%|████████▏ | 727/883 [00:00<00:00, 1287.06it/s]Loading weights: 100%|██████████| 883/883 [00:00<00:00, 1031.15it/s]
+[2026-09-29 10:38:22] gemma source capture 2/2
+[2026-09-29 10:38:34] DONE  capture_gemma --smoke
+[2026-09-29 10:38:34] START audit --smoke
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  29%|██▊       | 114/398 [00:00<00:00, 1133.56it/s]Loading weights:  57%|█████▋    | 228/398 [00:00<00:00, 1035.03it/s]Loading weights:  84%|████████▎ | 333/398 [00:00<00:00, 993.90it/s] Loading weights: 100%|██████████| 398/398 [00:00<00:00, 1020.80it/s]
+[2026-09-29 10:38:50] functional audit 2/2
+[2026-09-29 10:38:50] audit completed: /home/yezhe/异构模型/cross_sender_functional_equivalence_audit_gsm8k_seed1234/results_smoke/summary.json
+[2026-09-29 10:38:52] DONE  audit --smoke
+[2026-09-29 10:38:52] START cleanup --smoke
+[2026-09-29 10:38:55] removed temporary states: /home/yezhe/异构模型/cross_sender_functional_equivalence_audit_gsm8k_seed1234/temp_states_smoke
+[2026-09-29 10:38:56] DONE  cleanup --smoke
+[2026-09-29 10:38:56] SMOKE COMPLETED
+[2026-09-29 10:38:56] START capture_llama
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:  37%|███▋      | 93/254 [00:00<00:00, 920.56it/s]Loading weights:  73%|███████▎  | 186/254 [00:00<00:00, 853.82it/s]Loading weights: 100%|██████████| 254/254 [00:00<00:00, 844.92it/s]
+[2026-09-29 10:39:09] llama source capture 16/128
+[2026-09-29 10:39:10] llama source capture 32/128
+[2026-09-29 10:39:11] llama source capture 48/128
+[2026-09-29 10:39:12] llama source capture 64/128
+[2026-09-29 10:39:13] llama source capture 80/128
+[2026-09-29 10:39:14] llama source capture 96/128
+[2026-09-29 10:39:15] llama source capture 112/128
+[2026-09-29 10:39:16] llama source capture 128/128
+[2026-09-29 10:39:24] llama translated state 16/128
+[2026-09-29 10:39:27] llama translated state 32/128
+[2026-09-29 10:39:31] llama translated state 48/128
+[2026-09-29 10:39:34] llama translated state 64/128
+[2026-09-29 10:39:38] llama translated state 80/128
+[2026-09-29 10:39:41] llama translated state 96/128
+[2026-09-29 10:39:45] llama translated state 112/128
+[2026-09-29 10:39:49] llama translated state 128/128
+[2026-09-29 10:39:51] DONE  capture_llama
+[2026-09-29 10:39:51] START capture_gemma
+Loading weights:   0%|          | 0/883 [00:00<?, ?it/s]Loading weights:   7%|▋         | 65/883 [00:00<00:01, 645.03it/s]Loading weights:  15%|█▌        | 133/883 [00:00<00:01, 646.85it/s]Loading weights:  22%|██▏       | 198/883 [00:00<00:01, 602.83it/s]Loading weights:  31%|███       | 274/883 [00:00<00:00, 660.85it/s]Loading weights:  39%|███▊      | 341/883 [00:00<00:00, 628.90it/s]Loading weights:  46%|████▌     | 406/883 [00:00<00:00, 626.90it/s]Loading weights:  69%|██████▉   | 611/883 [00:00<00:00, 1067.96it/s]Loading weights: 100%|██████████| 883/883 [00:00<00:00, 1057.92it/s]
+[2026-09-29 10:40:09] gemma source capture 16/128
+[2026-09-29 10:40:11] gemma source capture 32/128
+[2026-09-29 10:40:13] gemma source capture 48/128
+[2026-09-29 10:40:15] gemma source capture 64/128
+[2026-09-29 10:40:16] gemma source capture 80/128
+[2026-09-29 10:40:18] gemma source capture 96/128
+[2026-09-29 10:40:20] gemma source capture 112/128
+[2026-09-29 10:40:22] gemma source capture 128/128
+[2026-09-29 10:40:35] gemma translated state 16/128
+[2026-09-29 10:40:37] gemma translated state 32/128
+[2026-09-29 10:40:40] gemma translated state 48/128
+[2026-09-29 10:40:43] gemma translated state 64/128
+[2026-09-29 10:40:45] gemma translated state 80/128
+[2026-09-29 10:40:48] gemma translated state 96/128
+[2026-09-29 10:40:51] gemma translated state 112/128
+[2026-09-29 10:40:54] gemma translated state 128/128
+[2026-09-29 10:40:56] DONE  capture_gemma
+[2026-09-29 10:40:56] START audit
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  27%|██▋       | 109/398 [00:00<00:00, 1061.07it/s]Loading weights:  54%|█████▍    | 216/398 [00:00<00:00, 911.61it/s] Loading weights:  79%|███████▉  | 315/398 [00:00<00:00, 943.87it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 967.55it/s]
+[2026-09-29 10:42:58] functional audit 8/128
+[2026-09-29 10:44:48] functional audit 16/128
+[2026-09-29 10:46:38] functional audit 24/128
+[2026-09-29 10:48:29] functional audit 32/128
+[2026-09-29 10:50:19] functional audit 40/128
+[2026-09-29 10:52:10] functional audit 48/128
+[2026-09-29 10:53:51] functional audit 56/128
+[2026-09-29 10:55:15] functional audit 64/128
+[2026-09-29 10:56:40] functional audit 72/128
+[2026-09-29 10:58:05] functional audit 80/128
+[2026-09-29 10:59:29] functional audit 88/128
+[2026-09-29 11:00:54] functional audit 96/128
+[2026-09-29 11:02:18] functional audit 104/128
+[2026-09-29 11:03:42] functional audit 112/128
+[2026-09-29 11:05:07] functional audit 120/128
+[2026-09-29 11:06:31] functional audit 128/128
+[2026-09-29 11:06:32] audit completed: /home/yezhe/异构模型/cross_sender_functional_equivalence_audit_gsm8k_seed1234/results/summary.json
+[2026-09-29 11:06:33] DONE  audit
+[2026-09-29 11:06:33] START cleanup
+[2026-09-29 11:06:37] removed temporary states: /home/yezhe/异构模型/cross_sender_functional_equivalence_audit_gsm8k_seed1234/temp_states
+[2026-09-29 11:06:38] DONE  cleanup
+[2026-09-29 11:06:38] ALL EXPERIMENTS COMPLETED

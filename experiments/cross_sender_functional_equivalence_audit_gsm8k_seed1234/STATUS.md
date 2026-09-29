@@ -1,10 +1,11 @@
 # Execution status
 
-- Implementation: complete.
+- Status: completed.
+- Server: A.
 - Preflight: passed (`both=61`, `llama_only=12`, `gemma_only=25`, `neither=30`).
-- Smoke capture: passed for both Llama and Gemma sender states.
-- Smoke audit: the initial implementation failed because Hugging Face `DynamicCache` was mutated during probing.
-- Fix: probes now rebuild a fresh cache from frozen pre-RoPE K/V tensors for every forward pass.
-- Formal run: pending because server A currently reports `torch.cuda.is_available() == False`, zero CUDA devices, and an NVML initialization failure.
+- Smoke: passed after fixing probe-time `DynamicCache` mutation by rebuilding a fresh cache for every forward pass.
+- Formal audit: completed for all 128 frozen GSM8K test rows.
+- Temporary K/V state tensors: removed after successful completion.
+- Formal outputs: `results/summary.json` and `results/per_sample.jsonl`.
 
-`wait_for_gpu.sh` remains active on server A and will start the corrected pipeline once CUDA is available with at least 25 GiB free memory. No formal metrics are claimed in this revision.
+The pipeline finished with `ALL EXPERIMENTS COMPLETED` at 2026-09-29 11:06:38.
