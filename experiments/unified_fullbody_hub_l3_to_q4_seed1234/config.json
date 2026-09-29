@@ -1,0 +1,42 @@
+{
+  "seed": 1234,
+  "models": {
+    "llama": "/hy-tmp/yezhe/all_models/models/LLM-Research/Llama-3.2-3B-Instruct",
+    "qwen": "/hy-tmp/yezhe/all_models/models/Qwen/Qwen3-4B"
+  },
+  "datasets": {
+    "gsm8k_train": "/hy-tmp/yezhe/all_models/datasets/modelscope/gsm8k/train.jsonl",
+    "gsm8k_test": "/hy-tmp/yezhe/all_models/datasets/modelscope/gsm8k/test.jsonl",
+    "openbookqa": {
+      "train": "/hy-tmp/yezhe/异构模型/unified_fullbody_hub_l3_to_q4_seed1234/datasets/openbookqa/train.jsonl",
+      "validation": "/hy-tmp/yezhe/异构模型/unified_fullbody_hub_l3_to_q4_seed1234/datasets/openbookqa/dev.jsonl",
+      "test": "/hy-tmp/yezhe/异构模型/unified_fullbody_hub_l3_to_q4_seed1234/datasets/openbookqa/test.jsonl"
+    },
+    "arc_challenge_zip": "/hy-tmp/yezhe/异构模型/unified_fullbody_hub_l3_to_q4_seed1234/datasets/arc/ARC-V1-Feb2018.zip",
+    "mmlu_pro_test": "/hy-tmp/yezhe/异构模型/unified_fullbody_hub_l3_to_q4_seed1234/datasets/mmlu_pro/test-00000-of-00001.parquet",
+    "hellaswag": "/hy-tmp/yezhe/异构模型/unified_fullbody_hub_l3_to_q4_seed1234/datasets/hellaswag/hellaswag_val.jsonl"
+  },
+  "base_code": "/hy-tmp/yezhe/异构模型/unified_fullbody_hub_l3_to_q4_seed1234/base_code",
+  "train_counts": {"gsm8k": 2048, "openbookqa": 1024, "arc_challenge": 1024, "mmlu_pro": 1024},
+  "validation_counts": {"gsm8k": 128, "openbookqa": 128, "arc_challenge": 128, "mmlu_pro": 128},
+  "test_counts": {"gsm8k": 128, "openbookqa": 128, "arc_challenge": 128, "mmlu_pro": 128, "hellaswag": 128},
+  "max_body_tokens": 2048,
+  "effective_batch": 8,
+  "stage_a_epochs": 2,
+  "stage_b_epochs": 2,
+  "stage_a_learning_rate": 0.001,
+  "stage_b_learning_rate": 0.0001,
+  "gradient_clip": 30.0,
+  "adapter_rank": 64,
+  "mlp_hidden_dim": 1024,
+  "chunk_tokens": 64,
+  "temperature": 1.0,
+  "ce_weight": 0.1,
+  "eos_weight": 0.1,
+  "attention_implementation": "eager",
+  "protocol": "unified_fullbody_preanswer_hub_l3_to_q4_v1",
+  "architecture": "full28_mlp_plus_residual64",
+  "stage_b_epoch_exposures": 4096,
+  "stage_b_generation_fraction": 0.5,
+  "gsm8k_max_new_tokens": 256
+}
