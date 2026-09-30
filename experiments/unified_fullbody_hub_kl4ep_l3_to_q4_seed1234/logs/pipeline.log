@@ -1,0 +1,506 @@
+[2026-09-29 15:07:03] START audit
+[2026-09-29 15:08:11] {'train': {'count': 5120, 'by_dataset': {'gsm8k': 2048, 'mmlu_pro': 1024, 'arc_challenge': 1024, 'openbookqa': 1024}, 'ids_sha256': '0ce6047d3f01196ddb1d1a9a252d2946559ee9bc9a366846708a13ce2cbdba20'}, 'validation': {'count': 512, 'by_dataset': {'gsm8k': 128, 'arc_challenge': 128, 'openbookqa': 128, 'mmlu_pro': 128}, 'ids_sha256': 'd41ce37be65bd917098b19597f66aba77d1fdf53946e4c38f75103fee10b31e3'}, 'test': {'count': 512, 'by_dataset': {'gsm8k': 128, 'arc_challenge': 128, 'mmlu_pro': 128, 'openbookqa': 128}, 'ids_sha256': 'bac2700afe19294e03c2b37caa7477e4a7a54c8fca2f56fab8b9eab4a80aef75'}, 'ood': {'count': 128, 'by_dataset': {'hellaswag': 128}, 'ids_sha256': '9a400ac907c548544d6f9c85916672c12ef3b9ef63c640b16b956e0c7b41e450'}, 'hellaswag_ood_only': True, 'protocol': 'unified_fullbody_preanswer_hub_l3_to_q4_v1'}
+[2026-09-29 15:08:12] DONE  audit
+[2026-09-29 15:08:12] START stage_a --smoke
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<01:41,  2.50it/s]Loading weights:  44%|████▎     | 111/254 [00:00<00:00, 291.44it/s]Loading weights:  69%|██████▉   | 176/254 [00:00<00:00, 268.63it/s]Loading weights:  88%|████████▊ | 223/254 [00:00<00:00, 283.69it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 251.76it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<02:21,  2.81it/s]Loading weights:  31%|███       | 124/398 [00:00<00:00, 350.56it/s]Loading weights:  49%|████▊     | 194/398 [00:00<00:00, 341.76it/s]Loading weights:  62%|██████▏   | 247/398 [00:00<00:00, 320.75it/s]Loading weights:  73%|███████▎  | 291/398 [00:00<00:00, 329.89it/s]Loading weights:  83%|████████▎ | 332/398 [00:01<00:00, 344.53it/s]Loading weights:  94%|█████████▎| 373/398 [00:01<00:00, 307.30it/s]Loading weights: 100%|██████████| 398/398 [00:01<00:00, 307.79it/s]
+[2026-09-29 15:09:17] Stage-A epoch=1 step=1 samples=2/4
+[2026-09-29 15:09:18] Stage-A epoch=1 step=2 samples=4/4
+[2026-09-29 15:09:20] Stage-A val epoch=1 4/4
+[2026-09-29 15:09:22] Stage-A epoch=1 representation_loss=2.897522
+[2026-09-29 15:09:24] DONE  stage_a --smoke
+[2026-09-29 15:09:24] START stage_b_kl --smoke
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<01:33,  2.72it/s]Loading weights:  44%|████▎     | 111/254 [00:00<00:00, 297.61it/s]Loading weights:  66%|██████▌   | 168/254 [00:00<00:00, 287.99it/s]Loading weights:  83%|████████▎ | 212/254 [00:00<00:00, 269.97it/s]Loading weights:  98%|█████████▊| 248/254 [00:01<00:00, 257.13it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 245.12it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<02:15,  2.93it/s]Loading weights:  31%|███       | 124/398 [00:00<00:00, 353.77it/s]Loading weights:  48%|████▊     | 190/398 [00:00<00:00, 342.28it/s]Loading weights:  61%|██████    | 241/398 [00:00<00:00, 359.90it/s]Loading weights:  72%|███████▏  | 288/398 [00:00<00:00, 330.18it/s]Loading weights:  82%|████████▏ | 328/398 [00:01<00:00, 331.65it/s]Loading weights:  92%|█████████▏| 366/398 [00:01<00:00, 295.61it/s]Loading weights: 100%|██████████| 398/398 [00:01<00:00, 312.09it/s]
+[2026-09-29 15:10:27] universal_kl epoch=1 step=1 samples=2/4 loss=4.7829
+[2026-09-29 15:10:29] universal_kl epoch=1 step=2 samples=4/4 loss=4.5740
+[2026-09-29 15:10:31] universal_kl validation 4/4
+[2026-09-29 15:10:31] universal_kl epoch=1 validation={'total': 4.0959599912166595, 'kl': 4.0959599912166595, 'ce': 5.710383951663971, 'eos': 16.94786787033081, 'generation_kl': 1.993712306022644, 'mcq_kl': 4.796709219614665, 'count': 4}
+[2026-09-29 15:10:34] DONE  stage_b_kl --smoke
+[2026-09-29 15:10:34] START evaluate --smoke
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<01:26,  2.94it/s]Loading weights:  40%|████      | 102/254 [00:00<00:00, 298.89it/s]Loading weights:  63%|██████▎   | 161/254 [00:00<00:00, 291.79it/s]Loading weights:  81%|████████  | 206/254 [00:00<00:00, 271.71it/s]Loading weights:  96%|█████████▌| 243/254 [00:00<00:00, 280.74it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 248.59it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<02:27,  2.70it/s]Loading weights:  32%|███▏      | 126/398 [00:00<00:00, 345.61it/s]Loading weights:  49%|████▉     | 197/398 [00:00<00:00, 350.29it/s]Loading weights:  63%|██████▎   | 252/398 [00:00<00:00, 365.36it/s]Loading weights:  76%|███████▌  | 301/398 [00:00<00:00, 329.06it/s]Loading weights:  86%|████████▌ | 342/398 [00:01<00:00, 343.36it/s]Loading weights:  96%|█████████▌| 383/398 [00:01<00:00, 308.72it/s]Loading weights: 100%|██████████| 398/398 [00:01<00:00, 308.52it/s]
+[2026-09-29 15:11:00] evaluate arc_challenge 1/1
+[2026-09-29 15:11:52] evaluate gsm8k 1/1
+[2026-09-29 15:11:54] evaluate mmlu_pro 1/1
+[2026-09-29 15:11:55] evaluate openbookqa 1/1
+[2026-09-29 15:11:57] evaluate hellaswag 1/1
+[2026-09-29 15:11:59] DONE  evaluate --smoke
+[2026-09-29 15:11:59] SMOKE COMPLETED
+[2026-09-29 15:11:59] START stage_a
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<01:44,  2.42it/s]Loading weights:  44%|████▎     | 111/254 [00:00<00:00, 282.93it/s]Loading weights:  69%|██████▉   | 175/254 [00:00<00:00, 252.63it/s]Loading weights:  87%|████████▋ | 220/254 [00:00<00:00, 251.80it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 229.35it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<02:08,  3.09it/s]Loading weights:  31%|███       | 124/398 [00:00<00:00, 333.75it/s]Loading weights:  44%|████▍     | 175/398 [00:00<00:00, 349.28it/s]Loading weights:  55%|█████▌    | 220/398 [00:00<00:00, 352.74it/s]Loading weights:  66%|██████▌   | 262/398 [00:00<00:00, 313.27it/s]Loading weights:  75%|███████▍  | 298/398 [00:00<00:00, 323.77it/s]Loading weights:  84%|████████▍ | 334/398 [00:01<00:00, 318.82it/s]Loading weights:  92%|█████████▏| 368/398 [00:01<00:00, 318.02it/s]Loading weights: 100%|██████████| 398/398 [00:01<00:00, 303.39it/s]
+[2026-09-29 15:13:58] Stage-A epoch=1 step=16 samples=128/5120
+[2026-09-29 15:15:05] Stage-A epoch=1 step=32 samples=256/5120
+[2026-09-29 15:16:18] Stage-A epoch=1 step=48 samples=384/5120
+[2026-09-29 15:17:28] Stage-A epoch=1 step=64 samples=512/5120
+[2026-09-29 15:18:41] Stage-A epoch=1 step=80 samples=640/5120
+[2026-09-29 15:19:58] Stage-A epoch=1 step=96 samples=768/5120
+[2026-09-29 15:21:10] Stage-A epoch=1 step=112 samples=896/5120
+[2026-09-29 15:22:22] Stage-A epoch=1 step=128 samples=1024/5120
+[2026-09-29 15:23:39] Stage-A epoch=1 step=144 samples=1152/5120
+[2026-09-29 15:24:56] Stage-A epoch=1 step=160 samples=1280/5120
+[2026-09-29 15:26:16] Stage-A epoch=1 step=176 samples=1408/5120
+[2026-09-29 15:27:27] Stage-A epoch=1 step=192 samples=1536/5120
+[2026-09-29 15:28:46] Stage-A epoch=1 step=208 samples=1664/5120
+[2026-09-29 15:30:05] Stage-A epoch=1 step=224 samples=1792/5120
+[2026-09-29 15:31:15] Stage-A epoch=1 step=240 samples=1920/5120
+[2026-09-29 15:32:33] Stage-A epoch=1 step=256 samples=2048/5120
+[2026-09-29 15:33:50] Stage-A epoch=1 step=272 samples=2176/5120
+[2026-09-29 15:35:01] Stage-A epoch=1 step=288 samples=2304/5120
+[2026-09-29 15:36:17] Stage-A epoch=1 step=304 samples=2432/5120
+[2026-09-29 15:37:31] Stage-A epoch=1 step=320 samples=2560/5120
+[2026-09-29 15:38:56] Stage-A epoch=1 step=336 samples=2688/5120
+[2026-09-29 15:40:21] Stage-A epoch=1 step=352 samples=2816/5120
+[2026-09-29 15:41:42] Stage-A epoch=1 step=368 samples=2944/5120
+[2026-09-29 15:42:52] Stage-A epoch=1 step=384 samples=3072/5120
+[2026-09-29 15:44:17] Stage-A epoch=1 step=400 samples=3200/5120
+[2026-09-29 15:45:39] Stage-A epoch=1 step=416 samples=3328/5120
+[2026-09-29 15:47:00] Stage-A epoch=1 step=432 samples=3456/5120
+[2026-09-29 15:48:12] Stage-A epoch=1 step=448 samples=3584/5120
+[2026-09-29 15:49:28] Stage-A epoch=1 step=464 samples=3712/5120
+[2026-09-29 15:50:39] Stage-A epoch=1 step=480 samples=3840/5120
+[2026-09-29 15:51:53] Stage-A epoch=1 step=496 samples=3968/5120
+[2026-09-29 15:53:01] Stage-A epoch=1 step=512 samples=4096/5120
+[2026-09-29 15:54:14] Stage-A epoch=1 step=528 samples=4224/5120
+[2026-09-29 15:55:32] Stage-A epoch=1 step=544 samples=4352/5120
+[2026-09-29 15:56:53] Stage-A epoch=1 step=560 samples=4480/5120
+[2026-09-29 15:58:04] Stage-A epoch=1 step=576 samples=4608/5120
+[2026-09-29 15:59:10] Stage-A epoch=1 step=592 samples=4736/5120
+[2026-09-29 16:00:21] Stage-A epoch=1 step=608 samples=4864/5120
+[2026-09-29 16:01:28] Stage-A epoch=1 step=624 samples=4992/5120
+[2026-09-29 16:02:41] Stage-A epoch=1 step=640 samples=5120/5120
+[2026-09-29 16:02:47] Stage-A val epoch=1 32/512
+[2026-09-29 16:02:53] Stage-A val epoch=1 64/512
+[2026-09-29 16:03:00] Stage-A val epoch=1 96/512
+[2026-09-29 16:03:06] Stage-A val epoch=1 128/512
+[2026-09-29 16:03:14] Stage-A val epoch=1 160/512
+[2026-09-29 16:03:21] Stage-A val epoch=1 192/512
+[2026-09-29 16:03:30] Stage-A val epoch=1 224/512
+[2026-09-29 16:03:36] Stage-A val epoch=1 256/512
+[2026-09-29 16:03:44] Stage-A val epoch=1 288/512
+[2026-09-29 16:03:54] Stage-A val epoch=1 320/512
+[2026-09-29 16:04:02] Stage-A val epoch=1 352/512
+[2026-09-29 16:04:10] Stage-A val epoch=1 384/512
+[2026-09-29 16:04:19] Stage-A val epoch=1 416/512
+[2026-09-29 16:04:27] Stage-A val epoch=1 448/512
+[2026-09-29 16:04:34] Stage-A val epoch=1 480/512
+[2026-09-29 16:04:43] Stage-A val epoch=1 512/512
+[2026-09-29 16:04:45] Stage-A epoch=1 representation_loss=0.819945
+[2026-09-29 16:05:58] Stage-A epoch=2 step=656 samples=128/5120
+[2026-09-29 16:07:16] Stage-A epoch=2 step=672 samples=256/5120
+[2026-09-29 16:08:18] Stage-A epoch=2 step=688 samples=384/5120
+[2026-09-29 16:09:33] Stage-A epoch=2 step=704 samples=512/5120
+[2026-09-29 16:10:41] Stage-A epoch=2 step=720 samples=640/5120
+[2026-09-29 16:11:48] Stage-A epoch=2 step=736 samples=768/5120
+[2026-09-29 16:12:53] Stage-A epoch=2 step=752 samples=896/5120
+[2026-09-29 16:13:57] Stage-A epoch=2 step=768 samples=1024/5120
+[2026-09-29 16:15:07] Stage-A epoch=2 step=784 samples=1152/5120
+[2026-09-29 16:16:27] Stage-A epoch=2 step=800 samples=1280/5120
+[2026-09-29 16:17:38] Stage-A epoch=2 step=816 samples=1408/5120
+[2026-09-29 16:18:43] Stage-A epoch=2 step=832 samples=1536/5120
+[2026-09-29 16:19:52] Stage-A epoch=2 step=848 samples=1664/5120
+[2026-09-29 16:21:10] Stage-A epoch=2 step=864 samples=1792/5120
+[2026-09-29 16:22:16] Stage-A epoch=2 step=880 samples=1920/5120
+[2026-09-29 16:23:27] Stage-A epoch=2 step=896 samples=2048/5120
+[2026-09-29 16:24:34] Stage-A epoch=2 step=912 samples=2176/5120
+[2026-09-29 16:25:42] Stage-A epoch=2 step=928 samples=2304/5120
+[2026-09-29 16:26:55] Stage-A epoch=2 step=944 samples=2432/5120
+[2026-09-29 16:28:04] Stage-A epoch=2 step=960 samples=2560/5120
+[2026-09-29 16:29:15] Stage-A epoch=2 step=976 samples=2688/5120
+[2026-09-29 16:30:21] Stage-A epoch=2 step=992 samples=2816/5120
+[2026-09-29 16:31:29] Stage-A epoch=2 step=1008 samples=2944/5120
+[2026-09-29 16:32:28] Stage-A epoch=2 step=1024 samples=3072/5120
+[2026-09-29 16:33:41] Stage-A epoch=2 step=1040 samples=3200/5120
+[2026-09-29 16:34:55] Stage-A epoch=2 step=1056 samples=3328/5120
+[2026-09-29 16:36:07] Stage-A epoch=2 step=1072 samples=3456/5120
+[2026-09-29 16:37:22] Stage-A epoch=2 step=1088 samples=3584/5120
+[2026-09-29 16:38:28] Stage-A epoch=2 step=1104 samples=3712/5120
+[2026-09-29 16:39:47] Stage-A epoch=2 step=1120 samples=3840/5120
+[2026-09-29 16:40:55] Stage-A epoch=2 step=1136 samples=3968/5120
+[2026-09-29 16:42:01] Stage-A epoch=2 step=1152 samples=4096/5120
+[2026-09-29 16:43:03] Stage-A epoch=2 step=1168 samples=4224/5120
+[2026-09-29 16:44:13] Stage-A epoch=2 step=1184 samples=4352/5120
+[2026-09-29 16:45:31] Stage-A epoch=2 step=1200 samples=4480/5120
+[2026-09-29 16:46:54] Stage-A epoch=2 step=1216 samples=4608/5120
+[2026-09-29 16:47:57] Stage-A epoch=2 step=1232 samples=4736/5120
+[2026-09-29 16:49:15] Stage-A epoch=2 step=1248 samples=4864/5120
+[2026-09-29 16:50:37] Stage-A epoch=2 step=1264 samples=4992/5120
+[2026-09-29 16:51:43] Stage-A epoch=2 step=1280 samples=5120/5120
+[2026-09-29 16:51:49] Stage-A val epoch=2 32/512
+[2026-09-29 16:51:55] Stage-A val epoch=2 64/512
+[2026-09-29 16:52:02] Stage-A val epoch=2 96/512
+[2026-09-29 16:52:09] Stage-A val epoch=2 128/512
+[2026-09-29 16:52:16] Stage-A val epoch=2 160/512
+[2026-09-29 16:52:23] Stage-A val epoch=2 192/512
+[2026-09-29 16:52:32] Stage-A val epoch=2 224/512
+[2026-09-29 16:52:40] Stage-A val epoch=2 256/512
+[2026-09-29 16:52:48] Stage-A val epoch=2 288/512
+[2026-09-29 16:52:58] Stage-A val epoch=2 320/512
+[2026-09-29 16:53:06] Stage-A val epoch=2 352/512
+[2026-09-29 16:53:14] Stage-A val epoch=2 384/512
+[2026-09-29 16:53:23] Stage-A val epoch=2 416/512
+[2026-09-29 16:53:30] Stage-A val epoch=2 448/512
+[2026-09-29 16:53:38] Stage-A val epoch=2 480/512
+[2026-09-29 16:53:48] Stage-A val epoch=2 512/512
+[2026-09-29 16:53:50] Stage-A epoch=2 representation_loss=0.760012
+[2026-09-29 16:55:17] Stage-A epoch=3 step=1296 samples=128/5120
+[2026-09-29 16:56:32] Stage-A epoch=3 step=1312 samples=256/5120
+[2026-09-29 16:57:53] Stage-A epoch=3 step=1328 samples=384/5120
+[2026-09-29 16:59:17] Stage-A epoch=3 step=1344 samples=512/5120
+[2026-09-29 17:00:36] Stage-A epoch=3 step=1360 samples=640/5120
+[2026-09-29 17:01:39] Stage-A epoch=3 step=1376 samples=768/5120
+[2026-09-29 17:02:57] Stage-A epoch=3 step=1392 samples=896/5120
+[2026-09-29 17:04:17] Stage-A epoch=3 step=1408 samples=1024/5120
+[2026-09-29 17:05:30] Stage-A epoch=3 step=1424 samples=1152/5120
+[2026-09-29 17:06:48] Stage-A epoch=3 step=1440 samples=1280/5120
+[2026-09-29 17:08:08] Stage-A epoch=3 step=1456 samples=1408/5120
+[2026-09-29 17:09:21] Stage-A epoch=3 step=1472 samples=1536/5120
+[2026-09-29 17:10:39] Stage-A epoch=3 step=1488 samples=1664/5120
+[2026-09-29 17:11:51] Stage-A epoch=3 step=1504 samples=1792/5120
+[2026-09-29 17:13:17] Stage-A epoch=3 step=1520 samples=1920/5120
+[2026-09-29 17:14:32] Stage-A epoch=3 step=1536 samples=2048/5120
+[2026-09-29 17:15:48] Stage-A epoch=3 step=1552 samples=2176/5120
+[2026-09-29 17:17:01] Stage-A epoch=3 step=1568 samples=2304/5120
+[2026-09-29 17:18:20] Stage-A epoch=3 step=1584 samples=2432/5120
+[2026-09-29 17:19:46] Stage-A epoch=3 step=1600 samples=2560/5120
+[2026-09-29 17:20:59] Stage-A epoch=3 step=1616 samples=2688/5120
+[2026-09-29 17:22:15] Stage-A epoch=3 step=1632 samples=2816/5120
+[2026-09-29 17:23:34] Stage-A epoch=3 step=1648 samples=2944/5120
+[2026-09-29 17:24:46] Stage-A epoch=3 step=1664 samples=3072/5120
+[2026-09-29 17:26:07] Stage-A epoch=3 step=1680 samples=3200/5120
+[2026-09-29 17:27:25] Stage-A epoch=3 step=1696 samples=3328/5120
+[2026-09-29 17:28:34] Stage-A epoch=3 step=1712 samples=3456/5120
+[2026-09-29 17:29:46] Stage-A epoch=3 step=1728 samples=3584/5120
+[2026-09-29 17:31:02] Stage-A epoch=3 step=1744 samples=3712/5120
+[2026-09-29 17:32:08] Stage-A epoch=3 step=1760 samples=3840/5120
+[2026-09-29 17:33:23] Stage-A epoch=3 step=1776 samples=3968/5120
+[2026-09-29 17:34:42] Stage-A epoch=3 step=1792 samples=4096/5120
+[2026-09-29 17:35:51] Stage-A epoch=3 step=1808 samples=4224/5120
+[2026-09-29 17:37:07] Stage-A epoch=3 step=1824 samples=4352/5120
+[2026-09-29 17:38:20] Stage-A epoch=3 step=1840 samples=4480/5120
+[2026-09-29 17:39:31] Stage-A epoch=3 step=1856 samples=4608/5120
+[2026-09-29 17:40:49] Stage-A epoch=3 step=1872 samples=4736/5120
+[2026-09-29 17:42:07] Stage-A epoch=3 step=1888 samples=4864/5120
+[2026-09-29 17:43:15] Stage-A epoch=3 step=1904 samples=4992/5120
+[2026-09-29 17:44:34] Stage-A epoch=3 step=1920 samples=5120/5120
+[2026-09-29 17:44:40] Stage-A val epoch=3 32/512
+[2026-09-29 17:44:47] Stage-A val epoch=3 64/512
+[2026-09-29 17:44:54] Stage-A val epoch=3 96/512
+[2026-09-29 17:45:01] Stage-A val epoch=3 128/512
+[2026-09-29 17:45:09] Stage-A val epoch=3 160/512
+[2026-09-29 17:45:16] Stage-A val epoch=3 192/512
+[2026-09-29 17:45:25] Stage-A val epoch=3 224/512
+[2026-09-29 17:45:32] Stage-A val epoch=3 256/512
+[2026-09-29 17:45:41] Stage-A val epoch=3 288/512
+[2026-09-29 17:45:51] Stage-A val epoch=3 320/512
+[2026-09-29 17:45:59] Stage-A val epoch=3 352/512
+[2026-09-29 17:46:08] Stage-A val epoch=3 384/512
+[2026-09-29 17:46:17] Stage-A val epoch=3 416/512
+[2026-09-29 17:46:25] Stage-A val epoch=3 448/512
+[2026-09-29 17:46:33] Stage-A val epoch=3 480/512
+[2026-09-29 17:46:43] Stage-A val epoch=3 512/512
+[2026-09-29 17:46:45] Stage-A epoch=3 representation_loss=0.738056
+[2026-09-29 17:48:07] Stage-A epoch=4 step=1936 samples=128/5120
+[2026-09-29 17:49:21] Stage-A epoch=4 step=1952 samples=256/5120
+[2026-09-29 17:50:22] Stage-A epoch=4 step=1968 samples=384/5120
+[2026-09-29 17:51:27] Stage-A epoch=4 step=1984 samples=512/5120
+[2026-09-29 17:52:39] Stage-A epoch=4 step=2000 samples=640/5120
+[2026-09-29 17:53:54] Stage-A epoch=4 step=2016 samples=768/5120
+[2026-09-29 17:55:13] Stage-A epoch=4 step=2032 samples=896/5120
+[2026-09-29 17:56:27] Stage-A epoch=4 step=2048 samples=1024/5120
+[2026-09-29 17:57:32] Stage-A epoch=4 step=2064 samples=1152/5120
+[2026-09-29 17:58:39] Stage-A epoch=4 step=2080 samples=1280/5120
+[2026-09-29 17:59:55] Stage-A epoch=4 step=2096 samples=1408/5120
+[2026-09-29 18:01:14] Stage-A epoch=4 step=2112 samples=1536/5120
+[2026-09-29 18:02:18] Stage-A epoch=4 step=2128 samples=1664/5120
+[2026-09-29 18:03:33] Stage-A epoch=4 step=2144 samples=1792/5120
+[2026-09-29 18:04:40] Stage-A epoch=4 step=2160 samples=1920/5120
+[2026-09-29 18:05:56] Stage-A epoch=4 step=2176 samples=2048/5120
+[2026-09-29 18:07:03] Stage-A epoch=4 step=2192 samples=2176/5120
+[2026-09-29 18:08:09] Stage-A epoch=4 step=2208 samples=2304/5120
+[2026-09-29 18:09:13] Stage-A epoch=4 step=2224 samples=2432/5120
+[2026-09-29 18:10:15] Stage-A epoch=4 step=2240 samples=2560/5120
+[2026-09-29 18:11:26] Stage-A epoch=4 step=2256 samples=2688/5120
+[2026-09-29 18:12:47] Stage-A epoch=4 step=2272 samples=2816/5120
+[2026-09-29 18:13:59] Stage-A epoch=4 step=2288 samples=2944/5120
+[2026-09-29 18:15:09] Stage-A epoch=4 step=2304 samples=3072/5120
+[2026-09-29 18:16:22] Stage-A epoch=4 step=2320 samples=3200/5120
+[2026-09-29 18:17:36] Stage-A epoch=4 step=2336 samples=3328/5120
+[2026-09-29 18:18:48] Stage-A epoch=4 step=2352 samples=3456/5120
+[2026-09-29 18:20:02] Stage-A epoch=4 step=2368 samples=3584/5120
+[2026-09-29 18:21:14] Stage-A epoch=4 step=2384 samples=3712/5120
+[2026-09-29 18:22:27] Stage-A epoch=4 step=2400 samples=3840/5120
+[2026-09-29 18:23:32] Stage-A epoch=4 step=2416 samples=3968/5120
+[2026-09-29 18:24:49] Stage-A epoch=4 step=2432 samples=4096/5120
+[2026-09-29 18:25:56] Stage-A epoch=4 step=2448 samples=4224/5120
+[2026-09-29 18:27:14] Stage-A epoch=4 step=2464 samples=4352/5120
+[2026-09-29 18:28:18] Stage-A epoch=4 step=2480 samples=4480/5120
+[2026-09-29 18:29:28] Stage-A epoch=4 step=2496 samples=4608/5120
+[2026-09-29 18:30:43] Stage-A epoch=4 step=2512 samples=4736/5120
+[2026-09-29 18:31:57] Stage-A epoch=4 step=2528 samples=4864/5120
+[2026-09-29 18:33:07] Stage-A epoch=4 step=2544 samples=4992/5120
+[2026-09-29 18:34:11] Stage-A epoch=4 step=2560 samples=5120/5120
+[2026-09-29 18:34:17] Stage-A val epoch=4 32/512
+[2026-09-29 18:34:24] Stage-A val epoch=4 64/512
+[2026-09-29 18:34:30] Stage-A val epoch=4 96/512
+[2026-09-29 18:34:37] Stage-A val epoch=4 128/512
+[2026-09-29 18:34:44] Stage-A val epoch=4 160/512
+[2026-09-29 18:34:52] Stage-A val epoch=4 192/512
+[2026-09-29 18:35:00] Stage-A val epoch=4 224/512
+[2026-09-29 18:35:07] Stage-A val epoch=4 256/512
+[2026-09-29 18:35:15] Stage-A val epoch=4 288/512
+[2026-09-29 18:35:25] Stage-A val epoch=4 320/512
+[2026-09-29 18:35:33] Stage-A val epoch=4 352/512
+[2026-09-29 18:35:41] Stage-A val epoch=4 384/512
+[2026-09-29 18:35:50] Stage-A val epoch=4 416/512
+[2026-09-29 18:35:58] Stage-A val epoch=4 448/512
+[2026-09-29 18:36:05] Stage-A val epoch=4 480/512
+[2026-09-29 18:36:14] Stage-A val epoch=4 512/512
+[2026-09-29 18:36:17] Stage-A epoch=4 representation_loss=0.727501
+[2026-09-29 18:36:19] DONE  stage_a
+[2026-09-29 18:36:19] START stage_b_kl
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<01:43,  2.44it/s]Loading weights:  47%|████▋     | 120/254 [00:00<00:00, 297.00it/s]Loading weights:  71%|███████▏  | 181/254 [00:00<00:00, 271.70it/s]Loading weights:  89%|████████▊ | 225/254 [00:00<00:00, 280.14it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 248.20it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<02:10,  3.03it/s]Loading weights:  31%|███       | 124/398 [00:00<00:00, 359.76it/s]Loading weights:  47%|████▋     | 189/398 [00:00<00:00, 352.11it/s]Loading weights:  60%|██████    | 240/398 [00:00<00:00, 357.94it/s]Loading weights:  72%|███████▏  | 286/398 [00:00<00:00, 321.42it/s]Loading weights:  82%|████████▏ | 325/398 [00:01<00:00, 316.52it/s]Loading weights:  91%|█████████ | 361/398 [00:01<00:00, 289.19it/s]Loading weights:  99%|█████████▊| 393/398 [00:01<00:00, 286.91it/s]Loading weights: 100%|██████████| 398/398 [00:01<00:00, 295.41it/s]
+[2026-09-29 18:38:55] universal_kl epoch=1 step=16 samples=128/4096 loss=4.4269
+[2026-09-29 18:40:29] universal_kl epoch=1 step=32 samples=256/4096 loss=1.3691
+[2026-09-29 18:42:00] universal_kl epoch=1 step=48 samples=384/4096 loss=0.7408
+[2026-09-29 18:43:32] universal_kl epoch=1 step=64 samples=512/4096 loss=0.9523
+[2026-09-29 18:45:01] universal_kl epoch=1 step=80 samples=640/4096 loss=0.4033
+[2026-09-29 18:46:31] universal_kl epoch=1 step=96 samples=768/4096 loss=0.5624
+[2026-09-29 18:48:04] universal_kl epoch=1 step=112 samples=896/4096 loss=1.0579
+[2026-09-29 18:49:34] universal_kl epoch=1 step=128 samples=1024/4096 loss=1.0635
+[2026-09-29 18:51:05] universal_kl epoch=1 step=144 samples=1152/4096 loss=0.6477
+[2026-09-29 18:52:35] universal_kl epoch=1 step=160 samples=1280/4096 loss=0.6779
+[2026-09-29 18:54:07] universal_kl epoch=1 step=176 samples=1408/4096 loss=0.4530
+[2026-09-29 18:55:39] universal_kl epoch=1 step=192 samples=1536/4096 loss=0.6851
+[2026-09-29 18:57:12] universal_kl epoch=1 step=208 samples=1664/4096 loss=0.6298
+[2026-09-29 18:58:40] universal_kl epoch=1 step=224 samples=1792/4096 loss=0.7349
+[2026-09-29 19:00:09] universal_kl epoch=1 step=240 samples=1920/4096 loss=0.5554
+[2026-09-29 19:01:37] universal_kl epoch=1 step=256 samples=2048/4096 loss=0.3726
+[2026-09-29 19:03:09] universal_kl epoch=1 step=272 samples=2176/4096 loss=0.6922
+[2026-09-29 19:04:46] universal_kl epoch=1 step=288 samples=2304/4096 loss=0.6117
+[2026-09-29 19:06:21] universal_kl epoch=1 step=304 samples=2432/4096 loss=0.4324
+[2026-09-29 19:07:52] universal_kl epoch=1 step=320 samples=2560/4096 loss=0.7547
+[2026-09-29 19:09:21] universal_kl epoch=1 step=336 samples=2688/4096 loss=0.1715
+[2026-09-29 19:10:54] universal_kl epoch=1 step=352 samples=2816/4096 loss=0.3342
+[2026-09-29 19:12:25] universal_kl epoch=1 step=368 samples=2944/4096 loss=0.8281
+[2026-09-29 19:13:57] universal_kl epoch=1 step=384 samples=3072/4096 loss=0.4428
+[2026-09-29 19:15:29] universal_kl epoch=1 step=400 samples=3200/4096 loss=0.2489
+[2026-09-29 19:16:58] universal_kl epoch=1 step=416 samples=3328/4096 loss=0.6864
+[2026-09-29 19:18:26] universal_kl epoch=1 step=432 samples=3456/4096 loss=0.3277
+[2026-09-29 19:19:56] universal_kl epoch=1 step=448 samples=3584/4096 loss=0.7510
+[2026-09-29 19:21:28] universal_kl epoch=1 step=464 samples=3712/4096 loss=0.2203
+[2026-09-29 19:22:58] universal_kl epoch=1 step=480 samples=3840/4096 loss=0.5749
+[2026-09-29 19:24:28] universal_kl epoch=1 step=496 samples=3968/4096 loss=0.5450
+[2026-09-29 19:25:57] universal_kl epoch=1 step=512 samples=4096/4096 loss=0.7387
+[2026-09-29 19:26:11] universal_kl validation 32/512
+[2026-09-29 19:26:24] universal_kl validation 64/512
+[2026-09-29 19:26:37] universal_kl validation 96/512
+[2026-09-29 19:26:51] universal_kl validation 128/512
+[2026-09-29 19:27:05] universal_kl validation 160/512
+[2026-09-29 19:27:20] universal_kl validation 192/512
+[2026-09-29 19:27:35] universal_kl validation 224/512
+[2026-09-29 19:27:48] universal_kl validation 256/512
+[2026-09-29 19:28:03] universal_kl validation 288/512
+[2026-09-29 19:28:19] universal_kl validation 320/512
+[2026-09-29 19:28:34] universal_kl validation 352/512
+[2026-09-29 19:28:49] universal_kl validation 384/512
+[2026-09-29 19:29:05] universal_kl validation 416/512
+[2026-09-29 19:29:19] universal_kl validation 448/512
+[2026-09-29 19:29:33] universal_kl validation 480/512
+[2026-09-29 19:29:49] universal_kl validation 512/512
+[2026-09-29 19:29:49] universal_kl epoch=1 validation={'total': 0.619614127335808, 'kl': 0.619614127335808, 'ce': 1.2512720145641651, 'eos': 23.382674373686314, 'generation_kl': 0.16238156880717725, 'mcq_kl': 0.7720249801786849, 'count': 512}
+[2026-09-29 19:31:21] universal_kl epoch=2 step=528 samples=128/4096 loss=0.4401
+[2026-09-29 19:32:53] universal_kl epoch=2 step=544 samples=256/4096 loss=0.5076
+[2026-09-29 19:34:42] universal_kl epoch=2 step=560 samples=384/4096 loss=0.3812
+[2026-09-29 19:36:28] universal_kl epoch=2 step=576 samples=512/4096 loss=0.3387
+[2026-09-29 19:38:14] universal_kl epoch=2 step=592 samples=640/4096 loss=0.4139
+[2026-09-29 19:39:59] universal_kl epoch=2 step=608 samples=768/4096 loss=0.3695
+[2026-09-29 19:41:28] universal_kl epoch=2 step=624 samples=896/4096 loss=0.6751
+[2026-09-29 19:42:58] universal_kl epoch=2 step=640 samples=1024/4096 loss=0.4168
+[2026-09-29 19:44:29] universal_kl epoch=2 step=656 samples=1152/4096 loss=0.2805
+[2026-09-29 19:46:00] universal_kl epoch=2 step=672 samples=1280/4096 loss=0.1343
+[2026-09-29 19:47:30] universal_kl epoch=2 step=688 samples=1408/4096 loss=0.2065
+[2026-09-29 19:49:01] universal_kl epoch=2 step=704 samples=1536/4096 loss=0.2856
+[2026-09-29 19:50:32] universal_kl epoch=2 step=720 samples=1664/4096 loss=0.2452
+[2026-09-29 19:52:02] universal_kl epoch=2 step=736 samples=1792/4096 loss=0.4389
+[2026-09-29 19:53:34] universal_kl epoch=2 step=752 samples=1920/4096 loss=0.4295
+[2026-09-29 19:55:06] universal_kl epoch=2 step=768 samples=2048/4096 loss=0.4471
+[2026-09-29 19:56:34] universal_kl epoch=2 step=784 samples=2176/4096 loss=0.1594
+[2026-09-29 19:58:06] universal_kl epoch=2 step=800 samples=2304/4096 loss=0.4914
+[2026-09-29 19:59:35] universal_kl epoch=2 step=816 samples=2432/4096 loss=0.4283
+[2026-09-29 20:01:04] universal_kl epoch=2 step=832 samples=2560/4096 loss=0.2461
+[2026-09-29 20:02:33] universal_kl epoch=2 step=848 samples=2688/4096 loss=0.4523
+[2026-09-29 20:04:03] universal_kl epoch=2 step=864 samples=2816/4096 loss=0.2763
+[2026-09-29 20:05:32] universal_kl epoch=2 step=880 samples=2944/4096 loss=0.2237
+[2026-09-29 20:07:02] universal_kl epoch=2 step=896 samples=3072/4096 loss=0.5916
+[2026-09-29 20:08:31] universal_kl epoch=2 step=912 samples=3200/4096 loss=0.8825
+[2026-09-29 20:10:01] universal_kl epoch=2 step=928 samples=3328/4096 loss=0.3529
+[2026-09-29 20:11:31] universal_kl epoch=2 step=944 samples=3456/4096 loss=0.2081
+[2026-09-29 20:13:01] universal_kl epoch=2 step=960 samples=3584/4096 loss=0.4719
+[2026-09-29 20:14:31] universal_kl epoch=2 step=976 samples=3712/4096 loss=0.7828
+[2026-09-29 20:16:03] universal_kl epoch=2 step=992 samples=3840/4096 loss=0.2161
+[2026-09-29 20:17:34] universal_kl epoch=2 step=1008 samples=3968/4096 loss=0.6079
+[2026-09-29 20:19:17] universal_kl epoch=2 step=1024 samples=4096/4096 loss=0.2556
+[2026-09-29 20:19:34] universal_kl validation 32/512
+[2026-09-29 20:19:49] universal_kl validation 64/512
+[2026-09-29 20:20:03] universal_kl validation 96/512
+[2026-09-29 20:20:17] universal_kl validation 128/512
+[2026-09-29 20:20:31] universal_kl validation 160/512
+[2026-09-29 20:20:45] universal_kl validation 192/512
+[2026-09-29 20:21:01] universal_kl validation 224/512
+[2026-09-29 20:21:14] universal_kl validation 256/512
+[2026-09-29 20:21:29] universal_kl validation 288/512
+[2026-09-29 20:21:45] universal_kl validation 320/512
+[2026-09-29 20:22:01] universal_kl validation 352/512
+[2026-09-29 20:22:16] universal_kl validation 384/512
+[2026-09-29 20:22:32] universal_kl validation 416/512
+[2026-09-29 20:22:47] universal_kl validation 448/512
+[2026-09-29 20:23:01] universal_kl validation 480/512
+[2026-09-29 20:23:17] universal_kl validation 512/512
+[2026-09-29 20:23:17] universal_kl epoch=2 validation={'total': 0.5888771640784398, 'kl': 0.5888771640784398, 'ce': 1.2422493067024334, 'eos': 23.38959115743637, 'generation_kl': 0.1201741073600715, 'mcq_kl': 0.745111516317896, 'count': 512}
+[2026-09-29 20:25:00] universal_kl epoch=3 step=1040 samples=128/4096 loss=0.4704
+[2026-09-29 20:26:30] universal_kl epoch=3 step=1056 samples=256/4096 loss=0.2272
+[2026-09-29 20:28:04] universal_kl epoch=3 step=1072 samples=384/4096 loss=0.4132
+[2026-09-29 20:29:34] universal_kl epoch=3 step=1088 samples=512/4096 loss=0.3906
+[2026-09-29 20:31:06] universal_kl epoch=3 step=1104 samples=640/4096 loss=0.3449
+[2026-09-29 20:32:38] universal_kl epoch=3 step=1120 samples=768/4096 loss=0.3443
+[2026-09-29 20:34:09] universal_kl epoch=3 step=1136 samples=896/4096 loss=0.5058
+[2026-09-29 20:35:39] universal_kl epoch=3 step=1152 samples=1024/4096 loss=0.6365
+[2026-09-29 20:37:11] universal_kl epoch=3 step=1168 samples=1152/4096 loss=0.3268
+[2026-09-29 20:38:42] universal_kl epoch=3 step=1184 samples=1280/4096 loss=0.2449
+[2026-09-29 20:40:13] universal_kl epoch=3 step=1200 samples=1408/4096 loss=0.3583
+[2026-09-29 20:41:43] universal_kl epoch=3 step=1216 samples=1536/4096 loss=0.5198
+[2026-09-29 20:43:17] universal_kl epoch=3 step=1232 samples=1664/4096 loss=0.3705
+[2026-09-29 20:45:00] universal_kl epoch=3 step=1248 samples=1792/4096 loss=0.3419
+[2026-09-29 20:46:37] universal_kl epoch=3 step=1264 samples=1920/4096 loss=0.4315
+[2026-09-29 20:48:21] universal_kl epoch=3 step=1280 samples=2048/4096 loss=0.5142
+[2026-09-29 20:50:00] universal_kl epoch=3 step=1296 samples=2176/4096 loss=0.0677
+[2026-09-29 20:51:34] universal_kl epoch=3 step=1312 samples=2304/4096 loss=0.2438
+[2026-09-29 20:53:08] universal_kl epoch=3 step=1328 samples=2432/4096 loss=0.5129
+[2026-09-29 20:54:54] universal_kl epoch=3 step=1344 samples=2560/4096 loss=0.1599
+[2026-09-29 20:56:39] universal_kl epoch=3 step=1360 samples=2688/4096 loss=0.2016
+[2026-09-29 20:58:26] universal_kl epoch=3 step=1376 samples=2816/4096 loss=0.3092
+[2026-09-29 21:00:15] universal_kl epoch=3 step=1392 samples=2944/4096 loss=0.3607
+[2026-09-29 21:02:05] universal_kl epoch=3 step=1408 samples=3072/4096 loss=0.2015
+[2026-09-29 21:03:47] universal_kl epoch=3 step=1424 samples=3200/4096 loss=0.3753
+[2026-09-29 21:05:36] universal_kl epoch=3 step=1440 samples=3328/4096 loss=0.5803
+[2026-09-29 21:07:25] universal_kl epoch=3 step=1456 samples=3456/4096 loss=0.3279
+[2026-09-29 21:09:13] universal_kl epoch=3 step=1472 samples=3584/4096 loss=0.3564
+[2026-09-29 21:11:03] universal_kl epoch=3 step=1488 samples=3712/4096 loss=0.2271
+[2026-09-29 21:12:42] universal_kl epoch=3 step=1504 samples=3840/4096 loss=0.3553
+[2026-09-29 21:14:14] universal_kl epoch=3 step=1520 samples=3968/4096 loss=0.2557
+[2026-09-29 21:15:45] universal_kl epoch=3 step=1536 samples=4096/4096 loss=0.2633
+[2026-09-29 21:15:58] universal_kl validation 32/512
+[2026-09-29 21:16:11] universal_kl validation 64/512
+[2026-09-29 21:16:25] universal_kl validation 96/512
+[2026-09-29 21:16:39] universal_kl validation 128/512
+[2026-09-29 21:16:53] universal_kl validation 160/512
+[2026-09-29 21:17:07] universal_kl validation 192/512
+[2026-09-29 21:17:22] universal_kl validation 224/512
+[2026-09-29 21:17:36] universal_kl validation 256/512
+[2026-09-29 21:17:50] universal_kl validation 288/512
+[2026-09-29 21:18:07] universal_kl validation 320/512
+[2026-09-29 21:18:22] universal_kl validation 352/512
+[2026-09-29 21:18:37] universal_kl validation 384/512
+[2026-09-29 21:18:53] universal_kl validation 416/512
+[2026-09-29 21:19:07] universal_kl validation 448/512
+[2026-09-29 21:19:21] universal_kl validation 480/512
+[2026-09-29 21:19:37] universal_kl validation 512/512
+[2026-09-29 21:19:37] universal_kl epoch=3 validation={'total': 0.5636020377514797, 'kl': 0.5636020377514797, 'ce': 1.2143509541710955, 'eos': 23.602470882236958, 'generation_kl': 0.10650531832652632, 'mcq_kl': 0.7159676108931308, 'count': 512}
+[2026-09-29 21:21:08] universal_kl epoch=4 step=1552 samples=128/4096 loss=0.3677
+[2026-09-29 21:22:41] universal_kl epoch=4 step=1568 samples=256/4096 loss=0.2562
+[2026-09-29 21:24:13] universal_kl epoch=4 step=1584 samples=384/4096 loss=0.1651
+[2026-09-29 21:25:43] universal_kl epoch=4 step=1600 samples=512/4096 loss=0.2157
+[2026-09-29 21:27:12] universal_kl epoch=4 step=1616 samples=640/4096 loss=0.4131
+[2026-09-29 21:28:43] universal_kl epoch=4 step=1632 samples=768/4096 loss=0.5446
+[2026-09-29 21:30:15] universal_kl epoch=4 step=1648 samples=896/4096 loss=0.1998
+[2026-09-29 21:31:45] universal_kl epoch=4 step=1664 samples=1024/4096 loss=0.1701
+[2026-09-29 21:33:16] universal_kl epoch=4 step=1680 samples=1152/4096 loss=0.3601
+[2026-09-29 21:34:48] universal_kl epoch=4 step=1696 samples=1280/4096 loss=0.4449
+[2026-09-29 21:36:18] universal_kl epoch=4 step=1712 samples=1408/4096 loss=0.3378
+[2026-09-29 21:37:49] universal_kl epoch=4 step=1728 samples=1536/4096 loss=0.5444
+[2026-09-29 21:39:18] universal_kl epoch=4 step=1744 samples=1664/4096 loss=0.3627
+[2026-09-29 21:40:47] universal_kl epoch=4 step=1760 samples=1792/4096 loss=0.1934
+[2026-09-29 21:42:18] universal_kl epoch=4 step=1776 samples=1920/4096 loss=0.1688
+[2026-09-29 21:43:48] universal_kl epoch=4 step=1792 samples=2048/4096 loss=0.4108
+[2026-09-29 21:45:20] universal_kl epoch=4 step=1808 samples=2176/4096 loss=0.3421
+[2026-09-29 21:46:49] universal_kl epoch=4 step=1824 samples=2304/4096 loss=0.2030
+[2026-09-29 21:48:19] universal_kl epoch=4 step=1840 samples=2432/4096 loss=0.6665
+[2026-09-29 21:49:49] universal_kl epoch=4 step=1856 samples=2560/4096 loss=0.2155
+[2026-09-29 21:51:20] universal_kl epoch=4 step=1872 samples=2688/4096 loss=0.4984
+[2026-09-29 21:52:49] universal_kl epoch=4 step=1888 samples=2816/4096 loss=0.3056
+[2026-09-29 21:54:18] universal_kl epoch=4 step=1904 samples=2944/4096 loss=0.7832
+[2026-09-29 21:55:47] universal_kl epoch=4 step=1920 samples=3072/4096 loss=0.2390
+[2026-09-29 21:57:17] universal_kl epoch=4 step=1936 samples=3200/4096 loss=0.1317
+[2026-09-29 21:58:46] universal_kl epoch=4 step=1952 samples=3328/4096 loss=0.3599
+[2026-09-29 22:00:18] universal_kl epoch=4 step=1968 samples=3456/4096 loss=0.7551
+[2026-09-29 22:01:47] universal_kl epoch=4 step=1984 samples=3584/4096 loss=0.2031
+[2026-09-29 22:03:15] universal_kl epoch=4 step=2000 samples=3712/4096 loss=0.2685
+[2026-09-29 22:04:47] universal_kl epoch=4 step=2016 samples=3840/4096 loss=0.5950
+[2026-09-29 22:06:17] universal_kl epoch=4 step=2032 samples=3968/4096 loss=0.2148
+[2026-09-29 22:07:47] universal_kl epoch=4 step=2048 samples=4096/4096 loss=0.3036
+[2026-09-29 22:08:00] universal_kl validation 32/512
+[2026-09-29 22:08:14] universal_kl validation 64/512
+[2026-09-29 22:08:27] universal_kl validation 96/512
+[2026-09-29 22:08:41] universal_kl validation 128/512
+[2026-09-29 22:08:56] universal_kl validation 160/512
+[2026-09-29 22:09:10] universal_kl validation 192/512
+[2026-09-29 22:09:25] universal_kl validation 224/512
+[2026-09-29 22:09:39] universal_kl validation 256/512
+[2026-09-29 22:09:53] universal_kl validation 288/512
+[2026-09-29 22:10:10] universal_kl validation 320/512
+[2026-09-29 22:10:25] universal_kl validation 352/512
+[2026-09-29 22:10:40] universal_kl validation 384/512
+[2026-09-29 22:10:56] universal_kl validation 416/512
+[2026-09-29 22:11:10] universal_kl validation 448/512
+[2026-09-29 22:11:25] universal_kl validation 480/512
+[2026-09-29 22:11:41] universal_kl validation 512/512
+[2026-09-29 22:11:41] universal_kl epoch=4 validation={'total': 0.578047748282188, 'kl': 0.578047748282188, 'ce': 1.3176582313062681, 'eos': 23.90259025618434, 'generation_kl': 0.10011451499303803, 'mcq_kl': 0.737358826045238, 'count': 512}
+[2026-09-29 22:11:43] DONE  stage_b_kl
+[2026-09-29 22:11:43] START evaluate
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<02:00,  2.11it/s]Loading weights:  54%|█████▍    | 138/254 [00:00<00:00, 318.01it/s]Loading weights:  86%|████████▌ | 219/254 [00:00<00:00, 269.58it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 243.97it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<02:13,  2.97it/s]Loading weights:  31%|███       | 123/398 [00:00<00:00, 365.26it/s]Loading weights:  49%|████▉     | 195/398 [00:00<00:00, 347.15it/s]Loading weights:  63%|██████▎   | 250/398 [00:00<00:00, 322.95it/s]Loading weights:  74%|███████▍  | 294/398 [00:01<00:00, 305.83it/s]Loading weights:  83%|████████▎ | 332/398 [00:01<00:00, 313.44it/s]Loading weights:  93%|█████████▎| 369/398 [00:01<00:00, 271.27it/s]Loading weights: 100%|██████████| 398/398 [00:01<00:00, 282.81it/s]
+[2026-09-29 22:12:19] evaluate arc_challenge 16/128
+[2026-09-29 22:12:27] evaluate arc_challenge 32/128
+[2026-09-29 22:12:36] evaluate arc_challenge 48/128
+[2026-09-29 22:12:44] evaluate arc_challenge 64/128
+[2026-09-29 22:12:53] evaluate arc_challenge 80/128
+[2026-09-29 22:13:01] evaluate arc_challenge 96/128
+[2026-09-29 22:13:10] evaluate arc_challenge 112/128
+[2026-09-29 22:13:18] evaluate arc_challenge 128/128
+[2026-09-29 22:27:05] evaluate gsm8k 16/128
+[2026-09-29 22:40:52] evaluate gsm8k 32/128
+[2026-09-29 22:54:59] evaluate gsm8k 48/128
+[2026-09-29 23:09:01] evaluate gsm8k 64/128
+[2026-09-29 23:22:51] evaluate gsm8k 80/128
+[2026-09-29 23:36:30] evaluate gsm8k 96/128
+[2026-09-29 23:50:06] evaluate gsm8k 112/128
+[2026-09-30 00:03:46] evaluate gsm8k 128/128
+[2026-09-30 00:03:58] evaluate mmlu_pro 16/128
+[2026-09-30 00:04:09] evaluate mmlu_pro 32/128
+[2026-09-30 00:04:20] evaluate mmlu_pro 48/128
+[2026-09-30 00:04:31] evaluate mmlu_pro 64/128
+[2026-09-30 00:04:43] evaluate mmlu_pro 80/128
+[2026-09-30 00:04:53] evaluate mmlu_pro 96/128
+[2026-09-30 00:05:04] evaluate mmlu_pro 112/128
+[2026-09-30 00:05:14] evaluate mmlu_pro 128/128
+[2026-09-30 00:05:22] evaluate openbookqa 16/128
+[2026-09-30 00:05:30] evaluate openbookqa 32/128
+[2026-09-30 00:05:38] evaluate openbookqa 48/128
+[2026-09-30 00:05:46] evaluate openbookqa 64/128
+[2026-09-30 00:05:54] evaluate openbookqa 80/128
+[2026-09-30 00:06:02] evaluate openbookqa 96/128
+[2026-09-30 00:06:10] evaluate openbookqa 112/128
+[2026-09-30 00:06:18] evaluate openbookqa 128/128
+[2026-09-30 00:06:31] evaluate hellaswag 16/128
+[2026-09-30 00:06:42] evaluate hellaswag 32/128
+[2026-09-30 00:06:53] evaluate hellaswag 48/128
+[2026-09-30 00:07:04] evaluate hellaswag 64/128
+[2026-09-30 00:07:15] evaluate hellaswag 80/128
+[2026-09-30 00:07:25] evaluate hellaswag 96/128
+[2026-09-30 00:07:37] evaluate hellaswag 112/128
+[2026-09-30 00:07:48] evaluate hellaswag 128/128
+[2026-09-30 00:07:50] DONE  evaluate
+[2026-09-30 00:07:50] ALL EXPERIMENTS COMPLETED
