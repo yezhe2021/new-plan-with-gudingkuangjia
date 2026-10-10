@@ -1,0 +1,31 @@
+{
+  "protocol": "strict-segmented-chat-evidence-memory-v2",
+  "papers": 16,
+  "queries_per_paper": 3,
+  "smoke": false,
+  "training": false,
+  "max_new_tokens": 128,
+  "no_truncation": true,
+  "system": "Answer the question using only the supplied paper. Return only a concise answer, not an explanation or reasoning. For a yes/no question return exactly Yes or No. If the paper does not contain the answer return exactly Unanswerable. Do not repeat the question, add an Answer: label, or continue with another question.",
+  "receiver_head": "<|im_start|>system\nAnswer the question using only the supplied paper. Return only a concise answer, not an explanation or reasoning. For a yes/no question return exactly Yes or No. If the paper does not contain the answer return exactly Unanswerable. Do not repeat the question, add an Answer: label, or continue with another question.<|im_end|>\n<|im_start|>user\nPaper:\n",
+  "receiver_tail": "<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+  "sender_head": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 09 Oct 2026\n\nAnswer the question using only the supplied paper. Return only a concise answer, not an explanation or reasoning. For a yes/no question return exactly Yes or No. If the paper does not contain the answer return exactly Unanswerable. Do not repeat the question, add an Answer: label, or continue with another question.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nPaper:\n",
+  "enable_thinking": false,
+  "dtype": "float16",
+  "attention": "eager",
+  "tokenization": "head + separately encoded paper + separately encoded question/tail; same grid for every condition",
+  "reader_inputs": "question/tail IDs and clone of immutable memory ONLY",
+  "native_allowed": "head wrapper computed before evidence only; ALL body slots translated",
+  "privacy_note": "interface isolation only, not formal privacy; length grid is visible",
+  "sampling": "paper-based, not answer-type balanced; first annotation type used for strata",
+  "checkpoints": {
+    "mcq": {
+      "a": "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/runs/mcq/stage_a/best.pt",
+      "b": "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/runs/mcq/stage_b/best.pt"
+    },
+    "gsm8k": {
+      "a": "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/runs/gsm8k/stage_a/best.pt",
+      "b": "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/runs/gsm8k/stage_b/best.pt"
+    }
+  }
+}
