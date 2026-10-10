@@ -1,0 +1,205 @@
+START tests_cpu.py
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.062s
+
+OK
+START tests.py
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<02:00,  2.10it/s]Loading weights:  44%|████▍     | 113/254 [00:00<00:00, 259.47it/s]Loading weights:  70%|███████   | 179/254 [00:00<00:00, 265.77it/s]Loading weights:  90%|████████▉ | 228/254 [00:01<00:00, 237.95it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 225.77it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   9%|▉         | 37/398 [00:00<00:01, 355.20it/s]Loading weights:  18%|█▊        | 73/398 [00:00<00:00, 348.87it/s]Loading weights:  27%|██▋       | 108/398 [00:00<00:00, 347.52it/s]Loading weights:  37%|███▋      | 146/398 [00:00<00:00, 340.46it/s]Loading weights:  45%|████▌     | 181/398 [00:00<00:00, 338.53it/s]Loading weights:  56%|█████▌    | 223/398 [00:00<00:00, 348.31it/s]Loading weights:  65%|██████▍   | 258/398 [00:00<00:00, 341.31it/s]Loading weights:  74%|███████▎  | 293/398 [00:00<00:00, 343.92it/s]Loading weights:  82%|████████▏ | 328/398 [00:00<00:00, 342.03it/s]Loading weights:  91%|█████████ | 363/398 [00:01<00:00, 304.82it/s]Loading weights:  99%|█████████▉| 395/398 [00:01<00:00, 304.26it/s]Loading weights: 100%|██████████| 398/398 [00:01<00:00, 330.26it/s]
+PROTOCOL SMOKE paper=1/8 passed
+Traceback (most recent call last):
+  File "/hy-tmp/yezhe/异构模型/qasper_evidence_kv_strong_baseline_seed1234/tests.py", line 81, in <module>
+    run(parser.parse_args().diagnostic)
+  File "/hy-tmp/yezhe/异构模型/qasper_evidence_kv_strong_baseline_seed1234/tests.py", line 35, in run
+    assert same and mae<=CFG['smoke_first_logit_mae_tolerance'], checks
+AssertionError: {'native_cache': {'generation_identical': True, 'argmax_identical': True, 'logit_mean_abs_error': 0.02904176339507103, 'logit_max_abs_error': 0.46875}}
+Traceback (most recent call last):
+  File "/hy-tmp/yezhe/异构模型/qasper_evidence_kv_strong_baseline_seed1234/run_pipeline.py", line 14, in <module>
+    if not (ROOT/'smoke/completed.json').exists(): run('tests.py')
+  File "/hy-tmp/yezhe/异构模型/qasper_evidence_kv_strong_baseline_seed1234/run_pipeline.py", line 8, in run
+    subprocess.run([sys.executable,'-u',str(ROOT/script),*args],cwd=ROOT,check=True)
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/hy-tmp/yezhe/data/miniconda3/envs/attnkv/bin/python', '-u', '/hy-tmp/yezhe/异构模型/qasper_evidence_kv_strong_baseline_seed1234/tests.py']' returned non-zero exit status 1.
+START tests_cpu.py
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.063s
+
+OK
+START tests.py
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<01:35,  2.66it/s]Loading weights:  41%|████      | 104/254 [00:00<00:00, 284.95it/s]Loading weights:  65%|██████▍   | 165/254 [00:00<00:00, 247.82it/s]Loading weights:  82%|████████▏ | 208/254 [00:00<00:00, 269.75it/s]Loading weights:  98%|█████████▊| 248/254 [00:01<00:00, 247.82it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 234.33it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   6%|▋         | 25/398 [00:00<00:01, 243.43it/s]Loading weights:  15%|█▍        | 58/398 [00:00<00:01, 284.82it/s]Loading weights:  23%|██▎       | 91/398 [00:00<00:01, 300.64it/s]Loading weights:  31%|███       | 124/398 [00:00<00:00, 303.98it/s]Loading weights:  39%|███▉      | 157/398 [00:00<00:00, 306.18it/s]Loading weights:  48%|████▊     | 190/398 [00:00<00:00, 305.90it/s]Loading weights:  56%|█████▌    | 223/398 [00:00<00:00, 308.05it/s]Loading weights:  64%|██████▍   | 256/398 [00:00<00:00, 273.66it/s]Loading weights:  73%|███████▎  | 289/398 [00:00<00:00, 283.71it/s]Loading weights:  81%|████████  | 322/398 [00:01<00:00, 290.68it/s]Loading weights:  89%|████████▉ | 355/398 [00:01<00:00, 296.13it/s]Loading weights:  97%|█████████▋| 388/398 [00:01<00:00, 304.83it/s]Loading weights: 100%|██████████| 398/398 [00:01<00:00, 302.61it/s]
+PROTOCOL SMOKE paper=1/8 passed
+AUDITED FP16 full/split roundoff 1808.03430 01edeca7b902ae3fd66264366bf548acea1db364 {'native_cache': {'generation_identical': True, 'argmax_identical': True, 'logit_mean_abs_error': 0.02904176339507103, 'logit_max_abs_error': 0.46875}, 'native_rebuild': {'generation_identical': True, 'argmax_identical': True, 'logit_mean_abs_error': 0.02904176339507103, 'logit_max_abs_error': 0.46875}}
+PROTOCOL SMOKE paper=2/8 passed
+AUDITED FP16 full/split roundoff 1901.04899 40e3639b79e2051bf6bce300d06548e7793daee0 {'native_cache': {'generation_identical': True, 'argmax_identical': True, 'logit_mean_abs_error': 0.031237103044986725, 'logit_max_abs_error': 0.115234375}, 'native_rebuild': {'generation_identical': True, 'argmax_identical': True, 'logit_mean_abs_error': 0.031237103044986725, 'logit_max_abs_error': 0.115234375}}
+PROTOCOL SMOKE paper=3/8 passed
+AUDITED FP16 full/split roundoff 2004.04315 55fb92afa118450f09329764efe22612676c2d85 {'native_cache': {'generation_identical': True, 'argmax_identical': True, 'logit_mean_abs_error': 0.022722788155078888, 'logit_max_abs_error': 0.125}, 'native_rebuild': {'generation_identical': True, 'argmax_identical': True, 'logit_mean_abs_error': 0.022722788155078888, 'logit_max_abs_error': 0.125}}
+PROTOCOL SMOKE paper=4/8 passed
+PROTOCOL SMOKE paper=5/8 passed
+AUDITED FP16 full/split roundoff 2004.03329 2223d8f417c532bd845d5ade792e955486b536a3 {'native_cache': {'generation_identical': True, 'argmax_identical': True, 'logit_mean_abs_error': 0.025645367801189423, 'logit_max_abs_error': 0.1015625}, 'native_rebuild': {'generation_identical': True, 'argmax_identical': True, 'logit_mean_abs_error': 0.025645367801189423, 'logit_max_abs_error': 0.1015625}}
+PROTOCOL SMOKE paper=6/8 passed
+AUDITED FP16 full/split roundoff 1809.08652 562a2feeba9580f5435a94396f2a8751f79a4d5c {'native_cache': {'generation_identical': True, 'argmax_identical': True, 'logit_mean_abs_error': 0.02972467988729477, 'logit_max_abs_error': 0.1328125}, 'native_rebuild': {'generation_identical': True, 'argmax_identical': True, 'logit_mean_abs_error': 0.02972467988729477, 'logit_max_abs_error': 0.1328125}}
+PROTOCOL SMOKE paper=7/8 passed
+PROTOCOL SMOKE paper=8/8 passed
+ALL PROTOCOL AND GRADIENT TESTS PASSED
+START train_stage_a.py --initialization fresh
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<01:48,  2.33it/s]Loading weights:  44%|████▍     | 113/254 [00:00<00:00, 280.75it/s]Loading weights:  70%|███████   | 178/254 [00:00<00:00, 259.75it/s]Loading weights:  89%|████████▊ | 225/254 [00:00<00:00, 253.99it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 229.34it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<02:19,  2.84it/s]Loading weights:  31%|███       | 124/398 [00:00<00:00, 344.99it/s]Loading weights:  47%|████▋     | 189/398 [00:00<00:00, 344.16it/s]Loading weights:  60%|██████    | 240/398 [00:00<00:00, 348.22it/s]Loading weights:  72%|███████▏  | 285/398 [00:00<00:00, 322.05it/s]Loading weights:  81%|████████▏ | 324/398 [00:01<00:00, 312.87it/s]Loading weights:  90%|█████████ | 360/398 [00:01<00:00, 318.47it/s]Loading weights:  99%|█████████▉| 395/398 [00:01<00:00, 292.32it/s]Loading weights: 100%|██████████| 398/398 [00:01<00:00, 294.41it/s]
+STAGE A fresh epoch=1/2 step=1 papers=8/24 loss=4.00776
+STAGE A fresh epoch=1/2 step=2 papers=16/24 loss=3.05209
+STAGE A fresh epoch=1/2 step=3 papers=24/24 loss=2.75724
+EVALUATE dev_epoch_1 paper=1/8
+EVALUATE dev_epoch_1 paper=2/8
+EVALUATE dev_epoch_1 paper=3/8
+EVALUATE dev_epoch_1 paper=4/8
+EVALUATE dev_epoch_1 paper=5/8
+EVALUATE dev_epoch_1 paper=6/8
+EVALUATE dev_epoch_1 paper=7/8
+EVALUATE dev_epoch_1 paper=8/8
+STAGE A EPOCH COMPLETED fresh 1 {'k_nmse': 0.6110357195138931, 'k_cosine': 0.6788192763924599, 'v_nmse': 0.9666871577501297, 'v_cosine': 0.37356504797935486, 'total': 2.525338552892208}
+STAGE A fresh epoch=2/2 step=4 papers=8/24 loss=2.52344
+STAGE A fresh epoch=2/2 step=5 papers=16/24 loss=2.35058
+STAGE A fresh epoch=2/2 step=6 papers=24/24 loss=2.18471
+EVALUATE dev_epoch_2 paper=1/8
+EVALUATE dev_epoch_2 paper=2/8
+EVALUATE dev_epoch_2 paper=3/8
+EVALUATE dev_epoch_2 paper=4/8
+EVALUATE dev_epoch_2 paper=5/8
+EVALUATE dev_epoch_2 paper=6/8
+EVALUATE dev_epoch_2 paper=7/8
+EVALUATE dev_epoch_2 paper=8/8
+STAGE A EPOCH COMPLETED fresh 2 {'k_nmse': 0.342502873390913, 'k_cosine': 0.7610149756073952, 'v_nmse': 0.9334276169538498, 'v_cosine': 0.4515821076929569, 'total': 2.0633334070444107}
+START train_stage_a.py --initialization old_gsm8k
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<01:46,  2.37it/s]Loading weights:  44%|████▍     | 112/254 [00:00<00:00, 281.81it/s]Loading weights:  70%|███████   | 178/254 [00:00<00:00, 287.83it/s]Loading weights:  89%|████████▉ | 227/254 [00:00<00:00, 276.75it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 243.88it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<02:23,  2.76it/s]Loading weights:  33%|███▎      | 132/398 [00:00<00:00, 372.06it/s]Loading weights:  53%|█████▎    | 209/398 [00:00<00:00, 334.57it/s]Loading weights:  67%|██████▋   | 265/398 [00:00<00:00, 350.80it/s]Loading weights:  79%|███████▉  | 314/398 [00:01<00:00, 320.99it/s]Loading weights:  89%|████████▉ | 355/398 [00:01<00:00, 299.33it/s]Loading weights:  98%|█████████▊| 391/398 [00:01<00:00, 305.85it/s]Loading weights: 100%|██████████| 398/398 [00:01<00:00, 300.67it/s]
+STAGE A old_gsm8k epoch=1/2 step=1 papers=8/24 loss=1.33602
+STAGE A old_gsm8k epoch=1/2 step=2 papers=16/24 loss=2.03724
+STAGE A old_gsm8k epoch=1/2 step=3 papers=24/24 loss=1.36149
+EVALUATE dev_epoch_1 paper=1/8
+EVALUATE dev_epoch_1 paper=2/8
+EVALUATE dev_epoch_1 paper=3/8
+EVALUATE dev_epoch_1 paper=4/8
+EVALUATE dev_epoch_1 paper=5/8
+EVALUATE dev_epoch_1 paper=6/8
+EVALUATE dev_epoch_1 paper=7/8
+EVALUATE dev_epoch_1 paper=8/8
+STAGE A EPOCH COMPLETED old_gsm8k 1 {'k_nmse': 0.1927968878298998, 'k_cosine': 0.8382374942302704, 'v_nmse': 0.5964989960193634, 'v_cosine': 0.6296895295381546, 'total': 1.3213688600808382}
+STAGE A old_gsm8k epoch=2/2 step=4 papers=8/24 loss=1.33470
+STAGE A old_gsm8k epoch=2/2 step=5 papers=16/24 loss=1.38554
+STAGE A old_gsm8k epoch=2/2 step=6 papers=24/24 loss=1.28767
+EVALUATE dev_epoch_2 paper=1/8
+EVALUATE dev_epoch_2 paper=2/8
+EVALUATE dev_epoch_2 paper=3/8
+EVALUATE dev_epoch_2 paper=4/8
+EVALUATE dev_epoch_2 paper=5/8
+EVALUATE dev_epoch_2 paper=6/8
+EVALUATE dev_epoch_2 paper=7/8
+EVALUATE dev_epoch_2 paper=8/8
+STAGE A EPOCH COMPLETED old_gsm8k 2 {'k_nmse': 0.14101902209222317, 'k_cosine': 0.8582200855016708, 'v_nmse': 0.5659096837043762, 'v_cosine': 0.6568984165787697, 'total': 1.1918102037161589}
+START train_stage_b.py
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<01:32,  2.72it/s]Loading weights:  44%|████▎     | 111/254 [00:00<00:00, 308.48it/s]Loading weights:  69%|██████▉   | 175/254 [00:00<00:00, 270.84it/s]Loading weights:  87%|████████▋ | 221/254 [00:00<00:00, 288.19it/s]Loading weights: 100%|██████████| 254/254 [00:00<00:00, 259.81it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<02:58,  2.22it/s]Loading weights:  37%|███▋      | 146/398 [00:00<00:00, 342.61it/s]Loading weights:  56%|█████▋    | 224/398 [00:00<00:00, 312.64it/s]Loading weights:  70%|███████   | 280/398 [00:01<00:00, 306.23it/s]Loading weights:  82%|████████▏ | 325/398 [00:01<00:00, 319.00it/s]Loading weights:  92%|█████████▏| 367/398 [00:01<00:00, 303.53it/s]Loading weights: 100%|██████████| 398/398 [00:01<00:00, 292.54it/s]
+STAGE B epoch=1/4 step=1 paper=3/24 loss=2.779656
+STAGE B epoch=1/4 step=2 paper=6/24 loss=3.351635
+STAGE B epoch=1/4 step=3 paper=9/24 loss=3.203945
+STAGE B epoch=1/4 step=4 paper=11/24 loss=2.446475
+STAGE B epoch=1/4 step=5 paper=14/24 loss=3.139593
+STAGE B epoch=1/4 step=6 paper=17/24 loss=2.250642
+STAGE B epoch=1/4 step=7 paper=20/24 loss=3.093522
+STAGE B epoch=1/4 step=8 paper=23/24 loss=3.322425
+STAGE B epoch=1/4 step=9 paper=24/24 loss=2.349866
+EVALUATE dev_epoch_1 paper=1/8
+EVALUATE dev_epoch_1 paper=2/8
+EVALUATE dev_epoch_1 paper=3/8
+EVALUATE dev_epoch_1 paper=4/8
+EVALUATE dev_epoch_1 paper=5/8
+EVALUATE dev_epoch_1 paper=6/8
+EVALUATE dev_epoch_1 paper=7/8
+EVALUATE dev_epoch_1 paper=8/8
+STAGE B EPOCH COMPLETED 1 {'total': 2.899004441003005, 'route_kl': 1.2176780836725678, 'key_output_nmse': 0.2835434478738872, 'value_output_nmse': 1.3977829040285776, 'native_replay_nmse': 3.4291114110594506e-06}
+STAGE B epoch=2/4 step=10 paper=3/24 loss=3.279283
+STAGE B epoch=2/4 step=11 paper=7/24 loss=3.313298
+STAGE B epoch=2/4 step=12 paper=9/24 loss=2.450814
+STAGE B epoch=2/4 step=13 paper=11/24 loss=1.880671
+STAGE B epoch=2/4 step=14 paper=14/24 loss=2.957714
+STAGE B epoch=2/4 step=15 paper=17/24 loss=2.626104
+STAGE B epoch=2/4 step=16 paper=21/24 loss=3.538760
+STAGE B epoch=2/4 step=17 paper=23/24 loss=1.915652
+STAGE B epoch=2/4 step=18 paper=24/24 loss=2.893358
+EVALUATE dev_epoch_2 paper=1/8
+EVALUATE dev_epoch_2 paper=2/8
+EVALUATE dev_epoch_2 paper=3/8
+EVALUATE dev_epoch_2 paper=4/8
+EVALUATE dev_epoch_2 paper=5/8
+EVALUATE dev_epoch_2 paper=6/8
+EVALUATE dev_epoch_2 paper=7/8
+EVALUATE dev_epoch_2 paper=8/8
+STAGE B EPOCH COMPLETED 2 {'total': 2.708943709712993, 'route_kl': 1.1828365963133465, 'key_output_nmse': 0.2702866868691571, 'value_output_nmse': 1.2558204248420897, 'native_replay_nmse': 3.4291114110594506e-06}
+STAGE B epoch=3/4 step=19 paper=3/24 loss=2.316643
+STAGE B epoch=3/4 step=20 paper=5/24 loss=2.058290
+STAGE B epoch=3/4 step=21 paper=9/24 loss=3.309300
+STAGE B epoch=3/4 step=22 paper=12/24 loss=2.800464
+STAGE B epoch=3/4 step=23 paper=15/24 loss=2.526119
+STAGE B epoch=3/4 step=24 paper=17/24 loss=2.393837
+STAGE B epoch=3/4 step=25 paper=20/24 loss=2.394746
+STAGE B epoch=3/4 step=26 paper=23/24 loss=2.370030
+STAGE B epoch=3/4 step=27 paper=24/24 loss=3.190739
+EVALUATE dev_epoch_3 paper=1/8
+EVALUATE dev_epoch_3 paper=2/8
+EVALUATE dev_epoch_3 paper=3/8
+EVALUATE dev_epoch_3 paper=4/8
+EVALUATE dev_epoch_3 paper=5/8
+EVALUATE dev_epoch_3 paper=6/8
+EVALUATE dev_epoch_3 paper=7/8
+EVALUATE dev_epoch_3 paper=8/8
+STAGE B EPOCH COMPLETED 3 {'total': 2.499935043987784, 'route_kl': 1.1461179548236369, 'key_output_nmse': 0.2569071092754408, 'value_output_nmse': 1.0969099790696486, 'native_replay_nmse': 3.4291114110594506e-06}
+STAGE B epoch=4/4 step=28 paper=4/24 loss=2.897792
+STAGE B epoch=4/4 step=29 paper=7/24 loss=2.687355
+STAGE B epoch=4/4 step=30 paper=10/24 loss=2.622586
+STAGE B epoch=4/4 step=31 paper=14/24 loss=2.878988
+STAGE B epoch=4/4 step=32 paper=18/24 loss=3.102705
+STAGE B epoch=4/4 step=33 paper=20/24 loss=1.513546
+STAGE B epoch=4/4 step=34 paper=22/24 loss=1.732621
+STAGE B epoch=4/4 step=35 paper=24/24 loss=1.610656
+STAGE B epoch=4/4 step=36 paper=24/24 loss=1.688716
+EVALUATE dev_epoch_4 paper=1/8
+EVALUATE dev_epoch_4 paper=2/8
+EVALUATE dev_epoch_4 paper=3/8
+EVALUATE dev_epoch_4 paper=4/8
+EVALUATE dev_epoch_4 paper=5/8
+EVALUATE dev_epoch_4 paper=6/8
+EVALUATE dev_epoch_4 paper=7/8
+EVALUATE dev_epoch_4 paper=8/8
+STAGE B EPOCH COMPLETED 4 {'total': 2.2965506969744136, 'route_kl': 1.1091407852941537, 'key_output_nmse': 0.2444778257268438, 'value_output_nmse': 0.9429320841303841, 'native_replay_nmse': 3.4291114110594506e-06}
+START evaluate.py
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<01:46,  2.38it/s]Loading weights:  45%|████▌     | 115/254 [00:00<00:00, 290.74it/s]Loading weights:  72%|███████▏  | 183/254 [00:00<00:00, 265.96it/s]Loading weights:  91%|█████████ | 231/254 [00:00<00:00, 263.21it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 246.21it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   8%|▊         | 33/398 [00:00<00:01, 307.23it/s]Loading weights:  16%|█▌        | 64/398 [00:00<00:01, 304.16it/s]Loading weights:  24%|██▍       | 95/398 [00:00<00:00, 305.00it/s]Loading weights:  32%|███▏      | 126/398 [00:00<00:00, 305.60it/s]Loading weights:  42%|████▏     | 168/398 [00:00<00:00, 327.31it/s]Loading weights:  51%|█████     | 203/398 [00:00<00:00, 333.02it/s]Loading weights:  60%|██████    | 240/398 [00:00<00:00, 344.60it/s]Loading weights:  69%|██████▉   | 275/398 [00:00<00:00, 345.84it/s]Loading weights:  78%|███████▊  | 311/398 [00:00<00:00, 297.47it/s]Loading weights:  89%|████████▉ | 355/398 [00:01<00:00, 320.10it/s]Loading weights:  97%|█████████▋| 388/398 [00:01<00:00, 322.16it/s]Loading weights: 100%|██████████| 398/398 [00:01<00:00, 328.83it/s]
+EVALUATE dev paper=1/8
+EVALUATE dev paper=2/8
+EVALUATE dev paper=3/8
+EVALUATE dev paper=4/8
+EVALUATE dev paper=5/8
+EVALUATE dev paper=6/8
+EVALUATE dev paper=7/8
+EVALUATE dev paper=8/8
+EVALUATE seen_heldout paper=1/16
+EVALUATE seen_heldout paper=2/16
+EVALUATE seen_heldout paper=3/16
+EVALUATE seen_heldout paper=4/16
+EVALUATE seen_heldout paper=5/16
+EVALUATE seen_heldout paper=6/16
+EVALUATE seen_heldout paper=7/16
+EVALUATE seen_heldout paper=8/16
+EVALUATE seen_heldout paper=9/16
+EVALUATE seen_heldout paper=10/16
+EVALUATE seen_heldout paper=11/16
+EVALUATE seen_heldout paper=12/16
+EVALUATE seen_heldout paper=13/16
+EVALUATE seen_heldout paper=14/16
+EVALUATE seen_heldout paper=15/16
+EVALUATE seen_heldout paper=16/16
+QASPER STRONG BASELINE PILOT COMPLETED
+ALL SMALL-SCALE EXPERIMENTS COMPLETED
