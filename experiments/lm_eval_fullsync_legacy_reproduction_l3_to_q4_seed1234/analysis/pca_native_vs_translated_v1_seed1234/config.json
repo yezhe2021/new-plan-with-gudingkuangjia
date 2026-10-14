@@ -1,0 +1,22 @@
+{
+  "experiment_name": "lm_eval_fullsync_kv_pca_native_vs_translated_v1_seed1234",
+  "server": "B",
+  "seed": 1234,
+  "groups": {"mcq": ["openbookqa", "arc_challenge"], "gsm8k": ["gsm8k"]},
+  "calibration_prompts_per_task": 8,
+  "analysis_prompts_per_task": 24,
+  "sampled_tokens_per_prompt": 32,
+  "checkpoint_rule": "original validation-loss-only best.pt; independent MCQ and GSM8K weights",
+  "prompt_rule": "exact arguments in original qwen_native sample logs; MCQ rstrip follows _encode_pair; GSM8K no rewrite",
+  "token_rule": "original Full-Sync copy/drop; compare context positions 1..N-2 only",
+  "eligibility_rule": "exclude contexts of at most two target tokens (no external memory); record IDs before seeded sampling; no answer-based filtering",
+  "pca_rule": "native-only calibration covariance, common mean and axes for all arms, no feature scaling or whitening",
+  "subspace_explained_variance": 0.9,
+  "arms": ["native", "stage_a", "stage_b"],
+  "plot_layers": [0, 11, 23, 35],
+  "plot_head": 0,
+  "dtype": "original float16 model/writer autocast; geometry computed on actual float16 injection values",
+  "reading_probe": "fixed native final-context Q and native final-token self K/V; change external prefix only; RoPE and GQA preserved",
+  "shared_results": "/hy-tmp/yezhe/异构模型/EXPERIMENT_RESULTS.md",
+  "save_kv_tensors": false
+}
