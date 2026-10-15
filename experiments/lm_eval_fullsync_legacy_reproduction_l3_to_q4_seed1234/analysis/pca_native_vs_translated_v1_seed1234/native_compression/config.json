@@ -1,0 +1,19 @@
+{
+  "experiment_name": "qwen_native_kv_pca_compression_v1_seed1234",
+  "server": "B",
+  "seed": 1234,
+  "groups": ["mcq", "gsm8k"],
+  "retained_components": [16, 32, 64, 96],
+  "compression_targets": ["K", "V", "KV"],
+  "basis": "Per-group, per-layer, per-KV-head centered PCA fitted only to the original native calibration prompt slots; no scaling or whitening",
+  "projection": "mean + (x - mean) U_k U_k^T; FP32 projection, FP16 injection; K after native k_norm and before RoPE; no second k_norm",
+  "token_rule": "Compress all original external prefix slots 1..N-2; keep native token0 anchor, last native readout and all generated KV unchanged; no token removal",
+  "sample_rule": "Exact original PCA manifest: 8 calibration and 24 disjoint analysis prompts per task; same official lm-eval sample-log arguments",
+  "evaluation": "Installed pinned lm_eval 0.4.12 HFLM likelihood/generate_until and official task filters/process_results; no chat template; batch_size=1; existing Full-Sync cache path",
+  "generation": "Reuse exact logged request kwargs and unchanged parent HFLM defaults; do not override token limits or stops",
+  "metric_rule": "Fresh task scores and full-vocabulary first-token KL relative to freshly reconstructed uncompressed native KV; task scores are not reused",
+  "full_rank_gate": 128,
+  "gpu_free_memory_before_load_gib": 14,
+  "save_kv_tensors": false,
+  "shared_results": "/hy-tmp/yezhe/异构模型/EXPERIMENT_RESULTS.md"
+}

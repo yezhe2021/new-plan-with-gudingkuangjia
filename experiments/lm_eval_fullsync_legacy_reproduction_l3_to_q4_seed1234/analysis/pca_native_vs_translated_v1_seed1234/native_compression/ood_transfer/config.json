@@ -1,0 +1,24 @@
+{
+  "experiment_name": "qwen_native_kv_pca_compression_ood_transfer_v1_seed1234",
+  "server": "B",
+  "seed": 1234,
+  "groups": {
+    "hellaswag": {"basis_group": "mcq", "sample_count": 24, "primary_filter": "none", "primary_metric": "acc_norm", "id_filter": "none", "id_metric": "acc_norm"},
+    "mmlu_pro": {"basis_group": "gsm8k", "samples_per_subject": 1, "expected_subjects": 14, "primary_filter": "custom-extract", "primary_metric": "exact_match", "id_filter": "strict-match", "id_metric": "exact_match"}
+  },
+  "retained_components": [16, 32, 64, 96],
+  "compression_targets": ["K", "V", "KV"],
+  "basis_rule": "Reuse exact frozen ID calibration means/eigenvectors; no OOD fitting, scaling, whitening or selection",
+  "ood_definition": "Outside PCA calibration task distribution; does not claim absence from Qwen pretraining",
+  "selection": "Seeded task-specific shuffle of eligible original qwen_native OOD pilot IDs; HellaSwag24, MMLU-Pro1 per each of14 subjects; no score/answer filtering",
+  "prompt_and_scoring": "Exact original qwen_native evaluation_ood request arguments, installed pinned lm_eval0.4.12 task filters/process_results and HFLM generation/likelihood",
+  "generation_budget": "Keep exact original MMLU-Pro request max_gen_toks=2048 and stop settings; ID GSM8K used256, so record budget hits and do not attribute cross-task differences solely to OOD",
+  "token_rule": "Same existing Full-Sync native cache path; compress pre-RoPE post-k_norm K / V at all slots1..N-2; token0 anchor, final native readout and subsequent generated KV unchanged; preserve all positions",
+  "projection": "FP32 mean+(x-mean)U_kU_k^T; inject FP16; no second k_norm",
+  "expected_samples": 38,
+  "id_predecessor_rule": "Wait until ID compression status=completed before loading another GPU model; do not stop other jobs",
+  "minimum_free_gpu_gib": 14,
+  "bootstrap_resamples": 5000,
+  "save_kv_tensors": false,
+  "shared_results": "/hy-tmp/yezhe/异构模型/EXPERIMENT_RESULTS.md"
+}

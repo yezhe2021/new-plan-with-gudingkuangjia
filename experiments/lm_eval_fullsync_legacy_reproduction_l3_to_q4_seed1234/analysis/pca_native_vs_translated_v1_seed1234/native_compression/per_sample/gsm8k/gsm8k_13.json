@@ -1,0 +1,489 @@
+{
+  "id": "gsm8k:13",
+  "task": "gsm8k",
+  "role": "analysis",
+  "doc_id": 13,
+  "context_sha256": "f8a0f57b17ce2378c17e6b6198843a41702ddd2961937014fc6e5bd7a79d02c9",
+  "arguments": [
+    [
+      "Question: Jerome is taking a 150-mile bicycle trip. He wants to ride 12 miles for 12 days. How long will he ride on the 13th day to finish his goal?\nAnswer: Jerome rides a total of 12 x 12 = <<12*12=144>>144 miles in 12 days.\nSo, he will ride 150 - 144 = <<150-144=6>>6 miles on the 13th day to finish his goal.\n#### 6\n\nQuestion: Jerry's breakfast includes 6 pancakes with 120 calories each, two strips of bacon with 100 calories each, and a bowl of cereal with 200 calories. How many calories is his breakfast total?\nAnswer: First find the total number of calories in the pancakes: 6 pancakes * 120 calories/pancake = <<6*120=720>>720 calories\nThen find the total number of calories in the bacon: 2 strips * 100 calories/strip = <<2*100=200>>200 calories\nThen add the number of calories in each food to find the total number of calories: 720 calories + 200 calories + 200 calories = <<720+200+200=1120>>1120 calories\n#### 1120\n\nQuestion: Bucky earns money each weekend catching and selling fish. He wants to save up for a new video game, which costs $60. Last weekend he earned $35. He can earn $5 from trout and $4 from blue-gill. He caught five fish this Sunday. If 60% were trout, and the rest were blue-gill, how much more does he need to save before he can buy the game?\nAnswer: He is $25 short for the game because 60 - 35 = <<60-35=25>>25\nHe caught 3 trout because 5 x .6 = <<5*.6=3>>3\nHe caught 2 blue-gill because 5 - 3 = <<5-3=2>>2\nHe earned $15 from the trout because 3 x 5 = <<3*5=15>>15\nHe earned $8 from the blue-gill because 2 x 4 = <<2*4=8>>8\nHe earned $23 total because 15 + 8 = <<15+8=23>>23\nHe is $2 short because 25 - 23 = <<25-23=2>>2\n#### 2\n\nQuestion: The file, 90 megabytes in size, downloads at the rate of 5 megabytes per second for its first 60 megabytes, and then 10 megabytes per second thereafter. How long, in seconds, does it take to download entirely?\nAnswer: The first 60 megabytes take 60/5=<<60/5=12>>12 seconds.\nThere are 90-60=<<90-60=30>>30 remaining megabytes.\nThe remaining 30 megabytes take 30/10=<<30/10=3>>3 seconds.\nAnd 12+3=<<12+3=15>>15 seconds.\n#### 15\n\nQuestion: A baker bakes 5 loaves of bread an hour in one oven. He has 4 ovens. From Monday to Friday, he bakes for 5 hours, but on Saturday and Sunday, he only bakes for 2 hours. How many loaves of bread does the baker bake in 3 weeks?\nAnswer: In an hour, the baker bakes 5 x 4 = <<5*4=20>>20 loaves of bread.\nFrom Monday to Friday, he bakes 5 x 20 = <<5*20=100>>100 loaves of bread per day.\nFrom Monday to Friday, he bakes a total of 100 x 5 = <<100*5=500>>500 loaves of bread.\nOn Saturday and Sunday, he bakes 2 x 20 = <<2*20=40>>40 loaves of bread per day.\nOn Saturday and Sunday, he bakes a total of 40 x 2 = <<40*2=80>>80 loaves of bread.\nIn a week, he bakes 500 + 80 = <<500+80=580>>580 loaves of bread.\nIn 3 weeks, he bakes 580 x 3 = <<580*3=1740>>1740 loaves of bread.\n#### 1740\n\nQuestion: Melanie is a door-to-door saleswoman. She sold a third of her vacuum cleaners at the green house, 2 more to the red house, and half of what was left at the orange house. If Melanie has 5 vacuum cleaners left, how many did she start with?\nAnswer:",
+      {
+        "until": [
+          "Question:",
+          "</s>",
+          "<|im_end|>"
+        ],
+        "do_sample": false,
+        "temperature": 0.0
+      }
+    ]
+  ],
+  "doc": {
+    "question": "Melanie is a door-to-door saleswoman. She sold a third of her vacuum cleaners at the green house, 2 more to the red house, and half of what was left at the orange house. If Melanie has 5 vacuum cleaners left, how many did she start with?",
+    "answer": "First multiply the five remaining vacuum cleaners by two to find out how many Melanie had before she visited the orange house: 5 * 2 = <<5*2=10>>10\nThen add two to figure out how many vacuum cleaners she had before visiting the red house: 10 + 2 = <<10+2=12>>12\nNow we know that 2/3 * x = 12, where x is the number of vacuum cleaners Melanie started with. We can find x by dividing each side of the equation by 2/3, which produces x = 18\n#### 18"
+  },
+  "context_tokens": 1138,
+  "external_tokens": 1136,
+  "original_native_scores_for_reference_only": {
+    "exact_match": 0.0,
+    "flexible_exact_match": 0.0
+  },
+  "manifest_signature": "44080627b34586ab7f60d2724131e4b9c06e69a5197d8db251e65a2d29adb64b",
+  "arms": {
+    "native": {
+      "kind": null,
+      "retained_components": 128,
+      "output": {
+        "first_token_kl": 0.0,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.0
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " Let's call the total number of vacuum cleaners Melanie started with x.\nShe sold a third of them at the green house, so that's x/3.\nThen she sold 2 more to the red house, so that's x/3 + 2.\nThen she sold half of what was left at the orange house. The amount left after the green and red houses is x - (x/3 + 2) = (2x/3 - 2). Half of that is (2x/3 - 2)/2 = x/3 - 1.\nSo the total sold is x/3 + (x/3 + 2) + (x/3 - 1) = x/3 + x/3 + 2 + x/3 - 1 = x + 1.\nShe has 5 left, so x + 1 = 5. Therefore, x = 4.\nBut wait, that can't be right because if she started with 4, then she sold 4/3 at the green house, which is not possible. So I must have made a mistake in my calculation.\n\nLet me try again. Let's call the total number of vacuum cleaners Melanie started with x.\nShe sold a"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "3"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 11.845929451286793
+    },
+    "K_16": {
+      "kind": "K",
+      "retained_components": 16,
+      "output": {
+        "first_token_kl": 0.18427546322345734,
+        "first_argmax_match": true,
+        "logit_mean_abs": 1.4597713947296143
+      },
+      "retained_centered_energy": {
+        "K": 0.6683924198150635,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " Let's denote the total number of vacuum cleaners as x. The first customer bought 1/3 of the vacuum cleaners, so the remaining is x - 1/3x = 2/3x. The second customer bought 1/4 of the remaining, which is 1/4 * 2/3x = 1/6x. The remaining after the second customer is 2/3x - 1/6x = 1/2x. The third customer bought 1/5 of the remaining, which is 1/5 * 1/2x = 1/10x. The remaining after the third customer is 1/2x - 1/10x = 2/5x. The fourth customer bought 1/2 of the remaining, which is 1/2 * 2/5x = 1/5x. The remaining after the fourth customer is 2/5x - 1/5x = 1/5x. The fifth customer bought the last 10 vacuum cleaners, so 1/5x = 10. Solving for x, we get x = 50. Therefore, the total number of vacuum"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "50."
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 11.863751992583275
+    },
+    "V_16": {
+      "kind": "V",
+      "retained_components": 16,
+      "output": {
+        "first_token_kl": 4.992527484893799,
+        "first_argmax_match": false,
+        "logit_mean_abs": 3.0910770893096924
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 0.40571728348731995
+      },
+      "evaluation": {
+        "responses": [
+          " The number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the total number of the"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "[invalid]"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 11.932805866003036
+    },
+    "KV_16": {
+      "kind": "KV",
+      "retained_components": 16,
+      "output": {
+        "first_token_kl": 3.138582229614258,
+        "first_argmax_match": false,
+        "logit_mean_abs": 2.114820957183838
+      },
+      "retained_centered_energy": {
+        "K": 0.6683924198150635,
+        "V": 0.40571728348731995
+      },
+      "evaluation": {
+        "responses": [
+          " 1. Find the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of the number of the total number of"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "1."
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 11.971076250076294
+    },
+    "K_32": {
+      "kind": "K",
+      "retained_components": 32,
+      "output": {
+        "first_token_kl": 0.3643067479133606,
+        "first_argmax_match": true,
+        "logit_mean_abs": 1.0772364139556885
+      },
+      "retained_centered_energy": {
+        "K": 0.805948793888092,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " Let's denote the total number of vacuum cleaners as x. She sold a third at the green house, so that's x/3. Then she sold 2 more at the red house, so that's x/3 + 2. Then she sold half of what was left at the orange house. The remaining after the green and red houses is x - x/3 - 2 = 2x/3 - 2. Half of that is (2x/3 - 2)/2 = x/3 - 1. The total sold is x/3 + 2 + x/3 - 1 = 2x/3 + 1. The remaining is x - (2x/3 + 1) = x/3 - 1. We know that the remaining is 5, so x/3 - 1 = 5. Solving for x, x/3 = 6, so x = 18. Therefore, Melanie started with 18 vacuum cleaners.\nAnswer: \\boxed{18}\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "18"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 10.694576397538185
+    },
+    "V_32": {
+      "kind": "V",
+      "retained_components": 32,
+      "output": {
+        "first_token_kl": 3.3205323219299316,
+        "first_argmax_match": false,
+        "logit_mean_abs": 1.4743927717208862
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 0.55459064245224
+      },
+      "evaluation": {
+        "responses": [
+          " The number of remaining after the first sale is 5 * 2 = 10. The number of remaining after the second sale is 10 + 2 = 12. The total number of\nAnswer: The total number of\nAnswer: Let's break this down step by step. \n\nLet the total number of\nAnswer: Let's denote the total number of\nAnswer: Let me try to figure this out. \n\nWe know that Melanie has 5\nAnswer: Okay, let's see. The problem says that Melanie sold a third of her\nAnswer: Alright, let's tackle this problem. \n\nWe need to find out how many\nAnswer: Let me think. \n\nWe know that Melanie has 5\nAnswer: Let me try to work through this problem step by step. \n\nFirst, let's figure out how many\nAnswer: Let me try to solve this problem. \n\nWe know that Melanie has 5\nAnswer: Let me try to figure this out. \n\nWe know that Melanie has 5\nAnswer: Let me try to work through this problem. \n\nWe know that Melanie has 5\nAnswer: Let me try to figure this out. \n\nWe know that Melanie has 5\nAnswer: Let me"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "5"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 11.951255053281784
+    },
+    "KV_32": {
+      "kind": "KV",
+      "retained_components": 32,
+      "output": {
+        "first_token_kl": 1.7624130249023438,
+        "first_argmax_match": false,
+        "logit_mean_abs": 1.8444472551345825
+      },
+      "retained_centered_energy": {
+        "K": 0.805948793888092,
+        "V": 0.55459064245224
+      },
+      "evaluation": {
+        "responses": [
+          " The total number of the remaining is 5. The number of the remaining is 2 more than the number of the first. So, the number of the first is 5 - 2 = 3. The total number of the three is 3 + 2 + 5 = 10. So, the answer is 10.\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "10."
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 3.582025244832039
+    },
+    "K_64": {
+      "kind": "K",
+      "retained_components": 64,
+      "output": {
+        "first_token_kl": 0.010464509017765522,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.7739090323448181
+      },
+      "retained_centered_energy": {
+        "K": 0.922400176525116,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " Let's call the total number of vacuum cleaners Melanie started with x.\nShe sold a third of them at the green house, so that's x/3.\nThen she sold 2 more to the red house, so that's x/3 + 2.\nThen she sold half of what was left at the orange house. The amount left after the green and red houses would be x - (x/3 + x/3 + 2) = x - (2x/3 + 2) = x/3 - 2. Then she sold half of that at the orange house, so (x/3 - 2)/2.\nAfter all that, she has 5 left. So the equation is: x - (x/3 + 2 + (x/3 - 2)/2) = 5.\nSolving this equation: Multiply all terms by 6 to eliminate denominators: 6x - (2x + 12 + 3x - 6) = 30.\nSimplify: 6x - (5x + 6) = 30.\n6x - 5x - 6 = 30.\nx - 6 = 30.\nx ="
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "30."
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 12.33894394338131
+    },
+    "V_64": {
+      "kind": "V",
+      "retained_components": 64,
+      "output": {
+        "first_token_kl": 0.18897050619125366,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.9500348567962646
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 0.7460334897041321
+      },
+      "evaluation": {
+        "responses": [
+          " Let's call the total number of vacuum cleaners Melanie had at first x.\nShe sold a third of them at the green house, so that's (1/3)x.\nThen she sold 2 more to the red house, so that's 2.\nThen she sold half of what was left at the orange house. So after selling (1/3)x and 2, the remaining is x - (1/3)x - 2 = (2/3)x - 2. Then she sold half of that, so (1/2)((2/3)x - 2) = (1/3)x - 1.\nSo the total sold is (1/3)x + 2 + (1/3)x - 1 = (2/3)x + 1.\nThe remaining is x - ((2/3)x + 1) = (1/3)x - 1.\nWe are told that the remaining is 5, so (1/3)x - 1 = 5.\nSolving for x: (1/3)x = 6, so x = 18.\nAnswer: \\boxed{18}\nAnswer: \\boxed{18}\nAnswer: \\boxed{18}\nAnswer"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "18"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 12.508722335100174
+    },
+    "KV_64": {
+      "kind": "KV",
+      "retained_components": 64,
+      "output": {
+        "first_token_kl": 0.44470179080963135,
+        "first_argmax_match": true,
+        "logit_mean_abs": 1.229786992073059
+      },
+      "retained_centered_energy": {
+        "K": 0.922400176525116,
+        "V": 0.7460334897041321
+      },
+      "evaluation": {
+        "responses": [
+          " Let's call the total number of vacuum cleaners Melanie had x. She sold a third of them at the green house, so that's x/3. Then she sold 2 more to the red house, so that's x/3 + 2. Then she sold half of what was left at the orange house. The remaining after the first two is x - (x/3 + 2) = (2x/3 - 2). Half of that is (2x/3 - 2)/2 = x/3 - 1. So the total sold is x/3 + 2 + x/3 - 1 = (2x/3 + 1). The remaining is x - (2x/3 + 1) = x/3 - 1. We know that this is 5, so x/3 - 1 = 5. Solving for x, x/3 = 6, so x = 18. Therefore, Melanie started with 18 vacuum cleaners.\n#### 18\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "18"
+          ],
+          "strict-match": [
+            "18"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 10.466579340398312
+    },
+    "K_96": {
+      "kind": "K",
+      "retained_components": 96,
+      "output": {
+        "first_token_kl": 0.0068062059581279755,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.3079030215740204
+      },
+      "retained_centered_energy": {
+        "K": 0.9797344207763672,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " Let's call the total number of vacuum cleaners Melanie started with x.\nShe sold a third of them at the green house, so that's x/3.\nThen she sold 2 more to the red house, so that's x/3 + 2.\nThen she sold half of what was left at the orange house. The amount left after the green and red houses would be x - (x/3 + 2) = (2x/3 - 2). Half of that is (2x/3 - 2)/2 = x/3 - 1.\nSo the total sold is x/3 + 2 + x/3 - 1 = (2x/3 + 1).\nThe amount left is x - (2x/3 + 1) = x/3 - 1.\nWe know that x/3 - 1 = 5.\nSolving for x: x/3 = 6, so x = 18.\n#### 18\nOkay, let's see. Melanie has 5 vacuum cleaners left. I need to figure out how many she started with. \n\nSo, the problem says she sold a third at the green house. Then 2 more to the red house."
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "2"
+          ],
+          "strict-match": [
+            "18"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 12.15193647146225
+    },
+    "V_96": {
+      "kind": "V",
+      "retained_components": 96,
+      "output": {
+        "first_token_kl": 0.04200023040175438,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.6250202059745789
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 0.8855421543121338
+      },
+      "evaluation": {
+        "responses": [
+          " Let x be the number of vacuum cleaners Melanie started with.\nShe sold a third of x at the green house: x/3\nShe sold 2 more to the red house: x/3 + 2\nShe sold half of what was left at the orange house: (x - (x/3 + 2))/2 = (2x/3 - 2)/2 = x/3 - 1\nTotal sold: x/3 + x/3 + 2 + x/3 - 1 = x + 1\nShe has 5 left: x - (x + 1) = -1 = 5\nThis is impossible, so there must be an error in the setup.\nLet me try again.\nLet x be the number of vacuum cleaners Melanie started with.\nShe sold a third of x at the green house: x/3\nShe sold 2 more to the red house: x/3 + 2\nWhat was left after green and red houses: x - (x/3 + x/3 + 2) = x - (2x/3 + 2) = x/3 - 2\nShe sold half of what was left at the orange house: (x/3"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "3"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 13.05737342685461
+    },
+    "KV_96": {
+      "kind": "KV",
+      "retained_components": 96,
+      "output": {
+        "first_token_kl": 0.10127433389425278,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.8727125525474548
+      },
+      "retained_centered_energy": {
+        "K": 0.9797344207763672,
+        "V": 0.8855421543121338
+      },
+      "evaluation": {
+        "responses": [
+          " Let x be the number of vacuum cleaners Melanie started with.\nShe sold a third of x at the green house: x/3\nShe sold 2 more to the red house: x/3 + 2\nShe sold half of what was left at the orange house: (x - (x/3 + 2))/2 = (2x/3 - 2)/2 = x/3 - 1\nTotal sold: x/3 + x/3 + 2 + x/3 - 1 = x + 1\nShe has 5 left: x - (x + 1) = -1 = 5\nThis is impossible, so there must be an error in the setup.\nLet me try again.\nLet x be the number of vacuum cleaners Melanie started with.\nShe sold a third of x at the green house: x/3\nShe sold 2 more to the red house: x/3 + 2\nWhat was left after green and red houses: x - (x/3 + x/3 + 2) = x - (2x/3 + 2) = x/3 - 2\nShe sold half of what was left at the orange house: (x/3"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "3"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 12.693463519215584
+    }
+  }
+}

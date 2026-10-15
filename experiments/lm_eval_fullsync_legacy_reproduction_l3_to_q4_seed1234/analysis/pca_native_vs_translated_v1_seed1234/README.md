@@ -43,3 +43,12 @@ Run on B:
 cd /hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/pca_native_vs_translated_v1_seed1234
 /hy-tmp/yezhe/data/miniconda3/envs/attnkv/bin/python -u analyze.py run
 ```
+
+## Completed follow-ups
+
+- [Full variance spectrum and required component counts](variance_explained/REPORT.md).
+- [Llama native KV PCA and aligned-source comparison](llama_native/REPORT.md).
+- [Native Qwen KV compression: fresh ID task scores](native_compression/REPORT.md).
+- [Frozen-basis OOD compression](native_compression/ood_transfer/REPORT.md): HellaSwag24 and MMLU-Pro13; the final psychology sample was omitted at the user's request.
+
+Scripts, configs, figures, logs and per-sample outputs accompany each report. Model weights, raw KV caches and regenerable PCA basis tensor files are excluded.

@@ -1,0 +1,689 @@
+{
+  "status": "completed",
+  "timestamp": "2026-10-15T06:29:32.180463+00:00",
+  "config": {
+    "experiment_name": "qwen_native_kv_pca_compression_ood_transfer_v1_seed1234",
+    "server": "B",
+    "seed": 1234,
+    "groups": {
+      "hellaswag": {
+        "basis_group": "mcq",
+        "sample_count": 24,
+        "primary_filter": "none",
+        "primary_metric": "acc_norm",
+        "id_filter": "none",
+        "id_metric": "acc_norm"
+      },
+      "mmlu_pro": {
+        "basis_group": "gsm8k",
+        "samples_per_subject": 1,
+        "expected_subjects": 14,
+        "primary_filter": "custom-extract",
+        "primary_metric": "exact_match",
+        "id_filter": "strict-match",
+        "id_metric": "exact_match"
+      }
+    },
+    "retained_components": [
+      16,
+      32,
+      64,
+      96
+    ],
+    "compression_targets": [
+      "K",
+      "V",
+      "KV"
+    ],
+    "basis_rule": "Reuse exact frozen ID calibration means/eigenvectors; no OOD fitting, scaling, whitening or selection",
+    "ood_definition": "Outside PCA calibration task distribution; does not claim absence from Qwen pretraining",
+    "selection": "Seeded task-specific shuffle of eligible original qwen_native OOD pilot IDs; HellaSwag24, MMLU-Pro1 per each of14 subjects; no score/answer filtering",
+    "prompt_and_scoring": "Exact original qwen_native evaluation_ood request arguments, installed pinned lm_eval0.4.12 task filters/process_results and HFLM generation/likelihood",
+    "generation_budget": "Keep exact original MMLU-Pro request max_gen_toks=2048 and stop settings; ID GSM8K used256, so record budget hits and do not attribute cross-task differences solely to OOD",
+    "token_rule": "Same existing Full-Sync native cache path; compress pre-RoPE post-k_norm K / V at all slots1..N-2; token0 anchor, final native readout and subsequent generated KV unchanged; preserve all positions",
+    "projection": "FP32 mean+(x-mean)U_kU_k^T; inject FP16; no second k_norm",
+    "expected_samples": 38,
+    "id_predecessor_rule": "Wait until ID compression status=completed before loading another GPU model; do not stop other jobs",
+    "minimum_free_gpu_gib": 14,
+    "bootstrap_resamples": 5000,
+    "save_kv_tensors": false,
+    "shared_results": "/hy-tmp/yezhe/异构模型/EXPERIMENT_RESULTS.md"
+  },
+  "completed_samples": 37,
+  "expected_samples": 37,
+  "groups": {
+    "hellaswag": {
+      "samples": 24,
+      "id_samples": 48,
+      "filter": "none",
+      "metric": "acc_norm",
+      "id_filter": "none",
+      "id_metric": "acc_norm",
+      "arms": {
+        "native": {
+          "score": 0.5416666666666666,
+          "paired_drop_from_native": 0.0,
+          "drop_bootstrap95": [
+            0.0,
+            0.0
+          ],
+          "id_drop_from_native": 0.0,
+          "ood_minus_id_drop": 0.0,
+          "ood_minus_id_drop_bootstrap95": [
+            0.0,
+            0.0
+          ],
+          "first_token_kl_mean": 0.0,
+          "id_first_token_kl_mean": 0.0,
+          "retained_centered_energy": {
+            "K": 1.0,
+            "V": 1.0
+          },
+          "generation": null
+        },
+        "K_16": {
+          "score": 0.4583333333333333,
+          "paired_drop_from_native": 0.08333333333333333,
+          "drop_bootstrap95": [
+            0.0,
+            0.20833333333333334
+          ],
+          "id_drop_from_native": 0.041666666666666664,
+          "ood_minus_id_drop": 0.041666666666666664,
+          "ood_minus_id_drop_bootstrap95": [
+            -0.08333333333333333,
+            0.1875
+          ],
+          "first_token_kl_mean": 0.37801734583141905,
+          "id_first_token_kl_mean": 0.2922526208776617,
+          "retained_centered_energy": {
+            "K": 0.5826086352268854,
+            "V": 1.0
+          },
+          "generation": null
+        },
+        "V_16": {
+          "score": 0.4583333333333333,
+          "paired_drop_from_native": 0.08333333333333333,
+          "drop_bootstrap95": [
+            -0.125,
+            0.2916666666666667
+          ],
+          "id_drop_from_native": 0.08333333333333333,
+          "ood_minus_id_drop": 0.0,
+          "ood_minus_id_drop_bootstrap95": [
+            -0.20833333333333334,
+            0.22916666666666663
+          ],
+          "first_token_kl_mean": 1.1886570751667023,
+          "id_first_token_kl_mean": 1.456061996713591,
+          "retained_centered_energy": {
+            "K": 1.0,
+            "V": 0.32165956993897754
+          },
+          "generation": null
+        },
+        "KV_16": {
+          "score": 0.4583333333333333,
+          "paired_drop_from_native": 0.08333333333333333,
+          "drop_bootstrap95": [
+            -0.08333333333333333,
+            0.25
+          ],
+          "id_drop_from_native": 0.10416666666666667,
+          "ood_minus_id_drop": -0.020833333333333343,
+          "ood_minus_id_drop_bootstrap95": [
+            -0.20885416666666654,
+            0.1875
+          ],
+          "first_token_kl_mean": 1.4928634266058605,
+          "id_first_token_kl_mean": 1.8343715444207191,
+          "retained_centered_energy": {
+            "K": 0.5826086352268854,
+            "V": 0.32165956993897754
+          },
+          "generation": null
+        },
+        "K_32": {
+          "score": 0.4166666666666667,
+          "paired_drop_from_native": 0.125,
+          "drop_bootstrap95": [
+            0.0,
+            0.25
+          ],
+          "id_drop_from_native": 0.041666666666666664,
+          "ood_minus_id_drop": 0.08333333333333334,
+          "ood_minus_id_drop_bootstrap95": [
+            -0.0625,
+            0.25
+          ],
+          "first_token_kl_mean": 0.1761389912571758,
+          "id_first_token_kl_mean": 0.14783305532713106,
+          "retained_centered_energy": {
+            "K": 0.7356789857149124,
+            "V": 1.0
+          },
+          "generation": null
+        },
+        "V_32": {
+          "score": 0.4583333333333333,
+          "paired_drop_from_native": 0.08333333333333333,
+          "drop_bootstrap95": [
+            -0.08333333333333333,
+            0.25
+          ],
+          "id_drop_from_native": 0.10416666666666667,
+          "ood_minus_id_drop": -0.020833333333333343,
+          "ood_minus_id_drop_bootstrap95": [
+            -0.20833333333333331,
+            0.16666666666666669
+          ],
+          "first_token_kl_mean": 0.5582070530702671,
+          "id_first_token_kl_mean": 0.8477819682235955,
+          "retained_centered_energy": {
+            "K": 1.0,
+            "V": 0.4628734377523263
+          },
+          "generation": null
+        },
+        "KV_32": {
+          "score": 0.3333333333333333,
+          "paired_drop_from_native": 0.20833333333333334,
+          "drop_bootstrap95": [
+            0.041666666666666664,
+            0.375
+          ],
+          "id_drop_from_native": 0.0625,
+          "ood_minus_id_drop": 0.14583333333333334,
+          "ood_minus_id_drop_bootstrap95": [
+            -0.04166666666666666,
+            0.3333333333333333
+          ],
+          "first_token_kl_mean": 0.7921218052506447,
+          "id_first_token_kl_mean": 0.9566499183577738,
+          "retained_centered_energy": {
+            "K": 0.7356789857149124,
+            "V": 0.4628734377523263
+          },
+          "generation": null
+        },
+        "K_64": {
+          "score": 0.5,
+          "paired_drop_from_native": 0.041666666666666664,
+          "drop_bootstrap95": [
+            0.0,
+            0.125
+          ],
+          "id_drop_from_native": -0.020833333333333332,
+          "ood_minus_id_drop": 0.0625,
+          "ood_minus_id_drop_bootstrap95": [
+            0.0,
+            0.16666666666666666
+          ],
+          "first_token_kl_mean": 0.014120051094020406,
+          "id_first_token_kl_mean": 0.035930008415088345,
+          "retained_centered_energy": {
+            "K": 0.8889194925626119,
+            "V": 1.0
+          },
+          "generation": null
+        },
+        "V_64": {
+          "score": 0.4166666666666667,
+          "paired_drop_from_native": 0.125,
+          "drop_bootstrap95": [
+            0.0,
+            0.25
+          ],
+          "id_drop_from_native": 0.020833333333333332,
+          "ood_minus_id_drop": 0.10416666666666667,
+          "ood_minus_id_drop_bootstrap95": [
+            -0.020833333333333332,
+            0.25
+          ],
+          "first_token_kl_mean": 0.1861488091138502,
+          "id_first_token_kl_mean": 0.28275368338669676,
+          "retained_centered_energy": {
+            "K": 1.0,
+            "V": 0.6755524575710297
+          },
+          "generation": null
+        },
+        "KV_64": {
+          "score": 0.375,
+          "paired_drop_from_native": 0.16666666666666666,
+          "drop_bootstrap95": [
+            0.041666666666666664,
+            0.3333333333333333
+          ],
+          "id_drop_from_native": 0.041666666666666664,
+          "ood_minus_id_drop": 0.125,
+          "ood_minus_id_drop_bootstrap95": [
+            -0.020833333333333336,
+            0.2916666666666667
+          ],
+          "first_token_kl_mean": 0.22229786139602462,
+          "id_first_token_kl_mean": 0.40026297151189283,
+          "retained_centered_energy": {
+            "K": 0.8889194925626119,
+            "V": 0.6755524575710297
+          },
+          "generation": null
+        },
+        "K_96": {
+          "score": 0.5,
+          "paired_drop_from_native": 0.041666666666666664,
+          "drop_bootstrap95": [
+            0.0,
+            0.125
+          ],
+          "id_drop_from_native": 0.0,
+          "ood_minus_id_drop": 0.041666666666666664,
+          "ood_minus_id_drop_bootstrap95": [
+            0.0,
+            0.125
+          ],
+          "first_token_kl_mean": 0.004508603786234744,
+          "id_first_token_kl_mean": 0.00783318554821714,
+          "retained_centered_energy": {
+            "K": 0.9709388489524523,
+            "V": 1.0
+          },
+          "generation": null
+        },
+        "V_96": {
+          "score": 0.5,
+          "paired_drop_from_native": 0.041666666666666664,
+          "drop_bootstrap95": [
+            0.0,
+            0.125
+          ],
+          "id_drop_from_native": 0.020833333333333332,
+          "ood_minus_id_drop": 0.020833333333333332,
+          "ood_minus_id_drop_bootstrap95": [
+            -0.0625,
+            0.125
+          ],
+          "first_token_kl_mean": 0.053079396612398945,
+          "id_first_token_kl_mean": 0.05482115683040926,
+          "retained_centered_energy": {
+            "K": 1.0,
+            "V": 0.848449687163035
+          },
+          "generation": null
+        },
+        "KV_96": {
+          "score": 0.5,
+          "paired_drop_from_native": 0.041666666666666664,
+          "drop_bootstrap95": [
+            0.0,
+            0.125
+          ],
+          "id_drop_from_native": 0.020833333333333332,
+          "ood_minus_id_drop": 0.020833333333333332,
+          "ood_minus_id_drop_bootstrap95": [
+            -0.0625,
+            0.125
+          ],
+          "first_token_kl_mean": 0.05825368783068067,
+          "id_first_token_kl_mean": 0.07287889884446486,
+          "retained_centered_energy": {
+            "K": 0.9709388489524523,
+            "V": 0.848449687163035
+          },
+          "generation": null
+        }
+      },
+      "context_tokens": {
+        "min": 13,
+        "max": 44,
+        "mean": 29.666666666666668
+      }
+    },
+    "mmlu_pro": {
+      "samples": 13,
+      "id_samples": 24,
+      "filter": "custom-extract",
+      "metric": "exact_match",
+      "id_filter": "strict-match",
+      "id_metric": "exact_match",
+      "arms": {
+        "native": {
+          "score": 0.6923076923076923,
+          "paired_drop_from_native": 0.0,
+          "drop_bootstrap95": [
+            0.0,
+            0.0
+          ],
+          "id_drop_from_native": 0.0,
+          "ood_minus_id_drop": 0.0,
+          "ood_minus_id_drop_bootstrap95": [
+            0.0,
+            0.0
+          ],
+          "first_token_kl_mean": 0.0,
+          "id_first_token_kl_mean": 0.0,
+          "retained_centered_energy": {
+            "K": 1.0,
+            "V": 1.0
+          },
+          "generation": {
+            "mean_tokens": 227.53846153846155,
+            "budget_hit_rate": 0.07692307692307693
+          }
+        },
+        "K_16": {
+          "score": 0.0,
+          "paired_drop_from_native": 0.6923076923076923,
+          "drop_bootstrap95": [
+            0.46153846153846156,
+            0.9230769230769231
+          ],
+          "id_drop_from_native": 0.9166666666666666,
+          "ood_minus_id_drop": -0.22435897435897434,
+          "ood_minus_id_drop_bootstrap95": [
+            -0.4967948717948718,
+            0.04166666666666663
+          ],
+          "first_token_kl_mean": 2.414217332807871,
+          "id_first_token_kl_mean": 1.1280000576128562,
+          "retained_centered_energy": {
+            "K": 0.5552534965368418,
+            "V": 1.0
+          },
+          "generation": {
+            "mean_tokens": 1604.076923076923,
+            "budget_hit_rate": 0.7692307692307693
+          }
+        },
+        "V_16": {
+          "score": 0.0,
+          "paired_drop_from_native": 0.6923076923076923,
+          "drop_bootstrap95": [
+            0.46153846153846156,
+            0.9230769230769231
+          ],
+          "id_drop_from_native": 0.9166666666666666,
+          "ood_minus_id_drop": -0.22435897435897434,
+          "ood_minus_id_drop_bootstrap95": [
+            -0.4967948717948718,
+            0.04807692307692313
+          ],
+          "first_token_kl_mean": 9.622466658170406,
+          "id_first_token_kl_mean": 5.933864291757345,
+          "retained_centered_energy": {
+            "K": 1.0,
+            "V": 0.2639673203229904
+          },
+          "generation": {
+            "mean_tokens": 1899.0,
+            "budget_hit_rate": 0.9230769230769231
+          }
+        },
+        "KV_16": {
+          "score": 0.0,
+          "paired_drop_from_native": 0.6923076923076923,
+          "drop_bootstrap95": [
+            0.46153846153846156,
+            0.9230769230769231
+          ],
+          "id_drop_from_native": 0.9166666666666666,
+          "ood_minus_id_drop": -0.22435897435897434,
+          "ood_minus_id_drop_bootstrap95": [
+            -0.4967948717948718,
+            0.04166666666666663
+          ],
+          "first_token_kl_mean": 6.191418766975403,
+          "id_first_token_kl_mean": 4.644900744160016,
+          "retained_centered_energy": {
+            "K": 0.5552534965368418,
+            "V": 0.2639673203229904
+          },
+          "generation": {
+            "mean_tokens": 2048.0,
+            "budget_hit_rate": 1.0
+          }
+        },
+        "K_32": {
+          "score": 0.5384615384615384,
+          "paired_drop_from_native": 0.15384615384615385,
+          "drop_bootstrap95": [
+            0.0,
+            0.38461538461538464
+          ],
+          "id_drop_from_native": 0.25,
+          "ood_minus_id_drop": -0.09615384615384615,
+          "ood_minus_id_drop_bootstrap95": [
+            -0.33974358974358976,
+            0.1826923076923077
+          ],
+          "first_token_kl_mean": 0.5243405983783305,
+          "id_first_token_kl_mean": 0.5462134851841256,
+          "retained_centered_energy": {
+            "K": 0.7231153066341693,
+            "V": 1.0
+          },
+          "generation": {
+            "mean_tokens": 424.38461538461536,
+            "budget_hit_rate": 0.15384615384615385
+          }
+        },
+        "V_32": {
+          "score": 0.0,
+          "paired_drop_from_native": 0.6923076923076923,
+          "drop_bootstrap95": [
+            0.46153846153846156,
+            0.9230769230769231
+          ],
+          "id_drop_from_native": 0.9166666666666666,
+          "ood_minus_id_drop": -0.22435897435897434,
+          "ood_minus_id_drop_bootstrap95": [
+            -0.4967948717948718,
+            0.04807692307692313
+          ],
+          "first_token_kl_mean": 5.864399701356888,
+          "id_first_token_kl_mean": 3.339744698566695,
+          "retained_centered_energy": {
+            "K": 1.0,
+            "V": 0.40410978060502273
+          },
+          "generation": {
+            "mean_tokens": 2048.0,
+            "budget_hit_rate": 1.0
+          }
+        },
+        "KV_32": {
+          "score": 0.0,
+          "paired_drop_from_native": 0.6923076923076923,
+          "drop_bootstrap95": [
+            0.46153846153846156,
+            0.9230769230769231
+          ],
+          "id_drop_from_native": 0.9166666666666666,
+          "ood_minus_id_drop": -0.22435897435897434,
+          "ood_minus_id_drop_bootstrap95": [
+            -0.49751602564102543,
+            0.04807692307692313
+          ],
+          "first_token_kl_mean": 5.580132032816227,
+          "id_first_token_kl_mean": 3.029431518788139,
+          "retained_centered_energy": {
+            "K": 0.7231153066341693,
+            "V": 0.40410978060502273
+          },
+          "generation": {
+            "mean_tokens": 2048.0,
+            "budget_hit_rate": 1.0
+          }
+        },
+        "K_64": {
+          "score": 0.6153846153846154,
+          "paired_drop_from_native": 0.07692307692307693,
+          "drop_bootstrap95": [
+            0.0,
+            0.23076923076923078
+          ],
+          "id_drop_from_native": 0.08333333333333333,
+          "ood_minus_id_drop": -0.006410256410256401,
+          "ood_minus_id_drop_bootstrap95": [
+            -0.16666666666666666,
+            0.18910256410256412
+          ],
+          "first_token_kl_mean": 0.008652855273164907,
+          "id_first_token_kl_mean": 0.11647349622217007,
+          "retained_centered_energy": {
+            "K": 0.8818442959051865,
+            "V": 1.0
+          },
+          "generation": {
+            "mean_tokens": 97.6923076923077,
+            "budget_hit_rate": 0.0
+          }
+        },
+        "V_64": {
+          "score": 0.46153846153846156,
+          "paired_drop_from_native": 0.23076923076923078,
+          "drop_bootstrap95": [
+            0.0,
+            0.46153846153846156
+          ],
+          "id_drop_from_native": 0.2916666666666667,
+          "ood_minus_id_drop": -0.0608974358974359,
+          "ood_minus_id_drop_bootstrap95": [
+            -0.34615384615384615,
+            0.2532051282051282
+          ],
+          "first_token_kl_mean": 0.7317700632489644,
+          "id_first_token_kl_mean": 0.7389332617943486,
+          "retained_centered_energy": {
+            "K": 1.0,
+            "V": 0.6283173515246465
+          },
+          "generation": {
+            "mean_tokens": 386.3076923076923,
+            "budget_hit_rate": 0.15384615384615385
+          }
+        },
+        "KV_64": {
+          "score": 0.15384615384615385,
+          "paired_drop_from_native": 0.5384615384615384,
+          "drop_bootstrap95": [
+            0.3076923076923077,
+            0.7692307692307693
+          ],
+          "id_drop_from_native": 0.16666666666666666,
+          "ood_minus_id_drop": 0.3717948717948718,
+          "ood_minus_id_drop_bootstrap95": [
+            0.028846153846153855,
+            0.6923076923076923
+          ],
+          "first_token_kl_mean": 1.3371382808456054,
+          "id_first_token_kl_mean": 0.7981930512469262,
+          "retained_centered_energy": {
+            "K": 0.8818442959051865,
+            "V": 0.6283173515246465
+          },
+          "generation": {
+            "mean_tokens": 236.30769230769232,
+            "budget_hit_rate": 0.07692307692307693
+          }
+        },
+        "K_96": {
+          "score": 0.6153846153846154,
+          "paired_drop_from_native": 0.07692307692307693,
+          "drop_bootstrap95": [
+            0.0,
+            0.23076923076923078
+          ],
+          "id_drop_from_native": 0.0,
+          "ood_minus_id_drop": 0.07692307692307693,
+          "ood_minus_id_drop_bootstrap95": [
+            -0.08333333333333333,
+            0.27884615384615385
+          ],
+          "first_token_kl_mean": 0.002937978532197751,
+          "id_first_token_kl_mean": 0.021632773641613312,
+          "retained_centered_energy": {
+            "K": 0.9683283613278315,
+            "V": 1.0
+          },
+          "generation": {
+            "mean_tokens": 96.53846153846153,
+            "budget_hit_rate": 0.0
+          }
+        },
+        "V_96": {
+          "score": 0.5384615384615384,
+          "paired_drop_from_native": 0.15384615384615385,
+          "drop_bootstrap95": [
+            0.0,
+            0.38461538461538464
+          ],
+          "id_drop_from_native": 0.16666666666666666,
+          "ood_minus_id_drop": -0.012820512820512803,
+          "ood_minus_id_drop_bootstrap95": [
+            -0.25,
+            0.25336538461538227
+          ],
+          "first_token_kl_mean": 0.04560821752798242,
+          "id_first_token_kl_mean": 0.13725442646925026,
+          "retained_centered_energy": {
+            "K": 1.0,
+            "V": 0.8220612315031198
+          },
+          "generation": {
+            "mean_tokens": 364.84615384615387,
+            "budget_hit_rate": 0.15384615384615385
+          }
+        },
+        "KV_96": {
+          "score": 0.5384615384615384,
+          "paired_drop_from_native": 0.15384615384615385,
+          "drop_bootstrap95": [
+            0.0,
+            0.38461538461538464
+          ],
+          "id_drop_from_native": 0.125,
+          "ood_minus_id_drop": 0.028846153846153855,
+          "ood_minus_id_drop_bootstrap95": [
+            -0.20833333333333334,
+            0.29487179487179493
+          ],
+          "first_token_kl_mean": 0.046484506866433475,
+          "id_first_token_kl_mean": 0.17833992606028914,
+          "retained_centered_energy": {
+            "K": 0.9683283613278315,
+            "V": 0.8220612315031198
+          },
+          "generation": {
+            "mean_tokens": 220.23076923076923,
+            "budget_hit_rate": 0.07692307692307693
+          }
+        }
+      },
+      "context_tokens": {
+        "min": 906,
+        "max": 1996,
+        "mean": 1371.7692307692307
+      }
+    }
+  },
+  "original_expected_samples": 38,
+  "completion_scope": "user_requested_omit_last_sample",
+  "scope_override": {
+    "timestamp": "2026-10-15T06:28:22.469658+00:00",
+    "reason": "User requested finish sample13 and skip final sample14",
+    "stopped_pid": 536806,
+    "original_expected_samples": 38,
+    "effective_expected_samples": 37,
+    "omitted_sample": "mmlu_pro_psychology:5",
+    "included_counts": {
+      "hellaswag": 24,
+      "mmlu_pro": 13
+    },
+    "excluded_outputs_directory": "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/pca_native_vs_translated_v1_seed1234/native_compression/ood_transfer/excluded_partial",
+    "original_manifest_unchanged": true
+  },
+  "original_manifest_unchanged": true,
+  "full_original_planned_sample_set": false
+}

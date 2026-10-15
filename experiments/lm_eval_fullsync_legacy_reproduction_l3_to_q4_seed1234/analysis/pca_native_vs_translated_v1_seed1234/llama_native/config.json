@@ -1,0 +1,19 @@
+{
+  "experiment_name": "lm_eval_fullsync_llama_native_kv_pca_seed1234",
+  "server": "B",
+  "seed": 1234,
+  "reference_pca": "..",
+  "model": "Llama-3.2-3B-Instruct, original sender checkpoint and encoding from parent experiment",
+  "geometry": [28, 8, 128],
+  "dtype": "float16, original eager attention",
+  "prompt_rule": "exact same96 prompt identities and calibration/analysis roles as original PCA manifest",
+  "native_token_rule": "uniform without-replacement sampling of unique source token positions overlapping the same Qwen external-text interval; special tokens excluded",
+  "aligned_slot_rule": "exact original Full-Sync mapping at the original sampled Qwen external positions; duplicate source slots retained and counted",
+  "sampled_tokens_per_prompt": 32,
+  "thresholds": [0.8, 0.9, 0.95, 0.99],
+  "plot_layers_zero_based": [0, 9, 18, 27],
+  "plot_kv_head": 0,
+  "interface": "native pre-RoPE K after model key normalization if present, and V; explicit sender BOS follows original writer encoding",
+  "shared_results": "/hy-tmp/yezhe/异构模型/EXPERIMENT_RESULTS.md",
+  "save_kv_tensors": false
+}

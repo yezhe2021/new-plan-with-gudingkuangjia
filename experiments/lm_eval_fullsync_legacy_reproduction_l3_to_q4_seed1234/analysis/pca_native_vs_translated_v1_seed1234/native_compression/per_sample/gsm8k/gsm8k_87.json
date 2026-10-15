@@ -1,0 +1,489 @@
+{
+  "id": "gsm8k:87",
+  "task": "gsm8k",
+  "role": "analysis",
+  "doc_id": 87,
+  "context_sha256": "122132945a5e6204d98dcf122b21bcba5ec57fc4a8b62e7d3e3e5e96bff4326d",
+  "arguments": [
+    [
+      "Question: Jane's goal is to exercise 1 hour a day, 5 days a week.  If she hits her goal weekly for 8 weeks, how many hours has Jane exercised?\nAnswer: Her goal is 1 hour a day for 5 days so on a weekly basis, she exercises 1*5 = <<1*5=5>>5 hours\nIf she works 5 hours a week for 8 weeks then she exercises 5*8 = <<5*8=40>>40 hours in 8 weeks\n#### 40\n\nQuestion: Jordan is a hockey goalie. In the first period of a game, he blocked four shots. In the second period, he blocked twice as many shots. In the third period, he blocked three fewer than in the second period. When the game ended after the fourth period, he had blocked 21 shots in all. How many did Jordan block in the fourth period?\nAnswer: Let F be the number of shots Jordan blocked in the fourth period.\nIn the second period, he blocked 2 * 4 = <<2*4=8>>8 shots.\nIn the third period, he blocked 8 - 3 = <<8-3=5>>5 shots.\nIn the whole game, he blocked 4 + 8 + 5 + F = 17 + F = 21 shots.\nThus, Jordan blocked F = 21 - 17 = <<21-17=4>>4 shots in the fourth period.\n#### 4\n\nQuestion: Ryan works in an office that has an even number of men and women working there.  Ryan participates in a meeting composed of 4 men and 6 women who are pulled from the office floor.   This reduces the number of women working on the office floor by 20%.  How many people work at Ryan's office?\nAnswer: Since 6 women are 20% of the total number of women working there, that means there are 6*5= <<6*5=30>>30 women working there in total.\nSince there are an even number of women and men working in the office, that means there are 30*2= <<30*2=60>>60 people working there in total, since there are 2 sexes.\n#### 60\n\nQuestion: The outdoor scouts went on a hike to see a waterfall. To get to the hike, the club members took 3 cars, 6 taxis and 2 vans. There were 4 people in each car, 6 people in each taxis and 5 people in each van. How many people went on the hike?\nAnswer: The number of people in cars is 3 × 4 = <<3*4=12>>12.\nThe number of people in taxis is 6 × 6 = <<6*6=36>>36.\nThe number of people in vans is 2 × 5 = <<2*5=10>>10.\nIn total 12 + 36 + 10 = <<12+36+10=58>>58 people went on the hike.\n#### 58\n\nQuestion: There are 13 3-year-olds, 20 4-year-olds, 15 5-year-olds, and 22 six-year-olds at a particular Sunday school. If the 3 and 4-year-olds are in one class and the 5 and 6-year-olds are in another class, what is the average class size?\nAnswer: First find the total number of 3- and 4-year-olds: 13 kids + 20 kids = <<13+20=33>>33 kids\nThen find the total number of 5- and 6-year-olds: 15 kids + 22 kids = <<15+22=37>>37 kids\nThen add the two class sizes: 33 kids + 37 kids = <<33+37=70>>70 kids\nThen divide the number of kids by the number of classes to find the average class size: 70 kids / 2 classes = <<70/2=35>>35 kids/class\n#### 35\n\nQuestion: A company pays each of its employees $600 in a month. The company has a policy of increasing the salaries of each of its employees by 10% of the initial salary every year for those who've stayed in the company for five years. If Sylvie just clocked 5 years in the company last December, what's her annual salary after three more years of service?\nAnswer:",
+      {
+        "until": [
+          "Question:",
+          "</s>",
+          "<|im_end|>"
+        ],
+        "do_sample": false,
+        "temperature": 0.0
+      }
+    ]
+  ],
+  "doc": {
+    "question": "A company pays each of its employees $600 in a month. The company has a policy of increasing the salaries of each of its employees by 10% of the initial salary every year for those who've stayed in the company for five years. If Sylvie just clocked 5 years in the company last December, what's her annual salary after three more years of service?",
+    "answer": "In a month, Sylvie earns $600. which totals $600/month * 12 months/year = $7200 in a year.\nSylvie earnings will increase by 10/100 * $7200/year = $<<10/100*7200=720>>720/year after 5 years.\nIn three years, the total increase in her salary will be 3 years * $720/year = $<<3*720=2160>>2160\nAfter three years, Sylvie will be paid $7200 + $2160 = $<<7200+2160=9360>>9360\n#### 9360"
+  },
+  "context_tokens": 983,
+  "external_tokens": 981,
+  "original_native_scores_for_reference_only": {
+    "exact_match": 0.0,
+    "flexible_exact_match": 0.0
+  },
+  "manifest_signature": "44080627b34586ab7f60d2724131e4b9c06e69a5197d8db251e65a2d29adb64b",
+  "arms": {
+    "native": {
+      "kind": null,
+      "retained_components": 128,
+      "output": {
+        "first_token_kl": 0.0,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.0
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " The initial salary is $600 per month, so the annual salary is 600 * 12 = <<600*12=7200>>7200 dollars.\nThe first raise is 10% of the initial salary, which is 0.10 * 7200 = <<0.10*7200=720>>720 dollars.\nSo after the first raise, her annual salary is 7200 + 720 = <<7200+720=7920>>7920 dollars.\nAfter three more years of service, she will have received three more raises. Each raise is 10% of the current salary.\nFirst raise: 7920 * 0.10 = <<7920*0.10=792>>792 dollars. New salary: 7920 + 792 = <<7920+792=8712>>8712 dollars.\nSecond raise: 8712 * 0.10 = <<8712*0.10="
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "0.10"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 11.763612069189548
+    },
+    "K_16": {
+      "kind": "K",
+      "retained_components": 16,
+      "output": {
+        "first_token_kl": 0.9563649892807007,
+        "first_argmax_match": true,
+        "logit_mean_abs": 1.1391270160675049
+      },
+      "retained_centered_energy": {
+        "K": 0.6438191533088684,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " The salary increase is 10% of the original salary, so the new salary is 6000 + 600 = 6600. The salary increase is 10% of the new salary, so the new salary is 6600 + 660 = 7260. The salary increase is 10% of the new salary, so the new salary is 7260 + 726 = 7986. The salary increase is 10% of the new salary, so the new salary is 7986 + 798.6 = 8784.6. The salary increase is 10% of the new salary, so the new salary is 8784.6 + 878.46 = 9663.06. The salary increase is 10% of the new salary, so the new salary is 9663.06 + 966.306 = 10629.366. The salary increase is 10% of the new salary, so the new salary is 106"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "106"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 11.837642878293991
+    },
+    "V_16": {
+      "kind": "V",
+      "retained_components": 16,
+      "output": {
+        "first_token_kl": 9.871517181396484,
+        "first_argmax_match": false,
+        "logit_mean_abs": 2.7452328205108643
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 0.3750842809677124
+      },
+      "evaluation": {
+        "responses": [
+          " 1000\nAnswer: \\boxed{1000}\n\nLet me check my work. \n\nFirst, I need to find out how much money is earned from the 1000 tickets sold. Each ticket is sold for $2, so 1000 tickets * $2 = $2000. \n\nNext, I need to calculate the cost of the 1000 tickets. Each ticket costs $0.50, so 1000 tickets * $0.50 = $500. \n\nThen, I subtract the cost of the tickets from the money earned to find the profit. $2000 - $500 = $1500. \n\nWait, but the answer is supposed to be $1000. Did I do something wrong here? Let me check again. \n\nOh, wait, the problem says that the tickets are sold for $2 each, but the cost of each ticket is $0.50. So, the profit per ticket is $2 - $0.50 = $1.50. \n\nThen, for 1000 tickets, the total profit would be 1000 * $"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "1000"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 12.100616186857224
+    },
+    "KV_16": {
+      "kind": "KV",
+      "retained_components": 16,
+      "output": {
+        "first_token_kl": 6.431371212005615,
+        "first_argmax_match": false,
+        "logit_mean_abs": 2.5373482704162598
+      },
+      "retained_centered_energy": {
+        "K": 0.6438191533088684,
+        "V": 0.3750842809677124
+      },
+      "evaluation": {
+        "responses": [
+          " 1. Find the amount of money that the first person has. 2. Find the amount of money that the second person has. 3. Find the total amount of money that both people have. 4. Find the amount of money that the first person has after giving the second person some money. 5. Find the amount of money that the second person has after receiving the money. 6. Find the difference between the two people's money. 7. Find the amount of money that the first person has after giving the second person some money. 8. Find the amount of money that the second person has after receiving the money. 9. Find the difference between the two people's money. 10. Find the amount of money that the first person has after giving the second person some money. 11. Find the amount of money that the second person has after receiving the money. 12. Find the difference between the two people's money. 13. Find the amount of money that the first person has after giving the second person some money. 14. Find the amount of money that the second person has after receiving the money. 15. Find the difference between the two people's money."
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "15."
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 12.323436595499516
+    },
+    "K_32": {
+      "kind": "K",
+      "retained_components": 32,
+      "output": {
+        "first_token_kl": 0.7650759220123291,
+        "first_argmax_match": false,
+        "logit_mean_abs": 0.5277435183525085
+      },
+      "retained_centered_energy": {
+        "K": 0.7878745198249817,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " Sylvie's salary is increased by 10% every year for 5 years. So, the salary after 5 years is 600 * (1 + 10/100)^5 = 600 * 1.1^5 = 600 * 1.61051 = 966.306. Then, after 3 more years, the salary is 966.306 * 1.1^3 = 966.306 * 1.331 = 1286.306. So, Sylvie's salary after 3 more years is approximately $1286.31.\n#### 1286.31\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "1286.31"
+          ],
+          "strict-match": [
+            "1286.31"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 7.936662934720516
+    },
+    "V_32": {
+      "kind": "V",
+      "retained_components": 32,
+      "output": {
+        "first_token_kl": 8.22300910949707,
+        "first_argmax_match": true,
+        "logit_mean_abs": 1.694028615951538
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 0.5238679051399231
+      },
+      "evaluation": {
+        "responses": [
+          " The increase in salary is 10% of $600, which is 0.10 * 600 = $60. So, the salary increases by $60 each year. Therefore, after 3 years, the increase would be 3 * 60 = $180. So, the total salary would be $600 + $180 = $780. So, the answer is $780.\nAnswer: \\boxed{780}\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "780"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 6.205550037324429
+    },
+    "KV_32": {
+      "kind": "KV",
+      "retained_components": 32,
+      "output": {
+        "first_token_kl": 5.164361000061035,
+        "first_argmax_match": true,
+        "logit_mean_abs": 1.7783828973770142
+      },
+      "retained_centered_energy": {
+        "K": 0.7878745198249817,
+        "V": 0.5238679051399231
+      },
+      "evaluation": {
+        "responses": [
+          " The increase in salary is 10% of $600, which is $60. So, the salary is $600 + $60 = $660. Then, for three years, the salary increases by 10% each year. So, the salary after three years is 660 * 1.1^3 = 660 * 1.331 = 879.06. So, the answer is $879.06.\nAnswer: \\boxed{879.06}\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "879.06"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 6.053258910775185
+    },
+    "K_64": {
+      "kind": "K",
+      "retained_components": 64,
+      "output": {
+        "first_token_kl": 0.2506990432739258,
+        "first_argmax_match": false,
+        "logit_mean_abs": 0.4071892499923706
+      },
+      "retained_centered_energy": {
+        "K": 0.91373211145401,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " Sylvie's initial salary is $600 per month.\nAfter 5 years, her salary is increased by 10% of the initial salary, so 600 * 10% = <<600*0.1=60>>60.\nHer salary after 5 years is 600 + 60 = <<600+60=660>>660 per month.\nAfter three more years of service, her salary is increased by 10% of the current salary, so 660 * 10% = <<660*0.1=66>>66.\nHer salary after three more years is 660 + 66 = <<660+66=726>>726 per month.\nHer annual salary is 726 * 12 = <<726*12=8712>>8712.\n#### 8712\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "8712"
+          ],
+          "strict-match": [
+            "8712"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 9.92953696846962
+    },
+    "V_64": {
+      "kind": "V",
+      "retained_components": 64,
+      "output": {
+        "first_token_kl": 1.457010269165039,
+        "first_argmax_match": true,
+        "logit_mean_abs": 1.8157472610473633
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 0.7236701250076294
+      },
+      "evaluation": {
+        "responses": [
+          " The increase in salary is 10% of $600, which is 0.10 * 600 = <<0.10*600=60>>60 dollars.\nSo, after 5 years, her salary would be $600 + $60 = <<600+60=660>>660 dollars.\nAfter three more years, the salary increases by 10% each year. So, after the first year, it would be 660 + 0.10*660 = <<660+66=726>>726 dollars.\nAfter the second year, it would be 726 + 0.10*726 = <<726+72.6=798.6>>798.6 dollars.\nAfter the third year, it would be 798.6 + 0.10*798.6 = <<798.6+79.86=878.46>>878.46 dollars.\nSo, after three more years, her salary would be $878"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "$878"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 12.853377133607864
+    },
+    "KV_64": {
+      "kind": "KV",
+      "retained_components": 64,
+      "output": {
+        "first_token_kl": 1.2686570882797241,
+        "first_argmax_match": true,
+        "logit_mean_abs": 2.0731089115142822
+      },
+      "retained_centered_energy": {
+        "K": 0.91373211145401,
+        "V": 0.7236701250076294
+      },
+      "evaluation": {
+        "responses": [
+          " The increase in salary is 10% of $600, which is 0.10 * 600 = <<0.10*600=60>>60 dollars.\nSo, the salary after 1 year is $600 + $60 = <<600+60=660>>660 dollars.\nAfter 2 years, the salary is 660 + 60 = <<660+60=720>>720 dollars.\nAfter 3 years, the salary is 720 + 60 = <<720+60=780>>780 dollars.\nSo, the answer is 780.\n#### 780\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "780"
+          ],
+          "strict-match": [
+            "780"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 8.429516039788723
+    },
+    "K_96": {
+      "kind": "K",
+      "retained_components": 96,
+      "output": {
+        "first_token_kl": 0.012091431766748428,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.13300219178199768
+      },
+      "retained_centered_energy": {
+        "K": 0.9773629307746887,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " The initial salary is $600 per month. 10% of that is $60 per month. So, after 5 years, her salary increases by 10% of the initial salary, which is $60 per month. So, her salary after 5 years is $600 + $60 = <<600+60=660>>660 per month.\nAfter three more years of service, her salary increases by 10% of the initial salary again. So, her salary after three more years is $660 + $60 = <<660+60=720>>720 per month.\n#### 720\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "720"
+          ],
+          "strict-match": [
+            "720"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 7.369369246065617
+    },
+    "V_96": {
+      "kind": "V",
+      "retained_components": 96,
+      "output": {
+        "first_token_kl": 0.2885514795780182,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.5452871322631836
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 0.8738385438919067
+      },
+      "evaluation": {
+        "responses": [
+          " The initial salary is $600 per month. 10% of that is $60 per month. So, after 5 years, her salary would be 600 + 60 = <<600+60=660>>660 per month. Then, for each additional year, her salary increases by 10% of the current salary. So, after 3 more years, her salary would be 660 * 1.1^3. Calculating that, 660 * 1.1 = 726, 726 * 1.1 = 798.6, 798.6 * 1.1 = 878.46. So, her annual salary is 878.46 * 12 = <<878.46*12=10541.52>>10541.52 dollars.\n#### 10541.52\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "10541.52"
+          ],
+          "strict-match": [
+            "10541.52"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 10.42963395267725
+    },
+    "KV_96": {
+      "kind": "KV",
+      "retained_components": 96,
+      "output": {
+        "first_token_kl": 0.36694738268852234,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.4989163279533386
+      },
+      "retained_centered_energy": {
+        "K": 0.9773629307746887,
+        "V": 0.8738385438919067
+      },
+      "evaluation": {
+        "responses": [
+          " The initial salary is $600 per month. 10% of that is $60 per month. So, after 5 years, her salary would be 600 + 60 = <<600+60=660>>660 per month. Then, for each additional year, her salary increases by 10% of the current salary. So, after 3 more years, her salary would be 660 * 1.1^3. Let's calculate that: 660 * 1.1 = 726, 726 * 1.1 = 798.6, 798.6 * 1.1 = 878.46. So, her annual salary after three more years of service is 878.46 * 12 = <<878.46*12=10541.52>>10541.52 dollars.\n#### 10541.52\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "10541.52"
+          ],
+          "strict-match": [
+            "10541.52"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 10.875195495784283
+    }
+  }
+}

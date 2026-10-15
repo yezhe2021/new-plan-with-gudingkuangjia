@@ -1,0 +1,489 @@
+{
+  "id": "gsm8k:23",
+  "task": "gsm8k",
+  "role": "analysis",
+  "doc_id": 23,
+  "context_sha256": "9a389dc4261c184928fce63a61d2bdfc086b4faebc26ff55d37da9a99f5749c0",
+  "arguments": [
+    [
+      "Question: Jake agrees to work part of his debt off.  He owed someone $100 but paid them $40 before agreeing to work off the rest.   He worked for $15 an hour.  How many hours did he have to work?\nAnswer: He has to work off $100-$40=$<<100-40=60>>60.\nSo he has to work $60/15=<<60/15=4>>4 hours\n#### 4\n\nQuestion: Two athletes decided to compete to see who had the best jumping ability. They were each going to do the long jump, triple jump, and high jump to see who had the highest average jump. The first athlete jumped 26 feet in the long jump, 30 feet in the triple jump, and 7 feet in the high jump. The second athlete jumped 24 feet in the long jump, 34 feet in the triple jump, and 8 feet in the high jump. What was the average jump of the winner?\nAnswer: The first athlete jumped a total of 63 feet because 26 + 30 + 7 = <<26+30+7=63>>63\nThe second athlete jumped a total of 66 feet because 24 + 34 + 8 = <<24+34+8=66>>66\nThe first athlete jumped 21 feet on average because 63 / 3 = <<63/3=21>>21\nThe second athlete jumped 22 feet on average because 66 / 3 = <<66/3=22>>22\nThe average jump of the winner was 22 feet because 22 > 21\n#### 22\n\nQuestion: With 82 students, there are 2 students for each computer. If there are 16 more students, how many computers must they have in total to continue with 2 students per computer?\nAnswer: 2 students per computer means the total number of computers is 82 / 2 = <<82/2=41>>41 computers.\nwith the arrival of 16 students, the number of computers that should be added is 16 / 2 = <<16/2=8>>8 computers.\nall computers together are 41 + 8 = <<41+8=49>>49 computers.\n#### 49\n\nQuestion: Macy and Piper went to the batting cages. Each token gets you 15 pitches. Macy used 11 tokens and Piper used 17. Macy hit the ball 50 times. Piper hit the ball 55 times. How many pitches did Macy and Piper miss altogether?\nAnswer: Macy used 11 tokens which are worth 15 pitches each, so 11 tokens x 15 pitches = <<11*15=165>>165 pitches.\nPiper used 17 tokens x 15 pitches = <<17*15=255>>255 pitches.\nTogether, Macy and Piper received 165 + 255 = <<165+255=420>>420 pitches.\nMacy hit the ball 50 times + Piper’s 55 hits = <<50+55=105>>105 total hits.\nOf the 420 pitches – 105 total hits = <<420-105=315>>315 misses.\n#### 315\n\nQuestion: Susie opens a pizza store. She charges $3 per slice and $15 for a whole pizza. If she was able to sell 24 slices of pizza and 3 whole pizzas, how much money did she earn?\nAnswer: She was able to earn 24 x 3= $<<24*3=72>>72 after selling 24 slices.\nShe earned 15 x 3= $<<15*3=45>>45 after selling 3 whole pizzas.\nTherefore, she earned a total of $72+$45= $<<72+45=117>>117.\n#### 117\n\nQuestion: A candle melts by 2 centimeters every hour that it burns. How many centimeters shorter will a candle be after burning from 1:00 PM to 5:00 PM?\nAnswer:",
+      {
+        "until": [
+          "Question:",
+          "</s>",
+          "<|im_end|>"
+        ],
+        "do_sample": false,
+        "temperature": 0.0
+      }
+    ]
+  ],
+  "doc": {
+    "question": "A candle melts by 2 centimeters every hour that it burns. How many centimeters shorter will a candle be after burning from 1:00 PM to 5:00 PM?",
+    "answer": "The candle burns for 5 - 1 = <<5-1=4>>4 hours.\nThus, the candle will be 2 * 4 = <<2*4=8>>8 centimeters shorter.\n#### 8"
+  },
+  "context_tokens": 959,
+  "external_tokens": 957,
+  "original_native_scores_for_reference_only": {
+    "exact_match": 1.0,
+    "flexible_exact_match": 1.0
+  },
+  "manifest_signature": "44080627b34586ab7f60d2724131e4b9c06e69a5197d8db251e65a2d29adb64b",
+  "arms": {
+    "native": {
+      "kind": null,
+      "retained_components": 128,
+      "output": {
+        "first_token_kl": 0.0,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.0
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " The candle burns for 4 hours from 1:00 PM to 5:00 PM.\nIt melts 2 cm per hour, so 4 hours x 2 cm = <<4*2=8>>8 cm.\n#### 8\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "8"
+          ],
+          "strict-match": [
+            "8"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 2.74888052046299
+    },
+    "K_16": {
+      "kind": "K",
+      "retained_components": 16,
+      "output": {
+        "first_token_kl": 0.38752973079681396,
+        "first_argmax_match": true,
+        "logit_mean_abs": 1.6332876682281494
+      },
+      "retained_centered_energy": {
+        "K": 0.6550467610359192,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " The candle burns for 4 hours. The candle burns at a rate of 1/4 inch per hour. The candle is 6 inches long. The total burn time is 6 divided by 1/4, which is 24 hours. The candle will burn out in 24 hours.\nAnswer: The candle will burn out in 24 hours.\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "24"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 3.768637925386429
+    },
+    "V_16": {
+      "kind": "V",
+      "retained_components": 16,
+      "output": {
+        "first_token_kl": 2.210329294204712,
+        "first_argmax_match": true,
+        "logit_mean_abs": 2.6746513843536377
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 0.3937501013278961
+      },
+      "evaluation": {
+        "responses": [
+          " The total time is 5 days. 2*5=10. So the answer is 10.\nAnswer: \\boxed{10}\n\nWait, that seems too easy. Let me check again. The problem says \"how many centimeters shorter\" so the answer is 10. Yes, that's correct.\n\nWait, but the problem says \"how many centimeters shorter\" so the answer is 10. Yes, that's correct.\n\nWait, but the problem says \"how many centimeters shorter\" so the answer is 10. Yes, that's correct.\n\nWait, but the problem says \"how many centimeters shorter\" so the answer is 10. Yes, that's correct.\n\nWait, but the problem says \"how many centimeters shorter\" so the answer is 10. Yes, that's correct.\n\nWait, but the problem says \"how many centimeters shorter\" so the answer is 10. Yes, that's correct.\n\nWait, but the problem says \"how many centimeters shorter\" so the answer is 10. Yes, that's correct.\n\nWait, but the problem says \"how many centimeters shorter\" so the answer is 10. Yes, that's correct"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "10."
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 11.943009279668331
+    },
+    "KV_16": {
+      "kind": "KV",
+      "retained_components": 16,
+      "output": {
+        "first_token_kl": 2.7291038036346436,
+        "first_argmax_match": false,
+        "logit_mean_abs": 2.360948324203491
+      },
+      "retained_centered_energy": {
+        "K": 0.6550467610359192,
+        "V": 0.3937501013278961
+      },
+      "evaluation": {
+        "responses": [
+          " 2\nAnswer: \\boxed{2}\n\nWait, the user provided an example where the answer was 2, but the question seems to be incomplete. Let me check the original problem again.\n\nThe user's question is: \"A train leaves Station A at 6:00 AM and travels at a constant speed of 60 mph. Another train leaves Station B, which is 300 miles away from Station A, at 8:00 AM and travels towards Station A at a constant speed of 45 mph. At what time will the two trains meet?\"\n\nThe correct answer is 10:00 AM. Let me verify the steps:\n\n1. The first train leaves at 6:00 AM and travels for 2 hours before the second train leaves at 8:00 AM. In that time, it covers 60 mph * 2 hours = 120 miles.\n2. The distance between the stations is 300 miles, so the remaining distance between the two trains when the second train starts is 300 - 120 = 180 miles.\n3. The relative speed of the two trains approaching each other is 60 mph + 45"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "45"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 12.185844235122204
+    },
+    "K_32": {
+      "kind": "K",
+      "retained_components": 32,
+      "output": {
+        "first_token_kl": 0.0068926578387618065,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.9036567211151123
+      },
+      "retained_centered_energy": {
+        "K": 0.7969345450401306,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " The candle burns for 4 hours because 5 - 1 = 4.\nThe candle melts 2 cm per hour, so it melts 2 * 4 = <<2*4=8>>8 cm.\nThe candle is 8 cm shorter.\n#### 8\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "8"
+          ],
+          "strict-match": [
+            "8"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 2.8418255150318146
+    },
+    "V_32": {
+      "kind": "V",
+      "retained_components": 32,
+      "output": {
+        "first_token_kl": 0.4841387867927551,
+        "first_argmax_match": true,
+        "logit_mean_abs": 1.671056866645813
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 0.5418136715888977
+      },
+      "evaluation": {
+        "responses": [
+          " The total time is 5 hours. 2 * 5 = 10. The answer is 10.\nAnswer: \\boxed{10}\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "10"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 1.748523160815239
+    },
+    "KV_32": {
+      "kind": "KV",
+      "retained_components": 32,
+      "output": {
+        "first_token_kl": 1.0370745658874512,
+        "first_argmax_match": true,
+        "logit_mean_abs": 1.9685211181640625
+      },
+      "retained_centered_energy": {
+        "K": 0.7969345450401306,
+        "V": 0.5418136715888977
+      },
+      "evaluation": {
+        "responses": [
+          " The total time is 4 hours, 24 hours in a day, so 4 hours is 4/24 = 1/6 of a day. The total time is 4 hours, so the total time is 4 hours. The total time is 4 hours. The total time is 4 hours. The total time is 4 hours. The total time is 4 hours. The total time is 4 hours. The total time is 4 hours. The total time is 4 hours. The total time is 4 hours. The total time is 4 hours. The total time is 4 hours. The total time is 4 hours. The total time is 4 hours. The total time is 4 hours. The total time is 4 hours. The total time is 4 hours. The total time is 4 hours. The total time is 4 hours. The total time is 4 hours. The total time is 4 hours. The total time is 4 hours. The total time is 4 hours. The total time is 4 hours. The total time is 4 hours. The total time is 4 hours. The total time is 4 hours. The total time is"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "4"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 12.136018365621567
+    },
+    "K_64": {
+      "kind": "K",
+      "retained_components": 64,
+      "output": {
+        "first_token_kl": 0.0027128092478960752,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.5295578241348267
+      },
+      "retained_centered_energy": {
+        "K": 0.9182699918746948,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " The candle burns for 4 hours because 5:00 PM - 1:00 PM = 4 hours.\nThe candle melts 2 cm per hour, so it will be 4 x 2 = <<4*2=8>>8 centimeters shorter.\n#### 8\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "8"
+          ],
+          "strict-match": [
+            "8"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 3.1039640828967094
+    },
+    "V_64": {
+      "kind": "V",
+      "retained_components": 64,
+      "output": {
+        "first_token_kl": 0.07184898853302002,
+        "first_argmax_match": true,
+        "logit_mean_abs": 1.1067092418670654
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 0.7364120483398438
+      },
+      "evaluation": {
+        "responses": [
+          " The time between 1:00 PM and 5:00 PM is 4 hours. If the candle melts 2 centimeters every hour, then the total amount it will melt is 2 * 4 = <<2*4=8>>8 centimeters.\n#### 8\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "8"
+          ],
+          "strict-match": [
+            "8"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 3.1108407229185104
+    },
+    "KV_64": {
+      "kind": "KV",
+      "retained_components": 64,
+      "output": {
+        "first_token_kl": 0.04484395310282707,
+        "first_argmax_match": true,
+        "logit_mean_abs": 1.018000602722168
+      },
+      "retained_centered_energy": {
+        "K": 0.9182699918746948,
+        "V": 0.7364120483398438
+      },
+      "evaluation": {
+        "responses": [
+          " The time between 1:00 PM and 5:00 PM is 4 hours. If the candle melts 2 centimeters per hour, then the total amount it will melt is 2 * 4 = <<2*4=8>>8 centimeters.\n#### 8\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "8"
+          ],
+          "strict-match": [
+            "8"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 3.1161676719784737
+    },
+    "K_96": {
+      "kind": "K",
+      "retained_components": 96,
+      "output": {
+        "first_token_kl": 0.004291012417525053,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.28215155005455017
+      },
+      "retained_centered_energy": {
+        "K": 0.978728175163269,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " The candle burns for 4 hours because 5 - 1 = 4.\nIt will be 2 * 4 = <<2*4=8>>8 centimeters shorter.\n#### 8\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "8"
+          ],
+          "strict-match": [
+            "8"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 2.1612087786197662
+    },
+    "V_96": {
+      "kind": "V",
+      "retained_components": 96,
+      "output": {
+        "first_token_kl": 0.068545863032341,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.5817441940307617
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 0.8804355263710022
+      },
+      "evaluation": {
+        "responses": [
+          " The candle was burning for 4 hours because 5 - 1 = 4.\nThe candle will be 2 * 4 = <<2*4=8>>8 centimeters shorter.\n#### 8\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "8"
+          ],
+          "strict-match": [
+            "8"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 2.2504387944936752
+    },
+    "KV_96": {
+      "kind": "KV",
+      "retained_components": 96,
+      "output": {
+        "first_token_kl": 0.06314611434936523,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.6645034551620483
+      },
+      "retained_centered_energy": {
+        "K": 0.978728175163269,
+        "V": 0.8804355263710022
+      },
+      "evaluation": {
+        "responses": [
+          " The candle was burning for 4 hours because 5 - 1 = 4.\nThe candle will be 2 * 4 = <<2*4=8>>8 centimeters shorter.\n#### 8\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "8"
+          ],
+          "strict-match": [
+            "8"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 2.3074909150600433
+    }
+  }
+}

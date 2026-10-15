@@ -1,0 +1,489 @@
+{
+  "id": "gsm8k:19",
+  "task": "gsm8k",
+  "role": "analysis",
+  "doc_id": 19,
+  "context_sha256": "9439d7c2b37db8c3c3167d40a3521dcd9768ac1829da5189054fe5f38955fccc",
+  "arguments": [
+    [
+      "Question: Peter needs 80 ounces of soda for his party. He sees that 8 oz cans cost $.5 each. How much does he spend on soda if he buys the exact number of cans he needs?\nAnswer: He needs 10 cans because 80 / 8 = <<80/8=10>>10\nHe spends $5 because 10 x .5 = 10\n#### 5\n\nQuestion: A row of houses all share a community space where they put up their clotheslines. There are 2 clotheslines for every house on the street. On the street, there are a total of 11 children and 20 adults. Each child currently has 4 items of clothing on the clotheslines and each adult currently has 3 items of clothing on the clotheslines. If each clothesline can hold 2 items of clothing and all of the clotheslines are full, how many houses are on the street?\nAnswer: From the children, there are a total of 11 children * 4 items of clothing each = <<11*4=44>>44 items of clothing on the clotheslines.\nFrom the adults, there are a total of 20 adults * 3 items of clothing each = <<20*3=60>>60 items of clothing on the clotheslines.\nSo there are a total of 44 + 60 = <<44+60=104>>104 items of clothing on the clotheslines.\nThis means that there are 104 items of clothing / 2 items of clothing per clothesline = <<104/2=52>>52 clotheslines.\nThere are 2 clotheslines per house so there must be 52 clotheslines / 2 = <<52/2=26>>26 houses on the street.\n#### 26\n\nQuestion: Michael has a chicken farm. His chickens increase in number by 150 chickens annually. If the number of chickens on his farm now is 550, how many will he have after 9 years?\nAnswer: The number of the increase in chicken after 9 years is 150 * 9 = <<150*9=1350>>1350.\nSo the total number of the chicken in Michael's farm will be 550 + 1350 = <<550+1350=1900>>1900.\n#### 1900\n\nQuestion: Ali turned 8 years old this year, and is now 3 years older than Yusaf. If Umar is twice Yusaf’s age, how old is Umar?\nAnswer: If Ali is 3 years older, then Yusaf must be 8 – 3 = 5 years old.\nUmar is twice Yusaf’s age, so he must be 5 * 2 = <<2*5=10>>10 years old.\n#### 10\n\nQuestion: Samuel bought 2 dozen doughnuts and Cathy bought 3 dozen doughnuts. They planned to share the doughnuts evenly with their 8 other friends. How many doughnuts will each of them receive?\nAnswer: Since 1 dozen is equal to 12, then Samuel has 2 x 12 = <<24=24>>24 doughnuts.\nWhile Cathy has 3 x 12 = <<3*12=36>>36.\nThey both have 24 + 36 = <<24+36=60>>60 doughnuts together.\nThere are 8 friends + 1 (Samuel) + 1 (Cathy) = <<8+1+1=10>>10 that will share the doughnuts.\nThus, each of them will get 60/10 = <<60/10=6>>6 doughnuts.\n#### 6\n\nQuestion: Marissa is hiking a 12-mile trail. She took 1 hour to walk the first 4 miles, then another hour to walk the next two miles. If she wants her average speed to be 4 miles per hour, what speed (in miles per hour) does she need to walk the remaining distance?\nAnswer:",
+      {
+        "until": [
+          "Question:",
+          "</s>",
+          "<|im_end|>"
+        ],
+        "do_sample": false,
+        "temperature": 0.0
+      }
+    ]
+  ],
+  "doc": {
+    "question": "Marissa is hiking a 12-mile trail. She took 1 hour to walk the first 4 miles, then another hour to walk the next two miles. If she wants her average speed to be 4 miles per hour, what speed (in miles per hour) does she need to walk the remaining distance?",
+    "answer": "First figure out how many hours it takes to hike a 12-mile trail at 4 mph by dividing the distance by the speed: 12 miles / 4 mph = <<12/4=3>>3 hours\nNext subtract the time Marissa already spent walking to find out how much time she has left: 3 hours - 1 hour - 1 hour = <<3-1-1=1>>1 hour\nNow figure out how much distance she has left by subtracting the distance she already traveled from the total distance: 12 miles - 4 miles - 2 miles = <<12-4-2=6>>6 miles\nNow divide the remaining distance by the remaining time to find out how fast in miles per hour Marissa has to travel: 6 miles / 1 hour = <<6/1=6>>6 mph\n#### 6"
+  },
+  "context_tokens": 899,
+  "external_tokens": 897,
+  "original_native_scores_for_reference_only": {
+    "exact_match": 1.0,
+    "flexible_exact_match": 1.0
+  },
+  "manifest_signature": "44080627b34586ab7f60d2724131e4b9c06e69a5197d8db251e65a2d29adb64b",
+  "arms": {
+    "native": {
+      "kind": null,
+      "retained_components": 128,
+      "output": {
+        "first_token_kl": 0.0,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.0
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " The total distance is 12 miles. The total time she has to complete the trail is 12 miles / 4 miles per hour = <<12/4=3>>3 hours.\nShe has already spent 1 + 1 = 2 hours. So she has 3 - 2 = 1 hour left to walk the remaining 12 - 4 - 2 = <<12-4-2=6>>6 miles.\nShe needs to walk 6 miles in 1 hour, so her speed must be 6 miles per hour.\n#### 6\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "6"
+          ],
+          "strict-match": [
+            "6"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 10.263797610998154
+    },
+    "K_16": {
+      "kind": "K",
+      "retained_components": 16,
+      "output": {
+        "first_token_kl": 0.4070851504802704,
+        "first_argmax_match": true,
+        "logit_mean_abs": 1.004198670387268
+      },
+      "retained_centered_energy": {
+        "K": 0.6506186127662659,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " The total distance of the trail is 12 miles. She has already hiked 6 miles. She has 6 miles left. She has 2 hours left. She needs to hike 6 miles in 2 hours, which is 3 mph.\nAnswer: \\boxed{3}\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "3"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 3.054769314825535
+    },
+    "V_16": {
+      "kind": "V",
+      "retained_components": 16,
+      "output": {
+        "first_token_kl": 2.989071846008301,
+        "first_argmax_match": false,
+        "logit_mean_abs": 1.894904375076294
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 0.39020052552223206
+      },
+      "evaluation": {
+        "responses": [
+          " 12 - 4 = 8. 8 / 2 = 4. 4 * 2 = 8. So the answer is 8.\nAnswer: \\boxed{8}\n\nWait, that seems like a wrong approach. Let me try again.\n\nThe total number of miles is 12. She has already done 4 miles. So she has 12 - 4 = 8 miles left. She has done 2 miles in 1 hour. So she has 8 - 2 = 6 miles left. 6 / 2 = 3. So the answer is 3.\n\nWait, that's different. What is the correct answer?\n\nWait, the problem says she has 12 miles to go. She has already done 4 miles. So she has 12 - 4 = 8 miles left. She has done 2 miles in 1 hour. So she has 8 - 2 = 6 miles left. 6 / 2 = 3. So the answer is 3.\n\nBut the original answer was 8. Which is correct?\n\nWait, the problem is not clear. Let me re-read the problem.\n\n\"she has 12 miles to go"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "12"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 16.54352781921625
+    },
+    "KV_16": {
+      "kind": "KV",
+      "retained_components": 16,
+      "output": {
+        "first_token_kl": 3.2689802646636963,
+        "first_argmax_match": false,
+        "logit_mean_abs": 2.8054158687591553
+      },
+      "retained_centered_energy": {
+        "K": 0.6506186127662659,
+        "V": 0.39020052552223206
+      },
+      "evaluation": {
+        "responses": [
+          " 12\n\nAnswer: \\boxed{12}\n\nWait, the answer is 12? Let me check again.\n\nWait, the problem says that the answer is 12, but I need to make sure that the reasoning is correct. Let me go through the problem again.\n\nThe problem is: \"Mia is 12 years old. Her brother is 3 years older than her. How old will her brother be in 5 years?\"\n\nWait, that's a different problem. The original problem that the user is referring to is not clear. Let me check the original problem again.\n\nWait, the user provided a problem where the answer is 12, but the problem is not clear. Let me check the original problem again.\n\nWait, the user's message is a bit confusing. Let me check again.\n\nThe user wrote:\n\n\""
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "12,"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 8.998632460832596
+    },
+    "K_32": {
+      "kind": "K",
+      "retained_components": 32,
+      "output": {
+        "first_token_kl": 0.5733484029769897,
+        "first_argmax_match": false,
+        "logit_mean_abs": 0.5620130300521851
+      },
+      "retained_centered_energy": {
+        "K": 0.7944076657295227,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " Marissa has walked 4 + 2 = <<4+2=6>>6 miles in 1 + 1 = <<1+1=2>>2 hours.\nShe has 12 - 6 = <<12-6=6>>6 miles left.\nShe needs to have an average speed of 4 miles per hour, so she needs to take 6 / 4 = <<6/4=1.5>>1.5 hours.\nShe has 2 hours left until the end of the trail, so she needs to walk 1.5 hours.\nShe needs to walk 6 miles in 1.5 hours, so she needs to walk at a speed of 6 / 1.5 = <<6/1.5=4>>4 miles per hour.\n#### 4\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "4"
+          ],
+          "strict-match": [
+            "4"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 15.019533887505531
+    },
+    "V_32": {
+      "kind": "V",
+      "retained_components": 32,
+      "output": {
+        "first_token_kl": 2.8370018005371094,
+        "first_argmax_match": true,
+        "logit_mean_abs": 1.3532109260559082
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 0.5397858619689941
+      },
+      "evaluation": {
+        "responses": [
+          " The total distance is 12 miles. She has already covered 4 + 2 = 6 miles. So she has 12 - 6 = 6 miles left. She has 12 - 6 = 6 miles left. She has 12 - 6 = 6 miles left. She has 12 - 6 = 6 miles left. She has 12 - 6 = 6 miles left. She has 12 - 6 = 6 miles left. She has 12 - 6 = 6 miles left. She has 12 - 6 = 6 miles left. She has 12 - 6 = 6 miles left. She has 12 - 6 = 6 miles left. She has 12 - 6 = 6 miles left. She has 12 - 6 = 6 miles left. She has 12 - 6 = 6 miles left. She has 12 - 6 = 6 miles left. She has 12 - 6 = 6 miles left. She has 12 - 6 = 6 miles left. She has 12 - 6"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "6"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 15.852210722863674
+    },
+    "KV_32": {
+      "kind": "KV",
+      "retained_components": 32,
+      "output": {
+        "first_token_kl": 2.009611129760742,
+        "first_argmax_match": true,
+        "logit_mean_abs": 1.9483240842819214
+      },
+      "retained_centered_energy": {
+        "K": 0.7944076657295227,
+        "V": 0.5397858619689941
+      },
+      "evaluation": {
+        "responses": [
+          " The total time she has to complete the trip is 12 / 4 = 3 hours. She has already spent 1 + 1 = 2 hours. She has 3 - 2 = 1 hour left. She can go 4 miles per hour, so she can go 4 * 1 = 4 miles. She has 12 - 8 = 4 miles left. So the answer is 4.\nAnswer: \\boxed{4}\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "4"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 5.040772989392281
+    },
+    "K_64": {
+      "kind": "K",
+      "retained_components": 64,
+      "output": {
+        "first_token_kl": 0.06254210323095322,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.456967294216156
+      },
+      "retained_centered_energy": {
+        "K": 0.9171623587608337,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " The total distance is 12 miles. She has already walked 4 + 2 = 6 miles. So she has 12 - 6 = <<12-6=6>>6 miles left.\nShe has 2 hours already spent. If she wants an average speed of 4 miles per hour, she needs to finish the 12 miles in 12 / 4 = <<12/4=3>>3 hours.\nSo she has 3 - 2 = <<3-2=1>>1 hour left to walk the remaining 6 miles.\nShe needs to walk 6 miles in 1 hour, so her speed must be 6 miles per hour.\n#### 6\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "6"
+          ],
+          "strict-match": [
+            "6"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 11.483997777104378
+    },
+    "V_64": {
+      "kind": "V",
+      "retained_components": 64,
+      "output": {
+        "first_token_kl": 0.6088586449623108,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.774416446685791
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 0.7353239059448242
+      },
+      "evaluation": {
+        "responses": [
+          " The total time she has to complete the hike is 12 / 4 = <<12/4=3>>3 hours.\nShe has already spent 1 + 1 = <<1+1=2>>2 hours.\nShe has 3 - 2 = <<3-2=1>>1 hour left to complete the remaining 6 miles.\nShe needs to walk 6 miles in 1 hour, so her speed must be 6 / 1 = <<6/1=6>>6 miles per hour.\n#### 6\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "6"
+          ],
+          "strict-match": [
+            "6"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 9.622040830552578
+    },
+    "KV_64": {
+      "kind": "KV",
+      "retained_components": 64,
+      "output": {
+        "first_token_kl": 0.7177760601043701,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.8432103991508484
+      },
+      "retained_centered_energy": {
+        "K": 0.9171623587608337,
+        "V": 0.7353239059448242
+      },
+      "evaluation": {
+        "responses": [
+          " The total time she has to complete the race is 12 / 4 = <<12/4=3>>3 hours.\nShe has already spent 1 + 1 = <<1+1=2>>2 hours.\nShe has 3 - 2 = <<3-2=1>>1 hour left to complete the remaining 12 - 6 = <<12-6=6>>6 miles.\nShe needs to go 6 miles in 1 hour, so her speed must be 6 / 1 = <<6/1=6>>6 miles per hour.\n#### 6\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "6"
+          ],
+          "strict-match": [
+            "6"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 6.110559463500977
+    },
+    "K_96": {
+      "kind": "K",
+      "retained_components": 96,
+      "output": {
+        "first_token_kl": 0.08519893884658813,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.22002485394477844
+      },
+      "retained_centered_energy": {
+        "K": 0.9782793521881104,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " The total distance is 12 miles. The total time she has to complete the trail is 12 miles / 4 miles per hour = <<12/4=3>>3 hours.\nShe has already spent 1 + 1 = 2 hours. So she has 3 - 2 = 1 hour left to walk the remaining 12 - 4 - 2 = 6 miles.\nShe needs to walk 6 miles in 1 hour, so her speed must be 6 miles per hour.\n#### 6\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "6"
+          ],
+          "strict-match": [
+            "6"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 5.863327831029892
+    },
+    "V_96": {
+      "kind": "V",
+      "retained_components": 96,
+      "output": {
+        "first_token_kl": 0.25669950246810913,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.484283983707428
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 0.8797589540481567
+      },
+      "evaluation": {
+        "responses": [
+          " The total distance is 12 miles. The total time she has to complete the hike is 12 miles / 4 miles per hour = <<12/4=3>>3 hours.\nShe has already spent 1 + 1 = 2 hours. So she has 3 - 2 = 1 hour left to cover the remaining 12 - 4 - 2 = <<12-4-2=6>>6 miles.\nShe needs to walk 6 miles in 1 hour, so her speed must be 6 miles per hour.\n#### 6\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "6"
+          ],
+          "strict-match": [
+            "6"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 10.691123247146606
+    },
+    "KV_96": {
+      "kind": "KV",
+      "retained_components": 96,
+      "output": {
+        "first_token_kl": 0.2315417379140854,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.4926118552684784
+      },
+      "retained_centered_energy": {
+        "K": 0.9782793521881104,
+        "V": 0.8797589540481567
+      },
+      "evaluation": {
+        "responses": [
+          " The total distance is 12 miles. The total time she has to complete the hike is 12 miles / 4 miles per hour = <<12/4=3>>3 hours.\nShe has already spent 1 + 1 = 2 hours. So she has 3 - 2 = 1 hour left to walk the remaining 12 - 4 - 2 = 6 miles.\nShe needs to walk 6 miles in 1 hour, so her speed must be 6 miles per hour.\n#### 6\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "6"
+          ],
+          "strict-match": [
+            "6"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 5.458938360214233
+    }
+  }
+}

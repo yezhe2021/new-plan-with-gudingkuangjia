@@ -1,0 +1,489 @@
+{
+  "id": "gsm8k:75",
+  "task": "gsm8k",
+  "role": "analysis",
+  "doc_id": 75,
+  "context_sha256": "29ceab021c57a1a9565a92dff50d6c09889439af18da6f16ff7dc774c32ce102",
+  "arguments": [
+    [
+      "Question: Jill bought 5 packs of red bouncy balls and 4 packs of yellow bouncy balls. Each package contained 18 bouncy balls. How many more red bouncy balls than yellow bouncy balls did Jill buy?\nAnswer: Jill bought 5 packs * 18 red balls = <<5*18=90>>90 red balls.\nJill bought 4 packs * 18 yellow balls = <<4*18=72>>72 red balls.\nJill had 90 red – 72 yellow = <<90-72=18>>18 more red balls.\n#### 18\n\nQuestion: Gloria has five times as many dimes as quarters in her graduation money. She decides to put 2/5 of the quarters aside for future use. If she has 350 dimes, calculate the combined number of quarters and dimes she has after putting aside 2/5 of the quarters?\nAnswer: If the number of dimes is 20 times the number of quarters, she has 350/5 = 70 quarters.\nWhen she puts 2/5 of the quarters away, the number of quarters reduces by 2/5*70 = <<2/5*70=28>>28\nShe's now left with 70-28 = <<70-28=42>>42 quarters.\nIn total, she has 42 quarters + 350 dimes = <<42+350=392>>392\n#### 392\n\nQuestion: Rodney and Todd are rowing down a river that is 50 yards wide at one end. If the river's width increases from this end uniformly by 2 yards every 10 meters along, and they row along the river at a rate of 5 m/s, how long (in seconds) will it take them to get to the point where the river is 80 yards wide?\nAnswer: The difference in width between where they're starting from and their destination is 80-50 = <<80-50=30>>30 yards\nThe width increases 2 yards every 10 m along the river so they would have to cover (30/2)*10 = <<(30/2)*10=150>>150 meters\nTraveling at the rate of 5m/s, he will spend 150/5 = <<150/5=30>>30 seconds\n#### 30\n\nQuestion: Susie's pet lizard Moe takes 10 seconds to eat 40 pieces of cuttlebone each day. How long would it take Moe to eat 800 pieces?\nAnswer: If it takes Moe 10 seconds to eat 40 cuttlebones, then in one second she eats 40 cuttlebones / 10 seconds = <<40/10=4>>4 cuttlebones/second\nSince the cat eats 4 pieces of cuttlebone in 1 second, 800 pieces will be 800 cuttlebones / 4 cuttlebones/second = <<800/4=200>>200 seconds.\n#### 200\n\nQuestion: Maria buys a large bar of French soap that lasts her for 2 months.  She spends $8.00 per bar of soap.  If she wants to stock up for the entire year, how much will she spend on soap?\nAnswer: 1 bar of soap will last for 2 months and there are 12 months in 1 year so she needs 12/2 = 6 bars of soap\nEach bar of soap is $8.00 and she needs 6 bars so that's a total of 8*6 = $<<8*6=48.00>>48.00\n#### 48\n\nQuestion: Luke is spending time at the beach building sandcastles. He eventually notices that each level of a sandcastle will have half the square footage as the level below it. If he makes a 4 leveled sandcastle where the top level has a square footage of 16, what is the average square footage of a level?\nAnswer:",
+      {
+        "until": [
+          "Question:",
+          "</s>",
+          "<|im_end|>"
+        ],
+        "do_sample": false,
+        "temperature": 0.0
+      }
+    ]
+  ],
+  "doc": {
+    "question": "Luke is spending time at the beach building sandcastles. He eventually notices that each level of a sandcastle will have half the square footage as the level below it. If he makes a 4 leveled sandcastle where the top level has a square footage of 16, what is the average square footage of a level?",
+    "answer": "Level 3 is 32 square feet because 16 x 2 = <<16*2=32>>32\nLevel 2 is 64 square feet because 32 x 2 = <<32*2=64>>64\nLevel 1 is 128 square feet because 64 x 2 = <<64*2=128>>128\nThe four levels total to 240 square feet because 128 + 64 + 32 + 16 = <<128+64+32+16=240>>240\nThe average square footage of a level is 60 because 240 / 4 = <<240/4=60>>60\n#### 60"
+  },
+  "context_tokens": 914,
+  "external_tokens": 912,
+  "original_native_scores_for_reference_only": {
+    "exact_match": 1.0,
+    "flexible_exact_match": 1.0
+  },
+  "manifest_signature": "44080627b34586ab7f60d2724131e4b9c06e69a5197d8db251e65a2d29adb64b",
+  "arms": {
+    "native": {
+      "kind": null,
+      "retained_components": 128,
+      "output": {
+        "first_token_kl": 0.0,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.0
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " The levels are 16, 32, 64, 128\nThe average is (16 + 32 + 64 + 128)/4 = <<(16+32+64+128)/4=240/4=60>>60\n#### 60\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "60"
+          ],
+          "strict-match": [
+            "60"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 3.6513285413384438
+    },
+    "K_16": {
+      "kind": "K",
+      "retained_components": 16,
+      "output": {
+        "first_token_kl": 0.2885950803756714,
+        "first_argmax_match": true,
+        "logit_mean_abs": 1.3517944812774658
+      },
+      "retained_centered_energy": {
+        "K": 0.6479657292366028,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " The square footage of the top of the pyramid is 16 square feet. The square footage of the base of the pyramid is 36 square feet. The volume of the pyramid is 1/3 * 16 * 36 = 192 cubic feet. The volume of the cube is 12^3 = 1728 cubic feet. The difference between the volume of the cube and the pyramid is 1728 - 192 = 1536 cubic feet.\nAnswer: 1536\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "1536"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 5.539344273507595
+    },
+    "V_16": {
+      "kind": "V",
+      "retained_components": 16,
+      "output": {
+        "first_token_kl": 1.738277792930603,
+        "first_argmax_match": true,
+        "logit_mean_abs": 1.4602326154708862
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 0.3825584352016449
+      },
+      "evaluation": {
+        "responses": [
+          " The total number of years that the car has been driven is 10 years. The car is 10 years old. The value of the car is 10 years old. The value of the car is 10 years old. The value of the car is 10 years old. The value of the car is 10 years old.\n\nWait, that's not right. Let me try again.\n\nThe problem is about calculating the total number of years the car has been driven, which is given as 10 years. The question is asking for the value of the car, but the information provided is not sufficient to calculate the value of the car. The value of the car depends on factors such as its make, model, year, and condition, which are not mentioned in the problem. Therefore, the answer is that there is not enough information to determine the value of the car.\nThe problem is about calculating the total number of years the car has been driven, which is given as 10 years. The question is asking for the value of the car, but the information provided is not sufficient to calculate the value of the car. The value of the car depends on factors such as its make, model, year, and condition, which"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "10"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 12.050403006374836
+    },
+    "KV_16": {
+      "kind": "KV",
+      "retained_components": 16,
+      "output": {
+        "first_token_kl": 2.3366000652313232,
+        "first_argmax_match": false,
+        "logit_mean_abs": 2.8980021476745605
+      },
+      "retained_centered_energy": {
+        "K": 0.6479657292366028,
+        "V": 0.3825584352016449
+      },
+      "evaluation": {
+        "responses": [
+          " 16\n\nAnswer: \\boxed{16}\n\nWait, that answer doesn't make sense. Let me check again.\n\nThe problem says that the answer is 16, but I need to figure out why.\n\nLet me re-express the problem:\n\nThe problem is: \"If the answer is 16, what is the question?\"\n\nSo, the answer is 16, and the question is something that would result in 16 as the answer.\n\nBut the original problem was about the number of people in a room, and the answer was 16. But the user is asking for the question that would result in 16 as the answer.\n\nSo, the user is asking: \"If the answer is 16, what is the question?\"\n\nBut the original problem was about the number of people in a room, and the answer was 16. But the user is asking for the question that would result in 16 as the answer.\n\nSo, the user is asking: \"If the answer is 16, what is the question?\"\n\nBut the original problem was about the number of people in a room, and the answer was 16. But the user is asking for the question that would result in 1"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "1"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 11.816203333437443
+    },
+    "K_32": {
+      "kind": "K",
+      "retained_components": 32,
+      "output": {
+        "first_token_kl": 0.07312566787004471,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.9197657704353333
+      },
+      "retained_centered_energy": {
+        "K": 0.790783703327179,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " The level above the top level is 16*2 = 32\nThe level above that is 32*2 = 64\nThe level above that is 64*2 = 128\nThe total square footage is 16 + 32 + 64 + 128 = <<16+32+64+128=240>>240\nThe average is 240 / 4 = <<240/4=60>>60\n#### 60\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "60"
+          ],
+          "strict-match": [
+            "60"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 5.787295825779438
+    },
+    "V_32": {
+      "kind": "V",
+      "retained_components": 32,
+      "output": {
+        "first_token_kl": 0.11829767376184464,
+        "first_argmax_match": true,
+        "logit_mean_abs": 1.9394835233688354
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 0.5298842191696167
+      },
+      "evaluation": {
+        "responses": [
+          " The first step is to find the total square footage of all the levels. The first step is to find the total square footage of all the levels. The first step is to find the total square footage of all the levels. The first step is to find the total square footage of all the levels. The first step is to find the total square footage of all the levels. The first step is to find the total square footage of all the levels. The first step is to find the total square footage of all the levels. The first step is to find the total square footage of all the levels. The first step is to find the total square footage of all the levels. The first step is to find the total square footage of all the levels. The first step is to find the total square footage of all the levels. The first step is to find the total square footage of all the levels. The first step is to find the total square footage of all the levels. The first step is to find the total square footage of all the levels. The first step is to find the total square footage of all the levels. The first step is to find the total square footage of all the levels. The first step is to find the total square footage of all the levels. The"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "[invalid]"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 11.98032559454441
+    },
+    "KV_32": {
+      "kind": "KV",
+      "retained_components": 32,
+      "output": {
+        "first_token_kl": 0.6952194571495056,
+        "first_argmax_match": true,
+        "logit_mean_abs": 2.2776074409484863
+      },
+      "retained_centered_energy": {
+        "K": 0.790783703327179,
+        "V": 0.5298842191696167
+      },
+      "evaluation": {
+        "responses": [
+          " The first step is to find the total number of square feet for all the levels. The second step is to divide by the number of levels to find the average.\nAnswer: The total number of square feet for all the levels is 16 + 8 + 4 + 2 = 30. The average is 30 divided by 4, which is 7.5. So the answer is 7.5.\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "7.5."
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 4.342462636530399
+    },
+    "K_64": {
+      "kind": "K",
+      "retained_components": 64,
+      "output": {
+        "first_token_kl": 0.008909926749765873,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.6922518014907837
+      },
+      "retained_centered_energy": {
+        "K": 0.914740800857544,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " The level below the top level has twice the square footage, so 16*2 = 32\nThe level below that has 32*2 = 64\nThe level below that has 64*2 = 128\nThe total square footage of all levels is 16 + 32 + 64 + 128 = <<16+32+64+128=240>>240\nThe average square footage is 240 / 4 = <<240/4=60>>60\n#### 60\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "60"
+          ],
+          "strict-match": [
+            "60"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 6.186691768467426
+    },
+    "V_64": {
+      "kind": "V",
+      "retained_components": 64,
+      "output": {
+        "first_token_kl": 0.2122679352760315,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.9407797455787659
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 0.7273423075675964
+      },
+      "evaluation": {
+        "responses": [
+          " The top level is 16 square feet. The level below that is 16*2 = 32 square feet. The level below that is 32*2 = 64 square feet. The level below that is 64*2 = 128 square feet. The total square footage is 16 + 32 + 64 + 128 = <<16+32+64+128=240>>240 square feet. The average is 240 / 4 = <<240/4=60>>60 square feet.\n#### 60\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "60"
+          ],
+          "strict-match": [
+            "60"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 6.605060212314129
+    },
+    "KV_64": {
+      "kind": "KV",
+      "retained_components": 64,
+      "output": {
+        "first_token_kl": 0.12446752935647964,
+        "first_argmax_match": true,
+        "logit_mean_abs": 1.4011858701705933
+      },
+      "retained_centered_energy": {
+        "K": 0.914740800857544,
+        "V": 0.7273423075675964
+      },
+      "evaluation": {
+        "responses": [
+          " The second level is 16*2 = 32 square feet.\nThe third level is 32*2 = 64 square feet.\nThe fourth level is 64*2 = 128 square feet.\nThe total square footage is 16 + 32 + 64 + 128 = <<16+32+64+128=240>>240 square feet.\nThe average is 240 / 4 = <<240/4=60>>60 square feet.\n#### 60\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "60"
+          ],
+          "strict-match": [
+            "60"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 6.025382570922375
+    },
+    "K_96": {
+      "kind": "K",
+      "retained_components": 96,
+      "output": {
+        "first_token_kl": 0.0014992615906521678,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.23420284688472748
+      },
+      "retained_centered_energy": {
+        "K": 0.9775612950325012,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " The levels are 16, 32, 64, 128\nThe average is (16 + 32 + 64 + 128)/4 = <<(16+32+64+128)/4=240/4=60>>60\n#### 60\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "60"
+          ],
+          "strict-match": [
+            "60"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 3.9143583327531815
+    },
+    "V_96": {
+      "kind": "V",
+      "retained_components": 96,
+      "output": {
+        "first_token_kl": 0.05323589965701103,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.718603253364563
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 0.8755280375480652
+      },
+      "evaluation": {
+        "responses": [
+          " The top level is 16 square feet. The level below it is 16*2 = 32 square feet. The level below that is 32*2 = 64 square feet. The level below that is 64*2 = 128 square feet. The total square footage is 16 + 32 + 64 + 128 = <<16+32+64+128=240>>240 square feet. The average is 240 / 4 = <<240/4=60>>60 square feet.\n#### 60\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "60"
+          ],
+          "strict-match": [
+            "60"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 6.6818589344620705
+    },
+    "KV_96": {
+      "kind": "KV",
+      "retained_components": 96,
+      "output": {
+        "first_token_kl": 0.07751121371984482,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.9417451024055481
+      },
+      "retained_centered_energy": {
+        "K": 0.9775612950325012,
+        "V": 0.8755280375480652
+      },
+      "evaluation": {
+        "responses": [
+          " The top level is 16 square feet. The level below it is 16*2 = 32 square feet. The level below that is 32*2 = 64 square feet. The level below that is 64*2 = 128 square feet. The total square footage is 16 + 32 + 64 + 128 = <<16+32+64+128=240>>240 square feet. The average is 240 / 4 = <<240/4=60>>60 square feet.\n#### 60\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "60"
+          ],
+          "strict-match": [
+            "60"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 6.5850393027067184
+    }
+  }
+}

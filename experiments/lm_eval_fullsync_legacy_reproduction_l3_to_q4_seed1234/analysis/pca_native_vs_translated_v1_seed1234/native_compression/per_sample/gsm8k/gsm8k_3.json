@@ -1,0 +1,489 @@
+{
+  "id": "gsm8k:3",
+  "task": "gsm8k",
+  "role": "analysis",
+  "doc_id": 3,
+  "context_sha256": "d86f60ba0709d975d0b08e350def68f8108dff3e64f376e672b43c37efa6ab8c",
+  "arguments": [
+    [
+      "Question: Half of Jerome's money was $43. He gave $8 to Meg and thrice as much to Bianca. How much does Jerome have left?\nAnswer: Jerome has $43 x 2 = $<<43*2=86>>86.\nAfter giving Meg $8, he had only $86 - $8 = $<<86-8=78>>78 left.\nThen he gave Bianca $8 x 3 = $<<8*3=24>>24.\nSo, Jerome has only $78 - $24 = $<<78-24=54>>54 left.\n#### 54\n\nQuestion: A cleaning company produces two sanitizer sprays. One spray kills 50% of germs, and another spray kills 25% of germs. However, 5% of the germs they kill are the same ones. What percentage of germs would be left after using both sanitizer sprays together?\nAnswer: After the first spray kills 50% of germs, there will be 100 - 50 = <<100-50=50>>50% left.\nThe second spray kills 25%, but 5% have already been killed by the 50% spray, so it kills 25 - 5 = <<25-5=20>>20%.\nAfter the second spray kills 20% of the remaining germs, there will be 50 - 20 = <<50-20=30>>30% left.\n#### 30\n\nQuestion: Angie bought 3 lbs. of coffee at the store today. Each lb. of coffee will brew about 40 cups of coffee. Angie drinks 3 cups of coffee every day. How many days will this coffee last her?\nAnswer: A pound of coffee makes 40 cups of coffee, so 3 lbs. coffee * 40 cups of coffee per lb. = <<3*40=120>>120 cups of coffee.\nAngie drinks 3 cups of coffee a day, so she has enough coffee to last her 120 cups of coffee / 3 cups of coffee per day = <<120/3=40>>40 days\n#### 40\n\nQuestion: John had $200. He gave 3/8 of his money to his mother and 3/10 to his father. How much money did John have left?\nAnswer: John's mother received 3/8 x $200 = $<<3/8*200=75>>75.\nHis father got 3/10 x $200 = $<<3/10*200=60>>60.\nThus, John gave a total of $75 + $60 = $<<75+60=135>>135.\nTherefore, John had $200 - $135 = $<<200-135=65>>65 left.\n#### 65\n\nQuestion: Dan owns an ice cream shop and every sixth customer gets a free ice cream cone. Cones cost $2 each. If he sold $100 worth of cones, how many free ones did he give away?\nAnswer: He sold 50 cones because 100 / 2 = <<100/2=50>>50\nHe gave away 10 cones because 50 / 5 = <<50/5=10>>10\n#### 10\n\nQuestion: James decides to run 3 sprints 3 times a week.  He runs 60 meters each sprint.  How many total meters does he run a week?\nAnswer:",
+      {
+        "until": [
+          "Question:",
+          "</s>",
+          "<|im_end|>"
+        ],
+        "do_sample": false,
+        "temperature": 0.0
+      }
+    ]
+  ],
+  "doc": {
+    "question": "James decides to run 3 sprints 3 times a week.  He runs 60 meters each sprint.  How many total meters does he run a week?",
+    "answer": "He sprints 3*3=<<3*3=9>>9 times\nSo he runs 9*60=<<9*60=540>>540 meters\n#### 540"
+  },
+  "context_tokens": 813,
+  "external_tokens": 811,
+  "original_native_scores_for_reference_only": {
+    "exact_match": 1.0,
+    "flexible_exact_match": 1.0
+  },
+  "manifest_signature": "44080627b34586ab7f60d2724131e4b9c06e69a5197d8db251e65a2d29adb64b",
+  "arms": {
+    "native": {
+      "kind": null,
+      "retained_components": 128,
+      "output": {
+        "first_token_kl": 0.0,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.0
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " James runs 3 sprints * 60 meters = <<3*60=180>>180 meters each day.\nHe runs this 3 times a week, so 180 meters * 3 = <<180*3=540>>540 meters a week.\n#### 540\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "540"
+          ],
+          "strict-match": [
+            "540"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 8.126350067555904
+    },
+    "K_16": {
+      "kind": "K",
+      "retained_components": 16,
+      "output": {
+        "first_token_kl": 0.6243596076965332,
+        "first_argmax_match": false,
+        "logit_mean_abs": 1.3887016773223877
+      },
+      "retained_centered_energy": {
+        "K": 0.6606132984161377,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " He runs 3 * 60 = 180 minutes a week. 180 minutes is 3 hours. So he runs 3 hours a week.\nAnswer: 3\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "3"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 2.1350599005818367
+    },
+    "V_16": {
+      "kind": "V",
+      "retained_components": 16,
+      "output": {
+        "first_token_kl": 14.542418479919434,
+        "first_argmax_match": false,
+        "logit_mean_abs": 2.8427302837371826
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 0.4017685353755951
+      },
+      "evaluation": {
+        "responses": [
+          " 3*2=6, 6*4=24, 24*2=48. Wait, that doesn't make sense. Let me try again. 3*2=6, 6*4=24, 24*2=48. Wait, that doesn't make sense. Let me try again. 3*2=6, 6*4=24, 24*2=48. Wait, that doesn't make sense. Let me try again. 3*2=6, 6*4=24, 24*2=48. Wait, that doesn't make sense. Let me try again. 3*2=6, 6*4=24, 24*2=48. Wait, that doesn't make sense. Let me try again. 3*2=6, 6*4=24, 24*2=48. Wait, that doesn't make sense. Let me try again. 3*2=6, 6*4=24, 24*2=48. Wait, that doesn't make sense. Let me"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "48."
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 16.361071072518826
+    },
+    "KV_16": {
+      "kind": "KV",
+      "retained_components": 16,
+      "output": {
+        "first_token_kl": 9.283108711242676,
+        "first_argmax_match": false,
+        "logit_mean_abs": 3.1324245929718018
+      },
+      "retained_centered_energy": {
+        "K": 0.6606132984161377,
+        "V": 0.4017685353755951
+      },
+      "evaluation": {
+        "responses": [
+          " 3*4=12, 12*2=24, 24*3=72, 72*4=288, 288*5=1440, 1440*6=8640, 8640*7=60480, 60480*8=483840, 483840*9=4354560, 4354560*10=43545600. That's not right. Wait, I think I need to do this differently. Let me try again. So, the problem is: 3*4=12, 12*2=24, 24*3=72, 72*4=288, 288*5=1440, 1440*6=8640, 8640*7=60480, 60480*8=483840, 483840*"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "483840"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 17.33358148485422
+    },
+    "K_32": {
+      "kind": "K",
+      "retained_components": 32,
+      "output": {
+        "first_token_kl": 0.07222030311822891,
+        "first_argmax_match": true,
+        "logit_mean_abs": 1.038386583328247
+      },
+      "retained_centered_energy": {
+        "K": 0.8009696006774902,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " James runs 3 sprints each day, so 3 * 60 = <<3*60=180>>180 meters per day.\nHe does this 3 times a week, so 180 * 3 = <<180*3=540>>540 meters per week.\n#### 540\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "540"
+          ],
+          "strict-match": [
+            "540"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 8.056894771754742
+    },
+    "V_32": {
+      "kind": "V",
+      "retained_components": 32,
+      "output": {
+        "first_token_kl": 8.022823333740234,
+        "first_argmax_match": false,
+        "logit_mean_abs": 1.8306058645248413
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 0.5509461164474487
+      },
+      "evaluation": {
+        "responses": [
+          " 3 times a week x 60 meters = <<3*60=180>>180 meters. 180 meters x 3 days = <<180*3=540>>540 meters.\nAnswer: \\boxed{540}\n\nAnswer: \\boxed{540}\nAnswer: \\boxed{540} The total number of meters James runs each day is 3 times 60, which equals 180 meters. Over the course of a week, he runs 180 meters multiplied by 7 days, which equals 1260 meters. However, the question states that he runs 3 times a week, so the correct calculation is 180 meters multiplied by 3 days, resulting in 540 meters. Therefore, the answer is \\boxed{540}. \n\nAnswer: \\boxed{540} The total number of meters James runs each day is 3 times 60, which equals 180 meters. Over the course of a week, he runs 180 meters multiplied by 7 days, which equals 1260 meters. However, the question states that he runs "
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "1260"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 13.841023251414299
+    },
+    "KV_32": {
+      "kind": "KV",
+      "retained_components": 32,
+      "output": {
+        "first_token_kl": 7.281786918640137,
+        "first_argmax_match": false,
+        "logit_mean_abs": 2.2393386363983154
+      },
+      "retained_centered_energy": {
+        "K": 0.8009696006774902,
+        "V": 0.5509461164474487
+      },
+      "evaluation": {
+        "responses": [
+          " 3 times 3 is 9. 9 times 60 is 540. So the answer is 540.\nAnswer: 540\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "540"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 2.010415658354759
+    },
+    "K_64": {
+      "kind": "K",
+      "retained_components": 64,
+      "output": {
+        "first_token_kl": 0.09253444522619247,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.5943503975868225
+      },
+      "retained_centered_energy": {
+        "K": 0.9202629923820496,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " James runs 3 sprints x 60 meters = <<3*60=180>>180 meters each day.\nHe runs this 3 times a week, so 180 meters x 3 = <<180*3=540>>540 meters a week.\n#### 540\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "540"
+          ],
+          "strict-match": [
+            "540"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 3.636666417121887
+    },
+    "V_64": {
+      "kind": "V",
+      "retained_components": 64,
+      "output": {
+        "first_token_kl": 0.17706000804901123,
+        "first_argmax_match": true,
+        "logit_mean_abs": 1.5899194478988647
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 0.7431556582450867
+      },
+      "evaluation": {
+        "responses": [
+          " James runs 3 sprints a day, so in a week he runs 3 * 7 = <<3*7=21>>21 sprints.\nEach sprint is 60 meters, so he runs 21 * 60 = <<21*60=1260>>1260 meters a week.\n#### 1260\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "1260"
+          ],
+          "strict-match": [
+            "1260"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 4.029702864587307
+    },
+    "KV_64": {
+      "kind": "KV",
+      "retained_components": 64,
+      "output": {
+        "first_token_kl": 0.4067164957523346,
+        "first_argmax_match": true,
+        "logit_mean_abs": 1.1634646654129028
+      },
+      "retained_centered_energy": {
+        "K": 0.9202629923820496,
+        "V": 0.7431556582450867
+      },
+      "evaluation": {
+        "responses": [
+          " James runs 3 sprints a day, so 3 sprints * 60 meters = <<3*60=180>>180 meters per day.\nHe does this 3 times a week, so 180 meters * 3 days = <<180*3=540>>540 meters.\n#### 540\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "540"
+          ],
+          "strict-match": [
+            "540"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 3.80684395134449
+    },
+    "K_96": {
+      "kind": "K",
+      "retained_components": 96,
+      "output": {
+        "first_token_kl": 0.014902363531291485,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.2867451310157776
+      },
+      "retained_centered_energy": {
+        "K": 0.9791713356971741,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " James runs 3 sprints * 60 meters = <<3*60=180>>180 meters each day.\nHe runs this 3 times a week, so 180 meters * 3 = <<180*3=540>>540 meters a week.\n#### 540\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "540"
+          ],
+          "strict-match": [
+            "540"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 3.5352799370884895
+    },
+    "V_96": {
+      "kind": "V",
+      "retained_components": 96,
+      "output": {
+        "first_token_kl": 0.007719771005213261,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.6303241848945618
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 0.8838313817977905
+      },
+      "evaluation": {
+        "responses": [
+          " James runs 3 sprints a day, so in a week he runs 3 * 7 = <<3*7=21>>21 sprints.\nEach sprint is 60 meters, so he runs 21 * 60 = <<21*60=1260>>1260 meters a week.\n#### 1260\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "1260"
+          ],
+          "strict-match": [
+            "1260"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 3.852830395102501
+    },
+    "KV_96": {
+      "kind": "KV",
+      "retained_components": 96,
+      "output": {
+        "first_token_kl": 0.01936219446361065,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.6453246474266052
+      },
+      "retained_centered_energy": {
+        "K": 0.9791713356971741,
+        "V": 0.8838313817977905
+      },
+      "evaluation": {
+        "responses": [
+          " James runs 3 sprints x 60 meters = <<3*60=180>>180 meters each day.\nHe does this 3 times a week, so 180 meters x 3 = <<180*3=540>>540 meters a week.\n#### 540\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "540"
+          ],
+          "strict-match": [
+            "540"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 3.5130307227373123
+    }
+  }
+}

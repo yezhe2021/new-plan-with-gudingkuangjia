@@ -1,0 +1,489 @@
+{
+  "id": "gsm8k:91",
+  "task": "gsm8k",
+  "role": "analysis",
+  "doc_id": 91,
+  "context_sha256": "dc180b529e1fea7207e5aecf3252dd6facde398d92cdbc28f2117f88e9ca91cc",
+  "arguments": [
+    [
+      "Question: The rate for mowing a lawn is $14 per hour. David mowed for 2 hours a day for a week. He then spent half of the money he made from mowing a lawn on a pair of shoes and gave half of the remaining money to his mom. How much money did he have left?\nAnswer: David got $14/hour x 2 hours/day = $<<14*2=28>>28 per day from mowing.\nSo in a week, he had $28/day x 7 days = $196.\nA pair of shoes cost $196/2 = $<<196/2=98>>98.\nDavid gave his mom $98/2 = $<<98/2=49>>49.\nThe total amount he spent and gave is $98 + $49 = $<<98+49=147>>147.\nDavid is left with $196 - $147 = $<<196-147=49>>49.\n#### 49\n\nQuestion: Marco loves trading cards. He has a total of 500 cards on hand, and a fourth of them are duplicates. Marco decides to trade one-fifth of these duplicates for completely new cards to his friend Josh. How many new cards did Marco get?\nAnswer: Marco has 500*0.25=<<500*0.25=125>>125 duplicate trading cards.\nHe wants to trade off 125*0.2=<<125*0.2=25>>25 cards for new ones.\n#### 25\n\nQuestion: Tom takes medication to help him sleep.  He takes 2 pills every day before bed.  He needs to go to the doctor every 6 months to get a new prescription and a visit to the doctor costs $400.  The medication costs $5 per pill, but insurance covers 80% of that cost.  How much does he pay a year for everything?\nAnswer: He sees the doctor 12/6=<<12/6=2>>2 times a year\nSo he pays 400*2=$<<400*2=800>>800 for doctor visits\nThe cost of the pill is 5*2=$<<5*2=10>>10 per night\nBut insurance covers 10*.8=$<<10*.8=8>>8\nSo he pays 10-8=$<<10-8=2>>2 per night\nSo he pays 2*365=$<<2*365=730>>730 a year\nSSo his total cost is 800+730=$<<800+730=1530>>1530 a year\n#### 1530\n\nQuestion: An artist spends 30 hours every week painting. If it takes her 3 hours to complete a painting, how many paintings can she make in four weeks?\nAnswer: She completes 30 hours/week / 3 hours/painting = <<30/3=10>>10 paintings/week\nSo in one month, she paints 10 paintings/week * 4 weeks/month = <<10*4=40>>40 paintings\n#### 40\n\nQuestion: John raises emu.  He has 4 pens for emu and each pen has 6 emus in it.  Each female emu lays 1 egg per day.  If half the emu are females how many eggs does he get a week?\nAnswer: There are 6*4=<<6*4=24>>24 emus\nSo there are 24/2=<<24/2=12>>12 female emus\nSo he gets 12*7=<<12*7=84>>84 eggs a week\n#### 84\n\nQuestion: Jan has three times the number of pets as Marcia. Marcia has two more pets than Cindy. If Cindy has four pets, how many total pets do the three have?\nAnswer:",
+      {
+        "until": [
+          "Question:",
+          "</s>",
+          "<|im_end|>"
+        ],
+        "do_sample": false,
+        "temperature": 0.0
+      }
+    ]
+  ],
+  "doc": {
+    "question": "Jan has three times the number of pets as Marcia. Marcia has two more pets than Cindy. If Cindy has four pets, how many total pets do the three have?",
+    "answer": "Marcia has 4 + 2 = <<4+2=6>>6 pets.\nJan has 3 * 6 = <<3*6=18>>18 pets\nIn total, the three have 4 + 6 + 18 = <<4+6+18=28>>28 pets.\n#### 28"
+  },
+  "context_tokens": 908,
+  "external_tokens": 906,
+  "original_native_scores_for_reference_only": {
+    "exact_match": 1.0,
+    "flexible_exact_match": 1.0
+  },
+  "manifest_signature": "44080627b34586ab7f60d2724131e4b9c06e69a5197d8db251e65a2d29adb64b",
+  "arms": {
+    "native": {
+      "kind": null,
+      "retained_components": 128,
+      "output": {
+        "first_token_kl": 0.0,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.0
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " If Cindy has 4 pets, then Marcia has 4 + 2 = 6 pets.\nJan has 3 * 6 = 18 pets.\nThe total number of pets is 4 + 6 + 18 = <<4+6+18=28>>28\n#### 28\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "28"
+          ],
+          "strict-match": [
+            "28"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 3.3403264954686165
+    },
+    "K_16": {
+      "kind": "K",
+      "retained_components": 16,
+      "output": {
+        "first_token_kl": 3.0612599849700928,
+        "first_argmax_match": false,
+        "logit_mean_abs": 2.1946356296539307
+      },
+      "retained_centered_energy": {
+        "K": 0.665492594242096,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " Let's see. If Cindy has 20 more than twice as many as Bob, and Bob has 10, then Cindy has 2*10 + 20 = 40. But that's not the question. Wait, the question is about Cindy and Bob. Wait, the original question was: \"Cindy has 20 more than twice as many as Bob. Bob has 10. How many does Cindy have?\" So the answer is 2*10 + 20 = 40. But the user is asking me to answer the question, but the previous answer was wrong. Wait, no, the user is asking me to answer the question, but the previous answer was wrong. Wait, no, the user is asking me to answer the question, but the previous answer was wrong. Wait, no, the user is asking me to answer the question, but the previous answer was wrong. Wait, no, the user is asking me to answer the question, but the previous answer was wrong. Wait, no, the user is asking me to answer the question, but the previous answer was wrong. Wait, no, the user is asking me to answer the question, but the previous answer was wrong. Wait"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "40."
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 12.81155052781105
+    },
+    "V_16": {
+      "kind": "V",
+      "retained_components": 16,
+      "output": {
+        "first_token_kl": 12.333537101745605,
+        "first_argmax_match": false,
+        "logit_mean_abs": 2.4757635593414307
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 0.40251466631889343
+      },
+      "evaluation": {
+        "responses": [
+          " 4+2=6, 6*3=18, 18+4=22. (This is wrong, the correct answer is 22, but the steps are wrong.)\n\nAnswer: \\boxed{22}\n\nWait, the user says that the steps are wrong but the answer is correct. Let me check again.\n\nSo, the problem is: \n\n\"Answer: \\boxed{22}\"\n\nBut the steps given are:\n\n\"4+2=6, 6*3=18, 18+4=22.\"\n\nBut that seems to be incorrect reasoning. Let me think again.\n\nFirst, let's figure out the correct steps.\n\nWe know that:\n\n- The number of total people is 3 (the three people: the two who are in the group and the one who is not in the group).\n\n- The number of people who are in the group is 2 (the two who are in the group).\n\n- The number of people who are not in the group is 1 (the one who is not in the group).\n\nSo, the total number of people is 2 + 1 = 3.\n\nBut that's not the question. The question is: \"If there are 3"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "3"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 11.986841335892677
+    },
+    "KV_16": {
+      "kind": "KV",
+      "retained_components": 16,
+      "output": {
+        "first_token_kl": 9.305455207824707,
+        "first_argmax_match": false,
+        "logit_mean_abs": 3.580137252807617
+      },
+      "retained_centered_energy": {
+        "K": 0.665492594242096,
+        "V": 0.40251466631889343
+      },
+      "evaluation": {
+        "responses": [
+          " 3+4=7, 7+5=12, 12+6=18, 18+7=25, 25+8=33, 33+9=42, 42+10=52, 52+11=63, 63+12=75, 75+13=88, 88+14=102, 102+15=117, 117+16=133, 133+17=150, 150+18=168, 168+19=187, 187+20=207, 207+21=228, 228+22=250, 228+23=251, 228+24=252, 228+25=253, 228+26=254, 228+27=25"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "25"
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 12.32881823927164
+    },
+    "K_32": {
+      "kind": "K",
+      "retained_components": 32,
+      "output": {
+        "first_token_kl": 0.9230751395225525,
+        "first_argmax_match": false,
+        "logit_mean_abs": 1.8703845739364624
+      },
+      "retained_centered_energy": {
+        "K": 0.8044460415840149,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " Cindy has 4 pets. Marcia has 4 + 2 = 6 pets. Jan has 3 * 6 = 18 pets. Total is 4 + 6 + 18 = 28 pets.\n#### 28\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "28"
+          ],
+          "strict-match": [
+            "28"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 2.6785677298903465
+    },
+    "V_32": {
+      "kind": "V",
+      "retained_components": 32,
+      "output": {
+        "first_token_kl": 3.8024380207061768,
+        "first_argmax_match": false,
+        "logit_mean_abs": 1.844241976737976
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 0.552188515663147
+      },
+      "evaluation": {
+        "responses": [
+          " Let's break this down step by step. First, we know that Cindy has 4. Then, since\nAnswer: Let's break this down step by step. First, we know that Cindy has 4. Then, since Marcia has two more than Cindy, she has 4 + 2 = 6. Then, since\nAnswer: Let's break this down step by step. First, we know that Cindy has 4. Then, since Marcia has two more than Cindy, she has 4 + 2 = 6. Then, since\nAnswer: Let's break this down step by step. First, we know that Cindy has 4. Then, since Marcia has two more than Cindy, she has 4 + 2 = 6. Then, since\nAnswer: Let's break this down step by step. First, we know that Cindy has 4. Then, since Marcia has two more than Cindy, she has 4 + 2 = 6. Then, since\nAnswer: Let's break this down step by step. First, we know that Cindy has 4. Then, since Marcia has two more than Cindy, she has 4 + 2 = 6. Then,"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "6."
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 11.775077551603317
+    },
+    "KV_32": {
+      "kind": "KV",
+      "retained_components": 32,
+      "output": {
+        "first_token_kl": 6.622576713562012,
+        "first_argmax_match": false,
+        "logit_mean_abs": 1.983994483947754
+      },
+      "retained_centered_energy": {
+        "K": 0.8044460415840149,
+        "V": 0.552188515663147
+      },
+      "evaluation": {
+        "responses": [
+          " The number of pets that are in the house is 4 + 2 + 3 = 9. So the answer is 9.\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "9."
+          ],
+          "strict-match": [
+            "[invalid]"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 0.0
+          },
+          "strict-match": {
+            "exact_match": 0.0
+          }
+        }
+      },
+      "seconds": 1.5781662464141846
+    },
+    "K_64": {
+      "kind": "K",
+      "retained_components": 64,
+      "output": {
+        "first_token_kl": 1.4648244380950928,
+        "first_argmax_match": false,
+        "logit_mean_abs": 0.6690106391906738
+      },
+      "retained_centered_energy": {
+        "K": 0.9222113490104675,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " Cindy has 4 pets.\nMarcia has 4 + 2 = 6 pets.\nJan has 3 * 6 = 18 pets.\nTotal pets: 4 + 6 + 18 = <<4+6+18=28>>28\n#### 28\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "28"
+          ],
+          "strict-match": [
+            "28"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 3.1347973123192787
+    },
+    "V_64": {
+      "kind": "V",
+      "retained_components": 64,
+      "output": {
+        "first_token_kl": 1.9247829914093018,
+        "first_argmax_match": true,
+        "logit_mean_abs": 1.1867873668670654
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 0.744577944278717
+      },
+      "evaluation": {
+        "responses": [
+          " If Cindy has 4, then Marcia has 4 + 2 = 6. Then, since Jan has three times the number of pets as Marcia, she has 3 * 6 = 18. The total is 4 + 6 + 18 = <<4+6+18=28>>28\n#### 28\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "28"
+          ],
+          "strict-match": [
+            "28"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 3.7979726344347
+    },
+    "KV_64": {
+      "kind": "KV",
+      "retained_components": 64,
+      "output": {
+        "first_token_kl": 0.3046276271343231,
+        "first_argmax_match": true,
+        "logit_mean_abs": 1.326900601387024
+      },
+      "retained_centered_energy": {
+        "K": 0.9222113490104675,
+        "V": 0.744577944278717
+      },
+      "evaluation": {
+        "responses": [
+          " If Cindy has 4, then Marcia has 4 + 2 = 6. Then, since Jan has three times the number of pets as Marcia, Jan has 3 * 6 = 18. The total number of pets is 4 + 6 + 18 = <<4+6+18=28>>28.\n#### 28\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "28"
+          ],
+          "strict-match": [
+            "28"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 3.9662241265177727
+    },
+    "K_96": {
+      "kind": "K",
+      "retained_components": 96,
+      "output": {
+        "first_token_kl": 0.05174041911959648,
+        "first_argmax_match": false,
+        "logit_mean_abs": 0.2993050515651703
+      },
+      "retained_centered_energy": {
+        "K": 0.9798180460929871,
+        "V": 1.0
+      },
+      "evaluation": {
+        "responses": [
+          " Cindy has 4 pets.\nMarcia has 4 + 2 = 6 pets.\nJan has 3 * 6 = 18 pets.\nTotal pets: 4 + 6 + 18 = <<4+6+18=28>>28\n#### 28\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "28"
+          ],
+          "strict-match": [
+            "28"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 3.1362810134887695
+    },
+    "V_96": {
+      "kind": "V",
+      "retained_components": 96,
+      "output": {
+        "first_token_kl": 0.44327348470687866,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.8714984059333801
+      },
+      "retained_centered_energy": {
+        "K": 1.0,
+        "V": 0.8847544193267822
+      },
+      "evaluation": {
+        "responses": [
+          " If Cindy has 4, then Marcia has 4 + 2 = 6. Jan has 3 * 6 = 18. Total is 4 + 6 + 18 = <<4+6+18=28>>28\n#### 28\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "28"
+          ],
+          "strict-match": [
+            "28"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 3.041019044816494
+    },
+    "KV_96": {
+      "kind": "KV",
+      "retained_components": 96,
+      "output": {
+        "first_token_kl": 0.41302692890167236,
+        "first_argmax_match": true,
+        "logit_mean_abs": 0.8911677002906799
+      },
+      "retained_centered_energy": {
+        "K": 0.9798180460929871,
+        "V": 0.8847544193267822
+      },
+      "evaluation": {
+        "responses": [
+          " If Cindy has 4 pets, then Marcia has 4 + 2 = 6 pets. Jan has 3 * 6 = 18 pets. The total is 4 + 6 + 18 = <<4+6+18=28>>28 pets.\n#### 28\n\n"
+        ],
+        "filtered_responses": {
+          "flexible-extract": [
+            "28"
+          ],
+          "strict-match": [
+            "28"
+          ]
+        },
+        "scores": {
+          "flexible-extract": {
+            "exact_match": 1.0
+          },
+          "strict-match": {
+            "exact_match": 1.0
+          }
+        }
+      },
+      "seconds": 3.3249388337135315
+    }
+  }
+}
