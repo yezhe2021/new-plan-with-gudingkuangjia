@@ -1,0 +1,50 @@
+{
+  "benchmark": "qasper",
+  "metric": "token_f1",
+  "score_key": "f1",
+  "start": 18,
+  "end": 19,
+  "n": 1,
+  "score_percent": 50.0,
+  "pair": "llama3_to_qwen4",
+  "mode": "transfer",
+  "receiver": "qwen4",
+  "receiver_path": "/hy-tmp/yezhe/all_models/models/Qwen/Qwen3-4B",
+  "evaluation_execution": {
+    "explicit_gqa": true,
+    "sender_capture_device": "cpu"
+  },
+  "sender": "llama3",
+  "sender_path": "/hy-tmp/yezhe/all_models/models/LLM-Research/Llama-3.2-3B-Instruct",
+  "map_path": "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/maps/llama3_to_qwen4/heterofold.pt",
+  "map": {
+    "map": "kv_depth_stencil_recolor",
+    "sender": "llama3",
+    "receiver": "qwen4",
+    "sender_layers": 28,
+    "receiver_layers": 36,
+    "source_kv_width": 1024,
+    "kv_width": 1024,
+    "span": 1,
+    "stride": 4,
+    "calibration_rank": 16,
+    "best_validation_loss": 0.9914552080941477,
+    "parameters": 226566144
+  },
+  "elapsed_seconds": 4.4042041301727295,
+  "rows": [
+    {
+      "index": 18,
+      "receiver_prompt_tokens": 5139,
+      "prompt_truncated": false,
+      "transfer_cache_tokens": 5142,
+      "generated_tokens": 47,
+      "answers": [
+        "a regularization term associated with neutral features, the maximum entropy of class distribution regularization term, the KL divergence between reference and predicted class distribution",
+        "a regularization term associated with neutral features,  the maximum entropy of class distribution, KL divergence between reference and predicted class distribution"
+      ],
+      "f1": 0.5,
+      "prediction": "</think>\n\nThe three regularization terms are: (1) a regularization term associated with the KL divergence of the class distribution; (2) the KL divergence of the class distribution; (3) the KL divergence of the class distribution."
+    }
+  ]
+}

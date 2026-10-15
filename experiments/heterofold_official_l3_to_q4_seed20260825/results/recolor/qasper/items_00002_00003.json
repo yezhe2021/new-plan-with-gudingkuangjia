@@ -1,0 +1,49 @@
+{
+  "benchmark": "qasper",
+  "metric": "token_f1",
+  "score_key": "f1",
+  "start": 2,
+  "end": 3,
+  "n": 1,
+  "score_percent": 55.99999999999999,
+  "pair": "llama3_to_qwen4",
+  "mode": "transfer",
+  "receiver": "qwen4",
+  "receiver_path": "/hy-tmp/yezhe/all_models/models/Qwen/Qwen3-4B",
+  "evaluation_execution": {
+    "explicit_gqa": true,
+    "sender_capture_device": "cpu"
+  },
+  "sender": "llama3",
+  "sender_path": "/hy-tmp/yezhe/all_models/models/LLM-Research/Llama-3.2-3B-Instruct",
+  "map_path": "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/maps/llama3_to_qwen4/recolor.pt",
+  "map": {
+    "map": "kv_depth_stencil_recolor",
+    "sender": "llama3",
+    "receiver": "qwen4",
+    "sender_layers": 28,
+    "receiver_layers": 36,
+    "source_kv_width": 1024,
+    "kv_width": 1024,
+    "span": 1,
+    "stride": 4,
+    "calibration_rank": 0,
+    "best_validation_loss": null,
+    "parameters": 226566144
+  },
+  "elapsed_seconds": 3.3200581073760986,
+  "rows": [
+    {
+      "index": 2,
+      "receiver_prompt_tokens": 4459,
+      "prompt_truncated": false,
+      "transfer_cache_tokens": 4462,
+      "generated_tokens": 29,
+      "answers": [
+        "the attention model, MDREA, also outperforms the best existing research results (WAP 0.690 to 0.688)"
+      ],
+      "f1": 0.5599999999999999,
+      "prediction": "The proposed model outperforms the best existing results by 0.012 to 0.018 in WAP."
+    }
+  ]
+}

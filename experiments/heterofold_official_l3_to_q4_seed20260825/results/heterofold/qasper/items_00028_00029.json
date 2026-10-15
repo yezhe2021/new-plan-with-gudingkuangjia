@@ -1,0 +1,50 @@
+{
+  "benchmark": "qasper",
+  "metric": "token_f1",
+  "score_key": "f1",
+  "start": 28,
+  "end": 29,
+  "n": 1,
+  "score_percent": 14.285714285714288,
+  "pair": "llama3_to_qwen4",
+  "mode": "transfer",
+  "receiver": "qwen4",
+  "receiver_path": "/hy-tmp/yezhe/all_models/models/Qwen/Qwen3-4B",
+  "evaluation_execution": {
+    "explicit_gqa": true,
+    "sender_capture_device": "cpu"
+  },
+  "sender": "llama3",
+  "sender_path": "/hy-tmp/yezhe/all_models/models/LLM-Research/Llama-3.2-3B-Instruct",
+  "map_path": "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/maps/llama3_to_qwen4/heterofold.pt",
+  "map": {
+    "map": "kv_depth_stencil_recolor",
+    "sender": "llama3",
+    "receiver": "qwen4",
+    "sender_layers": 28,
+    "receiver_layers": 36,
+    "source_kv_width": 1024,
+    "kv_width": 1024,
+    "span": 1,
+    "stride": 4,
+    "calibration_rank": 16,
+    "best_validation_loss": 0.9914552080941477,
+    "parameters": 226566144
+  },
+  "elapsed_seconds": 3.133455514907837,
+  "rows": [
+    {
+      "index": 28,
+      "receiver_prompt_tokens": 2895,
+      "prompt_truncated": false,
+      "transfer_cache_tokens": 2898,
+      "generated_tokens": 28,
+      "answers": [
+        "Unanswerable",
+        "LF-MMI Attention\nSeq2Seq \nRNN-T \nChar E2E LF-MMI \nPhone E2E LF-MMI \nCTC + Gram-CTC"
+      ],
+      "f1": 0.14285714285714288,
+      "prediction": "unanswerable\n\nThe question is a yes/no question, but the answer requires a concise response. The answer is: \"yes\"."
+    }
+  ]
+}

@@ -1,0 +1,238 @@
+GPU free GiB 25.63714599609375 total GiB 31.7325439453125
+START -m unittest discover -s tests -v
+test_precision_is_explicit_and_default_preserved (test_adaptation.AdaptationTest) ... ok
+test_real_alias_requires_local_model (test_adaptation.AdaptationTest) ... ok
+test_correction_starts_at_identity (test_core.FoldingTest) ... ok
+test_fold_equals_runtime_correction (test_core.FoldingTest) ... ok
+test_corpus_balancing_equalizes_token_mass (test_core.RecolorTest) ... ok
+test_recolor_matches_receiver_moments (test_core.RecolorTest) ... ok
+test_gsm8k_answer_extraction (test_core.ScoringTest) ... ok
+test_locomo_prediction_cleanup (test_core.ScoringTest) ... ok
+test_longbench_f1 (test_core.ScoringTest) ... ok
+test_shards_cover_every_item_once (test_core.ScoringTest) ... ok
+test_coarse_sender_to_fine_receiver (test_core.TokenAlignmentTest) ... ok
+test_exact_pairs_only_use_shared_boundaries (test_core.TokenAlignmentTest) ... ok
+test_fine_sender_to_coarse_receiver (test_core.TokenAlignmentTest) ... ok
+test_layer_stencil (test_core.TokenAlignmentTest) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.137s
+
+OK
+DONE -m unittest discover -s tests -v
+START -m heterofold prepare-data --data-dir /hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/data --skip-benchmarks
+[data] LongBench ready
+[calibration-data] /hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/data/calibration/openr1_hotpot.json exists
+DONE -m heterofold prepare-data --data-dir /hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/data --skip-benchmarks
+START reproduction/gpu_smoke.py
+GPU SMOKE already completed
+DONE reproduction/gpu_smoke.py
+START -m heterofold calibrate --pair llama3_to_qwen4 --data-dir /hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/data --out /hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/maps/llama3_to_qwen4 --rank 16 --epochs 4 --seed 20260825 --grad-accum 8
+[calibrate] llama3_to_qwen4: 1600 train / 400 held-out prompts; sender on cuda:0, receiver on cuda:0
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<02:30,  1.68it/s]Loading weights:  16%|█▌        | 41/254 [00:00<00:02, 77.90it/s]Loading weights:  25%|██▌       | 64/254 [00:00<00:02, 77.57it/s]Loading weights:  31%|███▏      | 80/254 [00:01<00:02, 69.05it/s]Loading weights:  36%|███▌      | 92/254 [00:01<00:02, 66.77it/s]Loading weights:  40%|████      | 102/254 [00:01<00:02, 71.10it/s]Loading weights:  44%|████▍     | 112/254 [00:01<00:01, 76.15it/s]Loading weights:  48%|████▊     | 122/254 [00:01<00:01, 67.65it/s]Loading weights:  52%|█████▏    | 131/254 [00:02<00:01, 68.81it/s]Loading weights:  55%|█████▍    | 139/254 [00:02<00:01, 60.98it/s]Loading weights:  58%|█████▊    | 148/254 [00:02<00:01, 66.73it/s]Loading weights:  62%|██████▏   | 158/254 [00:02<00:01, 74.30it/s]Loading weights:  66%|██████▌   | 167/254 [00:02<00:01, 75.57it/s]Loading weights:  70%|███████   | 178/254 [00:02<00:00, 83.93it/s]Loading weights:  74%|███████▎  | 187/254 [00:02<00:00, 69.15it/s]Loading weights:  77%|███████▋  | 196/254 [00:02<00:00, 74.00it/s]Loading weights:  81%|████████▏ | 207/254 [00:03<00:00, 81.68it/s]Loading weights:  85%|████████▌ | 217/254 [00:03<00:00, 71.15it/s]Loading weights:  90%|████████▉ | 228/254 [00:03<00:00, 65.70it/s]Loading weights:  93%|█████████▎| 237/254 [00:03<00:00, 69.12it/s]Loading weights: 100%|██████████| 254/254 [00:03<00:00, 70.59it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   4%|▍         | 17/398 [00:00<00:03, 109.85it/s]Loading weights:   7%|▋         | 28/398 [00:00<00:03, 105.05it/s]Loading weights:  10%|▉         | 39/398 [00:00<00:03, 104.21it/s]Loading weights:  13%|█▎        | 50/398 [00:00<00:04, 80.79it/s] Loading weights:  15%|█▍        | 59/398 [00:00<00:04, 82.35it/s]Loading weights:  17%|█▋        | 69/398 [00:00<00:03, 87.20it/s]Loading weights:  20%|█▉        | 79/398 [00:00<00:03, 90.01it/s]Loading weights:  23%|██▎       | 93/398 [00:00<00:02, 104.43it/s]Loading weights:  26%|██▌       | 104/398 [00:01<00:02, 105.21it/s]Loading weights:  29%|██▉       | 115/398 [00:01<00:03, 82.76it/s] Loading weights:  31%|███▏      | 125/398 [00:01<00:03, 86.66it/s]Loading weights:  34%|███▍      | 136/398 [00:01<00:02, 92.29it/s]Loading weights:  37%|███▋      | 146/398 [00:01<00:03, 76.15it/s]Loading weights:  39%|███▉      | 157/398 [00:01<00:02, 83.10it/s]Loading weights:  42%|████▏     | 169/398 [00:01<00:02, 92.18it/s]Loading weights:  46%|████▋     | 185/398 [00:01<00:01, 109.86it/s]Loading weights:  49%|████▉     | 197/398 [00:02<00:01, 112.28it/s]Loading weights:  53%|█████▎    | 209/398 [00:02<00:02, 92.11it/s] Loading weights:  55%|█████▌    | 220/398 [00:02<00:01, 94.00it/s]Loading weights:  58%|█████▊    | 231/398 [00:02<00:01, 97.22it/s]Loading weights:  61%|██████    | 242/398 [00:02<00:01, 82.15it/s]Loading weights:  64%|██████▍   | 254/398 [00:02<00:01, 91.04it/s]Loading weights:  66%|██████▋   | 264/398 [00:02<00:01, 89.45it/s]Loading weights:  70%|██████▉   | 278/398 [00:03<00:01, 83.71it/s]Loading weights:  73%|███████▎  | 289/398 [00:03<00:01, 87.08it/s]Loading weights:  77%|███████▋  | 306/398 [00:03<00:01, 89.32it/s]Loading weights:  79%|███████▉  | 316/398 [00:03<00:00, 89.62it/s]Loading weights:  82%|████████▏ | 326/398 [00:03<00:00, 91.16it/s]Loading weights:  84%|████████▍ | 336/398 [00:03<00:00, 73.01it/s]Loading weights:  89%|████████▉ | 355/398 [00:03<00:00, 83.49it/s]Loading weights:  92%|█████████▏| 366/398 [00:04<00:00, 86.69it/s]Loading weights:  95%|█████████▍| 377/398 [00:04<00:00, 77.83it/s]Loading weights:  97%|█████████▋| 388/398 [00:04<00:00, 83.85it/s]Loading weights: 100%|██████████| 398/398 [00:04<00:00, 91.01it/s]
+[recolor-stats] HotpotQA distractor train full-context: 50/800 texts, 69406 aligned tokens
+[recolor-stats] HotpotQA distractor train full-context: 100/800 texts, 140296 aligned tokens
+[recolor-stats] HotpotQA distractor train full-context: 150/800 texts, 206179 aligned tokens
+[recolor-stats] HotpotQA distractor train full-context: 200/800 texts, 277238 aligned tokens
+[recolor-stats] HotpotQA distractor train full-context: 250/800 texts, 347660 aligned tokens
+[recolor-stats] HotpotQA distractor train full-context: 300/800 texts, 413850 aligned tokens
+[recolor-stats] HotpotQA distractor train full-context: 350/800 texts, 482704 aligned tokens
+[recolor-stats] HotpotQA distractor train full-context: 400/800 texts, 553287 aligned tokens
+[recolor-stats] HotpotQA distractor train full-context: 450/800 texts, 621999 aligned tokens
+[recolor-stats] HotpotQA distractor train full-context: 500/800 texts, 688611 aligned tokens
+[recolor-stats] HotpotQA distractor train full-context: 550/800 texts, 754286 aligned tokens
+[recolor-stats] HotpotQA distractor train full-context: 600/800 texts, 823382 aligned tokens
+[recolor-stats] HotpotQA distractor train full-context: 650/800 texts, 892494 aligned tokens
+[recolor-stats] HotpotQA distractor train full-context: 700/800 texts, 963865 aligned tokens
+[recolor-stats] HotpotQA distractor train full-context: 750/800 texts, 1029745 aligned tokens
+[recolor-stats] HotpotQA distractor train full-context: 800/800 texts, 1099107 aligned tokens
+[recolor-stats] Open-R1 prompt-only: 50/800 texts, 7228 aligned tokens
+[recolor-stats] Open-R1 prompt-only: 100/800 texts, 13237 aligned tokens
+[recolor-stats] Open-R1 prompt-only: 150/800 texts, 20097 aligned tokens
+[recolor-stats] Open-R1 prompt-only: 200/800 texts, 24254 aligned tokens
+[recolor-stats] Open-R1 prompt-only: 250/800 texts, 28553 aligned tokens
+[recolor-stats] Open-R1 prompt-only: 300/800 texts, 33151 aligned tokens
+[recolor-stats] Open-R1 prompt-only: 350/800 texts, 38426 aligned tokens
+[recolor-stats] Open-R1 prompt-only: 400/800 texts, 42646 aligned tokens
+[recolor-stats] Open-R1 prompt-only: 450/800 texts, 47304 aligned tokens
+[recolor-stats] Open-R1 prompt-only: 500/800 texts, 51482 aligned tokens
+[recolor-stats] Open-R1 prompt-only: 550/800 texts, 55790 aligned tokens
+[recolor-stats] Open-R1 prompt-only: 600/800 texts, 61666 aligned tokens
+[recolor-stats] Open-R1 prompt-only: 650/800 texts, 66128 aligned tokens
+[recolor-stats] Open-R1 prompt-only: 700/800 texts, 70824 aligned tokens
+[recolor-stats] Open-R1 prompt-only: 750/800 texts, 75016 aligned tokens
+[recolor-stats] Open-R1 prompt-only: 800/800 texts, 79594 aligned tokens
+[recolor-fit] role=k layers=36
+[recolor-fit] role=v layers=36
+[calibrate] Stage 1 done in 976s -> /hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/maps/llama3_to_qwen4/recolor.pt
+[calibrate] recolor baseline (held-out) {"loss": 1.1912403395041153, "routing_kl": 0.7175601909047049, "k_post_wo_mse": 0.08336124379207163, "post_wo_nmse": 0.39031890480733805} [259s]
+[calibrate] epoch=1/4 step=10/200 loss=0.841080 routing=0.418546 k_output=0.052058 output=0.370476 grad=0.165538 [51s]
+[calibrate] epoch=1/4 step=20/200 loss=0.615852 routing=0.257082 k_output=0.011822 output=0.346948 grad=0.141093 [112s]
+[calibrate] epoch=1/4 step=30/200 loss=0.647297 routing=0.237360 k_output=0.002732 output=0.407204 grad=0.057957 [166s]
+[calibrate] epoch=1/4 step=40/200 loss=0.532427 routing=0.169497 k_output=0.001799 output=0.361131 grad=0.047110 [220s]
+[calibrate] epoch=1/4 step=50/200 loss=0.562774 routing=0.136289 k_output=0.002121 output=0.424363 grad=0.030529 [272s]
+[calibrate] epoch=1/4 step=60/200 loss=0.787700 routing=0.421878 k_output=0.001581 output=0.364241 grad=0.041822 [326s]
+[calibrate] epoch=1/4 step=70/200 loss=0.894966 routing=0.532153 k_output=0.002736 output=0.360077 grad=0.069122 [385s]
+[calibrate] epoch=1/4 step=80/200 loss=0.473849 routing=0.131809 k_output=0.001003 output=0.341037 grad=0.033136 [436s]
+[calibrate] epoch=1/4 step=90/200 loss=0.551154 routing=0.184167 k_output=0.002138 output=0.364850 grad=0.032572 [493s]
+[calibrate] epoch=1/4 step=100/200 loss=0.646614 routing=0.202756 k_output=0.001695 output=0.442163 grad=0.030623 [549s]
+[calibrate] epoch=1/4 step=110/200 loss=0.482237 routing=0.157095 k_output=0.000990 output=0.324153 grad=0.033677 [605s]
+[calibrate] epoch=1/4 step=120/200 loss=0.619723 routing=0.217731 k_output=0.002952 output=0.399040 grad=0.054274 [661s]
+[calibrate] epoch=1/4 step=130/200 loss=1.016122 routing=0.614832 k_output=0.002738 output=0.398552 grad=0.051009 [717s]
+[calibrate] epoch=1/4 step=140/200 loss=0.485926 routing=0.147866 k_output=0.001018 output=0.337043 grad=0.046360 [774s]
+[calibrate] epoch=1/4 step=150/200 loss=0.492902 routing=0.148129 k_output=0.001307 output=0.343466 grad=0.035975 [827s]
+[calibrate] epoch=1/4 step=160/200 loss=1.240009 routing=0.766145 k_output=0.004224 output=0.469640 grad=0.050994 [883s]
+[calibrate] epoch=1/4 step=170/200 loss=0.602754 routing=0.242576 k_output=0.001845 output=0.358334 grad=0.035034 [939s]
+[calibrate] epoch=1/4 step=180/200 loss=1.143443 routing=0.739233 k_output=0.003645 output=0.400565 grad=0.040999 [1004s]
+[calibrate] epoch=1/4 step=190/200 loss=1.361595 routing=0.884724 k_output=0.005986 output=0.470885 grad=0.079433 [1061s]
+[calibrate] epoch=1/4 step=200/200 loss=0.780478 routing=0.343979 k_output=0.002890 output=0.433610 grad=0.047426 [1116s]
+[calibrate] {"epoch": 1, "train": {"loss": 0.8320540210140246, "routing_kl": 0.43379891581209296, "k_post_wo_mse": 0.007348268041738285, "post_wo_nmse": 0.3909068371601949}, "validation": {"loss": 0.9914552080941477, "routing_kl": 0.556423722290072, "k_post_wo_mse": 0.003099553550364208, "post_wo_nmse": 0.4319319322537111}}
+[calibrate] epoch=2/4 step=10/200 loss=1.187419 routing=0.756726 k_output=0.002980 output=0.427714 grad=0.037455 [52s]
+[calibrate] epoch=2/4 step=20/200 loss=1.421170 routing=0.996220 k_output=0.004719 output=0.420231 grad=0.044047 [104s]
+[calibrate] epoch=2/4 step=30/200 loss=1.319076 routing=0.906726 k_output=0.004011 output=0.408339 grad=0.039424 [157s]
+[calibrate] epoch=2/4 step=40/200 loss=0.467762 routing=0.159449 k_output=0.001046 output=0.307267 grad=0.034546 [208s]
+[calibrate] epoch=2/4 step=50/200 loss=1.387204 routing=0.956621 k_output=0.004549 output=0.426034 grad=0.044837 [275s]
+[calibrate] epoch=2/4 step=60/200 loss=1.592955 routing=1.093628 k_output=0.006191 output=0.493136 grad=0.050785 [337s]
+[calibrate] epoch=2/4 step=70/200 loss=0.525752 routing=0.158553 k_output=0.001579 output=0.365620 grad=0.047402 [398s]
+[calibrate] epoch=2/4 step=80/200 loss=0.656743 routing=0.271608 k_output=0.002281 output=0.382853 grad=0.052226 [457s]
+[calibrate] epoch=2/4 step=90/200 loss=1.475069 routing=1.039695 k_output=0.005142 output=0.430232 grad=0.045968 [514s]
+[calibrate] epoch=2/4 step=100/200 loss=1.546499 routing=1.149524 k_output=0.005216 output=0.391759 grad=0.037575 [569s]
+[calibrate] epoch=2/4 step=110/200 loss=0.540488 routing=0.176386 k_output=0.001846 output=0.362256 grad=0.063116 [622s]
+[calibrate] epoch=2/4 step=120/200 loss=0.763421 routing=0.306125 k_output=0.002927 output=0.454369 grad=0.053202 [677s]
+[calibrate] epoch=2/4 step=130/200 loss=1.594767 routing=1.157690 k_output=0.005528 output=0.431549 grad=0.049147 [733s]
+[calibrate] epoch=2/4 step=140/200 loss=0.577154 routing=0.204690 k_output=0.001826 output=0.370639 grad=0.042399 [795s]
+[calibrate] epoch=2/4 step=150/200 loss=1.748717 routing=1.293900 k_output=0.006659 output=0.448157 grad=0.045277 [852s]
+[calibrate] epoch=2/4 step=160/200 loss=0.748200 routing=0.307792 k_output=0.003577 output=0.436831 grad=0.058821 [913s]
+[calibrate] epoch=2/4 step=170/200 loss=1.941623 routing=1.456441 k_output=0.008492 output=0.476690 grad=0.077921 [964s]
+[calibrate] epoch=2/4 step=180/200 loss=2.012769 routing=1.540350 k_output=0.007930 output=0.464488 grad=0.056096 [1020s]
+[calibrate] epoch=2/4 step=190/200 loss=0.638356 routing=0.219871 k_output=0.001560 output=0.416925 grad=0.070984 [1083s]
+[calibrate] epoch=2/4 step=200/200 loss=1.813470 routing=1.380599 k_output=0.005996 output=0.426876 grad=0.050030 [1140s]
+[calibrate] {"epoch": 2, "train": {"loss": 1.106286366162579, "routing_kl": 0.6798221914083423, "k_post_wo_mse": 0.0038747394582451518, "post_wo_nmse": 0.422589435295991}, "validation": {"loss": 1.2757681299516164, "routing_kl": 0.8175617083410426, "k_post_wo_mse": 0.004713051497015894, "post_wo_nmse": 0.45349337011355817}}
+[calibrate] epoch=3/4 step=10/200 loss=0.693994 routing=0.264163 k_output=0.001847 output=0.427984 grad=0.043165 [49s]
+[calibrate] epoch=3/4 step=20/200 loss=1.839088 routing=1.363759 k_output=0.006976 output=0.468352 grad=0.059621 [105s]
+[calibrate] epoch=3/4 step=30/200 loss=0.503043 routing=0.142115 k_output=0.001423 output=0.359505 grad=0.046214 [156s]
+[calibrate] epoch=3/4 step=40/200 loss=0.822275 routing=0.377255 k_output=0.002715 output=0.442305 grad=0.051655 [206s]
+[calibrate] epoch=3/4 step=50/200 loss=0.736217 routing=0.282440 k_output=0.001944 output=0.451833 grad=0.042632 [265s]
+[calibrate] epoch=3/4 step=60/200 loss=1.934604 routing=1.504517 k_output=0.007738 output=0.422350 grad=0.064293 [326s]
+[calibrate] epoch=3/4 step=70/200 loss=2.122395 routing=1.554734 k_output=0.009442 output=0.558219 grad=0.044565 [380s]
+[calibrate] epoch=3/4 step=80/200 loss=2.061069 routing=1.587297 k_output=0.009020 output=0.464751 grad=0.054097 [435s]
+[calibrate] epoch=3/4 step=90/200 loss=2.098224 routing=1.586134 k_output=0.007411 output=0.504679 grad=0.047367 [495s]
+[calibrate] epoch=3/4 step=100/200 loss=0.434822 routing=0.130648 k_output=0.001144 output=0.303029 grad=0.069051 [557s]
+[calibrate] epoch=3/4 step=110/200 loss=0.758854 routing=0.335774 k_output=0.003051 output=0.420030 grad=0.058053 [610s]
+[calibrate] epoch=3/4 step=120/200 loss=0.422479 routing=0.124151 k_output=0.001031 output=0.297297 grad=0.038248 [659s]
+[calibrate] epoch=3/4 step=130/200 loss=1.920514 routing=1.464716 k_output=0.007625 output=0.448173 grad=0.054420 [714s]
+[calibrate] epoch=3/4 step=140/200 loss=2.231742 routing=1.702280 k_output=0.009996 output=0.519466 grad=0.037767 [773s]
+[calibrate] epoch=3/4 step=150/200 loss=2.355191 routing=1.854290 k_output=0.011071 output=0.489831 grad=0.050926 [829s]
+[calibrate] epoch=3/4 step=160/200 loss=1.884936 routing=1.374839 k_output=0.007265 output=0.502831 grad=0.046308 [885s]
+[calibrate] epoch=3/4 step=170/200 loss=2.321131 routing=1.753878 k_output=0.011858 output=0.555395 grad=0.060939 [941s]
+[calibrate] epoch=3/4 step=180/200 loss=2.159077 routing=1.675482 k_output=0.008351 output=0.475244 grad=0.052899 [996s]
+[calibrate] epoch=3/4 step=190/200 loss=2.305076 routing=1.733009 k_output=0.009244 output=0.562824 grad=0.054109 [1057s]
+[calibrate] epoch=3/4 step=200/200 loss=2.234184 routing=1.756884 k_output=0.010122 output=0.467177 grad=0.059668 [1116s]
+[calibrate] {"epoch": 3, "train": {"loss": 1.3233747362815627, "routing_kl": 0.8834805475515576, "k_post_wo_mse": 0.005213315183741232, "post_wo_nmse": 0.43468087354626456}, "validation": {"loss": 1.425732417305578, "routing_kl": 0.9584056879727482, "k_post_wo_mse": 0.005727768905288794, "post_wo_nmse": 0.4615989604275416}}
+[calibrate] epoch=4/4 step=10/200 loss=0.654908 routing=0.229804 k_output=0.002008 output=0.423096 grad=0.043552 [58s]
+[calibrate] epoch=4/4 step=20/200 loss=0.635406 routing=0.266196 k_output=0.002247 output=0.366963 grad=0.053369 [111s]
+[calibrate] epoch=4/4 step=30/200 loss=0.582080 routing=0.182615 k_output=0.001753 output=0.397712 grad=0.048965 [169s]
+[calibrate] epoch=4/4 step=40/200 loss=2.191304 routing=1.643058 k_output=0.008470 output=0.539776 grad=0.048689 [226s]
+[calibrate] epoch=4/4 step=50/200 loss=0.519452 routing=0.151649 k_output=0.001384 output=0.366420 grad=0.043091 [282s]
+[calibrate] epoch=4/4 step=60/200 loss=0.639910 routing=0.187546 k_output=0.002173 output=0.450192 grad=0.042879 [336s]
+[calibrate] epoch=4/4 step=70/200 loss=1.965606 routing=1.481384 k_output=0.009203 output=0.475019 grad=0.051474 [393s]
+[calibrate] epoch=4/4 step=80/200 loss=2.082396 routing=1.668786 k_output=0.007945 output=0.405665 grad=0.055467 [452s]
+[calibrate] epoch=4/4 step=90/200 loss=2.449484 routing=1.898858 k_output=0.010301 output=0.540325 grad=0.047758 [502s]
+[calibrate] epoch=4/4 step=100/200 loss=2.259834 routing=1.849630 k_output=0.008715 output=0.401488 grad=0.051911 [557s]
+[calibrate] epoch=4/4 step=110/200 loss=0.538211 routing=0.163483 k_output=0.001629 output=0.373100 grad=0.050898 [606s]
+[calibrate] epoch=4/4 step=120/200 loss=2.162425 routing=1.729912 k_output=0.008628 output=0.423885 grad=0.044741 [663s]
+[calibrate] epoch=4/4 step=130/200 loss=0.986714 routing=0.540308 k_output=0.005855 output=0.440551 grad=0.046782 [719s]
+[calibrate] epoch=4/4 step=140/200 loss=2.099840 routing=1.685960 k_output=0.007882 output=0.405998 grad=0.054337 [771s]
+[calibrate] epoch=4/4 step=150/200 loss=0.470708 routing=0.139488 k_output=0.001350 output=0.329870 grad=0.038478 [824s]
+[calibrate] epoch=4/4 step=160/200 loss=2.433667 routing=1.908999 k_output=0.012314 output=0.512354 grad=0.054509 [888s]
+[calibrate] epoch=4/4 step=170/200 loss=0.516840 routing=0.140876 k_output=0.001146 output=0.374819 grad=0.051423 [944s]
+[calibrate] epoch=4/4 step=180/200 loss=2.156995 routing=1.658632 k_output=0.008376 output=0.489987 grad=0.045417 [996s]
+[calibrate] epoch=4/4 step=190/200 loss=2.355653 routing=1.866988 k_output=0.008537 output=0.480127 grad=0.055056 [1053s]
+[calibrate] epoch=4/4 step=200/200 loss=0.633530 routing=0.205016 k_output=0.001759 output=0.426755 grad=0.045018 [1112s]
+[calibrate] {"epoch": 4, "train": {"loss": 1.4450774040609542, "routing_kl": 1.002298159138978, "k_post_wo_mse": 0.005862732881542373, "post_wo_nmse": 0.4369165120404305}, "validation": {"loss": 1.4937785981991274, "routing_kl": 1.0341324009060755, "k_post_wo_mse": 0.005821571917810043, "post_wo_nmse": 0.45382462537524065}}
+[calibrate] Stage 2 done in 5696s -> /hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/maps/llama3_to_qwen4/heterofold.pt
+DONE -m heterofold calibrate --pair llama3_to_qwen4 --data-dir /hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/data --out /hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/maps/llama3_to_qwen4 --rank 16 --epochs 4 --seed 20260825 --grad-accum 8
+START -m heterofold evaluate --native --receiver qwen4 --data-dir /hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/data --benchmark arc gsm8k qasper --limit 32 --out /hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/results/native
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<01:54,  3.45it/s]Loading weights:   8%|▊         | 33/398 [00:00<00:03, 107.77it/s]Loading weights:  13%|█▎        | 52/398 [00:00<00:02, 128.61it/s]Loading weights:  18%|█▊        | 70/398 [00:00<00:03, 91.58it/s] Loading weights:  21%|██        | 84/398 [00:00<00:03, 100.39it/s]Loading weights:  25%|██▍       | 98/398 [00:01<00:02, 109.53it/s]Loading weights:  28%|██▊       | 112/398 [00:01<00:02, 113.94it/s]Loading weights:  32%|███▏      | 126/398 [00:01<00:02, 97.87it/s] Loading weights:  35%|███▍      | 138/398 [00:01<00:02, 102.80it/s]Loading weights:  39%|███▉      | 156/398 [00:01<00:01, 121.82it/s]Loading weights:  43%|████▎     | 170/398 [00:01<00:02, 100.60it/s]Loading weights:  46%|████▌     | 183/398 [00:01<00:02, 107.30it/s]Loading weights:  49%|████▉     | 195/398 [00:01<00:02, 90.81it/s] Loading weights:  52%|█████▏    | 207/398 [00:02<00:01, 96.68it/s]Loading weights:  55%|█████▍    | 218/398 [00:02<00:01, 99.82it/s]Loading weights:  58%|█████▊    | 229/398 [00:02<00:01, 99.41it/s]Loading weights:  62%|██████▏   | 245/398 [00:02<00:01, 93.92it/s]Loading weights:  64%|██████▍   | 256/398 [00:02<00:01, 96.15it/s]Loading weights:  67%|██████▋   | 267/398 [00:02<00:01, 99.17it/s]Loading weights:  70%|███████   | 280/398 [00:02<00:01, 106.09it/s]Loading weights:  75%|███████▍  | 297/398 [00:02<00:01, 99.13it/s] Loading weights:  78%|███████▊  | 311/398 [00:03<00:00, 87.96it/s]Loading weights:  81%|████████  | 322/398 [00:03<00:00, 91.54it/s]Loading weights:  84%|████████▎ | 333/398 [00:03<00:00, 95.59it/s]Loading weights:  86%|████████▋ | 344/398 [00:03<00:00, 80.70it/s]Loading weights:  89%|████████▉ | 355/398 [00:03<00:00, 87.05it/s]Loading weights:  92%|█████████▏| 367/398 [00:03<00:00, 93.73it/s]Loading weights:  95%|█████████▍| 377/398 [00:03<00:00, 95.27it/s]Loading weights:  97%|█████████▋| 388/398 [00:04<00:00, 97.75it/s]Loading weights: 100%|██████████| 398/398 [00:04<00:00, 97.25it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[arc:native] 20/32 mean=80.00 0.24s/item
+[arc:native] 32/32 mean=87.50 0.23s/item
+[evaluate] DONE arc native items 0:32 score=87.50 -> /hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/results/native/arc/items_00000_00032.json
+[gsm8k:native] 20/32 mean=95.00 15.02s/item
+[gsm8k:native] 32/32 mean=96.88 14.09s/item
+[evaluate] DONE gsm8k native items 0:32 score=96.88 -> /hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/results/native/gsm8k/items_00000_00032.json
+Traceback (most recent call last):
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/heterofold/__main__.py", line 4, in <module>
+    main()
+  File "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/heterofold/cli.py", line 243, in main
+    args.function(args)
+  File "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/heterofold/cli.py", line 137, in evaluate
+    run.run(args)
+  File "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/heterofold/evaluation/run.py", line 48, in run
+    result = evaluate_benchmark(
+  File "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/heterofold/evaluation/run.py", line 26, in evaluate_benchmark
+    return longbench.evaluate(runtime, benchmark, data_dir, start, end)
+  File "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/heterofold/evaluation/longbench.py", line 153, in evaluate
+    text, generated = generate(
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/heterofold/evaluation/runtime.py", line 184, in generate
+    output = runtime.model.generate(input_ids, **kwargs)
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/.venv/lib/python3.10/site-packages/transformers/generation/utils.py", line 2580, in generate
+    result = decoding_method(
+  File "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/.venv/lib/python3.10/site-packages/transformers/generation/utils.py", line 2773, in _sample
+    outputs = self._prefill(
+  File "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/.venv/lib/python3.10/site-packages/transformers/generation/utils.py", line 3819, in _prefill
+    return self(**model_inputs, return_dict=True)
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/.venv/lib/python3.10/site-packages/transformers/utils/generic.py", line 903, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/.venv/lib/python3.10/site-packages/transformers/models/qwen3/modeling_qwen3.py", line 492, in forward
+    outputs: BaseModelOutputWithPast = self.model(
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/.venv/lib/python3.10/site-packages/transformers/utils/generic.py", line 1032, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/.venv/lib/python3.10/site-packages/transformers/utils/output_capturing.py", line 252, in wrapper
+    outputs = func(self, *args, **kwargs)
+  File "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/.venv/lib/python3.10/site-packages/transformers/models/qwen3/modeling_qwen3.py", line 424, in forward
+    hidden_states = decoder_layer(
+  File "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/.venv/lib/python3.10/site-packages/transformers/modeling_layers.py", line 93, in __call__
+    return super().__call__(*args, **kwargs)
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/.venv/lib/python3.10/site-packages/transformers/models/qwen3/modeling_qwen3.py", line 318, in forward
+    hidden_states, _ = self.self_attn(
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/.venv/lib/python3.10/site-packages/transformers/models/qwen3/modeling_qwen3.py", line 277, in forward
+    attn_output, attn_weights = attention_interface(
+  File "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/.venv/lib/python3.10/site-packages/transformers/integrations/sdpa_attention.py", line 92, in sdpa_attention_forward
+    attn_output = torch.nn.functional.scaled_dot_product_attention(
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.05 GiB. GPU 0 has a total capacity of 31.73 GiB of which 3.26 GiB is free. Process 1559453 has 5.79 GiB memory in use. Process 3533768 has 306.00 MiB memory in use. Process 3558844 has 22.38 GiB memory in use. Of the allocated memory 17.79 GiB is allocated by PyTorch, and 4.22 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Traceback (most recent call last):
+  File "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/reproduction/pipeline.py", line 77, in <module>
+    main()
+  File "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/reproduction/pipeline.py", line 64, in main
+    run('-m', 'heterofold', 'evaluate', *flags, '--data-dir', str(ROOT / 'data'),
+  File "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/reproduction/pipeline.py", line 22, in run
+    subprocess.run([sys.executable, '-u', *args], cwd=ROOT, check=True)
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/.venv/bin/python', '-u', '-m', 'heterofold', 'evaluate', '--native', '--receiver', 'qwen4', '--data-dir', '/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/data', '--benchmark', 'arc', 'gsm8k', 'qasper', '--limit', '32', '--out', '/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/results/native']' returned non-zero exit status 1.

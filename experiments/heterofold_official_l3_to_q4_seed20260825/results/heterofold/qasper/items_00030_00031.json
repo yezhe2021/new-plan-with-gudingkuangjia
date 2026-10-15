@@ -1,0 +1,51 @@
+{
+  "benchmark": "qasper",
+  "metric": "token_f1",
+  "score_key": "f1",
+  "start": 30,
+  "end": 31,
+  "n": 1,
+  "score_percent": 9.523809523809522,
+  "pair": "llama3_to_qwen4",
+  "mode": "transfer",
+  "receiver": "qwen4",
+  "receiver_path": "/hy-tmp/yezhe/all_models/models/Qwen/Qwen3-4B",
+  "evaluation_execution": {
+    "explicit_gqa": true,
+    "sender_capture_device": "cpu"
+  },
+  "sender": "llama3",
+  "sender_path": "/hy-tmp/yezhe/all_models/models/LLM-Research/Llama-3.2-3B-Instruct",
+  "map_path": "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/maps/llama3_to_qwen4/heterofold.pt",
+  "map": {
+    "map": "kv_depth_stencil_recolor",
+    "sender": "llama3",
+    "receiver": "qwen4",
+    "sender_layers": 28,
+    "receiver_layers": 36,
+    "source_kv_width": 1024,
+    "kv_width": 1024,
+    "span": 1,
+    "stride": 4,
+    "calibration_rank": 16,
+    "best_validation_loss": 0.9914552080941477,
+    "parameters": 226566144
+  },
+  "elapsed_seconds": 3.2725460529327393,
+  "rows": [
+    {
+      "index": 30,
+      "receiver_prompt_tokens": 4090,
+      "prompt_truncated": false,
+      "transfer_cache_tokens": 4093,
+      "generated_tokens": 24,
+      "answers": [
+        "Byte-Pair Encoding perplexity  (BPE PPL),\nBLEU-1,\nBLEU-4,\nROUGE-L,\npercentage of distinct unigram (D-1),\npercentage of distinct bigrams(D-2),\nuser matching accuracy(UMA),\nMean Reciprocal Rank(MRR)\nPairwise preference over baseline(PP)",
+        "BLEU-1/4 and ROUGE-L, likelihood of generated recipes using identical input specifications but conditioned on ten different user profiles, user matching accuracy (UMA), Mean Reciprocal Rank (MRR), neural scoring model from BIBREF33 to measure recipe-level coherence",
+        " Distinct-1/2, UMA = User Matching Accuracy, MRR\n= Mean Reciprocal Rank, PP = Pairwise preference over baseline (evaluated for 310 recipe pairs per model)"
+      ],
+      "f1": 0.09523809523809522,
+      "prediction": "We evaluate using BIBREF1-4, BIBREF14, and BIBREF15."
+    }
+  ]
+}
