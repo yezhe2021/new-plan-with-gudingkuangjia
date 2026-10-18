@@ -1,0 +1,19 @@
+[2026-10-16 02:56:10 UTC] GPU Tesla V100-SXM2-32GB; free=25.64/31.73 GiB
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<02:27,  2.69it/s]Loading weights:  28%|██▊       | 113/398 [00:00<00:00, 309.78it/s]Loading weights:  44%|████▍     | 177/398 [00:00<00:00, 318.10it/s]Loading weights:  57%|█████▋    | 227/398 [00:00<00:00, 316.09it/s]Loading weights:  68%|██████▊   | 270/398 [00:01<00:00, 291.66it/s]Loading weights:  77%|███████▋  | 306/398 [00:01<00:00, 297.97it/s]Loading weights:  86%|████████▌ | 341/398 [00:01<00:00, 304.63it/s]Loading weights:  94%|█████████▍| 375/398 [00:01<00:00, 277.29it/s]Loading weights: 100%|██████████| 398/398 [00:01<00:00, 279.98it/s]
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+Tokenizing inputs:   0%|          | 0/4 [00:00<?, ?it/s]Tokenizing inputs: 100%|██████████| 4/4 [00:00<00:00, 474.12it/s]
+Running loglikelihood requests:   0%|          | 0/4 [00:00<?, ?it/s]Running loglikelihood requests:  25%|██▌       | 1/4 [00:00<00:01,  2.04it/s]Running loglikelihood requests:  75%|███████▌  | 3/4 [00:00<00:00,  5.59it/s]Running loglikelihood requests: 100%|██████████| 4/4 [00:00<00:00,  5.82it/s]
+Tokenizing inputs:   0%|          | 0/4 [00:00<?, ?it/s]Tokenizing inputs: 100%|██████████| 4/4 [00:00<00:00, 810.45it/s]
+[2026-10-16 02:56:18 UTC] Native/oracle parity passed: mmlu_world_religions; error=0.015625
+Tokenizing inputs:   0%|          | 0/4 [00:00<?, ?it/s]Tokenizing inputs: 100%|██████████| 4/4 [00:00<00:00, 78.25it/s]
+Running loglikelihood requests:   0%|          | 0/4 [00:00<?, ?it/s]Running loglikelihood requests:  25%|██▌       | 1/4 [00:00<00:02,  1.11it/s]Running loglikelihood requests:  50%|█████     | 2/4 [00:01<00:01,  1.11it/s]Running loglikelihood requests:  75%|███████▌  | 3/4 [00:02<00:00,  1.11it/s]Running loglikelihood requests: 100%|██████████| 4/4 [00:03<00:00,  1.11it/s]Running loglikelihood requests: 100%|██████████| 4/4 [00:03<00:00,  1.11it/s]
+Tokenizing inputs:   0%|          | 0/4 [00:00<?, ?it/s]Tokenizing inputs: 100%|██████████| 4/4 [00:00<00:00, 76.93it/s]
+Traceback (most recent call last):
+  File "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mmlu_mcq_transfer_v1_seed1234/run_mmlu.py", line 376, in <module>
+    globals()[args.action]()
+  File "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mmlu_mcq_transfer_v1_seed1234/run_mmlu.py", line 218, in smoke
+    raise RuntimeError(f"Native KV injection parity failed: error={error}; agreement={agreement}")
+RuntimeError: Native KV injection parity failed: error=0.03125; agreement=True

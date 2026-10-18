@@ -1,0 +1,108 @@
+{
+  "llama": {
+    "origin": "/home/yezhe/异构模型/fulltoken_sync_copydrop_v0_l3_to_q4_seed1234/runs/retrain",
+    "stage_a": {
+      "selection": "highest validation accuracy; ties by KV NMSE",
+      "best": {
+        "epoch": 4,
+        "step": 1536,
+        "path": "/home/yezhe/异构模型/fulltoken_sync_copydrop_v0_l3_to_q4_seed1234/runs/retrain/stage_a/checkpoints/epoch_4.pt",
+        "validation": {
+          "correct": 0.4375,
+          "oracle_correct": 0.703125,
+          "agreement": 0.4427083333333333,
+          "choice_kl": 1.3724951718975547,
+          "k_nmse": 0.05170809260744136,
+          "v_nmse": 0.3919291068644573,
+          "k_cosine": 0.940100302764525,
+          "v_cosine": 0.7732012827570239,
+          "count": 384
+        }
+      }
+    },
+    "stage_b": {
+      "selection": "highest validation accuracy; ties by choice KL",
+      "base_checkpoint": "/home/yezhe/异构模型/fulltoken_sync_copydrop_v0_l3_to_q4_seed1234/runs/retrain/stage_a/checkpoints/epoch_4.pt",
+      "best": {
+        "epoch": 2,
+        "step": 768,
+        "path": "/home/yezhe/异构模型/fulltoken_sync_copydrop_v0_l3_to_q4_seed1234/runs/retrain/stage_b/checkpoints/epoch_2.pt",
+        "validation": {
+          "correct": 0.6067708333333334,
+          "oracle_correct": 0.703125,
+          "agreement": 0.6484375,
+          "choice_kl": 0.6998508591708136,
+          "k_nmse": 0.05420641027255139,
+          "v_nmse": 0.39269014009429765,
+          "k_cosine": 0.9387013550537328,
+          "v_cosine": 0.7724346644245088,
+          "count": 384
+        }
+      }
+    },
+    "training_config_fields": {
+      "protocol": "multidataset_standardprompt_receiver_native_question_options32_mmlu64_l3_to_q4_train1024_v3",
+      "checkpoint_protocol": null,
+      "architecture": "full28_mlp_multidataset_train1024_residual64",
+      "chunk_tokens": 64,
+      "stage_a_epochs": 4,
+      "stage_b_epochs": 2,
+      "effective_batch": 8,
+      "seed": null
+    },
+    "training_config_sha256": "ebecb578e5ded9b16e890d1e9e1c031cf45bc10d3f04024ea5da82e73417c347"
+  },
+  "gemma": {
+    "origin": "/home/yezhe/异构模型/fulltoken_sync_copydrop_v0_g3_to_q4_seed1234/runs/retrain",
+    "stage_a": {
+      "selection": "highest validation accuracy; ties by KV NMSE",
+      "best": {
+        "epoch": 2,
+        "step": 768,
+        "path": "/home/yezhe/异构模型/fulltoken_sync_copydrop_v0_g3_to_q4_seed1234/runs/retrain/stage_a/checkpoints/epoch_2.pt",
+        "validation": {
+          "correct": 0.3958333333333333,
+          "oracle_correct": 0.703125,
+          "agreement": 0.3828125,
+          "choice_kl": 1.573720116343272,
+          "k_nmse": 0.05338440830625283,
+          "v_nmse": 0.36039762788762647,
+          "k_cosine": 0.9406671908994516,
+          "v_cosine": 0.7694178268623849,
+          "count": 384
+        }
+      }
+    },
+    "stage_b": {
+      "selection": "highest validation accuracy; ties by choice KL",
+      "base_checkpoint": "/home/yezhe/异构模型/fulltoken_sync_copydrop_v0_g3_to_q4_seed1234/runs/retrain/stage_a/checkpoints/epoch_2.pt",
+      "best": {
+        "epoch": 2,
+        "step": 768,
+        "path": "/home/yezhe/异构模型/fulltoken_sync_copydrop_v0_g3_to_q4_seed1234/runs/retrain/stage_b/checkpoints/epoch_2.pt",
+        "validation": {
+          "correct": 0.6197916666666666,
+          "oracle_correct": 0.703125,
+          "agreement": 0.6380208333333334,
+          "choice_kl": 0.6561514879657201,
+          "k_nmse": 0.054989745942293666,
+          "v_nmse": 0.36132350855041295,
+          "k_cosine": 0.9393486712748805,
+          "v_cosine": 0.7683910704217851,
+          "count": 384
+        }
+      }
+    },
+    "training_config_fields": {
+      "protocol": "gemma3_4b_to_qwen3_4b_fullsync_copydrop_v0_seed1234",
+      "checkpoint_protocol": null,
+      "architecture": "full34_headmix256_multidataset_train1024_gemma4_to_qwen4",
+      "chunk_tokens": 64,
+      "stage_a_epochs": 4,
+      "stage_b_epochs": 2,
+      "effective_batch": 8,
+      "seed": null
+    },
+    "training_config_sha256": "7b863e9b04ba4dd07499f29e6bb9e9c4ea07a325753536c0f55318ab334e7740"
+  }
+}

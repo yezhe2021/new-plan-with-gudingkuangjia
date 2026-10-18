@@ -1,0 +1,417 @@
+{
+  "identities": {
+    "configuration": {
+      "experiment": "mmlu_mcq_transfer_v1_seed1234",
+      "seed": 1234,
+      "lm_eval_version": "0.4.12",
+      "dataset_repo": "cais/mmlu",
+      "dataset_revision": "c30699e8356da336a370243923dbaf21066bb9fe",
+      "task": "mmlu",
+      "test_count_total": 128,
+      "num_fewshot": 5,
+      "sample_policy": "allocate 128 across 57 alphabetically sorted official subject tasks; first 2 or 3 test documents per subject",
+      "conditions": [
+        "qwen_native",
+        "stage_b",
+        "stage_a",
+        "llama_native"
+      ],
+      "checkpoint_group": "mcq",
+      "stage_a_checkpoint": "runs/mcq/stage_a/best.pt",
+      "stage_b_checkpoint": "runs/mcq/stage_b/best.pt",
+      "apply_chat_template": false,
+      "batch_size": 1,
+      "bootstrap_iters": 1000,
+      "min_free_gpu_gib": 20,
+      "parity_ll_atol": 0.02,
+      "parity_ll_rtol": 0.002,
+      "parity_max_choice_probability_error": 0.002
+    },
+    "original_protocol": "lm_eval_0_4_12_fullsync_original_context_v1",
+    "models": {
+      "llama": "/hy-tmp/yezhe/all_models/models/LLM-Research/Llama-3.2-3B-Instruct",
+      "qwen": "/hy-tmp/yezhe/all_models/models/Qwen/Qwen3-4B"
+    },
+    "max_length": 32768,
+    "attention_implementation": "eager",
+    "dataset": {
+      "repo": "cais/mmlu",
+      "revision": "c30699e8356da336a370243923dbaf21066bb9fe",
+      "files": [
+        {
+          "split": "dev",
+          "file": "dev-00000-of-00001.parquet",
+          "url": "https://huggingface.co/datasets/cais/mmlu/resolve/c30699e8356da336a370243923dbaf21066bb9fe/all/dev-00000-of-00001.parquet",
+          "bytes": 76504,
+          "sha256": "2b19bde1ed8ca6b482fb283abc90e8e0d9d228947029c0b91795d64b28b3bc3f"
+        },
+        {
+          "split": "test",
+          "file": "test-00000-of-00001.parquet",
+          "url": "https://huggingface.co/datasets/cais/mmlu/resolve/c30699e8356da336a370243923dbaf21066bb9fe/all/test-00000-of-00001.parquet",
+          "bytes": 3504718,
+          "sha256": "74a41822ce7d3def56e1682f958469c04642a5336a5ce912fa375fdb90fb25d7"
+        }
+      ],
+      "routing": "Filter the official all split by subject, preserving row order."
+    },
+    "source_sha256": {
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mmlu_mcq_transfer_v1_seed1234/config.json": "790f77ca365273547fe5749f30dd03f1fe55053c7ec09fac54719b2cbf7aea4a",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mmlu_mcq_transfer_v1_seed1234/run_mmlu.py": "792445ffba98d5fe3945ca8b1a207ac2535fd0bf37b0c2fc251c8a723a025111",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/config.json": "29308a4d58a2752ad9cba3d0e7c3cd076a088a34358c625d2423abd750abfb2a",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/kv_backend.py": "0171698c84b8b94e7cddba326c2013ed302375bffce2935683792f59478e497c",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/tasks_native.py": "5b2381d64b362edb682c6a462cce6f5204042cde67786f56165f031a5c79f78a",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/base_code/common.py": "6151eef871325d5dbf75bd9f01d643330075b4151af08402753d468e6746b97e",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/base_code/protocol.py": "09068db0b3e6c9ebad328588bc5894653f68569654ae54428ae7cf9998d99e7f",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/base_code/translator.py": "4ea6ebad82e374f93069cd893f0ce0f546558cc26a6c238ad746fecf43ba2842",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/_default_template_yaml": "a0997593bf94f52cc87eb1f9b621f52613a6c60f1fb48775b0926104fd385122",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/_mmlu.yaml": "e35dd25fea5fa5583fbb64a99f9b7c4a2071a3edbbd65182f152d77b7798e11d",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/_mmlu_humanities.yaml": "790036db1420e7c8a1266f149ecaa401326380608552fc123cac1c15255ad7f1",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/_mmlu_other.yaml": "1cd803a8f56b88a830f8a12a9fc052d8b8237c712b8ea859582da3eeb6ad43de",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/_mmlu_social_sciences.yaml": "ece4a326d603c2424411af4a3b1cb1a99677792f50cd366f8e9f5e726899194b",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/_mmlu_stem.yaml": "2d58563cf678c1e7f98ade5aa47ff68143d8554cc1661ed7b832abe483b2604d",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_abstract_algebra.yaml": "f026cc8918a0a4a422af4286e22889de6f423483671975fdd5429c96c0d0d9ef",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_anatomy.yaml": "8dad2f8dc245224b7981c6186e1192e362d26c0eac649d1307080f57df92ff64",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_astronomy.yaml": "a7723276547be2474f1413d387d13f1fec179ae98f236a78258c6c83e231d926",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_business_ethics.yaml": "0a8df5dc2fa2f02f1c70da7ab920761f479862462dee97457182df817b1dce57",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_clinical_knowledge.yaml": "2308279513bb71f56bc46213ec73d942918a6e5d6edc8856ec430dcc6d3cc26b",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_college_biology.yaml": "a102e5ddd619591a8a7edf1830bd78c9ae56f083908a31f5b62ba0d7ab593695",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_college_chemistry.yaml": "aafbd16592bce40850f95f13a61d3ae53f2ecc5121e1677e9bc27a898d8b022c",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_college_computer_science.yaml": "34ba579d113ac7d499fb9f1a41db30f656eb4f85f240c8e85b2e01c8a2e7b1aa",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_college_mathematics.yaml": "f5ee2d5cab36fdcee9678fdfda31c1d6dafd173674692311e6a3000511d7de14",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_college_medicine.yaml": "3c95658b25cf99dd9c998430463cdcae1ad4c3fb75c735ac4483448ccbe07432",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_college_physics.yaml": "419ff741345b01c8d7362ab41f7a48f0ea44667cf0bb870568718a500b1ca6ac",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_computer_security.yaml": "a734f89bffb4038e6be27d9f402aac0e79bbe3b831d42faffc5e15410d88a953",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_conceptual_physics.yaml": "2f442a87451b9f95b22907d434e737ca14455f197390ad69bbaae997004ad4a2",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_econometrics.yaml": "4d42386ca2a5637d60b4978c575d3490354f4038c67743089a7e9ff14d65fb13",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_electrical_engineering.yaml": "c29ed6b29cb28b0fd4c243a2bf637385123926119b25160f99f02867f5be1396",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_elementary_mathematics.yaml": "90105e3ee53a869f5bb23361fe01419e9cec54bfbf1cd82b2d3f3e5f8a335c4a",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_formal_logic.yaml": "31e3c8ec51bbbe8ba7842948b28844b0f12de8b709059f1647bda39f860ab86e",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_global_facts.yaml": "d938b962a3f8fdcd90040d9ef28db9068a6d1ecf08a7311d8de7ed89f77eabf9",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_high_school_biology.yaml": "3b967d4bf5169aa90abd85a04b9cca5746b79102aa9e3feca4aad8318f441767",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_high_school_chemistry.yaml": "d89282333d4fce1f761df5e0baedcb59aa72dab22f4651d3e1f77aa142cd1f06",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_high_school_computer_science.yaml": "4fa205dc34a098acf68e303f6f7c0da3bdde9d4638a94a5683ef6c57c3c3f13b",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_high_school_european_history.yaml": "dc30df82cdef1692a99806b1be2aa94f16362407179cc2a2d9eabdb37b2af06e",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_high_school_geography.yaml": "4b6e36425a2690e02e46e8a7c7c886d64e42082399857c7bfc2f396d93d38ea9",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_high_school_government_and_politics.yaml": "02b95e38f133266a69bbbffb8ecaef5f67fa0521d81b0f540a0e4cc2dcc64923",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_high_school_macroeconomics.yaml": "d86505fa78ab45dac3de902432bb1a30e25f3d86fe20289c07a1b61214529f33",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_high_school_mathematics.yaml": "7cdaaad0ba299d5679b344ec8cd4775dd81ebff3918041157a7a980708f31dc2",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_high_school_microeconomics.yaml": "b50ee6a489ebef539ea181b968716b7b7cdc94729fc58cf01b9f36388093ec36",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_high_school_physics.yaml": "8ee33988717ad1c9cc29f51841ffdd8ba2ce57e80f93fc6f3d570a48c6683934",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_high_school_psychology.yaml": "603b757c8843ede5c6451a25593a8ee5b781d453b07372c49424816b79a9a4ae",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_high_school_statistics.yaml": "b9dadaa5ce8598d6fd068481e03e617e5154f90462c80a71874bf8077fbf8492",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_high_school_us_history.yaml": "2bd13e1b627b022b65c4c8f135fac2aa96dcd9ca7f46ff79abe8679c279eb947",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_high_school_world_history.yaml": "580fd84a4f4c1c9a974b13bcb92f39f5a0c464402401744dd9b45daa4a76eeae",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_human_aging.yaml": "cee80b63790b0e86e7b26cd68973c410ab2a085e7626268a4a25587ed48a7811",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_human_sexuality.yaml": "267fe3eb8fcaf52d157fcc0728d0513fdb91c3371173fe388e0b03f8a7ea09e4",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_international_law.yaml": "99064d1d0304106cb19fea31fd4af5cf69a949cb4f5e871729a76d090a3e89c3",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_jurisprudence.yaml": "2d18fc654dd44d92ddd394adf1e3ef97c74366378bb37345b2e44d2f79fa2b05",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_logical_fallacies.yaml": "2f03bd256e2e12fff3cdec67ea4f08df6d678b6dbacb6962c0d81dc0da2f356a",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_machine_learning.yaml": "789baf184429d6b505f16fe581abb32ba1815b48223735be15710244c3d4c948",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_management.yaml": "9d4507c060bff0db4dc8ff4198c625715effed28d24fdbf54495ea493b1c6d27",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_marketing.yaml": "f63fecdb482e3f23bdd1863c6a309a5ddc836e09f531515f0a33de8461b824c9",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_medical_genetics.yaml": "ab26bded29775760a1e5455d476227c74a51d94eb0b369363a69d184a876d857",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_miscellaneous.yaml": "afc98efce966768995194ffd5d8e86c881bdad06fd5bb576156b3da133f82d3d",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_moral_disputes.yaml": "ec8279e3da5bfc4a28a1b096f1dd6c42fe5f307d9a9c513e3e79f2990f2fd058",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_moral_scenarios.yaml": "c98a60a99386cafb095e7e02b56c6a74011a77a5a6772901d055e9d48e63e26e",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_nutrition.yaml": "e117c15b9846fc75e9efcf28f62edea6c736d24d4d1acc3e310205f1852e6221",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_philosophy.yaml": "7654a06752c5c45e0637508ea4a528798114c10fab172b761ca2ef397c0d9172",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_prehistory.yaml": "c23f8dcc4e96011f9ebca99bcb2b2372f477d5e36681690bbacd94c0a403b6c9",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_professional_accounting.yaml": "432df31fa6ad5398020117189481f61afbc4b27bf7e7e7f03fa83f900f01cd11",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_professional_law.yaml": "6067d60160d0978b5e2c15faedcd9baf5188600876a892fb08c42f1b4369758c",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_professional_medicine.yaml": "aedd6c8fc5b662f1197fda2920bea8516ce4090e16f97ef0cf1d22a4c54274e4",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_professional_psychology.yaml": "c8acc00f3010b396ce34f2b54ffa6bf0806397a7b14f9a1c52eab18b4e02c642",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_public_relations.yaml": "3f560bb0cbe9967c9ee9e753d41681304a366c83e4cccb73743fca4d0938533f",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_security_studies.yaml": "c23f790964719dd32abaeb4993ecb9bf5560a7b4606220cd88a900830e11df2f",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_sociology.yaml": "bf1ca22fc29b65431b83fa9de59676a3543535b9ab942fa86cc4ff8c871bd6c3",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_us_foreign_policy.yaml": "44c36ea7852bccc941fc24370bcd9c985ab0ff334a9689525a6511ef2c6a8339",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_virology.yaml": "028b0d3acbacd9bf83f7e67a41b052e4699feccca4c7e5e9edd74fbfd259a817",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/mmlu_world_religions.yaml": "08d79b1b3cc4976a97c9aa57f1362cb588db1e68010ba56ff33a4fbe884e3e2a"
+    },
+    "checkpoint_sha256": {
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/runs/mcq/stage_a/best.pt": "62beafbd377374ed8b6a3f15752150a2c23ef81e114c72147d93d3edd527671e",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/runs/mcq/stage_b/best.pt": "663c212151816abf1a44e0db441741389555743b6bcda84cae58c117307f1fc9"
+    },
+    "selection": {
+      "a": {
+        "epoch": 2,
+        "step": 512,
+        "validation": {
+          "k_nmse": 0.055120064396760426,
+          "k_cosine": 0.9404736703727394,
+          "v_nmse": 0.39825335377827287,
+          "v_cosine": 0.7554940858390182,
+          "total": 0.7574056619632756
+        }
+      },
+      "b": {
+        "epoch": 4,
+        "step": 1024,
+        "validation": {
+          "total": 0.6506269165751425,
+          "choice_kl": 0.6506269165751425,
+          "no_external_tokens": 0.0078125
+        }
+      }
+    },
+    "versions": {
+      "lm_eval": "0.4.12",
+      "torch": "2.5.1+cu121",
+      "transformers": "5.9.0",
+      "datasets": "4.8.5"
+    }
+  },
+  "samples": {
+    "mmlu_abstract_algebra": [
+      0,
+      1,
+      2
+    ],
+    "mmlu_anatomy": [
+      0,
+      1,
+      2
+    ],
+    "mmlu_astronomy": [
+      0,
+      1,
+      2
+    ],
+    "mmlu_business_ethics": [
+      0,
+      1,
+      2
+    ],
+    "mmlu_clinical_knowledge": [
+      0,
+      1,
+      2
+    ],
+    "mmlu_college_biology": [
+      0,
+      1,
+      2
+    ],
+    "mmlu_college_chemistry": [
+      0,
+      1,
+      2
+    ],
+    "mmlu_college_computer_science": [
+      0,
+      1,
+      2
+    ],
+    "mmlu_college_mathematics": [
+      0,
+      1,
+      2
+    ],
+    "mmlu_college_medicine": [
+      0,
+      1,
+      2
+    ],
+    "mmlu_college_physics": [
+      0,
+      1,
+      2
+    ],
+    "mmlu_computer_security": [
+      0,
+      1,
+      2
+    ],
+    "mmlu_conceptual_physics": [
+      0,
+      1,
+      2
+    ],
+    "mmlu_econometrics": [
+      0,
+      1,
+      2
+    ],
+    "mmlu_electrical_engineering": [
+      0,
+      1
+    ],
+    "mmlu_elementary_mathematics": [
+      0,
+      1
+    ],
+    "mmlu_formal_logic": [
+      0,
+      1
+    ],
+    "mmlu_global_facts": [
+      0,
+      1
+    ],
+    "mmlu_high_school_biology": [
+      0,
+      1
+    ],
+    "mmlu_high_school_chemistry": [
+      0,
+      1
+    ],
+    "mmlu_high_school_computer_science": [
+      0,
+      1
+    ],
+    "mmlu_high_school_european_history": [
+      0,
+      1
+    ],
+    "mmlu_high_school_geography": [
+      0,
+      1
+    ],
+    "mmlu_high_school_government_and_politics": [
+      0,
+      1
+    ],
+    "mmlu_high_school_macroeconomics": [
+      0,
+      1
+    ],
+    "mmlu_high_school_mathematics": [
+      0,
+      1
+    ],
+    "mmlu_high_school_microeconomics": [
+      0,
+      1
+    ],
+    "mmlu_high_school_physics": [
+      0,
+      1
+    ],
+    "mmlu_high_school_psychology": [
+      0,
+      1
+    ],
+    "mmlu_high_school_statistics": [
+      0,
+      1
+    ],
+    "mmlu_high_school_us_history": [
+      0,
+      1
+    ],
+    "mmlu_high_school_world_history": [
+      0,
+      1
+    ],
+    "mmlu_human_aging": [
+      0,
+      1
+    ],
+    "mmlu_human_sexuality": [
+      0,
+      1
+    ],
+    "mmlu_international_law": [
+      0,
+      1
+    ],
+    "mmlu_jurisprudence": [
+      0,
+      1
+    ],
+    "mmlu_logical_fallacies": [
+      0,
+      1
+    ],
+    "mmlu_machine_learning": [
+      0,
+      1
+    ],
+    "mmlu_management": [
+      0,
+      1
+    ],
+    "mmlu_marketing": [
+      0,
+      1
+    ],
+    "mmlu_medical_genetics": [
+      0,
+      1
+    ],
+    "mmlu_miscellaneous": [
+      0,
+      1
+    ],
+    "mmlu_moral_disputes": [
+      0,
+      1
+    ],
+    "mmlu_moral_scenarios": [
+      0,
+      1
+    ],
+    "mmlu_nutrition": [
+      0,
+      1
+    ],
+    "mmlu_philosophy": [
+      0,
+      1
+    ],
+    "mmlu_prehistory": [
+      0,
+      1
+    ],
+    "mmlu_professional_accounting": [
+      0,
+      1
+    ],
+    "mmlu_professional_law": [
+      0,
+      1
+    ],
+    "mmlu_professional_medicine": [
+      0,
+      1
+    ],
+    "mmlu_professional_psychology": [
+      0,
+      1
+    ],
+    "mmlu_public_relations": [
+      0,
+      1
+    ],
+    "mmlu_security_studies": [
+      0,
+      1
+    ],
+    "mmlu_sociology": [
+      0,
+      1
+    ],
+    "mmlu_us_foreign_policy": [
+      0,
+      1
+    ],
+    "mmlu_virology": [
+      0,
+      1
+    ],
+    "mmlu_world_religions": [
+      0,
+      1
+    ]
+  },
+  "selected_questions_sha256": "7b150bbd7bacac066522c16201b3c8001c84d6659c8e680d6a8f062a47ddfd69",
+  "n_subjects": 57,
+  "n_questions": 128,
+  "pilot_subset": true,
+  "full_official_test": false,
+  "context_tokens_min_max": [
+    244,
+    2687
+  ]
+}

@@ -1,0 +1,191 @@
+{
+  "identities": {
+    "configuration": {
+      "protocol": "lm_eval_mcq_stage_b_tokenkd_ce_multiview_v1",
+      "seed": 1234,
+      "parent_stage_a": "runs/mcq/stage_a/best.pt",
+      "parent_training_data": "runs/mcq/train.jsonl",
+      "parent_validation_data": "runs/mcq/validation.jsonl",
+      "mmlu_baseline_directory": "analysis/mmlu_mcq_transfer_v1_seed1234",
+      "lm_eval_version": "0.4.12",
+      "epochs": 4,
+      "effective_batch": 8,
+      "learning_rate": 0.0001,
+      "weight_decay": 0.0,
+      "gradient_clip": 30.0,
+      "adapter_rank": 64,
+      "token_kl_weight": 1.0,
+      "gold_ce_weight": 0.1,
+      "temperature": 1.0,
+      "choice_kl_weight": 0.0,
+      "eos_weight": 0.0,
+      "training_question_count": 2048,
+      "validation_question_count": 256,
+      "letter_fewshot_counts": [
+        0,
+        5
+      ],
+      "letter_description": "The following are multiple choice questions (with answers) about science.\n\n",
+      "train_view_policy": "One view per question per epoch; each question has two original-text and two permuted-letter visits over four epochs. Its two letter visits use 0 and 5 train-only demonstrations.",
+      "validation_policy": "Both views of every original held-out validation question; fixed permutations and train-only demonstrations; lowest mean token-KL plus 0.1 gold-CE selects checkpoint.",
+      "min_free_gpu_gib": 20,
+      "checkpoint_interval_updates": 128,
+      "evaluation_families": [
+        "mcq",
+        "mmlu"
+      ],
+      "benchmark_policy": "Official lm-eval prompts/scoring. Original first-128 OBQA and ARC pilots and the fixed 128-question, 57-subject, 5-shot MMLU pilot. No benchmark question is used for training or checkpoint selection."
+    },
+    "parent_protocol": "lm_eval_0_4_12_fullsync_original_context_v1",
+    "models": {
+      "llama": "/hy-tmp/yezhe/all_models/models/LLM-Research/Llama-3.2-3B-Instruct",
+      "qwen": "/hy-tmp/yezhe/all_models/models/Qwen/Qwen3-4B"
+    },
+    "max_length": 32768,
+    "attention_implementation": "eager",
+    "source_sha256": {
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_tokenkd_ce_multiview_v1_seed1234/config.json": "23e0752c6fc52e108756adf4ea3f3863c5e08ae4a5d51c68610348dd5b9c1443",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_tokenkd_ce_multiview_v1_seed1234/runtime.py": "ea0b1a4f554d0386fbc63773b08f98140e27867d82b665f2e7e8abe46849d888",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_tokenkd_ce_multiview_v1_seed1234/data_views.py": "6cbc6596a258df42ba832e08bb3247b72390c5c6af6989930b309e28117eb7f1",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_tokenkd_ce_multiview_v1_seed1234/train_stage_b.py": "3b44493702390be59e0d1b5865de45120809befaecda001f29df6a5320933546",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_tokenkd_ce_multiview_v1_seed1234/evaluate_stage_b.py": "aa61df04792659a3e0f7cc861771f03da0bffd8f4a784f39eb88d57a7ea819b3",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_tokenkd_ce_multiview_v1_seed1234/run_pipeline.py": "3c17b484b2091a66ec81468dd6127e7891221180645723222d423dba6863a62d",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_tokenkd_ce_multiview_v1_seed1234/tests.py": "51ca070e4478e1f3319ead3a8c15d9402fdbc9fd81a9b2d532e31a0ed66888c7",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/config.json": "29308a4d58a2752ad9cba3d0e7c3cd076a088a34358c625d2423abd750abfb2a",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/kv_backend.py": "0171698c84b8b94e7cddba326c2013ed302375bffce2935683792f59478e497c",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/tasks_native.py": "5b2381d64b362edb682c6a462cce6f5204042cde67786f56165f031a5c79f78a",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/base_code/common.py": "6151eef871325d5dbf75bd9f01d643330075b4151af08402753d468e6746b97e",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/base_code/protocol.py": "09068db0b3e6c9ebad328588bc5894653f68569654ae54428ae7cf9998d99e7f",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/base_code/translator.py": "4ea6ebad82e374f93069cd893f0ce0f546558cc26a6c238ad746fecf43ba2842",
+      "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/lm_eval/tasks/mmlu/default/_default_template_yaml": "a0997593bf94f52cc87eb1f9b621f52613a6c60f1fb48775b0926104fd385122",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mmlu_mcq_transfer_v1_seed1234/run_mmlu.py": "792445ffba98d5fe3945ca8b1a207ac2535fd0bf37b0c2fc251c8a723a025111",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mmlu_mcq_transfer_v1_seed1234/manifest.json": "7b9940bd4a2b2d2992c6dbc62ad498f750f3bd76fcefbdd25718033a398bf9b1"
+    },
+    "data_sha256": {
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/runs/mcq/train.jsonl": "57173ed2eeede37beb19005df19095359034bf26bbfd611e17476d7266304a20",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/runs/mcq/validation.jsonl": "7cfa32259158f668c6423dff5f8f8bc28134091aea166b6246a2ed7d7a22c05d",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mmlu_mcq_transfer_v1_seed1234/datasets/mmlu/dev-00000-of-00001.parquet": "2b19bde1ed8ca6b482fb283abc90e8e0d9d228947029c0b91795d64b28b3bc3f",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mmlu_mcq_transfer_v1_seed1234/datasets/mmlu/test-00000-of-00001.parquet": "74a41822ce7d3def56e1682f958469c04642a5336a5ce912fa375fdb90fb25d7"
+    },
+    "stage_a": {
+      "path": "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/runs/mcq/stage_a/best.pt",
+      "sha256": "62beafbd377374ed8b6a3f15752150a2c23ef81e114c72147d93d3edd527671e",
+      "selection": {
+        "epoch": 2,
+        "step": 512,
+        "validation": {
+          "k_nmse": 0.055120064396760426,
+          "k_cosine": 0.9404736703727394,
+          "v_nmse": 0.39825335377827287,
+          "v_cosine": 0.7554940858390182,
+          "total": 0.7574056619632756
+        }
+      }
+    },
+    "versions": {
+      "lm_eval": "0.4.12",
+      "torch": "2.5.1+cu121",
+      "transformers": "5.9.0",
+      "datasets": "4.8.5"
+    }
+  },
+  "audit": {
+    "train_epoch_1": {
+      "count": 2048,
+      "views": {
+        "text": 1024,
+        "letter": 1024
+      },
+      "letter_shots": {
+        "0": 527,
+        "5": 497
+      },
+      "letter_gold": {
+        "D": 250,
+        "A": 234,
+        "B": 255,
+        "C": 285
+      }
+    },
+    "train_epoch_2": {
+      "count": 2048,
+      "views": {
+        "letter": 1024,
+        "text": 1024
+      },
+      "letter_shots": {
+        "0": 498,
+        "5": 526
+      },
+      "letter_gold": {
+        "C": 259,
+        "D": 245,
+        "B": 250,
+        "A": 270
+      }
+    },
+    "train_epoch_3": {
+      "count": 2048,
+      "views": {
+        "text": 1024,
+        "letter": 1024
+      },
+      "letter_shots": {
+        "5": 527,
+        "0": 497
+      },
+      "letter_gold": {
+        "C": 241,
+        "A": 228,
+        "D": 277,
+        "B": 278
+      }
+    },
+    "train_epoch_4": {
+      "count": 2048,
+      "views": {
+        "letter": 1024,
+        "text": 1024
+      },
+      "letter_shots": {
+        "5": 498,
+        "0": 526
+      },
+      "letter_gold": {
+        "B": 261,
+        "A": 263,
+        "C": 252,
+        "D": 248
+      }
+    },
+    "validation": {
+      "count": 512,
+      "views": {
+        "text": 256,
+        "letter": 256
+      },
+      "letter_shots": {
+        "0": 132,
+        "5": 124
+      },
+      "letter_gold": {
+        "B": 71,
+        "A": 68,
+        "D": 59,
+        "C": 58
+      }
+    }
+  },
+  "training_draws_total": 8192,
+  "prepared_sha256": {
+    "prepared/train_epoch_1.jsonl": "5716094e1a739b8bd87accb322cce228147470b99e6eb89960bc7e70151ced37",
+    "prepared/train_epoch_2.jsonl": "a6d8fc657157b56cc7d98d3e07cba16e6dddc44ba3671cc40360da59dbc14933",
+    "prepared/train_epoch_3.jsonl": "9504ece5bb7fdff9754a09e90a5724bcc876085efffb621ea1302e975f6bb030",
+    "prepared/train_epoch_4.jsonl": "8dcc4e5f68a5f63991368609ddd5f02d65f8c239538e342cece5e7313a2962e7",
+    "prepared/validation.jsonl": "e6710e1f819e939093c430b22d31dd19435f36fd0b781a5e285c8a084e62f55f"
+  },
+  "max_context_tokens": 608,
+  "initialization": "Fresh zero-output residual KV adapter; old Stage B is never loaded; frozen original Stage A is reused.",
+  "no_mmlu_training": true,
+  "no_kv_tensor_disk_cache": true
+}

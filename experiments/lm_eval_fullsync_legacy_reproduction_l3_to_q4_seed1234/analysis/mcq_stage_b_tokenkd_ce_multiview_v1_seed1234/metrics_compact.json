@@ -1,0 +1,177 @@
+{
+  "completed_utc": "2026-10-16T07:12:54Z",
+  "best_epoch": 4,
+  "updates": 1024,
+  "validation": [
+    {
+      "epoch": 1,
+      "total": 1.1569383617040785,
+      "token_kl": 0.8349702620990911,
+      "gold_ce": 3.219680949801841,
+      "text_acc": 0.31640625,
+      "letter_acc": 0.546875
+    },
+    {
+      "epoch": 2,
+      "total": 0.9777334090599652,
+      "token_kl": 0.6810084296773766,
+      "gold_ce": 2.967249735400401,
+      "text_acc": 0.33984375,
+      "letter_acc": 0.64453125
+    },
+    {
+      "epoch": 3,
+      "total": 0.9088159451025604,
+      "token_kl": 0.6178956629828463,
+      "gold_ce": 2.9092027595577292,
+      "text_acc": 0.33203125,
+      "letter_acc": 0.65625
+    },
+    {
+      "epoch": 4,
+      "total": 0.8747148315960658,
+      "token_kl": 0.5894308477999175,
+      "gold_ce": 2.852839792112718,
+      "text_acc": 0.35546875,
+      "letter_acc": 0.6796875
+    }
+  ],
+  "metrics": {
+    "openbookqa": {
+      "qwen_native": {
+        "sample_len": 128,
+        "acc,none": 0.2421875,
+        "acc_norm,none": 0.453125
+      },
+      "llama_native": {
+        "sample_len": 128,
+        "acc,none": 0.28125,
+        "acc_norm,none": 0.40625
+      },
+      "stage_a": {
+        "sample_len": 128,
+        "acc,none": 0.1640625,
+        "acc_norm,none": 0.3984375
+      },
+      "stage_b": {
+        "sample_len": 128,
+        "acc,none": 0.234375,
+        "acc_norm,none": 0.4375
+      },
+      "new_stage_b": {
+        "sample_len": 128,
+        "acc,none": 0.203125,
+        "acc_norm,none": 0.4296875
+      }
+    },
+    "arc_challenge": {
+      "qwen_native": {
+        "sample_len": 128,
+        "acc,none": 0.5625,
+        "acc_norm,none": 0.5546875
+      },
+      "llama_native": {
+        "sample_len": 128,
+        "acc,none": 0.453125,
+        "acc_norm,none": 0.421875
+      },
+      "stage_a": {
+        "sample_len": 128,
+        "acc,none": 0.2265625,
+        "acc_norm,none": 0.25
+      },
+      "stage_b": {
+        "sample_len": 128,
+        "acc,none": 0.4140625,
+        "acc_norm,none": 0.4140625
+      },
+      "new_stage_b": {
+        "sample_len": 128,
+        "acc,none": 0.421875,
+        "acc_norm,none": 0.4296875
+      }
+    },
+    "mmlu": {
+      "qwen_native": {
+        "sample_len": 128,
+        "acc,none": 0.75
+      },
+      "llama_native": {
+        "sample_len": 128,
+        "acc,none": 0.59375
+      },
+      "stage_a": {
+        "sample_len": 128,
+        "acc,none": 0.2890625
+      },
+      "stage_b": {
+        "sample_len": 128,
+        "acc,none": 0.2890625
+      },
+      "new_stage_b": {
+        "sample_len": 128,
+        "acc,none": 0.4921875
+      }
+    }
+  },
+  "pilot_subset": true,
+  "mmlu_prediction_distribution": {
+    "old_stage_b": {
+      "A": 127,
+      "B": 1
+    },
+    "new_stage_b": {
+      "B": 39,
+      "C": 32,
+      "A": 33,
+      "D": 24
+    },
+    "qwen_native": {
+      "B": 26,
+      "C": 29,
+      "D": 32,
+      "A": 41
+    }
+  },
+  "mmlu_paired": {
+    "n": 128,
+    "old_correct": 37,
+    "new_correct": 63,
+    "wrong_to_correct": 48,
+    "correct_to_wrong": 22,
+    "new_native_prediction_agreement": 68,
+    "matched_original_questions_and_requests": true
+  },
+  "mmlu_examples": [
+    {
+      "task": "mmlu_abstract_algebra",
+      "doc_id": 0,
+      "question": "Find the degree for the given field extension Q(sqrt(2), sqrt(3), sqrt(18)) over Q.",
+      "choices": [
+        "0",
+        "4",
+        "2",
+        "6"
+      ],
+      "gold": "B",
+      "old": "A",
+      "new": "B",
+      "native": "B"
+    },
+    {
+      "task": "mmlu_abstract_algebra",
+      "doc_id": 1,
+      "question": "Let p = (1, 2, 5, 4)(2, 3) in S_5 . Find the index of <p> in S_5.",
+      "choices": [
+        "8",
+        "2",
+        "24",
+        "120"
+      ],
+      "gold": "C",
+      "old": "A",
+      "new": "C",
+      "native": "C"
+    }
+  ]
+}

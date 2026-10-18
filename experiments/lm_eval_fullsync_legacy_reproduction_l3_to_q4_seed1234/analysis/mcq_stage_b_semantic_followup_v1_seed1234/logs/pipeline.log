@@ -1,0 +1,784 @@
+[2026-10-16 18:53:22 UTC] PIPELINE followup_train.py train
+[2026-10-16 18:53:33 UTC] Server B Tesla V100-SXM2-32GB; free=25.64/31.73 GiB
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<02:17,  2.89it/s]Loading weights:  32%|███▏      | 126/398 [00:00<00:00, 364.11it/s]Loading weights:  50%|████▉     | 198/398 [00:00<00:00, 361.59it/s]Loading weights:  64%|██████▍   | 254/398 [00:00<00:00, 341.05it/s]Loading weights:  75%|███████▌  | 300/398 [00:00<00:00, 344.51it/s]Loading weights:  86%|████████▌ | 342/398 [00:01<00:00, 357.47it/s]Loading weights:  96%|█████████▋| 384/398 [00:01<00:00, 319.93it/s]Loading weights: 100%|██████████| 398/398 [00:01<00:00, 317.36it/s]
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<01:47,  2.36it/s]Loading weights:  44%|████▍     | 113/254 [00:00<00:00, 281.49it/s]Loading weights:  70%|██████▉   | 177/254 [00:00<00:00, 287.50it/s]Loading weights:  89%|████████▉ | 226/254 [00:00<00:00, 281.37it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 247.60it/s]
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+[2026-10-16 18:55:33 UTC] INITIAL VALIDATION {"epoch": 0, "step": 0, "validation": {"total": 0.9813529431509475, "reference": {"total": 1.0895346601804097, "token_kl": 0.9027370363473892, "answer_ce": 1.6201062550147374, "terminal_ce": 0.2478699634472529, "tokens": 130.45833333333334, "context_tokens": 1061.0416666666667, "n": 24}, "fixed_student_prefix_kl": 0.8731712261214852, "fixed_prefix_n": 32}}
+[2026-10-16 18:55:33 UTC] START STUDENT-PREFIX TRAIN epoch=1/2; draws=342; cap=64
+[transformers] The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[2026-10-16 18:55:53 UTC] TRAIN {"epoch": 1, "step": 1, "position": 4, "pre_clip_grad_norm": 0.8799104690551758, "kinds": {"student": 4}, "student_total": 1.1197521388530731, "student_token_kl": 1.1197521388530731, "student_tokens": 53.75, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0}
+[2026-10-16 18:56:32 UTC] TRAIN {"epoch": 1, "step": 4, "position": 16, "pre_clip_grad_norm": 0.8635587096214294, "kinds": {"mcq": 2, "student": 1, "reference": 1}, "mcq_token_kl": 0.19578287936747074, "mcq_gold_ce": 1.3913358747959137, "mcq_total": 0.3349164705723524, "mcq_choice_acc": 1.0, "mcq_teacher_choice_acc": 0.5, "mcq_answer_tokens": 16.0, "mcq_no_external_tokens": 0.0, "student_total": 1.0552467107772827, "student_token_kl": 1.0552467107772827, "student_tokens": 64.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0, "reference_total": 0.9134511351585388, "reference_token_kl": 0.7674029469490051, "reference_answer_ce": 1.1706855297088623, "reference_terminal_ce": 0.28979676961898804, "reference_tokens": 51.0, "reference_context_tokens": 1063.0}
+[2026-10-16 18:57:20 UTC] TRAIN {"epoch": 1, "step": 8, "position": 32, "pre_clip_grad_norm": 0.9684988856315613, "kinds": {"reference": 1, "mcq": 2, "student": 1}, "reference_total": 0.9638592600822449, "reference_token_kl": 0.7253955602645874, "reference_answer_ce": 2.1132876873016357, "reference_terminal_ce": 0.27134937047958374, "reference_tokens": 123.0, "reference_context_tokens": 1119.0, "mcq_token_kl": 0.39013242721557617, "mcq_gold_ce": 4.462018966674805, "mcq_total": 0.8363343216478825, "mcq_choice_acc": 1.0, "mcq_teacher_choice_acc": 1.0, "mcq_answer_tokens": 9.0, "mcq_no_external_tokens": 0.0, "student_total": 1.2349743843078613, "student_token_kl": 1.2349743843078613, "student_tokens": 64.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0}
+[2026-10-16 18:58:17 UTC] TRAIN {"epoch": 1, "step": 12, "position": 48, "pre_clip_grad_norm": 0.9651445150375366, "kinds": {"student": 2, "mcq": 2}, "student_total": 0.645689845085144, "student_token_kl": 0.645689845085144, "student_tokens": 64.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0, "mcq_token_kl": 0.4045963753014803, "mcq_gold_ce": 1.8649819940328598, "mcq_total": 0.5910945814102888, "mcq_choice_acc": 1.0, "mcq_teacher_choice_acc": 1.0, "mcq_answer_tokens": 13.5, "mcq_no_external_tokens": 0.0}
+[2026-10-16 18:59:10 UTC] TRAIN {"epoch": 1, "step": 16, "position": 64, "pre_clip_grad_norm": 0.6986253261566162, "kinds": {"reference": 1, "student": 2, "mcq": 1}, "reference_total": 1.752004861831665, "reference_token_kl": 1.4963396787643433, "reference_answer_ce": 2.3539068698883057, "reference_terminal_ce": 0.20274576544761658, "reference_tokens": 113.0, "reference_context_tokens": 1065.0, "student_total": 0.9954438209533691, "student_token_kl": 0.9954438209533691, "student_tokens": 64.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0, "mcq_token_kl": 0.06683613359928131, "mcq_gold_ce": 0.06690873205661774, "mcq_total": 0.0735270082950592, "mcq_choice_acc": 1.0, "mcq_teacher_choice_acc": 1.0, "mcq_answer_tokens": 4.0, "mcq_no_external_tokens": 0.0}
+[2026-10-16 19:00:01 UTC] TRAIN {"epoch": 1, "step": 20, "position": 80, "pre_clip_grad_norm": 0.49782732129096985, "kinds": {"mcq": 1, "reference": 2, "student": 1}, "mcq_token_kl": 0.3079181583598256, "mcq_gold_ce": 8.101597785949707, "mcq_total": 1.1180779384449124, "mcq_choice_acc": 0.0, "mcq_teacher_choice_acc": 0.0, "mcq_answer_tokens": 19.0, "mcq_no_external_tokens": 0.0, "reference_total": 1.047812432050705, "reference_token_kl": 0.8926302492618561, "reference_answer_ce": 1.3334742188453674, "reference_terminal_ce": 0.2183474749326706, "reference_tokens": 110.0, "reference_context_tokens": 1034.0, "student_total": 1.0883138179779053, "student_token_kl": 1.0883138179779053, "student_tokens": 64.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0}
+[2026-10-16 19:00:41 UTC] TRAIN {"epoch": 1, "step": 24, "position": 96, "pre_clip_grad_norm": 0.41868856549263, "kinds": {"student": 1, "reference": 2, "mcq": 1}, "student_total": 0.3193196654319763, "student_token_kl": 0.3193196654319763, "student_tokens": 64.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0, "reference_total": 1.1315686702728271, "reference_token_kl": 0.972252607345581, "reference_answer_ce": 1.046238124370575, "reference_terminal_ce": 0.5469223856925964, "reference_tokens": 149.5, "reference_context_tokens": 1108.5, "mcq_token_kl": 0.46420108526945114, "mcq_gold_ce": 3.2725117206573486, "mcq_total": 0.7914522439241409, "mcq_choice_acc": 0.0, "mcq_teacher_choice_acc": 0.0, "mcq_answer_tokens": 36.0, "mcq_no_external_tokens": 0.0}
+[2026-10-16 19:01:31 UTC] TRAIN {"epoch": 1, "step": 28, "position": 112, "pre_clip_grad_norm": 0.5072858333587646, "kinds": {"student": 3, "reference": 1}, "student_total": 0.7107253670692444, "student_token_kl": 0.7107253670692444, "student_tokens": 64.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0, "reference_total": 0.7033365368843079, "reference_token_kl": 0.4726716876029968, "reference_answer_ce": 1.8330402374267578, "reference_terminal_ce": 0.47360843420028687, "reference_tokens": 195.0, "reference_context_tokens": 1132.0}
+[2026-10-16 19:02:21 UTC] TRAIN {"epoch": 1, "step": 32, "position": 128, "pre_clip_grad_norm": 0.6579495668411255, "kinds": {"reference": 1, "student": 2, "mcq": 1}, "reference_total": 1.073530912399292, "reference_token_kl": 0.9116187691688538, "reference_answer_ce": 1.3435487747192383, "reference_terminal_ce": 0.2755729854106903, "reference_tokens": 145.0, "reference_context_tokens": 1063.0, "student_total": 0.5790794640779495, "student_token_kl": 0.5790794640779495, "student_tokens": 64.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0, "mcq_token_kl": 0.4457734450697899, "mcq_gold_ce": 10.895805358886719, "mcq_total": 1.5353539511561394, "mcq_choice_acc": 0.0, "mcq_teacher_choice_acc": 0.0, "mcq_answer_tokens": 5.0, "mcq_no_external_tokens": 0.0}
+[2026-10-16 19:03:11 UTC] TRAIN {"epoch": 1, "step": 36, "position": 144, "pre_clip_grad_norm": 0.6020294427871704, "kinds": {"reference": 1, "mcq": 3}, "reference_total": 0.9203660488128662, "reference_token_kl": 0.7920199036598206, "reference_answer_ce": 0.9986104965209961, "reference_terminal_ce": 0.28485107421875, "reference_tokens": 148.0, "reference_context_tokens": 1036.0, "mcq_token_kl": 0.19676513162751993, "mcq_gold_ce": 3.8621366769075394, "mcq_total": 0.5829788204282522, "mcq_choice_acc": 0.3333333333333333, "mcq_teacher_choice_acc": 0.3333333333333333, "mcq_answer_tokens": 7.666666666666667, "mcq_no_external_tokens": 0.0}
+[2026-10-16 19:04:08 UTC] TRAIN {"epoch": 1, "step": 40, "position": 160, "pre_clip_grad_norm": 0.5477190613746643, "kinds": {"mcq": 1, "reference": 1, "student": 2}, "mcq_token_kl": 0.3847843185067177, "mcq_gold_ce": 4.340411186218262, "mcq_total": 0.8188254460692406, "mcq_choice_acc": 1.0, "mcq_teacher_choice_acc": 1.0, "mcq_answer_tokens": 5.0, "mcq_no_external_tokens": 0.0, "reference_total": 0.7312344312667847, "reference_token_kl": 0.5815893411636353, "reference_answer_ce": 1.0281826257705688, "reference_terminal_ce": 0.4682686924934387, "reference_tokens": 184.0, "reference_context_tokens": 1007.0, "student_total": 0.8584995865821838, "student_token_kl": 0.8584995865821838, "student_tokens": 50.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0}
+[2026-10-16 19:04:58 UTC] TRAIN {"epoch": 1, "step": 44, "position": 176, "pre_clip_grad_norm": 0.6204231381416321, "kinds": {"reference": 2, "student": 1, "mcq": 1}, "reference_total": 1.0433380603790283, "reference_token_kl": 0.9077135026454926, "reference_answer_ce": 1.211899608373642, "reference_terminal_ce": 0.14434663951396942, "reference_tokens": 136.5, "reference_context_tokens": 1024.0, "student_total": 1.1602091789245605, "student_token_kl": 1.1602091789245605, "student_tokens": 37.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0, "mcq_token_kl": 0.23718419671058655, "mcq_gold_ce": 1.9445111751556396, "mcq_total": 0.431635320186615, "mcq_choice_acc": 0.0, "mcq_teacher_choice_acc": 0.0, "mcq_answer_tokens": 4.0, "mcq_no_external_tokens": 0.0}
+[2026-10-16 19:05:47 UTC] TRAIN {"epoch": 1, "step": 48, "position": 192, "pre_clip_grad_norm": 1.527655005455017, "kinds": {"mcq": 1, "student": 1, "reference": 2}, "mcq_token_kl": 0.9299101829528809, "mcq_gold_ce": 1.3941181898117065, "mcq_total": 1.0693219900131226, "mcq_choice_acc": 0.0, "mcq_teacher_choice_acc": 1.0, "mcq_answer_tokens": 4.0, "mcq_no_external_tokens": 0.0, "student_total": 0.5987151265144348, "student_token_kl": 0.5987151265144348, "student_tokens": 64.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0, "reference_total": 0.9791429042816162, "reference_token_kl": 0.7680806517601013, "reference_answer_ce": 1.8828770518302917, "reference_terminal_ce": 0.2277453988790512, "reference_tokens": 157.0, "reference_context_tokens": 1029.0}
+[2026-10-16 19:06:43 UTC] TRAIN {"epoch": 1, "step": 52, "position": 208, "pre_clip_grad_norm": 0.44962403178215027, "kinds": {"student": 2, "mcq": 1, "reference": 1}, "student_total": 0.9040668308734894, "student_token_kl": 0.9040668308734894, "student_tokens": 64.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0, "mcq_token_kl": 0.028668934479355812, "mcq_gold_ce": 0.029092591255903244, "mcq_total": 0.031578194350004196, "mcq_choice_acc": 1.0, "mcq_teacher_choice_acc": 1.0, "mcq_answer_tokens": 4.0, "mcq_no_external_tokens": 0.0, "reference_total": 0.6911218762397766, "reference_token_kl": 0.5831137895584106, "reference_answer_ce": 0.9216901659965515, "reference_terminal_ce": 0.1583903431892395, "reference_tokens": 88.0, "reference_context_tokens": 1016.0}
+[2026-10-16 19:07:35 UTC] TRAIN {"epoch": 1, "step": 56, "position": 224, "pre_clip_grad_norm": 0.49938616156578064, "kinds": {"reference": 2, "student": 2}, "reference_total": 1.0254267156124115, "reference_token_kl": 0.8544977903366089, "reference_answer_ce": 1.4918325543403625, "reference_terminal_ce": 0.2174566686153412, "reference_tokens": 141.0, "reference_context_tokens": 1076.0, "student_total": 0.8002498149871826, "student_token_kl": 0.8002498149871826, "student_tokens": 64.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0}
+[2026-10-16 19:08:33 UTC] TRAIN {"epoch": 1, "step": 60, "position": 240, "pre_clip_grad_norm": 0.48203352093696594, "kinds": {"student": 3, "reference": 1}, "student_total": 0.7405703663825989, "student_token_kl": 0.7405703663825989, "student_tokens": 50.333333333333336, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0, "reference_total": 0.9679751396179199, "reference_token_kl": 0.8672823309898376, "reference_answer_ce": 0.9360746145248413, "reference_terminal_ce": 0.07085327804088593, "reference_tokens": 104.0, "reference_context_tokens": 1060.0}
+[2026-10-16 19:09:10 UTC] TRAIN {"epoch": 1, "step": 64, "position": 256, "pre_clip_grad_norm": 0.6033843159675598, "kinds": {"mcq": 3, "student": 1}, "mcq_token_kl": 0.2873514151821534, "mcq_gold_ce": 3.005818009376526, "mcq_total": 0.5879332069307566, "mcq_choice_acc": 0.3333333333333333, "mcq_teacher_choice_acc": 0.0, "mcq_answer_tokens": 44.0, "mcq_no_external_tokens": 0.0, "student_total": 0.5523198843002319, "student_token_kl": 0.5523198843002319, "student_tokens": 64.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0}
+[2026-10-16 19:09:51 UTC] TRAIN {"epoch": 1, "step": 68, "position": 272, "pre_clip_grad_norm": 0.5913236141204834, "kinds": {"student": 1, "reference": 2, "mcq": 1}, "student_total": 0.8341275453567505, "student_token_kl": 0.8341275453567505, "student_tokens": 64.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0, "reference_total": 0.7118777632713318, "reference_token_kl": 0.5853935778141022, "reference_answer_ce": 1.1362420916557312, "reference_terminal_ce": 0.12859971821308136, "reference_tokens": 104.5, "reference_context_tokens": 1073.0, "mcq_token_kl": 0.1626550666987896, "mcq_gold_ce": 8.870290756225586, "mcq_total": 1.0496841631829739, "mcq_choice_acc": 0.0, "mcq_teacher_choice_acc": 0.0, "mcq_answer_tokens": 5.0, "mcq_no_external_tokens": 0.0}
+[2026-10-16 19:10:32 UTC] TRAIN {"epoch": 1, "step": 72, "position": 288, "pre_clip_grad_norm": 2.39835786819458, "kinds": {"reference": 1, "mcq": 2, "student": 1}, "reference_total": 0.8346427083015442, "reference_token_kl": 0.7477771043777466, "reference_answer_ce": 0.8116256594657898, "reference_terminal_ce": 0.057030513882637024, "reference_tokens": 121.0, "reference_context_tokens": 1099.0, "mcq_token_kl": 0.16326185408979654, "mcq_gold_ce": 3.742073930799961, "mcq_total": 0.53746925201267, "mcq_choice_acc": 0.5, "mcq_teacher_choice_acc": 0.5, "mcq_answer_tokens": 7.0, "mcq_no_external_tokens": 0.0, "student_total": 0.7846741676330566, "student_token_kl": 0.7846741676330566, "student_tokens": 64.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0}
+[2026-10-16 19:11:20 UTC] TRAIN {"epoch": 1, "step": 76, "position": 304, "pre_clip_grad_norm": 0.5173263549804688, "kinds": {"reference": 2, "student": 2}, "reference_total": 1.1450753211975098, "reference_token_kl": 0.9493326544761658, "reference_answer_ce": 1.7544327974319458, "reference_terminal_ce": 0.2029942348599434, "reference_tokens": 132.0, "reference_context_tokens": 999.5, "student_total": 0.6589993536472321, "student_token_kl": 0.6589993536472321, "student_tokens": 56.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0}
+[2026-10-16 19:12:07 UTC] TRAIN {"epoch": 1, "step": 80, "position": 320, "pre_clip_grad_norm": 0.6607816815376282, "kinds": {"mcq": 2, "student": 2}, "mcq_token_kl": 0.15599898993968964, "mcq_gold_ce": 4.721521429717541, "mcq_total": 0.6281511336565018, "mcq_choice_acc": 0.5, "mcq_teacher_choice_acc": 1.0, "mcq_answer_tokens": 4.0, "mcq_no_external_tokens": 0.0, "student_total": 0.5883432775735855, "student_token_kl": 0.5883432775735855, "student_tokens": 64.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0}
+[2026-10-16 19:13:10 UTC] TRAIN {"epoch": 1, "step": 84, "position": 336, "pre_clip_grad_norm": 1.7020047903060913, "kinds": {"student": 2, "mcq": 2}, "student_total": 1.2469218075275421, "student_token_kl": 1.2469218075275421, "student_tokens": 64.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0, "mcq_token_kl": 0.6035667210817337, "mcq_gold_ce": 0.8040469586849213, "mcq_total": 0.6839714255183935, "mcq_choice_acc": 1.0, "mcq_teacher_choice_acc": 0.5, "mcq_answer_tokens": 66.0, "mcq_no_external_tokens": 0.0}
+[2026-10-16 19:15:06 UTC] EPOCH COMPLETED {"epoch": 1, "step": 86, "validation": {"total": 0.8298309940534334, "reference": {"total": 0.9177946050961813, "token_kl": 0.7707404171427091, "answer_ce": 1.3607255841294925, "terminal_ce": 0.10981622120986383, "tokens": 130.45833333333334, "context_tokens": 1061.0416666666667, "n": 24}, "fixed_student_prefix_kl": 0.7418673830106854, "fixed_prefix_n": 32}}
+[2026-10-16 19:15:06 UTC] START STUDENT-PREFIX TRAIN epoch=2/2; draws=342; cap=128
+[2026-10-16 19:15:34 UTC] TRAIN {"epoch": 2, "step": 88, "position": 8, "pre_clip_grad_norm": 1.7713871002197266, "kinds": {"student": 2, "reference": 1, "mcq": 1}, "student_total": 0.8041314780712128, "student_token_kl": 0.8041314780712128, "student_tokens": 128.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0, "reference_total": 0.6559622883796692, "reference_token_kl": 0.5432546138763428, "reference_answer_ce": 0.9926365613937378, "reference_terminal_ce": 0.13444027304649353, "reference_tokens": 126.0, "reference_context_tokens": 1060.0, "mcq_token_kl": 1.2455816268920898, "mcq_gold_ce": 1.2115731239318848, "mcq_total": 1.3667389154434204, "mcq_choice_acc": 1.0, "mcq_teacher_choice_acc": 0.0, "mcq_answer_tokens": 4.0, "mcq_no_external_tokens": 0.0}
+[2026-10-16 19:16:33 UTC] TRAIN {"epoch": 2, "step": 92, "position": 24, "pre_clip_grad_norm": 0.5970476269721985, "kinds": {"student": 3, "mcq": 1}, "student_total": 0.7733753323554993, "student_token_kl": 0.7733753323554993, "student_tokens": 101.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0, "mcq_token_kl": 0.33185213804244995, "mcq_gold_ce": 4.45549201965332, "mcq_total": 0.777401328086853, "mcq_choice_acc": 1.0, "mcq_teacher_choice_acc": 1.0, "mcq_answer_tokens": 4.0, "mcq_no_external_tokens": 0.0}
+[2026-10-16 19:17:21 UTC] TRAIN {"epoch": 2, "step": 96, "position": 40, "pre_clip_grad_norm": 0.8743351101875305, "kinds": {"reference": 3, "student": 1}, "reference_total": 0.9113725821177164, "reference_token_kl": 0.79587854941686, "reference_answer_ce": 1.020196000734965, "reference_terminal_ce": 0.1347442033390204, "reference_tokens": 94.66666666666667, "reference_context_tokens": 1062.0, "student_total": 1.1623554229736328, "student_token_kl": 1.1623554229736328, "student_tokens": 61.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0}
+[2026-10-16 19:18:21 UTC] TRAIN {"epoch": 2, "step": 100, "position": 56, "pre_clip_grad_norm": 0.3605954647064209, "kinds": {"reference": 2, "student": 2}, "reference_total": 0.7523571848869324, "reference_token_kl": 0.6493754088878632, "reference_answer_ce": 0.9249325394630432, "reference_terminal_ce": 0.10488509759306908, "reference_tokens": 123.5, "reference_context_tokens": 1052.0, "student_total": 0.4789748340845108, "student_token_kl": 0.4789748340845108, "student_tokens": 107.5, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0}
+[2026-10-16 19:19:12 UTC] TRAIN {"epoch": 2, "step": 104, "position": 72, "pre_clip_grad_norm": 0.36123842000961304, "kinds": {"reference": 3, "student": 1}, "reference_total": 0.8116839528083801, "reference_token_kl": 0.6709641317526499, "reference_answer_ce": 1.301203727722168, "reference_terminal_ce": 0.10599438225229581, "reference_tokens": 120.33333333333333, "reference_context_tokens": 1072.0, "student_total": 0.4015616774559021, "student_token_kl": 0.4015616774559021, "student_tokens": 128.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0}
+[2026-10-16 19:20:31 UTC] TRAIN {"epoch": 2, "step": 108, "position": 88, "pre_clip_grad_norm": 2.4838647842407227, "kinds": {"student": 2, "reference": 1, "mcq": 1}, "student_total": 0.5304495841264725, "student_token_kl": 0.5304495841264725, "student_tokens": 116.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0, "reference_total": 0.6163778901100159, "reference_token_kl": 0.45737913250923157, "reference_answer_ce": 1.4887193441390991, "reference_terminal_ce": 0.10126814246177673, "reference_tokens": 176.0, "reference_context_tokens": 1036.0, "mcq_token_kl": 0.5564889311790466, "mcq_gold_ce": 1.661130428314209, "mcq_total": 0.7226020097732544, "mcq_choice_acc": 1.0, "mcq_teacher_choice_acc": 1.0, "mcq_answer_tokens": 4.0, "mcq_no_external_tokens": 0.0}
+[2026-10-16 19:21:26 UTC] TRAIN {"epoch": 2, "step": 112, "position": 104, "pre_clip_grad_norm": 0.5297912359237671, "kinds": {"reference": 2, "student": 2}, "reference_total": 0.6668150424957275, "reference_token_kl": 0.5540920048952103, "reference_answer_ce": 1.0329629778862, "reference_terminal_ce": 0.09426761791110039, "reference_tokens": 159.0, "reference_context_tokens": 1061.0, "student_total": 0.8986571431159973, "student_token_kl": 0.8986571431159973, "student_tokens": 98.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0}
+[2026-10-16 19:22:40 UTC] TRAIN {"epoch": 2, "step": 116, "position": 120, "pre_clip_grad_norm": 0.5536227822303772, "kinds": {"reference": 2, "student": 1, "mcq": 1}, "reference_total": 0.972340852022171, "reference_token_kl": 0.8424980640411377, "reference_answer_ce": 1.1573837995529175, "reference_terminal_ce": 0.14104364067316055, "reference_tokens": 105.5, "reference_context_tokens": 1046.5, "student_total": 1.0165849924087524, "student_token_kl": 1.0165849924087524, "student_tokens": 128.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0, "mcq_token_kl": 0.36952701956033707, "mcq_gold_ce": 5.9219970703125, "mcq_total": 0.9617267474532127, "mcq_choice_acc": 0.0, "mcq_teacher_choice_acc": 0.0, "mcq_answer_tokens": 10.0, "mcq_no_external_tokens": 0.0}
+[2026-10-16 19:23:50 UTC] TRAIN {"epoch": 2, "step": 120, "position": 136, "pre_clip_grad_norm": 1.5569714307785034, "kinds": {"student": 2, "reference": 1, "mcq": 1}, "student_total": 0.8446158170700073, "student_token_kl": 0.8446158170700073, "student_tokens": 108.5, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0, "reference_total": 1.0921285152435303, "reference_token_kl": 0.9531806111335754, "reference_answer_ce": 1.3265405893325806, "reference_terminal_ce": 0.06293871253728867, "reference_tokens": 102.0, "reference_context_tokens": 1070.0, "mcq_token_kl": 0.651050329208374, "mcq_gold_ce": 0.5959531664848328, "mcq_total": 0.7106456756591797, "mcq_choice_acc": 1.0, "mcq_teacher_choice_acc": 0.0, "mcq_answer_tokens": 4.0, "mcq_no_external_tokens": 0.0}
+[2026-10-16 19:24:34 UTC] TRAIN {"epoch": 2, "step": 124, "position": 152, "pre_clip_grad_norm": 1.4065663814544678, "kinds": {"mcq": 1, "reference": 2, "student": 1}, "mcq_token_kl": 0.6796846985816956, "mcq_gold_ce": 0.6955634951591492, "mcq_total": 0.749241054058075, "mcq_choice_acc": 1.0, "mcq_teacher_choice_acc": 1.0, "mcq_answer_tokens": 4.0, "mcq_no_external_tokens": 0.0, "reference_total": 0.9410849213600159, "reference_token_kl": 0.7784370183944702, "reference_answer_ce": 1.5607924461364746, "reference_terminal_ce": 0.06568645685911179, "reference_tokens": 131.0, "reference_context_tokens": 1015.5, "student_total": 1.119957685470581, "student_token_kl": 1.119957685470581, "student_tokens": 35.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0}
+[2026-10-16 19:25:40 UTC] TRAIN {"epoch": 2, "step": 128, "position": 168, "pre_clip_grad_norm": 0.7612748146057129, "kinds": {"student": 4}, "student_total": 0.7369305118918419, "student_token_kl": 0.7369305118918419, "student_tokens": 84.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0}
+[2026-10-16 19:27:07 UTC] TRAIN {"epoch": 2, "step": 132, "position": 184, "pre_clip_grad_norm": 0.5314198732376099, "kinds": {"student": 4}, "student_total": 0.7042964100837708, "student_token_kl": 0.7042964100837708, "student_tokens": 97.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0}
+[2026-10-16 19:28:00 UTC] TRAIN {"epoch": 2, "step": 136, "position": 200, "pre_clip_grad_norm": 1.8401849269866943, "kinds": {"mcq": 1, "student": 1, "reference": 2}, "mcq_token_kl": 0.9799350500106812, "mcq_gold_ce": 0.9805171489715576, "mcq_total": 1.077986717224121, "mcq_choice_acc": 1.0, "mcq_teacher_choice_acc": 1.0, "mcq_answer_tokens": 4.0, "mcq_no_external_tokens": 0.0, "student_total": 1.0857338905334473, "student_token_kl": 1.0857338905334473, "student_tokens": 96.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0, "reference_total": 0.746676504611969, "reference_token_kl": 0.6383058130741119, "reference_answer_ce": 0.9732427299022675, "reference_terminal_ce": 0.11046422645449638, "reference_tokens": 129.5, "reference_context_tokens": 1012.0}
+[2026-10-16 19:29:02 UTC] TRAIN {"epoch": 2, "step": 140, "position": 216, "pre_clip_grad_norm": 2.630004405975342, "kinds": {"reference": 3, "mcq": 1}, "reference_total": 0.8765101432800293, "reference_token_kl": 0.768344501654307, "reference_answer_ce": 1.0058814883232117, "reference_terminal_ce": 0.07577498257160187, "reference_tokens": 138.33333333333334, "reference_context_tokens": 1090.0, "mcq_token_kl": 0.9371711313724518, "mcq_gold_ce": 1.3473377227783203, "mcq_total": 1.0719049125909805, "mcq_choice_acc": 1.0, "mcq_teacher_choice_acc": 1.0, "mcq_answer_tokens": 11.0, "mcq_no_external_tokens": 0.0}
+[2026-10-16 19:29:43 UTC] TRAIN {"epoch": 2, "step": 144, "position": 232, "pre_clip_grad_norm": 0.4751323163509369, "kinds": {"reference": 4}, "reference_total": 0.8891721218824387, "reference_token_kl": 0.7671078443527222, "reference_answer_ce": 1.116886630654335, "reference_terminal_ce": 0.103756258264184, "reference_tokens": 118.75, "reference_context_tokens": 1043.0}
+[2026-10-16 19:31:06 UTC] TRAIN {"epoch": 2, "step": 148, "position": 248, "pre_clip_grad_norm": 0.4546322822570801, "kinds": {"mcq": 1, "reference": 2, "student": 1}, "mcq_token_kl": 0.3579736724495888, "mcq_gold_ce": 2.9392640590667725, "mcq_total": 0.6519001051783562, "mcq_choice_acc": 0.0, "mcq_teacher_choice_acc": 0.0, "mcq_answer_tokens": 48.0, "mcq_no_external_tokens": 0.0, "reference_total": 0.9168449640274048, "reference_token_kl": 0.7773409187793732, "reference_answer_ce": 1.2301465272903442, "reference_terminal_ce": 0.1648937575519085, "reference_tokens": 133.0, "reference_context_tokens": 1048.5, "student_total": 0.8625421524047852, "student_token_kl": 0.8625421524047852, "student_tokens": 117.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0}
+[2026-10-16 19:31:49 UTC] TRAIN {"epoch": 2, "step": 152, "position": 264, "pre_clip_grad_norm": 1.0745929479599, "kinds": {"mcq": 3, "reference": 1}, "mcq_token_kl": 0.22517124935984612, "mcq_gold_ce": 1.7079561774929364, "mcq_total": 0.3959668626387914, "mcq_choice_acc": 0.6666666666666666, "mcq_teacher_choice_acc": 0.6666666666666666, "mcq_answer_tokens": 8.666666666666666, "mcq_no_external_tokens": 0.0, "reference_total": 0.6719232201576233, "reference_token_kl": 0.597411572933197, "reference_answer_ce": 0.6808167695999146, "reference_terminal_ce": 0.06429950892925262, "reference_tokens": 196.0, "reference_context_tokens": 1053.0}
+[2026-10-16 19:33:16 UTC] TRAIN {"epoch": 2, "step": 156, "position": 280, "pre_clip_grad_norm": 0.43345627188682556, "kinds": {"student": 4}, "student_total": 0.718891367316246, "student_token_kl": 0.718891367316246, "student_tokens": 114.5, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0}
+[2026-10-16 19:34:13 UTC] TRAIN {"epoch": 2, "step": 160, "position": 296, "pre_clip_grad_norm": 0.34983310103416443, "kinds": {"student": 1, "mcq": 2, "reference": 1}, "student_total": 0.773537278175354, "student_token_kl": 0.773537278175354, "student_tokens": 83.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0, "mcq_token_kl": 0.07707671076059341, "mcq_gold_ce": 2.210551369236782, "mcq_total": 0.298131856136024, "mcq_choice_acc": 0.5, "mcq_teacher_choice_acc": 0.5, "mcq_answer_tokens": 4.5, "mcq_no_external_tokens": 0.0, "reference_total": 0.7348018288612366, "reference_token_kl": 0.624196469783783, "reference_answer_ce": 1.0325026512145996, "reference_terminal_ce": 0.07355064898729324, "reference_tokens": 114.0, "reference_context_tokens": 1043.0}
+[2026-10-16 19:35:10 UTC] TRAIN {"epoch": 2, "step": 164, "position": 312, "pre_clip_grad_norm": 0.5119051337242126, "kinds": {"mcq": 1, "reference": 2, "student": 1}, "mcq_token_kl": 0.08346430957317352, "mcq_gold_ce": 0.08784165978431702, "mcq_total": 0.09224847704172134, "mcq_choice_acc": 1.0, "mcq_teacher_choice_acc": 1.0, "mcq_answer_tokens": 4.0, "mcq_no_external_tokens": 0.0, "reference_total": 0.8929519951343536, "reference_token_kl": 0.7969341576099396, "reference_answer_ce": 0.8900925517082214, "reference_terminal_ce": 0.07008543983101845, "reference_tokens": 155.5, "reference_context_tokens": 1069.5, "student_total": 0.6899624466896057, "student_token_kl": 0.6899624466896057, "student_tokens": 71.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0}
+[2026-10-16 19:36:21 UTC] TRAIN {"epoch": 2, "step": 168, "position": 328, "pre_clip_grad_norm": 0.4467593729496002, "kinds": {"student": 1, "reference": 2, "mcq": 1}, "student_total": 0.7562223672866821, "student_token_kl": 0.7562223672866821, "student_tokens": 128.0, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0, "reference_total": 0.7199217081069946, "reference_token_kl": 0.5996063053607941, "reference_answer_ce": 1.1275312006473541, "reference_terminal_ce": 0.07562273740768433, "reference_tokens": 105.0, "reference_context_tokens": 1028.0, "mcq_token_kl": 0.48317448422312737, "mcq_gold_ce": 4.4080634117126465, "mcq_total": 0.9239808470010757, "mcq_choice_acc": 1.0, "mcq_teacher_choice_acc": 1.0, "mcq_answer_tokens": 43.0, "mcq_no_external_tokens": 0.0}
+[2026-10-16 19:37:49 UTC] TRAIN {"epoch": 2, "step": 172, "position": 342, "pre_clip_grad_norm": 0.6160607933998108, "kinds": {"student": 2}, "student_total": 0.5522666871547699, "student_token_kl": 0.5522666871547699, "student_tokens": 103.5, "student_hard_student_token_ce": 0.0, "student_forced_eos_targets": 0.0}
+[2026-10-16 19:39:30 UTC] EPOCH COMPLETED {"epoch": 2, "step": 172, "validation": {"total": 0.747362957180788, "reference": {"total": 0.8222668046752611, "token_kl": 0.7001174973944823, "answer_ce": 1.1401850307981174, "terminal_ce": 0.08130801562219858, "tokens": 130.45833333333334, "context_tokens": 1061.0416666666667, "n": 24}, "fixed_student_prefix_kl": 0.6724591096863151, "fixed_prefix_n": 32}}
+[2026-10-16 19:39:30 UTC] STUDENT-PREFIX STAGE B TRAINING COMPLETED
+[2026-10-16 19:39:31 UTC] PIPELINE diagnose.py 
+[2026-10-16 19:39:43 UTC] Server B Tesla V100-SXM2-32GB; free=25.64/31.73 GiB
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<02:04,  3.19it/s]Loading weights:  28%|██▊       | 113/398 [00:00<00:00, 351.70it/s]Loading weights:  45%|████▍     | 179/398 [00:00<00:00, 339.29it/s]Loading weights:  58%|█████▊    | 230/398 [00:00<00:00, 362.57it/s]Loading weights:  70%|██████▉   | 278/398 [00:00<00:00, 326.06it/s]Loading weights:  80%|███████▉  | 318/398 [00:01<00:00, 339.27it/s]Loading weights:  90%|████████▉ | 358/398 [00:01<00:00, 335.50it/s]Loading weights:  99%|█████████▉| 396/398 [00:01<00:00, 297.44it/s]Loading weights: 100%|██████████| 398/398 [00:01<00:00, 303.08it/s]
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<01:43,  2.44it/s]Loading weights:  46%|████▌     | 117/254 [00:00<00:00, 299.18it/s]Loading weights:  72%|███████▏  | 184/254 [00:00<00:00, 259.38it/s]Loading weights:  91%|█████████ | 231/254 [00:00<00:00, 277.20it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 243.44it/s]
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+[transformers] The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[2026-10-16 19:40:18 UTC] DIAGNOSTIC trajectory_v1 1/16: gold=A pred=A stop=question_stop
+[2026-10-16 19:40:22 UTC] DIAGNOSTIC trajectory_v1 2/16: gold=D pred=[invalid] stop=question_stop
+[2026-10-16 19:40:42 UTC] DIAGNOSTIC trajectory_v1 3/16: gold=C pred=[invalid] stop=length_limit
+[2026-10-16 19:41:03 UTC] DIAGNOSTIC trajectory_v1 4/16: gold=B pred=[invalid] stop=length_limit
+[2026-10-16 19:41:09 UTC] DIAGNOSTIC trajectory_v1 5/16: gold=C pred=A stop=question_stop
+[2026-10-16 19:41:14 UTC] DIAGNOSTIC trajectory_v1 6/16: gold=B pred=B stop=question_stop
+[2026-10-16 19:41:34 UTC] DIAGNOSTIC trajectory_v1 7/16: gold=B pred=[invalid] stop=length_limit
+[2026-10-16 19:41:55 UTC] DIAGNOSTIC trajectory_v1 8/16: gold=A pred=[invalid] stop=length_limit
+[2026-10-16 19:42:15 UTC] DIAGNOSTIC trajectory_v1 9/16: gold=C pred=[invalid] stop=length_limit
+[2026-10-16 19:42:36 UTC] DIAGNOSTIC trajectory_v1 10/16: gold=B pred=[invalid] stop=length_limit
+[2026-10-16 19:42:39 UTC] DIAGNOSTIC trajectory_v1 11/16: gold=A pred=B stop=question_stop
+[2026-10-16 19:42:42 UTC] DIAGNOSTIC trajectory_v1 12/16: gold=D pred=D stop=question_stop
+[2026-10-16 19:42:45 UTC] DIAGNOSTIC trajectory_v1 13/16: gold=A pred=A stop=question_stop
+[2026-10-16 19:42:49 UTC] DIAGNOSTIC trajectory_v1 14/16: gold=D pred=D stop=question_stop
+[2026-10-16 19:43:09 UTC] DIAGNOSTIC trajectory_v1 15/16: gold=A pred=[invalid] stop=length_limit
+[2026-10-16 19:43:15 UTC] DIAGNOSTIC trajectory_v1 16/16: gold=D pred=A stop=question_stop
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+[2026-10-16 19:43:22 UTC] DIAGNOSTIC student_prefix 1/16: gold=A pred=B stop=question_stop
+[2026-10-16 19:43:27 UTC] DIAGNOSTIC student_prefix 2/16: gold=D pred=B stop=question_stop
+[2026-10-16 19:43:47 UTC] DIAGNOSTIC student_prefix 3/16: gold=C pred=[invalid] stop=length_limit
+[2026-10-16 19:43:54 UTC] DIAGNOSTIC student_prefix 4/16: gold=B pred=B stop=question_stop
+[2026-10-16 19:44:15 UTC] DIAGNOSTIC student_prefix 5/16: gold=C pred=[invalid] stop=length_limit
+[2026-10-16 19:44:25 UTC] DIAGNOSTIC student_prefix 6/16: gold=B pred=[invalid] stop=question_stop
+[2026-10-16 19:44:32 UTC] DIAGNOSTIC student_prefix 7/16: gold=B pred=B stop=question_stop
+[2026-10-16 19:44:40 UTC] DIAGNOSTIC student_prefix 8/16: gold=A pred=[invalid] stop=question_stop
+[2026-10-16 19:44:47 UTC] DIAGNOSTIC student_prefix 9/16: gold=C pred=[invalid] stop=question_stop
+[2026-10-16 19:45:07 UTC] DIAGNOSTIC student_prefix 10/16: gold=B pred=[invalid] stop=length_limit
+[2026-10-16 19:45:11 UTC] DIAGNOSTIC student_prefix 11/16: gold=A pred=A stop=question_stop
+[2026-10-16 19:45:15 UTC] DIAGNOSTIC student_prefix 12/16: gold=D pred=B stop=question_stop
+[2026-10-16 19:45:21 UTC] DIAGNOSTIC student_prefix 13/16: gold=A pred=A stop=question_stop
+[2026-10-16 19:45:27 UTC] DIAGNOSTIC student_prefix 14/16: gold=D pred=[invalid] stop=question_stop
+[2026-10-16 19:45:33 UTC] DIAGNOSTIC student_prefix 15/16: gold=A pred=A stop=question_stop
+[2026-10-16 19:45:39 UTC] DIAGNOSTIC student_prefix 16/16: gold=D pred=A stop=question_stop
+[2026-10-16 19:45:40 UTC] GENERATION DIAGNOSTIC COMPLETED {"trajectory_v1": {"n_generations": 16, "correct": 5, "valid_extracted": 8, "terminal_counts": {"question_stop": 9, "length_limit": 7}, "prediction_histogram": {"A": 4, "[invalid]": 8, "B": 2, "D": 2}, "answer_phrase_repeated_at_least_10": 0, "option_semantic_consistency_pairs": 1, "n_pairs": 8}, "student_prefix": {"n_generations": 16, "correct": 5, "valid_extracted": 9, "terminal_counts": {"question_stop": 13, "length_limit": 3}, "prediction_histogram": {"B": 5, "[invalid]": 7, "A": 4}, "answer_phrase_repeated_at_least_10": 0, "option_semantic_consistency_pairs": 0, "n_pairs": 8}}
+[2026-10-16 19:45:41 UTC] PIPELINE evaluate.py mcq
+[2026-10-16 19:45:54 UTC] Server B Tesla V100-SXM2-32GB; free=25.64/31.73 GiB
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<02:21,  2.81it/s]Loading weights:  31%|███       | 124/398 [00:00<00:00, 348.21it/s]Loading weights:  48%|████▊     | 193/398 [00:00<00:00, 310.31it/s]Loading weights:  61%|██████    | 243/398 [00:00<00:00, 332.25it/s]Loading weights:  73%|███████▎  | 289/398 [00:01<00:00, 302.85it/s]Loading weights:  82%|████████▏ | 328/398 [00:01<00:00, 319.26it/s]Loading weights:  92%|█████████▏| 366/398 [00:01<00:00, 316.17it/s]Loading weights: 100%|██████████| 398/398 [00:01<00:00, 294.60it/s]
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<02:21,  1.79it/s]Loading weights:  55%|█████▌    | 140/254 [00:00<00:00, 284.53it/s]Loading weights:  87%|████████▋ | 222/254 [00:01<00:00, 252.03it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 222.76it/s]
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+  0%|          | 0/128 [00:00<?, ?it/s] 44%|████▍     | 56/128 [00:00<00:00, 559.97it/s] 89%|████████▉ | 114/128 [00:00<00:00, 566.95it/s]100%|██████████| 128/128 [00:00<00:00, 565.45it/s]
+  0%|          | 0/128 [00:00<?, ?it/s] 38%|███▊      | 49/128 [00:00<00:00, 482.57it/s] 77%|███████▋  | 98/128 [00:00<00:00, 483.57it/s]100%|██████████| 128/128 [00:00<00:00, 482.46it/s]
+Tokenizing inputs:   0%|          | 0/1023 [00:00<?, ?it/s]Tokenizing inputs:  52%|█████▏    | 527/1023 [00:00<00:00, 5262.19it/s]Tokenizing inputs: 100%|██████████| 1023/1023 [00:00<00:00, 4173.04it/s]
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+[2026-10-16 19:48:37 UTC] Official mcq evaluation completed: {"openbookqa": {"name": "openbookqa", "alias": "openbookqa", "sample_len": 128, "acc,none": 0.2265625, "acc_stderr,none": 0.037145376625835905, "acc_norm,none": 0.4453125, "acc_norm_stderr,none": 0.04410164327680508}, "arc_challenge": {"name": "arc_challenge", "alias": "arc_challenge", "sample_len": 128, "acc,none": 0.453125, "acc_stderr,none": 0.04417241936858356, "acc_norm,none": 0.46875, "acc_norm_stderr,none": 0.044281084771084105}}
+[2026-10-16 19:48:38 UTC] PIPELINE evaluate.py mmlu
+[2026-10-16 19:48:51 UTC] Server B Tesla V100-SXM2-32GB; free=25.64/31.73 GiB
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<02:21,  2.80it/s]Loading weights:  31%|███       | 124/398 [00:00<00:00, 312.99it/s]Loading weights:  44%|████▎     | 174/398 [00:00<00:00, 319.27it/s]Loading weights:  55%|█████▍    | 217/398 [00:00<00:00, 295.23it/s]Loading weights:  64%|██████▎   | 253/398 [00:00<00:00, 300.67it/s]Loading weights:  72%|███████▏  | 288/398 [00:01<00:00, 303.24it/s]Loading weights:  81%|████████  | 322/398 [00:01<00:00, 275.53it/s]Loading weights:  89%|████████▉ | 355/398 [00:01<00:00, 277.50it/s]Loading weights:  97%|█████████▋| 388/398 [00:01<00:00, 279.75it/s]Loading weights: 100%|██████████| 398/398 [00:01<00:00, 277.04it/s]
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:  11%|█         | 27/254 [00:00<00:00, 248.11it/s]Loading weights:  21%|██▏       | 54/254 [00:00<00:00, 258.60it/s]Loading weights:  31%|███▏      | 80/254 [00:00<00:00, 241.15it/s]Loading weights:  41%|████▏     | 105/254 [00:00<00:00, 232.28it/s]Loading weights:  52%|█████▏    | 131/254 [00:00<00:00, 232.84it/s]Loading weights:  62%|██████▏   | 158/254 [00:00<00:00, 236.22it/s]Loading weights:  73%|███████▎  | 185/254 [00:00<00:00, 239.90it/s]Loading weights:  83%|████████▎ | 210/254 [00:00<00:00, 216.91it/s]Loading weights:  93%|█████████▎| 237/254 [00:01<00:00, 226.00it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 240.39it/s]
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+Overwriting default num_fewshot of mmlu_abstract_algebra from None to 5
+Overwriting default num_fewshot of mmlu_anatomy from None to 5
+Overwriting default num_fewshot of mmlu_astronomy from None to 5
+Overwriting default num_fewshot of mmlu_college_biology from None to 5
+Overwriting default num_fewshot of mmlu_college_chemistry from None to 5
+Overwriting default num_fewshot of mmlu_college_computer_science from None to 5
+Overwriting default num_fewshot of mmlu_college_mathematics from None to 5
+Overwriting default num_fewshot of mmlu_college_physics from None to 5
+Overwriting default num_fewshot of mmlu_computer_security from None to 5
+Overwriting default num_fewshot of mmlu_conceptual_physics from None to 5
+Overwriting default num_fewshot of mmlu_electrical_engineering from None to 5
+Overwriting default num_fewshot of mmlu_elementary_mathematics from None to 5
+Overwriting default num_fewshot of mmlu_high_school_biology from None to 5
+Overwriting default num_fewshot of mmlu_high_school_chemistry from None to 5
+Overwriting default num_fewshot of mmlu_high_school_computer_science from None to 5
+Overwriting default num_fewshot of mmlu_high_school_mathematics from None to 5
+Overwriting default num_fewshot of mmlu_high_school_physics from None to 5
+Overwriting default num_fewshot of mmlu_high_school_statistics from None to 5
+Overwriting default num_fewshot of mmlu_machine_learning from None to 5
+Overwriting default num_fewshot of mmlu_business_ethics from None to 5
+Overwriting default num_fewshot of mmlu_clinical_knowledge from None to 5
+Overwriting default num_fewshot of mmlu_college_medicine from None to 5
+Overwriting default num_fewshot of mmlu_global_facts from None to 5
+Overwriting default num_fewshot of mmlu_human_aging from None to 5
+Overwriting default num_fewshot of mmlu_management from None to 5
+Overwriting default num_fewshot of mmlu_marketing from None to 5
+Overwriting default num_fewshot of mmlu_medical_genetics from None to 5
+Overwriting default num_fewshot of mmlu_miscellaneous from None to 5
+Overwriting default num_fewshot of mmlu_nutrition from None to 5
+Overwriting default num_fewshot of mmlu_professional_accounting from None to 5
+Overwriting default num_fewshot of mmlu_professional_medicine from None to 5
+Overwriting default num_fewshot of mmlu_virology from None to 5
+Overwriting default num_fewshot of mmlu_econometrics from None to 5
+Overwriting default num_fewshot of mmlu_high_school_geography from None to 5
+Overwriting default num_fewshot of mmlu_high_school_government_and_politics from None to 5
+Overwriting default num_fewshot of mmlu_high_school_macroeconomics from None to 5
+Overwriting default num_fewshot of mmlu_high_school_microeconomics from None to 5
+Overwriting default num_fewshot of mmlu_high_school_psychology from None to 5
+Overwriting default num_fewshot of mmlu_human_sexuality from None to 5
+Overwriting default num_fewshot of mmlu_professional_psychology from None to 5
+Overwriting default num_fewshot of mmlu_public_relations from None to 5
+Overwriting default num_fewshot of mmlu_security_studies from None to 5
+Overwriting default num_fewshot of mmlu_sociology from None to 5
+Overwriting default num_fewshot of mmlu_us_foreign_policy from None to 5
+Overwriting default num_fewshot of mmlu_formal_logic from None to 5
+Overwriting default num_fewshot of mmlu_high_school_european_history from None to 5
+Overwriting default num_fewshot of mmlu_high_school_us_history from None to 5
+Overwriting default num_fewshot of mmlu_high_school_world_history from None to 5
+Overwriting default num_fewshot of mmlu_international_law from None to 5
+Overwriting default num_fewshot of mmlu_jurisprudence from None to 5
+Overwriting default num_fewshot of mmlu_logical_fallacies from None to 5
+Overwriting default num_fewshot of mmlu_moral_disputes from None to 5
+Overwriting default num_fewshot of mmlu_moral_scenarios from None to 5
+Overwriting default num_fewshot of mmlu_philosophy from None to 5
+Overwriting default num_fewshot of mmlu_prehistory from None to 5
+Overwriting default num_fewshot of mmlu_professional_law from None to 5
+Overwriting default num_fewshot of mmlu_world_religions from None to 5
+  0%|          | 0/3 [00:00<?, ?it/s]100%|██████████| 3/3 [00:00<00:00, 118.99it/s]
+  0%|          | 0/3 [00:00<?, ?it/s]100%|██████████| 3/3 [00:00<00:00, 119.74it/s]
+  0%|          | 0/3 [00:00<?, ?it/s]100%|██████████| 3/3 [00:00<00:00, 119.90it/s]
+  0%|          | 0/3 [00:00<?, ?it/s]100%|██████████| 3/3 [00:00<00:00, 120.56it/s]
+  0%|          | 0/3 [00:00<?, ?it/s]100%|██████████| 3/3 [00:00<00:00, 119.74it/s]
+  0%|          | 0/3 [00:00<?, ?it/s]100%|██████████| 3/3 [00:00<00:00, 120.22it/s]
+  0%|          | 0/3 [00:00<?, ?it/s]100%|██████████| 3/3 [00:00<00:00, 121.06it/s]
+  0%|          | 0/3 [00:00<?, ?it/s]100%|██████████| 3/3 [00:00<00:00, 121.11it/s]
+  0%|          | 0/3 [00:00<?, ?it/s]100%|██████████| 3/3 [00:00<00:00, 120.23it/s]
+  0%|          | 0/3 [00:00<?, ?it/s]100%|██████████| 3/3 [00:00<00:00, 121.52it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 118.08it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 120.89it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 120.85it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 119.54it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 120.79it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 120.72it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 119.87it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 121.14it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 120.89it/s]
+  0%|          | 0/3 [00:00<?, ?it/s]100%|██████████| 3/3 [00:00<00:00, 120.23it/s]
+  0%|          | 0/3 [00:00<?, ?it/s]100%|██████████| 3/3 [00:00<00:00, 121.09it/s]
+  0%|          | 0/3 [00:00<?, ?it/s]100%|██████████| 3/3 [00:00<00:00, 119.85it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 120.99it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 120.60it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 119.33it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 120.70it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 120.55it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 119.15it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 120.72it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 120.91it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 119.40it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 121.17it/s]
+  0%|          | 0/3 [00:00<?, ?it/s]100%|██████████| 3/3 [00:00<00:00, 120.55it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 120.74it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 120.66it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 119.39it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 120.62it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 121.18it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 120.04it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 120.62it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 120.85it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 120.28it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 120.76it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 121.01it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 119.03it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 120.36it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 121.04it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 119.61it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 121.02it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 121.08it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 119.54it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 121.17it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 117.75it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 119.84it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 120.61it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 120.60it/s]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 119.50it/s]
+Tokenizing inputs:   0%|          | 0/512 [00:00<?, ?it/s]Tokenizing inputs:   8%|▊         | 43/512 [00:00<00:01, 427.45it/s]Tokenizing inputs:  17%|█▋        | 86/512 [00:00<00:01, 357.24it/s]Tokenizing inputs:  26%|██▌       | 133/512 [00:00<00:00, 401.46it/s]Tokenizing inputs:  34%|███▍      | 174/512 [00:00<00:00, 383.96it/s]Tokenizing inputs:  42%|████▏     | 213/512 [00:00<00:00, 367.98it/s]Tokenizing inputs:  51%|█████     | 262/512 [00:00<00:00, 404.06it/s]Tokenizing inputs:  59%|█████▉    | 303/512 [00:00<00:00, 361.77it/s]Tokenizing inputs:  67%|██████▋   | 341/512 [00:00<00:00, 361.10it/s]Tokenizing inputs:  74%|███████▍  | 380/512 [00:01<00:00, 367.53it/s]Tokenizing inputs:  82%|████████▏ | 418/512 [00:01<00:00, 315.94it/s]Tokenizing inputs:  88%|████████▊ | 452/512 [00:01<00:00, 227.07it/s]Tokenizing inputs:  97%|█████████▋| 495/512 [00:01<00:00, 268.93it/s]Tokenizing inputs: 100%|██████████| 512/512 [00:01<00:00, 312.90it/s]
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+[2026-10-16 19:52:07 UTC] Official mmlu evaluation completed: {"mmlu_abstract_algebra": {"name": "mmlu_abstract_algebra", "alias": "abstract_algebra", "sample_len": 3, "acc,none": 0.6666666666666666, "acc_stderr,none": 0.33333333333333337}, "mmlu_anatomy": {"name": "mmlu_anatomy", "alias": "anatomy", "sample_len": 3, "acc,none": 0.6666666666666666, "acc_stderr,none": 0.33333333333333337}, "mmlu_astronomy": {"name": "mmlu_astronomy", "alias": "astronomy", "sample_len": 3, "acc,none": 1.0, "acc_stderr,none": 0.0}, "mmlu_college_biology": {"name": "mmlu_college_biology", "alias": "college_biology", "sample_len": 3, "acc,none": 1.0, "acc_stderr,none": 0.0}, "mmlu_college_chemistry": {"name": "mmlu_college_chemistry", "alias": "college_chemistry", "sample_len": 3, "acc,none": 0.3333333333333333, "acc_stderr,none": 0.33333333333333337}, "mmlu_college_computer_science": {"name": "mmlu_college_computer_science", "alias": "college_computer_science", "sample_len": 3, "acc,none": 0.3333333333333333, "acc_stderr,none": 0.33333333333333337}, "mmlu_college_mathematics": {"name": "mmlu_college_mathematics", "alias": "college_mathematics", "sample_len": 3, "acc,none": 0.0, "acc_stderr,none": 0.0}, "mmlu_college_physics": {"name": "mmlu_college_physics", "alias": "college_physics", "sample_len": 3, "acc,none": 0.3333333333333333, "acc_stderr,none": 0.33333333333333337}, "mmlu_computer_security": {"name": "mmlu_computer_security", "alias": "computer_security", "sample_len": 3, "acc,none": 0.6666666666666666, "acc_stderr,none": 0.33333333333333337}, "mmlu_conceptual_physics": {"name": "mmlu_conceptual_physics", "alias": "conceptual_physics", "sample_len": 3, "acc,none": 0.6666666666666666, "acc_stderr,none": 0.33333333333333337}, "mmlu_electrical_engineering": {"name": "mmlu_electrical_engineering", "alias": "electrical_engineering", "sample_len": 2, "acc,none": 0.5, "acc_stderr,none": 0.5}, "mmlu_elementary_mathematics": {"name": "mmlu_elementary_mathematics", "alias": "elementary_mathematics", "sample_len": 2, "acc,none": 0.0, "acc_stderr,none": 0.0}, "mmlu_high_school_biology": {"name": "mmlu_high_school_biology", "alias": "high_school_biology", "sample_len": 2, "acc,none": 1.0, "acc_stderr,none": 0.0}, "mmlu_high_school_chemistry": {"name": "mmlu_high_school_chemistry", "alias": "high_school_chemistry", "sample_len": 2, "acc,none": 1.0, "acc_stderr,none": 0.0}, "mmlu_high_school_computer_science": {"name": "mmlu_high_school_computer_science", "alias": "high_school_computer_science", "sample_len": 2, "acc,none": 1.0, "acc_stderr,none": 0.0}, "mmlu_high_school_mathematics": {"name": "mmlu_high_school_mathematics", "alias": "high_school_mathematics", "sample_len": 2, "acc,none": 0.0, "acc_stderr,none": 0.0}, "mmlu_high_school_physics": {"name": "mmlu_high_school_physics", "alias": "high_school_physics", "sample_len": 2, "acc,none": 0.0, "acc_stderr,none": 0.0}, "mmlu_high_school_statistics": {"name": "mmlu_high_school_statistics", "alias": "high_school_statistics", "sample_len": 2, "acc,none": 0.5, "acc_stderr,none": 0.5}, "mmlu_machine_learning": {"name": "mmlu_machine_learning", "alias": "machine_learning", "sample_len": 2, "acc,none": 0.0, "acc_stderr,none": 0.0}, "mmlu_business_ethics": {"name": "mmlu_business_ethics", "alias": "business_ethics", "sample_len": 3, "acc,none": 0.3333333333333333, "acc_stderr,none": 0.33333333333333337}, "mmlu_clinical_knowledge": {"name": "mmlu_clinical_knowledge", "alias": "clinical_knowledge", "sample_len": 3, "acc,none": 0.3333333333333333, "acc_stderr,none": 0.33333333333333337}, "mmlu_college_medicine": {"name": "mmlu_college_medicine", "alias": "college_medicine", "sample_len": 3, "acc,none": 0.6666666666666666, "acc_stderr,none": 0.33333333333333337}, "mmlu_global_facts": {"name": "mmlu_global_facts", "alias": "global_facts", "sample_len": 2, "acc,none": 0.5, "acc_stderr,none": 0.5}, "mmlu_human_aging": {"name": "mmlu_human_aging", "alias": "human_aging", "sample_len": 2, "acc,none": 0.5, "acc_stderr,none": 0.5}, "mmlu_management": {"name": "mmlu_management", "alias": "management", "sample_len": 2, "acc,none": 1.0, "acc_stderr,none": 0.0}, "mmlu_marketing": {"name": "mmlu_marketing", "alias": "marketing", "sample_len": 2, "acc,none": 0.5, "acc_stderr,none": 0.5}, "mmlu_medical_genetics": {"name": "mmlu_medical_genetics", "alias": "medical_genetics", "sample_len": 2, "acc,none": 1.0, "acc_stderr,none": 0.0}, "mmlu_miscellaneous": {"name": "mmlu_miscellaneous", "alias": "miscellaneous", "sample_len": 2, "acc,none": 0.5, "acc_stderr,none": 0.5}, "mmlu_nutrition": {"name": "mmlu_nutrition", "alias": "nutrition", "sample_len": 2, "acc,none": 0.0, "acc_stderr,none": 0.0}, "mmlu_professional_accounting": {"name": "mmlu_professional_accounting", "alias": "professional_accounting", "sample_len": 2, "acc,none": 0.5, "acc_stderr,none": 0.5}, "mmlu_professional_medicine": {"name": "mmlu_professional_medicine", "alias": "professional_medicine", "sample_len": 2, "acc,none": 1.0, "acc_stderr,none": 0.0}, "mmlu_virology": {"name": "mmlu_virology", "alias": "virology", "sample_len": 2, "acc,none": 0.0, "acc_stderr,none": 0.0}, "mmlu_econometrics": {"name": "mmlu_econometrics", "alias": "econometrics", "sample_len": 3, "acc,none": 0.0, "acc_stderr,none": 0.0}, "mmlu_high_school_geography": {"name": "mmlu_high_school_geography", "alias": "high_school_geography", "sample_len": 2, "acc,none": 0.5, "acc_stderr,none": 0.5}, "mmlu_high_school_government_and_politics": {"name": "mmlu_high_school_government_and_politics", "alias": "high_school_government_and_politics", "sample_len": 2, "acc,none": 1.0, "acc_stderr,none": 0.0}, "mmlu_high_school_macroeconomics": {"name": "mmlu_high_school_macroeconomics", "alias": "high_school_macroeconomics", "sample_len": 2, "acc,none": 0.0, "acc_stderr,none": 0.0}, "mmlu_high_school_microeconomics": {"name": "mmlu_high_school_microeconomics", "alias": "high_school_microeconomics", "sample_len": 2, "acc,none": 0.0, "acc_stderr,none": 0.0}, "mmlu_high_school_psychology": {"name": "mmlu_high_school_psychology", "alias": "high_school_psychology", "sample_len": 2, "acc,none": 1.0, "acc_stderr,none": 0.0}, "mmlu_human_sexuality": {"name": "mmlu_human_sexuality", "alias": "human_sexuality", "sample_len": 2, "acc,none": 1.0, "acc_stderr,none": 0.0}, "mmlu_professional_psychology": {"name": "mmlu_professional_psychology", "alias": "professional_psychology", "sample_len": 2, "acc,none": 1.0, "acc_stderr,none": 0.0}, "mmlu_public_relations": {"name": "mmlu_public_relations", "alias": "public_relations", "sample_len": 2, "acc,none": 1.0, "acc_stderr,none": 0.0}, "mmlu_security_studies": {"name": "mmlu_security_studies", "alias": "security_studies", "sample_len": 2, "acc,none": 0.5, "acc_stderr,none": 0.5}, "mmlu_sociology": {"name": "mmlu_sociology", "alias": "sociology", "sample_len": 2, "acc,none": 0.5, "acc_stderr,none": 0.5}, "mmlu_us_foreign_policy": {"name": "mmlu_us_foreign_policy", "alias": "us_foreign_policy", "sample_len": 2, "acc,none": 0.5, "acc_stderr,none": 0.5}, "mmlu_formal_logic": {"name": "mmlu_formal_logic", "alias": "formal_logic", "sample_len": 2, "acc,none": 0.5, "acc_stderr,none": 0.5}, "mmlu_high_school_european_history": {"name": "mmlu_high_school_european_history", "alias": "high_school_european_history", "sample_len": 2, "acc,none": 0.5, "acc_stderr,none": 0.5}, "mmlu_high_school_us_history": {"name": "mmlu_high_school_us_history", "alias": "high_school_us_history", "sample_len": 2, "acc,none": 0.5, "acc_stderr,none": 0.5}, "mmlu_high_school_world_history": {"name": "mmlu_high_school_world_history", "alias": "high_school_world_history", "sample_len": 2, "acc,none": 1.0, "acc_stderr,none": 0.0}, "mmlu_international_law": {"name": "mmlu_international_law", "alias": "international_law", "sample_len": 2, "acc,none": 0.5, "acc_stderr,none": 0.5}, "mmlu_jurisprudence": {"name": "mmlu_jurisprudence", "alias": "jurisprudence", "sample_len": 2, "acc,none": 0.0, "acc_stderr,none": 0.0}, "mmlu_logical_fallacies": {"name": "mmlu_logical_fallacies", "alias": "logical_fallacies", "sample_len": 2, "acc,none": 0.0, "acc_stderr,none": 0.0}, "mmlu_moral_disputes": {"name": "mmlu_moral_disputes", "alias": "moral_disputes", "sample_len": 2, "acc,none": 0.0, "acc_stderr,none": 0.0}, "mmlu_moral_scenarios": {"name": "mmlu_moral_scenarios", "alias": "moral_scenarios", "sample_len": 2, "acc,none": 0.0, "acc_stderr,none": 0.0}, "mmlu_philosophy": {"name": "mmlu_philosophy", "alias": "philosophy", "sample_len": 2, "acc,none": 0.5, "acc_stderr,none": 0.5}, "mmlu_prehistory": {"name": "mmlu_prehistory", "alias": "prehistory", "sample_len": 2, "acc,none": 0.5, "acc_stderr,none": 0.5}, "mmlu_professional_law": {"name": "mmlu_professional_law", "alias": "professional_law", "sample_len": 2, "acc,none": 0.5, "acc_stderr,none": 0.5}, "mmlu_world_religions": {"name": "mmlu_world_religions", "alias": "world_religions", "sample_len": 2, "acc,none": 0.0, "acc_stderr,none": 0.0}, "mmlu_stem": {"alias": "stem", "name": "mmlu_stem", "sample_len": 48, "acc,none": 0.5208333333333334, "acc_stderr,none": 0.06380345779073138, "sample_count": {"acc,none": 48}}, "mmlu_other": {"alias": "other", "name": "mmlu_other", "sample_len": 29, "acc,none": 0.5172413793103449, "acc_stderr,none": 0.09847982464479192, "sample_count": {"acc,none": 29}}, "mmlu_social_sciences": {"alias": "social sciences", "name": "mmlu_social_sciences", "sample_len": 25, "acc,none": 0.56, "acc_stderr,none": 0.07844645405527362, "sample_count": {"acc,none": 25}}, "mmlu_humanities": {"alias": "humanities", "name": "mmlu_humanities", "sample_len": 26, "acc,none": 0.34615384615384615, "acc_stderr,none": 0.10175966581017655, "sample_count": {"acc,none": 26}}, "mmlu": {"alias": "mmlu", "name": "mmlu", "sample_len": 128, "acc,none": 0.4921875, "acc_stderr,none": 0.04151969383950009, "sample_count": {"acc,none": 128}}}
+[2026-10-16 19:52:09 UTC] PIPELINE evaluate_mmlu_pro.py prepare
+Filter:   0%|          | 0/70 [00:00<?, ? examples/s]Filter: 100%|██████████| 70/70 [00:00<00:00, 11994.50 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 59247.56 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59323.73 examples/s]
+Filter:   0%|          | 0/70 [00:00<?, ? examples/s]Filter: 100%|██████████| 70/70 [00:00<00:00, 20560.31 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 60291.08 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60224.10 examples/s]
+Filter:   0%|          | 0/70 [00:00<?, ? examples/s]Filter: 100%|██████████| 70/70 [00:00<00:00, 20507.18 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60128.22 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59873.20 examples/s]
+Filter:   0%|          | 0/70 [00:00<?, ? examples/s]Filter: 100%|██████████| 70/70 [00:00<00:00, 20474.29 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61585.85 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60971.57 examples/s]
+Filter:   0%|          | 0/70 [00:00<?, ? examples/s]Filter: 100%|██████████| 70/70 [00:00<00:00, 20705.31 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60135.65 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59868.23 examples/s]
+Filter:   0%|          | 0/70 [00:00<?, ? examples/s]Filter: 100%|██████████| 70/70 [00:00<00:00, 21037.64 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61412.15 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60844.55 examples/s]
+Filter:   0%|          | 0/70 [00:00<?, ? examples/s]Filter: 100%|██████████| 70/70 [00:00<00:00, 21046.69 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 59703.94 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59853.68 examples/s]
+Filter:   0%|          | 0/70 [00:00<?, ? examples/s]Filter: 100%|██████████| 70/70 [00:00<00:00, 21066.32 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61562.46 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 61290.28 examples/s]
+Filter:   0%|          | 0/70 [00:00<?, ? examples/s]Filter: 100%|██████████| 70/70 [00:00<00:00, 21104.17 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 60723.40 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60842.42 examples/s]
+Filter:   0%|          | 0/70 [00:00<?, ? examples/s]Filter: 100%|██████████| 70/70 [00:00<00:00, 20998.52 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61212.40 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60951.62 examples/s]
+Filter:   0%|          | 0/70 [00:00<?, ? examples/s]Filter: 100%|██████████| 70/70 [00:00<00:00, 21110.24 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61160.51 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60955.08 examples/s]
+Filter:   0%|          | 0/70 [00:00<?, ? examples/s]Filter: 100%|██████████| 70/70 [00:00<00:00, 20949.07 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60434.70 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59364.62 examples/s]
+Filter:   0%|          | 0/70 [00:00<?, ? examples/s]Filter: 100%|██████████| 70/70 [00:00<00:00, 20943.10 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61424.40 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60722.28 examples/s]
+Filter:   0%|          | 0/70 [00:00<?, ? examples/s]Filter: 100%|██████████| 70/70 [00:00<00:00, 20913.26 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 60642.38 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60744.07 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 60323.53 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60540.32 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61234.51 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 61004.52 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 60082.20 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59946.32 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58301.73 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59217.02 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 59878.55 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59890.75 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61027.25 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60589.02 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60412.83 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60080.70 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60321.38 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60034.31 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60233.35 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59949.66 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61125.31 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60937.63 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60494.30 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60085.14 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60687.85 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60278.69 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60463.45 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60359.51 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61416.87 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 61105.72 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61406.19 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 61157.33 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60794.72 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60337.43 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60525.18 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60146.15 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61526.45 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 61196.56 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60600.60 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60266.17 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60245.46 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59883.43 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60285.94 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59901.20 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61193.08 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60888.08 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 59992.23 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59646.68 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60275.65 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58656.21 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60283.23 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60005.62 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60272.51 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60025.32 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61107.72 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60786.36 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60810.59 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60314.14 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60741.24 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60235.67 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60707.94 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59979.45 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61463.67 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60689.64 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61660.88 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 61213.78 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60555.43 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59959.14 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60160.02 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59623.85 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61605.18 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60847.19 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60447.54 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59820.19 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61520.13 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60913.29 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61425.64 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60820.57 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61166.98 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60385.66 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61073.46 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60314.14 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60713.21 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60137.26 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61177.58 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60398.45 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61077.24 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60333.10 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61120.63 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60386.96 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61190.07 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60397.29 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60819.74 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60155.68 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60901.09 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60235.81 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61632.45 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60951.91 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61649.44 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60976.73 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61392.37 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60662.36 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61492.73 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60949.78 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61563.81 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59483.30 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61507.05 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60860.47 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61369.47 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60747.58 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61583.13 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60852.91 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61520.92 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60799.39 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61049.13 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60805.69 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61179.81 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60880.29 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60894.90 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60729.30 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60970.15 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60716.73 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60933.50 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60220.22 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60797.37 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60178.28 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60597.10 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59908.46 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60635.54 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59831.04 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 59631.44 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 28165.12 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60727.72 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60495.54 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61361.84 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 61039.71 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61308.36 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60984.91 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60836.17 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60290.87 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60584.95 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60168.88 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61295.03 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60691.98 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61065.57 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60522.97 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60618.23 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60162.78 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60610.67 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60250.70 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61309.93 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60998.55 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60556.85 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60231.57 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60455.49 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60067.40 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60408.69 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60083.13 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 59927.08 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59726.81 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 60130.31 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60441.28 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 60246.05 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60091.86 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 60125.88 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59904.05 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61238.65 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60901.16 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 59432.37 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59052.51 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 58499.09 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58519.36 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 59034.56 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58659.00 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 55679.59 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 57110.70 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61633.13 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60933.07 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60270.02 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59744.69 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 59979.04 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59581.47 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61055.13 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60742.68 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60210.33 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59839.55 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60434.81 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59991.71 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60446.02 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60071.98 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61120.52 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60894.91 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61191.63 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60954.71 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61386.42 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 61129.77 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61171.22 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60878.31 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61223.34 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60999.73 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61349.16 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 61108.60 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61189.96 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60968.41 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61644.11 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60896.31 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61467.05 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60743.77 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60870.16 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60159.05 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61526.67 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60855.33 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61499.27 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60772.23 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61679.35 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60713.66 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61065.02 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60475.10 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61793.97 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60899.10 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 59426.72 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58858.91 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60682.14 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59602.94 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60605.20 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59350.03 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 59100.09 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58869.83 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 60325.52 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59767.83 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 59482.71 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59366.86 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61113.28 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60171.46 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61193.75 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60031.82 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61012.94 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59949.09 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61046.13 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59924.18 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 60225.04 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60295.19 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 61043.13 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60727.69 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 60452.09 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60458.29 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60820.95 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60658.42 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60927.19 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60630.95 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 57633.46 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58375.72 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 60448.10 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60749.77 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60647.59 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60363.56 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60687.85 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 60410.89 examples/s]
+[2026-10-16 19:53:02 UTC] Prepared unchanged MMLU-Pro: 128 questions; prompt range=[878, 2197]
+[2026-10-16 19:53:03 UTC] PIPELINE evaluate_mmlu_pro.py smoke
+[2026-10-16 19:53:15 UTC] Server B Tesla V100-SXM2-32GB; free=25.64/31.73 GiB
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<02:41,  2.46it/s]Loading weights:  34%|███▍      | 137/398 [00:00<00:00, 320.65it/s]Loading weights:  49%|████▊     | 194/398 [00:00<00:00, 345.11it/s]Loading weights:  61%|██████    | 243/398 [00:00<00:00, 320.01it/s]Loading weights:  71%|███████▏  | 284/398 [00:01<00:00, 288.43it/s]Loading weights:  80%|████████  | 319/398 [00:01<00:00, 300.03it/s]Loading weights:  89%|████████▉ | 354/398 [00:01<00:00, 305.59it/s]Loading weights:  97%|█████████▋| 388/398 [00:01<00:00, 299.54it/s]Loading weights: 100%|██████████| 398/398 [00:01<00:00, 285.82it/s]
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<01:41,  2.50it/s]Loading weights:  44%|████▎     | 111/254 [00:00<00:00, 287.53it/s]Loading weights:  68%|██████▊   | 173/254 [00:00<00:00, 293.20it/s]Loading weights:  87%|████████▋ | 221/254 [00:00<00:00, 273.95it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 251.71it/s]
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+[2026-10-16 19:53:42 UTC] Longest-prompt generation smoke passed; full evaluation retains 2048 tokens
+[2026-10-16 19:53:44 UTC] PIPELINE evaluate_mmlu_pro.py run
+[2026-10-16 19:53:56 UTC] Server B Tesla V100-SXM2-32GB; free=25.64/31.73 GiB
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<02:17,  2.90it/s]Loading weights:  32%|███▏      | 126/398 [00:00<00:00, 366.42it/s]Loading weights:  50%|█████     | 199/398 [00:00<00:00, 364.14it/s]Loading weights:  64%|██████▍   | 256/398 [00:00<00:00, 333.13it/s]Loading weights:  76%|███████▌  | 302/398 [00:01<00:00, 312.70it/s]Loading weights:  86%|████████▋ | 344/398 [00:01<00:00, 325.26it/s]Loading weights:  96%|█████████▌| 382/398 [00:01<00:00, 334.60it/s]Loading weights: 100%|██████████| 398/398 [00:01<00:00, 316.49it/s]
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<01:34,  2.68it/s]Loading weights:  41%|████      | 104/254 [00:00<00:00, 246.51it/s]Loading weights:  56%|█████▋    | 143/254 [00:00<00:00, 267.93it/s]Loading weights:  70%|███████   | 179/254 [00:00<00:00, 273.13it/s]Loading weights:  83%|████████▎ | 212/254 [00:00<00:00, 237.66it/s]Loading weights:  94%|█████████▍| 240/254 [00:01<00:00, 242.19it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 222.83it/s]
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+Filter:   0%|          | 0/70 [00:00<?, ? examples/s]Filter: 100%|██████████| 70/70 [00:00<00:00, 15317.26 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 57766.15 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58953.71 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58525.94 examples/s]
+Filter:   0%|          | 0/70 [00:00<?, ? examples/s]Filter: 100%|██████████| 70/70 [00:00<00:00, 20345.18 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58504.90 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59188.66 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58834.62 examples/s]
+Filter:   0%|          | 0/70 [00:00<?, ? examples/s]Filter: 100%|██████████| 70/70 [00:00<00:00, 20655.78 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58543.69 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59233.96 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58882.67 examples/s]
+Filter:   0%|          | 0/70 [00:00<?, ? examples/s]Filter: 100%|██████████| 70/70 [00:00<00:00, 20398.89 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58758.57 examples/s]Filter: 100%|█████████▉| 12000/12032 [00:00<00:00, 58996.14 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58629.90 examples/s]
+Filter:   0%|          | 0/70 [00:00<?, ? examples/s]Filter: 100%|██████████| 70/70 [00:00<00:00, 20530.12 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 59124.11 examples/s]Filter: 100%|█████████▉| 12000/12032 [00:00<00:00, 59234.13 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58904.25 examples/s]
+Filter:   0%|          | 0/70 [00:00<?, ? examples/s]Filter: 100%|██████████| 70/70 [00:00<00:00, 20602.15 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58176.52 examples/s]Filter: 100%|█████████▉| 12000/12032 [00:00<00:00, 58449.06 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58047.71 examples/s]
+Filter:   0%|          | 0/70 [00:00<?, ? examples/s]Filter: 100%|██████████| 70/70 [00:00<00:00, 20747.74 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58938.70 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59459.38 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59134.30 examples/s]
+Filter:   0%|          | 0/70 [00:00<?, ? examples/s]Filter: 100%|██████████| 70/70 [00:00<00:00, 20765.35 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 57975.22 examples/s]Filter: 100%|█████████▉| 12000/12032 [00:00<00:00, 58418.94 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58041.30 examples/s]
+Filter:   0%|          | 0/70 [00:00<?, ? examples/s]Filter: 100%|██████████| 70/70 [00:00<00:00, 20530.12 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58558.81 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59309.41 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58936.93 examples/s]
+Filter:   0%|          | 0/70 [00:00<?, ? examples/s]Filter: 100%|██████████| 70/70 [00:00<00:00, 20471.43 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58979.45 examples/s]Filter: 100%|█████████▉| 12000/12032 [00:00<00:00, 59177.45 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58836.47 examples/s]
+Filter:   0%|          | 0/70 [00:00<?, ? examples/s]Filter: 100%|██████████| 70/70 [00:00<00:00, 20743.34 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58166.17 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58968.95 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58606.62 examples/s]
+Filter:   0%|          | 0/70 [00:00<?, ? examples/s]Filter: 100%|██████████| 70/70 [00:00<00:00, 20755.07 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 59022.06 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58436.18 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58280.80 examples/s]
+Filter:   0%|          | 0/70 [00:00<?, ? examples/s]Filter: 100%|██████████| 70/70 [00:00<00:00, 20824.26 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58852.56 examples/s]Filter: 100%|█████████▉| 12000/12032 [00:00<00:00, 59094.24 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58744.36 examples/s]
+Filter:   0%|          | 0/70 [00:00<?, ? examples/s]Filter: 100%|██████████| 70/70 [00:00<00:00, 20861.25 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58205.99 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59125.12 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58740.73 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 57601.27 examples/s]Filter: 100%|█████████▉| 12000/12032 [00:00<00:00, 58365.10 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 57946.00 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58616.23 examples/s]Filter: 100%|█████████▉| 12000/12032 [00:00<00:00, 58307.94 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58039.43 examples/s]
+  0%|          | 0/10 [00:00<?, ?it/s]100%|██████████| 10/10 [00:00<00:00, 1651.11it/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58623.88 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59283.35 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58934.04 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58766.80 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59364.85 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59029.44 examples/s]
+  0%|          | 0/10 [00:00<?, ?it/s]100%|██████████| 10/10 [00:00<00:00, 2221.09it/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58449.05 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59270.19 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58898.27 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58660.77 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59275.08 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58935.90 examples/s]
+  0%|          | 0/9 [00:00<?, ?it/s]100%|██████████| 9/9 [00:00<00:00, 2193.67it/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 59117.03 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59327.50 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59049.41 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 59036.87 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59197.90 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58929.22 examples/s]
+  0%|          | 0/9 [00:00<?, ?it/s]100%|██████████| 9/9 [00:00<00:00, 2186.68it/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58917.59 examples/s]Filter: 100%|█████████▉| 12000/12032 [00:00<00:00, 59312.94 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58936.45 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 59229.17 examples/s]Filter: 100%|█████████▉| 12000/12032 [00:00<00:00, 59453.30 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59105.22 examples/s]
+  0%|          | 0/9 [00:00<?, ?it/s]100%|██████████| 9/9 [00:00<00:00, 2173.84it/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 59029.12 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59291.29 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59001.56 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 59021.92 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59177.69 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58897.04 examples/s]
+  0%|          | 0/9 [00:00<?, ?it/s]100%|██████████| 9/9 [00:00<00:00, 2169.22it/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58717.30 examples/s]Filter: 100%|█████████▉| 12000/12032 [00:00<00:00, 59310.40 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58903.63 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58843.20 examples/s]Filter: 100%|█████████▉| 12000/12032 [00:00<00:00, 59390.91 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58977.50 examples/s]
+  0%|          | 0/9 [00:00<?, ?it/s]100%|██████████| 9/9 [00:00<00:00, 2208.17it/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58602.72 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58007.56 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 57784.17 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 57974.28 examples/s]Filter: 100%|█████████▉| 12000/12032 [00:00<00:00, 58895.69 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58453.20 examples/s]
+  0%|          | 0/9 [00:00<?, ?it/s]100%|██████████| 9/9 [00:00<00:00, 2077.65it/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58485.73 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59319.01 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58946.29 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58735.66 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59436.22 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59078.78 examples/s]
+  0%|          | 0/9 [00:00<?, ?it/s]100%|██████████| 9/9 [00:00<00:00, 2167.97it/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 59037.42 examples/s]Filter: 100%|█████████▉| 12000/12032 [00:00<00:00, 59081.61 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58761.25 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 59014.44 examples/s]Filter: 100%|█████████▉| 12000/12032 [00:00<00:00, 59301.32 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58946.15 examples/s]
+  0%|          | 0/9 [00:00<?, ?it/s]100%|██████████| 9/9 [00:00<00:00, 2196.74it/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58800.03 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59567.00 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59205.21 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58604.90 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59388.33 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59023.44 examples/s]
+  0%|          | 0/9 [00:00<?, ?it/s]100%|██████████| 9/9 [00:00<00:00, 2223.92it/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 59119.53 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59192.86 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58924.61 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 59179.87 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59348.21 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59070.69 examples/s]
+  0%|          | 0/9 [00:00<?, ?it/s]100%|██████████| 9/9 [00:00<00:00, 2045.00it/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 59101.06 examples/s]Filter: 100%|█████████▉| 12000/12032 [00:00<00:00, 59233.30 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58898.82 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 59252.74 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58622.17 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58442.03 examples/s]
+  0%|          | 0/9 [00:00<?, ?it/s]100%|██████████| 9/9 [00:00<00:00, 2173.34it/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58631.25 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59365.59 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59002.32 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58656.54 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59468.37 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59097.53 examples/s]
+  0%|          | 0/9 [00:00<?, ?it/s]100%|██████████| 9/9 [00:00<00:00, 2174.09it/s]
+[2026-10-16 19:54:40 UTC] START MMLU-Pro [1/128] mmlu_pro_biology doc=0 max_gen_toks=2048
+[2026-10-16 19:54:55 UTC] MMLU-Pro [1/128] mmlu_pro_biology doc=0 chars=1165 elapsed=14.9s
+[2026-10-16 19:54:55 UTC] START MMLU-Pro [2/128] mmlu_pro_biology doc=1 max_gen_toks=2048
+[2026-10-16 19:55:03 UTC] MMLU-Pro [2/128] mmlu_pro_biology doc=1 chars=612 elapsed=8.4s
+[2026-10-16 19:55:03 UTC] START MMLU-Pro [3/128] mmlu_pro_biology doc=2 max_gen_toks=2048
+[2026-10-16 19:56:48 UTC] MMLU-Pro [3/128] mmlu_pro_biology doc=2 chars=10116 elapsed=104.8s
+[2026-10-16 19:56:48 UTC] START MMLU-Pro [4/128] mmlu_pro_biology doc=3 max_gen_toks=2048
+[2026-10-16 19:56:54 UTC] MMLU-Pro [4/128] mmlu_pro_biology doc=3 chars=348 elapsed=6.1s
+[2026-10-16 19:56:54 UTC] START MMLU-Pro [5/128] mmlu_pro_biology doc=4 max_gen_toks=2048
+[2026-10-16 19:58:38 UTC] MMLU-Pro [5/128] mmlu_pro_biology doc=4 chars=9440 elapsed=104.4s
+[2026-10-16 19:58:38 UTC] START MMLU-Pro [6/128] mmlu_pro_biology doc=5 max_gen_toks=2048
+[2026-10-16 20:00:23 UTC] MMLU-Pro [6/128] mmlu_pro_biology doc=5 chars=10318 elapsed=104.5s
+[2026-10-16 20:00:23 UTC] START MMLU-Pro [7/128] mmlu_pro_biology doc=6 max_gen_toks=2048
+[2026-10-16 20:00:33 UTC] MMLU-Pro [7/128] mmlu_pro_biology doc=6 chars=732 elapsed=9.8s
+[2026-10-16 20:00:33 UTC] START MMLU-Pro [8/128] mmlu_pro_biology doc=7 max_gen_toks=2048
+[2026-10-16 20:00:41 UTC] MMLU-Pro [8/128] mmlu_pro_biology doc=7 chars=576 elapsed=8.1s
+[2026-10-16 20:00:41 UTC] START MMLU-Pro [9/128] mmlu_pro_biology doc=8 max_gen_toks=2048
+[2026-10-16 20:02:25 UTC] MMLU-Pro [9/128] mmlu_pro_biology doc=8 chars=10402 elapsed=104.5s
+[2026-10-16 20:02:25 UTC] START MMLU-Pro [10/128] mmlu_pro_biology doc=9 max_gen_toks=2048
+[2026-10-16 20:02:35 UTC] MMLU-Pro [10/128] mmlu_pro_biology doc=9 chars=702 elapsed=9.4s
+[2026-10-16 20:02:35 UTC] START MMLU-Pro [11/128] mmlu_pro_business doc=0 max_gen_toks=2048
+[2026-10-16 20:04:19 UTC] MMLU-Pro [11/128] mmlu_pro_business doc=0 chars=9628 elapsed=104.1s
+[2026-10-16 20:04:19 UTC] START MMLU-Pro [12/128] mmlu_pro_business doc=1 max_gen_toks=2048
+[2026-10-16 20:06:03 UTC] MMLU-Pro [12/128] mmlu_pro_business doc=1 chars=10497 elapsed=104.3s
+[2026-10-16 20:06:03 UTC] START MMLU-Pro [13/128] mmlu_pro_business doc=2 max_gen_toks=2048
+[2026-10-16 20:07:47 UTC] MMLU-Pro [13/128] mmlu_pro_business doc=2 chars=9538 elapsed=104.0s
+[2026-10-16 20:07:47 UTC] START MMLU-Pro [14/128] mmlu_pro_business doc=3 max_gen_toks=2048
+[2026-10-16 20:07:55 UTC] MMLU-Pro [14/128] mmlu_pro_business doc=3 chars=611 elapsed=7.5s
+[2026-10-16 20:07:55 UTC] START MMLU-Pro [15/128] mmlu_pro_business doc=4 max_gen_toks=2048
+[2026-10-16 20:08:00 UTC] MMLU-Pro [15/128] mmlu_pro_business doc=4 chars=332 elapsed=5.2s
+[2026-10-16 20:08:00 UTC] START MMLU-Pro [16/128] mmlu_pro_business doc=5 max_gen_toks=2048
+[2026-10-16 20:09:43 UTC] MMLU-Pro [16/128] mmlu_pro_business doc=5 chars=11709 elapsed=103.4s
+[2026-10-16 20:09:43 UTC] START MMLU-Pro [17/128] mmlu_pro_business doc=6 max_gen_toks=2048
+[2026-10-16 20:09:48 UTC] MMLU-Pro [17/128] mmlu_pro_business doc=6 chars=268 elapsed=4.3s
+[2026-10-16 20:09:48 UTC] START MMLU-Pro [18/128] mmlu_pro_business doc=7 max_gen_toks=2048
+[2026-10-16 20:11:31 UTC] MMLU-Pro [18/128] mmlu_pro_business doc=7 chars=9928 elapsed=103.6s
+[2026-10-16 20:11:31 UTC] START MMLU-Pro [19/128] mmlu_pro_business doc=8 max_gen_toks=2048
+[2026-10-16 20:11:37 UTC] MMLU-Pro [19/128] mmlu_pro_business doc=8 chars=465 elapsed=5.8s
+[2026-10-16 20:11:37 UTC] START MMLU-Pro [20/128] mmlu_pro_business doc=9 max_gen_toks=2048
+[2026-10-16 20:13:20 UTC] MMLU-Pro [20/128] mmlu_pro_business doc=9 chars=8543 elapsed=103.1s
+[2026-10-16 20:13:20 UTC] START MMLU-Pro [21/128] mmlu_pro_chemistry doc=0 max_gen_toks=2048
+[2026-10-16 20:15:04 UTC] MMLU-Pro [21/128] mmlu_pro_chemistry doc=0 chars=9752 elapsed=103.9s
+[2026-10-16 20:15:04 UTC] START MMLU-Pro [22/128] mmlu_pro_chemistry doc=1 max_gen_toks=2048
+[2026-10-16 20:15:11 UTC] MMLU-Pro [22/128] mmlu_pro_chemistry doc=1 chars=366 elapsed=6.6s
+[2026-10-16 20:15:11 UTC] START MMLU-Pro [23/128] mmlu_pro_chemistry doc=2 max_gen_toks=2048
+[2026-10-16 20:16:54 UTC] MMLU-Pro [23/128] mmlu_pro_chemistry doc=2 chars=4730 elapsed=104.0s
+[2026-10-16 20:16:54 UTC] START MMLU-Pro [24/128] mmlu_pro_chemistry doc=3 max_gen_toks=2048
+[2026-10-16 20:18:39 UTC] MMLU-Pro [24/128] mmlu_pro_chemistry doc=3 chars=9303 elapsed=104.1s
+[2026-10-16 20:18:39 UTC] START MMLU-Pro [25/128] mmlu_pro_chemistry doc=4 max_gen_toks=2048
+[2026-10-16 20:18:47 UTC] MMLU-Pro [25/128] mmlu_pro_chemistry doc=4 chars=578 elapsed=8.7s
+[2026-10-16 20:18:47 UTC] START MMLU-Pro [26/128] mmlu_pro_chemistry doc=5 max_gen_toks=2048
+[2026-10-16 20:18:52 UTC] MMLU-Pro [26/128] mmlu_pro_chemistry doc=5 chars=244 elapsed=5.0s
+[2026-10-16 20:18:52 UTC] START MMLU-Pro [27/128] mmlu_pro_chemistry doc=6 max_gen_toks=2048
+[2026-10-16 20:20:36 UTC] MMLU-Pro [27/128] mmlu_pro_chemistry doc=6 chars=10664 elapsed=104.1s
+[2026-10-16 20:20:36 UTC] START MMLU-Pro [28/128] mmlu_pro_chemistry doc=7 max_gen_toks=2048
+[2026-10-16 20:22:20 UTC] MMLU-Pro [28/128] mmlu_pro_chemistry doc=7 chars=9858 elapsed=104.0s
+[2026-10-16 20:22:20 UTC] START MMLU-Pro [29/128] mmlu_pro_chemistry doc=8 max_gen_toks=2048
+[2026-10-16 20:22:27 UTC] MMLU-Pro [29/128] mmlu_pro_chemistry doc=8 chars=393 elapsed=7.1s
+[2026-10-16 20:22:27 UTC] START MMLU-Pro [30/128] mmlu_pro_computer_science doc=0 max_gen_toks=2048
+[2026-10-16 20:24:11 UTC] MMLU-Pro [30/128] mmlu_pro_computer_science doc=0 chars=10064 elapsed=104.0s
+[2026-10-16 20:24:11 UTC] START MMLU-Pro [31/128] mmlu_pro_computer_science doc=1 max_gen_toks=2048
+[2026-10-16 20:25:56 UTC] MMLU-Pro [31/128] mmlu_pro_computer_science doc=1 chars=9449 elapsed=104.1s
+[2026-10-16 20:25:56 UTC] START MMLU-Pro [32/128] mmlu_pro_computer_science doc=2 max_gen_toks=2048
+[2026-10-16 20:27:40 UTC] MMLU-Pro [32/128] mmlu_pro_computer_science doc=2 chars=10481 elapsed=104.1s
+[2026-10-16 20:27:40 UTC] START MMLU-Pro [33/128] mmlu_pro_computer_science doc=3 max_gen_toks=2048
+[2026-10-16 20:27:49 UTC] MMLU-Pro [33/128] mmlu_pro_computer_science doc=3 chars=620 elapsed=9.2s
+[2026-10-16 20:27:49 UTC] START MMLU-Pro [34/128] mmlu_pro_computer_science doc=4 max_gen_toks=2048
+[2026-10-16 20:27:58 UTC] MMLU-Pro [34/128] mmlu_pro_computer_science doc=4 chars=629 elapsed=8.9s
+[2026-10-16 20:27:58 UTC] START MMLU-Pro [35/128] mmlu_pro_computer_science doc=5 max_gen_toks=2048
+[2026-10-16 20:28:04 UTC] MMLU-Pro [35/128] mmlu_pro_computer_science doc=5 chars=342 elapsed=6.7s
+[2026-10-16 20:28:04 UTC] START MMLU-Pro [36/128] mmlu_pro_computer_science doc=6 max_gen_toks=2048
+[2026-10-16 20:29:49 UTC] MMLU-Pro [36/128] mmlu_pro_computer_science doc=6 chars=8202 elapsed=104.4s
+[2026-10-16 20:29:49 UTC] START MMLU-Pro [37/128] mmlu_pro_computer_science doc=7 max_gen_toks=2048
+[2026-10-16 20:29:56 UTC] MMLU-Pro [37/128] mmlu_pro_computer_science doc=7 chars=345 elapsed=7.5s
+[2026-10-16 20:29:56 UTC] START MMLU-Pro [38/128] mmlu_pro_computer_science doc=8 max_gen_toks=2048
+[2026-10-16 20:30:04 UTC] MMLU-Pro [38/128] mmlu_pro_computer_science doc=8 chars=504 elapsed=7.4s
+[2026-10-16 20:30:04 UTC] START MMLU-Pro [39/128] mmlu_pro_economics doc=0 max_gen_toks=2048
+[2026-10-16 20:31:48 UTC] MMLU-Pro [39/128] mmlu_pro_economics doc=0 chars=8263 elapsed=103.8s
+[2026-10-16 20:31:48 UTC] START MMLU-Pro [40/128] mmlu_pro_economics doc=1 max_gen_toks=2048
+[2026-10-16 20:33:32 UTC] MMLU-Pro [40/128] mmlu_pro_economics doc=1 chars=10017 elapsed=104.3s
+[2026-10-16 20:33:32 UTC] START MMLU-Pro [41/128] mmlu_pro_economics doc=2 max_gen_toks=2048
+[2026-10-16 20:33:37 UTC] MMLU-Pro [41/128] mmlu_pro_economics doc=2 chars=342 elapsed=5.1s
+[2026-10-16 20:33:37 UTC] START MMLU-Pro [42/128] mmlu_pro_economics doc=3 max_gen_toks=2048
+[2026-10-16 20:35:21 UTC] MMLU-Pro [42/128] mmlu_pro_economics doc=3 chars=9979 elapsed=104.3s
+[2026-10-16 20:35:21 UTC] START MMLU-Pro [43/128] mmlu_pro_economics doc=4 max_gen_toks=2048
+[2026-10-16 20:37:05 UTC] MMLU-Pro [43/128] mmlu_pro_economics doc=4 chars=10548 elapsed=103.8s
+[2026-10-16 20:37:05 UTC] START MMLU-Pro [44/128] mmlu_pro_economics doc=5 max_gen_toks=2048
+[2026-10-16 20:37:10 UTC] MMLU-Pro [44/128] mmlu_pro_economics doc=5 chars=286 elapsed=4.9s
+[2026-10-16 20:37:10 UTC] START MMLU-Pro [45/128] mmlu_pro_economics doc=6 max_gen_toks=2048
+[2026-10-16 20:38:53 UTC] MMLU-Pro [45/128] mmlu_pro_economics doc=6 chars=9216 elapsed=102.9s
+[2026-10-16 20:38:53 UTC] START MMLU-Pro [46/128] mmlu_pro_economics doc=7 max_gen_toks=2048
+[2026-10-16 20:40:37 UTC] MMLU-Pro [46/128] mmlu_pro_economics doc=7 chars=4727 elapsed=103.8s
+[2026-10-16 20:40:37 UTC] START MMLU-Pro [47/128] mmlu_pro_economics doc=8 max_gen_toks=2048
+[2026-10-16 20:42:21 UTC] MMLU-Pro [47/128] mmlu_pro_economics doc=8 chars=10944 elapsed=104.1s
+[2026-10-16 20:42:21 UTC] START MMLU-Pro [48/128] mmlu_pro_engineering doc=0 max_gen_toks=2048
+[2026-10-16 20:42:28 UTC] MMLU-Pro [48/128] mmlu_pro_engineering doc=0 chars=417 elapsed=7.0s
+[2026-10-16 20:42:28 UTC] START MMLU-Pro [49/128] mmlu_pro_engineering doc=1 max_gen_toks=2048
+[2026-10-16 20:42:34 UTC] MMLU-Pro [49/128] mmlu_pro_engineering doc=1 chars=380 elapsed=6.1s
+[2026-10-16 20:42:34 UTC] START MMLU-Pro [50/128] mmlu_pro_engineering doc=2 max_gen_toks=2048
+[2026-10-16 20:44:19 UTC] MMLU-Pro [50/128] mmlu_pro_engineering doc=2 chars=10344 elapsed=104.7s
+[2026-10-16 20:44:19 UTC] START MMLU-Pro [51/128] mmlu_pro_engineering doc=3 max_gen_toks=2048
+[2026-10-16 20:44:26 UTC] MMLU-Pro [51/128] mmlu_pro_engineering doc=3 chars=507 elapsed=7.4s
+[2026-10-16 20:44:26 UTC] START MMLU-Pro [52/128] mmlu_pro_engineering doc=4 max_gen_toks=2048
+[2026-10-16 20:46:10 UTC] MMLU-Pro [52/128] mmlu_pro_engineering doc=4 chars=9588 elapsed=104.0s
+[2026-10-16 20:46:10 UTC] START MMLU-Pro [53/128] mmlu_pro_engineering doc=5 max_gen_toks=2048
+[2026-10-16 20:47:55 UTC] MMLU-Pro [53/128] mmlu_pro_engineering doc=5 chars=11044 elapsed=105.1s
+[2026-10-16 20:47:55 UTC] START MMLU-Pro [54/128] mmlu_pro_engineering doc=6 max_gen_toks=2048
+[2026-10-16 20:49:40 UTC] MMLU-Pro [54/128] mmlu_pro_engineering doc=6 chars=7107 elapsed=104.6s
+[2026-10-16 20:49:40 UTC] START MMLU-Pro [55/128] mmlu_pro_engineering doc=7 max_gen_toks=2048
+[2026-10-16 20:51:25 UTC] MMLU-Pro [55/128] mmlu_pro_engineering doc=7 chars=9689 elapsed=105.0s
+[2026-10-16 20:51:25 UTC] START MMLU-Pro [56/128] mmlu_pro_engineering doc=8 max_gen_toks=2048
+[2026-10-16 20:51:36 UTC] MMLU-Pro [56/128] mmlu_pro_engineering doc=8 chars=790 elapsed=11.5s
+[2026-10-16 20:51:36 UTC] START MMLU-Pro [57/128] mmlu_pro_health doc=0 max_gen_toks=2048
+[2026-10-16 20:53:21 UTC] MMLU-Pro [57/128] mmlu_pro_health doc=0 chars=8350 elapsed=104.4s
+[2026-10-16 20:53:21 UTC] START MMLU-Pro [58/128] mmlu_pro_health doc=1 max_gen_toks=2048
+[2026-10-16 20:53:28 UTC] MMLU-Pro [58/128] mmlu_pro_health doc=1 chars=482 elapsed=6.9s
+[2026-10-16 20:53:28 UTC] START MMLU-Pro [59/128] mmlu_pro_health doc=2 max_gen_toks=2048
+[2026-10-16 20:53:34 UTC] MMLU-Pro [59/128] mmlu_pro_health doc=2 chars=441 elapsed=6.0s
+[2026-10-16 20:53:34 UTC] START MMLU-Pro [60/128] mmlu_pro_health doc=3 max_gen_toks=2048
+[2026-10-16 20:55:18 UTC] MMLU-Pro [60/128] mmlu_pro_health doc=3 chars=9981 elapsed=104.6s
+[2026-10-16 20:55:18 UTC] START MMLU-Pro [61/128] mmlu_pro_health doc=4 max_gen_toks=2048
+[2026-10-16 20:55:24 UTC] MMLU-Pro [61/128] mmlu_pro_health doc=4 chars=398 elapsed=5.8s
+[2026-10-16 20:55:24 UTC] START MMLU-Pro [62/128] mmlu_pro_health doc=5 max_gen_toks=2048
+[2026-10-16 20:57:08 UTC] MMLU-Pro [62/128] mmlu_pro_health doc=5 chars=10585 elapsed=104.3s
+[2026-10-16 20:57:08 UTC] START MMLU-Pro [63/128] mmlu_pro_health doc=6 max_gen_toks=2048
+[2026-10-16 20:57:17 UTC] MMLU-Pro [63/128] mmlu_pro_health doc=6 chars=681 elapsed=8.8s
+[2026-10-16 20:57:17 UTC] START MMLU-Pro [64/128] mmlu_pro_health doc=7 max_gen_toks=2048
+[2026-10-16 20:59:02 UTC] MMLU-Pro [64/128] mmlu_pro_health doc=7 chars=8015 elapsed=104.7s
+[2026-10-16 20:59:02 UTC] START MMLU-Pro [65/128] mmlu_pro_health doc=8 max_gen_toks=2048
+[2026-10-16 20:59:07 UTC] MMLU-Pro [65/128] mmlu_pro_health doc=8 chars=359 elapsed=5.5s
+[2026-10-16 20:59:07 UTC] START MMLU-Pro [66/128] mmlu_pro_history doc=0 max_gen_toks=2048
+[2026-10-16 20:59:16 UTC] MMLU-Pro [66/128] mmlu_pro_history doc=0 chars=618 elapsed=8.9s
+[2026-10-16 20:59:16 UTC] START MMLU-Pro [67/128] mmlu_pro_history doc=1 max_gen_toks=2048
+[2026-10-16 20:59:25 UTC] MMLU-Pro [67/128] mmlu_pro_history doc=1 chars=560 elapsed=8.4s
+[2026-10-16 20:59:25 UTC] START MMLU-Pro [68/128] mmlu_pro_history doc=2 max_gen_toks=2048
+[2026-10-16 21:01:11 UTC] MMLU-Pro [68/128] mmlu_pro_history doc=2 chars=9854 elapsed=106.3s
+[2026-10-16 21:01:11 UTC] START MMLU-Pro [69/128] mmlu_pro_history doc=3 max_gen_toks=2048
+[2026-10-16 21:01:18 UTC] MMLU-Pro [69/128] mmlu_pro_history doc=3 chars=428 elapsed=7.5s
+[2026-10-16 21:01:18 UTC] START MMLU-Pro [70/128] mmlu_pro_history doc=4 max_gen_toks=2048
+[2026-10-16 21:01:31 UTC] MMLU-Pro [70/128] mmlu_pro_history doc=4 chars=830 elapsed=12.8s
+[2026-10-16 21:01:31 UTC] START MMLU-Pro [71/128] mmlu_pro_history doc=5 max_gen_toks=2048
+[2026-10-16 21:03:17 UTC] MMLU-Pro [71/128] mmlu_pro_history doc=5 chars=10110 elapsed=106.0s
+[2026-10-16 21:03:17 UTC] START MMLU-Pro [72/128] mmlu_pro_history doc=6 max_gen_toks=2048
+[2026-10-16 21:05:03 UTC] MMLU-Pro [72/128] mmlu_pro_history doc=6 chars=9195 elapsed=106.2s
+[2026-10-16 21:05:03 UTC] START MMLU-Pro [73/128] mmlu_pro_history doc=7 max_gen_toks=2048
+[2026-10-16 21:06:49 UTC] MMLU-Pro [73/128] mmlu_pro_history doc=7 chars=10110 elapsed=105.2s
+[2026-10-16 21:06:49 UTC] START MMLU-Pro [74/128] mmlu_pro_history doc=8 max_gen_toks=2048
+[2026-10-16 21:08:49 UTC] MMLU-Pro [74/128] mmlu_pro_history doc=8 chars=7065 elapsed=120.5s
+[2026-10-16 21:08:49 UTC] START MMLU-Pro [75/128] mmlu_pro_law doc=0 max_gen_toks=2048
+[2026-10-16 21:09:00 UTC] MMLU-Pro [75/128] mmlu_pro_law doc=0 chars=560 elapsed=11.0s
+[2026-10-16 21:09:00 UTC] START MMLU-Pro [76/128] mmlu_pro_law doc=1 max_gen_toks=2048
+[2026-10-16 21:11:18 UTC] MMLU-Pro [76/128] mmlu_pro_law doc=1 chars=8797 elapsed=137.6s
+[2026-10-16 21:11:18 UTC] START MMLU-Pro [77/128] mmlu_pro_law doc=2 max_gen_toks=2048
+[2026-10-16 21:11:31 UTC] MMLU-Pro [77/128] mmlu_pro_law doc=2 chars=730 elapsed=13.1s
+[2026-10-16 21:11:31 UTC] START MMLU-Pro [78/128] mmlu_pro_law doc=3 max_gen_toks=2048
+[2026-10-16 21:11:41 UTC] MMLU-Pro [78/128] mmlu_pro_law doc=3 chars=614 elapsed=10.4s
+[2026-10-16 21:11:41 UTC] START MMLU-Pro [79/128] mmlu_pro_law doc=4 max_gen_toks=2048
+[2026-10-16 21:13:59 UTC] MMLU-Pro [79/128] mmlu_pro_law doc=4 chars=8803 elapsed=137.7s
+[2026-10-16 21:13:59 UTC] START MMLU-Pro [80/128] mmlu_pro_law doc=5 max_gen_toks=2048
+[2026-10-16 21:14:09 UTC] MMLU-Pro [80/128] mmlu_pro_law doc=5 chars=596 elapsed=9.8s
+[2026-10-16 21:14:09 UTC] START MMLU-Pro [81/128] mmlu_pro_law doc=6 max_gen_toks=2048
+[2026-10-16 21:14:17 UTC] MMLU-Pro [81/128] mmlu_pro_law doc=6 chars=360 elapsed=8.3s
+[2026-10-16 21:14:17 UTC] START MMLU-Pro [82/128] mmlu_pro_law doc=7 max_gen_toks=2048
+[2026-10-16 21:16:35 UTC] MMLU-Pro [82/128] mmlu_pro_law doc=7 chars=9517 elapsed=137.8s
+[2026-10-16 21:16:35 UTC] START MMLU-Pro [83/128] mmlu_pro_law doc=8 max_gen_toks=2048
+[2026-10-16 21:18:53 UTC] MMLU-Pro [83/128] mmlu_pro_law doc=8 chars=10104 elapsed=137.7s
+[2026-10-16 21:18:53 UTC] START MMLU-Pro [84/128] mmlu_pro_math doc=0 max_gen_toks=2048
+[2026-10-16 21:19:01 UTC] MMLU-Pro [84/128] mmlu_pro_math doc=0 chars=386 elapsed=8.7s
+[2026-10-16 21:19:01 UTC] START MMLU-Pro [85/128] mmlu_pro_math doc=1 max_gen_toks=2048
+[2026-10-16 21:20:59 UTC] MMLU-Pro [85/128] mmlu_pro_math doc=1 chars=10509 elapsed=117.5s
+[2026-10-16 21:20:59 UTC] START MMLU-Pro [86/128] mmlu_pro_math doc=2 max_gen_toks=2048
+[2026-10-16 21:22:44 UTC] MMLU-Pro [86/128] mmlu_pro_math doc=2 chars=10248 elapsed=105.6s
+[2026-10-16 21:22:44 UTC] START MMLU-Pro [87/128] mmlu_pro_math doc=3 max_gen_toks=2048
+[2026-10-16 21:24:31 UTC] MMLU-Pro [87/128] mmlu_pro_math doc=3 chars=10767 elapsed=106.2s
+[2026-10-16 21:24:31 UTC] START MMLU-Pro [88/128] mmlu_pro_math doc=4 max_gen_toks=2048
+[2026-10-16 21:26:17 UTC] MMLU-Pro [88/128] mmlu_pro_math doc=4 chars=9067 elapsed=106.1s
+[2026-10-16 21:26:17 UTC] START MMLU-Pro [89/128] mmlu_pro_math doc=5 max_gen_toks=2048
+[2026-10-16 21:26:22 UTC] MMLU-Pro [89/128] mmlu_pro_math doc=5 chars=274 elapsed=5.6s
+[2026-10-16 21:26:22 UTC] START MMLU-Pro [90/128] mmlu_pro_math doc=6 max_gen_toks=2048
+[2026-10-16 21:28:09 UTC] MMLU-Pro [90/128] mmlu_pro_math doc=6 chars=10407 elapsed=106.2s
+[2026-10-16 21:28:09 UTC] START MMLU-Pro [91/128] mmlu_pro_math doc=7 max_gen_toks=2048
+[2026-10-16 21:28:17 UTC] MMLU-Pro [91/128] mmlu_pro_math doc=7 chars=592 elapsed=8.6s
+[2026-10-16 21:28:17 UTC] START MMLU-Pro [92/128] mmlu_pro_math doc=8 max_gen_toks=2048
+[2026-10-16 21:30:04 UTC] MMLU-Pro [92/128] mmlu_pro_math doc=8 chars=8450 elapsed=106.3s
+[2026-10-16 21:30:04 UTC] START MMLU-Pro [93/128] mmlu_pro_other doc=0 max_gen_toks=2048
+[2026-10-16 21:31:48 UTC] MMLU-Pro [93/128] mmlu_pro_other doc=0 chars=9382 elapsed=104.9s
+[2026-10-16 21:31:48 UTC] START MMLU-Pro [94/128] mmlu_pro_other doc=1 max_gen_toks=2048
+[2026-10-16 21:31:56 UTC] MMLU-Pro [94/128] mmlu_pro_other doc=1 chars=675 elapsed=7.9s
+[2026-10-16 21:31:56 UTC] START MMLU-Pro [95/128] mmlu_pro_other doc=2 max_gen_toks=2048
+[2026-10-16 21:32:02 UTC] MMLU-Pro [95/128] mmlu_pro_other doc=2 chars=415 elapsed=5.7s
+[2026-10-16 21:32:02 UTC] START MMLU-Pro [96/128] mmlu_pro_other doc=3 max_gen_toks=2048
+[2026-10-16 21:32:08 UTC] MMLU-Pro [96/128] mmlu_pro_other doc=3 chars=455 elapsed=5.7s
+[2026-10-16 21:32:08 UTC] START MMLU-Pro [97/128] mmlu_pro_other doc=4 max_gen_toks=2048
+[2026-10-16 21:33:52 UTC] MMLU-Pro [97/128] mmlu_pro_other doc=4 chars=8920 elapsed=104.6s
+[2026-10-16 21:33:52 UTC] START MMLU-Pro [98/128] mmlu_pro_other doc=5 max_gen_toks=2048
+[2026-10-16 21:35:37 UTC] MMLU-Pro [98/128] mmlu_pro_other doc=5 chars=11055 elapsed=104.3s
+[2026-10-16 21:35:37 UTC] START MMLU-Pro [99/128] mmlu_pro_other doc=6 max_gen_toks=2048
+[2026-10-16 21:37:21 UTC] MMLU-Pro [99/128] mmlu_pro_other doc=6 chars=11699 elapsed=104.3s
+[2026-10-16 21:37:21 UTC] START MMLU-Pro [100/128] mmlu_pro_other doc=7 max_gen_toks=2048
+[2026-10-16 21:37:39 UTC] MMLU-Pro [100/128] mmlu_pro_other doc=7 chars=1482 elapsed=18.2s
+[2026-10-16 21:37:39 UTC] START MMLU-Pro [101/128] mmlu_pro_other doc=8 max_gen_toks=2048
+[2026-10-16 21:39:24 UTC] MMLU-Pro [101/128] mmlu_pro_other doc=8 chars=11210 elapsed=104.5s
+[2026-10-16 21:39:24 UTC] START MMLU-Pro [102/128] mmlu_pro_philosophy doc=0 max_gen_toks=2048
+[2026-10-16 21:41:08 UTC] MMLU-Pro [102/128] mmlu_pro_philosophy doc=0 chars=10014 elapsed=104.2s
+[2026-10-16 21:41:08 UTC] START MMLU-Pro [103/128] mmlu_pro_philosophy doc=1 max_gen_toks=2048
+[2026-10-16 21:41:16 UTC] MMLU-Pro [103/128] mmlu_pro_philosophy doc=1 chars=695 elapsed=8.3s
+[2026-10-16 21:41:16 UTC] START MMLU-Pro [104/128] mmlu_pro_philosophy doc=2 max_gen_toks=2048
+[2026-10-16 21:41:21 UTC] MMLU-Pro [104/128] mmlu_pro_philosophy doc=2 chars=279 elapsed=4.5s
+[2026-10-16 21:41:21 UTC] START MMLU-Pro [105/128] mmlu_pro_philosophy doc=3 max_gen_toks=2048
+[2026-10-16 21:43:05 UTC] MMLU-Pro [105/128] mmlu_pro_philosophy doc=3 chars=10233 elapsed=104.3s
+[2026-10-16 21:43:05 UTC] START MMLU-Pro [106/128] mmlu_pro_philosophy doc=4 max_gen_toks=2048
+[2026-10-16 21:44:50 UTC] MMLU-Pro [106/128] mmlu_pro_philosophy doc=4 chars=9790 elapsed=104.7s
+[2026-10-16 21:44:50 UTC] START MMLU-Pro [107/128] mmlu_pro_philosophy doc=5 max_gen_toks=2048
+[2026-10-16 21:44:58 UTC] MMLU-Pro [107/128] mmlu_pro_philosophy doc=5 chars=597 elapsed=8.2s
+[2026-10-16 21:44:58 UTC] START MMLU-Pro [108/128] mmlu_pro_philosophy doc=6 max_gen_toks=2048
+[2026-10-16 21:46:43 UTC] MMLU-Pro [108/128] mmlu_pro_philosophy doc=6 chars=10054 elapsed=105.0s
+[2026-10-16 21:46:43 UTC] START MMLU-Pro [109/128] mmlu_pro_philosophy doc=7 max_gen_toks=2048
+[2026-10-16 21:48:28 UTC] MMLU-Pro [109/128] mmlu_pro_philosophy doc=7 chars=10478 elapsed=105.1s
+[2026-10-16 21:48:28 UTC] START MMLU-Pro [110/128] mmlu_pro_philosophy doc=8 max_gen_toks=2048
+[2026-10-16 21:48:33 UTC] MMLU-Pro [110/128] mmlu_pro_philosophy doc=8 chars=308 elapsed=4.8s
+[2026-10-16 21:48:33 UTC] START MMLU-Pro [111/128] mmlu_pro_physics doc=0 max_gen_toks=2048
+[2026-10-16 21:50:17 UTC] MMLU-Pro [111/128] mmlu_pro_physics doc=0 chars=8986 elapsed=104.1s
+[2026-10-16 21:50:17 UTC] START MMLU-Pro [112/128] mmlu_pro_physics doc=1 max_gen_toks=2048
+[2026-10-16 21:52:00 UTC] MMLU-Pro [112/128] mmlu_pro_physics doc=1 chars=10006 elapsed=103.1s
+[2026-10-16 21:52:00 UTC] START MMLU-Pro [113/128] mmlu_pro_physics doc=2 max_gen_toks=2048
+[2026-10-16 21:52:04 UTC] MMLU-Pro [113/128] mmlu_pro_physics doc=2 chars=222 elapsed=4.2s
+[2026-10-16 21:52:04 UTC] START MMLU-Pro [114/128] mmlu_pro_physics doc=3 max_gen_toks=2048
+[2026-10-16 21:53:48 UTC] MMLU-Pro [114/128] mmlu_pro_physics doc=3 chars=8601 elapsed=103.8s
+[2026-10-16 21:53:48 UTC] START MMLU-Pro [115/128] mmlu_pro_physics doc=4 max_gen_toks=2048
+[2026-10-16 21:55:33 UTC] MMLU-Pro [115/128] mmlu_pro_physics doc=4 chars=10728 elapsed=104.6s
+[2026-10-16 21:55:33 UTC] START MMLU-Pro [116/128] mmlu_pro_physics doc=5 max_gen_toks=2048
+[2026-10-16 21:55:43 UTC] MMLU-Pro [116/128] mmlu_pro_physics doc=5 chars=881 elapsed=10.1s
+[2026-10-16 21:55:43 UTC] START MMLU-Pro [117/128] mmlu_pro_physics doc=6 max_gen_toks=2048
+[2026-10-16 21:57:27 UTC] MMLU-Pro [117/128] mmlu_pro_physics doc=6 chars=7438 elapsed=104.3s
+[2026-10-16 21:57:27 UTC] START MMLU-Pro [118/128] mmlu_pro_physics doc=7 max_gen_toks=2048
+[2026-10-16 21:59:12 UTC] MMLU-Pro [118/128] mmlu_pro_physics doc=7 chars=9561 elapsed=104.5s
+[2026-10-16 21:59:12 UTC] START MMLU-Pro [119/128] mmlu_pro_physics doc=8 max_gen_toks=2048
+[2026-10-16 22:00:56 UTC] MMLU-Pro [119/128] mmlu_pro_physics doc=8 chars=9869 elapsed=104.8s
+[2026-10-16 22:00:56 UTC] START MMLU-Pro [120/128] mmlu_pro_psychology doc=0 max_gen_toks=2048
+[2026-10-16 22:01:01 UTC] MMLU-Pro [120/128] mmlu_pro_psychology doc=0 chars=385 elapsed=5.1s
+[2026-10-16 22:01:01 UTC] START MMLU-Pro [121/128] mmlu_pro_psychology doc=1 max_gen_toks=2048
+[2026-10-16 22:02:46 UTC] MMLU-Pro [121/128] mmlu_pro_psychology doc=1 chars=9902 elapsed=104.3s
+[2026-10-16 22:02:46 UTC] START MMLU-Pro [122/128] mmlu_pro_psychology doc=2 max_gen_toks=2048
+[2026-10-16 22:02:55 UTC] MMLU-Pro [122/128] mmlu_pro_psychology doc=2 chars=681 elapsed=9.7s
+[2026-10-16 22:02:55 UTC] START MMLU-Pro [123/128] mmlu_pro_psychology doc=3 max_gen_toks=2048
+[2026-10-16 22:03:01 UTC] MMLU-Pro [123/128] mmlu_pro_psychology doc=3 chars=437 elapsed=5.8s
+[2026-10-16 22:03:01 UTC] START MMLU-Pro [124/128] mmlu_pro_psychology doc=4 max_gen_toks=2048
+[2026-10-16 22:04:45 UTC] MMLU-Pro [124/128] mmlu_pro_psychology doc=4 chars=11635 elapsed=103.9s
+[2026-10-16 22:04:45 UTC] START MMLU-Pro [125/128] mmlu_pro_psychology doc=5 max_gen_toks=2048
+[2026-10-16 22:04:51 UTC] MMLU-Pro [125/128] mmlu_pro_psychology doc=5 chars=353 elapsed=5.4s
+[2026-10-16 22:04:51 UTC] START MMLU-Pro [126/128] mmlu_pro_psychology doc=6 max_gen_toks=2048
+[2026-10-16 22:06:35 UTC] MMLU-Pro [126/128] mmlu_pro_psychology doc=6 chars=9615 elapsed=104.0s
+[2026-10-16 22:06:35 UTC] START MMLU-Pro [127/128] mmlu_pro_psychology doc=7 max_gen_toks=2048
+[2026-10-16 22:06:42 UTC] MMLU-Pro [127/128] mmlu_pro_psychology doc=7 chars=297 elapsed=6.9s
+[2026-10-16 22:06:42 UTC] START MMLU-Pro [128/128] mmlu_pro_psychology doc=8 max_gen_toks=2048
+[2026-10-16 22:08:26 UTC] MMLU-Pro [128/128] mmlu_pro_psychology doc=8 chars=7063 elapsed=104.3s
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 52085.25 examples/s]Filter: 100%|█████████▉| 12000/12032 [00:00<00:00, 55426.43 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 54534.29 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58967.98 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59582.16 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59233.07 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 59074.84 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59578.39 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59250.39 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 59599.83 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59517.81 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 59067.63 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59679.18 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59340.26 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 59088.02 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59788.01 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59436.85 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 59856.57 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59432.02 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 60020.13 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59497.39 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  66%|██████▋   | 8000/12032 [00:00<00:00, 59678.21 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59440.28 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 59584.59 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59430.62 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 59707.34 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59322.47 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 59892.72 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59446.02 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 59087.33 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59606.94 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59273.07 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 59286.66 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59648.23 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59339.77 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 59096.90 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59600.92 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59276.21 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 59359.10 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59723.40 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59422.78 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 59572.62 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59531.57 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 59396.91 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59311.95 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 59780.89 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59307.21 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 59802.81 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59229.18 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 56663.19 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58549.71 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 57980.68 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58008.89 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59112.71 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58664.12 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 59667.78 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59167.86 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 59720.94 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59290.00 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 59536.04 examples/s]Filter: 100%|█████████▉| 12000/12032 [00:00<00:00, 59483.06 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59173.34 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 59815.96 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59290.90 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 59417.10 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59456.73 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 59557.03 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59541.69 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 59069.30 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59690.26 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59341.94 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 59443.81 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59375.52 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58988.99 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59633.52 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59290.69 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 59307.90 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59305.85 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59065.30 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 59361.36 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59116.50 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58514.56 examples/s]Filter: 100%|█████████▉| 12000/12032 [00:00<00:00, 58692.45 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58309.62 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58447.15 examples/s]Filter: 100%|█████████▉| 12000/12032 [00:00<00:00, 58872.46 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58499.62 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 59176.94 examples/s]Filter: 100%|█████████▉| 12000/12032 [00:00<00:00, 59306.56 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58893.67 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58236.83 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59348.03 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 58938.17 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 59348.18 examples/s]Filter: 100%|█████████▉| 12000/12032 [00:00<00:00, 59601.51 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59253.87 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 59086.22 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59787.75 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59439.02 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 59479.05 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59508.54 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59262.29 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  58%|█████▊    | 7000/12032 [00:00<00:00, 59789.17 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59111.79 examples/s]
+Filter:   0%|          | 0/12032 [00:00<?, ? examples/s]Filter:  50%|████▉     | 6000/12032 [00:00<00:00, 58683.62 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59477.90 examples/s]Filter: 100%|██████████| 12032/12032 [00:00<00:00, 59117.54 examples/s]
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+[2026-10-16 22:08:37 UTC] MMLU-PRO COMPLETED: 8/128; valid extracted answers=47/128
+[2026-10-16 22:08:38 UTC] PIPELINE evaluate.py summarize
+[2026-10-16 22:08:43 UTC] FINAL SUMMARY SAVED
+[2026-10-16 22:08:44 UTC] STUDENT-PREFIX FOLLOW-UP COMPLETED

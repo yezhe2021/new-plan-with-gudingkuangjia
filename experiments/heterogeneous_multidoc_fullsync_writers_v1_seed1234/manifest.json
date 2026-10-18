@@ -1,0 +1,2064 @@
+{
+  "status": "prepared",
+  "config": {
+    "experiment_name": "heterogeneous_multidoc_fullsync_writers_v1_seed1234",
+    "seed": 1234,
+    "server": "A",
+    "protocol": "hotpot_bridge_gold2_dense_frozen_retrained_fullsync_writers_v1",
+    "samples": 64,
+    "smoke_samples": 2,
+    "group_size": 4,
+    "max_document_tokens": 1024,
+    "max_joint_tokens": 2048,
+    "max_new_tokens": 32,
+    "writer_chunk_tokens": 64,
+    "writer_arithmetic": "float16_autocast_matching_original_fullsync_evaluator",
+    "alignment_module": "fullsync_units.py",
+    "reference_sample_ids": "reference_sample_ids.json",
+    "attention_implementation": "eager",
+    "models": {
+      "llama": "/home/yezhe/all_models/models/LLM-Research/Llama-3.2-3B-Instruct",
+      "gemma": "/home/yezhe/all_models/models/LLM-Research/gemma-3-4b-it",
+      "qwen": "/home/yezhe/all_models/models/Qwen/Qwen3-4B"
+    },
+    "dataset": "data/hotpot_dev_distractor_v1.json",
+    "dataset_origin": "/home/yezhe/数据集/HotpotQA/raw/hotpot_dev_distractor_v1.json; same SHA256 and ordered 64 IDs as B/V0",
+    "writers": {
+      "llama": {
+        "module": "fullsync_llama_translator.py",
+        "stage_a": "checkpoints/llama_stage_a.pt",
+        "residual": "checkpoints/llama_stage_b.pt",
+        "protocol": "multidataset_standardprompt_receiver_native_question_options32_mmlu64_l3_to_q4_train1024_v3",
+        "stage_a_step": 1536,
+        "residual_step": 768,
+        "stage_a_epoch": 4,
+        "residual_epoch": 2,
+        "origin": "/home/yezhe/异构模型/fulltoken_sync_copydrop_v0_l3_to_q4_seed1234/runs/retrain",
+        "selection": "Original full-token retraining validation-only best selections; Stage-B base_checkpoint equals selected Stage-A"
+      },
+      "gemma": {
+        "module": "fullsync_gemma_translator.py",
+        "stage_a": "checkpoints/gemma_stage_a.pt",
+        "residual": "checkpoints/gemma_stage_b.pt",
+        "protocol": "gemma3_4b_to_qwen3_4b_fullsync_copydrop_v0_seed1234",
+        "stage_a_step": 768,
+        "residual_step": 768,
+        "stage_a_epoch": 2,
+        "residual_epoch": 2,
+        "origin": "/home/yezhe/异构模型/fulltoken_sync_copydrop_v0_g3_to_q4_seed1234/runs/retrain",
+        "selection": "Original full-token retraining validation-only best selections; Stage-B base_checkpoint equals selected Stage-A"
+      }
+    },
+    "shared_results": "/home/yezhe/异构模型/EXPERIMENT_RESULTS.md",
+    "arms": [
+      "query_only",
+      "native_full",
+      "native_independent",
+      "llama_joint",
+      "gemma_joint",
+      "llama_independent",
+      "gemma_independent",
+      "llama_a_gemma_b",
+      "gemma_a_llama_b",
+      "llama_a_native_b",
+      "native_a_llama_b",
+      "gemma_a_native_b",
+      "native_a_gemma_b"
+    ],
+    "model_loading": {
+      "execution_device": "cuda:0",
+      "gpu_weight_budget_bytes": 11811160064,
+      "activation_reserve_bytes": 3221225472,
+      "offload": "whole transformer layer weights retained on CPU when needed; each operation still executes on CUDA with original dtype"
+    }
+  },
+  "config_signature": "b31696273eb09d4af70ea97279b242fcd21ae2a36076e7b61b999780da3ec80a",
+  "script_sha256": "3ee01f7055b494a34030e18fc9e6a82b2b86a5371cd91628f2b58e6a0b17f653",
+  "model_identities": {
+    "llama": {
+      "path": "/home/yezhe/all_models/models/LLM-Research/Llama-3.2-3B-Instruct",
+      "config_sha256": "39fb36dc5416f445ebc4e71cb71fbcf6727e80a35836d8ba1a1474c318467b7a",
+      "tokenizer_sha256": "79e3e522635f3171300913bb421464a87de6222182a0570b9b2ccba2a964b2b4",
+      "dtype": "float16"
+    },
+    "gemma": {
+      "path": "/home/yezhe/all_models/models/LLM-Research/gemma-3-4b-it",
+      "config_sha256": "9059f680f4dbd1957f35cb44b9fdd6948f4792db7a7a35ee353ea42e68adf7ff",
+      "tokenizer_sha256": "4667f2089529e8e7657cfb6d1c19910ae71ff5f28aa7ab2ff2763330affad795",
+      "dtype": "float32"
+    },
+    "qwen": {
+      "path": "/home/yezhe/all_models/models/Qwen/Qwen3-4B",
+      "config_sha256": "8ba006f74fecfaaeb392872a60f4a480e7ec9860153d2e1b769ec81f9a147f8a",
+      "tokenizer_sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+      "dtype": "float16"
+    }
+  },
+  "alignment_module_sha256": "2063cdbaf048fc2d0a262c401b9962aba2c36bf23a2e56756e35652d5a79c4a8",
+  "runtime": {
+    "torch": "2.5.1+cu121",
+    "transformers": "5.9.0",
+    "cuda": "12.1",
+    "gpu": "Tesla V100-PCIE-32GB"
+  },
+  "dataset_sha256": "4e9ecb5c8d3b719f624d66b60f8d56bf227f03914f5f0753d6fa1b359d7104ea",
+  "artifacts": {
+    "llama/stage_a": {
+      "path": "/home/yezhe/异构模型/heterogeneous_multidoc_fullsync_writers_v1_seed1234/checkpoints/llama_stage_a.pt",
+      "bytes": 1132674962,
+      "sha256": "e68a572ae4cc04b14f3831e505b628c823ce2c6f20b5d8d72a6175e61dc62aca"
+    },
+    "llama/residual": {
+      "path": "/home/yezhe/异构模型/heterogeneous_multidoc_fullsync_writers_v1_seed1234/checkpoints/llama_stage_b.pt",
+      "bytes": 38085002,
+      "sha256": "807e069a97101c9e2320309d80de575810a9eab1fe427a67608dfd7c59655ea2"
+    },
+    "llama/module": {
+      "path": "/home/yezhe/异构模型/heterogeneous_multidoc_fullsync_writers_v1_seed1234/fullsync_llama_translator.py",
+      "bytes": 4429,
+      "sha256": "4ea6ebad82e374f93069cd893f0ce0f546558cc26a6c238ad746fecf43ba2842"
+    },
+    "gemma/stage_a": {
+      "path": "/home/yezhe/异构模型/heterogeneous_multidoc_fullsync_writers_v1_seed1234/checkpoints/gemma_stage_a.pt",
+      "bytes": 2944465986,
+      "sha256": "09d9e7f578d84ff7f66782bde0cd51572b07eefdd83a2cc2b723a6ae1a582137"
+    },
+    "gemma/residual": {
+      "path": "/home/yezhe/异构模型/heterogeneous_multidoc_fullsync_writers_v1_seed1234/checkpoints/gemma_stage_b.pt",
+      "bytes": 38084938,
+      "sha256": "cab69d80decc2554b2d3864e1a46f26e7b69dbaf0e40690db3b4301354e94807"
+    },
+    "gemma/module": {
+      "path": "/home/yezhe/异构模型/heterogeneous_multidoc_fullsync_writers_v1_seed1234/fullsync_gemma_translator.py",
+      "bytes": 7007,
+      "sha256": "b0adba12116cec2b76d4bef4dd00b2cff83ab387ab9e1de9c06b4aa29a2cc673"
+    }
+  },
+  "selection": "Seeded bridge filtering, complete gold paragraphs, length/alignment checks only; no answer-based selection",
+  "rejected_before_model_answers": {
+    "not_bridge": 12
+  },
+  "rows": [
+    {
+      "id": "5a8ba67755429971feec4748",
+      "question": "Orchard Gateway connects what shopping mall in singapore with 313 @ Somerset?",
+      "answer": "Orchard Central",
+      "bodies": [
+        "Document 1:\nTitle: Orchard Central\nOrchard Central is a shopping mall in Singapore located along the main shopping belt at Orchard Road.  It is Singapore's first and only vertical mall and was officially opened on July 2, 2009.  It sits on the land previously occupied by an open air carpark and has a 160m frontage along Orchard Road.  In December 2016, Forbes recognized Orchard Central as one of the top five shopping malls in Singapore.\n\n",
+        "Document 2:\nTitle: Orchard Gateway\nOrchard Gateway is a shopping mall in Orchard Road, Singapore, connecting Orchard Central and 313 @ Somerset together.  The mall was meant to be completed in November 2013, but was delayed and officially opened on April 26, 2014It was built on the site of the former Specialists Shopping Centre and Orchard Emerald.\n\n"
+      ],
+      "titles": [
+        "Orchard Central",
+        "Orchard Gateway"
+      ],
+      "counts": {
+        "llama": {
+          "a": 100,
+          "b": 77,
+          "joint": 177
+        },
+        "gemma": {
+          "a": 107,
+          "b": 85,
+          "joint": 192
+        },
+        "qwen": {
+          "a": 106,
+          "b": 84,
+          "joint": 190
+        }
+      }
+    },
+    {
+      "id": "5ae72e79554299572ea54763",
+      "question": "Command and Control was a book that discusses the 1980 incident in what state?",
+      "answer": "Arkansas",
+      "bodies": [
+        "Document 1:\nTitle: Command and Control (book)\nCommand and Control: Nuclear Weapons, the Damascus Accident, and the Illusion of Safety is a 2013 nonfiction book by Eric Schlosser about the history of nuclear weapons systems in the United States.  Incidents Schlosser discusses in the book include the 1980 Damascus Titan missile explosion and the 1961 Goldsboro B-52 crash.\n\n",
+        "Document 2:\nTitle: 1980 Damascus Titan missile explosion\nThe Damascus Titan missile explosion was an incident in the United States in 1980 in rural Arkansas.  Liquid fuel in a U.S. Air Force LGM-25C Titan II intercontinental ballistic missile exploded at a missile launch facility on September 19, 1980.  It occurred at Launch Complex 374-7 in Van Buren County farmland just north of Damascus, approximately 50 mi north of Little Rock.\n\n"
+      ],
+      "titles": [
+        "Command and Control (book)",
+        "1980 Damascus Titan missile explosion"
+      ],
+      "counts": {
+        "llama": {
+          "a": 86,
+          "b": 101,
+          "joint": 187
+        },
+        "gemma": {
+          "a": 93,
+          "b": 113,
+          "joint": 206
+        },
+        "qwen": {
+          "a": 93,
+          "b": 112,
+          "joint": 205
+        }
+      }
+    },
+    {
+      "id": "5a79257b55429974737f79a7",
+      "question": "What military formation were participated in by both Oscar W. Koch and General George Smith Patton Jr. ?",
+      "answer": "Third Army",
+      "bodies": [
+        "Document 1:\nTitle: George S. Patton\nGeneral George Smith Patton Jr. (November 11, 1885 – December 21, 1945) was a senior officer of the United States Army who commanded the U.S. Seventh Army in the Mediterranean and European theaters of World War II, but is best known for his leadership of the U.S. Third Army in France and Germany following the Allied invasion of Normandy in June 1944.\n\n",
+        "Document 2:\nTitle: Oscar Koch\nOscar W. Koch (January 10, 1897, Milwaukee, Wisconsin - May 16, 1970, Carbondale, Illinois) was a brigadier general in the U.S. Army and the Third Army intelligence officer (G-2) while the army was commanded by General George S. Patton in World War II.\n\n"
+      ],
+      "titles": [
+        "George S. Patton",
+        "Oscar Koch"
+      ],
+      "counts": {
+        "llama": {
+          "a": 93,
+          "b": 79,
+          "joint": 172
+        },
+        "gemma": {
+          "a": 104,
+          "b": 87,
+          "joint": 191
+        },
+        "qwen": {
+          "a": 101,
+          "b": 85,
+          "joint": 186
+        }
+      }
+    },
+    {
+      "id": "5adfbd4655429942ec259b31",
+      "question": "What American actress starred in the 1996 television film \"Bastard Out of Carolina\" directed by Anjelica Huston?",
+      "answer": "Jena Malone",
+      "bodies": [
+        "Document 1:\nTitle: Jena Malone\nJena Malone ( ; born November 21, 1984) is an American actress, musician and photographer.  She made her acting debut in the television film \"Bastard Out of Carolina\" (1996); subsequently, Malone has starred in a number of mainstream and independent films including \"Ellen Foster\" (1997), \"Contact\" (1997), \"Stepmom\" (1998), \"Donnie Darko\" (2001), \"Life as a House\" (2001), \"\" (2003), \"Saved! \" (2004), \"Pride & Prejudice\" (2005), \"Into the Wild\" (2007), \"The Ruins\" (2008), \"Sucker Punch\" (2011) and \"The Neon Demon\" (2016).  Furthermore, Malone has portrayed the role of Johanna Mason in \"The Hunger Games\" film series.  She is also an indie pop musician who has released music both under her own name (as \"Jena Malone and Her Bloodstains\") and as one-half of the duo The Shoe.\n\n",
+        "Document 2:\nTitle: Bastard out of Carolina (film)\nBastard out of Carolina is a 1996 film made by Showtime Networks, directed by Anjelica Huston.  It is based on a novel by Dorothy Allison and adapted for the screen by Anne Meredith.  Jena Malone stars as a poor, physically abused and sexually molested girl.\n\n"
+      ],
+      "titles": [
+        "Jena Malone",
+        "Bastard out of Carolina (film)"
+      ],
+      "counts": {
+        "llama": {
+          "a": 235,
+          "b": 77,
+          "joint": 312
+        },
+        "gemma": {
+          "a": 260,
+          "b": 79,
+          "joint": 339
+        },
+        "qwen": {
+          "a": 264,
+          "b": 79,
+          "joint": 343
+        }
+      }
+    },
+    {
+      "id": "5abccb235542996583600497",
+      "question": "Where does the team coached by someone with the nickname \"Coach K\" play?",
+      "answer": "Cameron Indoor Stadium",
+      "bodies": [
+        "Document 1:\nTitle: Mike Krzyzewski\nMichael William Krzyzewski ( ; nicknamed \"Coach K\"; born February 13, 1947) is an American college basketball coach and former player.  Since 1980, he has served as the head men's basketball coach at Duke University.  At Duke, Krzyzewski has led the Blue Devils to five NCAA Championships, 12 Final Fours, 12 ACC regular season titles, and 14 ACC Tournament championships.  Among men's college basketball coaches, only UCLA's John Wooden, with 10, has won more NCAA Championships.  Krzyzewski was also the coach of the United States men's national basketball team, which he has led to three gold medals at the 2008 Summer Olympics, 2012 Summer Olympics, and 2016 Summer Olympics.  He has additionally served as the head coach of the American team that won gold medals at the 2010 and the 2014 FIBA World Cup.  He was also an assistant coach for the 1992 \"Dream Team\".\n\n",
+        "Document 2:\nTitle: 2014–15 Duke Blue Devils men's basketball team\nThe 2014–15 Duke Blue Devils men's basketball team represented Duke University during the 2014–15 NCAA Division I men's basketball season as members of the Atlantic Coast Conference.  The team played its home games in Durham, North Carolina at Cameron Indoor Stadium, celebrating the arena’s 75th anniversary.  Mike Krzyzewski led the team as head coach in his 35th season with the Blue Devils.  During the season, Krzyzewski became the first head coach in Division I men’s basketball history to win 1,000 games.  On the court, the team featured All-ACC players Jahlil Okafor, Quinn Cook, and Tyus Jones, with Okafor being named ACC Player of the Year and National Freshman of the Year.\n\n"
+      ],
+      "titles": [
+        "Mike Krzyzewski",
+        "2014–15 Duke Blue Devils men's basketball team"
+      ],
+      "counts": {
+        "llama": {
+          "a": 223,
+          "b": 181,
+          "joint": 404
+        },
+        "gemma": {
+          "a": 242,
+          "b": 194,
+          "joint": 436
+        },
+        "qwen": {
+          "a": 244,
+          "b": 194,
+          "joint": 438
+        }
+      }
+    },
+    {
+      "id": "5adcd5005542994d58a2f6f0",
+      "question": "Who voices the character that stars in Baseball Bugs?",
+      "answer": "Mel Blanc",
+      "bodies": [
+        "Document 1:\nTitle: Baseball Bugs\nBaseball Bugs is a Warner Bros. \"Looney Tunes\" theatrical cartoon short released on February 2, 1946, starring Bugs Bunny.\n\n",
+        "Document 2:\nTitle: Bugs Bunny\nBugs Bunny is an animated cartoon character; created in 1940 by Leon Schlesinger Productions (later Warner Bros.  Cartoons) and voiced originally by Mel Blanc.  Bugs is best known for his starring roles in the \"Looney Tunes\" and \"Merrie Melodies\" series of animated short films, produced by Warner Bros. During the golden age of American animation, his popularity increased.  This era led to his becoming an American cultural icon and the official mascot of Warner Bros.  Entertainment.\n\n"
+      ],
+      "titles": [
+        "Baseball Bugs",
+        "Bugs Bunny"
+      ],
+      "counts": {
+        "llama": {
+          "a": 40,
+          "b": 114,
+          "joint": 154
+        },
+        "gemma": {
+          "a": 42,
+          "b": 117,
+          "joint": 159
+        },
+        "qwen": {
+          "a": 42,
+          "b": 116,
+          "joint": 158
+        }
+      }
+    },
+    {
+      "id": "5ae33c4d5542992f92d82262",
+      "question": "Robert Suettinger was the national intelligence officer under which former Governor of Arkansas?",
+      "answer": "William Jefferson Clinton",
+      "bodies": [
+        "Document 1:\nTitle: Robert Suettinger\nRobert Suettinger was United States President Bill Clinton's national intelligence officer for East Asia at the National Intelligence Council (NIC) from 1997-1998.  While there, Suettinger oversaw the preparation of national intelligence estimates for the director of the Central Intelligence Agency.  His areas of specialty included the People's Republic of China and the North Korean nuclear weapons program.  After working in the Clinton administration, Suettinger has been a senior analyst for the Brookings Institution where he wrote the book \"Beyond Tiananmen – The Politics of U.S.-China Relations, 1989-2000\".  He also is a senior advisor at The Stimson Center.\n\n",
+        "Document 2:\nTitle: Bill Clinton\nWilliam Jefferson Clinton (born William Jefferson Blythe III; August 19, 1946) is an American politician who served as the 42nd President of the United States from 1993 to 2001.  Prior to the presidency, he was the Governor of Arkansas during two separate terms, from 1979 to 1981, and again from 1983 to 1992.  Before that, he served as Arkansas attorney general, from 1977 to 1979.  A member of the Democratic Party, Clinton was ideologically a New Democrat and many of his policies reflected a centrist \"Third Way\" political philosophy.\n\n"
+      ],
+      "titles": [
+        "Robert Suettinger",
+        "Bill Clinton"
+      ],
+      "counts": {
+        "llama": {
+          "a": 153,
+          "b": 142,
+          "joint": 295
+        },
+        "gemma": {
+          "a": 160,
+          "b": 163,
+          "joint": 323
+        },
+        "qwen": {
+          "a": 161,
+          "b": 162,
+          "joint": 323
+        }
+      }
+    },
+    {
+      "id": "5add8f055542990dbb2f7e6d",
+      "question": "Who conducted the negotiations  with the owners and the longest serving commandant of Auschwitz concentration and extermination camp?",
+      "answer": "Rudolf Höss",
+      "bodies": [
+        "Document 1:\nTitle: Gerstein Report\nThe Gerstein Report was written in 1945 by Kurt Gerstein, an Obersturmführer (First Lieutenant) of the Waffen-SS who rose to become the Head of Technical Disinfection Services of the SS, and in that capacity supplied hydrogen cyanide (Zyklon B) from Degesch (\"Deutsche Gesellschaft für Schädlingsbekämpfung\") to Rudolf Höss in Auschwitz and conducted the negotiations with the owners.  On 17 August 1942, together with Rolf Günther and Wilhelm Pfannenstiel, Gerstein witnessed the gassing of some 3,000 Jews in the extermination camp of Belzec in occupied Poland.  The report features his eyewitness testimony.  It was used as evidence in the Nuremberg Trials.\n\n",
+        "Document 2:\nTitle: Rudolf Höss\nRudolf Höss (also Höß, Hoeß or Hoess; 25 November 1901 – 16 April 1947) was a Nazi German \"SS\"-\"Obersturmbannführer\" (lieutenant colonel) and the longest-serving commandant of Auschwitz concentration and extermination camp in World War II.  He tested and carried into effect various methods to accelerate Hitler's plan to systematically exterminate the Jewish population of Nazi-occupied Europe, known as the \"Final Solution\".  On the initiative of one of his subordinates, SS-\"Hauptsturmführer\" (captain) Karl Fritzsch, Höss introduced pesticide Zyklon B containing hydrogen cyanide to the killing process, thereby allowing SS soldiers at Auschwitz to murder 2,000 people every hour.  He created the largest installation for the continuous annihilation of human beings ever known.\n\n"
+      ],
+      "titles": [
+        "Gerstein Report",
+        "Rudolf Höss"
+      ],
+      "counts": {
+        "llama": {
+          "a": 177,
+          "b": 195,
+          "joint": 372
+        },
+        "gemma": {
+          "a": 169,
+          "b": 193,
+          "joint": 362
+        },
+        "qwen": {
+          "a": 183,
+          "b": 202,
+          "joint": 385
+        }
+      }
+    },
+    {
+      "id": "5ab527205542996a3a96a03d",
+      "question": "On what album is Samuel \"Sam\" Ervin Beam's cover of \"Such Great Heights\" featured?",
+      "answer": "\"Give Up\"",
+      "bodies": [
+        "Document 1:\nTitle: Such Great Heights\n\"Such Great Heights\" is a song by American indie pop band The Postal Service.  It was released as the lead single from their debut studio album, \"Give Up\", on January 21, 2003 through Sub Pop Records.  The single includes a previously unreleased track, \"There's Never Enough Time\", and two cover tracks by The Shins and Iron & Wine of \"We Will Become Silhouettes\" and \"Such Great Heights\", respectively.\n\n",
+        "Document 2:\nTitle: Iron &amp; Wine\nSamuel \"Sam\" Ervin Beam (born July 26, 1974), better known by his stage and recording name Iron & Wine, is an American singer-songwriter.  He has released five studio albums, several EPs and singles, as well as a few download-only releases, which include a live album (a recording of his 2005 Bonnaroo performance).  He occasionally tours with a full band.\n\n"
+      ],
+      "titles": [
+        "Such Great Heights",
+        "Iron &amp; Wine"
+      ],
+      "counts": {
+        "llama": {
+          "a": 104,
+          "b": 99,
+          "joint": 203
+        },
+        "gemma": {
+          "a": 109,
+          "b": 106,
+          "joint": 215
+        },
+        "qwen": {
+          "a": 107,
+          "b": 104,
+          "joint": 211
+        }
+      }
+    },
+    {
+      "id": "5a758ce05542992db947367c",
+      "question": "Who is younger Jenny Bae or Lionel Richie ?",
+      "answer": "Jenny Bae",
+      "bodies": [
+        "Document 1:\nTitle: Lionel Richie\nLionel Brockman Richie Jr. (born June 20, 1949) is an American singer, songwriter, actor and record producer.  Beginning in 1968, he was a member of the funk and soul band the Commodores and then launched a solo career in 1982.  He also co-wrote the 1985 charity single \"We Are the World\" with Michael Jackson, which sold over 20 million copies.  Richie has sold over 100 million records worldwide, making him one of the world's best-selling artists of all time.  He is also a five-time Grammy Award winner.  In 2016, Richie received the Songwriters Hall of Fame's highest honor, the Johnny Mercer Award.\n\n",
+        "Document 2:\nTitle: Jenny Bae\nJenny Bae (; born 1980) is a South Korean crossover violinist.  She has been performing internationally for over a decade.  She has guest-performed for musicians such as Luciano Pavarotti, Eric Clapton, Lionel Richie, Andrea Bocelli, Plácido Domingo and Zucchero.\n\n"
+      ],
+      "titles": [
+        "Lionel Richie",
+        "Jenny Bae"
+      ],
+      "counts": {
+        "llama": {
+          "a": 159,
+          "b": 78,
+          "joint": 237
+        },
+        "gemma": {
+          "a": 178,
+          "b": 74,
+          "joint": 252
+        },
+        "qwen": {
+          "a": 173,
+          "b": 80,
+          "joint": 253
+        }
+      }
+    },
+    {
+      "id": "5ac5630e5542993e66e823d5",
+      "question": "When did the mother of Joseph Ferdinand Leopold of Bavaria die?",
+      "answer": "1692",
+      "bodies": [
+        "Document 1:\nTitle: Maria Antonia of Austria\nMaria Antonia of Austria (Maria Antonia Josepha Benedicta Rosalia Petronella; 18 January 1669 – 24 December 1692) was the eldest daughter and only surviving child of Holy Roman Emperor Leopold I and his wife Margaret Theresa of Spain.  She became Electress of Bavaria when she married in 1685, but died prematurely in 1692.\n\n",
+        "Document 2:\nTitle: Joseph Ferdinand of Bavaria\nJoseph Ferdinand Leopold of Bavaria (28 October 1692 – 6 February 1699) was the son of Maximilian II Emanuel, Elector of Bavaria (1679–1705, 1714–1726) and his first wife, Maria Antonia of Austria, daughter of Leopold I, Holy Roman Emperor, maternal granddaughter of King Felipe IV of Spain.\n\n"
+      ],
+      "titles": [
+        "Maria Antonia of Austria",
+        "Joseph Ferdinand of Bavaria"
+      ],
+      "counts": {
+        "llama": {
+          "a": 93,
+          "b": 93,
+          "joint": 186
+        },
+        "gemma": {
+          "a": 98,
+          "b": 99,
+          "joint": 197
+        },
+        "qwen": {
+          "a": 103,
+          "b": 106,
+          "joint": 209
+        }
+      }
+    },
+    {
+      "id": "5ab6f7415542991d322236f4",
+      "question": "Sadok Sassi played for a national team that made its first World Cup in what year?",
+      "answer": "1978",
+      "bodies": [
+        "Document 1:\nTitle: Tunisia national football team\nThe Tunisia national football team (Arabic: منتخب تونس لكرة القدم‎ ‎ ), nicknamed \"Les Aigles de Carthage (The Eagles of Carthage or The Carthage Eagles)\", is the national team of Tunisia and is controlled by the Tunisian Football Federation.  They have qualified for four FIFA World Cups, the first one in 1978, but have yet to make it out of the first round.  Nevertheless, they created history in that 1978 tournament in Argentina by becoming the first African side to win a World Cup match, beating Mexico 3–1.  They also held defending champions West Germany to a goalless draw before bowing out.  They have since qualified for the three tournaments in succession, in 1998, 2002 and 2006: they were the only African team to appear at both the 2002 and 2006 tournaments.\n\n",
+        "Document 2:\nTitle: Sadok Sassi\nSadok Sassi (Arabic: الصادق ساسي‎ ‎ ), nicknamed \"Attouga\" (born 15 November 1945 in Tunis) is a former Tunisian footballer.  He was a goalkeeper and played for Club Africain and the Tunisian national team.\n\n"
+      ],
+      "titles": [
+        "Tunisia national football team",
+        "Sadok Sassi"
+      ],
+      "counts": {
+        "llama": {
+          "a": 196,
+          "b": 71,
+          "joint": 267
+        },
+        "gemma": {
+          "a": 203,
+          "b": 71,
+          "joint": 274
+        },
+        "qwen": {
+          "a": 210,
+          "b": 74,
+          "joint": 284
+        }
+      }
+    },
+    {
+      "id": "5ab7fd6b5542990e739ec7b5",
+      "question": "What city has had an NFL football team with the same name as a Los Angeles NFL team?",
+      "answer": "St. Louis",
+      "bodies": [
+        "Document 1:\nTitle: Steven Jackson\nSteven Rashad Jackson (born July 22, 1983) is a former American football running back.  He played college football for Oregon State and was drafted by the St. Louis Rams 24th overall in the 2004 NFL Draft.  He also played for the Atlanta Falcons and New England Patriots.\n\n",
+        "Document 2:\nTitle: Paul Boudreau\nPaul T. Boudreau (born December 30, 1949) is an American football coach who last served as offensive line coach for the Los Angeles Rams of the National Football League (NFL).  He has served as the offensive line coach for eight different NFL teams, one Canadian Football League (CFL) team, and four college teams.  No offensive line coach in the NFL has more experience as an assistant at the professional level than Boudreau, who entered his 29th season in 2015.  Boudreau’s stellar offensive lines over the years have helped pave the way for five running backs to top the 10,000-yard career rushing mark, including Barry Sanders, Curtis Martin, Thurman Thomas, Fred Taylor and Steven Jackson.  This is his second stint with the Rams organization, having previously coached them in the 2006 and 2007 seasons.\n\n"
+      ],
+      "titles": [
+        "Steven Jackson",
+        "Paul Boudreau"
+      ],
+      "counts": {
+        "llama": {
+          "a": 73,
+          "b": 192,
+          "joint": 265
+        },
+        "gemma": {
+          "a": 81,
+          "b": 208,
+          "joint": 289
+        },
+        "qwen": {
+          "a": 79,
+          "b": 205,
+          "joint": 284
+        }
+      }
+    },
+    {
+      "id": "5ae3305c55429928c423965f",
+      "question": "In Person is a 1935 film starring an actress born in what year?",
+      "answer": "1911",
+      "bodies": [
+        "Document 1:\nTitle: In Person (film)\nIn Person is a 1935 film starring Ginger Rogers.  It made a profit of $147,000.  It is about Miss Carol Corliss, a beautiful movie star so insecure about her fame, that she goes around in disguise.  She later meets a rugged outdoorsman who is unaffected by her star status.\n\n",
+        "Document 2:\nTitle: Ginger Rogers\nGinger Rogers (born Virginia Katherine McMath; July 16, 1911 – April 25, 1995) was an American actress, dancer, and singer, widely known for performing in films and RKO's musical films, partnered with Fred Astaire.  She appeared on stage, as well as on radio and television, throughout much of the 20th century.\n\n"
+      ],
+      "titles": [
+        "In Person (film)",
+        "Ginger Rogers"
+      ],
+      "counts": {
+        "llama": {
+          "a": 77,
+          "b": 87,
+          "joint": 164
+        },
+        "gemma": {
+          "a": 85,
+          "b": 96,
+          "joint": 181
+        },
+        "qwen": {
+          "a": 83,
+          "b": 94,
+          "joint": 177
+        }
+      }
+    },
+    {
+      "id": "5abe65e25542993f32c2a101",
+      "question": "Which university did one of the key figures in the American documentary film, released in 2015, directed by Malcolm Ingram, pay for, before being drafted 18th overall pick for the New Jersey Nets?",
+      "answer": "Stanford University",
+      "bodies": [
+        "Document 1:\nTitle: Out to Win (2015 film)\nOut to Win is an American documentary film, released in 2015.  Directed by Malcolm Ingram, the film chronicles the history of LGBT participation in professional sports, concentrating in particular on key figures such as John Amaechi, Billy Bean, Jason Collins, Wade Davis, Brittney Griner, Billie Jean King, David Kopay, Conner Mertens, Martina Navratilova, and Michael Sam. .\n\n",
+        "Document 2:\nTitle: Jason Collins\nJason Paul Collins (born December 2, 1978) is an American retired professional basketball player who played 13 seasons in the National Basketball Association (NBA).  He played college basketball for Stanford University, where he was an All-American in 2000–01, before being drafted 18th overall pick in the 2001 NBA draft by the Houston Rockets.  He went on to play for the New Jersey Nets, Memphis Grizzlies, Minnesota Timberwolves, Atlanta Hawks, Boston Celtics, Washington Wizards and Brooklyn Nets.\n\n"
+      ],
+      "titles": [
+        "Out to Win (2015 film)",
+        "Jason Collins"
+      ],
+      "counts": {
+        "llama": {
+          "a": 102,
+          "b": 118,
+          "joint": 220
+        },
+        "gemma": {
+          "a": 104,
+          "b": 126,
+          "joint": 230
+        },
+        "qwen": {
+          "a": 107,
+          "b": 127,
+          "joint": 234
+        }
+      }
+    },
+    {
+      "id": "5a8b04df55429950cd6afc49",
+      "question": "Pluto was the debut album of this artist who also performed on this live music venue that reopened in March 2015.",
+      "answer": "The Bomb Factory",
+      "bodies": [
+        "Document 1:\nTitle: The Bomb Factory\nThe Bomb Factory is a live music venue and event space located in the Deep Ellum district of downtown Dallas, Texas.  Since its reopening in March 2015, the venue has hosted acts including Erykah Badu, Sturgill Simpson, Robert Plant of Led Zeppelin, Disclosure, Don Henley of The Eagles, Future, D'Angelo, Brand New, Hardwell, Chvrches. , Kraftwerk, Hatsune Miku, and Ludacris.\n\n",
+        "Document 2:\nTitle: Future (rapper)\nNayvadius DeMun Wilburn (born November 20, 1983), known professionally as Future, is an American rapper, singer, songwriter, and record producer.  Born and raised in Atlanta, Georgia, Wilburn first became involved in music as part of the Dungeon Family collective, where he was nicknamed \"the Future\".  After amassing a series of mixtapes between 2010 and 2011, Future signed a major record label deal with Epic Records and A1 Recordings, which helped launch Future's own label imprint, Freebandz.  He subsequently released his debut album, \"Pluto\", in April 2012 to positive reviews.  Future's second album, \"Honest\", was released in April 2014, surpassing his debut on the album charts.\n\n"
+      ],
+      "titles": [
+        "The Bomb Factory",
+        "Future (rapper)"
+      ],
+      "counts": {
+        "llama": {
+          "a": 108,
+          "b": 175,
+          "joint": 283
+        },
+        "gemma": {
+          "a": 108,
+          "b": 187,
+          "joint": 295
+        },
+        "qwen": {
+          "a": 110,
+          "b": 186,
+          "joint": 296
+        }
+      }
+    },
+    {
+      "id": "5a74b55455429974ef308c39",
+      "question": "what year was the writer of the blog Preposterous Universe born?",
+      "answer": "1966",
+      "bodies": [
+        "Document 1:\nTitle: Sean M. Carroll\nSean Michael Carroll ( ; born October 5, 1966) is a cosmologist and physics professor specializing in dark energy and general relativity.  He is a research professor in the Department of Physics at the California Institute of Technology.  He has been a contributor to the physics blog Cosmic Variance, and has published in scientific journals and magazines such as \"Nature\", \"The New York Times\", \"Sky & Telescope\", and \"New Scientist\".\n\n",
+        "Document 2:\nTitle: Cosmic Variance (blog)\nCosmic Variance is a collaborative weblog discussing physics, astrophysics, and other topics, written by JoAnne Hewett, Mark Trodden, Sean Carroll, Risa Wechsler, Julianne Dalcanton, John Conway, and Daniel Holz.  It is the successor to Carroll's earlier blog Preposterous Universe, which began in early 2004 and ran through much of 2005.  The blog's name comes from the cosmology concept of cosmic variance.\n\n"
+      ],
+      "titles": [
+        "Sean M. Carroll",
+        "Cosmic Variance (blog)"
+      ],
+      "counts": {
+        "llama": {
+          "a": 102,
+          "b": 111,
+          "joint": 213
+        },
+        "gemma": {
+          "a": 104,
+          "b": 112,
+          "joint": 216
+        },
+        "qwen": {
+          "a": 104,
+          "b": 115,
+          "joint": 219
+        }
+      }
+    },
+    {
+      "id": "5ab3d2595542992ade7c6ebf",
+      "question": "Where is the university located in which the current editor-in-chief of Review of Policy Reseach is from?",
+      "answer": "Toronto",
+      "bodies": [
+        "Document 1:\nTitle: Ryerson University\nRyerson University (commonly referred to as Ryerson) is a public research university in Toronto, Ontario, Canada.  Its urban campus surrounds the Yonge-Dundas Square, located at the busiest intersection in downtown Toronto.\n\n",
+        "Document 2:\nTitle: Review of Policy Research\nReview of Policy Research is a bimonthly peer-reviewed academic journal published by Wiley-Blackwell on behalf of the Policy Studies Organization.  The journal was established in 1981.  The current editor-in-chief is Christopher Gore (Ryerson University).  The journal focuses on the politics and policy of science, technology and environmental issues, including science policy, environment, resource management, information networks, cultural industries, biotechnology, security and surveillance, privacy, globalization, education, research and innovation, development, intellectual property, health and demographics.  The journal is the official journal of the Science, Technology and Environmental Politics section of the American Political Science Association.\n\n"
+      ],
+      "titles": [
+        "Ryerson University",
+        "Review of Policy Research"
+      ],
+      "counts": {
+        "llama": {
+          "a": 57,
+          "b": 145,
+          "joint": 202
+        },
+        "gemma": {
+          "a": 57,
+          "b": 150,
+          "joint": 207
+        },
+        "qwen": {
+          "a": 57,
+          "b": 147,
+          "joint": 204
+        }
+      }
+    },
+    {
+      "id": "5a7f40055542992e7d278cc0",
+      "question": " What did an English former footballer purchase in march 2009?",
+      "answer": "50 JJB Sports Fitness Clubs",
+      "bodies": [
+        "Document 1:\nTitle: DW Sports Fitness\nDW Sports Fitness is a British retailing and fitness business.  Founded in March 2009 when Dave Whelan purchased the 50 JJB Sports Fitness Clubs and the attached retail stores for £83.4 million.  At the time all the sites were shared between a fitness club and retail store, with most cases seeing the fitness club downstairs and the retail store upstairs.  Since that time the group has grown to encompass more than 60 sites, including stand-alone retail stores and stand-alone fitness clubs.\n\n",
+        "Document 2:\nTitle: Dave Whelan\nDavid \"Dave\" Whelan (born 24 November 1936) is an English former footballer.  During his football career, he played for Blackburn Rovers and Crewe Alexandra.  Whelan is the owner of League 1 club Wigan Athletic, having also been the chairman of the club for twenty years, before passing the position over to his grandson, David Sharpe.  He is also owner of the DW Stadium, home to Championship club Wigan Athletic and Wigan Warriors (rugby league).  In July 2015, Whelan received an honorary degree from the University of Bolton, making him a Doctor of Business Administration.\n\n"
+      ],
+      "titles": [
+        "DW Sports Fitness",
+        "Dave Whelan"
+      ],
+      "counts": {
+        "llama": {
+          "a": 112,
+          "b": 142,
+          "joint": 254
+        },
+        "gemma": {
+          "a": 119,
+          "b": 140,
+          "joint": 259
+        },
+        "qwen": {
+          "a": 117,
+          "b": 147,
+          "joint": 264
+        }
+      }
+    },
+    {
+      "id": "5a72c6f65542994cef4bc402",
+      "question": "Wheat salad is composed typically of what red fruit?",
+      "answer": "tomato",
+      "bodies": [
+        "Document 1:\nTitle: Tomato\nThe tomato (see pronunciation) is the edible, often red, fruit of the plant \"Solanum lycopersicum\", commonly known as a tomato plant.  The plant belongs to the nightshade family, which is called \"Solanaceae\".\n\n",
+        "Document 2:\nTitle: Wheat salad\nWheat salad (Arabic: سلطة قمح‎ ‎ ), is a salad of Arab salads, it typically of wheat, corn, tomatoes, carrots, cucumber pickles, lemon, parsley, olive oil and salt.\n\n"
+      ],
+      "titles": [
+        "Tomato",
+        "Wheat salad"
+      ],
+      "counts": {
+        "llama": {
+          "a": 59,
+          "b": 54,
+          "joint": 113
+        },
+        "gemma": {
+          "a": 60,
+          "b": 53,
+          "joint": 113
+        },
+        "qwen": {
+          "a": 60,
+          "b": 55,
+          "joint": 115
+        }
+      }
+    },
+    {
+      "id": "5ab5487b554299494045ef68",
+      "question": "Operation Cold Comfort was a failed raid by a special forces unit founded in what year?",
+      "answer": "1941",
+      "bodies": [
+        "Document 1:\nTitle: Special Air Service\nThe Special Air Service (SAS) is a special forces unit of the British Army.  The SAS was founded in 1941 as a regiment, and later reconstituted as a corps in 1950.  The unit undertakes a number of roles including covert reconnaissance, counter-terrorism, direct action and hostage rescue.\n\n",
+        "Document 2:\nTitle: Operation Cold Comfort\nDuring World War II, Operation Cold Comfort was a failed SAS raid that began with a parachute drop north of Verona on February 17, 1945.  It was later renamed Zombie.\n\n"
+      ],
+      "titles": [
+        "Special Air Service",
+        "Operation Cold Comfort"
+      ],
+      "counts": {
+        "llama": {
+          "a": 77,
+          "b": 49,
+          "joint": 126
+        },
+        "gemma": {
+          "a": 79,
+          "b": 53,
+          "joint": 132
+        },
+        "qwen": {
+          "a": 81,
+          "b": 52,
+          "joint": 133
+        }
+      }
+    },
+    {
+      "id": "5ae0cddc55429945ae959459",
+      "question": "National Firearms Agreement was in response to the Port Arthur massacre that killed how many people?",
+      "answer": "35 people",
+      "bodies": [
+        "Document 1:\nTitle: Port Arthur massacre (Australia)\nThe Port Arthur massacre of 28–29 April 1996 was a massacre in which 35 people were killed and 23 wounded.  It occurred mainly at the historic Port Arthur former prison colony, a popular tourist site in south-eastern Tasmania, Australia.  It was the deadliest mass shooting in Australian history, and amongst the most notable in history.\n\n",
+        "Document 2:\nTitle: National Firearms Agreement\nThe National Firearms Agreement (NFA), also sometimes called the National Agreement on Firearms, the National Firearms Agreement and Buyback Program, or the Nationwide Agreement on Firearms, was a firearm control law passed in Australia in 1996, in response to the Port Arthur massacre that killed 35 people.  The laws to give effect to the Agreement were passed by Australian State governments only 12 days after the Port Arthur massacre.\n\n"
+      ],
+      "titles": [
+        "Port Arthur massacre (Australia)",
+        "National Firearms Agreement"
+      ],
+      "counts": {
+        "llama": {
+          "a": 84,
+          "b": 94,
+          "joint": 178
+        },
+        "gemma": {
+          "a": 93,
+          "b": 100,
+          "joint": 193
+        },
+        "qwen": {
+          "a": 90,
+          "b": 98,
+          "joint": 188
+        }
+      }
+    },
+    {
+      "id": "5ae0e5655542990adbacf6b8",
+      "question": "What country is both Thornton–Cleveleys railway station and Poulton-le-Fylde railway station located?",
+      "answer": "England",
+      "bodies": [
+        "Document 1:\nTitle: Thornton–Cleveleys railway station\nThornton–Cleveleys (originally simply-named Cleveleys) was a small-sized railway station which served the two English Lancashire towns of Thornton and Cleveleys, but was situated in the centre of Thornton.  Located on the now disused line between Poulton-le-Fylde and Fleetwood , the station also had a shunting yard for the making-up of freight trains for Preston and beyond.  During its life it was also known at times as Thornton station and Thornton for Cleveleys station.  In the 1860s and early 1870s the line was of great importance being the direct route from London to Glasgow.  Before the Shap route was opened, passengers (allegedly including Queen Victoria) would travel from Euston to Fleetwood and then onwards via steamer to Scotland.\n\n",
+        "Document 2:\nTitle: Poulton-le-Fylde railway station\nPoulton-le-Fylde railway station serves the town of Poulton-le-Fylde in Lancashire, England.  It is managed by Northern, but also served by Virgin Trains and is 14+1/4 mi northwest of Preston.\n\n"
+      ],
+      "titles": [
+        "Thornton–Cleveleys railway station",
+        "Poulton-le-Fylde railway station"
+      ],
+      "counts": {
+        "llama": {
+          "a": 187,
+          "b": 69,
+          "joint": 256
+        },
+        "gemma": {
+          "a": 185,
+          "b": 70,
+          "joint": 255
+        },
+        "qwen": {
+          "a": 191,
+          "b": 70,
+          "joint": 261
+        }
+      }
+    },
+    {
+      "id": "5a7d07a455429907fabef0ae",
+      "question": "József Viola's association was most prominent with which professional Italian football club in Turin, Piedmont?",
+      "answer": "Juventus Football Club",
+      "bodies": [
+        "Document 1:\nTitle: József Viola\nJózsef Viola (10 June 1896 – 18 August 1949) also known as Giuseppe Viola was a Hungarian football player and coach, who played as a midfielder.  He is most prominent for his time in Italy and his association with clubs such as Juventus.\n\n",
+        "Document 2:\nTitle: Juventus F.C.\nJuventus Football Club S.p.A. (from Latin \"iuventūs\", \"youth\"; ] ), colloquially known as Juve (] ), is a professional Italian football club in Turin, Piedmont.  Founded in 1897 by some Torinese students, the club has worn a black and white striped home kit since 1903 and has played home matches in different grounds around its city, the latest being the 41,507-capacity Allianz Stadium.  Nicknamed \"Vecchia Signora\" (\"the Old Lady\"), the club has won a thirty-three official league titles, twelve Coppa Italia titles and seven national Super Cups titles, being the record holder for all these competitions; two Intercontinental Cups, two European Champion Clubs' Cup and UEFA Champions Leagues, one European Cup Winners' Cup, a national record of three UEFA Cups, two UEFA Super Cups and one UEFA Intertoto Cup.  Consequently, the side leads the historical Federazione Italiana Giuoco Calcio (FIGC) ranking whilst on the international stage occupies the 4th position in Europe and the eight in the world for most confederation titles won with eleven trophies, having led the UEFA rankings during seven seasons since its inception in 1979, the most for an Italian team.\n\n"
+      ],
+      "titles": [
+        "József Viola",
+        "Juventus F.C."
+      ],
+      "counts": {
+        "llama": {
+          "a": 73,
+          "b": 274,
+          "joint": 347
+        },
+        "gemma": {
+          "a": 74,
+          "b": 277,
+          "joint": 351
+        },
+        "qwen": {
+          "a": 81,
+          "b": 283,
+          "joint": 364
+        }
+      }
+    },
+    {
+      "id": "5ae7739c5542997b22f6a775",
+      "question": "An Austrian-British psychoanalyst born in 1882 and innovative in object relations theory was also rigorous about what other type of therapy?",
+      "answer": "Morita therapy",
+      "bodies": [
+        "Document 1:\nTitle: Melanie Klein\nMelanie Reizes Klein (30 March 1882 – 22 September 1960) was an Austrian-British psychoanalyst who devised novel therapeutic techniques for children that influenced child psychology and contemporary psychoanalysis.  She was a leading innovator in object relations theory.\n\n",
+        "Document 2:\nTitle: Morita therapy\nMorita therapy is an ecological, purpose-centered, response-oriented therapy created through case-based research by Shoma Morita, M.D. (1874–1938).  Morita developed his theory of consciousness and medically-grounded four-stage progressive therapeutic method with as much rigor as his contemporaries, Sigmund Freud, Alfred Adler, Anna Freud, Carl Jung, Jacques Lacan, Melanie Klein, and Wilfred Bion.\n\n"
+      ],
+      "titles": [
+        "Melanie Klein",
+        "Morita therapy"
+      ],
+      "counts": {
+        "llama": {
+          "a": 65,
+          "b": 97,
+          "joint": 162
+        },
+        "gemma": {
+          "a": 71,
+          "b": 105,
+          "joint": 176
+        },
+        "qwen": {
+          "a": 71,
+          "b": 101,
+          "joint": 172
+        }
+      }
+    },
+    {
+      "id": "5a72339855429971e9dc934d",
+      "question": "Which song reached number 3 on the \"Billboard\" Hot 100 that featured guest vocals fron Allessia Cara And Khalid?",
+      "answer": "1-800-273-8255",
+      "bodies": [
+        "Document 1:\nTitle: Alessia Cara\nAlessia Caracciolo (] ; born July 11, 1996), known professionally as Alessia Cara, is a Canadian singer and songwriter.  After producing acoustic covers of songs on YouTube, she signed with Def Jam Recordings and released her debut single, \"Here\", which was a sleeper hit and reached the top 5 in the United States and the top 20 in Canada.  Cara's debut studio album, \"Know-It-All\", was released in 2015.  The third single from the album, \"Scars to Your Beautiful\", reached the top 10 on the \"Billboard\" Hot 100 the following year.  In 2017, Cara collaborated with producer Zedd to create the single \"Stay\", and rapper Logic to feature in his song \"1-800-273-8255\".  With both songs reaching number 7 and number 3 respectively on the \"Billboard\" Hot 100, they became Cara's third and fourth songs to reach the US top 10.\n\n",
+        "Document 2:\nTitle: 1-800-273-8255 (song)\n\"1-800-273-8255\" is a song by American hip hop artist Logic.  It was released on April 28, 2017, through Visionary Music Group and Def Jam Recordings, as the third single from his third studio album \"Everybody\".  The song's name is the phone number for the National Suicide Prevention Lifeline.  Produced by Logic and 6ix, the song features guest vocals from singer-songwriters Alessia Cara and Khalid.\n\n"
+      ],
+      "titles": [
+        "Alessia Cara",
+        "1-800-273-8255 (song)"
+      ],
+      "counts": {
+        "llama": {
+          "a": 221,
+          "b": 116,
+          "joint": 337
+        },
+        "gemma": {
+          "a": 241,
+          "b": 134,
+          "joint": 375
+        },
+        "qwen": {
+          "a": 241,
+          "b": 131,
+          "joint": 372
+        }
+      }
+    },
+    {
+      "id": "5a7bacf2554299294a54aa8d",
+      "question": "The plateau region between the Atlantic Coastal Plain and the main Appalachian Mountains is in what state?",
+      "answer": "North Carolina",
+      "bodies": [
+        "Document 1:\nTitle: Piedmont (United States)\nThe Piedmont is a plateau region located in the eastern United States.  It sits between the Atlantic Coastal Plain and the main Appalachian Mountains, stretching from New Jersey in the north to central Alabama in the south.  The Piedmont Province is a physiographic province of the larger Appalachian division which consists of the Piedmont Upland and the Piedmont Lowlands sections.\n\n",
+        "Document 2:\nTitle: Greater Raleigh-Durham CSA\nGreater Raleigh Metropolitan Area is a metropolitan area in the Piedmont region of North Carolina.  As of 2011 the region had a population of 2,166,144, including the Raleigh-Durham-Cary Combined Statistical Area.\n\n"
+      ],
+      "titles": [
+        "Piedmont (United States)",
+        "Greater Raleigh-Durham CSA"
+      ],
+      "counts": {
+        "llama": {
+          "a": 87,
+          "b": 61,
+          "joint": 148
+        },
+        "gemma": {
+          "a": 83,
+          "b": 67,
+          "joint": 150
+        },
+        "qwen": {
+          "a": 87,
+          "b": 67,
+          "joint": 154
+        }
+      }
+    },
+    {
+      "id": "5ae678915542996d980e7b70",
+      "question": "What was the other name for the war between the Cherokee people and white settlers in 1793?",
+      "answer": "Chickamauga Wars",
+      "bodies": [
+        "Document 1:\nTitle: Battle of Hightower\nThe Battle of Hightower (also called Battle of Etowah) in 1793 was part of the Cherokee–American wars, in which the Cherokee sought to defend their territory from illegal immigration by white settlers.  This particular battle took place at the Cherokee village of Etowah Town (\"Itawayi\"), overlooking Downtown Rome, GA in the modern Floyd County, Georgia, resulting in the defeat of the Cherokee by a force led by John Sevier, future Governor of Tennessee.\n\n",
+        "Document 2:\nTitle: Cherokee–American wars\nThe Cherokee–American wars, also known as the Chickamauga Wars, were a series of back-and-forth raids, campaigns, ambushes, minor skirmishes, and several full-scale frontier battles in the Old Southwest from 1776 to 1795 between the Cherokee (\"Ani-Yunwiya\" or \"Nana Waiya\", \"Tsalagi\") and the Americans on the frontier.  Most of the events took place in the Upper South.  While their fight stretched across the entire period, there were times, sometimes ranging over several months, of little or no action.\n\n"
+      ],
+      "titles": [
+        "Battle of Hightower",
+        "Cherokee–American wars"
+      ],
+      "counts": {
+        "llama": {
+          "a": 110,
+          "b": 132,
+          "joint": 242
+        },
+        "gemma": {
+          "a": 113,
+          "b": 137,
+          "joint": 250
+        },
+        "qwen": {
+          "a": 112,
+          "b": 136,
+          "joint": 248
+        }
+      }
+    },
+    {
+      "id": "5ae362105542991a06ce99ae",
+      "question": "What was the size of the 1700 Cascadia earthquake predicted by Kenji Satake?",
+      "answer": "8.7",
+      "bodies": [
+        "Document 1:\nTitle: Kenji Satake\nKenji Satake is a Japanese seismologist who has made significant contributions to subduction and tsunami research.  Along with Brian Atwater and David Yamaguchi, Satake assembled disparate pieces of information regarding a Japanese tsunami that had no known origin.  The three scientists worked together to pinpoint a date, time, and location for the 1700 Cascadia earthquake – 9 p.m on January 26, 1700 – on the Cascadia Subduction Zone off the Pacific Northwest coast of North America.\n\n",
+        "Document 2:\nTitle: 1700 Cascadia earthquake\nThe 1700 Cascadia earthquake occurred along the Cascadia subduction zone on January 26 with an estimated moment magnitude of 8.7–9.2.  The megathrust earthquake involved the Juan de Fuca Plate that underlies the Pacific Ocean, from mid-Vancouver Island in British Columbia, Canada, south along the Pacific Northwest coast as far as northern California.  The length of the fault rupture was about 1000 km with an average slip of 20 m .\n\n"
+      ],
+      "titles": [
+        "Kenji Satake",
+        "1700 Cascadia earthquake"
+      ],
+      "counts": {
+        "llama": {
+          "a": 118,
+          "b": 112,
+          "joint": 230
+        },
+        "gemma": {
+          "a": 120,
+          "b": 121,
+          "joint": 241
+        },
+        "qwen": {
+          "a": 123,
+          "b": 120,
+          "joint": 243
+        }
+      }
+    },
+    {
+      "id": "5ae180d855429901ffe4aecc",
+      "question": "In what year was the writer of \"The Bet\" born?",
+      "answer": "1964",
+      "bodies": [
+        "Document 1:\nTitle: The Bet (1992 film)\nThe Bet is a 1992 American short film directed by Ted Demme, written by Gavin O'Connor, and starring Josh Mosby and John B. Hickey.  The soundtrack was composed by John Terelle of the Hawaiian Pups and Michael Wolff with Lou Marini.\n\n",
+        "Document 2:\nTitle: Gavin O'Connor (director)\nGavin O'Connor (born October 30, 1964) is an American film director, screenwriter, producer, playwright, and actor.  He is best known for directing the films \"Miracle\", \"Warrior\" and \"The Accountant\".  In September 2017, it was announced he would write and direct the sequel to the DC Extended Universe film \"Suicide Squad\".\n\n"
+      ],
+      "titles": [
+        "The Bet (1992 film)",
+        "Gavin O'Connor (director)"
+      ],
+      "counts": {
+        "llama": {
+          "a": 69,
+          "b": 93,
+          "joint": 162
+        },
+        "gemma": {
+          "a": 75,
+          "b": 100,
+          "joint": 175
+        },
+        "qwen": {
+          "a": 73,
+          "b": 98,
+          "joint": 171
+        }
+      }
+    },
+    {
+      "id": "5ac2ae4155429921a00ab030",
+      "question": "which  Australian politician represented  Electoral district of Goulburn",
+      "answer": "Jane Goward",
+      "bodies": [
+        "Document 1:\nTitle: Pru Goward\nPrudence Jane Goward (born 2 September 1952 in Adelaide), an Australian politician, is the New South Wales Minister for Family and Community Services and Minister for Social Housing, since January 2017 in the Berejiklian government, and the Minister for Prevention of Domestic Violence and Sexual Assault, since 2015.  She has previously served as the Minister for Mental Health, Minister for Medical Research, and Assistant Minister for Health between April 2015 and January 2017, and the Minister for Women between 2011 and January 2017, in the second Baird government and the Minister for Planning during 2014 and 2015.  With the first Berejiklian government she returned to Community Services portfolio which she previously held between 2011 and 2014, in the O'Farrell and first Baird governments.  Goward is a member of the New South Wales Legislative Assembly representing Goulburn for the Liberal Party of Australia since 2007.\n\n",
+        "Document 2:\nTitle: Electoral district of Goulburn\nGoulburn is an electoral district of the Legislative Assembly in the Australian state of New South Wales.  It is represented by Pru Goward of the Liberal Party of Australia.\n\n"
+      ],
+      "titles": [
+        "Pru Goward",
+        "Electoral district of Goulburn"
+      ],
+      "counts": {
+        "llama": {
+          "a": 213,
+          "b": 48,
+          "joint": 261
+        },
+        "gemma": {
+          "a": 237,
+          "b": 50,
+          "joint": 287
+        },
+        "qwen": {
+          "a": 237,
+          "b": 48,
+          "joint": 285
+        }
+      }
+    },
+    {
+      "id": "5ae3bb0d5542992f92d82357",
+      "question": "Which Russian figure skating coach was a former competitive ice dancer who competed with Olga Pershankova in 1993?",
+      "answer": "Nikolai Morozov",
+      "bodies": [
+        "Document 1:\nTitle: Nikolai Morozov (figure skater)\nNikolai Alexandrovich Morozov (Russian: Николай Александрович Морозов ; born 17 December 1975) is a Russian figure skating coach and choreographer.  He coached Shizuka Arakawa to the 2006 Olympic gold medal and Miki Ando to two World titles.  He is a former competitive ice dancer who appeared with Tatiana Navka for Belarus at the 1998 Winter Olympics, placing 16th, and at the 1998 World Championships, placing 10th.  Earlier in his career, he competed with Olga Pershankova for Azerbaijan and with Ekaterina Gvozdkova for Russia.\n\n",
+        "Document 2:\nTitle: Olga Pershankova\nOlga Pershankova (Russian: Ольга Першанкова ; born 18 January 1972) is a Russian ice dancer.  Competing with Peter Tchernyshev for Russia, she won the silver medal at the 1992 Karl Schäfer Memorial (Vienna Cup).  The following season, she teamed up with Nikolai Morozov to compete for Azerbaijan.  The two won the 1993 Golden Spin of Zagreb and competed at the 1994 World Championships and European Championships.\n\n"
+      ],
+      "titles": [
+        "Nikolai Morozov (figure skater)",
+        "Olga Pershankova"
+      ],
+      "counts": {
+        "llama": {
+          "a": 156,
+          "b": 122,
+          "joint": 278
+        },
+        "gemma": {
+          "a": 156,
+          "b": 120,
+          "joint": 276
+        },
+        "qwen": {
+          "a": 172,
+          "b": 131,
+          "joint": 303
+        }
+      }
+    },
+    {
+      "id": "5ae0800055429924de1b70db",
+      "question": "In which Sottish Region is the castle in which] Sir Roger de Kirkpatrick was born ?  ",
+      "answer": "Dumfries and Galloway,",
+      "bodies": [
+        "Document 1:\nTitle: Closeburn Castle\nCloseburn Castle is a tower house, probably of the 14th century, but possibly older, and is one of the oldest continually inhabited houses in Scotland.  The castle is located 1 km east of the village of Closeburn, and 2 km south-east of Thornhill, in Dumfries and Galloway, south-west Scotland.\n\n",
+        "Document 2:\nTitle: Roger de Kirkpatrick\nSir Roger de Kirkpatrick of Closeburn (fl.  14th century) was a Scottish gentleman, a 3rd cousin and associate of Robert the Bruce, and a 1st cousin of Sir William Wallace.  He was born circa 1280 at the Kirkpatrick stronghold of Closeburn Castle.\n\n"
+      ],
+      "titles": [
+        "Closeburn Castle",
+        "Roger de Kirkpatrick"
+      ],
+      "counts": {
+        "llama": {
+          "a": 81,
+          "b": 74,
+          "joint": 155
+        },
+        "gemma": {
+          "a": 83,
+          "b": 75,
+          "joint": 158
+        },
+        "qwen": {
+          "a": 82,
+          "b": 77,
+          "joint": 159
+        }
+      }
+    },
+    {
+      "id": "5a7217f255429971e9dc9260",
+      "question": "Which Member of Parliament for Macclesfield was married to Jane Ann Winterton?",
+      "answer": "Sir Nicholas Raymond Winterton",
+      "bodies": [
+        "Document 1:\nTitle: Ann Winterton\nJane Ann, Lady Winterton (née Hodgson; born 6 March 1941 in Sutton Coldfield) is a British Conservative Party politician who was the Member of Parliament (MP) for Congleton from 1983 to 2010.  She is married to Sir Nicholas Winterton, also a former Conservative MP.\n\n",
+        "Document 2:\nTitle: Nicholas Winterton\nSir Nicholas Raymond Winterton (born 31 March 1938) is a retired British Conservative Party politician.  He was the Member of Parliament (MP) for Macclesfield from 1971 until he retired from the House of Commons at the 2010 general election.\n\n"
+      ],
+      "titles": [
+        "Ann Winterton",
+        "Nicholas Winterton"
+      ],
+      "counts": {
+        "llama": {
+          "a": 80,
+          "b": 69,
+          "joint": 149
+        },
+        "gemma": {
+          "a": 83,
+          "b": 75,
+          "joint": 158
+        },
+        "qwen": {
+          "a": 85,
+          "b": 76,
+          "joint": 161
+        }
+      }
+    },
+    {
+      "id": "5a87d8215542994775f60800",
+      "question": "This American crime film set in South Los Angeles was written and directed by the same director and writer of screenwriter of \"Street Kings\", \"End of Watch\", \"Sabotage\", \"Fury\" and what other film? ",
+      "answer": "Suicide Squad",
+      "bodies": [
+        "Document 1:\nTitle: David Ayer\nDavid Ayer (born January 18, 1968) is an American film director, producer, and screenwriter.  He is best known for being the writer of \"Training Day\" (2001), and the director and writer of \"Harsh Times\" (2005), \"Street Kings\" (2008), \"End of Watch\" (2012), \"Sabotage\" (2014), \"Fury\" (2014), and \"Suicide Squad\" (2016).\n\n",
+        "Document 2:\nTitle: Harsh Times\nHarsh Times is a 2005 American crime film set in South Los Angeles.  The film stars Christian Bale and Freddy Rodriguez, and was written and directed by David Ayer, who wrote the script for the Academy Award-winning 2001 film \"Training Day\".  The film was distributed by Metro-Goldwyn-Mayer and Bauer Martinez Entertainment.  Ayer says that the film's characters are largely based on the people he knew when he lived in South Central.\n\n"
+      ],
+      "titles": [
+        "David Ayer",
+        "Harsh Times"
+      ],
+      "counts": {
+        "llama": {
+          "a": 112,
+          "b": 105,
+          "joint": 217
+        },
+        "gemma": {
+          "a": 126,
+          "b": 112,
+          "joint": 238
+        },
+        "qwen": {
+          "a": 129,
+          "b": 109,
+          "joint": 238
+        }
+      }
+    },
+    {
+      "id": "5adee8ff55429975fa854fb8",
+      "question": "What dance competition television series features host and NFL reporter Erin Andrews?",
+      "answer": "Dancing with the Stars",
+      "bodies": [
+        "Document 1:\nTitle: Dancing with the Stars (U.S. TV series)\nDancing with the Stars is an American dance competition television series that premiered on June 1, 2005, on ABC.  It is the US version of the UK series \"Strictly Come Dancing\".  The show is hosted by Tom Bergeron, alongside Erin Andrews, who became co-host in season eighteen.  Lisa Canning was co-host in the first season, Samantha Harris co-hosted seasons two through nine and Brooke Burke-Charvet in seasons ten through seventeen.  On May 12, 2017, it was announced that the series has been renewed for season twenty six.\n\n",
+        "Document 2:\nTitle: Erin Andrews\nErin Jill Andrews (born May 4, 1978) is an American sportscaster and television personality.  She hosts \"Dancing with the Stars\" for ABC and is a sideline reporter for Fox NFL.\n\n"
+      ],
+      "titles": [
+        "Dancing with the Stars (U.S. TV series)",
+        "Erin Andrews"
+      ],
+      "counts": {
+        "llama": {
+          "a": 138,
+          "b": 54,
+          "joint": 192
+        },
+        "gemma": {
+          "a": 146,
+          "b": 56,
+          "joint": 202
+        },
+        "qwen": {
+          "a": 143,
+          "b": 56,
+          "joint": 199
+        }
+      }
+    },
+    {
+      "id": "5a7e86245542991319bc94ce",
+      "question": "Who was the New York City Fire Commissioner at the time of Providenza Panno's death?",
+      "answer": "Rhinelander Waldo",
+      "bodies": [
+        "Document 1:\nTitle: Rhinelander Waldo\nRhinelander Waldo (May 24, 1877 – August 13, 1927) was appointed the seventh New York City Fire Commissioner by Mayor William Jay Gaynor on January 13, 1910.  He resigned on May 23, 1911, less than two months after the deadly Triangle Shirtwaist Factory fire to accept an appointment as the eighth New York City Police Commissioner.  On December 31, 1913, he was dismissed by the outgoing acting mayor, Ardolph Kline.  Among other achievements in office, Waldo contributed to the motorization of both departments.\n\n",
+        "Document 2:\nTitle: Triangle Shirtwaist Factory fire\nThe Triangle Shirtwaist Factory fire in New York City on March 25, 1911 was the deadliest industrial disaster in the history of the city, and one of the deadliest in US history.  The fire caused the deaths of 146 garment workers – 123 women and 23 men – who died from the fire, smoke inhalation, or falling or jumping to their deaths.  Most of the victims were recent Italian and Jewish immigrant women aged 16 to 23; of the victims whose ages are known, the oldest victim was Providenza Panno at 43, and the youngest were 14-year-olds Kate Leone and \"Sara\" Rosaria Maltese.\n\n"
+      ],
+      "titles": [
+        "Rhinelander Waldo",
+        "Triangle Shirtwaist Factory fire"
+      ],
+      "counts": {
+        "llama": {
+          "a": 138,
+          "b": 151,
+          "joint": 289
+        },
+        "gemma": {
+          "a": 152,
+          "b": 163,
+          "joint": 315
+        },
+        "qwen": {
+          "a": 153,
+          "b": 163,
+          "joint": 316
+        }
+      }
+    },
+    {
+      "id": "5addf9e05542997dc79070f9",
+      "question": "What was the name of the founder and president of the company which produced the role playing game FTL:2448?",
+      "answer": "Richard Tucholka",
+      "bodies": [
+        "Document 1:\nTitle: FTL:2448\nFTL:2448 is a science fiction role playing game, created by Richard Tucholka, and published by Tri Tac Games in 1982, about faster-than-light (FTL) travel with alien races.  In 1985, there was an expanded edition, and in 1990, a two-volume version of the game was released.  Book One covered character creation, alien races, combat, equipment, and some scenarios.  Book Two included the extensive Star-System-generation system, several campaign setups, and more background information on the overall campaign.  The 2000 PDF Edition includes an additional 100 pages of new material as well as starship blueprints, The Art of FTL, and additional material.\n\n",
+        "Document 2:\nTitle: Tri Tac Games\nTri Tac Games is a publisher of role-playing games based in Pontiac, Michigan.  The company is built primarily on the work of Richard Tucholka, its founder and president.\n\n"
+      ],
+      "titles": [
+        "FTL:2448",
+        "Tri Tac Games"
+      ],
+      "counts": {
+        "llama": {
+          "a": 162,
+          "b": 48,
+          "joint": 210
+        },
+        "gemma": {
+          "a": 181,
+          "b": 50,
+          "joint": 231
+        },
+        "qwen": {
+          "a": 176,
+          "b": 48,
+          "joint": 224
+        }
+      }
+    },
+    {
+      "id": "5a714de95542994082a3e7a8",
+      "question": "Alexander Young, also known as George Alexander, is the uncle to which Scottish musician who replaced Malcolm Young in the band AC/DC in 2014?",
+      "answer": "Stephen Crawford Young",
+      "bodies": [
+        "Document 1:\nTitle: Stevie Young\nStephen Crawford Young (born 11 December 1956 in Glasgow, Scotland) is a Scottish musician, and the rhythm guitarist and backing vocalist for the Australian hard rock band, AC/DC.  He officially joined the band in September 2014, replacing his uncle, Malcolm Young who retired due to dementia.  He had previously filled in for Malcolm on AC/DC's 1988 U.S. tour.\n\n",
+        "Document 2:\nTitle: Alexander Young (musician)\nAlexander Young (28 December 1938 – 4 August 1997), also known as George Alexander, was a Scottish singer, songwriter, saxophonist, bassist, guitarist and session musician.  He is an elder brother of George Young, the rhythm guitarist and founding member of the Easybeats, as well as Malcolm and Angus Young, founding members of the Australian hard rock band AC/DC, and the younger brother of Stephen Young, the father of Stevie Young, who was also a member of AC/DC.\n\n"
+      ],
+      "titles": [
+        "Stevie Young",
+        "Alexander Young (musician)"
+      ],
+      "counts": {
+        "llama": {
+          "a": 94,
+          "b": 120,
+          "joint": 214
+        },
+        "gemma": {
+          "a": 104,
+          "b": 125,
+          "joint": 229
+        },
+        "qwen": {
+          "a": 101,
+          "b": 125,
+          "joint": 226
+        }
+      }
+    },
+    {
+      "id": "5add7ce55542992ae4cec585",
+      "question": "When was the Swiss author and dramatist died who's novel is \"A Dangerous Game\"?",
+      "answer": "14 December 1990",
+      "bodies": [
+        "Document 1:\nTitle: Male Nilluvavarege\nMale Nilluvavarege (2015) is a Kannada film directed by Mohan Shankar.  The movie is based on the novel \"A Dangerous Game\" by Friedrich Dürrenmatt.\n\n",
+        "Document 2:\nTitle: Friedrich Dürrenmatt\nFriedrich Dürrenmatt (] ; 5 January 1921 – 14 December 1990) was a Swiss author and dramatist.  He was a proponent of epic theatre whose plays reflected the recent experiences of World War II.  The politically active author's work included avant-garde dramas, philosophical crime novels, and macabre satire.  Dürrenmatt was a member of the Gruppe Olten.\n\n"
+      ],
+      "titles": [
+        "Male Nilluvavarege",
+        "Friedrich Dürrenmatt"
+      ],
+      "counts": {
+        "llama": {
+          "a": 58,
+          "b": 106,
+          "joint": 164
+        },
+        "gemma": {
+          "a": 58,
+          "b": 106,
+          "joint": 164
+        },
+        "qwen": {
+          "a": 60,
+          "b": 111,
+          "joint": 171
+        }
+      }
+    },
+    {
+      "id": "5a8f5bb45542992414482a77",
+      "question": "What is the population of the province Herald Provincial Park is in?",
+      "answer": "more than four and a half million people",
+      "bodies": [
+        "Document 1:\nTitle: British Columbia\nBritish Columbia is the westernmost province of Canada, with a population of more than four and a half million people.  It is located between the Pacific Ocean and the Rocky Mountains.  British Columbia is also a component of the Pacific Northwest and the Cascadia bioregion, along with American states Alaska, Idaho, Montana (western portion), Oregon and Washington.\n\n",
+        "Document 2:\nTitle: Herald Provincial Park\nHerald Provincial Park is a provincial park in British Columbia, Canada.\n\n"
+      ],
+      "titles": [
+        "British Columbia",
+        "Herald Provincial Park"
+      ],
+      "counts": {
+        "llama": {
+          "a": 82,
+          "b": 24,
+          "joint": 106
+        },
+        "gemma": {
+          "a": 83,
+          "b": 25,
+          "joint": 108
+        },
+        "qwen": {
+          "a": 82,
+          "b": 24,
+          "joint": 106
+        }
+      }
+    },
+    {
+      "id": "5a778e8755429949eeb29ef4",
+      "question": "St Anne's Academy is an 11–18 mixed comprehensive academy is located in a town that had how many inhabitants in 2011 ?",
+      "answer": "42,972",
+      "bodies": [
+        "Document 1:\nTitle: St Anne's Academy\nSt Anne's Academy is an 11–18 mixed comprehensive academy in Middleton area of the Metropolitan Borough of Rochdale in Greater Manchester, United Kingdom.  The school has specialist status in Information and Communication Technology.  The School has 657 students on roll, with 98 in sixth form.\n\n",
+        "Document 2:\nTitle: Middleton, Greater Manchester\nMiddleton is a town in the Metropolitan Borough of Rochdale, Greater Manchester, England, on the River Irk 5 mi south-southwest of Rochdale and 4.4 mi north-northeast of Manchester city centre.  In 2001, Middleton had a population of 45,580, reducing to 42,972 at the 2011 Census.  It lies on the northern edge of Manchester, with Blackley to the south and Moston to the south east.\n\n"
+      ],
+      "titles": [
+        "St Anne's Academy",
+        "Middleton, Greater Manchester"
+      ],
+      "counts": {
+        "llama": {
+          "a": 70,
+          "b": 112,
+          "joint": 182
+        },
+        "gemma": {
+          "a": 79,
+          "b": 124,
+          "joint": 203
+        },
+        "qwen": {
+          "a": 75,
+          "b": 122,
+          "joint": 197
+        }
+      }
+    },
+    {
+      "id": "5a81a63c5542990a1d231e45",
+      "question": "Charles Haughey held what position when he dissolved the list of members who were elected to the lower house of the Oireachtas of Ireland on 25 May 1989?",
+      "answer": "Taoiseach of Ireland",
+      "bodies": [
+        "Document 1:\nTitle: Charles Haughey\nCharles James Haughey (16 September 1925 – 13 June 2006) was Taoiseach of Ireland, serving three terms in office (from December 1979 to June 1981, March 1982 to December 1982, and March 1987 to February 1992).  He was also the fourth leader of Fianna Fáil (from 1979 until 1992).  Haughey was first elected to Dáil Éireann as a Teachta Dála (TD) in 1957 and was re-elected in every election until 1992, representing the Dublin North-East, Dublin Artane and Dublin North-Central constituencies.  Haughey also served as Minister for Health and Social Welfare (1977–1979), Minister for Finance (1966–1970), Minister for Agriculture (1964–1966) and Minister for Justice (1961–1964).  He also served as a Parliamentary Secretary to the Minister for Justice during the early years of his parliamentary career.\n\n",
+        "Document 2:\nTitle: Members of the 25th Dáil\nThis is a list of members who were elected to the 25th Dáil Éireann, the lower house of the Oireachtas (legislature) of Ireland.  These TDs (Members of Parliament) were elected at the 1987 general election on 17 February 1987 and met on 10 March 1987.  The 25th Dáil was dissolved by President Patrick Hillery, at the request of the Taoiseach Charles Haughey on 25 May 1989.  The 25th Dáil lasted 849 days.  There were no by-elections during the 25th Dáil.\n\n"
+      ],
+      "titles": [
+        "Charles Haughey",
+        "Members of the 25th Dáil"
+      ],
+      "counts": {
+        "llama": {
+          "a": 227,
+          "b": 154,
+          "joint": 381
+        },
+        "gemma": {
+          "a": 263,
+          "b": 164,
+          "joint": 427
+        },
+        "qwen": {
+          "a": 270,
+          "b": 172,
+          "joint": 442
+        }
+      }
+    },
+    {
+      "id": "5a8135eb55429938b61422fa",
+      "question": "The nightclub Playboy Club was located at this hotel and casino located near the Las Vegas Strip that has how many rooms?",
+      "answer": "703",
+      "bodies": [
+        "Document 1:\nTitle: Playboy Club (Las Vegas)\nThe Playboy Club was a nightclub formerly located on the 52nd floor of the \"Fantasy Tower\" at the Palms Casino Resort in Paradise, Nevada, which is located in the Las Vegas Valley.  The club was a Playboy-themed casino and the first official Playboy Club in the United States since 1988.  The club opened in October 2006 and closed in June 2012.\n\n",
+        "Document 2:\nTitle: Palms Casino Resort\nPalms Casino Resort is a hotel and casino located near the Las Vegas Strip in Paradise, Nevada.  It has 703 rooms and suites and contains 94840 sqft casino, recording studio, Michelin-starred restaurant and 2,500-seat concert theater.\n\n"
+      ],
+      "titles": [
+        "Playboy Club (Las Vegas)",
+        "Palms Casino Resort"
+      ],
+      "counts": {
+        "llama": {
+          "a": 93,
+          "b": 65,
+          "joint": 158
+        },
+        "gemma": {
+          "a": 102,
+          "b": 73,
+          "joint": 175
+        },
+        "qwen": {
+          "a": 100,
+          "b": 72,
+          "joint": 172
+        }
+      }
+    },
+    {
+      "id": "5a713f395542994082a3e6ea",
+      "question": "Where does the state legislature in which John Coffin Talbot served convene?",
+      "answer": "the State House in Augusta",
+      "bodies": [
+        "Document 1:\nTitle: John C. Talbot\nJohn Coffin Talbot (1784–1860) was an American businessperson and politician from Maine.  Talbot, a Democrat, served 6 one-year terms in the Maine Legislature, including two in the Maine House of Representatives (1825; 1831) and four in the Maine Senate (1832-1833; 1836-1837).  In his 4th and final Senate term, Talbot was elected Senate President.\n\n",
+        "Document 2:\nTitle: Maine Legislature\nThe Maine Legislature is the state legislature of the U.S. state of Maine.  It is a bicameral body composed of the lower house Maine House of Representatives and the upper house Maine Senate.  The Legislature convenes at the State House in Augusta, where it has met since 1832.\n\n"
+      ],
+      "titles": [
+        "John C. Talbot",
+        "Maine Legislature"
+      ],
+      "counts": {
+        "llama": {
+          "a": 106,
+          "b": 70,
+          "joint": 176
+        },
+        "gemma": {
+          "a": 122,
+          "b": 75,
+          "joint": 197
+        },
+        "qwen": {
+          "a": 122,
+          "b": 72,
+          "joint": 194
+        }
+      }
+    },
+    {
+      "id": "5ab7ba7555429928e1fe38b5",
+      "question": "The Dukes of Hazzard was inspired by the 1975 film starring whom?",
+      "answer": "James Mitchum",
+      "bodies": [
+        "Document 1:\nTitle: Moonrunners\nMoonrunners is a 1975 film, starring James Mitchum, about a Southern family that runs bootleg liquor.  It was reworked four years later into the popular long-running television series \"The Dukes of Hazzard\", and as such the two productions share many similar concepts.  Mitchum had co-starred with his father, Robert Mitchum, in the similar drive-in favorite \"Thunder Road\" eighteen years earlier, which also focused upon moonshine-running bootleggers using fast cars to elude federal agents.  \"Moonrunners\", a B movie, was filmed in 1973 and awaited release for over a year.  Its soundtrack reflects the outlaw music boom of the 1970s during which the film was released.\n\n",
+        "Document 2:\nTitle: The Dukes of Hazzard\nThe Dukes of Hazzard is an American action-comedy television series that aired on CBS from January 26, 1979, to February 8, 1985.  The show aired for a total of 147 episodes spanning seven seasons.  The series was inspired by the 1975 film \"Moonrunners\", which was also created by Gy Waldron and had many identical or similar character names and concepts.\n\n"
+      ],
+      "titles": [
+        "Moonrunners",
+        "The Dukes of Hazzard"
+      ],
+      "counts": {
+        "llama": {
+          "a": 163,
+          "b": 101,
+          "joint": 264
+        },
+        "gemma": {
+          "a": 170,
+          "b": 109,
+          "joint": 279
+        },
+        "qwen": {
+          "a": 169,
+          "b": 110,
+          "joint": 279
+        }
+      }
+    },
+    {
+      "id": "5a7568805542992db9473658",
+      "question": "What aviator participated to the Transatlantic flight organized by the \"heir apparent\" to Italian dictator Benito Mussolini?",
+      "answer": "Antonio Lippi",
+      "bodies": [
+        "Document 1:\nTitle: Italo Balbo\nItalo Balbo (Ferrara, 6 June 1896 – Tobruk, 28 June 1940) was an Italian Blackshirt (\"Camicie Nere\", or CCNN) leader who served as Italy's Marshal of the Air Force (\"Maresciallo dell'Aria\"), Governor-General of Libya, Commander-in-Chief of Italian North Africa (\"Africa Settentrionale Italiana\", or ASI), and the \"heir apparent\" to Italian dictator Benito Mussolini.\n\n",
+        "Document 2:\nTitle: Antonio Lippi\nAntonio Lippi (1900–1957) was an Italian aviator.  He participated to the Transatlantic flight organized by Italo Balbo and awarded with the Medaglia d'Oro to aeronautic valor of Regia Aeronautica.\n\n"
+      ],
+      "titles": [
+        "Italo Balbo",
+        "Antonio Lippi"
+      ],
+      "counts": {
+        "llama": {
+          "a": 114,
+          "b": 66,
+          "joint": 180
+        },
+        "gemma": {
+          "a": 119,
+          "b": 65,
+          "joint": 184
+        },
+        "qwen": {
+          "a": 119,
+          "b": 70,
+          "joint": 189
+        }
+      }
+    },
+    {
+      "id": "5ae1b53b5542997283cd2255",
+      "question": "What Indian government tag was given to the handicraft known for making simple loose clothing worn over the shoulders?",
+      "answer": "Geographical Indication tag",
+      "bodies": [
+        "Document 1:\nTitle: Gopalpur Tussar Fabrics\nGopalpur village is famous for producing Tussar fabrics.  It is in Jajpur District in the Indian state of Odisha.  This handicraft received the Geographical Indication tag by the Government of India in 2009.  Tussar textiles are related to dhoti, joda, Shawl stole, scarves and saris.\n\n",
+        "Document 2:\nTitle: Shawl\nA shawl (from Persian: lang-Urdu شال‎ ‎ \"shāl\", which may be from Hindi: दुशाला duśālā, ultimately from Sanskrit: शाटी śāṭī) is a simple item of clothing, loosely worn over the shoulders, upper body and arms, and sometimes also over the head.  It is usually a rectangular or square piece of cloth, which is often folded to make a triangle but can also be triangular in shape.  Other shapes include oblong shawls.\n\n"
+      ],
+      "titles": [
+        "Gopalpur Tussar Fabrics",
+        "Shawl"
+      ],
+      "counts": {
+        "llama": {
+          "a": 90,
+          "b": 122,
+          "joint": 212
+        },
+        "gemma": {
+          "a": 88,
+          "b": 113,
+          "joint": 201
+        },
+        "qwen": {
+          "a": 92,
+          "b": 126,
+          "joint": 218
+        }
+      }
+    },
+    {
+      "id": "5ac261265542992f1f2b3896",
+      "question": "Who described the person who started the current American Independent Institute in 2014 as \"one of the most influential operatives in the Democratic Party\"? ",
+      "answer": "\"Time\"",
+      "bodies": [
+        "Document 1:\nTitle: David Brock\nDavid Brock (born November 2, 1962) is an American Neo-Liberal political operative, author, and commentator who founded the media watchdog group Media Matters for America.  He has been described by \"Time\" as \"one of the most influential operatives in the Democratic Party\".\n\n",
+        "Document 2:\nTitle: American Independent Institute\nThe American Independent Institute is a nonprofit organization which funds liberal investigative journalism efforts.  According to the organization, its aim is to support journalism which exposes \"the nexus of conservative power in Washington.\"  The current institute, started by David Brock in 2014, is a relaunch of the former state-based digital news-gathering network known as the American Independent News Network.\n\n"
+      ],
+      "titles": [
+        "David Brock",
+        "American Independent Institute"
+      ],
+      "counts": {
+        "llama": {
+          "a": 68,
+          "b": 84,
+          "joint": 152
+        },
+        "gemma": {
+          "a": 71,
+          "b": 88,
+          "joint": 159
+        },
+        "qwen": {
+          "a": 70,
+          "b": 86,
+          "joint": 156
+        }
+      }
+    },
+    {
+      "id": "5ae56fb85542993aec5ec1a9",
+      "question": "What software company developed Fade to black and it's 1992 Sequel, Flashback? ",
+      "answer": "Delphine Software International",
+      "bodies": [
+        "Document 1:\nTitle: Flashback (1992 video game)\nFlashback, released as Flashback: The Quest for Identity in the United States, is a 1992 science fiction cinematic platform game developed by Delphine Software of France and published by U.S. Gold in United States and Europe, and Sunsoft in Japan.\n\n",
+        "Document 2:\nTitle: Fade to Black (video game)\nFade to Black is an action-adventure game developed by Delphine Software International and published by Electronic Arts.  It is the sequel to the 1992 video game \"Flashback\".  The game was released for MS-DOS and PlayStation.  Planned Nintendo 64 and Sega Saturn versions were cancelled.\n\n"
+      ],
+      "titles": [
+        "Flashback (1992 video game)",
+        "Fade to Black (video game)"
+      ],
+      "counts": {
+        "llama": {
+          "a": 68,
+          "b": 75,
+          "joint": 143
+        },
+        "gemma": {
+          "a": 75,
+          "b": 80,
+          "joint": 155
+        },
+        "qwen": {
+          "a": 72,
+          "b": 78,
+          "joint": 150
+        }
+      }
+    },
+    {
+      "id": "5ac3e0f7554299194317388b",
+      "question": "Which actor does American Beauty and American Beauty have in common?",
+      "answer": "Kevin Spacey",
+      "bodies": [
+        "Document 1:\nTitle: American Beauty (1999 film)\nAmerican Beauty is a 1999 American drama film directed by Sam Mendes and written by Alan Ball.  Kevin Spacey stars as Lester Burnham, a 42-year-old advertising executive who has a midlife crisis when he becomes infatuated with his teenage daughter's best friend, Angela (Mena Suvari).  Annette Bening co-stars as Lester's materialistic wife, Carolyn, and Thora Birch plays their insecure daughter, Jane.  Wes Bentley, Chris Cooper, and Allison Janney also feature.  The film is described by academics as a satire of American middle-class notions of beauty and personal satisfaction; analysis has focused on the film's explorations of romantic, and paternal love, sexuality, beauty, materialism, self-liberation, and redemption.\n\n",
+        "Document 2:\nTitle: American Beauty (soundtrack)\nAmerican Beauty: Music from the Original Motion Picture Soundtrack is the soundtrack album to the 1999 film starring Kevin Spacey and Annette Bening.\n\n"
+      ],
+      "titles": [
+        "American Beauty (1999 film)",
+        "American Beauty (soundtrack)"
+      ],
+      "counts": {
+        "llama": {
+          "a": 170,
+          "b": 43,
+          "joint": 213
+        },
+        "gemma": {
+          "a": 182,
+          "b": 46,
+          "joint": 228
+        },
+        "qwen": {
+          "a": 175,
+          "b": 45,
+          "joint": 220
+        }
+      }
+    },
+    {
+      "id": "5a7b3f4d5542992d025e67bb",
+      "question": "Which songwriting duo composed music for \"La La Land\", and created lyrics for \"A Christmas Story: The Musical\"? ",
+      "answer": "Pasek & Paul",
+      "bodies": [
+        "Document 1:\nTitle: Pasek and Paul\nBenj Pasek and Justin Paul, known together as Pasek and Paul, are an American songwriting duo and composing team for musical theater, films, and television.  Their works include \"\", \"Dogfight\", \"Edges\", \"Dear Evan Hansen\", and \"James and the Giant Peach\".  Their original songs have been featured on NBC's \"Smash\", and in the film \"La La Land\", for which they won both the Golden Globe and Academy Award for Best Original Song for the song \"City of Stars\".\n\n",
+        "Document 2:\nTitle: A Christmas Story: The Musical\nA Christmas Story: The Musical is a musical version of the film \"A Christmas Story\".  The musical has music and lyrics written by Pasek & Paul and the book by Joseph Robinette.  The musical takes place in the 1940s in Indiana and focuses on a child named Ralphie, who wants a Red Ryder BB Gun for Christmas.\n\n"
+      ],
+      "titles": [
+        "Pasek and Paul",
+        "A Christmas Story: The Musical"
+      ],
+      "counts": {
+        "llama": {
+          "a": 119,
+          "b": 85,
+          "joint": 204
+        },
+        "gemma": {
+          "a": 118,
+          "b": 88,
+          "joint": 206
+        },
+        "qwen": {
+          "a": 119,
+          "b": 87,
+          "joint": 206
+        }
+      }
+    },
+    {
+      "id": "5a7c6ed3554299683c1c6306",
+      "question": "What region has the indigenous language that includes the word Catuaba?",
+      "answer": "South America",
+      "bodies": [
+        "Document 1:\nTitle: Catuaba\nThe name catuaba (pronounced [ka.two. 'aba], a Guarani word that means \"what gives strength to the Indian\") is used for the infusions of the bark of a number of trees native to Brazil.  The most widely used barks are derived from the trees \"Trichilia catigua\" and \"Erythroxylum vaccinifolium\".  Other catuaba preparations use the bark of trees from the following genera or families: \"Anemopaegma\", \"Ilex\", \"Micropholis\", \"Phyllanthus\", \"Secondatia\", \"Tetragastris\" and species from the Myrtaceae.\n\n",
+        "Document 2:\nTitle: Guarani language\nGuarani ( or ), specifically the primary variety known as Paraguayan Guarani (endonym \"avañe'ẽ\" ] 'the people's language'), is an indigenous language of South America that belongs to the Tupi–Guarani family of the Tupian languages.  It is one of the official languages of Paraguay (along with Spanish), where it is spoken by the majority of the population, and where half of the rural population is monolingual.  It is spoken by communities in neighboring countries, including parts of northeastern Argentina, southeastern Bolivia and southwestern Brazil, and is a second official language of the Argentine province of Corrientes since 2004; it is also an official language of Mercosur.\n\n"
+      ],
+      "titles": [
+        "Catuaba",
+        "Guarani language"
+      ],
+      "counts": {
+        "llama": {
+          "a": 149,
+          "b": 159,
+          "joint": 308
+        },
+        "gemma": {
+          "a": 143,
+          "b": 161,
+          "joint": 304
+        },
+        "qwen": {
+          "a": 150,
+          "b": 160,
+          "joint": 310
+        }
+      }
+    },
+    {
+      "id": "5a89cc99554299669944a5ae",
+      "question": "Wiener Werkstätte Style was part of the movement that took place during what eras?",
+      "answer": "late 19th and early 20th centuries",
+      "bodies": [
+        "Document 1:\nTitle: Modernism\nModernism is a philosophical movement that, along with cultural trends and changes, arose from wide-scale and far-reaching transformations in Western society during the late 19th and early 20th centuries.  Among the factors that shaped modernism were the development of modern industrial societies and the rapid growth of cities, followed then by reactions of horror to World War I.  Modernism also rejected the certainty of Enlightenment thinking, and many modernists rejected religious belief.\n\n",
+        "Document 2:\nTitle: Wiener Werkstätte Style\nWith the foundation of the Wiener Werkstätte in 1903, a new artistic style was born that came to be known as the Wiener-Werkstätte-Stil (literally, the Vienna Workshops Style).  Beginning with the 14th Exhibition of the Vienna Sezession in 1902, the radical distinctiveness of certain Viennese artists began to emerge, setting a foundation for the widespread Modernist movement.  Among the innovators was the Viennese architect Josef Hoffmann.  His cubist sculpture created in 1902 marked a break into independence for many Viennese artists.  His works from this period are especially remarkable when one considers that the term \"cubism\" only found its way into the art lexicon around 1907 to describe the work of Pablo Picasso.\n\n"
+      ],
+      "titles": [
+        "Modernism",
+        "Wiener Werkstätte Style"
+      ],
+      "counts": {
+        "llama": {
+          "a": 100,
+          "b": 182,
+          "joint": 282
+        },
+        "gemma": {
+          "a": 106,
+          "b": 177,
+          "joint": 283
+        },
+        "qwen": {
+          "a": 102,
+          "b": 192,
+          "joint": 294
+        }
+      }
+    },
+    {
+      "id": "5a863114554299211dda2aa5",
+      "question": "What man won an Academy Award for his work on a drama based on the life of Rocky Graziano?",
+      "answer": "Francis Keogh Gleason",
+      "bodies": [
+        "Document 1:\nTitle: F. Keogh Gleason\nFrancis Keogh Gleason (April 14, 1906 – December 18, 1982) was a resident set decorator at MGM studios for over 40 years.  In that time he won 4 Academy Awards (for \"An American in Paris\" in 1951, \"The Bad and the Beautiful\" in 1952, \"Somebody Up There Likes Me\" in 1956 and \"Gigi\" in 1958) and was nominated an additional 3 times.  Gleason graduated from the Minnesota School of Fine Arts (now known as the Minneapolis College of Art and Design) in 1927.\n\n",
+        "Document 2:\nTitle: Somebody Up There Likes Me (1956 film)\nSomebody Up There Likes Me is a 1956 American drama film based on the life of middleweight boxing legend Rocky Graziano.  Joseph Ruttenberg was awarded a 1956 Oscar in the category of Best Cinematography (Black and White).  The film also won the Oscar for Best Art Direction (Cedric Gibbons, Malcolm F. Brown, Edwin B. Willis, F. Keogh Gleason).  It was directed by Robert Wise.\n\n"
+      ],
+      "titles": [
+        "F. Keogh Gleason",
+        "Somebody Up There Likes Me (1956 film)"
+      ],
+      "counts": {
+        "llama": {
+          "a": 144,
+          "b": 111,
+          "joint": 255
+        },
+        "gemma": {
+          "a": 160,
+          "b": 115,
+          "joint": 275
+        },
+        "qwen": {
+          "a": 161,
+          "b": 117,
+          "joint": 278
+        }
+      }
+    },
+    {
+      "id": "5adfff0755429925eb1afbce",
+      "question": "What is 25 miles south of Groom Lake?",
+      "answer": "Rachel, Nevada",
+      "bodies": [
+        "Document 1:\nTitle: Groom Lake (salt flat)\nGroom Lake is a salt flat in Nevada used for runways of the Nellis Bombing Range Test Site airport (KXTA).  It is located immediately north of the Area 51 USAF installation.  The lake at 4409 ft elevation is approximately 3.7 mi from north to south and 3 mi from east to west at its widest point, and is approximately 11.3 miles in circumference.  Located within the namesake Groom Lake Valley portion of the Tonopah Basin, the lake is 25 mi south of Rachel, Nevada.\n\n",
+        "Document 2:\nTitle: Rachel, Nevada\nRachel is a census-designated place (CDP) in Lincoln County, Nevada, United States.  As of the 2010 census it had a population of 54.  As the closest habitation to the Nellis Air Force Range and Area 51, Rachel enjoys a modest celebrity, particularly among aviation enthusiasts and UFO hunters.  North of the town is the Quinn Canyon Range, which has the ghost town of Adaven.\n\n"
+      ],
+      "titles": [
+        "Groom Lake (salt flat)",
+        "Rachel, Nevada"
+      ],
+      "counts": {
+        "llama": {
+          "a": 131,
+          "b": 99,
+          "joint": 230
+        },
+        "gemma": {
+          "a": 132,
+          "b": 103,
+          "joint": 235
+        },
+        "qwen": {
+          "a": 136,
+          "b": 103,
+          "joint": 239
+        }
+      }
+    },
+    {
+      "id": "5abff0785542997d64295957",
+      "question": " Heaven starred what Australian actress who portrayed Katharine Hepburn in the 2004 film \"The Aviator?\"",
+      "answer": "Catherine Elise Blanchett",
+      "bodies": [
+        "Document 1:\nTitle: Heaven (2002 film)\nHeaven is a 2002 romantic thriller film directed by Tom Tykwer, starring Cate Blanchett and Giovanni Ribisi.  Co-screenwriter Krzysztof Kieślowski intended for it to be the first part of a trilogy (the second being \"Hell\" and the third titled \"Purgatory\"), but Kieślowski died before he could complete the project.  The film is an international co-production among producers based in Germany, France, the United States, and the United Kingdom.  The dialogue is in Italian and English.\n\n",
+        "Document 2:\nTitle: Cate Blanchett\nCatherine Elise Blanchett, {'1': \", '2': \", '3': \", '4': \"} ( ; born 14 May 1969) is an Australian actress and theatre director.  She has received international acclaim and many accolades, including two Academy Awards, three Golden Globe Awards, three BAFTA Awards, six AACTA Awards, and three Screen Actors Guild Awards. Blanchett came to international attention for her role as Elizabeth I of England in Shekhar Kapur's 1998 film \"Elizabeth\", for which she won the BAFTA Award for Best Actress, the Golden Globe Award, and earned her first Academy Award for Best Actress nomination.  Her portrayal of Katharine Hepburn in Martin Scorsese's 2004 film \"The Aviator\" brought her critical acclaim and many accolades, including the Academy Award for Best Actress in a Supporting Role, making her the only actor to win an Oscar for portraying another Oscar-winning actor.  In 2013, she starred as Jasmine Francis in Woody Allen's \"Blue Jasmine\", for which she won numerous accolades including the Academy Award for Best Actress.\n\n"
+      ],
+      "titles": [
+        "Heaven (2002 film)",
+        "Cate Blanchett"
+      ],
+      "counts": {
+        "llama": {
+          "a": 128,
+          "b": 241,
+          "joint": 369
+        },
+        "gemma": {
+          "a": 127,
+          "b": 242,
+          "joint": 369
+        },
+        "qwen": {
+          "a": 130,
+          "b": 250,
+          "joint": 380
+        }
+      }
+    },
+    {
+      "id": "5add1aa65542990d50227de1",
+      "question": "Who was the director of the 2007 American fantasy comedy film in which the actor best known for playing Michael Scott on the the American version of \"The Office\" starred?",
+      "answer": "Tom Shadyac",
+      "bodies": [
+        "Document 1:\nTitle: Steve Carell\nSteven John Carell ( ; born August 16, 1962) is an American actor, comedian, director, producer, and writer.  Carell is best known for playing Michael Scott on the American version of \"The Office\" (2005–2011), on which he also worked as an occasional writer, producer, and director.\n\n",
+        "Document 2:\nTitle: Evan Almighty\nEvan Almighty is a 2007 American fantasy comedy film and the stand-alone sequel/spin-off to \"Bruce Almighty\" (2003).  The film was directed by Tom Shadyac, written by Steve Oedekerk, based on the characters created by Steve Koren and Mark O'Keefe from the original film, and starring Steve Carell, Morgan Freeman, Lauren Graham and John Goodman.\n\n"
+      ],
+      "titles": [
+        "Steve Carell",
+        "Evan Almighty"
+      ],
+      "counts": {
+        "llama": {
+          "a": 80,
+          "b": 92,
+          "joint": 172
+        },
+        "gemma": {
+          "a": 89,
+          "b": 97,
+          "joint": 186
+        },
+        "qwen": {
+          "a": 87,
+          "b": 96,
+          "joint": 183
+        }
+      }
+    },
+    {
+      "id": "5ac3f18d554299204fd21ed3",
+      "question": "The song \"Metal\" by Gary Numan was the B-side of a single that reached what ranking inthe UK charts?",
+      "answer": "number 1",
+      "bodies": [
+        "Document 1:\nTitle: Metal (song)\n\"Metal\" is a song by Gary Numan from his 1979 album \"The Pleasure Principle\".  Lyrically the song is science fiction, inspired by the works of Philip K. Dick and William S. Burroughs, and is about an android who wishes to be human, but never can be.  The song was the B-side of \"Cars\" in the USA.\n\n",
+        "Document 2:\nTitle: Cars (song)\n\"Cars\" is a 1979 song by British artist Gary Numan, released as a single from the album \"The Pleasure Principle\".  It reached the top of the charts in several countries, and today is considered a new wave staple.  In the UK charts, it reached number 1 in 1979, and in 1980 hit number 1 in Canada two weeks running on the \"RPM\" national singles chart and rose to number 9 on the US \"Billboard\" Hot 100.  Though Numan had a string of hits in the UK, \"Cars\" was his only song in the US Hot 100.  It debuted on the American Top 40 on 29 March 1980 and spent a total of 17 weeks in the AT40, peaking at #9.  \"Cars\" was released under the 'Atco' label, with the catalogue number of 7211.\n\n"
+      ],
+      "titles": [
+        "Metal (song)",
+        "Cars (song)"
+      ],
+      "counts": {
+        "llama": {
+          "a": 90,
+          "b": 201,
+          "joint": 291
+        },
+        "gemma": {
+          "a": 93,
+          "b": 218,
+          "joint": 311
+        },
+        "qwen": {
+          "a": 92,
+          "b": 219,
+          "joint": 311
+        }
+      }
+    },
+    {
+      "id": "5ab45bcd5542991779162c80",
+      "question": "Which adpotive brothers were co-emperors of Rome during the Nerva-Antonine dynasty?",
+      "answer": "Lucius Verus, Marcus Aurelius",
+      "bodies": [
+        "Document 1:\nTitle: Lucius Verus\nLucius Verus (Latin: \"Lucius Aurelius Verus Augustus\" ; 15 December 130 – 169) was the co-emperor of Rome with his adoptive brother Marcus Aurelius from 161 until his own death in 169.\n\n",
+        "Document 2:\nTitle: Nerva–Antonine dynasty\nThe Nerva–Antonine dynasty was a dynasty of seven Roman Emperors who ruled over the Roman Empire from 96 AD to 192 AD.  These Emperors are Nerva, Trajan, Hadrian, Antoninus Pius, Lucius Verus, Marcus Aurelius, and Commodus.\n\n"
+      ],
+      "titles": [
+        "Lucius Verus",
+        "Nerva–Antonine dynasty"
+      ],
+      "counts": {
+        "llama": {
+          "a": 64,
+          "b": 79,
+          "joint": 143
+        },
+        "gemma": {
+          "a": 74,
+          "b": 76,
+          "joint": 150
+        },
+        "qwen": {
+          "a": 73,
+          "b": 82,
+          "joint": 155
+        }
+      }
+    },
+    {
+      "id": "5a8763475542996e4f3087c0",
+      "question": "What championship did the person who substituted for Simon Pagenaud secure a contract to drive in 2017?",
+      "answer": "Australian Supercars Championship",
+      "bodies": [
+        "Document 1:\nTitle: Simona de Silvestro\nSimona de Silvestro (born 1 September 1988) is a Swiss race car driver.  Having driven for Amlin Andretti in the 2015/16 season of the FIA Formula E Championship, she went on to secure a contract to drive in the Australian Supercars Championship from 2017.  Her nicknames are the \"Iron Maiden\" and \"Swiss Miss.\"\n\n",
+        "Document 2:\nTitle: 2011 Indy Grand Prix of Sonoma\nThe 2011 Indy Grand Prix of Sonoma was the seventh running of the Indy Grand Prix of Sonoma and the fourteenth round of the 2011 IndyCar Series season.  It took place on Sunday, August 28, 2011.  The race contested over 75 laps at the 2.303 mi Infineon Raceway in Sonoma, California.  Will Power led 71 of 75 laps, as Team Penske swept 1st–2nd–3rd on the podium.  It was the first 1–2–3 finish in an Indycar race for Penske since Nazareth in 1994.  Power closed to within 26 points of championship leader Dario Franchitti.  Power also closed within 7 points of Franchitti for the \"Mario Andretti Road Course Trophy\".  Simon Pagenaud substituted for Simona de Silvestro after she had complications renewing her visa, and U.S. Customs would not allow her into the country.\n\n"
+      ],
+      "titles": [
+        "Simona de Silvestro",
+        "2011 Indy Grand Prix of Sonoma"
+      ],
+      "counts": {
+        "llama": {
+          "a": 97,
+          "b": 227,
+          "joint": 324
+        },
+        "gemma": {
+          "a": 101,
+          "b": 233,
+          "joint": 334
+        },
+        "qwen": {
+          "a": 104,
+          "b": 244,
+          "joint": 348
+        }
+      }
+    },
+    {
+      "id": "5a7e1ad155429965cec5ea66",
+      "question": "The first book in the Sprawl Trilogy won what three awards?",
+      "answer": "Nebula Award, the Philip K. Dick Award, and the Hugo Award",
+      "bodies": [
+        "Document 1:\nTitle: Sprawl trilogy\nThe Sprawl trilogy (also known as the Neuromancer, Cyberspace, or Matrix trilogy) is William Gibson's first set of novels, composed of \"Neuromancer\" (1984), \"Count Zero\" (1986), and \"Mona Lisa Overdrive\" (1988).\n\n",
+        "Document 2:\nTitle: Neuromancer\nNeuromancer is a 1984 science fiction novel by American-Canadian writer William Gibson.  It is one of the best-known works in the cyberpunk genre and the first novel to win the Nebula Award, the Philip K. Dick Award, and the Hugo Award.  It was Gibson's debut novel and the beginning of the Sprawl trilogy.  The novel tells the story of a washed-up computer hacker hired by a mysterious employer to pull off the ultimate hack.\n\n"
+      ],
+      "titles": [
+        "Sprawl trilogy",
+        "Neuromancer"
+      ],
+      "counts": {
+        "llama": {
+          "a": 72,
+          "b": 107,
+          "joint": 179
+        },
+        "gemma": {
+          "a": 80,
+          "b": 111,
+          "joint": 191
+        },
+        "qwen": {
+          "a": 78,
+          "b": 109,
+          "joint": 187
+        }
+      }
+    },
+    {
+      "id": "5abece075542997ec76fd36d",
+      "question": "Peter Shand Kydd was related to which early member of the Clermont Club?",
+      "answer": "John Bingham, 7th Earl of Lucan",
+      "bodies": [
+        "Document 1:\nTitle: Peter Shand Kydd\nPeter Shand Kydd (23 April 1925 – 23 March 2006) was the former stepfather of Diana, Princess of Wales, and an heir to the wallpaper fortune built by his father Norman Shand Kydd (1895–1962).  His mother was Francis Madalein Foy (died 1983).  He was half-brother to the former champion amateur jockey William Shand Kydd (1937–2014), who was brother-in-law of John Bingham, 7th Earl of Lucan.\n\n",
+        "Document 2:\nTitle: John Bingham, 7th Earl of Lucan\nRichard John Bingham, 7th Earl of Lucan (18 December 1934 – disappeared 7 November 1974), commonly known as Lord Lucan, was a British peer suspected of murder who disappeared in 1974.  He was born into an Anglo-Irish aristocratic family in Marylebone, the eldest son of George Bingham, 6th Earl of Lucan, by his marriage to Kaitlin Dawson.  An evacuee during the Second World War, Lucan returned to attend Eton College, and then from 1953 to 1955 served with the Coldstream Guards in West Germany.  He developed a taste for gambling and, skilled at backgammon and bridge, became an early member of the Clermont Club.  Although his losses often exceeded his winnings, he left his job at a London-based merchant bank and became a professional gambler.  He was known as Lord Bingham during his father's earldom from April 1949 until January 1964.\n\n"
+      ],
+      "titles": [
+        "Peter Shand Kydd",
+        "John Bingham, 7th Earl of Lucan"
+      ],
+      "counts": {
+        "llama": {
+          "a": 127,
+          "b": 227,
+          "joint": 354
+        },
+        "gemma": {
+          "a": 137,
+          "b": 237,
+          "joint": 374
+        },
+        "qwen": {
+          "a": 143,
+          "b": 242,
+          "joint": 385
+        }
+      }
+    },
+    {
+      "id": "5ae650fb55429929b0807b2e",
+      "question": "Christopher Oscar Pena was recognized by an entertainment-industry brand aimed at what?",
+      "answer": "people working in film and the performing arts",
+      "bodies": [
+        "Document 1:\nTitle: Christopher Oscar Peña\nChristopher Oscar Peña is a playwright, screenwright, actor and educator who resides in New York City.  He teaches theater at NYU's Tisch School of Arts and is a member of the Playwrights Unit at Goodman Theatre in Chicago.  He also has had work commissioned by Yale Repertory Theatre.  Peña is the co-writer of the Golden Globe nominated TV series, Jane the Virgin and was on the \"Future Broadway Power List,\" by Backstage (magazine) in 2014.\n\n",
+        "Document 2:\nTitle: Backstage (magazine)\nBackstage (aka Back Stage) is an entertainment-industry brand aimed at people working in film and the performing arts, with a special focus on casting, job opportunities, and career advice.\n\n"
+      ],
+      "titles": [
+        "Christopher Oscar Peña",
+        "Backstage (magazine)"
+      ],
+      "counts": {
+        "llama": {
+          "a": 116,
+          "b": 50,
+          "joint": 166
+        },
+        "gemma": {
+          "a": 115,
+          "b": 52,
+          "joint": 167
+        },
+        "qwen": {
+          "a": 118,
+          "b": 50,
+          "joint": 168
+        }
+      }
+    }
+  ],
+  "manifest_signature": "2f635b2d6f02e77755d390b1d1f53aa0c774b066e7f18a08444bcf0e59478b33"
+}

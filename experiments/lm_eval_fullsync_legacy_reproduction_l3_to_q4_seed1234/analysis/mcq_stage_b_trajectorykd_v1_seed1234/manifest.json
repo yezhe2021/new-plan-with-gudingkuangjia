@@ -1,0 +1,102 @@
+{
+  "identities": {
+    "configuration": {
+      "protocol": "lm_eval_mcq_stage_b_complete_trajectory_kd_v1",
+      "seed": 1234,
+      "previous_directory": "analysis/mcq_stage_b_tokenkd_ce_multiview_v1_seed1234",
+      "parent_stage_a": "runs/mcq/stage_a/best.pt",
+      "parent_training_data": "runs/mcq/train.jsonl",
+      "parent_validation_data": "runs/mcq/validation.jsonl",
+      "mmlu_baseline_directory": "analysis/mmlu_mcq_transfer_v1_seed1234",
+      "adapter_rank": 64,
+      "train_trajectories_per_task": 128,
+      "validation_questions_per_task": 16,
+      "demo_pool_per_task": 6,
+      "demo_candidate_budget_per_task": 64,
+      "demo_reference_prompt": "qwen_chat_enable_thinking_false_training_only",
+      "teacher_max_new_tokens": 384,
+      "teacher_demo_min_tokens": 80,
+      "teacher_max_answer_matches": 2,
+      "teacher_prompt_max_tokens": 2304,
+      "teacher_shots": 5,
+      "epochs": 2,
+      "effective_batch": 4,
+      "learning_rate": 2e-05,
+      "weight_decay": 0.0,
+      "gradient_clip": 30.0,
+      "token_kl_weight": 1.0,
+      "gold_ce_weight": 0.1,
+      "terminal_ce_weight": 0.1,
+      "mcq_replay_per_epoch": 86,
+      "projection_chunk_tokens": 32,
+      "min_free_gpu_gib": 23,
+      "checkpoint_interval_updates": 16,
+      "validation_generation_max_new_tokens": 384,
+      "evaluation_families": [
+        "mcq",
+        "mmlu"
+      ],
+      "on_policy_training": false,
+      "receiver_lora": false,
+      "teacher_filter": "First official answer is gold; all extracted answers agree; <=2 matches; observed EOS or Question: stop; no length-truncated references.",
+      "selection": "Lowest held-out mean trajectory KL + 0.1 final-answer CE + 0.1 observed-terminal CE. No test-set selection.",
+      "initialization": "Continue from scheme-3 epoch-4 step-1024 Stage B; freeze original Stage A, Llama and Qwen."
+    },
+    "source_sha256": {
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_tokenkd_ce_multiview_v1_seed1234/evaluate_mmlu_pro.py": "82894837b7d615b7eda9c08403033c14b6a71586ef84acd5ca1a447efc15a060",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_tokenkd_ce_multiview_v1_seed1234/evaluate_stage_b.py": "aa61df04792659a3e0f7cc861771f03da0bffd8f4a784f39eb88d57a7ea819b3",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_trajectorykd_v1_seed1234/config.json": "342eb819e3e96807c83ddd3157821e411fb71289faf22058d027c5a1b198862f",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_trajectorykd_v1_seed1234/diagnose.py": "92f6c8c68f625d41c23aaa3a23665fc40fba5d857bcbc4defc4d005d7e785058",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_trajectorykd_v1_seed1234/evaluate.py": "cf73ed0395e5c157a3c8745d8fb85a336ce92e3b9681e6360cd66d78fac08800",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_trajectorykd_v1_seed1234/evaluate_mmlu_pro.py": "67d0a9d685abe9a11497351b46b93dfc29137afb9e34cf966aa5c1c6e1cd1ed8",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_trajectorykd_v1_seed1234/prepare.py": "2398497345cbacfcc954445d1a95918f1d9392bad665489746fb71c582009a5e",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_trajectorykd_v1_seed1234/run_pipeline.py": "2c35c1572b4d77de8b7fd9303f4579b90769f768b5776f9e693d2630dc41fca2",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_trajectorykd_v1_seed1234/tests.py": "b988f1fa33bd19594b90d14afd8f08cf4a27bdae51473148c7bded1cfb6d8068",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_trajectorykd_v1_seed1234/train.py": "cd3f122a2b653b91ab4002f63284a99e809d287a17a29fd531492bd5a81d3fca",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_trajectorykd_v1_seed1234/trajectory_common.py": "e7210c2774c419f939d7b7af74840024c1b421a2436b842802d09a3a75d14e12",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_trajectorykd_v1_seed1234/trajectory_data.py": "c34a413e81ccb2fa3a525445b2dd1df673110e5f5261ceb0aee76d4cdf44aa50"
+    },
+    "previous_manifest_sha256": "fb8199087f541a558003736c2b2fa24b0cb033ddec94f77e8a7dfb45dae42470",
+    "stage_a": {
+      "path": "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/runs/mcq/stage_a/best.pt",
+      "sha256": "62beafbd377374ed8b6a3f15752150a2c23ef81e114c72147d93d3edd527671e",
+      "selection": {
+        "epoch": 2,
+        "step": 512,
+        "validation": {
+          "k_nmse": 0.055120064396760426,
+          "k_cosine": 0.9404736703727394,
+          "v_nmse": 0.39825335377827287,
+          "v_cosine": 0.7554940858390182,
+          "total": 0.7574056619632756
+        }
+      }
+    },
+    "initial_stage_b": {
+      "path": "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_tokenkd_ce_multiview_v1_seed1234/stage_b/best.pt",
+      "sha256": "e9f96f8557f9dcbd96df62c7423ea716308a50b3014fa3532ed70e8236db695f"
+    },
+    "models": {
+      "llama": "/hy-tmp/yezhe/all_models/models/LLM-Research/Llama-3.2-3B-Instruct",
+      "qwen": "/hy-tmp/yezhe/all_models/models/Qwen/Qwen3-4B"
+    },
+    "attention_implementation": "eager",
+    "data_sha256": {
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/runs/mcq/train.jsonl": "57173ed2eeede37beb19005df19095359034bf26bbfd611e17476d7266304a20",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/runs/mcq/validation.jsonl": "7cfa32259158f668c6423dff5f8f8bc28134091aea166b6246a2ed7d7a22c05d"
+    }
+  },
+  "prepared_sha256": {
+    "prepared/demo_attempts.jsonl": "d57b3c9977943078941027ce6500710757a087b59879f803232a7ae3e06145d0",
+    "prepared/demos.jsonl": "a22f98853c4d5d0699932c32e9ab2922fcb8faa9bb09e8db221ff8f082e1a65a",
+    "prepared/reference_identity.json": "f5907e938371e88af470a931211127660ebedfc96bec0efb6810fd55cbd12065",
+    "prepared/summary.json": "2b2d29e4e80e26bf5de8d5f07538480ef5eb7f7fff6c0838aa54543861a5569a",
+    "prepared/train_attempts.jsonl": "cd09ead9c1835f6466526941d6414451fe7c0c48143b1b318df95f5ba82955f6",
+    "prepared/train_trajectories.jsonl": "b7eb4fa5fa030820dbecadde4a59014e4c3c1178479422f10cd7ca041c6d072b",
+    "prepared/validation_attempts.jsonl": "2679d2da171387ac19169ae58923e383dd7ac097ad8ff476300148189ad179c1",
+    "prepared/validation_questions.jsonl": "6817a5ac3d3bcaa68ece26c82d44a37711e74d18aea60add09aaf5f56386515b",
+    "prepared/validation_trajectories.jsonl": "e3ed329b74f061a9fdbc925a9f0e89f02ead36fd202acf716ee7933acccc4a42"
+  },
+  "preflight_sha256": "8197a993b198f9e9116a57d79fb4bba3c348763d42fd89896dfd47b330125b0a",
+  "smoke_sha256": "7e4a68035dfb8e2cae431e637ab5b07461e18e341c50526282982172e78f6265"
+}

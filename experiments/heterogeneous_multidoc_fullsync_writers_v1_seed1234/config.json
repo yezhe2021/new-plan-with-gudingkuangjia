@@ -1,0 +1,72 @@
+{
+  "experiment_name": "heterogeneous_multidoc_fullsync_writers_v1_seed1234",
+  "seed": 1234,
+  "server": "A",
+  "protocol": "hotpot_bridge_gold2_dense_frozen_retrained_fullsync_writers_v1",
+  "samples": 64,
+  "smoke_samples": 2,
+  "group_size": 4,
+  "max_document_tokens": 1024,
+  "max_joint_tokens": 2048,
+  "max_new_tokens": 32,
+  "writer_chunk_tokens": 64,
+  "writer_arithmetic": "float16_autocast_matching_original_fullsync_evaluator",
+  "alignment_module": "fullsync_units.py",
+  "reference_sample_ids": "reference_sample_ids.json",
+  "attention_implementation": "eager",
+  "models": {
+    "llama": "/home/yezhe/all_models/models/LLM-Research/Llama-3.2-3B-Instruct",
+    "gemma": "/home/yezhe/all_models/models/LLM-Research/gemma-3-4b-it",
+    "qwen": "/home/yezhe/all_models/models/Qwen/Qwen3-4B"
+  },
+  "dataset": "data/hotpot_dev_distractor_v1.json",
+  "dataset_origin": "/home/yezhe/数据集/HotpotQA/raw/hotpot_dev_distractor_v1.json; same SHA256 and ordered 64 IDs as B/V0",
+  "writers": {
+    "llama": {
+      "module": "fullsync_llama_translator.py",
+      "stage_a": "checkpoints/llama_stage_a.pt",
+      "residual": "checkpoints/llama_stage_b.pt",
+      "protocol": "multidataset_standardprompt_receiver_native_question_options32_mmlu64_l3_to_q4_train1024_v3",
+      "stage_a_step": 1536,
+      "residual_step": 768,
+      "stage_a_epoch": 4,
+      "residual_epoch": 2,
+      "origin": "/home/yezhe/异构模型/fulltoken_sync_copydrop_v0_l3_to_q4_seed1234/runs/retrain",
+      "selection": "Original full-token retraining validation-only best selections; Stage-B base_checkpoint equals selected Stage-A"
+    },
+    "gemma": {
+      "module": "fullsync_gemma_translator.py",
+      "stage_a": "checkpoints/gemma_stage_a.pt",
+      "residual": "checkpoints/gemma_stage_b.pt",
+      "protocol": "gemma3_4b_to_qwen3_4b_fullsync_copydrop_v0_seed1234",
+      "stage_a_step": 768,
+      "residual_step": 768,
+      "stage_a_epoch": 2,
+      "residual_epoch": 2,
+      "origin": "/home/yezhe/异构模型/fulltoken_sync_copydrop_v0_g3_to_q4_seed1234/runs/retrain",
+      "selection": "Original full-token retraining validation-only best selections; Stage-B base_checkpoint equals selected Stage-A"
+    }
+  },
+  "shared_results": "/home/yezhe/异构模型/EXPERIMENT_RESULTS.md",
+  "arms": [
+    "query_only",
+    "native_full",
+    "native_independent",
+    "llama_joint",
+    "gemma_joint",
+    "llama_independent",
+    "gemma_independent",
+    "llama_a_gemma_b",
+    "gemma_a_llama_b",
+    "llama_a_native_b",
+    "native_a_llama_b",
+    "gemma_a_native_b",
+    "native_a_gemma_b"
+  ],
+  "model_loading": {
+    "execution_device": "cuda:0",
+    "gpu_weight_budget_bytes": 11811160064,
+    "activation_reserve_bytes": 3221225472,
+    "offload": "whole transformer layer weights retained on CPU when needed; each operation still executes on CUDA with original dtype"
+  }
+}

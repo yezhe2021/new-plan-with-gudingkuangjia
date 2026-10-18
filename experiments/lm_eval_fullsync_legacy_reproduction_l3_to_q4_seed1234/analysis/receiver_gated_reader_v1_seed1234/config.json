@@ -1,0 +1,40 @@
+{
+  "protocol": "lm_eval_receiver_gated_external_reader_v1",
+  "seed": 1234,
+  "previous_directory": "analysis/mcq_stage_b_semantic_followup_v1_seed1234",
+  "parent_stage_a": "runs/mcq/stage_a/best.pt",
+  "mmlu_baseline_directory": "analysis/mmlu_mcq_transfer_v1_seed1234",
+  "adapter_rank": 64,
+  "epochs": 2,
+  "effective_batch": 4,
+  "learning_rate": 2e-05,
+  "weight_decay": 0.0,
+  "gradient_clip": 30.0,
+  "token_kl_weight": 1.0,
+  "gold_ce_weight": 0.1,
+  "terminal_ce_weight": 0.1,
+  "mcq_replay_per_epoch": 86,
+  "projection_chunk_tokens": 32,
+  "checkpoint_interval_updates": 16,
+  "min_free_gpu_gib": 23,
+  "student_rollout_tokens_by_epoch": [
+    64,
+    128
+  ],
+  "validation_rollout_max_tokens": 128,
+  "validation_generation_max_new_tokens": 384,
+  "evaluation_families": [
+    "mcq",
+    "mmlu"
+  ],
+  "schedule": "128 teacher-reference + 128 live student-prefix + 86 MCQ draws per epoch; swap reference/on-policy halves in epoch 2. Same 342 draws and 86 updates per epoch as trajectory v1.",
+  "loss": "Reference: previous complete-trajectory forward KL + 0.1 answer-phrase CE + 0.1 observed-terminal CE. Student-prefix: full-vocabulary forward KL only, no hard student-token targets and no forced EOS. MCQ: unchanged scheme-3 objective.",
+  "selection": "Lowest equal-weight held-out reference loss and KL on the same 32 fixed validation prefixes as predecessor. Epoch zero eligible. No benchmark-based selection.",
+  "receiver_lora": false,
+  "on_policy_training": true,
+  "reader_rank": 8,
+  "receiver_reader": true,
+  "translator_trainable": false,
+  "initialization": "Freeze latest student-prefix Stage A/B; zero-init external reader. Retain predecessor training data, losses, 342 draws/epoch, 172 total updates, two epochs.",
+  "diagnostic_questions_per_task": 2
+}

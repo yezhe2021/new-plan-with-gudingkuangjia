@@ -1,0 +1,23 @@
+# Complete-trajectory Stage B follow-up (server B)
+
+Continue the validation-selected scheme-3 epoch-4, step-1024 rank-64 residual KV adapter. Original Stage A, Llama and Qwen stay frozen. No receiver LoRA or on-policy training is added in this pilot. Original experiments and weights are preserved.
+
+Training data: original OBQA/ARC training pool only. Native Qwen first produces six verified, complete explanation demonstrations per task. Training uses five same-task demonstration answers and permuted options. Native Qwen then produces references until 128 complete correct trajectories per task are accepted. The separate fixed validation subset contains 16 original held-out questions per task; its complete teacher-correct references select checkpoints, with the selection bias recorded. Test questions never train or select checkpoints.
+
+Demo bootstrap uses Qwen's native chat template with `enable_thinking=False` only to synthesize the training-pool demonstration explanations. The initial raw zero-shot demo attempt repeatedly reconsidered answers without ending and is retained under `startup_attempts/`. Main teacher trajectory generation, both KD paths, and official benchmarks use raw completions; chat-formatted demo-generation inputs never replace benchmark prompts.
+
+Training-only generation uses greedy raw completions, a 384-new-token cap, the actual Qwen generation EOS list, and `Question:` stop. Store generated token IDs and observed stop reason. Reject length-limited, incorrect, inconsistent, or repeatedly answered references. Never append EOS to a truncated output. A naturally generated `Question:` stop is supervised as that actual stop sequence, not converted to EOS.
+
+Loss on full teacher-forced references: mean full-vocabulary forward KL(native Qwen || translated-KV Qwen) over all continuation token positions + 0.1 mean CE on the final answer phrase + 0.1 mean CE on the observed terminal tokens. Each path recomputes its own native continuation states. Mix 256 trajectory examples and 86 original multiview MCQ replay examples per epoch. Two epochs, effective batch four, AdamW learning rate 2e-5. All checkpoints selected only by held-out trajectory loss. Short native Qwen trajectories do not constitute verified reasoning; correctness and termination are automatic filters.
+
+Memory: frozen sender/base captures, whole-suffix non-reentrant activation recomputation, and 32-token vocabulary projection chunks. Batch size one; unrelated GPU jobs remain intact. A native-KV round-trip gate compares next-token distributions and 32 generated tokens on training-only prompts before training. Startup smoke performs long-trajectory and MCQ backward updates and verifies frozen-model gradients. Its updated adapter is discarded.
+
+The unchanged initialization is evaluated on the same held-out trajectory loss as epoch zero and remains an eligible checkpoint. If fine-tuning worsens validation loss, checkpoint selection can retain the initialization; report this explicitly instead of claiming a trained model improved.
+
+Pipeline: CPU invariants -> native/oracle gate -> demo/bootstrap references -> backward smoke (startup-only). After successful startup: resumable full teacher-reference generation -> immutable source/data/parent identity manifest -> training -> official OBQA/ARC, MMLU and MMLU-Pro evaluations. Evaluations preserve original questions, prompts, parsers and generation parameters, including MMLU-Pro 128 questions, official 5-shot and 2048 generated tokens. This is a pilot, not a full benchmark. MMLU-Pro raw generations are saved immediately. Do not confuse the training-only 384-token budget with official evaluation's 2048-token budget.
+
+All logs: `logs/startup.log`, `logs/pipeline.log`. `status.json` reports the active phase. No GitHub upload is performed by this pipeline.
+
+After training, a separate mechanism diagnostic uses four fixed held-out questions per task, original and cyclically rotated options, and the previous/current adapters. It records generated IDs, observed EOS/Question/length stop, answer repetition, and whether the selected option's meaning stays consistent after rotation. Its 384-token budget and eight validation questions are explicitly separate from official MMLU-Pro scoring. These diagnostics do not select checkpoints.
+
+FP16 gate detail: whole-prompt prefill and cached single-token decoding may differ numerically because matrix shapes differ. The gate therefore also compares reconstructed KV with Qwen's own unmodified native cache under the identical split; that probability error must be <=1e-5, while direct and oracle generation must match for up to 32 tokens. The initial whole-prefill-only rejection is preserved under `startup_attempts/`.

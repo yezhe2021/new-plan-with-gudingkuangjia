@@ -1,0 +1,273 @@
+{
+  "completed_utc": "2026-10-16T22:08:44Z",
+  "protocol": "lm_eval_mcq_stage_b_student_prefix_kd_v1",
+  "manifest_verified": true,
+  "selected_checkpoint_sha256": "3cfea31cf2c0b0a626d9546e701a18576c449dcc62db2d04716b9434ef0fdc73",
+  "conditions": {
+    "scheme3": {
+      "mcq": {
+        "n": 256,
+        "correct": 80,
+        "by_task": {
+          "openbookqa": {
+            "n": 128,
+            "correct": 26,
+            "norm_correct": 55
+          },
+          "arc_challenge": {
+            "n": 128,
+            "correct": 54,
+            "norm_correct": 55
+          }
+        }
+      },
+      "mmlu": {
+        "n": 128,
+        "correct": 63
+      },
+      "mmlu_pro": {
+        "n": 128,
+        "correct": 18,
+        "valid_extracted": 117,
+        "prediction_histogram": {
+          "B": 104,
+          "D": 9,
+          "A": 4,
+          "[invalid]": 11
+        },
+        "answer_phrase_at_least_10": 79
+      }
+    },
+    "trajectory_v1": {
+      "mcq": {
+        "n": 256,
+        "correct": 84,
+        "by_task": {
+          "openbookqa": {
+            "n": 128,
+            "correct": 27,
+            "norm_correct": 56
+          },
+          "arc_challenge": {
+            "n": 128,
+            "correct": 57,
+            "norm_correct": 58
+          }
+        }
+      },
+      "mmlu": {
+        "n": 128,
+        "correct": 62
+      },
+      "mmlu_pro": {
+        "n": 128,
+        "correct": 9,
+        "valid_extracted": 55,
+        "prediction_histogram": {
+          "[invalid]": 73,
+          "B": 40,
+          "D": 9,
+          "A": 5,
+          "C": 1
+        },
+        "answer_phrase_at_least_10": 21
+      }
+    },
+    "student_prefix": {
+      "mcq": {
+        "n": 256,
+        "correct": 87,
+        "by_task": {
+          "openbookqa": {
+            "n": 128,
+            "correct": 29,
+            "norm_correct": 57
+          },
+          "arc_challenge": {
+            "n": 128,
+            "correct": 58,
+            "norm_correct": 60
+          }
+        }
+      },
+      "mmlu": {
+        "n": 128,
+        "correct": 63
+      },
+      "mmlu_pro": {
+        "n": 128,
+        "correct": 8,
+        "valid_extracted": 47,
+        "prediction_histogram": {
+          "[invalid]": 81,
+          "B": 29,
+          "A": 11,
+          "D": 7
+        },
+        "answer_phrase_at_least_10": 6
+      }
+    }
+  },
+  "paired": {
+    "scheme3": {
+      "mcq": {
+        "wrong_to_correct": 13,
+        "correct_to_wrong": 6,
+        "net": 7,
+        "identical_inputs_verified": true
+      },
+      "mmlu": {
+        "wrong_to_correct": 5,
+        "correct_to_wrong": 5,
+        "net": 0,
+        "identical_inputs_verified": true
+      },
+      "mmlu_pro": {
+        "wrong_to_correct": 2,
+        "correct_to_wrong": 12,
+        "net": -10,
+        "identical_inputs_verified": true
+      }
+    },
+    "trajectory_v1": {
+      "mcq": {
+        "wrong_to_correct": 5,
+        "correct_to_wrong": 2,
+        "net": 3,
+        "identical_inputs_verified": true
+      },
+      "mmlu": {
+        "wrong_to_correct": 2,
+        "correct_to_wrong": 1,
+        "net": 1,
+        "identical_inputs_verified": true
+      },
+      "mmlu_pro": {
+        "wrong_to_correct": 4,
+        "correct_to_wrong": 5,
+        "net": -1,
+        "identical_inputs_verified": true
+      }
+    }
+  },
+  "validation": {
+    "selection": "Lowest equal-weight mean of held-out reference loss and KL on frozen initialization-generated validation prefixes; initialization is an eligible candidate. Never use test results for selection.",
+    "best": {
+      "epoch": 2,
+      "step": 172,
+      "validation": {
+        "total": 0.747362957180788,
+        "reference": {
+          "total": 0.8222668046752611,
+          "token_kl": 0.7001174973944823,
+          "answer_ce": 1.1401850307981174,
+          "terminal_ce": 0.08130801562219858,
+          "tokens": 130.45833333333334,
+          "context_tokens": 1061.0416666666667,
+          "n": 24
+        },
+        "fixed_student_prefix_kl": 0.6724591096863151,
+        "fixed_prefix_n": 32
+      }
+    },
+    "epochs": [
+      {
+        "epoch": 0,
+        "step": 0,
+        "validation": {
+          "total": 0.9813529431509475,
+          "reference": {
+            "total": 1.0895346601804097,
+            "token_kl": 0.9027370363473892,
+            "answer_ce": 1.6201062550147374,
+            "terminal_ce": 0.2478699634472529,
+            "tokens": 130.45833333333334,
+            "context_tokens": 1061.0416666666667,
+            "n": 24
+          },
+          "fixed_student_prefix_kl": 0.8731712261214852,
+          "fixed_prefix_n": 32
+        }
+      },
+      {
+        "epoch": 1,
+        "step": 86,
+        "validation": {
+          "total": 0.8298309940534334,
+          "reference": {
+            "total": 0.9177946050961813,
+            "token_kl": 0.7707404171427091,
+            "answer_ce": 1.3607255841294925,
+            "terminal_ce": 0.10981622120986383,
+            "tokens": 130.45833333333334,
+            "context_tokens": 1061.0416666666667,
+            "n": 24
+          },
+          "fixed_student_prefix_kl": 0.7418673830106854,
+          "fixed_prefix_n": 32
+        }
+      },
+      {
+        "epoch": 2,
+        "step": 172,
+        "validation": {
+          "total": 0.747362957180788,
+          "reference": {
+            "total": 0.8222668046752611,
+            "token_kl": 0.7001174973944823,
+            "answer_ce": 1.1401850307981174,
+            "terminal_ce": 0.08130801562219858,
+            "tokens": 130.45833333333334,
+            "context_tokens": 1061.0416666666667,
+            "n": 24
+          },
+          "fixed_student_prefix_kl": 0.6724591096863151,
+          "fixed_prefix_n": 32
+        }
+      }
+    ]
+  },
+  "generation_diagnostics": {
+    "MECHANISM_DIAGNOSTIC_NOT_OFFICIAL_BENCHMARK": true,
+    "validation_only": true,
+    "max_new_tokens": 384,
+    "selected_checkpoint_sha256": "3cfea31cf2c0b0a626d9546e701a18576c449dcc62db2d04716b9434ef0fdc73",
+    "comparisons": {
+      "trajectory_v1": {
+        "n_generations": 16,
+        "correct": 5,
+        "valid_extracted": 8,
+        "terminal_counts": {
+          "question_stop": 9,
+          "length_limit": 7
+        },
+        "prediction_histogram": {
+          "A": 4,
+          "[invalid]": 8,
+          "B": 2,
+          "D": 2
+        },
+        "answer_phrase_repeated_at_least_10": 0,
+        "option_semantic_consistency_pairs": 1,
+        "n_pairs": 8
+      },
+      "student_prefix": {
+        "n_generations": 16,
+        "correct": 5,
+        "valid_extracted": 9,
+        "terminal_counts": {
+          "question_stop": 13,
+          "length_limit": 3
+        },
+        "prediction_histogram": {
+          "B": 5,
+          "[invalid]": 7,
+          "A": 4
+        },
+        "answer_phrase_repeated_at_least_10": 0,
+        "option_semantic_consistency_pairs": 0,
+        "n_pairs": 8
+      }
+    }
+  }
+}

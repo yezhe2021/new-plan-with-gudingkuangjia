@@ -1,0 +1,73 @@
+{
+  "identities": {
+    "configuration": {
+      "protocol": "lm_eval_mcq_stage_b_student_prefix_kd_v1",
+      "seed": 1234,
+      "previous_directory": "analysis/mcq_stage_b_trajectorykd_v1_seed1234",
+      "parent_stage_a": "runs/mcq/stage_a/best.pt",
+      "mmlu_baseline_directory": "analysis/mmlu_mcq_transfer_v1_seed1234",
+      "adapter_rank": 64,
+      "epochs": 2,
+      "effective_batch": 4,
+      "learning_rate": 2e-05,
+      "weight_decay": 0.0,
+      "gradient_clip": 30.0,
+      "token_kl_weight": 1.0,
+      "gold_ce_weight": 0.1,
+      "terminal_ce_weight": 0.1,
+      "mcq_replay_per_epoch": 86,
+      "projection_chunk_tokens": 32,
+      "checkpoint_interval_updates": 16,
+      "min_free_gpu_gib": 23,
+      "student_rollout_tokens_by_epoch": [
+        64,
+        128
+      ],
+      "validation_rollout_max_tokens": 128,
+      "validation_generation_max_new_tokens": 384,
+      "evaluation_families": [
+        "mcq",
+        "mmlu"
+      ],
+      "schedule": "128 teacher-reference + 128 live student-prefix + 86 MCQ draws per epoch; swap reference/on-policy halves in epoch 2. Same 342 draws and 86 updates per epoch as trajectory v1.",
+      "loss": "Reference: previous complete-trajectory forward KL + 0.1 answer-phrase CE + 0.1 observed-terminal CE. Student-prefix: full-vocabulary forward KL only, no hard student-token targets and no forced EOS. MCQ: unchanged scheme-3 objective.",
+      "selection": "Lowest equal-weight mean of held-out reference loss and KL on frozen initialization-generated validation prefixes; initialization is an eligible candidate. Never use test results for selection.",
+      "receiver_lora": false,
+      "on_policy_training": true
+    },
+    "source_sha256": {
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_semantic_followup_v1_seed1234/config.json": "eede4e7c42794aaaa30d695005c60a071a945607e9d282acc64c5c8e50eb15f5",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_semantic_followup_v1_seed1234/diagnose.py": "ed14a6255dd1ece7ae8123d85b21e2ed4b9edb6fcbfbc4546a2825c8e8e4c086",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_semantic_followup_v1_seed1234/evaluate.py": "884933a6eb7e189d0cace0117bbf15271e41c47b14b0621bbef3fa75f86a341c",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_semantic_followup_v1_seed1234/evaluate_mmlu_pro.py": "6d4ec7b23d9d143f2121b2de76c79d970912e9a179165da0ee28c4552d37e8e1",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_semantic_followup_v1_seed1234/followup_common.py": "4a210a69ac65ff50f4f19f4073c69a2a0c9d5f26fa1528a57fdab6c786a4af67",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_semantic_followup_v1_seed1234/followup_train.py": "b99584c170db8d0f8d55074f79ff4876f06a15467adfa33b57cc03122d70b4b9",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_semantic_followup_v1_seed1234/prepare_followup.py": "f9ff6bf25064713ea1b55eb961ac4784e05142f02989af17cb00459a032f6300",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_semantic_followup_v1_seed1234/probe_answers.py": "5015934e001d25fb9b016fdaa55af6fe4ef1ba6eb34eec961947fd62ac691c09",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_semantic_followup_v1_seed1234/run_pipeline.py": "11cc7a6e39b5e9dbb78ba7fb6953197156a53bf30a4d6dd87c503d3eb0805fc5",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_semantic_followup_v1_seed1234/student_kd.py": "5d545674347a4b97dba648c1f7dddc72963b6157bd9b12996221f8a2855a8349",
+      "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_semantic_followup_v1_seed1234/tests.py": "5f264e4089ab8b2838a2c53f015a0c71b073155b9d36395ea634644ce041e5b4"
+    },
+    "parent_manifest_sha256": "0b54e0b8195245c92c96da2bd3e12c4bfaf399d96115bdcff90d1752b0ee8a3b",
+    "stage_a": {
+      "path": "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/runs/mcq/stage_a/best.pt",
+      "sha256": "62beafbd377374ed8b6a3f15752150a2c23ef81e114c72147d93d3edd527671e"
+    },
+    "initial_stage_b": {
+      "path": "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/mcq_stage_b_trajectorykd_v1_seed1234/stage_b/best.pt",
+      "sha256": "4f4e7e0a5d6bd5a8cb149b38aff080ee54e8a2d2806c2f31c5c69d237d50d303"
+    },
+    "diagnosis_sha256": "fe9530e4504beac66ccedee507c497ba9d30b06cdc5ae6ace3b83f9d88e616fb"
+  },
+  "prepared_sha256": {
+    "prepared/demos.jsonl": "a22f98853c4d5d0699932c32e9ab2922fcb8faa9bb09e8db221ff8f082e1a65a",
+    "prepared/identity.json": "075aa87b2b9a56d429301792bc0d47d813bd1d9fa541f85555ca026ff064dcbc",
+    "prepared/summary.json": "1baa67f3694202659cfd4ec100a46a2e213de3f8a83c066ea30d59a25e08e5b9",
+    "prepared/train_trajectories.jsonl": "b7eb4fa5fa030820dbecadde4a59014e4c3c1178479422f10cd7ca041c6d072b",
+    "prepared/validation_attempts.jsonl": "2679d2da171387ac19169ae58923e383dd7ac097ad8ff476300148189ad179c1",
+    "prepared/validation_questions.jsonl": "6817a5ac3d3bcaa68ece26c82d44a37711e74d18aea60add09aaf5f56386515b",
+    "prepared/validation_student_prefixes.jsonl": "33a5288e885ff41c099ca94038bce6c8bff12355593a9ae829c17804c6287a3a",
+    "prepared/validation_trajectories.jsonl": "e3ed329b74f061a9fdbc925a9f0e89f02ead36fd202acf716ee7933acccc4a42"
+  },
+  "smoke_sha256": "2fe66292f33cb9feaf5665b039d7fc77f9396cbf1f27cb36d25c0d048f35f7ad"
+}

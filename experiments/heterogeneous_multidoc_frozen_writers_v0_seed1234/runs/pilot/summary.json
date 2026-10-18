@@ -1,0 +1,246 @@
+{
+  "status": "completed",
+  "mode": "pilot",
+  "experiment_name": "heterogeneous_multidoc_frozen_writers_v0_seed1234",
+  "timestamp": "2026-10-14T11:25:27.334655+00:00",
+  "protocol": "hotpot_bridge_gold2_dense_frozen_legacy_writers_v0",
+  "sample_count": 64,
+  "seed": 1234,
+  "dataset_split": "official HotpotQA DEV, bridge/gold2 mechanism pilot",
+  "checkpoint_selection": "pinned prior OpenBookQA validation selections; no tuning on pilot",
+  "config_signature": "a17156a1797c7206dac6ce542f4809f9a1c0bc3672df278bd32a6128cceca654",
+  "manifest_signature": "6b8542499baa465c6385fed2668df06fb9f6f92d13b42adebd200d42f7f1b01c",
+  "metrics": {
+    "query_only": {
+      "em": 0.0,
+      "f1": 0.05605772925745752,
+      "full_first_token_kl": 4.4843333628814435,
+      "ttft_seconds": 0.05405861372128129,
+      "generation_seconds": 1.534589296556078
+    },
+    "native_full": {
+      "em": 0.234375,
+      "f1": 0.4633907151848932,
+      "full_first_token_kl": 0.0,
+      "ttft_seconds": 0.07179438613820821,
+      "generation_seconds": 1.5559514983324334
+    },
+    "native_independent": {
+      "em": 0.28125,
+      "f1": 0.47008421526775496,
+      "full_first_token_kl": 0.6063001561451529,
+      "ttft_seconds": 0.067546128295362,
+      "generation_seconds": 1.551077511277981
+    },
+    "llama_joint": {
+      "em": 0.0,
+      "f1": 0.0,
+      "full_first_token_kl": 6.686125472187996,
+      "ttft_seconds": 0.06461283005774021,
+      "generation_seconds": 1.5431313929148018
+    },
+    "gemma_joint": {
+      "em": 0.0,
+      "f1": 0.0,
+      "full_first_token_kl": 9.693691112101078,
+      "ttft_seconds": 0.06638406845740974,
+      "generation_seconds": 1.548331523896195
+    },
+    "llama_independent": {
+      "em": 0.0,
+      "f1": 0.001358695652173913,
+      "full_first_token_kl": 6.677594697102904,
+      "ttft_seconds": 0.06814414716791362,
+      "generation_seconds": 1.5477106655016541
+    },
+    "gemma_independent": {
+      "em": 0.0,
+      "f1": 0.0,
+      "full_first_token_kl": 9.630794882774353,
+      "ttft_seconds": 0.06880575732793659,
+      "generation_seconds": 1.5558142268564552
+    },
+    "llama_a_gemma_b": {
+      "em": 0.0,
+      "f1": 0.0,
+      "full_first_token_kl": 8.757836427539587,
+      "ttft_seconds": 0.06991893250960857,
+      "generation_seconds": 1.5525414269650355
+    },
+    "gemma_a_llama_b": {
+      "em": 0.0,
+      "f1": 0.0,
+      "full_first_token_kl": 8.642403438687325,
+      "ttft_seconds": 0.06965736683923751,
+      "generation_seconds": 1.5529009071178734
+    },
+    "llama_a_native_b": {
+      "em": 0.09375,
+      "f1": 0.2077173622155942,
+      "full_first_token_kl": 3.8516380833170842,
+      "ttft_seconds": 0.06990183319430798,
+      "generation_seconds": 1.5534900326747447
+    },
+    "native_a_llama_b": {
+      "em": 0.09375,
+      "f1": 0.11883680555555556,
+      "full_first_token_kl": 4.8298753765411675,
+      "ttft_seconds": 0.0711191362934187,
+      "generation_seconds": 1.5560289790155366
+    },
+    "gemma_a_native_b": {
+      "em": 0.03125,
+      "f1": 0.06399406965583436,
+      "full_first_token_kl": 7.699021045387781,
+      "ttft_seconds": 0.0713016006629914,
+      "generation_seconds": 1.5537275731330737
+    },
+    "native_a_gemma_b": {
+      "em": 0.0,
+      "f1": 0.011513157894736841,
+      "full_first_token_kl": 9.217576722614467,
+      "ttft_seconds": 0.07224962126929313,
+      "generation_seconds": 1.5577177054947242
+    }
+  },
+  "paired": {
+    "native_independent_minus_native_full": {
+      "f1_difference": 0.006693500082861545,
+      "bootstrap_95_ci": [
+        -0.0874238014535177,
+        0.09661868233045162
+      ],
+      "both_em_correct": 12.0,
+      "only_first_em_correct": 3.0,
+      "only_second_em_correct": 6.0
+    },
+    "llama_independent_minus_llama_joint": {
+      "f1_difference": 0.001358695652173913,
+      "bootstrap_95_ci": [
+        0.0,
+        0.004076086956521739
+      ],
+      "both_em_correct": 0.0,
+      "only_first_em_correct": 0.0,
+      "only_second_em_correct": 0.0
+    },
+    "gemma_independent_minus_gemma_joint": {
+      "f1_difference": 0.0,
+      "bootstrap_95_ci": [
+        0.0,
+        0.0
+      ],
+      "both_em_correct": 0.0,
+      "only_first_em_correct": 0.0,
+      "only_second_em_correct": 0.0
+    },
+    "llama_a_gemma_b_minus_native_independent": {
+      "f1_difference": -0.47008421526775496,
+      "bootstrap_95_ci": [
+        -0.5630339259924858,
+        -0.3777636725977056
+      ],
+      "both_em_correct": 0.0,
+      "only_first_em_correct": 18.0,
+      "only_second_em_correct": 0.0
+    },
+    "gemma_a_llama_b_minus_native_independent": {
+      "f1_difference": -0.47008421526775496,
+      "bootstrap_95_ci": [
+        -0.5630339259924858,
+        -0.3777636725977056
+      ],
+      "both_em_correct": 0.0,
+      "only_first_em_correct": 18.0,
+      "only_second_em_correct": 0.0
+    },
+    "llama_a_gemma_b_minus_llama_independent": {
+      "f1_difference": -0.001358695652173913,
+      "bootstrap_95_ci": [
+        -0.004076086956521739,
+        0.0
+      ],
+      "both_em_correct": 0.0,
+      "only_first_em_correct": 0.0,
+      "only_second_em_correct": 0.0
+    },
+    "llama_a_gemma_b_minus_gemma_independent": {
+      "f1_difference": 0.0,
+      "bootstrap_95_ci": [
+        0.0,
+        0.0
+      ],
+      "both_em_correct": 0.0,
+      "only_first_em_correct": 0.0,
+      "only_second_em_correct": 0.0
+    }
+  },
+  "native_correct_stratum": {
+    "count": 15,
+    "metrics": {
+      "query_only": {
+        "em": 0.0,
+        "f1": 0.0
+      },
+      "native_full": {
+        "em": 1.0,
+        "f1": 1.0
+      },
+      "native_independent": {
+        "em": 0.8,
+        "f1": 0.8356666666666667
+      },
+      "llama_joint": {
+        "em": 0.0,
+        "f1": 0.0
+      },
+      "gemma_joint": {
+        "em": 0.0,
+        "f1": 0.0
+      },
+      "llama_independent": {
+        "em": 0.0,
+        "f1": 0.0
+      },
+      "gemma_independent": {
+        "em": 0.0,
+        "f1": 0.0
+      },
+      "llama_a_gemma_b": {
+        "em": 0.0,
+        "f1": 0.0
+      },
+      "gemma_a_llama_b": {
+        "em": 0.0,
+        "f1": 0.0
+      },
+      "llama_a_native_b": {
+        "em": 0.13333333333333333,
+        "f1": 0.18303030303030304
+      },
+      "native_a_llama_b": {
+        "em": 0.13333333333333333,
+        "f1": 0.21603174603174605
+      },
+      "gemma_a_native_b": {
+        "em": 0.0,
+        "f1": 0.008888888888888889
+      },
+      "native_a_gemma_b": {
+        "em": 0.0,
+        "f1": 0.0
+      }
+    }
+  },
+  "limitations": [
+    "Gold supporting documents, not retrieval evaluation or official benchmark score",
+    "Legacy sparse options32 MCQ writers applied densely to query-independent evidence; distribution/interface shift",
+    "No receiver training; no universal claim that heterogeneous composition is impossible",
+    "Warm read timings include cache assembly but exclude source/model loading and offline mapping"
+  ],
+  "paths": {
+    "manifest": "/hy-tmp/yezhe/异构模型/heterogeneous_multidoc_frozen_writers_v0_seed1234/manifest.json",
+    "predictions": "/hy-tmp/yezhe/异构模型/heterogeneous_multidoc_frozen_writers_v0_seed1234/runs/pilot/per_sample",
+    "log": "/hy-tmp/yezhe/异构模型/heterogeneous_multidoc_frozen_writers_v0_seed1234/logs/pipeline.log"
+  }
+}

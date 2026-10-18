@@ -1,0 +1,138 @@
+{
+  "families": {
+    "mcq": {
+      "n": 256,
+      "correct": 84.0,
+      "by_task": {
+        "openbookqa": {
+          "n": 128,
+          "correct": 27.0,
+          "norm_correct": 56.0
+        },
+        "arc_challenge": {
+          "n": 128,
+          "correct": 57.0,
+          "norm_correct": 58.0
+        }
+      }
+    },
+    "mmlu": {
+      "n": 128,
+      "correct": 62.0
+    },
+    "mmlu_pro": {
+      "n": 128,
+      "correct": 9.0,
+      "valid": 55,
+      "predicted_letters": {
+        "[invalid]": 73,
+        "B": 40,
+        "D": 9,
+        "A": 5,
+        "C": 1
+      },
+      "answer_phrase_at_least_10": 21
+    }
+  },
+  "validation": {
+    "selection": "Lowest held-out mean trajectory KL + 0.1 final-answer CE + 0.1 observed-terminal CE. No test-set selection.",
+    "best": {
+      "epoch": 2,
+      "step": 172,
+      "validation": {
+        "total": 1.0895346601804097,
+        "token_kl": 0.9027370363473892,
+        "answer_ce": 1.6201062550147374,
+        "terminal_ce": 0.2478699634472529,
+        "tokens": 130.45833333333334,
+        "context_tokens": 1061.0416666666667,
+        "n": 24
+      }
+    },
+    "epochs": [
+      {
+        "epoch": 0,
+        "step": 0,
+        "validation": {
+          "total": 2.070098121960958,
+          "token_kl": 1.3921961386998494,
+          "answer_ce": 1.9251487602790196,
+          "terminal_ce": 4.853870848814647,
+          "tokens": 130.45833333333334,
+          "context_tokens": 1061.0416666666667,
+          "n": 24
+        }
+      },
+      {
+        "epoch": 1,
+        "step": 86,
+        "validation": {
+          "total": 1.4185253977775574,
+          "token_kl": 1.0486622527241707,
+          "answer_ce": 1.8292158444722493,
+          "terminal_ce": 1.8694156457980473,
+          "tokens": 130.45833333333334,
+          "context_tokens": 1061.0416666666667,
+          "n": 24
+        }
+      },
+      {
+        "epoch": 2,
+        "step": 172,
+        "validation": {
+          "total": 1.0895346601804097,
+          "token_kl": 0.9027370363473892,
+          "answer_ce": 1.6201062550147374,
+          "terminal_ce": 0.2478699634472529,
+          "tokens": 130.45833333333334,
+          "context_tokens": 1061.0416666666667,
+          "n": 24
+        }
+      }
+    ]
+  },
+  "diagnostics": {
+    "MECHANISM_DIAGNOSTIC_NOT_OFFICIAL_BENCHMARK": true,
+    "validation_only": true,
+    "max_new_tokens": 384,
+    "selected_checkpoint_sha256": "4f4e7e0a5d6bd5a8cb149b38aff080ee54e8a2d2806c2f31c5c69d237d50d303",
+    "comparisons": {
+      "scheme3": {
+        "n_generations": 16,
+        "correct": 7,
+        "valid_extracted": 14,
+        "terminal_counts": {
+          "length_limit": 16
+        },
+        "prediction_histogram": {
+          "B": 10,
+          "C": 1,
+          "[invalid]": 2,
+          "A": 2,
+          "D": 1
+        },
+        "answer_phrase_repeated_at_least_10": 12,
+        "option_semantic_consistency_pairs": 2,
+        "n_pairs": 8
+      },
+      "trajectory_kd": {
+        "n_generations": 16,
+        "correct": 5,
+        "valid_extracted": 8,
+        "terminal_counts": {
+          "question_stop": 9,
+          "length_limit": 7
+        },
+        "prediction_histogram": {
+          "A": 4,
+          "[invalid]": 8,
+          "B": 2,
+          "D": 2
+        },
+        "answer_phrase_repeated_at_least_10": 0,
+        "option_semantic_consistency_pairs": 1,
+        "n_pairs": 8
+      }
+    }
+  }
+}
