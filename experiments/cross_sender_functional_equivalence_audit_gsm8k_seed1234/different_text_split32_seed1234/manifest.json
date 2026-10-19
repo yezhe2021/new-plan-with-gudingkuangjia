@@ -1,0 +1,120 @@
+{
+  "config": {
+    "sample_count": 32,
+    "smoke_samples": 2,
+    "max_new_tokens": 256,
+    "seed": 1234,
+    "bootstrap_resamples": 10000,
+    "minimum_free_gpu_gib": {
+      "gemma": 17.5,
+      "llama": 9,
+      "qwen": 10
+    },
+    "generation_common": "/home/yezhe/异构模型/gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234/generation_common.py",
+    "reference_run": "/home/yezhe/异构模型/cross_sender_functional_equivalence_audit_gsm8k_seed1234/full_generation_mix128_seed1234",
+    "conditions": {
+      "llamaA_llamaB": [
+        "llama_A",
+        "llama_B",
+        "both"
+      ],
+      "gemmaA_gemmaB": [
+        "gemma_A",
+        "gemma_B",
+        "both"
+      ],
+      "llamaA_gemmaB": [
+        "llama_A",
+        "gemma_B",
+        "both"
+      ],
+      "gemmaA_llamaB": [
+        "gemma_A",
+        "llama_B",
+        "both"
+      ],
+      "llamaA_gemmaB_maskA": [
+        "llama_A",
+        "gemma_B",
+        "maskA"
+      ],
+      "llamaA_gemmaB_maskB": [
+        "llama_A",
+        "gemma_B",
+        "maskB"
+      ],
+      "gemmaA_llamaB_maskA": [
+        "gemma_A",
+        "llama_B",
+        "maskA"
+      ],
+      "gemmaA_llamaB_maskB": [
+        "gemma_A",
+        "llama_B",
+        "maskB"
+      ],
+      "nativeA_nativeB": [
+        "native_A",
+        "native_B",
+        "both"
+      ]
+    },
+    "split_rule": "First32 fixed test rows, no outcome selection. Prefer sentence boundaries, then punctuation clauses, then conjunctions/question clauses, then alphabetic word boundaries. At least four words per fragment; choose nearest half by word count within first viable tier. Preserve exact raw A+B. Never split inside words or numerical strings; exclude immediate number-unit boundaries.",
+    "source_prompt": "Question: {fragment}\n",
+    "reader_input": "Answer:",
+    "stopping": [
+      "EOS",
+      "Question:",
+      "</s>",
+      "<|im_end|>"
+    ],
+    "primary_metric": "legacy Flexible",
+    "mask_control": "Keep both KV blocks and contiguous positions, but mask one block from all receiver suffix/generated attention. Independent source encoding prevents masked-A information leaking through B.",
+    "training": false,
+    "cpu_threads": 1
+  },
+  "parent_config": {
+    "seed": 1234,
+    "sample_count": 128,
+    "probe_steps": 8,
+    "interpolation_alphas": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "chunk_tokens": 64,
+    "reference_eval": "/home/yezhe/异构模型/frozen_fullsync_newbenchmarks_l3_g3_to_q4_seed1234",
+    "gsm8k_test": "/home/yezhe/数据集/gsm8k/test.jsonl",
+    "llama": {
+      "translator": "/home/yezhe/异构模型/multidataset_obqa_arc_mmlupro_train1024_full28_mlp_l3_to_q4_seed1234/translator.py",
+      "stage_a": "/home/yezhe/异构模型/gsm8k_retrained_stagea_hybrid_stageb_l3_to_q4_seed1234/runs/stage_a/checkpoints/epoch_2.pt",
+      "adapter": "/home/yezhe/异构模型/gsm8k_retrained_stagea_hybrid_2048x4_l3_to_q4_seed1234/runs/hybrid/checkpoints/epoch_4.pt",
+      "per_sample": "/home/yezhe/异构模型/gsm8k_retrained_stagea_hybrid_2048x4_l3_to_q4_seed1234/runs/test128_per_sample.jsonl",
+      "condition": "gsm8k_stage_a_hybrid2048x4"
+    },
+    "gemma": {
+      "translator": "/home/yezhe/异构模型/multidataset_obqa_arc_mmlupro_train1024_full34_headmix_g3_to_q4_seed1234/translator.py",
+      "stage_a": "/home/yezhe/异构模型/gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234/runs/stage_a/checkpoints/epoch_2.pt",
+      "adapter": "/home/yezhe/异构模型/gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234/runs/hybrid/checkpoints/epoch_4.pt",
+      "per_sample": "/home/yezhe/异构模型/gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234/runs/test128_per_sample.jsonl",
+      "condition": "gemma_stage_a_hybrid2048x4"
+    }
+  },
+  "files": {
+    "/home/yezhe/异构模型/cross_sender_functional_equivalence_audit_gsm8k_seed1234/different_text_split32_seed1234/run.py": "4c0d891facf673b3d79db364f390770c611a702c02896056c85a0fed74a2f437",
+    "/home/yezhe/异构模型/cross_sender_functional_equivalence_audit_gsm8k_seed1234/different_text_split32_seed1234/config.json": "e976b1bec9c20cbb866c471fef3202598e0565aa68af7877cd72c1e18e3f0888",
+    "/home/yezhe/异构模型/cross_sender_functional_equivalence_audit_gsm8k_seed1234/different_text_split32_seed1234/capture_driver.py": "3b31191688d5e878d32831528ec03c645664160ba6c55ec40897074eb7343ac6",
+    "/home/yezhe/异构模型/cross_sender_functional_equivalence_audit_gsm8k_seed1234/equivalence_audit.py": "6652d1d2c941e828792c6a3913f6e1f02262134528b9eac4ca821d543ece7cd3",
+    "/home/yezhe/异构模型/gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234/generation_common.py": "cdb29fa52bb5aba10bf3b2eb0cd32c1073f8497f1fbe87059d02668b2a492623",
+    "/home/yezhe/异构模型/gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234/runs/stage_a/checkpoints/epoch_2.pt": "3fc9142fc605551b723bdcde62549f4e42f0028e0fe64cdace3da7d241974530",
+    "/home/yezhe/异构模型/gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234/runs/hybrid/checkpoints/epoch_4.pt": "1b6ecec18a6d7c62a05405f9bd4164ef89543bc2ae6f46b223e2ec366a6523a9",
+    "/home/yezhe/异构模型/multidataset_obqa_arc_mmlupro_train1024_full34_headmix_g3_to_q4_seed1234/translator.py": "b0adba12116cec2b76d4bef4dd00b2cff83ab387ab9e1de9c06b4aa29a2cc673",
+    "/home/yezhe/异构模型/gsm8k_retrained_stagea_hybrid_stageb_l3_to_q4_seed1234/runs/stage_a/checkpoints/epoch_2.pt": "f7ea7a1f24aa5099db83f49d12a73258ddd6250faf6940e337cc38e8efef103e",
+    "/home/yezhe/异构模型/gsm8k_retrained_stagea_hybrid_2048x4_l3_to_q4_seed1234/runs/hybrid/checkpoints/epoch_4.pt": "91aea358d4a1c11a6c59d3551cbf922f71fb0eff75dcbb0a571859e74b48032c",
+    "/home/yezhe/异构模型/multidataset_obqa_arc_mmlupro_train1024_full28_mlp_l3_to_q4_seed1234/translator.py": "4ea6ebad82e374f93069cd893f0ce0f546558cc26a6c238ad746fecf43ba2842"
+  },
+  "split_sha256": "59b78781028e97452e59ae450581f22cbbf35a04f5dccfef83235e4f98684aa2",
+  "baseline_sha256": "0b55e18c6ce0e4bc283970fceb20a51fb25c959a16be058438472d2876822a02"
+}

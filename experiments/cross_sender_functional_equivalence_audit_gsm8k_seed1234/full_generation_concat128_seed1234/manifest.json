@@ -1,0 +1,97 @@
+{
+  "config": {
+    "sample_count": 128,
+    "smoke_samples": 2,
+    "max_new_tokens": 256,
+    "conditions": {
+      "llama_llama": [
+        "llama",
+        "llama"
+      ],
+      "gemma_gemma": [
+        "gemma",
+        "gemma"
+      ],
+      "llama_gemma": [
+        "llama",
+        "gemma"
+      ],
+      "gemma_llama": [
+        "gemma",
+        "llama"
+      ]
+    },
+    "minimum_free_gpu_gib": {
+      "gemma": 18,
+      "llama": 9,
+      "qwen": 10
+    },
+    "generation_common": "/home/yezhe/异构模型/gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234/generation_common.py",
+    "reference_run": "/home/yezhe/异构模型/cross_sender_functional_equivalence_audit_gsm8k_seed1234/full_generation_mix128_seed1234",
+    "seed": 1234,
+    "bootstrap_resamples": 10000,
+    "cpu_threads": 1,
+    "prompt": "Question: {question}\nAnswer:",
+    "stopping": [
+      "EOS",
+      "Question:",
+      "</s>",
+      "<|im_end|>"
+    ],
+    "primary_metric": "legacy flexible_correct",
+    "cache_layout": "One native Qwen token0; concatenate two translated body blocks in post-k_norm/pre-RoPE space; apply contiguous Qwen RoPE once at positions 0..2N; Answer: starts at 1+2N",
+    "baselines": "Use all three raw generated results from the immediately preceding completed mix128 run; do not relabel as newly rerun",
+    "scope": "Same-question heterogeneous memory concatenation mechanism pilot, not distinct evidence fusion or official lm-eval benchmark",
+    "training": false
+  },
+  "parent_config": {
+    "seed": 1234,
+    "sample_count": 128,
+    "probe_steps": 8,
+    "interpolation_alphas": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "chunk_tokens": 64,
+    "reference_eval": "/home/yezhe/异构模型/frozen_fullsync_newbenchmarks_l3_g3_to_q4_seed1234",
+    "gsm8k_test": "/home/yezhe/数据集/gsm8k/test.jsonl",
+    "llama": {
+      "translator": "/home/yezhe/异构模型/multidataset_obqa_arc_mmlupro_train1024_full28_mlp_l3_to_q4_seed1234/translator.py",
+      "stage_a": "/home/yezhe/异构模型/gsm8k_retrained_stagea_hybrid_stageb_l3_to_q4_seed1234/runs/stage_a/checkpoints/epoch_2.pt",
+      "adapter": "/home/yezhe/异构模型/gsm8k_retrained_stagea_hybrid_2048x4_l3_to_q4_seed1234/runs/hybrid/checkpoints/epoch_4.pt",
+      "per_sample": "/home/yezhe/异构模型/gsm8k_retrained_stagea_hybrid_2048x4_l3_to_q4_seed1234/runs/test128_per_sample.jsonl",
+      "condition": "gsm8k_stage_a_hybrid2048x4"
+    },
+    "gemma": {
+      "translator": "/home/yezhe/异构模型/multidataset_obqa_arc_mmlupro_train1024_full34_headmix_g3_to_q4_seed1234/translator.py",
+      "stage_a": "/home/yezhe/异构模型/gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234/runs/stage_a/checkpoints/epoch_2.pt",
+      "adapter": "/home/yezhe/异构模型/gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234/runs/hybrid/checkpoints/epoch_4.pt",
+      "per_sample": "/home/yezhe/异构模型/gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234/runs/test128_per_sample.jsonl",
+      "condition": "gemma_stage_a_hybrid2048x4"
+    }
+  },
+  "rows_sha256": "765e83ee28b8a1ceec30ad22012be2f7dad44a3fb66df6b819fe83eb68995899",
+  "files": {
+    "/home/yezhe/异构模型/cross_sender_functional_equivalence_audit_gsm8k_seed1234/full_generation_concat128_seed1234/config.json": "42be7030cff4bf42559211df0a004e51760106a0567d8712d5ed49772427d31a",
+    "/home/yezhe/异构模型/cross_sender_functional_equivalence_audit_gsm8k_seed1234/full_generation_concat128_seed1234/capture_driver.py": "3b31191688d5e878d32831528ec03c645664160ba6c55ec40897074eb7343ac6",
+    "/home/yezhe/异构模型/cross_sender_functional_equivalence_audit_gsm8k_seed1234/equivalence_audit.py": "6652d1d2c941e828792c6a3913f6e1f02262134528b9eac4ca821d543ece7cd3",
+    "/home/yezhe/异构模型/gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234/generation_common.py": "cdb29fa52bb5aba10bf3b2eb0cd32c1073f8497f1fbe87059d02668b2a492623",
+    "/home/yezhe/异构模型/multidataset_obqa_arc_mmlupro_train1024_full28_mlp_l3_to_q4_seed1234/translator.py": "4ea6ebad82e374f93069cd893f0ce0f546558cc26a6c238ad746fecf43ba2842",
+    "/home/yezhe/异构模型/gsm8k_retrained_stagea_hybrid_stageb_l3_to_q4_seed1234/runs/stage_a/checkpoints/epoch_2.pt": "f7ea7a1f24aa5099db83f49d12a73258ddd6250faf6940e337cc38e8efef103e",
+    "/home/yezhe/异构模型/gsm8k_retrained_stagea_hybrid_2048x4_l3_to_q4_seed1234/runs/hybrid/checkpoints/epoch_4.pt": "91aea358d4a1c11a6c59d3551cbf922f71fb0eff75dcbb0a571859e74b48032c",
+    "/home/yezhe/异构模型/gsm8k_retrained_stagea_hybrid_2048x4_l3_to_q4_seed1234/runs/test128_per_sample.jsonl": "ba90a4343c85a813496ffcd168132251e41cdcbbaa37c0e183424026ee603869",
+    "/home/yezhe/异构模型/multidataset_obqa_arc_mmlupro_train1024_full34_headmix_g3_to_q4_seed1234/translator.py": "b0adba12116cec2b76d4bef4dd00b2cff83ab387ab9e1de9c06b4aa29a2cc673",
+    "/home/yezhe/异构模型/gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234/runs/stage_a/checkpoints/epoch_2.pt": "3fc9142fc605551b723bdcde62549f4e42f0028e0fe64cdace3da7d241974530",
+    "/home/yezhe/异构模型/gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234/runs/hybrid/checkpoints/epoch_4.pt": "1b6ecec18a6d7c62a05405f9bd4164ef89543bc2ae6f46b223e2ec366a6523a9",
+    "/home/yezhe/异构模型/gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234/runs/test128_per_sample.jsonl": "ad65675fe9ea5b83ac16f9d984c967b5293f4e3bd23dcab5473a90865be7f034"
+  },
+  "old_correctness": {
+    "both": 61,
+    "llama_only": 12,
+    "gemma_only": 25,
+    "neither": 30
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "sample_count": 128,
+  "smoke_samples": 2,
+  "max_new_tokens": 256,
+  "conditions": {"llama_llama": ["llama", "llama"], "gemma_gemma": ["gemma", "gemma"], "llama_gemma": ["llama", "gemma"], "gemma_llama": ["gemma", "llama"]},
+  "minimum_free_gpu_gib": {"gemma": 18, "llama": 9, "qwen": 10},
+  "generation_common": "/home/yezhe/异构模型/gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234/generation_common.py",
+  "reference_run": "/home/yezhe/异构模型/cross_sender_functional_equivalence_audit_gsm8k_seed1234/full_generation_mix128_seed1234",
+  "seed": 1234,
+  "bootstrap_resamples": 10000,
+  "cpu_threads": 1,
+  "prompt": "Question: {question}\nAnswer:",
+  "stopping": ["EOS", "Question:", "</s>", "<|im_end|>"],
+  "primary_metric": "legacy flexible_correct",
+  "cache_layout": "One native Qwen token0; concatenate two translated body blocks in post-k_norm/pre-RoPE space; apply contiguous Qwen RoPE once at positions 0..2N; Answer: starts at 1+2N",
+  "baselines": "Use all three raw generated results from the immediately preceding completed mix128 run; do not relabel as newly rerun",
+  "scope": "Same-question heterogeneous memory concatenation mechanism pilot, not distinct evidence fusion or official lm-eval benchmark",
+  "training": false
+}

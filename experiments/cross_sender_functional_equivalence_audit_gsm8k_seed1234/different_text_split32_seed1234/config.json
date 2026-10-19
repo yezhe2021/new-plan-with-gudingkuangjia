@@ -1,0 +1,29 @@
+{
+  "sample_count": 32,
+  "smoke_samples": 2,
+  "max_new_tokens": 256,
+  "seed": 1234,
+  "bootstrap_resamples": 10000,
+  "minimum_free_gpu_gib": {"gemma": 17.5, "llama": 9, "qwen": 10},
+  "generation_common": "/home/yezhe/异构模型/gsm8k_fullsync_g3_to_q4_stagea_hybrid2048x4_seed1234/generation_common.py",
+  "reference_run": "/home/yezhe/异构模型/cross_sender_functional_equivalence_audit_gsm8k_seed1234/full_generation_mix128_seed1234",
+  "conditions": {
+    "llamaA_llamaB": ["llama_A", "llama_B", "both"],
+    "gemmaA_gemmaB": ["gemma_A", "gemma_B", "both"],
+    "llamaA_gemmaB": ["llama_A", "gemma_B", "both"],
+    "gemmaA_llamaB": ["gemma_A", "llama_B", "both"],
+    "llamaA_gemmaB_maskA": ["llama_A", "gemma_B", "maskA"],
+    "llamaA_gemmaB_maskB": ["llama_A", "gemma_B", "maskB"],
+    "gemmaA_llamaB_maskA": ["gemma_A", "llama_B", "maskA"],
+    "gemmaA_llamaB_maskB": ["gemma_A", "llama_B", "maskB"],
+    "nativeA_nativeB": ["native_A", "native_B", "both"]
+  },
+  "split_rule": "First32 fixed test rows, no outcome selection. Prefer sentence boundaries, then punctuation clauses, then conjunctions/question clauses, then alphabetic word boundaries. At least four words per fragment; choose nearest half by word count within first viable tier. Preserve exact raw A+B. Never split inside words or numerical strings; exclude immediate number-unit boundaries.",
+  "source_prompt": "Question: {fragment}\n",
+  "reader_input": "Answer:",
+  "stopping": ["EOS", "Question:", "</s>", "<|im_end|>"],
+  "primary_metric": "legacy Flexible",
+  "mask_control": "Keep both KV blocks and contiguous positions, but mask one block from all receiver suffix/generated attention. Independent source encoding prevents masked-A information leaking through B.",
+  "training": false,
+  "cpu_threads": 1
+}

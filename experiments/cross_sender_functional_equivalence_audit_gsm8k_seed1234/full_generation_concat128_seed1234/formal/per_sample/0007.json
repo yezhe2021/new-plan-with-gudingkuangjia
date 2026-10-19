@@ -1,0 +1,97 @@
+{
+  "id": "test_7",
+  "question": "Carla is downloading a 200 GB file. Normally she can download 2 GB/minute, but 40% of the way through the download, Windows forces a restart to install updates, which takes 20 minutes. Then Carla has to restart the download from the beginning. How load does it take to download the file?",
+  "gold_answer": "First find how many gigabytes are in 40% of the file: 200 GB * 40% = <<200*40*.01=80>>80 GB\nThen divide that number by the download rate to find the time until Windows restarts: 80 GB / 2 GB/minute = <<80/2=40>>40 minutes\nThen find the time to download the whole file after the restart: 200 GB / 2 GB/minute = <<200/2=100>>100 minutes\nThen add the time to download 40% of the file, to download the whole file, and to wait for Windows to update: 40 minutes + 100 minutes + 20 minutes = <<40+100+20=160>>160 minutes\n#### 160",
+  "body_tokens_per_block": 70,
+  "baseline_conditions_reused": [
+    "gemma",
+    "mixed50",
+    "llama"
+  ],
+  "conditions": {
+    "gemma": {
+      "generated_text": " Let's break this down step by step. First, let's find out how long it takes Carla to download the first 200 GB. She can download 2 GB per minute, so 200 GB divided by 2 GB per minute is 100 minutes. Then, 40% of the way through the download, which is 40% of 100 minutes, is 40 minutes. So, the first 40 minutes, she's downloading 2 GB per minute, which is 80 GB. Then, the next 60 minutes, she's downloading the remaining 120 GB. But wait, the problem says that after 40% of the way through the download, the download is interrupted and she has to restart from the beginning. So, the 40 minutes of downloading is interrupted, and she has to restart from the beginning. So, the total time is the time to download the first 200 GB, but with the interruption. Wait, no, the problem says that after 40% of the way through the download, the download is interrupted, and she has to restart from the beginning. So, the first 40% of the",
+      "generated_tokens": 256,
+      "stop_reason": "max_tokens",
+      "gold": "160",
+      "strict_prediction": "[invalid]",
+      "flexible_prediction": "40",
+      "first_hash_prediction": "[invalid]",
+      "strict_correct": false,
+      "flexible_correct": false,
+      "first_hash_correct": false
+    },
+    "mixed50": {
+      "generated_text": " Let's break this down step by step. First, Carla can download 2 GB per minute. So, to download 200 GB, it would normally take 200 / 2 = 100 minutes. But then, 40% of the way through the download, the download is interrupted. 40% of 200 GB is 80 GB. So, she has already downloaded 80 GB, and then the download is interrupted. Then, she has to restart the download from the beginning. So, the total time is 100 minutes for the first download, plus 20 minutes for the restart, plus 100 minutes for the second download. So, 100 + 20 + 100 = 220 minutes. Therefore, the answer is 220 minutes.\nAnswer: 220",
+      "generated_tokens": 188,
+      "stop_reason": "eos",
+      "gold": "160",
+      "strict_prediction": "[invalid]",
+      "flexible_prediction": "220",
+      "first_hash_prediction": "[invalid]",
+      "strict_correct": false,
+      "flexible_correct": false,
+      "first_hash_correct": false
+    },
+    "llama": {
+      "generated_text": " Let's break this down step by step. First, we need to find out how long it takes Carla to download the file without any interruptions. If she can download 2 GB per minute, then the total time to download 200 GB would be 200 / 2 = 100 minutes. \n\nNext, we have to account for the 40% interruption. 40% of 100 minutes is 40 minutes. So, the interrupted part of the download takes 40 minutes. \n\nThen, the 20 minutes of rest is added to the total time. So, the total time is 100 + 40 + 20 = 160 minutes. \n\nBut wait, the 40 minutes is already part of the original 100 minutes. So, the actual time is 100 + 20 = 120 minutes. \n\nWait, that doesn't seem right. Let me think again. \n\nThe 40% interruption is 40 minutes of the original 100 minutes. So, the interrupted part is 40 minutes, and the rest is 60 minutes. Then, the 20",
+      "generated_tokens": 256,
+      "stop_reason": "max_tokens",
+      "gold": "160",
+      "strict_prediction": "[invalid]",
+      "flexible_prediction": "20",
+      "first_hash_prediction": "[invalid]",
+      "strict_correct": false,
+      "flexible_correct": false,
+      "first_hash_correct": false
+    },
+    "llama_llama": {
+      "generated_text": " Let's break this down step by step. First, Carla can download 2 GB per minute, so 200 GB would take 200 / 2 = 100 minutes. Then, 40% of the way through the download, which is 0.4 * 200 = 80 GB, so she has already downloaded 80 GB. At this point, the download is interrupted, and the restart takes 20 minutes. Then, she has to download the remaining 200 - 80 = 120 GB. Since she can download 2 GB per minute, this would take 120 / 2 = 60 minutes. So the total time is 100 + 20 = 120 minutes. Wait, but that doesn't account for the 20 minutes of the restart. So the total time is 100 minutes (initial download) + 20 minutes (restart) + 60 minutes (remaining download) = 180 minutes. But wait, the 40% is already included in the initial 100 minutes. So the 80 GB is part of the initial ",
+      "generated_tokens": 256,
+      "stop_reason": "max_tokens",
+      "gold": "160",
+      "strict_prediction": "[invalid]",
+      "flexible_prediction": "80",
+      "first_hash_prediction": "[invalid]",
+      "strict_correct": false,
+      "flexible_correct": false,
+      "first_hash_correct": false
+    },
+    "gemma_gemma": {
+      "generated_text": " Let's break this down step by step. First, Carla can download 2 GB per minute. So, normally, it would take her 200 / 2 = 100 minutes to download the entire file. But, 40% of the way through the download, the system forces a restart. So, 40% of 200 GB is 80 GB. That means, she has to download 80 GB from the beginning again. So, the first 80 GB takes 80 / 2 = 40 minutes. Then, she has to download the remaining 120 GB from the beginning. But, after the restart, she has to wait 20 minutes for the system to process the updates. So, the total time is 40 minutes (first 80 GB) + 20 minutes (wait) + 120 GB / 2 GB per minute (remaining 120 GB) = 40 + 20 + 60 = 120 minutes. So, the answer is 120 minutes.\nThe answer is 120",
+      "generated_tokens": 242,
+      "stop_reason": "eos",
+      "gold": "160",
+      "strict_prediction": "[invalid]",
+      "flexible_prediction": "120",
+      "first_hash_prediction": "[invalid]",
+      "strict_correct": false,
+      "flexible_correct": false,
+      "first_hash_correct": false
+    },
+    "llama_gemma": {
+      "generated_text": " Let's break this down step by step. First, Carla can download 2 GB per minute, so in 200 minutes, she would download 200 * 2 = 400 GB. But wait, that's not the case here. She only downloads 200 GB, but the problem says that 40% of the way through the download, the system forces a restart. So, 40% of 200 GB is 80 GB. That means she downloaded 80 GB, then the system forces a restart. So, she has to start over. Then, she has to download the entire 200 GB again, but this time, it takes 20 minutes longer because of the restart. So, the first time, she downloads 80 GB in 40 minutes (since 80 GB / 2 GB per minute = 40 minutes). Then, the system forces a restart, which takes 20 minutes. Then, she has to download the remaining 120 GB (200 - 80 = 120 GB). At 2 GB per minute, that would take 60 minutes (120 GB",
+      "generated_tokens": 256,
+      "stop_reason": "max_tokens",
+      "gold": "160",
+      "strict_prediction": "[invalid]",
+      "flexible_prediction": "120",
+      "first_hash_prediction": "[invalid]",
+      "strict_correct": false,
+      "flexible_correct": false,
+      "first_hash_correct": false
+    },
+    "gemma_llama": {
+      "generated_text": " Let's break this down step by step. First, Carla can download 2 GB per minute, so in 200 GB, it would take her 200 / 2 = 100 minutes. But then, 40% of the way through the download, which is 0.4 * 200 = 80 GB, the download is interrupted. So she has already downloaded 80 GB, which took 80 / 2 = 40 minutes. Then, the system forces a restart, which takes 20 minutes. So the total time so far is 40 + 20 = 60 minutes. Then, she has to download the remaining 200 - 80 = 120 GB. That would take 120 / 2 = 60 minutes. So the total time is 60 + 60 = 120 minutes. So the answer is 120 minutes.\nThe answer is 120",
+      "generated_tokens": 216,
+      "stop_reason": "eos",
+      "gold": "160",
+      "strict_prediction": "[invalid]",
+      "flexible_prediction": "120",
+      "first_hash_prediction": "[invalid]",
+      "strict_correct": false,
+      "flexible_correct": false,
+      "first_hash_correct": false
+    }
+  }
+}
