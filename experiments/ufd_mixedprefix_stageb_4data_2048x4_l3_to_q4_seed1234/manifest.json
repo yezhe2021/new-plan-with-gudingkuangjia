@@ -1,0 +1,115 @@
+{
+  "config": {
+    "name": "ufd_mixedprefix_stageb_4data_2048x4_l3_to_q4_seed1234",
+    "seed": 1234,
+    "parent": "/hy-tmp/yezhe/异构模型/mcq_heterofold_chat_fullsync_l3_to_q4_seed1234",
+    "stage_a_sha256": "db1f295c502f27305a9d2ac410c47a1bdef4db7e0255f817483867b19d78cf0d",
+    "old_stage_b_sha256": "06190cfcda6ce65e7b81447d2fa77b926bd43b384e2bfb5866083cc1588e278f",
+    "train_counts": {
+      "openbookqa": 512,
+      "arc_challenge": 512,
+      "gsm8k": 512,
+      "mmlu_pro": 512
+    },
+    "validation_counts": {
+      "openbookqa": 64,
+      "arc_challenge": 64,
+      "gsm8k": 64,
+      "mmlu_pro": 64
+    },
+    "epochs": 4,
+    "effective_batch": 8,
+    "expected_updates": 1024,
+    "adapter_rank": 64,
+    "learning_rate": 0.0001,
+    "weight_decay": 0,
+    "gradient_clip": 30,
+    "checkpoint_every_steps": 64,
+    "warmup_native_epochs": 1,
+    "prefix_max_new_tokens": 64,
+    "supervised_positions_per_example_max": 8,
+    "student_fraction_after_warmup": 0.5,
+    "loss": "Exact full-vocabulary forward KL(Native || Translated), temperature1, FP32 log-softmax; mean valid positions per example, mean8 examples per update. No Gold CE/candidate KL/EOS CE/attention/KV loss.",
+    "initialization": "New zero-up rank64 receiver-space residual on frozen existing Stage-A; do not initialize from old Stage-B",
+    "sampling": "Native greedy rollout cached as token IDs; current Student greedy rollout online under no_grad on half of examples in every balanced batch after epoch1. Teacher scores the EXACT same selected prefix. No prefixes after first EOS.",
+    "selection": "Primary: fixed epoch4/step1024 last.pt; best.pt by fixed Native-prefix held-out macro KL is diagnostic only, never test-selected",
+    "native_parity_kl_max": 0.001,
+    "native_parity_score_max": 0.02,
+    "disk_reserve_gib": 20,
+    "monitor_validation_per_task": 16,
+    "formal_counts": {
+      "openbookqa": 128,
+      "arc_challenge": 128,
+      "hellaswag": 64,
+      "gsm8k": 32,
+      "mmlu_pro": 128,
+      "sciq": 64
+    },
+    "gsm8k_formal_max_new_tokens": 4096,
+    "mmlu_pro_protocol": "Explicit extension: pinned ARC MCQ format generalized to actual A-J option count, label likelihood, Qwen chat thinking disabled; NOT official MMLU-Pro5shotCoT or lm-eval",
+    "mmlu_pro_split": "Custom question-grouped split of local official test parquet; protect first128 historical test question groups, stratify512 unique training and64 validation questions by category; all remaining question groups held out. Never claim full official test is unseen.",
+    "cache": "Reuse identity-checked parent MCQ aligned Sender FP16 caches; cache only additional aligned Sender KV, not every Native cache or full-vocab logits. Frozen Stage-A mapping computed on demand in train/eval. No truncation, deletion or quantization.",
+    "continuous_monitoring": false,
+    "automatic_upload": false
+  },
+  "source_files": {
+    "/hy-tmp/yezhe/异构模型/mcq_heterofold_chat_fullsync_l3_to_q4_seed1234/prepared/train.jsonl": "b6b20c3ba0b277d1f0ef956637d1ef3e318940e05c69ba64fe32ea73cfbc50c8",
+    "/hy-tmp/yezhe/异构模型/mcq_heterofold_chat_fullsync_l3_to_q4_seed1234/prepared/validation.jsonl": "9654d207c3eee3caeff4923649a632848c95469841005707d1847231c625b5af",
+    "/hy-tmp/yezhe/异构模型/unified_fullbody_hub_l3_to_q4_seed1234/datasets/openbookqa/test.jsonl": "feb2bd9bfa6161dca4c44ce90e51e8cdada83eb5061407fcdc5005e44aaf2313",
+    "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/evaluation_crossdataset_arc128_hellaswag64_seed1234/mcq_writer/inputs/arc_rows.json": "5a3b2cd346a0d614543f219b5632b810a7b1d934ff85b57c5e9ada9a2a4fb4f7",
+    "/hy-tmp/yezhe/异构模型/decoupled_memory_reader_obqa_fact_l3_to_q4_seed1234/sciq_frozen64/prepared/test.jsonl": "828c86e1504ab77cc1a62a26445f41b4254599ddbf0931a17a19562eb83d64d8",
+    "/hy-tmp/yezhe/all_models/datasets/modelscope/gsm8k/train.jsonl": "17f347dc51477c50d4efb83959dbb7c56297aba886e5544ee2aaed3024813465",
+    "/hy-tmp/yezhe/all_models/datasets/modelscope/gsm8k/test.jsonl": "3730d312f6e3440559ace48831e51066acaca737f6eabec99bccb9e4b3c39d14",
+    "/hy-tmp/yezhe/异构模型/unified_fullbody_hub_l3_to_q4_seed1234/datasets/mmlu_pro/test-00000-of-00001.parquet": "0e24a191921c2f453518a537a8b2117bd137e7714d4ef1565e9ba06c1ecb9ad8"
+  },
+  "parent_manifest_sha256": "b5c8ddb4500933320e8f2262fa51215bcd6d60837e1cbccc59910154b7e1c2d6",
+  "code": {
+    "experiment.py": "7fdedf47b4e9557d009c322326d1b11230eeed4c28f8067c30e85798aa7f2f49",
+    "run_pipeline.py": "a7273abee3f04e94882563bfe4374384189ca6a32f2391e8f51753ca849fe769"
+  },
+  "config_sha256": "0f7cff32f5bb4447a0c0de25d876bd92dfe0b14ff7fd44b5bb5e39e9ce5d9dd8",
+  "parent_code": {
+    "core.py": "27417f5480e067af53c9e1871a0e7dc22f11f27ddc55dfedfaf9747380edcbfc",
+    "translator.py": "2b1c1381f39ccc2853dfc297f982420df9f78f612ff098084596f0de1b05609b",
+    "prepare.py": "f1f8578f19196f265d877d099c5f4510fd5f5e493328e82362c0f96409e50ef8",
+    "evaluate.py": "bf82d696ecf01e181074f8cee84e12b5819184c647b7aad916da20f565c34e48"
+  },
+  "model_configs": {
+    "llama": {
+      "config": "39fb36dc5416f445ebc4e71cb71fbcf6727e80a35836d8ba1a1474c318467b7a",
+      "tokenizer": "9823dcfdc1121869029da45192238e85cf44f0b232a6d9dc20e4fe6f4242a14e"
+    },
+    "qwen": {
+      "config": "8ba006f74fecfaaeb392872a60f4a480e7ec9860153d2e1b769ec81f9a147f8a",
+      "tokenizer": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101"
+    }
+  },
+  "reference_hashes": {
+    "evaluation/short_context.py": "5528df3b3a8f54697ab2fb4c8d5748e3e6050eb0155a76cfaa0ef4bb3719d383",
+    "evaluation/runtime.py": "baed2e7fa47c1acc00c43d0c7baaea225beaa3e5f4b6b4e0601294103b84d8a1",
+    "modeling.py": "c36066d40ae9836cf31f324603af9fd1a1af3c70af2d61c0e492456a367749e8"
+  },
+  "versions": {
+    "torch": "2.5.1+cu121",
+    "transformers": "5.9.0",
+    "pyarrow": "24.0.0"
+  },
+  "prepared_sha256": {
+    "train": "89262344d19bc009569215979201de8623ed4e8b7ceecfc8286948e56421c4e8",
+    "validation": "f57e26e298acaf91920e6f0daf1c4a2f5ca5307124bbdf598f2dfa5b31a2d685",
+    "test": "6c62e88ae69552c53efe4a44e0676646bdabbeb40eaae8d160a1c4f7fcaaaf2f"
+  },
+  "custom_mmlu_split_sha256": "26d149b1666237ea268f0a27a8e616f2bc8330a36a8786fb64274b29518cb9b6",
+  "source_cache_estimate_new_gib": 22.32489013671875,
+  "train_vs_dev_test_question_overlap": 0,
+  "validation_vs_test_question_overlap": 0,
+  "stage_a_retrained": false,
+  "old_stage_b_initialization": false,
+  "reader": false,
+  "training_answer_labels_used_by_loss": false,
+  "caveats": [
+    "MMLU-Pro custom split of official test, not leaderboard evaluation. No gold COT used.",
+    "Native prefix policy is greedy, not an unbiased sample from the full Native sequence distribution.",
+    "Mixed data and loss both change; not a single-variable loss ablation. Exact normalized overlap is not a semantic/pretraining contamination audit."
+  ]
+}
