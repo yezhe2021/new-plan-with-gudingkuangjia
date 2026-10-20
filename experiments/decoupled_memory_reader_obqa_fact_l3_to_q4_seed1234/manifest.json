@@ -1,0 +1,95 @@
+{
+  "config": {
+    "name": "decoupled_memory_reader_obqa_fact_l3_to_q4_seed1234",
+    "seed": 1234,
+    "parent": "/hy-tmp/yezhe/异构模型/mcq_heterofold_chat_fullsync_l3_to_q4_seed1234",
+    "archive": "/hy-tmp/yezhe/异构模型/openbookqa_factkv_frozen64_seed1234/data/OpenBookQA-V1-Sep2018.zip",
+    "prerequisite": "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/attention_output_arc128_hellaswag64_seed1234/formal/completed.json",
+    "old_reader": "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/analysis/receiver_gated_reader_v1_seed1234/reader.py",
+    "stage_a_sha256": "db1f295c502f27305a9d2ac410c47a1bdef4db7e0255f817483867b19d78cf0d",
+    "stage_b_sha256": "06190cfcda6ce65e7b81447d2fa77b926bd43b384e2bfb5866083cc1588e278f",
+    "counts": {
+      "train": 1024,
+      "validation": 128,
+      "test": 128
+    },
+    "layers_zero_based": [
+      7,
+      15,
+      23,
+      31
+    ],
+    "rank": 32,
+    "old_reader_rank": 32,
+    "arms": [
+      "native_query",
+      "independent_query",
+      "old_coupled_reader"
+    ],
+    "epochs": 4,
+    "effective_batch": 8,
+    "learning_rate": 0.0003,
+    "gradient_clip": 5.0,
+    "weight_decay": 0.0,
+    "checkpoint_every_steps": 64,
+    "loss": "Full-vocabulary cross-entropy of the single gold option-label token; no KL, attention/output loss or gate penalty",
+    "selection": "Lowest official-development Gold CE, independently per arm; no selection on test, wrong-memory or attention diagnostics",
+    "memory": "Frozen latest MCQ Stage-A+Stage-B; all fact-content tokens, post-k_norm pre-RoPE K; no compression",
+    "receiver": "Question and options only, pinned HeteroFold ARC MCQ formatter and Qwen chat, thinking disabled, same label-scoring cue",
+    "sender": "Own Llama chat containing fact1 only; no question, options, answerKey or answer cue",
+    "scope": "Reader-only evidence diagnostic. Not a claim of shared multi-Sender compatibility, retrieval performance or closed-book benchmark parity.",
+    "min_free_gpu_gib": 15,
+    "disk_reserve_gib": 20,
+    "continuous_monitoring": false,
+    "automatic_upload": false
+  },
+  "parent_manifest_sha256": "b5c8ddb4500933320e8f2262fa51215bcd6d60837e1cbccc59910154b7e1c2d6",
+  "archive_sha256": "82368cf05df2e3b309c17d162e10b888b4d768fad6e171e0a041954c8553be46",
+  "members": {
+    "train": "OpenBookQA-V1-Sep2018/Data/Additional/train_complete.jsonl",
+    "validation": "OpenBookQA-V1-Sep2018/Data/Additional/dev_complete.jsonl",
+    "test": "OpenBookQA-V1-Sep2018/Data/Additional/test_complete.jsonl"
+  },
+  "old_reader_sha256": "0615928ad6f46846676686272d1d63728507d36628e6e4514cbef115306423bd",
+  "code": {
+    "reader.py": "e1141c1a057bc9022a03a36f8a74fa7da77979b169020efbaf27618eb4748c2a",
+    "run.py": "67d1b6c57cc65fb28d39e7cbf00c00fa89d06cd1b17492cd70a59e211a41f05b",
+    "run_pipeline.py": "5e59e3abd2dfb07e45e0d247fe4f9836af101ced77c9237e0418d1c0c36c408c"
+  },
+  "parent_core_sha256": "27417f5480e067af53c9e1871a0e7dc22f11f27ddc55dfedfaf9747380edcbfc",
+  "model_configs": {
+    "llama": "39fb36dc5416f445ebc4e71cb71fbcf6727e80a35836d8ba1a1474c318467b7a",
+    "qwen": "8ba006f74fecfaaeb392872a60f4a480e7ec9860153d2e1b769ec81f9a147f8a"
+  },
+  "prepared": {
+    "train": "fe31fdf5a90010978c0499216df667055ba61a12713afeecec3cd4e7bf13d97c",
+    "validation": "e3c010e22d9e1da1a3343c250c95fc7fcf8d71cd955b4dad6a45d391f0b2a85d",
+    "test": "ca4c6846b0d7c7e19237623d4c91a4c6708d19db859119c9dff9b0b78a29f3b5"
+  },
+  "audit": {
+    "official_counts": {
+      "train": 4957,
+      "validation": 500,
+      "test": 500
+    },
+    "selected": {
+      "train": 1024,
+      "validation": 128,
+      "test": 128
+    },
+    "eligible_train_after_question_fact_filter": 2215,
+    "train_vs_all_official_dev_test_question_overlap": 0,
+    "train_vs_all_official_dev_test_normalized_fact_overlap": 0,
+    "fact_filtered_training": true,
+    "validation_test_fact_overlap": 7,
+    "train_question_duplicates": 0,
+    "pretraining_contamination_not_audited": true,
+    "upstream_writer": "Frozen parent MCQ Writer trained on official OBQA/ARC train; its dev/test question audit retained; not retrained on fact-only prompts",
+    "same_evidence_multiple_test_questions": 6
+  },
+  "estimated_memory_gib": 3.61175537109375,
+  "protocol_change": "Evidence-only/Question-only intentional new protocol. External bank has no native header/content-anchor/tail and no autoregressive positions; frozen Writer weights unchanged. All evidence content tokens mapped with Full-Sync copy/drop.",
+  "layer_policy": "Preregistered sparse 0-based [7,15,23,31], not selected from test or Attention-Output outcomes; not claimed optimal. Layer-location search deferred.",
+  "query_arms": "Native frozen Q + zero-up low-rank correction vs independently initialized rank-matched factorized Q; both use frozen native O plus trainable zero-up low-rank correction and zero scalar gate.",
+  "old_baseline": "Original coupled external reader algorithm; physical token0+memory+native question cache, selected-layer updates only; native/external joint softmax. Parameter count and shifted question positions recorded, not silently treated as matched."
+}

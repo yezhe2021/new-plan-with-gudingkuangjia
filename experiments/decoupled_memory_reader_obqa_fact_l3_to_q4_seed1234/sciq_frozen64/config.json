@@ -1,0 +1,24 @@
+{
+  "name": "decoupled_memory_reader_obqa_fact_l3_to_q4_seed1234/sciq_frozen64",
+  "parent": "/hy-tmp/yezhe/异构模型/decoupled_memory_reader_obqa_fact_l3_to_q4_seed1234",
+  "dataset_repo": "allenai/sciq",
+  "dataset_card": "https://huggingface.co/datasets/allenai/sciq",
+  "dataset_split": "test",
+  "count": 64,
+  "seed": 1234,
+  "selection": "First64 official test rows with nonempty support, four distinct nonempty answers and no exact normalized question/support overlap with known Reader/Writer training data; no performance filtering",
+  "choice_order": "Deterministically shuffled distractors and balanced shuffled gold positions (16 each for A/B/C/D)",
+  "arms": ["native_query", "independent_query", "old_coupled_reader"],
+  "reader_sha256": {
+    "native_query": "5cacfcc54922587ee25264987a0f5fc2455095c61b87aa9799ec5ed4b5d78a23",
+    "independent_query": "420522d3cb9b68ef7ee93959a3c9b5a8c5685ae7b602fba72fa1037099033536",
+    "old_coupled_reader": "d54d7c44f4dc9b8d4801d161910b1642b6ced71acfa715b2674dde67a5c7a38a"
+  },
+  "training": false,
+  "protocol": "Frozen OBQA Reader transfer; support-only Llama chat -> same frozen MCQ Writer -> full external memory; question+options Qwen chat, same ARC label formatter/cue/scorer; not native lm-eval SciQ leaderboard configuration",
+  "memory_ablation": "Correct support, absent bank, deterministic support from another selected question with a distinct normalized support text",
+  "full_evidence": "Untruncated support text, no 32/64-token cap; gold support supplied, no retrieval",
+  "selection_of_checkpoints": "Keep previous OBQA validation-CE selected epoch2/step256 checkpoints; never select on SciQ test",
+  "continuous_monitoring": false,
+  "automatic_upload": false
+}

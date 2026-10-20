@@ -1,0 +1,216 @@
+{
+  "status": "completed",
+  "experiment": "decoupled_memory_reader_obqa_fact_l3_to_q4_seed1234",
+  "metrics": {
+    "baselines/question_only": {
+      "n": 128,
+      "correct": 103,
+      "accuracy": 0.8046875,
+      "gold_ce": 19.163342878222466
+    },
+    "baselines/native_full_evidence_text": {
+      "n": 128,
+      "correct": 122,
+      "accuracy": 0.953125,
+      "gold_ce": 18.30207148939371
+    },
+    "baselines/frozen_stage_a_physical_prefix": {
+      "n": 128,
+      "correct": 105,
+      "accuracy": 0.8203125,
+      "gold_ce": 19.153694450855255
+    },
+    "baselines/frozen_stage_b_physical_prefix": {
+      "n": 128,
+      "correct": 107,
+      "accuracy": 0.8359375,
+      "gold_ce": 19.02811983972788
+    },
+    "native_query/correct_memory": {
+      "n": 128,
+      "correct": 106,
+      "accuracy": 0.828125,
+      "gold_ce": 0.41914943133499794
+    },
+    "native_query/no_memory": {
+      "n": 128,
+      "correct": 103,
+      "accuracy": 0.8046875,
+      "gold_ce": 19.163342878222466
+    },
+    "native_query/wrong_memory": {
+      "n": 128,
+      "correct": 106,
+      "accuracy": 0.828125,
+      "gold_ce": 0.42875786239953584
+    },
+    "independent_query/correct_memory": {
+      "n": 128,
+      "correct": 105,
+      "accuracy": 0.8203125,
+      "gold_ce": 0.436045697515822
+    },
+    "independent_query/no_memory": {
+      "n": 128,
+      "correct": 103,
+      "accuracy": 0.8046875,
+      "gold_ce": 19.163342878222466
+    },
+    "independent_query/wrong_memory": {
+      "n": 128,
+      "correct": 105,
+      "accuracy": 0.8203125,
+      "gold_ce": 0.43290166169767375
+    },
+    "old_coupled_reader/correct_memory": {
+      "n": 128,
+      "correct": 107,
+      "accuracy": 0.8359375,
+      "gold_ce": 0.5118580277825799
+    },
+    "old_coupled_reader/no_memory": {
+      "n": 128,
+      "correct": 103,
+      "accuracy": 0.8046875,
+      "gold_ce": 19.163342878222466
+    },
+    "old_coupled_reader/wrong_memory": {
+      "n": 128,
+      "correct": 89,
+      "accuracy": 0.6953125,
+      "gold_ce": 0.8109324796217123
+    }
+  },
+  "paired": {
+    "native_query": {
+      "no_memory": {
+        "both_correct": 98,
+        "first_only": 8,
+        "second_only": 5,
+        "both_wrong": 17
+      },
+      "wrong_memory": {
+        "both_correct": 106,
+        "first_only": 0,
+        "second_only": 0,
+        "both_wrong": 22
+      },
+      "vs_frozen_writer": {
+        "both_correct": 100,
+        "first_only": 6,
+        "second_only": 7,
+        "both_wrong": 15
+      }
+    },
+    "independent_query": {
+      "no_memory": {
+        "both_correct": 98,
+        "first_only": 7,
+        "second_only": 5,
+        "both_wrong": 18
+      },
+      "wrong_memory": {
+        "both_correct": 105,
+        "first_only": 0,
+        "second_only": 0,
+        "both_wrong": 23
+      },
+      "vs_frozen_writer": {
+        "both_correct": 100,
+        "first_only": 5,
+        "second_only": 7,
+        "both_wrong": 16
+      }
+    },
+    "old_coupled_reader": {
+      "no_memory": {
+        "both_correct": 91,
+        "first_only": 16,
+        "second_only": 12,
+        "both_wrong": 9
+      },
+      "wrong_memory": {
+        "both_correct": 84,
+        "first_only": 23,
+        "second_only": 5,
+        "both_wrong": 16
+      },
+      "vs_frozen_writer": {
+        "both_correct": 100,
+        "first_only": 7,
+        "second_only": 7,
+        "both_wrong": 14
+      }
+    }
+  },
+  "validation_selection": {
+    "native_query": {
+      "epoch": 2,
+      "step": 256,
+      "validation": {
+        "gold_ce": 0.5591081037395522,
+        "correct": 104,
+        "n": 128,
+        "accuracy": 0.8125
+      }
+    },
+    "independent_query": {
+      "epoch": 2,
+      "step": 256,
+      "validation": {
+        "gold_ce": 0.5503373281071298,
+        "correct": 105,
+        "n": 128,
+        "accuracy": 0.8203125
+      }
+    },
+    "old_coupled_reader": {
+      "epoch": 2,
+      "step": 256,
+      "validation": {
+        "gold_ce": 0.5369653313422305,
+        "correct": 109,
+        "n": 128,
+        "accuracy": 0.8515625
+      }
+    }
+  },
+  "same_evidence_multiple_question_groups": {
+    "the ocean contains large amounts of salt water": [
+      "test_9-163",
+      "test_7-157"
+    ],
+    "if the population of an organism increases then the ecosystem may become overpopulated with that organism": [
+      "test_8-395",
+      "test_7-50"
+    ],
+    "seeing is used for sensing visual things": [
+      "test_266",
+      "test_7-140"
+    ],
+    "if an animal hatches from an egg then that animal is born": [
+      "test_1180",
+      "test_9-149"
+    ],
+    "as heat increases , a flexible container containing gas will expand": [
+      "test_132",
+      "test_8-79"
+    ],
+    "a seed is used for storing food for a new plant": [
+      "test_1184",
+      "test_8-491"
+    ]
+  },
+  "counts": {
+    "train": 1024,
+    "validation": 128,
+    "test": 128
+  },
+  "steps_per_arm": 512,
+  "caveats": [
+    "Gold fact1 is supplied, not retrieved. OpenBookQA can often be solved from prior knowledge; memory ablations do not establish causal dependence by themselves.",
+    "Independent Reader has question-only autoregressive positions; coupled baseline shifts question positions after external memory. This is an intentional interface difference.",
+    "Frozen Writer is evaluated out-of-distribution on fact-only input; no new Stage-A, Writer training, shared new Sender, compression or joint optimization in this pilot.",
+    "Layer pattern preregistered, not claimed optimal; old coupled baseline has different trainable parameter count, recorded in smoke and completed files."
+  ]
+}

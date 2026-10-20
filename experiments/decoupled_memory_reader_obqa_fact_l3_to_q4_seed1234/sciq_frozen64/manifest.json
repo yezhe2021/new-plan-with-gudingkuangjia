@@ -1,0 +1,193 @@
+{
+  "config": {
+    "name": "decoupled_memory_reader_obqa_fact_l3_to_q4_seed1234/sciq_frozen64",
+    "parent": "/hy-tmp/yezhe/异构模型/decoupled_memory_reader_obqa_fact_l3_to_q4_seed1234",
+    "dataset_repo": "allenai/sciq",
+    "dataset_card": "https://huggingface.co/datasets/allenai/sciq",
+    "dataset_split": "test",
+    "count": 64,
+    "seed": 1234,
+    "selection": "First64 official test rows with nonempty support, four distinct nonempty answers and no exact normalized question/support overlap with known Reader/Writer training data; no performance filtering",
+    "choice_order": "Deterministically shuffled distractors and balanced shuffled gold positions (16 each for A/B/C/D)",
+    "arms": [
+      "native_query",
+      "independent_query",
+      "old_coupled_reader"
+    ],
+    "reader_sha256": {
+      "native_query": "5cacfcc54922587ee25264987a0f5fc2455095c61b87aa9799ec5ed4b5d78a23",
+      "independent_query": "420522d3cb9b68ef7ee93959a3c9b5a8c5685ae7b602fba72fa1037099033536",
+      "old_coupled_reader": "d54d7c44f4dc9b8d4801d161910b1642b6ced71acfa715b2674dde67a5c7a38a"
+    },
+    "training": false,
+    "protocol": "Frozen OBQA Reader transfer; support-only Llama chat -> same frozen MCQ Writer -> full external memory; question+options Qwen chat, same ARC label formatter/cue/scorer; not native lm-eval SciQ leaderboard configuration",
+    "memory_ablation": "Correct support, absent bank, deterministic support from another selected question with a distinct normalized support text",
+    "full_evidence": "Untruncated support text, no 32/64-token cap; gold support supplied, no retrieval",
+    "selection_of_checkpoints": "Keep previous OBQA validation-CE selected epoch2/step256 checkpoints; never select on SciQ test",
+    "continuous_monitoring": false,
+    "automatic_upload": false
+  },
+  "parent_manifest_sha256": "5b5479d1273a2adcc26415286eccfeda66a9b867d29ee95fd029af2981acf8b9",
+  "parent_summary_sha256": "86eb3d5c9eabe694e643c31f8e7aeb0d3fda2de9b59a2ac31519524c0daeabf4",
+  "source": {
+    "repo": "allenai/sciq",
+    "revision": "2c94ad3e1aafab77146f384e23536f97a4849815",
+    "file": "data/test-00000-of-00001.parquet",
+    "download_url": "https://hf-mirror.com/datasets/allenai/sciq/resolve/2c94ad3e1aafab77146f384e23536f97a4849815/data/test-00000-of-00001.parquet",
+    "official_card": "https://huggingface.co/datasets/allenai/sciq",
+    "parquet_sha256": "3a719356a29b127fc54ef3c7f51a034db4bd105d5717215e8c85d2aa58d60667",
+    "bytes": 342808,
+    "license": "cc-by-nc-3.0",
+    "prior_connection_errors": [
+      {
+        "endpoint": "https://huggingface.co",
+        "type": "URLError",
+        "message": "<urlopen error [Errno 101] Network is unreachable>"
+      }
+    ]
+  },
+  "prepared_digest": "ac0a8796663f2fdaafa70cb4053da2f5723c7af21c215d0f33b5451b514e992e",
+  "selected_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    36,
+    38,
+    39,
+    40,
+    43,
+    44,
+    45,
+    46,
+    47,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    68,
+    69,
+    70,
+    71,
+    72
+  ],
+  "skips": [
+    {
+      "index": 35,
+      "reason": "empty_support"
+    },
+    {
+      "index": 37,
+      "reason": "empty_support"
+    },
+    {
+      "index": 41,
+      "reason": "empty_support"
+    },
+    {
+      "index": 42,
+      "reason": "empty_support"
+    },
+    {
+      "index": 48,
+      "reason": "empty_support"
+    },
+    {
+      "index": 49,
+      "reason": "empty_support"
+    },
+    {
+      "index": 56,
+      "reason": "empty_support"
+    },
+    {
+      "index": 66,
+      "reason": "empty_support"
+    },
+    {
+      "index": 67,
+      "reason": "empty_support"
+    }
+  ],
+  "parent_code": {
+    "/hy-tmp/yezhe/异构模型/decoupled_memory_reader_obqa_fact_l3_to_q4_seed1234/run.py": "67d1b6c57cc65fb28d39e7cbf00c00fa89d06cd1b17492cd70a59e211a41f05b",
+    "/hy-tmp/yezhe/异构模型/decoupled_memory_reader_obqa_fact_l3_to_q4_seed1234/reader.py": "e1141c1a057bc9022a03a36f8a74fa7da77979b169020efbaf27618eb4748c2a",
+    "/hy-tmp/yezhe/异构模型/mcq_heterofold_chat_fullsync_l3_to_q4_seed1234/core.py": "27417f5480e067af53c9e1871a0e7dc22f11f27ddc55dfedfaf9747380edcbfc"
+  },
+  "code": {
+    "run.py": "0335a3e215c462dbdb405e52aefe5a078800b746a2be5b82da7c42127250107f",
+    "run_pipeline.py": "119f1c87969eb92526bb50d75287431b06c4cc3c015ea2c7deaabc09f20595db"
+  },
+  "model_configs": {
+    "llama": "39fb36dc5416f445ebc4e71cb71fbcf6727e80a35836d8ba1a1474c318467b7a",
+    "qwen": "8ba006f74fecfaaeb392872a60f4a480e7ec9860153d2e1b769ec81f9a147f8a"
+  },
+  "versions": {
+    "torch": "2.5.1+cu121",
+    "transformers": "5.9.0",
+    "pyarrow": "24.0.0"
+  },
+  "dtype": "float16",
+  "attention": "sdpa",
+  "writer_sha256": {
+    "a": "db1f295c502f27305a9d2ac410c47a1bdef4db7e0255f817483867b19d78cf0d",
+    "b": "06190cfcda6ce65e7b81447d2fa77b926bd43b384e2bfb5866083cc1588e278f"
+  },
+  "training": false,
+  "exact_question_overlap_with_known_writer_reader_train": 0,
+  "exact_support_overlap_with_reader_train": 0,
+  "audit_limits": "Exact normalized overlap only; not semantic near-duplicate or pretraining contamination audit",
+  "gold_positions": {
+    "A": 16,
+    "B": 16,
+    "C": 16,
+    "D": 16
+  },
+  "tokens": {
+    "min": 8,
+    "max": 609,
+    "mean": 128.8125
+  }
+}
