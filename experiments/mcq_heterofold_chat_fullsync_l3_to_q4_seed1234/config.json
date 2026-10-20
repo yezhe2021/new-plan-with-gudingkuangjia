@@ -1,0 +1,58 @@
+{
+  "name": "mcq_heterofold_chat_fullsync_l3_to_q4_seed1234",
+  "seed": 1234,
+  "legacy_root": "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234",
+  "hf_root": "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825",
+  "previous_root": "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/evaluation_crossdataset_arc128_hellaswag64_seed1234/mcq_writer",
+  "models": {
+    "llama": "/hy-tmp/yezhe/all_models/models/LLM-Research/Llama-3.2-3B-Instruct",
+    "qwen": "/hy-tmp/yezhe/all_models/models/Qwen/Qwen3-4B"
+  },
+  "train_counts": {
+    "openbookqa": 1024,
+    "arc_challenge": 1024
+  },
+  "validation_counts": {
+    "openbookqa": 128,
+    "arc_challenge": 128
+  },
+  "stage_a_epochs": 2,
+  "stage_b_epochs": 4,
+  "effective_batch": 8,
+  "stage_a_learning_rate": 0.001,
+  "stage_b_learning_rate": 0.0001,
+  "gradient_clip": 30,
+  "weight_decay": 0,
+  "adapter_rank": 64,
+  "mlp_hidden_dim": 1024,
+  "chunk_tokens": 64,
+  "checkpoint_every_steps": 128,
+  "llama_template_date": "19 Oct 2026",
+  "dtype": "float16",
+  "attention": "sdpa",
+  "native_cache_choice_kl_max": 0.001,
+  "min_free_gpu_gib": {
+    "llama": 8,
+    "qwen": 9.5,
+    "stage_a": 5,
+    "stage_b": 10.5
+  },
+  "disk_reserve_gib": 20,
+  "reference_hashes": {
+    "evaluation/short_context.py": "5528df3b3a8f54697ab2fb4c8d5748e3e6050eb0155a76cfaa0ef4bb3719d383",
+    "evaluation/runtime.py": "baed2e7fa47c1acc00c43d0c7baaea225beaa3e5f4b6b4e0601294103b84d8a1",
+    "modeling.py": "c36066d40ae9836cf31f324603af9fd1a1af3c70af2d61c0e492456a367749e8"
+  },
+  "losses": {
+    "stage_a": "K NMSE + V NMSE + (1-K cosine) + (1-V cosine), per example; translated slots only",
+    "stage_b": "KL(native Qwen candidate distribution || transferred candidate distribution), temperature1; no gold CE"
+  },
+  "checkpoint_selection": "lowest held-out validation reconstruction loss for Stage-A; lowest held-out validation choice KL for Stage-B",
+  "evaluation": {
+    "arc": 128,
+    "hellaswag": 64
+  },
+  "training_gsm8k": false,
+  "continuous_monitoring": false,
+  "automatic_upload": false
+}
