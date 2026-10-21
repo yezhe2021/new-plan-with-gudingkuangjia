@@ -1,5 +1,7 @@
-# Upload snapshot
+# Completed experiment
 
-Captured: 2026-10-20T23:05:10.684173+08:00
-
-Status: **incomplete_evaluation_running**. Training is complete (4 epochs, 1024 updates). Dataset completion and exact denominators are in snapshot_summary.json. Incomplete GSM8K metrics are provisional, not final32 scores. The running server pipeline is not stopped or modified by this export. Weights, optimizer tensors, KV caches and rollout-token caches are excluded.
+The initial partial upload is superseded by the complete server results uploaded
+on 2026-10-21. Training and all six evaluations, including GSM8K32, are complete.
+See `summary.json` for final metrics and `evaluation/` for complete per-sample
+outputs. `snapshot_summary.json` is retained as the historical partial snapshot;
+it is NOT the final result. Weights, optimizer tensors and KV caches are excluded.

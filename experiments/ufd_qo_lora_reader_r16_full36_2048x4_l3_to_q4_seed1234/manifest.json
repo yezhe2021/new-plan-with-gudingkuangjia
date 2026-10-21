@@ -1,0 +1,100 @@
+{
+  "config": {
+    "name": "ufd_qo_lora_reader_r16_full36_2048x4_l3_to_q4_seed1234",
+    "seed": 1234,
+    "parent": "/hy-tmp/yezhe/异构模型/ufd_mixedprefix_stageb_4data_2048x4_l3_to_q4_seed1234",
+    "parent_manifest_sha256": "eb0fe67b8e7665f9df880ee86551b1524db6ef3cb67ddede7cafe6ada3a6a739",
+    "writer_stage_b_sha256": "25942a14d77a2a36173cccf6653d0e86cef01bdfdbd082836395faa895ba995e",
+    "rank": 16,
+    "alpha": 16,
+    "dropout": 0,
+    "layers": 36,
+    "targets": [
+      "q_proj",
+      "o_proj"
+    ],
+    "expected_trainable_parameters": 7667712,
+    "epochs": 4,
+    "expected_updates": 1024,
+    "effective_batch": 8,
+    "learning_rate": 0.0001,
+    "weight_decay": 0,
+    "gradient_clip": 30,
+    "checkpoint_every_steps": 64,
+    "validation_every_steps": 256,
+    "monitor_validation_per_task": 16,
+    "prefix_max_new_tokens": 64,
+    "supervised_positions_per_example_max": 8,
+    "train_counts": {
+      "openbookqa": 512,
+      "arc_challenge": 512,
+      "gsm8k": 512,
+      "mmlu_pro": 512
+    },
+    "formal_counts": {
+      "openbookqa": 128,
+      "arc_challenge": 128,
+      "hellaswag": 64,
+      "gsm8k": 32,
+      "mmlu_pro": 128,
+      "sciq": 64
+    },
+    "loss": "Unchanged UFD full-vocabulary forward KL(Native||Writer+Reader), temperature1, FP32 loss; up to8 unique prediction positions, mean examples. No gold CE, choice KL, attention or KV loss.",
+    "prefix_sampling": "Exact parent epoch order and positions. Epoch1 Native greedy; epochs2-4 exactly4 current Writer+Reader Student examples and4 Native examples per balanced batch. Student prefix sampling detached. Native Teacher always disables Reader.",
+    "interface": "Frozen Stage-A and fixed UFD Stage-B step1024; unchanged Full-Sync, native anchor, native tail, chat, suffix, physical cache and absolute positions. Reader disabled during Native body/cache/Teacher computation; enabled only for translated-cache continuation including suffix and generation.",
+    "selection": "Primary fixed epoch4/step1024. Keep epoch1/2/3/4 Reader checkpoints. Best macro validation KL checkpoint is diagnostic only, never test-selected.",
+    "validation_task_metrics": "On fixed16 validation rows/task: KL plus same-prefix next-token agreement for all4 tasks; label accuracy on3 MCQ tasks. Full GSM8K free-generation accuracy only in final test, using unchanged4096 cap.",
+    "baseline_reuse": "Reuse identity- and prompt-checked parent Qwen Native / old MCQ Writer / UFD Writer per-sample outputs. Compute only frozen UFD Writer+Reader. Require complete parent pipeline before GPU launch.",
+    "queue_min_free_gpu_gib": 20,
+    "queue_retry_seconds": 300,
+    "disk_reserve_gib": 20,
+    "continuous_monitoring": false,
+    "automatic_upload": false
+  },
+  "parent_manifest_sha256": "eb0fe67b8e7665f9df880ee86551b1524db6ef3cb67ddede7cafe6ada3a6a739",
+  "writer_stage_a_sha256": "db1f295c502f27305a9d2ac410c47a1bdef4db7e0255f817483867b19d78cf0d",
+  "writer_stage_b_sha256": "25942a14d77a2a36173cccf6653d0e86cef01bdfdbd082836395faa895ba995e",
+  "parent_code": {
+    "experiment.py": "7fdedf47b4e9557d009c322326d1b11230eeed4c28f8067c30e85798aa7f2f49",
+    "run_pipeline.py": "a7273abee3f04e94882563bfe4374384189ca6a32f2391e8f51753ca849fe769"
+  },
+  "source_files": {
+    "train": "0c0770cb787787e85b96a7a8804b67b60ad33866bb04a1a6dc17e9ecb9e2200b",
+    "validation": "f36f9a49b7643bad1f342f9db5ba8fa95988ca1011ed8c74c4832da0e039910b",
+    "test": "49fb3edbfee4eb3eadeaf146d1a81c709e6d22f14a04b0256953c2ce652c70d2"
+  },
+  "model_configs": {
+    "llama": {
+      "config": "39fb36dc5416f445ebc4e71cb71fbcf6727e80a35836d8ba1a1474c318467b7a",
+      "tokenizer": "9823dcfdc1121869029da45192238e85cf44f0b232a6d9dc20e4fe6f4242a14e"
+    },
+    "qwen": {
+      "config": "8ba006f74fecfaaeb392872a60f4a480e7ec9860153d2e1b769ec81f9a147f8a",
+      "tokenizer": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101"
+    }
+  },
+  "reference_hashes": {
+    "evaluation/short_context.py": "5528df3b3a8f54697ab2fb4c8d5748e3e6050eb0155a76cfaa0ef4bb3719d383",
+    "evaluation/runtime.py": "baed2e7fa47c1acc00c43d0c7baaea225beaa3e5f4b6b4e0601294103b84d8a1",
+    "modeling.py": "c36066d40ae9836cf31f324603af9fd1a1af3c70af2d61c0e492456a367749e8"
+  },
+  "versions": {
+    "torch": "2.5.1+cu121",
+    "transformers": "5.9.0",
+    "pyarrow": "24.0.0"
+  },
+  "code": {
+    "experiment.py": "786557e830f85ed9caf4a4f5888e19dea2ab9ef7e638ef3f95b9b7c0d8256a9b",
+    "reader.py": "77797c589aed0eebe0cf133118929e1ebba4d8e961765a5b7a15f516483d9f2a",
+    "run_pipeline.py": "cebee85bc7ac20113c6facfab2d447ff8bfaa029e9b1ca60b267b3fc950c7385"
+  },
+  "config_sha256": "e212f8754c3235c5ef75e8f941cbfa7dc87012708710eab97ceeab0691ea9501",
+  "exact_parent_data_order_and_protocol": true,
+  "native_teacher_reader_disabled": true,
+  "imported_mmlu_custom_split_sha256": "26d149b1666237ea268f0a27a8e616f2bc8330a36a8786fb64274b29518cb9b6",
+  "caveats": [
+    "MMLU-Pro remains the approved CUSTOM split and label-scoring extension, not untouched official test.",
+    "Reader changes only continuation computation, never transmitted prefix KV. Future decoded KV can change indirectly.",
+    "Native greedy prefixes and64-token training horizon are unchanged from parent UFD. Formal GSM8K cap remains4096."
+  ]
+}
