@@ -1,0 +1,18 @@
+{
+  "name": "ufd_qo_lora_reader_r16_full36_2048x4_l3_to_q4_seed1234/llama_native",
+  "seed": 1234,
+  "ufd_root": "/hy-tmp/yezhe/异构模型/ufd_mixedprefix_stageb_4data_2048x4_l3_to_q4_seed1234",
+  "ufd_manifest_sha256": "eb0fe67b8e7665f9df880ee86551b1524db6ef3cb67ddede7cafe6ada3a6a739",
+  "reader_manifest_sha256": "e3cdafb48dca164e6193671c5271cf1772772aecb5e8300c7ddbbac98d04ee41",
+  "counts": {"openbookqa": 128, "arc_challenge": 128, "hellaswag": 64, "gsm8k": 32, "mmlu_pro": 128, "sciq": 64},
+  "model": "Llama-3.2-3B-Instruct, frozen FP16 on V100, no Writer or Reader",
+  "template": "Exact existing Sender rendered_full chat template from the audited row, fixed original template date, then same task-specific answer cue. No Qwen template or duplicate special tokens.",
+  "mcq": "Pinned HeteroFold native_candidate_scores: label log-likelihood, no length normalization, same candidates and labels as existing experiment",
+  "hellaswag": "Pinned HeteroFold native_candidate_scores: length-normalized continuation log-likelihood, not A/B/C/D generation",
+  "gsm8k": "Pinned HeteroFold greedy_decode on complete Llama-native chat, same boxed math instruction, max4096 new tokens, reference EOS stopping and extract_numeric_answer/normalize_number. No legacy stop/parser.",
+  "mmlu_pro": "Same approved CUSTOM heldout128 and ARC-style actual A-J label extension as UFD/Reader, NOT untouched full official test/5shotCoT",
+  "comparison": "Reuse exact Reader per-sample four-arm baselines; add only llama_native. Preserve original summaries; write combined summary_with_llama_native.json at Reader root.",
+  "checkpoint_selection": "No training or checkpoint selection: frozen native Llama only",
+  "continuous_monitoring": false,
+  "automatic_upload": false
+}

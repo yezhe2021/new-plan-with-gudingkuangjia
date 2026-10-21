@@ -1,0 +1,93 @@
+{
+  "config": {
+    "name": "ufd_qo_lora_reader_r16_full36_2048x4_l3_to_q4_seed1234/heterofold_baseline",
+    "seed": 1234,
+    "ufd_root": "/hy-tmp/yezhe/异构模型/ufd_mixedprefix_stageb_4data_2048x4_l3_to_q4_seed1234",
+    "ufd_manifest_sha256": "eb0fe67b8e7665f9df880ee86551b1524db6ef3cb67ddede7cafe6ada3a6a739",
+    "reader_manifest_sha256": "e3cdafb48dca164e6193671c5271cf1772772aecb5e8300c7ddbbac98d04ee41",
+    "llama_native_manifest_sha256": "256d7c03a2dc4bdca9b52ac68affa811933b8bf193bdf3c665f147f999259875",
+    "map_path": "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/maps/llama3_to_qwen4/heterofold.pt",
+    "map_sha256": "dc2ea778b2b6ea4d6c74c678548946f59fb1e5970f935be3ecc5e4fb58ac718e",
+    "counts": {
+      "openbookqa": 128,
+      "arc_challenge": 128,
+      "hellaswag": 64,
+      "gsm8k": 32,
+      "mmlu_pro": 128,
+      "sciq": 64
+    },
+    "newly_evaluate": [
+      "openbookqa",
+      "mmlu_pro",
+      "sciq"
+    ],
+    "reuse_existing": [
+      "arc_challenge",
+      "hellaswag",
+      "gsm8k"
+    ],
+    "protocol": "Original HeteroFold RAW Sender prompt (no Sender chat/BOS), capture_sender, unchanged folded map, build_receiver_cache with Qwen native chat prefix, assistant+task cue and pinned candidate scoring. Do NOT use our Full-Sync/native token0 anchor or post-k_norm Writer convention.",
+    "execution": "Both frozen FP16 Llama/Qwen resident on the available V100; map FP16; per-row raw Sender KV staged on CPU RAM and discarded. No persistent KV dataset, no training and no generation for the3 new label-scored tasks.",
+    "mmlu_pro": "Existing approved CUSTOM heldout128, actual A-J labels using the same ARC-format extension; NOT untouched official full test/CoT.",
+    "scoring": "Exactly same prompts/candidates/gold as UFD/Reader/Llama Native. ARC/OBQA/SciQ/MMLU label likelihood, HellaSwag length-normalized continuation. Existing GSM8K32 retains reference4096 greedy and boxed numeric parser.",
+    "checkpoint_selection": "One fixed existing HeteroFold map, no calibration/retraining/test-based selection",
+    "continuous_monitoring": false,
+    "automatic_upload": false
+  },
+  "map_sha256": "dc2ea778b2b6ea4d6c74c678548946f59fb1e5970f935be3ecc5e4fb58ac718e",
+  "parent_reader_manifest": "e3cdafb48dca164e6193671c5271cf1772772aecb5e8300c7ddbbac98d04ee41",
+  "parent_ufd_manifest": "eb0fe67b8e7665f9df880ee86551b1524db6ef3cb67ddede7cafe6ada3a6a739",
+  "native_summary_sha256": "69460273a9373d1291e9401af9ebb32f0ffc17713b709f1199159d686fff496b",
+  "reference_hashes": {
+    "__init__.py": "661cd029667c445ad32248fbcfcec1d78e0323de5ef0b31f039c3c3435900ed8",
+    "__main__.py": "102942c02cdbea1e98069b7486b9c6e21d2694d84d78fca0ff104d352566d68b",
+    "alignment.py": "d2009d9f7b95117190d3f1dad7abae42f58005d99101abe93127f7f65fb90d98",
+    "attention.py": "fd752812c10c085941266beaac34a7364e0dcb455b6aef0993cab0a1ab93fae7",
+    "calibration.py": "cbaca7d217422740039b5c940c3b82890f571dd3789a9bb5a298ffad3e176477",
+    "capture.py": "9e7dd3165c9d6b74d8e7a8d64fe5a4a844db44f87dc75962bae004916fae6b45",
+    "cli.py": "19fd2cc68dd39cd06f1ad0151286c571f3ff0884336e6c3724a7015935b06f1b",
+    "data/__init__.py": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "data/benchmarks.py": "69733ad5eb86218ec5586e2d1a024fac2f1d3c0099be165f7b0b33531390d836",
+    "data/calibration_corpus.py": "68df32724537383aa7e8b26b11e20feb8b1d30534eb470e8bfe8852e2e732cc8",
+    "evaluation/__init__.py": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "evaluation/longbench.py": "9986ad2b9610ff031af3770d905a88c09e3659bd61331d0a32de386e1fcb9062",
+    "evaluation/quality.py": "1701217fa21ace201c56e21d2e37e8774612e54197d0e4775d5ded1d6bc7c254",
+    "evaluation/run.py": "e10e0ca866053b3386bac1d86e7a18d9e24e0ee669735a2de1fef10f9c6fc552",
+    "evaluation/runtime.py": "baed2e7fa47c1acc00c43d0c7baaea225beaa3e5f4b6b4e0601294103b84d8a1",
+    "evaluation/short_context.py": "5528df3b3a8f54697ab2fb4c8d5748e3e6050eb0155a76cfaa0ef4bb3719d383",
+    "evaluation/summarize.py": "4976e5caf36fb8fa6a29b25ceab5d2ec0cc509ca6c4d960418e813bca142f85e",
+    "evaluation/v100_sdpa.py": "f55205fc2ef0b6b5340e1c929656f70f4b31028a1eab74d9e5c1de0219aef877",
+    "maps.py": "bda861367721565827b4336a129ad5352ab1018f6181d3b2db50eb96e3914329",
+    "modeling.py": "c36066d40ae9836cf31f324603af9fd1a1af3c70af2d61c0e492456a367749e8",
+    "recolor.py": "c1dfb804363119d205145663d889b52b205a800d01bb42f24ac5cbda5075da90",
+    "registry.py": "05ad2c6b9852c5228adcc970b420c541efc1a07058cd36582cda23fe7923d880",
+    "transfer.py": "863bc71c2c06d9209b36f35208285de88aabd989703eedaa55f20ac2d3db5971"
+  },
+  "reused_results": {
+    "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/evaluation_128_seed20260825/results/heterofold/arc/items_00000_00032.json": "30ced348a70d78b76066210b871f2caa8bf0977509bb3742f5c30bb24e5ed832",
+    "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/evaluation_128_seed20260825/results/heterofold/arc/items_00032_00064.json": "b2d429f6bf7326520eca7fb8a630d74b50427f5e2ab277b2bdb0a78fce74987d",
+    "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/evaluation_128_seed20260825/results/heterofold/arc/items_00064_00096.json": "98723daa0471b4b3ab6554c3c33f47c1ba531926a783950bfed3602ad521009e",
+    "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/evaluation_128_seed20260825/results/heterofold/arc/items_00096_00128.json": "97f8e4540d8c0ccf18af99d4d1bedb4b461dd49bb0f23c5aa67fa7c0d85a3281",
+    "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/results/heterofold/gsm8k/items_00000_00032.json": "e54e92166ea457539d267ceaa8fc19c95dd759e13b10e9f153664b8745f310d5",
+    "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/evaluation_crossdataset_arc128_hellaswag64_seed1234/outputs/heterofold/formal/per_sample.jsonl": "4fb3cdea94c92c42772c9fafe8cbfc043926b3e730ff43e30218e05f11e9910b"
+  },
+  "prepared_rows_sha256": "6c62e88ae69552c53efe4a44e0676646bdabbeb40eaae8d160a1c4f7fcaaaf2f",
+  "code": {
+    "run.py": "bcb068449bb5a667694d55aec298b4bdee5aacf2464de60eccc81e98effed83f"
+  },
+  "model_configs": {
+    "llama": {
+      "config": "39fb36dc5416f445ebc4e71cb71fbcf6727e80a35836d8ba1a1474c318467b7a",
+      "tokenizer": "9823dcfdc1121869029da45192238e85cf44f0b232a6d9dc20e4fe6f4242a14e"
+    },
+    "qwen": {
+      "config": "8ba006f74fecfaaeb392872a60f4a480e7ec9860153d2e1b769ec81f9a147f8a",
+      "tokenizer": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101"
+    }
+  },
+  "versions": {
+    "torch": "2.5.1+cu121",
+    "transformers": "5.9.0",
+    "pyarrow": "24.0.0"
+  }
+}

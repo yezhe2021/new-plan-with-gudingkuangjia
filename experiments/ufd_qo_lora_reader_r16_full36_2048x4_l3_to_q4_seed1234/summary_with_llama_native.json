@@ -1,0 +1,594 @@
+{
+  "experiment": "ufd_qo_lora_reader_r16_full36_2048x4_l3_to_q4_seed1234/llama_native",
+  "status": "completed",
+  "config": {
+    "name": "ufd_qo_lora_reader_r16_full36_2048x4_l3_to_q4_seed1234/llama_native",
+    "seed": 1234,
+    "ufd_root": "/hy-tmp/yezhe/异构模型/ufd_mixedprefix_stageb_4data_2048x4_l3_to_q4_seed1234",
+    "ufd_manifest_sha256": "eb0fe67b8e7665f9df880ee86551b1524db6ef3cb67ddede7cafe6ada3a6a739",
+    "reader_manifest_sha256": "e3cdafb48dca164e6193671c5271cf1772772aecb5e8300c7ddbbac98d04ee41",
+    "counts": {
+      "openbookqa": 128,
+      "arc_challenge": 128,
+      "hellaswag": 64,
+      "gsm8k": 32,
+      "mmlu_pro": 128,
+      "sciq": 64
+    },
+    "model": "Llama-3.2-3B-Instruct, frozen FP16 on V100, no Writer or Reader",
+    "template": "Exact existing Sender rendered_full chat template from the audited row, fixed original template date, then same task-specific answer cue. No Qwen template or duplicate special tokens.",
+    "mcq": "Pinned HeteroFold native_candidate_scores: label log-likelihood, no length normalization, same candidates and labels as existing experiment",
+    "hellaswag": "Pinned HeteroFold native_candidate_scores: length-normalized continuation log-likelihood, not A/B/C/D generation",
+    "gsm8k": "Pinned HeteroFold greedy_decode on complete Llama-native chat, same boxed math instruction, max4096 new tokens, reference EOS stopping and extract_numeric_answer/normalize_number. No legacy stop/parser.",
+    "mmlu_pro": "Same approved CUSTOM heldout128 and ARC-style actual A-J label extension as UFD/Reader, NOT untouched full official test/5shotCoT",
+    "comparison": "Reuse exact Reader per-sample four-arm baselines; add only llama_native. Preserve original summaries; write combined summary_with_llama_native.json at Reader root.",
+    "checkpoint_selection": "No training or checkpoint selection: frozen native Llama only",
+    "continuous_monitoring": false,
+    "automatic_upload": false
+  },
+  "tasks": {
+    "openbookqa": {
+      "metrics": {
+        "qwen_native": {
+          "n": 128,
+          "correct": 103,
+          "accuracy": 0.8046875
+        },
+        "old_mcq_stage_b": {
+          "n": 128,
+          "correct": 91,
+          "accuracy": 0.7109375
+        },
+        "new_ufd_stage_b": {
+          "n": 128,
+          "correct": 84,
+          "accuracy": 0.65625
+        },
+        "ufd_writer_qo_reader": {
+          "n": 128,
+          "correct": 86,
+          "accuracy": 0.671875
+        },
+        "llama_native": {
+          "n": 128,
+          "correct": 97,
+          "accuracy": 0.7578125
+        }
+      },
+      "paired": {
+        "qwen_native__vs__old_mcq_stage_b": {
+          "both_correct": 82,
+          "only_a": 21,
+          "only_b": 9,
+          "both_wrong": 16
+        },
+        "qwen_native__vs__new_ufd_stage_b": {
+          "both_correct": 76,
+          "only_a": 27,
+          "only_b": 8,
+          "both_wrong": 17
+        },
+        "qwen_native__vs__ufd_writer_qo_reader": {
+          "both_correct": 78,
+          "only_a": 25,
+          "only_b": 8,
+          "both_wrong": 17
+        },
+        "qwen_native__vs__llama_native": {
+          "both_correct": 86,
+          "only_a": 17,
+          "only_b": 11,
+          "both_wrong": 14
+        },
+        "old_mcq_stage_b__vs__new_ufd_stage_b": {
+          "both_correct": 78,
+          "only_a": 13,
+          "only_b": 6,
+          "both_wrong": 31
+        },
+        "old_mcq_stage_b__vs__ufd_writer_qo_reader": {
+          "both_correct": 80,
+          "only_a": 11,
+          "only_b": 6,
+          "both_wrong": 31
+        },
+        "old_mcq_stage_b__vs__llama_native": {
+          "both_correct": 86,
+          "only_a": 5,
+          "only_b": 11,
+          "both_wrong": 26
+        },
+        "new_ufd_stage_b__vs__ufd_writer_qo_reader": {
+          "both_correct": 84,
+          "only_a": 0,
+          "only_b": 2,
+          "both_wrong": 42
+        },
+        "new_ufd_stage_b__vs__llama_native": {
+          "both_correct": 81,
+          "only_a": 3,
+          "only_b": 16,
+          "both_wrong": 28
+        },
+        "ufd_writer_qo_reader__vs__llama_native": {
+          "both_correct": 83,
+          "only_a": 3,
+          "only_b": 14,
+          "both_wrong": 28
+        }
+      }
+    },
+    "arc_challenge": {
+      "metrics": {
+        "qwen_native": {
+          "n": 128,
+          "correct": 111,
+          "accuracy": 0.8671875
+        },
+        "old_mcq_stage_b": {
+          "n": 128,
+          "correct": 94,
+          "accuracy": 0.734375
+        },
+        "new_ufd_stage_b": {
+          "n": 128,
+          "correct": 83,
+          "accuracy": 0.6484375
+        },
+        "ufd_writer_qo_reader": {
+          "n": 128,
+          "correct": 83,
+          "accuracy": 0.6484375
+        },
+        "llama_native": {
+          "n": 128,
+          "correct": 99,
+          "accuracy": 0.7734375
+        }
+      },
+      "paired": {
+        "qwen_native__vs__old_mcq_stage_b": {
+          "both_correct": 86,
+          "only_a": 25,
+          "only_b": 8,
+          "both_wrong": 9
+        },
+        "qwen_native__vs__new_ufd_stage_b": {
+          "both_correct": 78,
+          "only_a": 33,
+          "only_b": 5,
+          "both_wrong": 12
+        },
+        "qwen_native__vs__ufd_writer_qo_reader": {
+          "both_correct": 78,
+          "only_a": 33,
+          "only_b": 5,
+          "both_wrong": 12
+        },
+        "qwen_native__vs__llama_native": {
+          "both_correct": 91,
+          "only_a": 20,
+          "only_b": 8,
+          "both_wrong": 9
+        },
+        "old_mcq_stage_b__vs__new_ufd_stage_b": {
+          "both_correct": 79,
+          "only_a": 15,
+          "only_b": 4,
+          "both_wrong": 30
+        },
+        "old_mcq_stage_b__vs__ufd_writer_qo_reader": {
+          "both_correct": 81,
+          "only_a": 13,
+          "only_b": 2,
+          "both_wrong": 32
+        },
+        "old_mcq_stage_b__vs__llama_native": {
+          "both_correct": 85,
+          "only_a": 9,
+          "only_b": 14,
+          "both_wrong": 20
+        },
+        "new_ufd_stage_b__vs__ufd_writer_qo_reader": {
+          "both_correct": 81,
+          "only_a": 2,
+          "only_b": 2,
+          "both_wrong": 43
+        },
+        "new_ufd_stage_b__vs__llama_native": {
+          "both_correct": 77,
+          "only_a": 6,
+          "only_b": 22,
+          "both_wrong": 23
+        },
+        "ufd_writer_qo_reader__vs__llama_native": {
+          "both_correct": 78,
+          "only_a": 5,
+          "only_b": 21,
+          "both_wrong": 24
+        }
+      }
+    },
+    "hellaswag": {
+      "metrics": {
+        "qwen_native": {
+          "n": 64,
+          "correct": 23,
+          "accuracy": 0.359375
+        },
+        "old_mcq_stage_b": {
+          "n": 64,
+          "correct": 21,
+          "accuracy": 0.328125
+        },
+        "new_ufd_stage_b": {
+          "n": 64,
+          "correct": 21,
+          "accuracy": 0.328125
+        },
+        "ufd_writer_qo_reader": {
+          "n": 64,
+          "correct": 21,
+          "accuracy": 0.328125
+        },
+        "llama_native": {
+          "n": 64,
+          "correct": 29,
+          "accuracy": 0.453125
+        }
+      },
+      "paired": {
+        "qwen_native__vs__old_mcq_stage_b": {
+          "both_correct": 12,
+          "only_a": 11,
+          "only_b": 9,
+          "both_wrong": 32
+        },
+        "qwen_native__vs__new_ufd_stage_b": {
+          "both_correct": 12,
+          "only_a": 11,
+          "only_b": 9,
+          "both_wrong": 32
+        },
+        "qwen_native__vs__ufd_writer_qo_reader": {
+          "both_correct": 14,
+          "only_a": 9,
+          "only_b": 7,
+          "both_wrong": 34
+        },
+        "qwen_native__vs__llama_native": {
+          "both_correct": 18,
+          "only_a": 5,
+          "only_b": 11,
+          "both_wrong": 30
+        },
+        "old_mcq_stage_b__vs__new_ufd_stage_b": {
+          "both_correct": 13,
+          "only_a": 8,
+          "only_b": 8,
+          "both_wrong": 35
+        },
+        "old_mcq_stage_b__vs__ufd_writer_qo_reader": {
+          "both_correct": 14,
+          "only_a": 7,
+          "only_b": 7,
+          "both_wrong": 36
+        },
+        "old_mcq_stage_b__vs__llama_native": {
+          "both_correct": 15,
+          "only_a": 6,
+          "only_b": 14,
+          "both_wrong": 29
+        },
+        "new_ufd_stage_b__vs__ufd_writer_qo_reader": {
+          "both_correct": 19,
+          "only_a": 2,
+          "only_b": 2,
+          "both_wrong": 41
+        },
+        "new_ufd_stage_b__vs__llama_native": {
+          "both_correct": 15,
+          "only_a": 6,
+          "only_b": 14,
+          "both_wrong": 29
+        },
+        "ufd_writer_qo_reader__vs__llama_native": {
+          "both_correct": 15,
+          "only_a": 6,
+          "only_b": 14,
+          "both_wrong": 29
+        }
+      }
+    },
+    "gsm8k": {
+      "metrics": {
+        "qwen_native": {
+          "n": 32,
+          "correct": 31,
+          "accuracy": 0.96875,
+          "mean_generated_tokens": 296.375,
+          "cap_count": 0
+        },
+        "old_mcq_stage_b": {
+          "n": 32,
+          "correct": 0,
+          "accuracy": 0.0,
+          "mean_generated_tokens": 3114.1875,
+          "cap_count": 23
+        },
+        "new_ufd_stage_b": {
+          "n": 32,
+          "correct": 9,
+          "accuracy": 0.28125,
+          "mean_generated_tokens": 444.78125,
+          "cap_count": 1
+        },
+        "ufd_writer_qo_reader": {
+          "n": 32,
+          "correct": 15,
+          "accuracy": 0.46875,
+          "mean_generated_tokens": 353.46875,
+          "cap_count": 0
+        },
+        "llama_native": {
+          "n": 32,
+          "correct": 23,
+          "accuracy": 0.71875,
+          "mean_generated_tokens": 217.8125,
+          "cap_count": 0
+        }
+      },
+      "paired": {
+        "qwen_native__vs__old_mcq_stage_b": {
+          "both_correct": 0,
+          "only_a": 31,
+          "only_b": 0,
+          "both_wrong": 1
+        },
+        "qwen_native__vs__new_ufd_stage_b": {
+          "both_correct": 9,
+          "only_a": 22,
+          "only_b": 0,
+          "both_wrong": 1
+        },
+        "qwen_native__vs__ufd_writer_qo_reader": {
+          "both_correct": 15,
+          "only_a": 16,
+          "only_b": 0,
+          "both_wrong": 1
+        },
+        "qwen_native__vs__llama_native": {
+          "both_correct": 22,
+          "only_a": 9,
+          "only_b": 1,
+          "both_wrong": 0
+        },
+        "old_mcq_stage_b__vs__new_ufd_stage_b": {
+          "both_correct": 0,
+          "only_a": 0,
+          "only_b": 9,
+          "both_wrong": 23
+        },
+        "old_mcq_stage_b__vs__ufd_writer_qo_reader": {
+          "both_correct": 0,
+          "only_a": 0,
+          "only_b": 15,
+          "both_wrong": 17
+        },
+        "old_mcq_stage_b__vs__llama_native": {
+          "both_correct": 0,
+          "only_a": 0,
+          "only_b": 23,
+          "both_wrong": 9
+        },
+        "new_ufd_stage_b__vs__ufd_writer_qo_reader": {
+          "both_correct": 9,
+          "only_a": 0,
+          "only_b": 6,
+          "both_wrong": 17
+        },
+        "new_ufd_stage_b__vs__llama_native": {
+          "both_correct": 8,
+          "only_a": 1,
+          "only_b": 15,
+          "both_wrong": 8
+        },
+        "ufd_writer_qo_reader__vs__llama_native": {
+          "both_correct": 11,
+          "only_a": 4,
+          "only_b": 12,
+          "both_wrong": 5
+        }
+      }
+    },
+    "mmlu_pro": {
+      "metrics": {
+        "qwen_native": {
+          "n": 128,
+          "correct": 52,
+          "accuracy": 0.40625
+        },
+        "old_mcq_stage_b": {
+          "n": 128,
+          "correct": 17,
+          "accuracy": 0.1328125
+        },
+        "new_ufd_stage_b": {
+          "n": 128,
+          "correct": 24,
+          "accuracy": 0.1875
+        },
+        "ufd_writer_qo_reader": {
+          "n": 128,
+          "correct": 26,
+          "accuracy": 0.203125
+        },
+        "llama_native": {
+          "n": 128,
+          "correct": 40,
+          "accuracy": 0.3125
+        }
+      },
+      "paired": {
+        "qwen_native__vs__old_mcq_stage_b": {
+          "both_correct": 9,
+          "only_a": 43,
+          "only_b": 8,
+          "both_wrong": 68
+        },
+        "qwen_native__vs__new_ufd_stage_b": {
+          "both_correct": 16,
+          "only_a": 36,
+          "only_b": 8,
+          "both_wrong": 68
+        },
+        "qwen_native__vs__ufd_writer_qo_reader": {
+          "both_correct": 18,
+          "only_a": 34,
+          "only_b": 8,
+          "both_wrong": 68
+        },
+        "qwen_native__vs__llama_native": {
+          "both_correct": 24,
+          "only_a": 28,
+          "only_b": 16,
+          "both_wrong": 60
+        },
+        "old_mcq_stage_b__vs__new_ufd_stage_b": {
+          "both_correct": 10,
+          "only_a": 7,
+          "only_b": 14,
+          "both_wrong": 97
+        },
+        "old_mcq_stage_b__vs__ufd_writer_qo_reader": {
+          "both_correct": 9,
+          "only_a": 8,
+          "only_b": 17,
+          "both_wrong": 94
+        },
+        "old_mcq_stage_b__vs__llama_native": {
+          "both_correct": 5,
+          "only_a": 12,
+          "only_b": 35,
+          "both_wrong": 76
+        },
+        "new_ufd_stage_b__vs__ufd_writer_qo_reader": {
+          "both_correct": 23,
+          "only_a": 1,
+          "only_b": 3,
+          "both_wrong": 101
+        },
+        "new_ufd_stage_b__vs__llama_native": {
+          "both_correct": 14,
+          "only_a": 10,
+          "only_b": 26,
+          "both_wrong": 78
+        },
+        "ufd_writer_qo_reader__vs__llama_native": {
+          "both_correct": 14,
+          "only_a": 12,
+          "only_b": 26,
+          "both_wrong": 76
+        }
+      }
+    },
+    "sciq": {
+      "metrics": {
+        "qwen_native": {
+          "n": 64,
+          "correct": 57,
+          "accuracy": 0.890625
+        },
+        "old_mcq_stage_b": {
+          "n": 64,
+          "correct": 59,
+          "accuracy": 0.921875
+        },
+        "new_ufd_stage_b": {
+          "n": 64,
+          "correct": 58,
+          "accuracy": 0.90625
+        },
+        "ufd_writer_qo_reader": {
+          "n": 64,
+          "correct": 59,
+          "accuracy": 0.921875
+        },
+        "llama_native": {
+          "n": 64,
+          "correct": 58,
+          "accuracy": 0.90625
+        }
+      },
+      "paired": {
+        "qwen_native__vs__old_mcq_stage_b": {
+          "both_correct": 57,
+          "only_a": 0,
+          "only_b": 2,
+          "both_wrong": 5
+        },
+        "qwen_native__vs__new_ufd_stage_b": {
+          "both_correct": 53,
+          "only_a": 4,
+          "only_b": 5,
+          "both_wrong": 2
+        },
+        "qwen_native__vs__ufd_writer_qo_reader": {
+          "both_correct": 55,
+          "only_a": 2,
+          "only_b": 4,
+          "both_wrong": 3
+        },
+        "qwen_native__vs__llama_native": {
+          "both_correct": 56,
+          "only_a": 1,
+          "only_b": 2,
+          "both_wrong": 5
+        },
+        "old_mcq_stage_b__vs__new_ufd_stage_b": {
+          "both_correct": 55,
+          "only_a": 4,
+          "only_b": 3,
+          "both_wrong": 2
+        },
+        "old_mcq_stage_b__vs__ufd_writer_qo_reader": {
+          "both_correct": 57,
+          "only_a": 2,
+          "only_b": 2,
+          "both_wrong": 3
+        },
+        "old_mcq_stage_b__vs__llama_native": {
+          "both_correct": 57,
+          "only_a": 2,
+          "only_b": 1,
+          "both_wrong": 4
+        },
+        "new_ufd_stage_b__vs__ufd_writer_qo_reader": {
+          "both_correct": 57,
+          "only_a": 1,
+          "only_b": 2,
+          "both_wrong": 4
+        },
+        "new_ufd_stage_b__vs__llama_native": {
+          "both_correct": 55,
+          "only_a": 3,
+          "only_b": 3,
+          "both_wrong": 3
+        },
+        "ufd_writer_qo_reader__vs__llama_native": {
+          "both_correct": 57,
+          "only_a": 2,
+          "only_b": 1,
+          "both_wrong": 4
+        }
+      }
+    }
+  },
+  "manifest_sha256": "256d7c03a2dc4bdca9b52ac68affa811933b8bf193bdf3c665f147f999259875",
+  "raw_results": "/hy-tmp/yezhe/异构模型/ufd_qo_lora_reader_r16_full36_2048x4_l3_to_q4_seed1234/llama_native/evaluation/per_sample.jsonl",
+  "caveats": [
+    "MMLU-Pro uses same approved custom heldout split and label protocol.",
+    "Native Llama uses its OWN recorded Sender chat template, not Qwen template.",
+    "Other four arms reused unchanged on the exact same rows; only llama_native newly computed."
+  ]
+}

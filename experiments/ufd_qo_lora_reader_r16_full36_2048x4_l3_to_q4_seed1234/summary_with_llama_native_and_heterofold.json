@@ -1,0 +1,816 @@
+{
+  "experiment": "ufd_qo_lora_reader_r16_full36_2048x4_l3_to_q4_seed1234/heterofold_baseline",
+  "status": "completed",
+  "config": {
+    "name": "ufd_qo_lora_reader_r16_full36_2048x4_l3_to_q4_seed1234/heterofold_baseline",
+    "seed": 1234,
+    "ufd_root": "/hy-tmp/yezhe/异构模型/ufd_mixedprefix_stageb_4data_2048x4_l3_to_q4_seed1234",
+    "ufd_manifest_sha256": "eb0fe67b8e7665f9df880ee86551b1524db6ef3cb67ddede7cafe6ada3a6a739",
+    "reader_manifest_sha256": "e3cdafb48dca164e6193671c5271cf1772772aecb5e8300c7ddbbac98d04ee41",
+    "llama_native_manifest_sha256": "256d7c03a2dc4bdca9b52ac68affa811933b8bf193bdf3c665f147f999259875",
+    "map_path": "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/maps/llama3_to_qwen4/heterofold.pt",
+    "map_sha256": "dc2ea778b2b6ea4d6c74c678548946f59fb1e5970f935be3ecc5e4fb58ac718e",
+    "counts": {
+      "openbookqa": 128,
+      "arc_challenge": 128,
+      "hellaswag": 64,
+      "gsm8k": 32,
+      "mmlu_pro": 128,
+      "sciq": 64
+    },
+    "newly_evaluate": [
+      "openbookqa",
+      "mmlu_pro",
+      "sciq"
+    ],
+    "reuse_existing": [
+      "arc_challenge",
+      "hellaswag",
+      "gsm8k"
+    ],
+    "protocol": "Original HeteroFold RAW Sender prompt (no Sender chat/BOS), capture_sender, unchanged folded map, build_receiver_cache with Qwen native chat prefix, assistant+task cue and pinned candidate scoring. Do NOT use our Full-Sync/native token0 anchor or post-k_norm Writer convention.",
+    "execution": "Both frozen FP16 Llama/Qwen resident on the available V100; map FP16; per-row raw Sender KV staged on CPU RAM and discarded. No persistent KV dataset, no training and no generation for the3 new label-scored tasks.",
+    "mmlu_pro": "Existing approved CUSTOM heldout128, actual A-J labels using the same ARC-format extension; NOT untouched official full test/CoT.",
+    "scoring": "Exactly same prompts/candidates/gold as UFD/Reader/Llama Native. ARC/OBQA/SciQ/MMLU label likelihood, HellaSwag length-normalized continuation. Existing GSM8K32 retains reference4096 greedy and boxed numeric parser.",
+    "checkpoint_selection": "One fixed existing HeteroFold map, no calibration/retraining/test-based selection",
+    "continuous_monitoring": false,
+    "automatic_upload": false
+  },
+  "tasks": {
+    "openbookqa": {
+      "metrics": {
+        "qwen_native": {
+          "n": 128,
+          "correct": 103,
+          "accuracy": 0.8046875
+        },
+        "old_mcq_stage_b": {
+          "n": 128,
+          "correct": 91,
+          "accuracy": 0.7109375
+        },
+        "new_ufd_stage_b": {
+          "n": 128,
+          "correct": 84,
+          "accuracy": 0.65625
+        },
+        "ufd_writer_qo_reader": {
+          "n": 128,
+          "correct": 86,
+          "accuracy": 0.671875
+        },
+        "llama_native": {
+          "n": 128,
+          "correct": 97,
+          "accuracy": 0.7578125
+        },
+        "heterofold": {
+          "n": 128,
+          "correct": 71,
+          "accuracy": 0.5546875
+        }
+      },
+      "paired": {
+        "qwen_native__vs__old_mcq_stage_b": {
+          "both_correct": 82,
+          "only_a": 21,
+          "only_b": 9,
+          "both_wrong": 16
+        },
+        "qwen_native__vs__new_ufd_stage_b": {
+          "both_correct": 76,
+          "only_a": 27,
+          "only_b": 8,
+          "both_wrong": 17
+        },
+        "qwen_native__vs__ufd_writer_qo_reader": {
+          "both_correct": 78,
+          "only_a": 25,
+          "only_b": 8,
+          "both_wrong": 17
+        },
+        "qwen_native__vs__llama_native": {
+          "both_correct": 86,
+          "only_a": 17,
+          "only_b": 11,
+          "both_wrong": 14
+        },
+        "qwen_native__vs__heterofold": {
+          "both_correct": 66,
+          "only_a": 37,
+          "only_b": 5,
+          "both_wrong": 20
+        },
+        "old_mcq_stage_b__vs__new_ufd_stage_b": {
+          "both_correct": 78,
+          "only_a": 13,
+          "only_b": 6,
+          "both_wrong": 31
+        },
+        "old_mcq_stage_b__vs__ufd_writer_qo_reader": {
+          "both_correct": 80,
+          "only_a": 11,
+          "only_b": 6,
+          "both_wrong": 31
+        },
+        "old_mcq_stage_b__vs__llama_native": {
+          "both_correct": 86,
+          "only_a": 5,
+          "only_b": 11,
+          "both_wrong": 26
+        },
+        "old_mcq_stage_b__vs__heterofold": {
+          "both_correct": 66,
+          "only_a": 25,
+          "only_b": 5,
+          "both_wrong": 32
+        },
+        "new_ufd_stage_b__vs__ufd_writer_qo_reader": {
+          "both_correct": 84,
+          "only_a": 0,
+          "only_b": 2,
+          "both_wrong": 42
+        },
+        "new_ufd_stage_b__vs__llama_native": {
+          "both_correct": 81,
+          "only_a": 3,
+          "only_b": 16,
+          "both_wrong": 28
+        },
+        "new_ufd_stage_b__vs__heterofold": {
+          "both_correct": 65,
+          "only_a": 19,
+          "only_b": 6,
+          "both_wrong": 38
+        },
+        "ufd_writer_qo_reader__vs__llama_native": {
+          "both_correct": 83,
+          "only_a": 3,
+          "only_b": 14,
+          "both_wrong": 28
+        },
+        "ufd_writer_qo_reader__vs__heterofold": {
+          "both_correct": 66,
+          "only_a": 20,
+          "only_b": 5,
+          "both_wrong": 37
+        },
+        "llama_native__vs__heterofold": {
+          "both_correct": 67,
+          "only_a": 30,
+          "only_b": 4,
+          "both_wrong": 27
+        }
+      }
+    },
+    "arc_challenge": {
+      "metrics": {
+        "qwen_native": {
+          "n": 128,
+          "correct": 111,
+          "accuracy": 0.8671875
+        },
+        "old_mcq_stage_b": {
+          "n": 128,
+          "correct": 94,
+          "accuracy": 0.734375
+        },
+        "new_ufd_stage_b": {
+          "n": 128,
+          "correct": 83,
+          "accuracy": 0.6484375
+        },
+        "ufd_writer_qo_reader": {
+          "n": 128,
+          "correct": 83,
+          "accuracy": 0.6484375
+        },
+        "llama_native": {
+          "n": 128,
+          "correct": 99,
+          "accuracy": 0.7734375
+        },
+        "heterofold": {
+          "n": 128,
+          "correct": 73,
+          "accuracy": 0.5703125
+        }
+      },
+      "paired": {
+        "qwen_native__vs__old_mcq_stage_b": {
+          "both_correct": 86,
+          "only_a": 25,
+          "only_b": 8,
+          "both_wrong": 9
+        },
+        "qwen_native__vs__new_ufd_stage_b": {
+          "both_correct": 78,
+          "only_a": 33,
+          "only_b": 5,
+          "both_wrong": 12
+        },
+        "qwen_native__vs__ufd_writer_qo_reader": {
+          "both_correct": 78,
+          "only_a": 33,
+          "only_b": 5,
+          "both_wrong": 12
+        },
+        "qwen_native__vs__llama_native": {
+          "both_correct": 91,
+          "only_a": 20,
+          "only_b": 8,
+          "both_wrong": 9
+        },
+        "qwen_native__vs__heterofold": {
+          "both_correct": 70,
+          "only_a": 41,
+          "only_b": 3,
+          "both_wrong": 14
+        },
+        "old_mcq_stage_b__vs__new_ufd_stage_b": {
+          "both_correct": 79,
+          "only_a": 15,
+          "only_b": 4,
+          "both_wrong": 30
+        },
+        "old_mcq_stage_b__vs__ufd_writer_qo_reader": {
+          "both_correct": 81,
+          "only_a": 13,
+          "only_b": 2,
+          "both_wrong": 32
+        },
+        "old_mcq_stage_b__vs__llama_native": {
+          "both_correct": 85,
+          "only_a": 9,
+          "only_b": 14,
+          "both_wrong": 20
+        },
+        "old_mcq_stage_b__vs__heterofold": {
+          "both_correct": 69,
+          "only_a": 25,
+          "only_b": 4,
+          "both_wrong": 30
+        },
+        "new_ufd_stage_b__vs__ufd_writer_qo_reader": {
+          "both_correct": 81,
+          "only_a": 2,
+          "only_b": 2,
+          "both_wrong": 43
+        },
+        "new_ufd_stage_b__vs__llama_native": {
+          "both_correct": 77,
+          "only_a": 6,
+          "only_b": 22,
+          "both_wrong": 23
+        },
+        "new_ufd_stage_b__vs__heterofold": {
+          "both_correct": 64,
+          "only_a": 19,
+          "only_b": 9,
+          "both_wrong": 36
+        },
+        "ufd_writer_qo_reader__vs__llama_native": {
+          "both_correct": 78,
+          "only_a": 5,
+          "only_b": 21,
+          "both_wrong": 24
+        },
+        "ufd_writer_qo_reader__vs__heterofold": {
+          "both_correct": 65,
+          "only_a": 18,
+          "only_b": 8,
+          "both_wrong": 37
+        },
+        "llama_native__vs__heterofold": {
+          "both_correct": 68,
+          "only_a": 31,
+          "only_b": 5,
+          "both_wrong": 24
+        }
+      }
+    },
+    "hellaswag": {
+      "metrics": {
+        "qwen_native": {
+          "n": 64,
+          "correct": 23,
+          "accuracy": 0.359375
+        },
+        "old_mcq_stage_b": {
+          "n": 64,
+          "correct": 21,
+          "accuracy": 0.328125
+        },
+        "new_ufd_stage_b": {
+          "n": 64,
+          "correct": 21,
+          "accuracy": 0.328125
+        },
+        "ufd_writer_qo_reader": {
+          "n": 64,
+          "correct": 21,
+          "accuracy": 0.328125
+        },
+        "llama_native": {
+          "n": 64,
+          "correct": 29,
+          "accuracy": 0.453125
+        },
+        "heterofold": {
+          "n": 64,
+          "correct": 26,
+          "accuracy": 0.40625
+        }
+      },
+      "paired": {
+        "qwen_native__vs__old_mcq_stage_b": {
+          "both_correct": 12,
+          "only_a": 11,
+          "only_b": 9,
+          "both_wrong": 32
+        },
+        "qwen_native__vs__new_ufd_stage_b": {
+          "both_correct": 12,
+          "only_a": 11,
+          "only_b": 9,
+          "both_wrong": 32
+        },
+        "qwen_native__vs__ufd_writer_qo_reader": {
+          "both_correct": 14,
+          "only_a": 9,
+          "only_b": 7,
+          "both_wrong": 34
+        },
+        "qwen_native__vs__llama_native": {
+          "both_correct": 18,
+          "only_a": 5,
+          "only_b": 11,
+          "both_wrong": 30
+        },
+        "qwen_native__vs__heterofold": {
+          "both_correct": 19,
+          "only_a": 4,
+          "only_b": 7,
+          "both_wrong": 34
+        },
+        "old_mcq_stage_b__vs__new_ufd_stage_b": {
+          "both_correct": 13,
+          "only_a": 8,
+          "only_b": 8,
+          "both_wrong": 35
+        },
+        "old_mcq_stage_b__vs__ufd_writer_qo_reader": {
+          "both_correct": 14,
+          "only_a": 7,
+          "only_b": 7,
+          "both_wrong": 36
+        },
+        "old_mcq_stage_b__vs__llama_native": {
+          "both_correct": 15,
+          "only_a": 6,
+          "only_b": 14,
+          "both_wrong": 29
+        },
+        "old_mcq_stage_b__vs__heterofold": {
+          "both_correct": 13,
+          "only_a": 8,
+          "only_b": 13,
+          "both_wrong": 30
+        },
+        "new_ufd_stage_b__vs__ufd_writer_qo_reader": {
+          "both_correct": 19,
+          "only_a": 2,
+          "only_b": 2,
+          "both_wrong": 41
+        },
+        "new_ufd_stage_b__vs__llama_native": {
+          "both_correct": 15,
+          "only_a": 6,
+          "only_b": 14,
+          "both_wrong": 29
+        },
+        "new_ufd_stage_b__vs__heterofold": {
+          "both_correct": 15,
+          "only_a": 6,
+          "only_b": 11,
+          "both_wrong": 32
+        },
+        "ufd_writer_qo_reader__vs__llama_native": {
+          "both_correct": 15,
+          "only_a": 6,
+          "only_b": 14,
+          "both_wrong": 29
+        },
+        "ufd_writer_qo_reader__vs__heterofold": {
+          "both_correct": 15,
+          "only_a": 6,
+          "only_b": 11,
+          "both_wrong": 32
+        },
+        "llama_native__vs__heterofold": {
+          "both_correct": 20,
+          "only_a": 9,
+          "only_b": 6,
+          "both_wrong": 29
+        }
+      }
+    },
+    "gsm8k": {
+      "metrics": {
+        "qwen_native": {
+          "n": 32,
+          "correct": 31,
+          "accuracy": 0.96875,
+          "mean_generated_tokens": 296.375,
+          "cap_count": 0
+        },
+        "old_mcq_stage_b": {
+          "n": 32,
+          "correct": 0,
+          "accuracy": 0.0,
+          "mean_generated_tokens": 3114.1875,
+          "cap_count": 23
+        },
+        "new_ufd_stage_b": {
+          "n": 32,
+          "correct": 9,
+          "accuracy": 0.28125,
+          "mean_generated_tokens": 444.78125,
+          "cap_count": 1
+        },
+        "ufd_writer_qo_reader": {
+          "n": 32,
+          "correct": 15,
+          "accuracy": 0.46875,
+          "mean_generated_tokens": 353.46875,
+          "cap_count": 0
+        },
+        "llama_native": {
+          "n": 32,
+          "correct": 23,
+          "accuracy": 0.71875,
+          "mean_generated_tokens": 217.8125,
+          "cap_count": 0
+        },
+        "heterofold": {
+          "n": 32,
+          "correct": 17,
+          "accuracy": 0.53125,
+          "mean_generated_tokens": 568.4375,
+          "cap_count": 2
+        }
+      },
+      "paired": {
+        "qwen_native__vs__old_mcq_stage_b": {
+          "both_correct": 0,
+          "only_a": 31,
+          "only_b": 0,
+          "both_wrong": 1
+        },
+        "qwen_native__vs__new_ufd_stage_b": {
+          "both_correct": 9,
+          "only_a": 22,
+          "only_b": 0,
+          "both_wrong": 1
+        },
+        "qwen_native__vs__ufd_writer_qo_reader": {
+          "both_correct": 15,
+          "only_a": 16,
+          "only_b": 0,
+          "both_wrong": 1
+        },
+        "qwen_native__vs__llama_native": {
+          "both_correct": 22,
+          "only_a": 9,
+          "only_b": 1,
+          "both_wrong": 0
+        },
+        "qwen_native__vs__heterofold": {
+          "both_correct": 16,
+          "only_a": 15,
+          "only_b": 1,
+          "both_wrong": 0
+        },
+        "old_mcq_stage_b__vs__new_ufd_stage_b": {
+          "both_correct": 0,
+          "only_a": 0,
+          "only_b": 9,
+          "both_wrong": 23
+        },
+        "old_mcq_stage_b__vs__ufd_writer_qo_reader": {
+          "both_correct": 0,
+          "only_a": 0,
+          "only_b": 15,
+          "both_wrong": 17
+        },
+        "old_mcq_stage_b__vs__llama_native": {
+          "both_correct": 0,
+          "only_a": 0,
+          "only_b": 23,
+          "both_wrong": 9
+        },
+        "old_mcq_stage_b__vs__heterofold": {
+          "both_correct": 0,
+          "only_a": 0,
+          "only_b": 17,
+          "both_wrong": 15
+        },
+        "new_ufd_stage_b__vs__ufd_writer_qo_reader": {
+          "both_correct": 9,
+          "only_a": 0,
+          "only_b": 6,
+          "both_wrong": 17
+        },
+        "new_ufd_stage_b__vs__llama_native": {
+          "both_correct": 8,
+          "only_a": 1,
+          "only_b": 15,
+          "both_wrong": 8
+        },
+        "new_ufd_stage_b__vs__heterofold": {
+          "both_correct": 7,
+          "only_a": 2,
+          "only_b": 10,
+          "both_wrong": 13
+        },
+        "ufd_writer_qo_reader__vs__llama_native": {
+          "both_correct": 11,
+          "only_a": 4,
+          "only_b": 12,
+          "both_wrong": 5
+        },
+        "ufd_writer_qo_reader__vs__heterofold": {
+          "both_correct": 9,
+          "only_a": 6,
+          "only_b": 8,
+          "both_wrong": 9
+        },
+        "llama_native__vs__heterofold": {
+          "both_correct": 14,
+          "only_a": 9,
+          "only_b": 3,
+          "both_wrong": 6
+        }
+      }
+    },
+    "mmlu_pro": {
+      "metrics": {
+        "qwen_native": {
+          "n": 128,
+          "correct": 52,
+          "accuracy": 0.40625
+        },
+        "old_mcq_stage_b": {
+          "n": 128,
+          "correct": 17,
+          "accuracy": 0.1328125
+        },
+        "new_ufd_stage_b": {
+          "n": 128,
+          "correct": 24,
+          "accuracy": 0.1875
+        },
+        "ufd_writer_qo_reader": {
+          "n": 128,
+          "correct": 26,
+          "accuracy": 0.203125
+        },
+        "llama_native": {
+          "n": 128,
+          "correct": 40,
+          "accuracy": 0.3125
+        },
+        "heterofold": {
+          "n": 128,
+          "correct": 33,
+          "accuracy": 0.2578125
+        }
+      },
+      "paired": {
+        "qwen_native__vs__old_mcq_stage_b": {
+          "both_correct": 9,
+          "only_a": 43,
+          "only_b": 8,
+          "both_wrong": 68
+        },
+        "qwen_native__vs__new_ufd_stage_b": {
+          "both_correct": 16,
+          "only_a": 36,
+          "only_b": 8,
+          "both_wrong": 68
+        },
+        "qwen_native__vs__ufd_writer_qo_reader": {
+          "both_correct": 18,
+          "only_a": 34,
+          "only_b": 8,
+          "both_wrong": 68
+        },
+        "qwen_native__vs__llama_native": {
+          "both_correct": 24,
+          "only_a": 28,
+          "only_b": 16,
+          "both_wrong": 60
+        },
+        "qwen_native__vs__heterofold": {
+          "both_correct": 25,
+          "only_a": 27,
+          "only_b": 8,
+          "both_wrong": 68
+        },
+        "old_mcq_stage_b__vs__new_ufd_stage_b": {
+          "both_correct": 10,
+          "only_a": 7,
+          "only_b": 14,
+          "both_wrong": 97
+        },
+        "old_mcq_stage_b__vs__ufd_writer_qo_reader": {
+          "both_correct": 9,
+          "only_a": 8,
+          "only_b": 17,
+          "both_wrong": 94
+        },
+        "old_mcq_stage_b__vs__llama_native": {
+          "both_correct": 5,
+          "only_a": 12,
+          "only_b": 35,
+          "both_wrong": 76
+        },
+        "old_mcq_stage_b__vs__heterofold": {
+          "both_correct": 7,
+          "only_a": 10,
+          "only_b": 26,
+          "both_wrong": 85
+        },
+        "new_ufd_stage_b__vs__ufd_writer_qo_reader": {
+          "both_correct": 23,
+          "only_a": 1,
+          "only_b": 3,
+          "both_wrong": 101
+        },
+        "new_ufd_stage_b__vs__llama_native": {
+          "both_correct": 14,
+          "only_a": 10,
+          "only_b": 26,
+          "both_wrong": 78
+        },
+        "new_ufd_stage_b__vs__heterofold": {
+          "both_correct": 16,
+          "only_a": 8,
+          "only_b": 17,
+          "both_wrong": 87
+        },
+        "ufd_writer_qo_reader__vs__llama_native": {
+          "both_correct": 14,
+          "only_a": 12,
+          "only_b": 26,
+          "both_wrong": 76
+        },
+        "ufd_writer_qo_reader__vs__heterofold": {
+          "both_correct": 16,
+          "only_a": 10,
+          "only_b": 17,
+          "both_wrong": 85
+        },
+        "llama_native__vs__heterofold": {
+          "both_correct": 19,
+          "only_a": 21,
+          "only_b": 14,
+          "both_wrong": 74
+        }
+      }
+    },
+    "sciq": {
+      "metrics": {
+        "qwen_native": {
+          "n": 64,
+          "correct": 57,
+          "accuracy": 0.890625
+        },
+        "old_mcq_stage_b": {
+          "n": 64,
+          "correct": 59,
+          "accuracy": 0.921875
+        },
+        "new_ufd_stage_b": {
+          "n": 64,
+          "correct": 58,
+          "accuracy": 0.90625
+        },
+        "ufd_writer_qo_reader": {
+          "n": 64,
+          "correct": 59,
+          "accuracy": 0.921875
+        },
+        "llama_native": {
+          "n": 64,
+          "correct": 58,
+          "accuracy": 0.90625
+        },
+        "heterofold": {
+          "n": 64,
+          "correct": 58,
+          "accuracy": 0.90625
+        }
+      },
+      "paired": {
+        "qwen_native__vs__old_mcq_stage_b": {
+          "both_correct": 57,
+          "only_a": 0,
+          "only_b": 2,
+          "both_wrong": 5
+        },
+        "qwen_native__vs__new_ufd_stage_b": {
+          "both_correct": 53,
+          "only_a": 4,
+          "only_b": 5,
+          "both_wrong": 2
+        },
+        "qwen_native__vs__ufd_writer_qo_reader": {
+          "both_correct": 55,
+          "only_a": 2,
+          "only_b": 4,
+          "both_wrong": 3
+        },
+        "qwen_native__vs__llama_native": {
+          "both_correct": 56,
+          "only_a": 1,
+          "only_b": 2,
+          "both_wrong": 5
+        },
+        "qwen_native__vs__heterofold": {
+          "both_correct": 54,
+          "only_a": 3,
+          "only_b": 4,
+          "both_wrong": 3
+        },
+        "old_mcq_stage_b__vs__new_ufd_stage_b": {
+          "both_correct": 55,
+          "only_a": 4,
+          "only_b": 3,
+          "both_wrong": 2
+        },
+        "old_mcq_stage_b__vs__ufd_writer_qo_reader": {
+          "both_correct": 57,
+          "only_a": 2,
+          "only_b": 2,
+          "both_wrong": 3
+        },
+        "old_mcq_stage_b__vs__llama_native": {
+          "both_correct": 57,
+          "only_a": 2,
+          "only_b": 1,
+          "both_wrong": 4
+        },
+        "old_mcq_stage_b__vs__heterofold": {
+          "both_correct": 56,
+          "only_a": 3,
+          "only_b": 2,
+          "both_wrong": 3
+        },
+        "new_ufd_stage_b__vs__ufd_writer_qo_reader": {
+          "both_correct": 57,
+          "only_a": 1,
+          "only_b": 2,
+          "both_wrong": 4
+        },
+        "new_ufd_stage_b__vs__llama_native": {
+          "both_correct": 55,
+          "only_a": 3,
+          "only_b": 3,
+          "both_wrong": 3
+        },
+        "new_ufd_stage_b__vs__heterofold": {
+          "both_correct": 56,
+          "only_a": 2,
+          "only_b": 2,
+          "both_wrong": 4
+        },
+        "ufd_writer_qo_reader__vs__llama_native": {
+          "both_correct": 57,
+          "only_a": 2,
+          "only_b": 1,
+          "both_wrong": 4
+        },
+        "ufd_writer_qo_reader__vs__heterofold": {
+          "both_correct": 57,
+          "only_a": 2,
+          "only_b": 1,
+          "both_wrong": 4
+        },
+        "llama_native__vs__heterofold": {
+          "both_correct": 55,
+          "only_a": 3,
+          "only_b": 3,
+          "both_wrong": 3
+        }
+      }
+    }
+  },
+  "manifest_sha256": "1667de46d31d5cc58cf2823c8584d0b7220f51e353ae2f2c555566031adc4817",
+  "cuda_allocator_peak_gib": 14.096534729003906,
+  "caveats": [
+    "Same evaluation rows and Receiver scoring, but HeteroFold RAW Sender/cache interface and calibration differ from our methods: NOT same-budget architecture ablation.",
+    "MMLU-Pro remains approved custom heldout and A-J label extension, not official test/CoT.",
+    "Only OBQA/MMLU-Pro/SciQ HeteroFold outputs are new; ARC128/Hella64/GSM32 reused after input/identity verification."
+  ]
+}

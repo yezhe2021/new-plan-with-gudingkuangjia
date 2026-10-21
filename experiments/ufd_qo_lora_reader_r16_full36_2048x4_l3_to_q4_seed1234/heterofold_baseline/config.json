@@ -1,0 +1,20 @@
+{
+  "name": "ufd_qo_lora_reader_r16_full36_2048x4_l3_to_q4_seed1234/heterofold_baseline",
+  "seed": 1234,
+  "ufd_root": "/hy-tmp/yezhe/异构模型/ufd_mixedprefix_stageb_4data_2048x4_l3_to_q4_seed1234",
+  "ufd_manifest_sha256": "eb0fe67b8e7665f9df880ee86551b1524db6ef3cb67ddede7cafe6ada3a6a739",
+  "reader_manifest_sha256": "e3cdafb48dca164e6193671c5271cf1772772aecb5e8300c7ddbbac98d04ee41",
+  "llama_native_manifest_sha256": "256d7c03a2dc4bdca9b52ac68affa811933b8bf193bdf3c665f147f999259875",
+  "map_path": "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/maps/llama3_to_qwen4/heterofold.pt",
+  "map_sha256": "dc2ea778b2b6ea4d6c74c678548946f59fb1e5970f935be3ecc5e4fb58ac718e",
+  "counts": {"openbookqa": 128, "arc_challenge": 128, "hellaswag": 64, "gsm8k": 32, "mmlu_pro": 128, "sciq": 64},
+  "newly_evaluate": ["openbookqa", "mmlu_pro", "sciq"],
+  "reuse_existing": ["arc_challenge", "hellaswag", "gsm8k"],
+  "protocol": "Original HeteroFold RAW Sender prompt (no Sender chat/BOS), capture_sender, unchanged folded map, build_receiver_cache with Qwen native chat prefix, assistant+task cue and pinned candidate scoring. Do NOT use our Full-Sync/native token0 anchor or post-k_norm Writer convention.",
+  "execution": "Both frozen FP16 Llama/Qwen resident on the available V100; map FP16; per-row raw Sender KV staged on CPU RAM and discarded. No persistent KV dataset, no training and no generation for the3 new label-scored tasks.",
+  "mmlu_pro": "Existing approved CUSTOM heldout128, actual A-J labels using the same ARC-format extension; NOT untouched official full test/CoT.",
+  "scoring": "Exactly same prompts/candidates/gold as UFD/Reader/Llama Native. ARC/OBQA/SciQ/MMLU label likelihood, HellaSwag length-normalized continuation. Existing GSM8K32 retains reference4096 greedy and boxed numeric parser.",
+  "checkpoint_selection": "One fixed existing HeteroFold map, no calibration/retraining/test-based selection",
+  "continuous_monitoring": false,
+  "automatic_upload": false
+}
