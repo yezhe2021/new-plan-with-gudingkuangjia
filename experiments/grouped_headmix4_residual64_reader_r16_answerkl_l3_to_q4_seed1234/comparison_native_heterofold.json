@@ -1,0 +1,209 @@
+{
+  "current": {
+    "openbookqa": {
+      "qwen_native": {
+        "n": 128,
+        "correct": 103,
+        "accuracy": 0.8046875
+      },
+      "grouped_residual": {
+        "n": 128,
+        "correct": 88,
+        "accuracy": 0.6875
+      },
+      "grouped_residual_reader": {
+        "n": 128,
+        "correct": 92,
+        "accuracy": 0.71875
+      }
+    },
+    "arc_challenge": {
+      "qwen_native": {
+        "n": 128,
+        "correct": 111,
+        "accuracy": 0.8671875
+      },
+      "grouped_residual": {
+        "n": 128,
+        "correct": 82,
+        "accuracy": 0.640625
+      },
+      "grouped_residual_reader": {
+        "n": 128,
+        "correct": 86,
+        "accuracy": 0.671875
+      }
+    },
+    "hellaswag": {
+      "qwen_native": {
+        "n": 64,
+        "correct": 23,
+        "accuracy": 0.359375
+      },
+      "grouped_residual": {
+        "n": 64,
+        "correct": 22,
+        "accuracy": 0.34375
+      },
+      "grouped_residual_reader": {
+        "n": 64,
+        "correct": 22,
+        "accuracy": 0.34375
+      }
+    },
+    "gsm8k": {
+      "qwen_native": {
+        "n": 32,
+        "correct": 31,
+        "accuracy": 0.96875,
+        "mean_generated_tokens": 296.375,
+        "cap_count": 0
+      },
+      "grouped_residual": {
+        "n": 32,
+        "correct": 10,
+        "accuracy": 0.3125,
+        "mean_generated_tokens": 562.78125,
+        "cap_count": 1
+      },
+      "grouped_residual_reader": {
+        "n": 32,
+        "correct": 14,
+        "accuracy": 0.4375,
+        "mean_generated_tokens": 467.84375,
+        "cap_count": 1
+      }
+    },
+    "mmlu_pro": {
+      "qwen_native": {
+        "n": 128,
+        "correct": 52,
+        "accuracy": 0.40625
+      },
+      "grouped_residual": {
+        "n": 128,
+        "correct": 33,
+        "accuracy": 0.2578125
+      },
+      "grouped_residual_reader": {
+        "n": 128,
+        "correct": 35,
+        "accuracy": 0.2734375
+      }
+    },
+    "sciq": {
+      "qwen_native": {
+        "n": 64,
+        "correct": 57,
+        "accuracy": 0.890625
+      },
+      "grouped_residual": {
+        "n": 64,
+        "correct": 56,
+        "accuracy": 0.875
+      },
+      "grouped_residual_reader": {
+        "n": 64,
+        "correct": 57,
+        "accuracy": 0.890625
+      }
+    }
+  },
+  "same_subset_evidence": {
+    "sample_alignment": {
+      "arc_challenge": {
+        "n": 128,
+        "raw_record_sha256_matches": 128
+      },
+      "gsm8k": {
+        "n": 32,
+        "raw_record_sha256_matches": 32
+      }
+    },
+    "paper_reproduction": {
+      "arc": {
+        "native": {
+          "n": 128,
+          "correct": 111
+        },
+        "recolor": {
+          "n": 128,
+          "correct": 81
+        },
+        "heterofold": {
+          "n": 128,
+          "correct": 73
+        }
+      },
+      "gsm8k": {
+        "native": {
+          "n": 32,
+          "correct": 31
+        },
+        "recolor": {
+          "n": 32,
+          "correct": 23
+        },
+        "heterofold": {
+          "n": 32,
+          "correct": 17
+        }
+      },
+      "hellaswag": {
+        "native": {
+          "n": 64,
+          "correct": 23
+        },
+        "heterofold": {
+          "n": 64,
+          "correct": 26
+        }
+      }
+    },
+    "prompt_checks": {
+      "arc_challenge": {
+        "n": 128,
+        "identical_prompt_candidates_gold_scoring_native_context": 128
+      },
+      "hellaswag": {
+        "n": 64,
+        "identical_prompt_candidates_gold_scoring_native_context": 64
+      }
+    },
+    "sources": {
+      "official_evaluation": "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/evaluation_128_seed20260825/results",
+      "arc_hellaswag_snapshot": "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/evaluation_crossdataset_arc128_hellaswag64_seed1234/mcq_writer/comparison/per_sample.jsonl",
+      "official_manifest": "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/evaluation_128_seed20260825/manifest.json"
+    },
+    "generation_caps": [
+      "GSM8K_MAX_NEW_TOKENS = 4096",
+      "             max_new_tokens: int = GSM8K_MAX_NEW_TOKENS) -> dict:"
+    ]
+  },
+  "paper_original": {
+    "url": "https://arxiv.org/html/2609.32259v1#S4.T1",
+    "sender": "Llama-3.1-8B-Instruct",
+    "receiver": "Qwen3-4B",
+    "dtype": "BF16",
+    "reported": {
+      "arc": {
+        "native": 87.8,
+        "heterofold": 77.05
+      },
+      "hellaswag": {
+        "native": 41.54,
+        "heterofold": 41.74
+      },
+      "gsm8k": {
+        "native": 90.14,
+        "heterofold": 70.74
+      }
+    },
+    "note": "Published full benchmark scores, not directly comparable to local 3B->4B FP16 subsets. Paper MMLU is not our MMLU-Pro."
+  },
+  "limits": [
+    "Same model pair and aligned existing subsets, but transfer interfaces and training data/budgets differ; not an isolated architecture comparison.",
+    "Missing HeteroFold results on OBQA/MMLU-Pro/SciQ are not zero.",
+    "No new training or evaluation performed for this comparison."
+  ]
+}

@@ -1,0 +1,232 @@
+{
+  "server_time": "2026-10-23 20:45:48",
+  "remote_root": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_answerkl_l3_to_q4_seed1234",
+  "unit_tests_passed": 9,
+  "launch.json": {
+    "pid": 917622,
+    "time": "2026-10-23 20:44:33",
+    "interpreter": "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/bin/python"
+  },
+  "runner_status.json": {
+    "status": "running",
+    "pid": 917622,
+    "started_at": "2026-10-23 20:44:33"
+  },
+  "status.json": {
+    "time": "2026-10-23 20:45:46",
+    "status": "running",
+    "phase": "reader_training",
+    "epoch": 1,
+    "step": 7,
+    "position": 56,
+    "mean_kl": 0.48285004950594157,
+    "gradient_norm": 0.506103515625,
+    "student_examples": 0,
+    "supervised_positions": 22,
+    "per_task": {
+      "openbookqa": 0.602814978454262,
+      "arc_challenge": 0.11615656409412622,
+      "gsm8k": 0.3110947720706463,
+      "mmlu_pro": 0.9013338834047318
+    },
+    "memory": {
+      "peak_pytorch_allocated_gib": 8.765277862548828,
+      "peak_pytorch_reserved_gib": 8.998046875,
+      "scope": "This process CUDA allocator since load_all; not whole-GPU nvidia-smi peak"
+    }
+  },
+  "smoke/completed.json": {
+    "status": "completed",
+    "manifest_sha256": "9472f20d101851631929e5fc60de19dd6f9e59f8f51b5eb10694c0d4ddc47e10",
+    "checks": [
+      {
+        "id": "openbookqa:00e003168e5c2fef9417e077c1d41d2711f59fe66b6e7c5b6d3fa2a35011bfd4",
+        "task": "openbookqa",
+        "zero_init_bitwise_logits": true,
+        "zero_init_top1_identical": true,
+        "transmitted_cache_unchanged": true
+      },
+      {
+        "id": "arc_challenge:3585849c54fdc9a3887507ab64751cdef2cff2a933cb1cef2b8a53d7b519a2d6",
+        "task": "arc_challenge",
+        "zero_init_bitwise_logits": true,
+        "zero_init_top1_identical": true,
+        "transmitted_cache_unchanged": true
+      },
+      {
+        "id": "gsm8k_train_3169",
+        "task": "gsm8k",
+        "zero_init_bitwise_logits": true,
+        "zero_init_top1_identical": true,
+        "transmitted_cache_unchanged": true
+      },
+      {
+        "id": "mmlu_pro_2945",
+        "task": "mmlu_pro",
+        "zero_init_bitwise_logits": true,
+        "zero_init_top1_identical": true,
+        "transmitted_cache_unchanged": true
+      }
+    ],
+    "gradients": [
+      {
+        "source": "native",
+        "branches": {
+          "q_proj": 0.34615037428017775,
+          "o_proj": 0.2225812762689327
+        }
+      },
+      {
+        "source": "online_stage_ab_reader",
+        "branches": {
+          "q_proj": 0.07878571651564067,
+          "o_proj": 0.06913406208336749
+        }
+      }
+    ],
+    "trainable_parameters": 7667712,
+    "native_teacher_bitwise_unchanged_after_updates": true,
+    "stage_a_and_b_bitwise_unchanged": true,
+    "residual_adapter_loaded": true,
+    "reader_only_continuation": true,
+    "native_cache_parity_kl": 0,
+    "all72_branches_receive_gradients": true,
+    "memory": {
+      "peak_pytorch_allocated_gib": 8.71557331085205,
+      "peak_pytorch_reserved_gib": 8.78515625,
+      "scope": "This process CUDA allocator since load_all; not whole-GPU nvidia-smi peak"
+    }
+  },
+  "prepared/completed.json": {
+    "status": "completed",
+    "manifest_sha256": "9472f20d101851631929e5fc60de19dd6f9e59f8f51b5eb10694c0d4ddc47e10",
+    "cpu_tests": {
+      "zero_init_bitwise_identity": true,
+      "disabled_after_training_bitwise_identity": true,
+      "frozen_base_no_grad": true,
+      "finite_nonzero_lora_gradient": true
+    },
+    "counts": {
+      "train": {
+        "openbookqa": 512,
+        "arc_challenge": 512,
+        "gsm8k": 512,
+        "mmlu_pro": 512
+      },
+      "validation": {
+        "openbookqa": 64,
+        "arc_challenge": 64,
+        "gsm8k": 64,
+        "mmlu_pro": 64
+      },
+      "test": {
+        "openbookqa": 128,
+        "arc_challenge": 128,
+        "hellaswag": 64,
+        "sciq": 64,
+        "gsm8k": 32,
+        "mmlu_pro": 128
+      }
+    },
+    "answer_label_audit": {
+      "train": 1536,
+      "validation": 192
+    }
+  },
+  "manifest_sha256": "9472f20d101851631929e5fc60de19dd6f9e59f8f51b5eb10694c0d4ddc47e10",
+  "code": {
+    "experiment.py": "a69625ab5be729fbc570d094984554f9f6f6784251f27f9a2940e7c2f95567ef",
+    "grouped_translator.py": "a76172d17189b2b536eb41b0507aa18e3174124621b1141774f7aaad09ebce09",
+    "objective.py": "fd15ad6286a1ffc4f8d544978ddd842dad414843a387ba01a831d939aab832f6",
+    "reader.py": "c79fcefd607d5e330831c546670faa23b1b629f5d10e130ee8c27c8d912cefac",
+    "residual_translator.py": "19a79376d606ba147ed854dda19c194417d49c9719b0ab5c883cadaa3ceea292",
+    "run_pipeline.py": "2d5a2c0a8231c798796156ad07444f4eb815696b69b638bf2ce5fb379cfccd7a",
+    "test_queue.py": "a93c9d4147743ada73f6e50c176b9508d65ac9d5adba775ddd3e6152134f18fe",
+    "test_reader.py": "a070c08fefdcc4d7537d97d7e9c8cda89679676f4d854b9e8848ff2c9d88a746"
+  },
+  "last_steps": [
+    {
+      "epoch": 1,
+      "step": 6,
+      "position": 48,
+      "mean_kl": 0.26931160723324865,
+      "gradient_norm": 0.3741648495197296,
+      "student_examples": 0,
+      "supervised_positions": 22,
+      "per_task": {
+        "openbookqa": 0.20654920069500804,
+        "arc_challenge": 0.043679868802428246,
+        "gsm8k": 0.5804690197110176,
+        "mmlu_pro": 0.2465483397245407
+      },
+      "memory": {
+        "peak_pytorch_allocated_gib": 8.765277862548828,
+        "peak_pytorch_reserved_gib": 8.998046875,
+        "scope": "This process CUDA allocator since load_all; not whole-GPU nvidia-smi peak"
+      }
+    },
+    {
+      "epoch": 1,
+      "step": 7,
+      "position": 56,
+      "mean_kl": 0.48285004950594157,
+      "gradient_norm": 0.506103515625,
+      "student_examples": 0,
+      "supervised_positions": 22,
+      "per_task": {
+        "openbookqa": 0.602814978454262,
+        "arc_challenge": 0.11615656409412622,
+        "gsm8k": 0.3110947720706463,
+        "mmlu_pro": 0.9013338834047318
+      },
+      "memory": {
+        "peak_pytorch_allocated_gib": 8.765277862548828,
+        "peak_pytorch_reserved_gib": 8.998046875,
+        "scope": "This process CUDA allocator since load_all; not whole-GPU nvidia-smi peak"
+      }
+    }
+  ],
+  "old_paused": {
+    "status": "paused",
+    "time": "2026-10-23 18:41:26",
+    "reason": "User requested pausing evaluation to train frozen Stage-A + residual Stage-B + Reader",
+    "previous_status": {
+      "time": "2026-10-23 18:39:06",
+      "status": "running",
+      "phase": "evaluation",
+      "task": "gsm8k",
+      "sample": 23,
+      "total": 32
+    },
+    "stopped_pids": [
+      912224,
+      914078
+    ],
+    "saved_samples": {
+      "openbookqa": 128,
+      "arc_challenge": 128,
+      "hellaswag": 64,
+      "gsm8k": 22,
+      "mmlu_pro": 0,
+      "sciq": 0
+    },
+    "checkpoint_preserved": true,
+    "automatic_resume": false,
+    "resume_policy": "Evaluate skips completed per-sample files; only the interrupted unsaved sample must be repeated."
+  },
+  "old_status": {
+    "status": "paused",
+    "phase": "evaluation",
+    "time": "2026-10-23 18:41:26",
+    "saved_samples": {
+      "openbookqa": 128,
+      "arc_challenge": 128,
+      "hellaswag": 64,
+      "gsm8k": 22,
+      "mmlu_pro": 0,
+      "sciq": 0
+    }
+  },
+  "process": "    PID    PPID     SID TT       STAT COMMAND\n 917622       1  917622 ?        Ss   /hy-tmp/yezhe/data/miniconda3/envs/attnkv/bin/python -u /hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_answerkl_l3_to_q4_seed1234/run_pipeline.py --run\n",
+  "log_tail": "  0%|          | 0/398 [00:00<?, ?it/s]\nLoading weights:   0%|          | 1/398 [00:00<06:32,  1.01it/s]\nLoading weights:  34%|███▍      | 135/398 [00:01<00:01, 169.55it/s]\nLoading weights:  53%|█████▎    | 212/398 [00:01<00:01, 167.97it/s]\nLoading weights:  66%|██████▌   | 262/398 [00:01<00:00, 173.17it/s]\nLoading weights:  75%|███████▌  | 300/398 [00:02<00:00, 165.89it/s]\nLoading weights:  83%|████████▎ | 330/398 [00:02<00:00, 175.62it/s]\nLoading weights:  90%|████████▉ | 357/398 [00:02<00:00, 166.45it/s]\nLoading weights:  95%|█████████▌| 380/398 [00:02<00:00, 168.55it/s]\nLoading weights: 100%|██████████| 398/398 [00:02<00:00, 152.64it/s]\n[2026-10-23 20:44:56] READER SMOKE gradient source=native Q/O={'q_proj': 0.34615037428017775, 'o_proj': 0.2225812762689327}\n[2026-10-23 20:45:02] READER SMOKE gradient source=online_stage_ab_reader Q/O={'q_proj': 0.07878571651564067, 'o_proj': 0.06913406208336749}\n[2026-10-23 20:45:05] ALL Q/O READER GPU SMOKE CHECKS PASSED\n2026-10-23 20:45:06 START ['train']\n[2026-10-23 20:45:13] GPU qwen: 25.64 GiB free\n\nLoading weights:   0%|          | 0/398 [00:00<?, ?it/s]\nLoading weights:   0%|          | 1/398 [00:00<06:18,  1.05it/s]\nLoading weights:  34%|███▍      | 136/398 [00:01<00:01, 176.34it/s]\nLoading weights:  54%|█████▍    | 214/398 [00:01<00:01, 174.64it/s]\nLoading weights:  67%|██████▋   | 265/398 [00:01<00:00, 180.05it/s]\nLoading weights:  76%|███████▋  | 304/398 [00:02<00:00, 172.83it/s]\nLoading weights:  84%|████████▍ | 334/398 [00:02<00:00, 169.44it/s]\nLoading weights:  90%|█████████ | 360/398 [00:02<00:00, 174.51it/s]\nLoading weights:  96%|█████████▋| 384/398 [00:02<00:00, 177.43it/s]\nLoading weights: 100%|██████████| 398/398 [00:02<00:00, 156.68it/s]\n[2026-10-23 20:45:36] READER epoch=1/4 step=4/1024 KL=0.818647 student=0/8\n"
+}
