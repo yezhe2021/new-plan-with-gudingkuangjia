@@ -1,0 +1,144 @@
+{
+  "manifest_sha256": "318e7ab9a56381345602cb82c4f1b78087c16e094901ea897f93555c864932f3",
+  "status": "completed",
+  "results": {
+    "openbookqa": {
+      "qwen_native": {
+        "n": 128,
+        "correct": 103,
+        "accuracy": 0.8046875
+      },
+      "new_ufd_stage_b": {
+        "n": 128,
+        "correct": 84,
+        "accuracy": 0.65625
+      },
+      "grouped_full_stage_b": {
+        "n": 128,
+        "correct": 84,
+        "accuracy": 0.65625
+      },
+      "grouped_residual": {
+        "n": 128,
+        "correct": 88,
+        "accuracy": 0.6875
+      }
+    },
+    "arc_challenge": {
+      "qwen_native": {
+        "n": 128,
+        "correct": 111,
+        "accuracy": 0.8671875
+      },
+      "new_ufd_stage_b": {
+        "n": 128,
+        "correct": 83,
+        "accuracy": 0.6484375
+      },
+      "grouped_full_stage_b": {
+        "n": 128,
+        "correct": 81,
+        "accuracy": 0.6328125
+      },
+      "grouped_residual": {
+        "n": 128,
+        "correct": 82,
+        "accuracy": 0.640625
+      }
+    },
+    "hellaswag": {
+      "qwen_native": {
+        "n": 64,
+        "correct": 23,
+        "accuracy": 0.359375
+      },
+      "new_ufd_stage_b": {
+        "n": 64,
+        "correct": 21,
+        "accuracy": 0.328125
+      },
+      "grouped_full_stage_b": {
+        "n": 64,
+        "correct": 20,
+        "accuracy": 0.3125
+      },
+      "grouped_residual": {
+        "n": 64,
+        "correct": 22,
+        "accuracy": 0.34375
+      }
+    },
+    "gsm8k": {
+      "qwen_native": {
+        "n": 32,
+        "correct": 31,
+        "accuracy": 0.96875
+      },
+      "new_ufd_stage_b": {
+        "n": 32,
+        "correct": 9,
+        "accuracy": 0.28125
+      },
+      "grouped_full_stage_b": {
+        "n": 32,
+        "correct": 8,
+        "accuracy": 0.25
+      },
+      "grouped_residual": {
+        "n": 32,
+        "correct": 10,
+        "accuracy": 0.3125
+      }
+    },
+    "mmlu_pro": {
+      "qwen_native": {
+        "n": 128,
+        "correct": 52,
+        "accuracy": 0.40625
+      },
+      "new_ufd_stage_b": {
+        "n": 128,
+        "correct": 24,
+        "accuracy": 0.1875
+      },
+      "grouped_full_stage_b": {
+        "n": 128,
+        "correct": 44,
+        "accuracy": 0.34375
+      },
+      "grouped_residual": {
+        "n": 128,
+        "correct": 33,
+        "accuracy": 0.2578125
+      }
+    },
+    "sciq": {
+      "qwen_native": {
+        "n": 64,
+        "correct": 57,
+        "accuracy": 0.890625
+      },
+      "new_ufd_stage_b": {
+        "n": 64,
+        "correct": 58,
+        "accuracy": 0.90625
+      },
+      "grouped_full_stage_b": {
+        "n": 64,
+        "correct": 57,
+        "accuracy": 0.890625
+      },
+      "grouped_residual": {
+        "n": 64,
+        "correct": 56,
+        "accuracy": 0.875
+      }
+    }
+  },
+  "caveats": [
+    "Same grouped Stage-A and Stage-B data/objective/budget as full-translator run; trainable scope and residual parameterization change together.",
+    "Stage-B residuals mix heads within each target layer; source-layer grouping remains in the frozen translator.",
+    "Reuse historical evaluation subsets and Full-Sync accuracy interface; no zero-prefill latency claim.",
+    "MMLU-Pro remains a custom split."
+  ]
+}
