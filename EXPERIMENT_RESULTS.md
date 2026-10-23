@@ -394,3 +394,382 @@ Automatically extracted metrics from the linked JSON:
 | `results.gsm8k_local.exact_match_stderr,strict-match` | 0.04347552147751577 |
 | `results.gsm8k_local.exact_match,flexible-extract` | 0.0 |
 | `results.gsm8k_local.exact_match_stderr,flexible-extract` | 0.0 |
+
+## grouped_headmix4_l3_to_q4_seed1234
+
+```json
+{
+  "experiment": "grouped_headmix4_l3_to_q4_seed1234",
+  "time": "2026-10-23 04:35:39",
+  "status": "completed",
+  "manifest": "/hy-tmp/yezhe/异构模型/grouped_headmix4_l3_to_q4_seed1234/manifest.json",
+  "config": {
+    "name": "grouped_headmix4_l3_to_q4_seed1234",
+    "seed": 1234,
+    "ufd_parent": "/hy-tmp/yezhe/异构模型/ufd_mixedprefix_stageb_4data_2048x4_l3_to_q4_seed1234",
+    "mcq_parent": "/hy-tmp/yezhe/异构模型/mcq_heterofold_chat_fullsync_l3_to_q4_seed1234",
+    "wait_for_experiment": "/hy-tmp/yezhe/异构模型/ufd_qo_lora_reader_r16_full36_2048x4_l3_to_q4_seed1234/reward_aligned_reader_gsm8k_pilot_seed1234",
+    "parent_manifest_sha256": {
+      "/hy-tmp/yezhe/异构模型/mcq_heterofold_chat_fullsync_l3_to_q4_seed1234": "b5c8ddb4500933320e8f2262fa51215bcd6d60837e1cbccc59910154b7e1c2d6",
+      "/hy-tmp/yezhe/异构模型/ufd_mixedprefix_stageb_4data_2048x4_l3_to_q4_seed1234": "eb0fe67b8e7665f9df880ee86551b1524db6ef3cb67ddede7cafe6ada3a6a739"
+    },
+    "architecture": {
+      "source_layers": 28,
+      "target_layers": 36,
+      "source_heads": 8,
+      "target_heads": 8,
+      "source_dim": 128,
+      "target_dim": 128,
+      "groups": 4,
+      "hidden_dim": 1024
+    },
+    "expected_parameters": 134217728,
+    "stage_a_epochs": 2,
+    "stage_b_epochs": 4,
+    "stage_a_learning_rate": 0.001,
+    "stage_b_learning_rate": 0.0001,
+    "effective_batch": 8,
+    "gradient_clip": 30.0,
+    "weight_decay": 0.0,
+    "chunk_tokens": 64,
+    "checkpoint_every_steps": 64,
+    "stage_a_selection": "Minimum epoch-end held-out reconstruction loss; 2048 MCQ train / 256 validation, same as old Stage-A",
+    "stage_b_selection": "Fixed epoch4 step1024 last checkpoint, never test-selected",
+    "stage_b_objective": "Existing UFD exact forward vocabulary KL, max64-token Native/student mixed prefixes and up to8 supervised positions; update the entire grouped translator, no Reader or per-head residual",
+    "stage_b_train_counts": {
+      "openbookqa": 512,
+      "arc_challenge": 512,
+      "gsm8k": 512,
+      "mmlu_pro": 512
+    },
+    "evaluation_tasks": [
+      "openbookqa",
+      "arc_challenge",
+      "hellaswag",
+      "gsm8k",
+      "mmlu_pro",
+      "sciq"
+    ],
+    "monitor_validation_per_task": 16,
+    "queue_min_free_gpu_gib": 20,
+    "disk_reserve_gib": 20,
+    "caveats": [
+      "Architecture and trainable Stage-B parameter scope both change; not a grouping-only ablation.",
+      "Reuse Full-Sync accuracy interface; no zero-prefill latency claim.",
+      "Existing test sets are historical and MMLU-Pro is a custom split."
+    ]
+  },
+  "results": {
+    "openbookqa": {
+      "qwen_native": {
+        "n": 128,
+        "correct": 103,
+        "accuracy": 0.8046875
+      },
+      "new_ufd_stage_b": {
+        "n": 128,
+        "correct": 84,
+        "accuracy": 0.65625
+      },
+      "grouped_translator": {
+        "n": 128,
+        "correct": 84,
+        "accuracy": 0.65625
+      }
+    },
+    "arc_challenge": {
+      "qwen_native": {
+        "n": 128,
+        "correct": 111,
+        "accuracy": 0.8671875
+      },
+      "new_ufd_stage_b": {
+        "n": 128,
+        "correct": 83,
+        "accuracy": 0.6484375
+      },
+      "grouped_translator": {
+        "n": 128,
+        "correct": 81,
+        "accuracy": 0.6328125
+      }
+    },
+    "hellaswag": {
+      "qwen_native": {
+        "n": 64,
+        "correct": 23,
+        "accuracy": 0.359375
+      },
+      "new_ufd_stage_b": {
+        "n": 64,
+        "correct": 21,
+        "accuracy": 0.328125
+      },
+      "grouped_translator": {
+        "n": 64,
+        "correct": 20,
+        "accuracy": 0.3125
+      }
+    },
+    "gsm8k": {
+      "qwen_native": {
+        "n": 32,
+        "correct": 31,
+        "accuracy": 0.96875
+      },
+      "new_ufd_stage_b": {
+        "n": 32,
+        "correct": 9,
+        "accuracy": 0.28125
+      },
+      "grouped_translator": {
+        "n": 32,
+        "correct": 8,
+        "accuracy": 0.25
+      }
+    },
+    "mmlu_pro": {
+      "qwen_native": {
+        "n": 128,
+        "correct": 52,
+        "accuracy": 0.40625
+      },
+      "new_ufd_stage_b": {
+        "n": 128,
+        "correct": 24,
+        "accuracy": 0.1875
+      },
+      "grouped_translator": {
+        "n": 128,
+        "correct": 44,
+        "accuracy": 0.34375
+      }
+    },
+    "sciq": {
+      "qwen_native": {
+        "n": 64,
+        "correct": 57,
+        "accuracy": 0.890625
+      },
+      "new_ufd_stage_b": {
+        "n": 64,
+        "correct": 58,
+        "accuracy": 0.90625
+      },
+      "grouped_translator": {
+        "n": 64,
+        "correct": 57,
+        "accuracy": 0.890625
+      }
+    }
+  },
+  "raw_results": "/hy-tmp/yezhe/异构模型/grouped_headmix4_l3_to_q4_seed1234/evaluation/per_sample.jsonl"
+}
+```
+
+## ufd_qo_lora_reader_r16_full36_2048x4_l3_to_q4_seed1234/reward_aligned_reader_gsm8k_pilot_seed1234
+
+```json
+{
+  "experiment": "ufd_qo_lora_reader_r16_full36_2048x4_l3_to_q4_seed1234/reward_aligned_reader_gsm8k_pilot_seed1234",
+  "timestamp": "2026-10-23 01:51:38",
+  "status": "completed",
+  "seed": 1234,
+  "config": {
+    "name": "ufd_qo_lora_reader_r16_full36_2048x4_l3_to_q4_seed1234/reward_aligned_reader_gsm8k_pilot_seed1234",
+    "seed": 1234,
+    "revision_reason": "Repair trajectory/diagnostic tokens field collision before any successful optimizer update. Hyperparameters and dataset unchanged. Preserve original failure and reuse its existing Sender caches with their original identity.",
+    "source_cache_reuse_manifest_sha256": "57950947e95d9e4e94b9d2730a5df7ecc112c015a5da0a07ecfdfef198caeefd",
+    "reader_parent": "/hy-tmp/yezhe/异构模型/ufd_qo_lora_reader_r16_full36_2048x4_l3_to_q4_seed1234",
+    "reader_parent_manifest_sha256": "e3cdafb48dca164e6193671c5271cf1772772aecb5e8300c7ddbbac98d04ee41",
+    "reader_initial_sha256": "a757ce6e4559168ee227ec53e380f16df9f6f6cd2c82b02c556802fdcf6f9599",
+    "writer_stage_a_sha256": "db1f295c502f27305a9d2ac410c47a1bdef4db7e0255f817483867b19d78cf0d",
+    "writer_stage_b_sha256": "25942a14d77a2a36173cccf6653d0e86cef01bdfdbd082836395faa895ba995e",
+    "updates": 256,
+    "questions_per_update": 8,
+    "rollouts_per_question": 2,
+    "train_questions": 512,
+    "evaluation_questions": 128,
+    "historical_questions": 32,
+    "learning_rate": 1e-05,
+    "weight_decay": 0,
+    "gradient_clip": 1.0,
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "initial_train_max_new_tokens": 1024,
+    "extended_train_max_new_tokens": 2048,
+    "smoke_questions": 2,
+    "tbptt_tokens": 64,
+    "formal_max_new_tokens": 4096,
+    "checkpoint_every_steps": 16,
+    "queue_min_free_gpu_gib": 20,
+    "queue_retry_seconds": 60,
+    "disk_reserve_gib": 20,
+    "selection": "Fixed last step256 primary; no test/validation checkpoint selection or hyperparameter search.",
+    "objective": "Only OPDVR gated sampled-token log-probability surrogate. Correct: max(0,logP_native-logP_student); incorrect: min(0,logP_native-logP_student). Gate fully detached. No additive KL, CE or format reward.",
+    "normalization": "Mean over tokens within each completed trajectory, then divide by16 attempted trajectories/update. Truncated trajectories have zero loss, not negative reward. No group centering, reward normalization or gate clipping.",
+    "gradient_approximation": "Complete trajectories determine correctness. Teacher/student replay identical sampled IDs; current64-token blocks retain their full gradient, previous continuation KV is detached at each block. This is truncated BPTT, not full-sequence policy gradient.",
+    "training_length_rule": "Smoke4 sampled training trajectories at1024; any cap triggers2048 for all formal training. If all smoke trajectories still cap at2048, abort. No test-driven length choice.",
+    "verifier": "Pinned HeteroFold numeric extractor and normalization. EOS-completed unparsable answers are incorrect; cap without EOS is censored irrespective of parser output. EOS tokens participate in completed-trajectory loss.",
+    "evaluation": "Pinned original4096-token greedy generate, Qwen thinking=False, same Full-Sync interface and numeric parser. First128 official test rows, including historical32 and new96; new96 are the primary new-evidence subset. Initial Reader vs final Reader only.",
+    "continuous_monitoring": false,
+    "automatic_upload": false,
+    "reference": "https://arxiv.org/html/2608.24696v4#S4"
+  },
+  "checkpoint_selection": "Fixed last step256 primary; no test/validation checkpoint selection or hyperparameter search.",
+  "results": {
+    "experiment": "ufd_qo_lora_reader_r16_full36_2048x4_l3_to_q4_seed1234/reward_aligned_reader_gsm8k_pilot_seed1234",
+    "status": "completed",
+    "config": {
+      "name": "ufd_qo_lora_reader_r16_full36_2048x4_l3_to_q4_seed1234/reward_aligned_reader_gsm8k_pilot_seed1234",
+      "seed": 1234,
+      "revision_reason": "Repair trajectory/diagnostic tokens field collision before any successful optimizer update. Hyperparameters and dataset unchanged. Preserve original failure and reuse its existing Sender caches with their original identity.",
+      "source_cache_reuse_manifest_sha256": "57950947e95d9e4e94b9d2730a5df7ecc112c015a5da0a07ecfdfef198caeefd",
+      "reader_parent": "/hy-tmp/yezhe/异构模型/ufd_qo_lora_reader_r16_full36_2048x4_l3_to_q4_seed1234",
+      "reader_parent_manifest_sha256": "e3cdafb48dca164e6193671c5271cf1772772aecb5e8300c7ddbbac98d04ee41",
+      "reader_initial_sha256": "a757ce6e4559168ee227ec53e380f16df9f6f6cd2c82b02c556802fdcf6f9599",
+      "writer_stage_a_sha256": "db1f295c502f27305a9d2ac410c47a1bdef4db7e0255f817483867b19d78cf0d",
+      "writer_stage_b_sha256": "25942a14d77a2a36173cccf6653d0e86cef01bdfdbd082836395faa895ba995e",
+      "updates": 256,
+      "questions_per_update": 8,
+      "rollouts_per_question": 2,
+      "train_questions": 512,
+      "evaluation_questions": 128,
+      "historical_questions": 32,
+      "learning_rate": 1e-05,
+      "weight_decay": 0,
+      "gradient_clip": 1.0,
+      "temperature": 1.0,
+      "top_p": 1.0,
+      "initial_train_max_new_tokens": 1024,
+      "extended_train_max_new_tokens": 2048,
+      "smoke_questions": 2,
+      "tbptt_tokens": 64,
+      "formal_max_new_tokens": 4096,
+      "checkpoint_every_steps": 16,
+      "queue_min_free_gpu_gib": 20,
+      "queue_retry_seconds": 60,
+      "disk_reserve_gib": 20,
+      "selection": "Fixed last step256 primary; no test/validation checkpoint selection or hyperparameter search.",
+      "objective": "Only OPDVR gated sampled-token log-probability surrogate. Correct: max(0,logP_native-logP_student); incorrect: min(0,logP_native-logP_student). Gate fully detached. No additive KL, CE or format reward.",
+      "normalization": "Mean over tokens within each completed trajectory, then divide by16 attempted trajectories/update. Truncated trajectories have zero loss, not negative reward. No group centering, reward normalization or gate clipping.",
+      "gradient_approximation": "Complete trajectories determine correctness. Teacher/student replay identical sampled IDs; current64-token blocks retain their full gradient, previous continuation KV is detached at each block. This is truncated BPTT, not full-sequence policy gradient.",
+      "training_length_rule": "Smoke4 sampled training trajectories at1024; any cap triggers2048 for all formal training. If all smoke trajectories still cap at2048, abort. No test-driven length choice.",
+      "verifier": "Pinned HeteroFold numeric extractor and normalization. EOS-completed unparsable answers are incorrect; cap without EOS is censored irrespective of parser output. EOS tokens participate in completed-trajectory loss.",
+      "evaluation": "Pinned original4096-token greedy generate, Qwen thinking=False, same Full-Sync interface and numeric parser. First128 official test rows, including historical32 and new96; new96 are the primary new-evidence subset. Initial Reader vs final Reader only.",
+      "continuous_monitoring": false,
+      "automatic_upload": false,
+      "reference": "https://arxiv.org/html/2608.24696v4#S4"
+    },
+    "subsets": {
+      "all128": {
+        "metrics": {
+          "initial_reader": {
+            "n": 128,
+            "correct": 55,
+            "accuracy": 0.4296875,
+            "mean_generated_tokens": 391.84375,
+            "cap_count": 2
+          },
+          "reward_reader": {
+            "n": 128,
+            "correct": 70,
+            "accuracy": 0.546875,
+            "mean_generated_tokens": 474.328125,
+            "cap_count": 5
+          }
+        },
+        "paired": {
+          "both_correct": 51,
+          "initial_only": 4,
+          "reward_only": 19,
+          "both_wrong": 54
+        }
+      },
+      "historical32": {
+        "metrics": {
+          "initial_reader": {
+            "n": 32,
+            "correct": 15,
+            "accuracy": 0.46875,
+            "mean_generated_tokens": 353.46875,
+            "cap_count": 0
+          },
+          "reward_reader": {
+            "n": 32,
+            "correct": 17,
+            "accuracy": 0.53125,
+            "mean_generated_tokens": 489.65625,
+            "cap_count": 1
+          }
+        },
+        "paired": {
+          "both_correct": 13,
+          "initial_only": 2,
+          "reward_only": 4,
+          "both_wrong": 13
+        }
+      },
+      "new96": {
+        "metrics": {
+          "initial_reader": {
+            "n": 96,
+            "correct": 40,
+            "accuracy": 0.4166666666666667,
+            "mean_generated_tokens": 404.6354166666667,
+            "cap_count": 2
+          },
+          "reward_reader": {
+            "n": 96,
+            "correct": 53,
+            "accuracy": 0.5520833333333334,
+            "mean_generated_tokens": 469.21875,
+            "cap_count": 4
+          }
+        },
+        "paired": {
+          "both_correct": 38,
+          "initial_only": 2,
+          "reward_only": 15,
+          "both_wrong": 41
+        }
+      }
+    },
+    "training": {
+      "updates": 256,
+      "attempted": 4096,
+      "completed": 3967,
+      "censored": 129,
+      "generated_tokens": 1364844
+    },
+    "smoke": {
+      "status": "completed",
+      "checks": {
+        "correct_token_pushed_up": true,
+        "incorrect_token_pushed_down": true,
+        "conflicting_updates_zero": true,
+        "gate_detached": true
+      },
+      "train_max_new_tokens": 1024,
+      "completed_trajectories": 4,
+      "attempted_trajectories": 4,
+      "native_teacher_unchanged": true,
+      "reader_only_gradients": true,
+      "transmitted_prefix_unchanged": true,
+      "peak_allocated_gib": 9.624284267425537,
+      "gradient_approximation": "Complete trajectories determine correctness. Teacher/student replay identical sampled IDs; current64-token blocks retain their full gradient, previous continuation KV is detached at each block. This is truncated BPTT, not full-sequence policy gradient.",
+      "manifest_sha256": "2a573a3d8713e474ae5c7c053772c7842aedf095ae229dbce1ae8f3bdfeebee0"
+    },
+    "manifest_sha256": "2a573a3d8713e474ae5c7c053772c7842aedf095ae229dbce1ae8f3bdfeebee0",
+    "caveats": [
+      "Only one trained arm; gain cannot be attributed solely to reward gating.",
+      "64-token detached continuation boundaries approximate full policy gradients.",
+      "Test128 includes historical32; report new96 separately.",
+      "No MCQ retention claim or equal-budget HeteroFold comparison."
+    ]
+  },
+  "raw_results": "/hy-tmp/yezhe/异构模型/ufd_qo_lora_reader_r16_full36_2048x4_l3_to_q4_seed1234/reward_aligned_reader_gsm8k_pilot_seed1234/evaluation/per_sample.jsonl",
+  "log": "/hy-tmp/yezhe/异构模型/ufd_qo_lora_reader_r16_full36_2048x4_l3_to_q4_seed1234/reward_aligned_reader_gsm8k_pilot_seed1234/logs/pipeline.log"
+}
+```
+

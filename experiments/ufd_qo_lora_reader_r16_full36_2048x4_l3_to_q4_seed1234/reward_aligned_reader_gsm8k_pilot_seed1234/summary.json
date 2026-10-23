@@ -1,0 +1,151 @@
+{
+  "experiment": "ufd_qo_lora_reader_r16_full36_2048x4_l3_to_q4_seed1234/reward_aligned_reader_gsm8k_pilot_seed1234",
+  "status": "completed",
+  "config": {
+    "name": "ufd_qo_lora_reader_r16_full36_2048x4_l3_to_q4_seed1234/reward_aligned_reader_gsm8k_pilot_seed1234",
+    "seed": 1234,
+    "revision_reason": "Repair trajectory/diagnostic tokens field collision before any successful optimizer update. Hyperparameters and dataset unchanged. Preserve original failure and reuse its existing Sender caches with their original identity.",
+    "source_cache_reuse_manifest_sha256": "57950947e95d9e4e94b9d2730a5df7ecc112c015a5da0a07ecfdfef198caeefd",
+    "reader_parent": "/hy-tmp/yezhe/异构模型/ufd_qo_lora_reader_r16_full36_2048x4_l3_to_q4_seed1234",
+    "reader_parent_manifest_sha256": "e3cdafb48dca164e6193671c5271cf1772772aecb5e8300c7ddbbac98d04ee41",
+    "reader_initial_sha256": "a757ce6e4559168ee227ec53e380f16df9f6f6cd2c82b02c556802fdcf6f9599",
+    "writer_stage_a_sha256": "db1f295c502f27305a9d2ac410c47a1bdef4db7e0255f817483867b19d78cf0d",
+    "writer_stage_b_sha256": "25942a14d77a2a36173cccf6653d0e86cef01bdfdbd082836395faa895ba995e",
+    "updates": 256,
+    "questions_per_update": 8,
+    "rollouts_per_question": 2,
+    "train_questions": 512,
+    "evaluation_questions": 128,
+    "historical_questions": 32,
+    "learning_rate": 1e-05,
+    "weight_decay": 0,
+    "gradient_clip": 1.0,
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "initial_train_max_new_tokens": 1024,
+    "extended_train_max_new_tokens": 2048,
+    "smoke_questions": 2,
+    "tbptt_tokens": 64,
+    "formal_max_new_tokens": 4096,
+    "checkpoint_every_steps": 16,
+    "queue_min_free_gpu_gib": 20,
+    "queue_retry_seconds": 60,
+    "disk_reserve_gib": 20,
+    "selection": "Fixed last step256 primary; no test/validation checkpoint selection or hyperparameter search.",
+    "objective": "Only OPDVR gated sampled-token log-probability surrogate. Correct: max(0,logP_native-logP_student); incorrect: min(0,logP_native-logP_student). Gate fully detached. No additive KL, CE or format reward.",
+    "normalization": "Mean over tokens within each completed trajectory, then divide by16 attempted trajectories/update. Truncated trajectories have zero loss, not negative reward. No group centering, reward normalization or gate clipping.",
+    "gradient_approximation": "Complete trajectories determine correctness. Teacher/student replay identical sampled IDs; current64-token blocks retain their full gradient, previous continuation KV is detached at each block. This is truncated BPTT, not full-sequence policy gradient.",
+    "training_length_rule": "Smoke4 sampled training trajectories at1024; any cap triggers2048 for all formal training. If all smoke trajectories still cap at2048, abort. No test-driven length choice.",
+    "verifier": "Pinned HeteroFold numeric extractor and normalization. EOS-completed unparsable answers are incorrect; cap without EOS is censored irrespective of parser output. EOS tokens participate in completed-trajectory loss.",
+    "evaluation": "Pinned original4096-token greedy generate, Qwen thinking=False, same Full-Sync interface and numeric parser. First128 official test rows, including historical32 and new96; new96 are the primary new-evidence subset. Initial Reader vs final Reader only.",
+    "continuous_monitoring": false,
+    "automatic_upload": false,
+    "reference": "https://arxiv.org/html/2608.24696v4#S4"
+  },
+  "subsets": {
+    "all128": {
+      "metrics": {
+        "initial_reader": {
+          "n": 128,
+          "correct": 55,
+          "accuracy": 0.4296875,
+          "mean_generated_tokens": 391.84375,
+          "cap_count": 2
+        },
+        "reward_reader": {
+          "n": 128,
+          "correct": 70,
+          "accuracy": 0.546875,
+          "mean_generated_tokens": 474.328125,
+          "cap_count": 5
+        }
+      },
+      "paired": {
+        "both_correct": 51,
+        "initial_only": 4,
+        "reward_only": 19,
+        "both_wrong": 54
+      }
+    },
+    "historical32": {
+      "metrics": {
+        "initial_reader": {
+          "n": 32,
+          "correct": 15,
+          "accuracy": 0.46875,
+          "mean_generated_tokens": 353.46875,
+          "cap_count": 0
+        },
+        "reward_reader": {
+          "n": 32,
+          "correct": 17,
+          "accuracy": 0.53125,
+          "mean_generated_tokens": 489.65625,
+          "cap_count": 1
+        }
+      },
+      "paired": {
+        "both_correct": 13,
+        "initial_only": 2,
+        "reward_only": 4,
+        "both_wrong": 13
+      }
+    },
+    "new96": {
+      "metrics": {
+        "initial_reader": {
+          "n": 96,
+          "correct": 40,
+          "accuracy": 0.4166666666666667,
+          "mean_generated_tokens": 404.6354166666667,
+          "cap_count": 2
+        },
+        "reward_reader": {
+          "n": 96,
+          "correct": 53,
+          "accuracy": 0.5520833333333334,
+          "mean_generated_tokens": 469.21875,
+          "cap_count": 4
+        }
+      },
+      "paired": {
+        "both_correct": 38,
+        "initial_only": 2,
+        "reward_only": 15,
+        "both_wrong": 41
+      }
+    }
+  },
+  "training": {
+    "updates": 256,
+    "attempted": 4096,
+    "completed": 3967,
+    "censored": 129,
+    "generated_tokens": 1364844
+  },
+  "smoke": {
+    "status": "completed",
+    "checks": {
+      "correct_token_pushed_up": true,
+      "incorrect_token_pushed_down": true,
+      "conflicting_updates_zero": true,
+      "gate_detached": true
+    },
+    "train_max_new_tokens": 1024,
+    "completed_trajectories": 4,
+    "attempted_trajectories": 4,
+    "native_teacher_unchanged": true,
+    "reader_only_gradients": true,
+    "transmitted_prefix_unchanged": true,
+    "peak_allocated_gib": 9.624284267425537,
+    "gradient_approximation": "Complete trajectories determine correctness. Teacher/student replay identical sampled IDs; current64-token blocks retain their full gradient, previous continuation KV is detached at each block. This is truncated BPTT, not full-sequence policy gradient.",
+    "manifest_sha256": "2a573a3d8713e474ae5c7c053772c7842aedf095ae229dbce1ae8f3bdfeebee0"
+  },
+  "manifest_sha256": "2a573a3d8713e474ae5c7c053772c7842aedf095ae229dbce1ae8f3bdfeebee0",
+  "caveats": [
+    "Only one trained arm; gain cannot be attributed solely to reward gating.",
+    "64-token detached continuation boundaries approximate full policy gradients.",
+    "Test128 includes historical32; report new96 separately.",
+    "No MCQ retention claim or equal-budget HeteroFold comparison."
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "config": {
+    "name": "ufd_qo_lora_reader_r16_full36_2048x4_l3_to_q4_seed1234/reward_aligned_reader_gsm8k_pilot_seed1234",
+    "seed": 1234,
+    "revision_reason": "Repair trajectory/diagnostic tokens field collision before any successful optimizer update. Hyperparameters and dataset unchanged. Preserve original failure and reuse its existing Sender caches with their original identity.",
+    "source_cache_reuse_manifest_sha256": "57950947e95d9e4e94b9d2730a5df7ecc112c015a5da0a07ecfdfef198caeefd",
+    "reader_parent": "/hy-tmp/yezhe/异构模型/ufd_qo_lora_reader_r16_full36_2048x4_l3_to_q4_seed1234",
+    "reader_parent_manifest_sha256": "e3cdafb48dca164e6193671c5271cf1772772aecb5e8300c7ddbbac98d04ee41",
+    "reader_initial_sha256": "a757ce6e4559168ee227ec53e380f16df9f6f6cd2c82b02c556802fdcf6f9599",
+    "writer_stage_a_sha256": "db1f295c502f27305a9d2ac410c47a1bdef4db7e0255f817483867b19d78cf0d",
+    "writer_stage_b_sha256": "25942a14d77a2a36173cccf6653d0e86cef01bdfdbd082836395faa895ba995e",
+    "updates": 256,
+    "questions_per_update": 8,
+    "rollouts_per_question": 2,
+    "train_questions": 512,
+    "evaluation_questions": 128,
+    "historical_questions": 32,
+    "learning_rate": 1e-05,
+    "weight_decay": 0,
+    "gradient_clip": 1.0,
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "initial_train_max_new_tokens": 1024,
+    "extended_train_max_new_tokens": 2048,
+    "smoke_questions": 2,
+    "tbptt_tokens": 64,
+    "formal_max_new_tokens": 4096,
+    "checkpoint_every_steps": 16,
+    "queue_min_free_gpu_gib": 20,
+    "queue_retry_seconds": 60,
+    "disk_reserve_gib": 20,
+    "selection": "Fixed last step256 primary; no test/validation checkpoint selection or hyperparameter search.",
+    "objective": "Only OPDVR gated sampled-token log-probability surrogate. Correct: max(0,logP_native-logP_student); incorrect: min(0,logP_native-logP_student). Gate fully detached. No additive KL, CE or format reward.",
+    "normalization": "Mean over tokens within each completed trajectory, then divide by16 attempted trajectories/update. Truncated trajectories have zero loss, not negative reward. No group centering, reward normalization or gate clipping.",
+    "gradient_approximation": "Complete trajectories determine correctness. Teacher/student replay identical sampled IDs; current64-token blocks retain their full gradient, previous continuation KV is detached at each block. This is truncated BPTT, not full-sequence policy gradient.",
+    "training_length_rule": "Smoke4 sampled training trajectories at1024; any cap triggers2048 for all formal training. If all smoke trajectories still cap at2048, abort. No test-driven length choice.",
+    "verifier": "Pinned HeteroFold numeric extractor and normalization. EOS-completed unparsable answers are incorrect; cap without EOS is censored irrespective of parser output. EOS tokens participate in completed-trajectory loss.",
+    "evaluation": "Pinned original4096-token greedy generate, Qwen thinking=False, same Full-Sync interface and numeric parser. First128 official test rows, including historical32 and new96; new96 are the primary new-evidence subset. Initial Reader vs final Reader only.",
+    "continuous_monitoring": false,
+    "automatic_upload": false,
+    "reference": "https://arxiv.org/html/2608.24696v4#S4"
+  },
+  "config_sha256": "da21779982e4415736bde737b32761ee4c5a63c82070ba7ae33da9f78ceda9d5",
+  "parent_code": {
+    "/hy-tmp/yezhe/异构模型/ufd_qo_lora_reader_r16_full36_2048x4_l3_to_q4_seed1234/experiment.py": "786557e830f85ed9caf4a4f5888e19dea2ab9ef7e638ef3f95b9b7c0d8256a9b",
+    "/hy-tmp/yezhe/异构模型/ufd_qo_lora_reader_r16_full36_2048x4_l3_to_q4_seed1234/reader.py": "77797c589aed0eebe0cf133118929e1ebba4d8e961765a5b7a15f516483d9f2a",
+    "/hy-tmp/yezhe/异构模型/ufd_qo_lora_reader_r16_full36_2048x4_l3_to_q4_seed1234/run_pipeline.py": "cebee85bc7ac20113c6facfab2d447ff8bfaa029e9b1ca60b267b3fc950c7385",
+    "/hy-tmp/yezhe/异构模型/ufd_mixedprefix_stageb_4data_2048x4_l3_to_q4_seed1234/experiment.py": "7fdedf47b4e9557d009c322326d1b11230eeed4c28f8067c30e85798aa7f2f49",
+    "/hy-tmp/yezhe/异构模型/ufd_mixedprefix_stageb_4data_2048x4_l3_to_q4_seed1234/run_pipeline.py": "a7273abee3f04e94882563bfe4374384189ca6a32f2391e8f51753ca849fe769",
+    "/hy-tmp/yezhe/异构模型/mcq_heterofold_chat_fullsync_l3_to_q4_seed1234/core.py": "27417f5480e067af53c9e1871a0e7dc22f11f27ddc55dfedfaf9747380edcbfc",
+    "/hy-tmp/yezhe/异构模型/mcq_heterofold_chat_fullsync_l3_to_q4_seed1234/prepare.py": "f1f8578f19196f265d877d099c5f4510fd5f5e493328e82362c0f96409e50ef8",
+    "/hy-tmp/yezhe/异构模型/mcq_heterofold_chat_fullsync_l3_to_q4_seed1234/capture.py": "66e0bad165b8d6b37ac6da464bd8d84ea37ffac06525a2ad0bd3c23f5e88b223",
+    "/hy-tmp/yezhe/异构模型/mcq_heterofold_chat_fullsync_l3_to_q4_seed1234/translator.py": "2b1c1381f39ccc2853dfc297f982420df9f78f612ff098084596f0de1b05609b",
+    "/hy-tmp/yezhe/异构模型/mcq_heterofold_chat_fullsync_l3_to_q4_seed1234/train.py": "28dbaf47c965411f8cc40cff2b254d872188545e1637e2690754417eeaca8213",
+    "/hy-tmp/yezhe/异构模型/mcq_heterofold_chat_fullsync_l3_to_q4_seed1234/smoke.py": "f1dd8ac417aee0853f57706c9af9074dd33ba51159bf3866053dca1974e7d6db",
+    "/hy-tmp/yezhe/异构模型/mcq_heterofold_chat_fullsync_l3_to_q4_seed1234/evaluate.py": "bf82d696ecf01e181074f8cee84e12b5819184c647b7aad916da20f565c34e48",
+    "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/heterofold/evaluation/short_context.py": "5528df3b3a8f54697ab2fb4c8d5748e3e6050eb0155a76cfaa0ef4bb3719d383",
+    "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/heterofold/evaluation/runtime.py": "baed2e7fa47c1acc00c43d0c7baaea225beaa3e5f4b6b4e0601294103b84d8a1",
+    "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/heterofold/modeling.py": "c36066d40ae9836cf31f324603af9fd1a1af3c70af2d61c0e492456a367749e8"
+  },
+  "code": {
+    "experiment.py": "15bfdf52d419d21f13e8608e85d49c2a4c3214aef8a3ed6dd542b4cf03092a62",
+    "run_pipeline.py": "bc351b594df18c90ae4c5318eb3d164b254035641474f16f30c8227d53ad6597"
+  },
+  "parent_manifest_sha256": "e3cdafb48dca164e6193671c5271cf1772772aecb5e8300c7ddbbac98d04ee41",
+  "ufd_manifest_sha256": "eb0fe67b8e7665f9df880ee86551b1524db6ef3cb67ddede7cafe6ada3a6a739",
+  "prepared_sha256": {
+    "train": "5d8c82c9768fa331b9974db5a02fda3e69edec560e781c82b5f21818c3458b20",
+    "validation": "40c95e5b6cd4669a841f5df1ec5c377cb14346ae4a30c197c0b0a85055116c32",
+    "test": "742ffd50c76d1ae24d3120fd9e2c247f8d6e20c84cf91508601570b18721feba"
+  },
+  "source_test_dataset": {
+    "path": "/hy-tmp/yezhe/all_models/datasets/modelscope/gsm8k/test.jsonl",
+    "sha256": "3730d312f6e3440559ace48831e51066acaca737f6eabec99bccb9e4b3c39d14"
+  },
+  "counts": {
+    "train": 512,
+    "protected_validation": 64,
+    "test": 128,
+    "new_test": 96,
+    "historical_test": 32
+  },
+  "source_cache_estimate_new_gib": 0.8772430419921875,
+  "caveats": [
+    "Only one trained arm; gain cannot be attributed solely to reward gating.",
+    "64-token detached continuation boundaries approximate full policy gradients.",
+    "Test128 includes historical32; report new96 separately.",
+    "No MCQ retention claim or equal-budget HeteroFold comparison."
+  ]
+}

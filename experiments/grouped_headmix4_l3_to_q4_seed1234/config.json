@@ -1,0 +1,56 @@
+{
+  "name": "grouped_headmix4_l3_to_q4_seed1234",
+  "seed": 1234,
+  "ufd_parent": "/hy-tmp/yezhe/异构模型/ufd_mixedprefix_stageb_4data_2048x4_l3_to_q4_seed1234",
+  "mcq_parent": "/hy-tmp/yezhe/异构模型/mcq_heterofold_chat_fullsync_l3_to_q4_seed1234",
+  "wait_for_experiment": "/hy-tmp/yezhe/异构模型/ufd_qo_lora_reader_r16_full36_2048x4_l3_to_q4_seed1234/reward_aligned_reader_gsm8k_pilot_seed1234",
+  "parent_manifest_sha256": {
+    "/hy-tmp/yezhe/异构模型/mcq_heterofold_chat_fullsync_l3_to_q4_seed1234": "b5c8ddb4500933320e8f2262fa51215bcd6d60837e1cbccc59910154b7e1c2d6",
+    "/hy-tmp/yezhe/异构模型/ufd_mixedprefix_stageb_4data_2048x4_l3_to_q4_seed1234": "eb0fe67b8e7665f9df880ee86551b1524db6ef3cb67ddede7cafe6ada3a6a739"
+  },
+  "architecture": {
+    "source_layers": 28,
+    "target_layers": 36,
+    "source_heads": 8,
+    "target_heads": 8,
+    "source_dim": 128,
+    "target_dim": 128,
+    "groups": 4,
+    "hidden_dim": 1024
+  },
+  "expected_parameters": 134217728,
+  "stage_a_epochs": 2,
+  "stage_b_epochs": 4,
+  "stage_a_learning_rate": 0.001,
+  "stage_b_learning_rate": 0.0001,
+  "effective_batch": 8,
+  "gradient_clip": 30.0,
+  "weight_decay": 0.0,
+  "chunk_tokens": 64,
+  "checkpoint_every_steps": 64,
+  "stage_a_selection": "Minimum epoch-end held-out reconstruction loss; 2048 MCQ train / 256 validation, same as old Stage-A",
+  "stage_b_selection": "Fixed epoch4 step1024 last checkpoint, never test-selected",
+  "stage_b_objective": "Existing UFD exact forward vocabulary KL, max64-token Native/student mixed prefixes and up to8 supervised positions; update the entire grouped translator, no Reader or per-head residual",
+  "stage_b_train_counts": {
+    "openbookqa": 512,
+    "arc_challenge": 512,
+    "gsm8k": 512,
+    "mmlu_pro": 512
+  },
+  "evaluation_tasks": [
+    "openbookqa",
+    "arc_challenge",
+    "hellaswag",
+    "gsm8k",
+    "mmlu_pro",
+    "sciq"
+  ],
+  "monitor_validation_per_task": 16,
+  "queue_min_free_gpu_gib": 20,
+  "disk_reserve_gib": 20,
+  "caveats": [
+    "Architecture and trainable Stage-B parameter scope both change; not a grouping-only ablation.",
+    "Reuse Full-Sync accuracy interface; no zero-prefill latency claim.",
+    "Existing test sets are historical and MMLU-Pro is a custom split."
+  ]
+}
