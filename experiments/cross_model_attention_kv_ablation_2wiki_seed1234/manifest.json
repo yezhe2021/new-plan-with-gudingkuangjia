@@ -1,0 +1,164 @@
+{
+  "config": {
+    "name": "cross_model_attention_kv_ablation_2wiki_seed1234",
+    "seed": 1234,
+    "dataset": "/home/yezhe/all_models/datasets/voidful/2WikiMultihopQA/dev.json",
+    "models": {
+      "llama": {
+        "path": "/home/yezhe/all_models/models/LLM-Research/Llama-3___2-3B-Instruct",
+        "dtype": "float16"
+      },
+      "gemma": {
+        "path": "/home/yezhe/all_models/models/LLM-Research/gemma-3-4b-it",
+        "dtype": "float32"
+      },
+      "qwen": {
+        "path": "/home/yezhe/all_models/models/Qwen/Qwen3-4B",
+        "dtype": "float16"
+      }
+    },
+    "calibration_questions": 8,
+    "evaluation_questions": 16,
+    "distractor_sentences": 8,
+    "max_prompt_tokens": 768,
+    "max_new_tokens": 24,
+    "max_gold_tokens": 16,
+    "max_answer_characters": 48,
+    "answer_prefix": "The answer is:",
+    "chat_date": "24 Oct 2026",
+    "attention_backend": "eager",
+    "alignment": "Unicode character offsets projected onto identical whitespace-delimited text units, including following whitespace; boundary tokens receive fractional mass",
+    "query_views": [
+      "last_prefix",
+      "prefix_character_mean"
+    ],
+    "matching_view": "last_prefix",
+    "layer_bands": 3,
+    "ablation_fractions": [
+      0.1,
+      0.2
+    ],
+    "random_replicates": 3,
+    "attention_fractions": [
+      0.05,
+      0.1,
+      0.2
+    ],
+    "bootstrap_replicates": 1000,
+    "free_gpu_gib": 25,
+    "disk_reserve_gib": 10,
+    "training": false,
+    "automatic_upload": false,
+    "protocol": "Native chat per model, identical evidence/question/forced answer prefix, Qwen thinking=False; no answer content in prefix. Oracle supporting sentences plus fixed distractors are a controlled evidence subset, not the official full-context benchmark.",
+    "ablation": "Mask selected evidence KV key columns for every attention head/layer during forced-prefix and answer continuation only. Keep positions, cached body and token order fixed. This measures direct cached-KV access, not removal of indirectly propagated information.",
+    "caveats": [
+      "No model or matching parameters are trained. Head assignment uses only eight calibration questions; sixteen disjoint questions are used for reported evaluation.",
+      "Rectangular one-to-one head assignment leaves extra heads unmatched; report coverage. Matching is not evidence of semantic equivalence.",
+      "Gemma FP32 versus Llama/Qwen FP16 is a recorded hardware adaptation, not precision-matched architecture isolation.",
+      "Short-answer conditional NLL and greedy EM are diagnostic metrics on a small evidence-conditioned pilot."
+    ]
+  },
+  "config_sha256": "79d5e54dd8f52880791b61bb51c2a3097e60a5d6e2e2fc8ac27aaf60a80f5e95",
+  "dataset_sha256": "48b9bdc69654dc580fda5f935a48b88cb89f11887587310af60d406c8d0111a6",
+  "prepared_sha256": "2a875cebac954282ad52b98b8268ce7b8cdc6fa5cd55bcdd623f1fb6b97ad59b",
+  "code": {
+    "analyze.py": "e86e6c5c99426c3a97dabb9a4e62f5dd165d1961a89fbace8900ccf4de231bfe",
+    "test_metrics.py": "8b48b2ace7a3545b96285744aecc29f116e8f3247f15039ef51113e3a1480089",
+    "metrics.py": "93e796e03e96ef9ef1d8e66816ea16f46aa78f506ca2ecb4fb1360750fbd2d3f",
+    "run_pipeline.py": "13c026ffb10893da6f59f3764ac14c0b867a1dfd6a54f7e4547c66d8dfc8a6ca",
+    "experiment.py": "6be33010ffb28bbd81122c99fa4a8bdf89e6d5d91fe5ad43985c127e58703f0d"
+  },
+  "models": {
+    "llama": {
+      "path": "/home/yezhe/all_models/models/LLM-Research/Llama-3___2-3B-Instruct",
+      "dtype": "float16",
+      "files_sha256": {
+        "tokenizer_config.json": "9823dcfdc1121869029da45192238e85cf44f0b232a6d9dc20e4fe6f4242a14e",
+        "generation_config.json": "88effbb63300dbbc7390143fbbdd9d9fa50587b37e8bfd16c8c90d4970a74a36",
+        "tokenizer.json": "79e3e522635f3171300913bb421464a87de6222182a0570b9b2ccba2a964b2b4",
+        "config.json": "39fb36dc5416f445ebc4e71cb71fbcf6727e80a35836d8ba1a1474c318467b7a",
+        "model.safetensors.index.json": "0a57c30afc07c81610ae7fe013bea3b9d50365f9a8145ae98e8714220f3d7c7c"
+      },
+      "weights": [
+        {
+          "name": "model-00001-of-00002.safetensors",
+          "bytes": 4965799096,
+          "mtime_ns": 1784126699329000149
+        },
+        {
+          "name": "model-00002-of-00002.safetensors",
+          "bytes": 1459729952,
+          "mtime_ns": 1784125989387981739
+        }
+      ]
+    },
+    "gemma": {
+      "path": "/home/yezhe/all_models/models/LLM-Research/gemma-3-4b-it",
+      "dtype": "float32",
+      "files_sha256": {
+        "tokenizer_config.json": "bfe25c2735e395407beb78456ea9a6984a1f00d8c16fa04a8b75f2a614cf53e1",
+        "generation_config.json": "fd9324becc53c4be610db39e13a613006f09fd6ef71a95fb6320dc33157490a3",
+        "tokenizer.json": "4667f2089529e8e7657cfb6d1c19910ae71ff5f28aa7ab2ff2763330affad795",
+        "config.json": "9059f680f4dbd1957f35cb44b9fdd6948f4792db7a7a35ee353ea42e68adf7ff",
+        "model.safetensors.index.json": "77f4b67de084c31c7bcd373b039908108eee6c6181607e6d53da730e5f0bc659"
+      },
+      "weights": [
+        {
+          "name": "model-00001-of-00002.safetensors",
+          "bytes": 4961251752,
+          "mtime_ns": 1789535136836370161
+        },
+        {
+          "name": "model-00002-of-00002.safetensors",
+          "bytes": 3639026128,
+          "mtime_ns": 1789534708868318481
+        }
+      ]
+    },
+    "qwen": {
+      "path": "/home/yezhe/all_models/models/Qwen/Qwen3-4B",
+      "dtype": "float16",
+      "files_sha256": {
+        "tokenizer_config.json": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+        "generation_config.json": "2325da0f15bb848e018c5ae071b7943332e9f871d6b60e2ed22ca97d4cb993d2",
+        "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+        "config.json": "8ba006f74fecfaaeb392872a60f4a480e7ec9860153d2e1b769ec81f9a147f8a",
+        "model.safetensors.index.json": "6dc0981b8829fead746441f68f38f24c5ca4a3a66351f652c26c6df0efc43ab2"
+      },
+      "weights": [
+        {
+          "name": "model-00001-of-00003.safetensors",
+          "bytes": 3957900840,
+          "mtime_ns": 1782992238164553530
+        },
+        {
+          "name": "model-00002-of-00003.safetensors",
+          "bytes": 3987450520,
+          "mtime_ns": 1782992076860071893
+        },
+        {
+          "name": "model-00003-of-00003.safetensors",
+          "bytes": 99630640,
+          "mtime_ns": 1782991603539629191
+        }
+      ]
+    }
+  },
+  "versions": {
+    "python": "3.10.20 (main, Mar 11 2026, 17:46:40) [GCC 14.3.0]",
+    "torch": "2.5.1+cu121",
+    "transformers": "5.9.0"
+  },
+  "selection_audit": {
+    "accepted": 24,
+    "rejected": {
+      "duplicate_or_answer_filter": 3
+    },
+    "official_benchmark": false
+  },
+  "model_weight_identity_policy": "Index/config/tokenizer hashes plus weight file size/mtime; full multi-GB weight hashes not computed",
+  "references": [
+    "https://aclanthology.org/N19-1357/",
+    "https://aclanthology.org/D19-1002/"
+  ]
+}
