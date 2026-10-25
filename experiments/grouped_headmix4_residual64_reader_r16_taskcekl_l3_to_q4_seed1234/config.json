@@ -1,0 +1,63 @@
+{
+  "seed": 1234,
+  "rank": 16,
+  "alpha": 16,
+  "expected_trainable_parameters": 7667712,
+  "epochs": 4,
+  "expected_updates": 1024,
+  "effective_batch": 8,
+  "learning_rate": 0.0001,
+  "weight_decay": 0,
+  "gradient_clip": 30,
+  "train_counts": {
+    "openbookqa": 512,
+    "arc_challenge": 512,
+    "gsm8k": 512,
+    "mmlu_pro": 512
+  },
+  "formal_counts": {
+    "openbookqa": 128,
+    "arc_challenge": 128,
+    "hellaswag": 64,
+    "gsm8k": 32,
+    "mmlu_pro": 128,
+    "sciq": 64
+  },
+  "evaluation_tasks": [
+    "openbookqa",
+    "arc_challenge",
+    "hellaswag",
+    "gsm8k",
+    "mmlu_pro",
+    "sciq"
+  ],
+  "base_parent": "/hy-tmp/yezhe/异构模型/grouped_headmix4_l3_to_q4_seed1234",
+  "base_stage_a_sha256": "a9318f4b2f1d9e7981e0e50e2dc88654f0baaf89a080a0746017555c48ba5c84",
+  "residual_parent": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_l3_to_q4_seed1234",
+  "frozen_stage_b_sha256": "7e9f602d08409574c8ebe56242a08ba2c6861032b5ed70570a807c5777d775f2",
+  "name": "grouped_headmix4_residual64_reader_r16_taskcekl_l3_to_q4_seed1234",
+  "reference_reader": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_answerkl_l3_to_q4_seed1234",
+  "reference_reader_manifest_sha256": "9472f20d101851631929e5fc60de19dd6f9e59f8f51b5eb10694c0d4ddc47e10",
+  "kl_weight": 0.1,
+  "kl_temperature": 1,
+  "block_tokens": 32,
+  "max_target_tokens": 4096,
+  "monitor_validation_per_task": 16,
+  "disk_reserve_gib": 20,
+  "queue_min_free_gpu_gib": 24,
+  "checkpoint_every_steps": 64,
+  "selection": "Fixed epoch4 step1024; no test checkpoint or hyperparameter selection",
+  "loss": "MCQ: correct-choice CE + 0.1 Native||Student candidate KL. GSM8K: full reference solution including final answer and EOS, token-mean CE + 0.1 token-mean full-vocabulary Native||Student KL.",
+  "prefix_policy": "GSM8K reference-answer teacher forcing on both teacher and student; all target tokens supervised. Blocks of32 with detached recurrent caches (TBPTT). Equal example weight; no online rollouts.",
+  "initialization": "Fresh zero-up Q/O LoRA; identical initialization to previous Reader. Freeze exact existing Stage A+B and Qwen base. No upstream retraining.",
+  "automatic_upload": false,
+  "continuous_monitoring": false,
+  "caveats": [
+    "Supervised Reader objective, reference prefixes and GSM coverage change together; not a one-factor ablation.",
+    "KL weight0.1 is a preregistered initial setting, not a validation-selected optimum.",
+    "GSM training covers all solution tokens but gradients do not cross block boundaries; inference remains standard autoregressive generation.",
+    "MCQ uses candidate-normalized probabilities; GSM uses full-vocabulary probabilities. Loss scales need not be numerically comparable across tasks.",
+    "MMLU-Pro is the existing custom split; historical test subsets have been inspected.",
+    "Native body prefill remains part of Full-Sync; no prefill-free latency claim."
+  ]
+}

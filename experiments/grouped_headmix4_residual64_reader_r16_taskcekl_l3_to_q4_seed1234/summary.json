@@ -1,0 +1,588 @@
+{
+  "manifest_sha256": "bd5b7a263c7e1393e4b4a931887edc389fb70b195b7e43a2fa6042d5902db5d1",
+  "status": "completed",
+  "config": {
+    "seed": 1234,
+    "rank": 16,
+    "alpha": 16,
+    "expected_trainable_parameters": 7667712,
+    "epochs": 4,
+    "expected_updates": 1024,
+    "effective_batch": 8,
+    "learning_rate": 0.0001,
+    "weight_decay": 0,
+    "gradient_clip": 30,
+    "train_counts": {
+      "openbookqa": 512,
+      "arc_challenge": 512,
+      "gsm8k": 512,
+      "mmlu_pro": 512
+    },
+    "formal_counts": {
+      "openbookqa": 128,
+      "arc_challenge": 128,
+      "hellaswag": 64,
+      "gsm8k": 32,
+      "mmlu_pro": 128,
+      "sciq": 64
+    },
+    "evaluation_tasks": [
+      "openbookqa",
+      "arc_challenge",
+      "hellaswag",
+      "gsm8k",
+      "mmlu_pro",
+      "sciq"
+    ],
+    "base_parent": "/hy-tmp/yezhe/异构模型/grouped_headmix4_l3_to_q4_seed1234",
+    "base_stage_a_sha256": "a9318f4b2f1d9e7981e0e50e2dc88654f0baaf89a080a0746017555c48ba5c84",
+    "residual_parent": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_l3_to_q4_seed1234",
+    "frozen_stage_b_sha256": "7e9f602d08409574c8ebe56242a08ba2c6861032b5ed70570a807c5777d775f2",
+    "name": "grouped_headmix4_residual64_reader_r16_taskcekl_l3_to_q4_seed1234",
+    "reference_reader": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_answerkl_l3_to_q4_seed1234",
+    "reference_reader_manifest_sha256": "9472f20d101851631929e5fc60de19dd6f9e59f8f51b5eb10694c0d4ddc47e10",
+    "kl_weight": 0.1,
+    "kl_temperature": 1,
+    "block_tokens": 32,
+    "max_target_tokens": 4096,
+    "monitor_validation_per_task": 16,
+    "disk_reserve_gib": 20,
+    "queue_min_free_gpu_gib": 24,
+    "checkpoint_every_steps": 64,
+    "selection": "Fixed epoch4 step1024; no test checkpoint or hyperparameter selection",
+    "loss": "MCQ: correct-choice CE + 0.1 Native||Student candidate KL. GSM8K: full reference solution including final answer and EOS, token-mean CE + 0.1 token-mean full-vocabulary Native||Student KL.",
+    "prefix_policy": "GSM8K reference-answer teacher forcing on both teacher and student; all target tokens supervised. Blocks of32 with detached recurrent caches (TBPTT). Equal example weight; no online rollouts.",
+    "initialization": "Fresh zero-up Q/O LoRA; identical initialization to previous Reader. Freeze exact existing Stage A+B and Qwen base. No upstream retraining.",
+    "automatic_upload": false,
+    "continuous_monitoring": false,
+    "caveats": [
+      "Supervised Reader objective, reference prefixes and GSM coverage change together; not a one-factor ablation.",
+      "KL weight0.1 is a preregistered initial setting, not a validation-selected optimum.",
+      "GSM training covers all solution tokens but gradients do not cross block boundaries; inference remains standard autoregressive generation.",
+      "MCQ uses candidate-normalized probabilities; GSM uses full-vocabulary probabilities. Loss scales need not be numerically comparable across tasks.",
+      "MMLU-Pro is the existing custom split; historical test subsets have been inspected.",
+      "Native body prefill remains part of Full-Sync; no prefill-free latency claim."
+    ]
+  },
+  "tasks": {
+    "openbookqa": {
+      "metrics": {
+        "qwen_native": {
+          "n": 128,
+          "correct": 103,
+          "accuracy": 0.8046875
+        },
+        "new_ufd_stage_b": {
+          "n": 128,
+          "correct": 84,
+          "accuracy": 0.65625
+        },
+        "grouped_full_stage_b": {
+          "n": 128,
+          "correct": 84,
+          "accuracy": 0.65625
+        },
+        "grouped_residual": {
+          "n": 128,
+          "correct": 88,
+          "accuracy": 0.6875
+        },
+        "grouped_residual_reader": {
+          "n": 128,
+          "correct": 92,
+          "accuracy": 0.71875
+        },
+        "task_supervised_reader": {
+          "n": 128,
+          "correct": 96,
+          "accuracy": 0.75
+        }
+      },
+      "paired": {
+        "qwen_native": {
+          "both_correct": 84,
+          "new_only": 12,
+          "baseline_only": 19,
+          "both_wrong": 13
+        },
+        "grouped_residual": {
+          "both_correct": 81,
+          "new_only": 15,
+          "baseline_only": 7,
+          "both_wrong": 25
+        },
+        "grouped_residual_reader": {
+          "both_correct": 88,
+          "new_only": 8,
+          "baseline_only": 4,
+          "both_wrong": 28
+        }
+      }
+    },
+    "arc_challenge": {
+      "metrics": {
+        "qwen_native": {
+          "n": 128,
+          "correct": 111,
+          "accuracy": 0.8671875
+        },
+        "new_ufd_stage_b": {
+          "n": 128,
+          "correct": 83,
+          "accuracy": 0.6484375
+        },
+        "grouped_full_stage_b": {
+          "n": 128,
+          "correct": 81,
+          "accuracy": 0.6328125
+        },
+        "grouped_residual": {
+          "n": 128,
+          "correct": 82,
+          "accuracy": 0.640625
+        },
+        "grouped_residual_reader": {
+          "n": 128,
+          "correct": 86,
+          "accuracy": 0.671875
+        },
+        "task_supervised_reader": {
+          "n": 128,
+          "correct": 92,
+          "accuracy": 0.71875
+        }
+      },
+      "paired": {
+        "qwen_native": {
+          "both_correct": 87,
+          "new_only": 5,
+          "baseline_only": 24,
+          "both_wrong": 12
+        },
+        "grouped_residual": {
+          "both_correct": 78,
+          "new_only": 14,
+          "baseline_only": 4,
+          "both_wrong": 32
+        },
+        "grouped_residual_reader": {
+          "both_correct": 82,
+          "new_only": 10,
+          "baseline_only": 4,
+          "both_wrong": 32
+        }
+      }
+    },
+    "hellaswag": {
+      "metrics": {
+        "qwen_native": {
+          "n": 64,
+          "correct": 23,
+          "accuracy": 0.359375
+        },
+        "new_ufd_stage_b": {
+          "n": 64,
+          "correct": 21,
+          "accuracy": 0.328125
+        },
+        "grouped_full_stage_b": {
+          "n": 64,
+          "correct": 20,
+          "accuracy": 0.3125
+        },
+        "grouped_residual": {
+          "n": 64,
+          "correct": 22,
+          "accuracy": 0.34375
+        },
+        "grouped_residual_reader": {
+          "n": 64,
+          "correct": 22,
+          "accuracy": 0.34375
+        },
+        "task_supervised_reader": {
+          "n": 64,
+          "correct": 23,
+          "accuracy": 0.359375
+        }
+      },
+      "paired": {
+        "qwen_native": {
+          "both_correct": 13,
+          "new_only": 10,
+          "baseline_only": 10,
+          "both_wrong": 31
+        },
+        "grouped_residual": {
+          "both_correct": 19,
+          "new_only": 4,
+          "baseline_only": 3,
+          "both_wrong": 38
+        },
+        "grouped_residual_reader": {
+          "both_correct": 19,
+          "new_only": 4,
+          "baseline_only": 3,
+          "both_wrong": 38
+        }
+      }
+    },
+    "gsm8k": {
+      "metrics": {
+        "qwen_native": {
+          "n": 32,
+          "correct": 31,
+          "accuracy": 0.96875,
+          "mean_generated_tokens": 296.375,
+          "cap_count": 0
+        },
+        "new_ufd_stage_b": {
+          "n": 32,
+          "correct": 9,
+          "accuracy": 0.28125,
+          "mean_generated_tokens": 444.78125,
+          "cap_count": 1
+        },
+        "grouped_full_stage_b": {
+          "n": 32,
+          "correct": 8,
+          "accuracy": 0.25,
+          "mean_generated_tokens": 815.53125,
+          "cap_count": 4
+        },
+        "grouped_residual": {
+          "n": 32,
+          "correct": 10,
+          "accuracy": 0.3125,
+          "mean_generated_tokens": 562.78125,
+          "cap_count": 1
+        },
+        "grouped_residual_reader": {
+          "n": 32,
+          "correct": 14,
+          "accuracy": 0.4375,
+          "mean_generated_tokens": 467.84375,
+          "cap_count": 1
+        },
+        "task_supervised_reader": {
+          "n": 32,
+          "correct": 0,
+          "accuracy": 0.0,
+          "mean_generated_tokens": 211.5,
+          "cap_count": 1
+        }
+      },
+      "paired": {
+        "qwen_native": {
+          "both_correct": 0,
+          "new_only": 0,
+          "baseline_only": 31,
+          "both_wrong": 1
+        },
+        "grouped_residual": {
+          "both_correct": 0,
+          "new_only": 0,
+          "baseline_only": 10,
+          "both_wrong": 22
+        },
+        "grouped_residual_reader": {
+          "both_correct": 0,
+          "new_only": 0,
+          "baseline_only": 14,
+          "both_wrong": 18
+        }
+      }
+    },
+    "mmlu_pro": {
+      "metrics": {
+        "qwen_native": {
+          "n": 128,
+          "correct": 52,
+          "accuracy": 0.40625
+        },
+        "new_ufd_stage_b": {
+          "n": 128,
+          "correct": 24,
+          "accuracy": 0.1875
+        },
+        "grouped_full_stage_b": {
+          "n": 128,
+          "correct": 44,
+          "accuracy": 0.34375
+        },
+        "grouped_residual": {
+          "n": 128,
+          "correct": 33,
+          "accuracy": 0.2578125
+        },
+        "grouped_residual_reader": {
+          "n": 128,
+          "correct": 35,
+          "accuracy": 0.2734375
+        },
+        "task_supervised_reader": {
+          "n": 128,
+          "correct": 40,
+          "accuracy": 0.3125
+        }
+      },
+      "paired": {
+        "qwen_native": {
+          "both_correct": 24,
+          "new_only": 16,
+          "baseline_only": 28,
+          "both_wrong": 60
+        },
+        "grouped_residual": {
+          "both_correct": 25,
+          "new_only": 15,
+          "baseline_only": 8,
+          "both_wrong": 80
+        },
+        "grouped_residual_reader": {
+          "both_correct": 26,
+          "new_only": 14,
+          "baseline_only": 9,
+          "both_wrong": 79
+        }
+      }
+    },
+    "sciq": {
+      "metrics": {
+        "qwen_native": {
+          "n": 64,
+          "correct": 57,
+          "accuracy": 0.890625
+        },
+        "new_ufd_stage_b": {
+          "n": 64,
+          "correct": 58,
+          "accuracy": 0.90625
+        },
+        "grouped_full_stage_b": {
+          "n": 64,
+          "correct": 57,
+          "accuracy": 0.890625
+        },
+        "grouped_residual": {
+          "n": 64,
+          "correct": 56,
+          "accuracy": 0.875
+        },
+        "grouped_residual_reader": {
+          "n": 64,
+          "correct": 57,
+          "accuracy": 0.890625
+        },
+        "task_supervised_reader": {
+          "n": 64,
+          "correct": 52,
+          "accuracy": 0.8125
+        }
+      },
+      "paired": {
+        "qwen_native": {
+          "both_correct": 51,
+          "new_only": 1,
+          "baseline_only": 6,
+          "both_wrong": 6
+        },
+        "grouped_residual": {
+          "both_correct": 50,
+          "new_only": 2,
+          "baseline_only": 6,
+          "both_wrong": 6
+        },
+        "grouped_residual_reader": {
+          "both_correct": 52,
+          "new_only": 0,
+          "baseline_only": 5,
+          "both_wrong": 7
+        }
+      }
+    }
+  },
+  "training": {
+    "manifest_sha256": "bd5b7a263c7e1393e4b4a931887edc389fb70b195b7e43a2fa6042d5902db5d1",
+    "status": "completed",
+    "updates": 1024,
+    "checkpoint": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_taskcekl_l3_to_q4_seed1234/runs/reader/epoch4_step1024.pt",
+    "checkpoint_sha256": "4637d5de199d16b194b31c8ef5159a997339547a95b60511ab8325844d34e26c",
+    "history": [
+      {
+        "epoch": 1,
+        "step": 256,
+        "validation": {
+          "tasks": {
+            "openbookqa": {
+              "n": 16,
+              "loss": 0.6271715651964769,
+              "ce": 0.5907404457684606,
+              "kl": 0.36431130743585527,
+              "supervised_positions": 16,
+              "accuracy": 0.75
+            },
+            "arc_challenge": {
+              "n": 16,
+              "loss": 0.5097344524401706,
+              "ce": 0.4635114801931195,
+              "kl": 0.46222964144544676,
+              "supervised_positions": 16,
+              "accuracy": 0.875
+            },
+            "gsm8k": {
+              "n": 16,
+              "loss": 0.9110491825254932,
+              "ce": 0.8424130219338909,
+              "kl": 0.6863616010393022,
+              "supervised_positions": 1767
+            },
+            "mmlu_pro": {
+              "n": 16,
+              "loss": 1.8441719167749397,
+              "ce": 1.6951875173253939,
+              "kl": 1.489844087860547,
+              "supervised_positions": 16,
+              "accuracy": 0.4375
+            }
+          },
+          "macro_loss": 0.9730317792342701
+        }
+      },
+      {
+        "epoch": 2,
+        "step": 512,
+        "validation": {
+          "tasks": {
+            "openbookqa": {
+              "n": 16,
+              "loss": 0.6272137315245345,
+              "ce": 0.5929102872905787,
+              "kl": 0.3430343907457427,
+              "supervised_positions": 16,
+              "accuracy": 0.8125
+            },
+            "arc_challenge": {
+              "n": 16,
+              "loss": 0.4639820090123976,
+              "ce": 0.4218494712768006,
+              "kl": 0.4213254220212548,
+              "supervised_positions": 16,
+              "accuracy": 0.875
+            },
+            "gsm8k": {
+              "n": 16,
+              "loss": 0.8666270177535661,
+              "ce": 0.7943436263087855,
+              "kl": 0.7228338479459062,
+              "supervised_positions": 1767
+            },
+            "mmlu_pro": {
+              "n": 16,
+              "loss": 1.9373594974458683,
+              "ce": 1.78488702121831,
+              "kl": 1.524724836825044,
+              "supervised_positions": 16,
+              "accuracy": 0.375
+            }
+          },
+          "macro_loss": 0.9737955639340916
+        }
+      },
+      {
+        "epoch": 3,
+        "step": 768,
+        "validation": {
+          "tasks": {
+            "openbookqa": {
+              "n": 16,
+              "loss": 0.7040979065059219,
+              "ce": 0.660942190035712,
+              "kl": 0.4315572387422435,
+              "supervised_positions": 16,
+              "accuracy": 0.8125
+            },
+            "arc_challenge": {
+              "n": 16,
+              "loss": 0.5980551633110736,
+              "ce": 0.54381770339387,
+              "kl": 0.5423745972657343,
+              "supervised_positions": 16,
+              "accuracy": 0.8125
+            },
+            "gsm8k": {
+              "n": 16,
+              "loss": 0.8480869641678829,
+              "ce": 0.7781747770219744,
+              "kl": 0.6991218506895219,
+              "supervised_positions": 1767
+            },
+            "mmlu_pro": {
+              "n": 16,
+              "loss": 1.8689258643426,
+              "ce": 1.7115005113300867,
+              "kl": 1.5742537014884874,
+              "supervised_positions": 16,
+              "accuracy": 0.5
+            }
+          },
+          "macro_loss": 1.0047914745818696
+        }
+      },
+      {
+        "epoch": 4,
+        "step": 1024,
+        "validation": {
+          "tasks": {
+            "openbookqa": {
+              "n": 16,
+              "loss": 0.7092753918768722,
+              "ce": 0.6778507114067907,
+              "kl": 0.31424691867505317,
+              "supervised_positions": 16,
+              "accuracy": 0.75
+            },
+            "arc_challenge": {
+              "n": 16,
+              "loss": 0.31953918812178017,
+              "ce": 0.2904263032869494,
+              "kl": 0.29112892233570165,
+              "supervised_positions": 16,
+              "accuracy": 0.9375
+            },
+            "gsm8k": {
+              "n": 16,
+              "loss": 0.8340071485980001,
+              "ce": 0.7616453321096226,
+              "kl": 0.7236181572224334,
+              "supervised_positions": 1767
+            },
+            "mmlu_pro": {
+              "n": 16,
+              "loss": 1.9285470713912218,
+              "ce": 1.7750400616514526,
+              "kl": 1.5350701048573683,
+              "supervised_positions": 16,
+              "accuracy": 0.4375
+            }
+          },
+          "macro_loss": 0.9478421999969686
+        }
+      }
+    ],
+    "frozen_ab_unchanged": true,
+    "memory": {
+      "peak_pytorch_allocated_gib": 9.12934923171997,
+      "peak_pytorch_reserved_gib": 9.580078125,
+      "scope": "This process CUDA allocator since load_all; not whole-GPU nvidia-smi peak"
+    }
+  },
+  "caveats": [
+    "Supervised Reader objective, reference prefixes and GSM coverage change together; not a one-factor ablation.",
+    "KL weight0.1 is a preregistered initial setting, not a validation-selected optimum.",
+    "GSM training covers all solution tokens but gradients do not cross block boundaries; inference remains standard autoregressive generation.",
+    "MCQ uses candidate-normalized probabilities; GSM uses full-vocabulary probabilities. Loss scales need not be numerically comparable across tasks.",
+    "MMLU-Pro is the existing custom split; historical test subsets have been inspected.",
+    "Native body prefill remains part of Full-Sync; no prefill-free latency claim."
+  ]
+}

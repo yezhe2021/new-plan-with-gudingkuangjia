@@ -1,0 +1,67 @@
+{
+  "policy": "Remove literal chat control tokens <|...|> from saved text, then use the exact historical numeric extractor. Apply equally to all six arms; no generation or training rerun.",
+  "source_sha256": "4ef8970cf3ea1cd6ee644c5ec1e03ed2ca1d3c61992d5acbb1055f33d2ddd163",
+  "original_summary_preserved": true,
+  "all544_original_counts_verified": true,
+  "gsm8k": {
+    "metrics": {
+      "qwen_native": {
+        "n": 32,
+        "original_correct": 31,
+        "cleaned_correct": 31,
+        "cleaned_accuracy": 0.96875
+      },
+      "new_ufd_stage_b": {
+        "n": 32,
+        "original_correct": 9,
+        "cleaned_correct": 9,
+        "cleaned_accuracy": 0.28125
+      },
+      "grouped_full_stage_b": {
+        "n": 32,
+        "original_correct": 8,
+        "cleaned_correct": 8,
+        "cleaned_accuracy": 0.25
+      },
+      "grouped_residual": {
+        "n": 32,
+        "original_correct": 10,
+        "cleaned_correct": 10,
+        "cleaned_accuracy": 0.3125
+      },
+      "grouped_residual_reader": {
+        "n": 32,
+        "original_correct": 14,
+        "cleaned_correct": 14,
+        "cleaned_accuracy": 0.4375
+      },
+      "task_supervised_reader": {
+        "n": 32,
+        "original_correct": 0,
+        "cleaned_correct": 1,
+        "cleaned_accuracy": 0.03125
+      }
+    },
+    "paired": {
+      "qwen_native": {
+        "both_correct": 1,
+        "new_only": 0,
+        "baseline_only": 30,
+        "both_wrong": 1
+      },
+      "grouped_residual": {
+        "both_correct": 0,
+        "new_only": 1,
+        "baseline_only": 10,
+        "both_wrong": 21
+      },
+      "grouped_residual_reader": {
+        "both_correct": 1,
+        "new_only": 0,
+        "baseline_only": 13,
+        "both_wrong": 18
+      }
+    }
+  },
+  "caveat": "Only a control-token cleanup. Unit text, rationale content and other historical extraction rules remain unchanged."
+}
