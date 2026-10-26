@@ -1,0 +1,200 @@
+{
+  "experiment": "receiver_selective_evidencekv_hotpotqa_seed1234",
+  "status": "completed_pilot",
+  "timestamp": "2026-10-26 21:55:02",
+  "n": 32,
+  "manifest_sha256": "c991bbe48c46c7e18d23cf3c32a95203513d4ccbec65724af2c96b775669dcc4",
+  "conditions": {
+    "question_only_compact": {
+      "n": 32,
+      "correct": 2.0,
+      "em": 0.0625,
+      "f1": 0.12754779942279942,
+      "answer_token_nll": 5.906183751532808,
+      "eos": 1.0,
+      "generated_tokens": 11.875,
+      "seconds": 0.6746410131454468
+    },
+    "reject_all": {
+      "n": 32,
+      "correct": 1.0,
+      "em": 0.03125,
+      "f1": 0.095509984296749,
+      "answer_token_nll": 6.22376719606109,
+      "eos": 1.0,
+      "generated_tokens": 15.46875,
+      "seconds": 0.8207120597362518
+    },
+    "native_evidence": {
+      "n": 32,
+      "correct": 17.0,
+      "em": 0.53125,
+      "f1": 0.6200181159420289,
+      "answer_token_nll": 2.639604116634213,
+      "eos": 1.0,
+      "generated_tokens": 7.875,
+      "seconds": 0.47421494871377945
+    },
+    "clean": {
+      "n": 32,
+      "correct": 5.0,
+      "em": 0.15625,
+      "f1": 0.25580357142857146,
+      "answer_token_nll": 3.6282992833293974,
+      "eos": 1.0,
+      "generated_tokens": 6.96875,
+      "seconds": 0.41982241719961166
+    },
+    "wrong": {
+      "n": 32,
+      "correct": 1.0,
+      "em": 0.03125,
+      "f1": 0.06096813725490196,
+      "answer_token_nll": 4.868006609380245,
+      "eos": 0.96875,
+      "generated_tokens": 10.03125,
+      "seconds": 0.575363427400589
+    },
+    "partial_wrong": {
+      "n": 32,
+      "correct": 3.0,
+      "em": 0.09375,
+      "f1": 0.14097222222222222,
+      "answer_token_nll": 3.796427723020315,
+      "eos": 1.0,
+      "generated_tokens": 7.15625,
+      "seconds": 0.42653344571590424
+    }
+  },
+  "comparisons": {
+    "native_evidence_minus_question_only_compact": {
+      "em": {
+        "mean": 0.46875,
+        "ci95": [
+          0.3125,
+          0.65625
+        ],
+        "n": 32
+      },
+      "f1": {
+        "mean": 0.49247031651922957,
+        "ci95": [
+          0.3325564211603614,
+          0.6482271031353911
+        ],
+        "n": 32
+      }
+    },
+    "native_evidence_minus_reject_all": {
+      "em": {
+        "mean": 0.5,
+        "ci95": [
+          0.3125,
+          0.6875
+        ],
+        "n": 32
+      },
+      "f1": {
+        "mean": 0.52450813164528,
+        "ci95": [
+          0.36651512383609575,
+          0.6804488744196621
+        ],
+        "n": 32
+      }
+    },
+    "clean_minus_reject_all": {
+      "em": {
+        "mean": 0.125,
+        "ci95": [
+          0.03125,
+          0.25
+        ],
+        "n": 32
+      },
+      "f1": {
+        "mean": 0.16029358713182243,
+        "ci95": [
+          0.06119087407690348,
+          0.27686206205967223
+        ],
+        "n": 32
+      }
+    },
+    "clean_minus_question_only_compact": {
+      "em": {
+        "mean": 0.09375,
+        "ci95": [
+          -0.03125,
+          0.21875
+        ],
+        "n": 32
+      },
+      "f1": {
+        "mean": 0.12825577200577198,
+        "ci95": [
+          0.003500405844155842,
+          0.25946958423520905
+        ],
+        "n": 32
+      }
+    },
+    "clean_minus_wrong": {
+      "em": {
+        "mean": 0.125,
+        "ci95": [
+          0.03125,
+          0.25
+        ],
+        "n": 32
+      },
+      "f1": {
+        "mean": 0.19483543417366947,
+        "ci95": [
+          0.090625,
+          0.31254376750700275
+        ],
+        "n": 32
+      }
+    },
+    "clean_minus_partial_wrong": {
+      "em": {
+        "mean": 0.0625,
+        "ci95": [
+          0.0,
+          0.15625
+        ],
+        "n": 32
+      },
+      "f1": {
+        "mean": 0.1148313492063492,
+        "ci95": [
+          0.027777777777777776,
+          0.21899801587301587
+        ],
+        "n": 32
+      }
+    }
+  },
+  "reserved_test_evaluated": false,
+  "pilot_gate": {
+    "checks": {
+      "native_evidence_useful": true,
+      "translated_gain_large_enough": true,
+      "translated_paired_ci_positive": true,
+      "clean_better_than_wrong": true
+    },
+    "passed": true,
+    "next_step": "Ready to lock selector on pilot and evaluate reserved128"
+  },
+  "helpful_clean_em": 4,
+  "harmful_clean_em": 0,
+  "caveats": [
+    "Controlled bridge questions with two gold paragraphs, not full HotpotQA distractor benchmark.",
+    "Only calibration32 evaluated; no selector fitted and reserved128 untouched.",
+    "Wrong/partial KV corruption is synthetic; length matching and resizing do not model all real transmission errors.",
+    "Masks hide evidence keys from all question and answer tokens, retaining common anchor and position slots.",
+    "No Reader, training or quantization; original grouped Stage-A and residual Stage-B frozen.",
+    "Short-answer generation scored with normalized whole-output EM/F1; no answer-dependent parsing."
+  ]
+}

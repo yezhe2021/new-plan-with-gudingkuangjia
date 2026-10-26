@@ -1,0 +1,38 @@
+{
+  "name": "receiver_selective_evidencekv_hotpotqa_seed1234",
+  "seed": 1234,
+  "reference": "/hy-tmp/yezhe/异构模型/attention_mixed_precision_senderkv_2wiki128_l3_to_q4_frozen_klreader_seed1234",
+  "source_json": "/hy-tmp/yezhe/异构模型/heterogeneous_multidoc_frozen_writers_v0_seed1234/data/hotpot_dev_distractor_v1.json",
+  "previous_hotpot": "/hy-tmp/yezhe/异构模型/nativechat_evidence_kv_baselines_v1_seed1234",
+  "pilot_count": 32,
+  "reserved_test_count": 128,
+  "max_evidence_tokens": 1024,
+  "max_sender_tokens": 1536,
+  "max_total_tokens": 1408,
+  "max_new_tokens": 64,
+  "partial_corruption_fraction": 0.5,
+  "conditions": [
+    "question_only_compact",
+    "reject_all",
+    "native_evidence",
+    "clean",
+    "wrong",
+    "partial_wrong"
+  ],
+  "free_gpu_gib": 20,
+  "disk_reserve_gib": 10,
+  "attention_backend": "sdpa",
+  "training": false,
+  "reader": false,
+  "automatic_upload": false,
+  "automatic_test": false,
+  "continuation": "Native Qwen question followed by non-thinking assistant prefix; short answer only; no MCQ answer cue.",
+  "selection": "Seeded bridge questions with two complete gold paragraphs. No prediction-dependent filtering. Pilot and reserved evaluation document titles disjoint. Exclude previously prepared Hotpot samples and exact known checkpoint training/validation questions.",
+  "pilot_gate": {
+    "native_f1_gain_min": 0.1,
+    "translated_f1_gain_min": 0.05,
+    "translated_vs_reject_paired_bootstrap_lower_positive": true,
+    "translated_f1_better_than_wrong": true
+  },
+  "scope": "Controlled gold-paragraph HotpotQA dev subset, not official full distractor benchmark."
+}

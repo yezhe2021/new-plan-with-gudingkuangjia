@@ -1,0 +1,119 @@
+{
+  "config": {
+    "name": "receiver_selective_evidencekv_hotpotqa_seed1234/selector_eval128_seed1234",
+    "seed": 1234,
+    "reference": "/hy-tmp/yezhe/异构模型/attention_mixed_precision_senderkv_2wiki128_l3_to_q4_frozen_klreader_seed1234",
+    "source_json": "/hy-tmp/yezhe/异构模型/heterogeneous_multidoc_frozen_writers_v0_seed1234/data/hotpot_dev_distractor_v1.json",
+    "previous_hotpot": "/hy-tmp/yezhe/异构模型/nativechat_evidence_kv_baselines_v1_seed1234",
+    "pilot_count": 32,
+    "reserved_test_count": 128,
+    "max_evidence_tokens": 1024,
+    "max_sender_tokens": 1536,
+    "max_total_tokens": 1408,
+    "max_new_tokens": 64,
+    "partial_corruption_fraction": 0.5,
+    "conditions": [
+      "question_only_compact",
+      "reject_all",
+      "native_evidence",
+      "clean",
+      "wrong",
+      "partial_wrong"
+    ],
+    "free_gpu_gib": 20,
+    "disk_reserve_gib": 10,
+    "attention_backend": "sdpa",
+    "training": false,
+    "reader": false,
+    "automatic_upload": false,
+    "automatic_test": true,
+    "continuation": "Native Qwen question followed by non-thinking assistant prefix; short answer only; no MCQ answer cue.",
+    "selection": "Use the exact reserved128 fixed before pilot inference. Fit global threshold on pilot32 only. No model training.",
+    "pilot_gate": {
+      "native_f1_gain_min": 0.1,
+      "translated_f1_gain_min": 0.05,
+      "translated_vs_reject_paired_bootstrap_lower_positive": true,
+      "translated_f1_better_than_wrong": true
+    },
+    "scope": "Controlled gold-paragraph HotpotQA dev subset, not official full distractor benchmark.",
+    "parent_experiment": "/hy-tmp/yezhe/异构模型/receiver_selective_evidencekv_hotpotqa_seed1234",
+    "test_count": 128,
+    "selector_features": [
+      "question_gain",
+      "first_token_entropy_gain"
+    ],
+    "selector_primary_metric": "Mean token F1 over equal clean/wrong/partial_wrong conditions; tie-break EM then fewer accepted packets.",
+    "corruption_conditions": [
+      "clean",
+      "wrong",
+      "partial_wrong"
+    ],
+    "shared_results": "/hy-tmp/yezhe/异构模型/EXPERIMENT_RESULTS.md"
+  },
+  "config_sha256": "3f44778c2a34092478ddebb39acd83f39920884512842df433532a70ef43f9a6",
+  "prepared_sha256": "b7462f673c8bc035ed055e882cf4bafbc57f05d1e87b8b93aedb1006cc9776e7",
+  "reserved_test_sha256": "2247e234add08fd70d597f9d9a5d516879b30346eeb7f31fb23bd5a5a691df48",
+  "reference_manifest_sha256": "5c938cb6d4974f4085817ce607057b3347abfddb3aaa8c2b3d51f39e62307b21",
+  "code": {
+    "backend.py": "34f0b8f56d06d50ab7de0a99d21e785c1e143676bc8c16171ff843e2b10def9f",
+    "pilot_metrics.py": "bc18c033f095186909b3df0c9927e2ca58af30334a69e6e861ff4b296be66e4c",
+    "run_experiment.py": "da277ec1653d2781fbaaf603e16489e4cdb981ca7c36d0114169afe403a8d977",
+    "run_pipeline.py": "b6b882d25a833150135c9de7b709f63e14ea0d136ec18c0730ca3c3a9efcbbba",
+    "selection_evaluation.py": "81e13d0e3ecee414ccf3bc2c9dc7d01f6763d9101cd8992d26e96d5b5d6b3f87",
+    "selector_rules.py": "b204c19f4ba0b6aa84d8b22551cb9dcac01aab6d1738afcdb0d8a44f9e51ae57"
+  },
+  "checkpoints": {
+    "stage_a": {
+      "path": "/hy-tmp/yezhe/异构模型/grouped_headmix4_l3_to_q4_seed1234/runs/stage_a/best.pt",
+      "sha256": "a9318f4b2f1d9e7981e0e50e2dc88654f0baaf89a080a0746017555c48ba5c84"
+    },
+    "stage_b": {
+      "path": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_l3_to_q4_seed1234/runs/stage_b/last.pt",
+      "sha256": "7e9f602d08409574c8ebe56242a08ba2c6861032b5ed70570a807c5777d775f2"
+    }
+  },
+  "anchor_ids": [
+    151644,
+    872,
+    198,
+    8856
+  ],
+  "parent_manifest_sha256": "c991bbe48c46c7e18d23cf3c32a95203513d4ccbec65724af2c96b775669dcc4",
+  "calibration_results_sha256": {
+    "hotpot_5a7613c15542994ccc9186bf.json": "2de53050b8e5ca9cf728169570fd412586d88b29cb6445734a3e7df30cad5525",
+    "hotpot_5a771e3255429966f1a36c78.json": "fe8fe56f10af3e697797140abde4ddfd41ab9c9870284bb2567c410741b340cf",
+    "hotpot_5a778cae55429949eeb29eeb.json": "345c10cae7e7214d56fc724a9d855be10fcffa8539438bd1cb2a7e8005685097",
+    "hotpot_5a77d2d25542992a6e59dfe2.json": "7e379ede8b7648fc39875b167f60253d45c4f9af8b281e9c6d52e310999444eb",
+    "hotpot_5a793d335542994bb9456fca.json": "a24612884f1bacfbb324a9c39b02c17895dbd84d151a73d914005f2e302c3932",
+    "hotpot_5a7c38c955429935c91b5132.json": "867401813da41c00e27d992944520eb6ea7b7d3417bc01847a15224ee5781013",
+    "hotpot_5a8010685542992bc0c4a69a.json": "4252281fe0d692ef22e56eb31cde021e26b51770d9b004c8634d73c752073b4e",
+    "hotpot_5a8077ca5542992bc0c4a729.json": "578332791038fd2daf9396004df08240a290bcd2bdf5ddef1e1347b0b9db57ab",
+    "hotpot_5a810d5255429926c1cdacd8.json": "8e01f52c7a61926afa71b1d230343e309fa31d47a9921237461441881175e558",
+    "hotpot_5a81b43d5542995ce29dcc39.json": "743a51172f51241794e4fddab2bddb886dc0d99ff49cc02edb4312157e277f6d",
+    "hotpot_5a882d9a5542997e5c09a599.json": "74959cd059f9afc2c569fd6fcf76954b2ab9f6c1fd942f31e32cccf702bb5852",
+    "hotpot_5a8a9bc15542996c9b8d5f36.json": "5af6b56b5414825f3845009620e08b907f9b924aa5b10232dc6baaa1146f7197",
+    "hotpot_5a8ac02d5542996c9b8d5f6f.json": "47b49a4a6ae517a8282060cbe2bb809ca54c6c800244212da3cfa3812af9f6a3",
+    "hotpot_5a8af1e255429950cd6afc28.json": "fff926993310aae771def53bb9a52948d9f6cb238321b30cfd61759b215602b5",
+    "hotpot_5a8b4fcc55429949d91db541.json": "dabf4678ad39bc2f69d5af621e1d78418769cf3cdeed18c34168dd4845c830d4",
+    "hotpot_5a8b6eba55429950cd6afcfc.json": "437f93feae9476d578ec661e231c9157a465498f711b2cdcd552f31244f7765a",
+    "hotpot_5a8dafbd554299068b959da0.json": "bafc2da6711c8509e48fee3f2cd2cf8d514560bb1430dc0177beb897d38d7f46",
+    "hotpot_5ab4f8c95542990594ba9cbb.json": "0e92347572cf830ea1ed0b6fce60cc5c53c5fd8f63a056eda631489f46ed5a41",
+    "hotpot_5ab56b3a554299637185c585.json": "5b8ef1c497f970e0217d845feaf8153c4e6b38a8455812d48871bf52a267f42f",
+    "hotpot_5ab7da6f55429928e1fe3928.json": "db35bcd1d6266b0ccb544d95a1bf41d9276a4a3915cb82d384e911849760a166",
+    "hotpot_5ab80e1455429916710eafd7.json": "4a1d5c820c9ffb8a79a612c8c6d8924dc125898e613b3058b6bdccd9ba8e1d34",
+    "hotpot_5ab96bf15542996be20204d8.json": "348d3ae3bc84a35f4386ecafd59d006b0a2c5250a4e032780d8a90810d44e6c9",
+    "hotpot_5ac194db55429964131be23a.json": "d64bffcdb3dfa548a7ecde772bd63ec4e88f45bc93c954cf6c65f95d556956f5",
+    "hotpot_5adcb0ab5542994d58a2f69a.json": "088716698720bb2bc62d25ecf4ef1e12eae16d7ff7a096eeb2493857ece90222",
+    "hotpot_5add57e55542992ae4cec516.json": "39176faac254b2e7e2ebcdae5a3974df5a95b860d7431b4179356cfe6769a836",
+    "hotpot_5adf0e7c5542992d7e9f9297.json": "95e356af6a4c2e1fc25f95cf40660dae02ae4e0016ba0ebd97bb08de94546857",
+    "hotpot_5adf21bc5542993344016bf4.json": "6cd238e1fc9cdfee1135fb6c35bd78f4aedc9c5531f3a4eaa843df575cbca629",
+    "hotpot_5adf5fa65542993a75d264db.json": "e613453bc430755f190f37ce6b91f4b0ff7759e6fb68438b08c9aec88cf1cfb4",
+    "hotpot_5adfd0d655429942ec259b4e.json": "521915a33e740eadd183aa2fa532dcd155672b7306e27c2002d77bebd6652e16",
+    "hotpot_5ae446fc5542995ad6573d24.json": "96016b9abc6f22ecb4b384104de60934d723f05825d7b28f0308e3af7ccc757a",
+    "hotpot_5ae65b845542992ae0d162f1.json": "0a23ce78586f4930da1974ac08164808d3180d60d9f36cea8aa7961a7ba359af",
+    "hotpot_5ae6793e5542991bbc9760e2.json": "cf95f712b860eccb5fc8b7e3873d2774183171b7711c68b6fabd91fc19b3c09c"
+  },
+  "no_reader_installed": true,
+  "no_test_outcome_used_in_selection": true,
+  "test_count": 128
+}

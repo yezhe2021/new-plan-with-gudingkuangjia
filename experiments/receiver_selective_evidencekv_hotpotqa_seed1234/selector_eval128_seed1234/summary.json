@@ -1,0 +1,630 @@
+{
+  "experiment": "receiver_selective_evidencekv_hotpotqa_seed1234/selector_eval128_seed1234",
+  "status": "completed",
+  "timestamp": "2026-10-26 22:19:55",
+  "n": 128,
+  "manifest_sha256": "68d169274cf92893a6c727cd06408b5b099c650aab20a9cb4ef2ffd078766b9c",
+  "selector": {
+    "rules": {
+      "always_reject": {
+        "kind": "always_reject"
+      },
+      "always_accept": {
+        "kind": "always_accept"
+      },
+      "question_gain_calibrated": {
+        "kind": "question_gain",
+        "threshold": 0.0
+      },
+      "question_gain_zero": {
+        "kind": "question_gain",
+        "threshold": 0.0
+      },
+      "first_token_entropy_gain_calibrated": {
+        "kind": "first_token_entropy_gain",
+        "threshold": -1e+30
+      },
+      "first_token_entropy_gain_zero": {
+        "kind": "first_token_entropy_gain",
+        "threshold": 0.0
+      }
+    },
+    "selected_rule": "question_gain_calibrated",
+    "calibration_scores": {
+      "always_reject": {
+        "f1": 0.09550998429674899,
+        "em": 0.03125,
+        "accept_count": 0
+      },
+      "always_accept": {
+        "f1": 0.15258131030189853,
+        "em": 0.09375,
+        "accept_count": 96
+      },
+      "question_gain_calibrated": {
+        "f1": 0.16481676003734827,
+        "em": 0.10416666666666667,
+        "accept_count": 80
+      },
+      "question_gain_zero": {
+        "f1": 0.16481676003734827,
+        "em": 0.10416666666666667,
+        "accept_count": 80
+      },
+      "first_token_entropy_gain_calibrated": {
+        "f1": 0.15258131030189853,
+        "em": 0.09375,
+        "accept_count": 96
+      },
+      "first_token_entropy_gain_zero": {
+        "f1": 0.13546909925586395,
+        "em": 0.07291666666666667,
+        "accept_count": 20
+      }
+    },
+    "question_count": 32,
+    "case_count": 96,
+    "conditions": [
+      "clean",
+      "wrong",
+      "partial_wrong"
+    ],
+    "primary_metric": "equal-condition mean F1",
+    "label_free_features": true,
+    "manifest_sha256": "68d169274cf92893a6c727cd06408b5b099c650aab20a9cb4ef2ffd078766b9c",
+    "locked_at": "2026-10-26 22:08:57",
+    "calibration_only": true
+  },
+  "baselines": {
+    "question_only_compact": {
+      "n": 128,
+      "correct": 11.0,
+      "em": 0.0859375,
+      "f1": 0.14444848962312196,
+      "answer_token_nll": 5.4207722371506275,
+      "eos": 1.0,
+      "generated_tokens": 12.71875
+    },
+    "reject_all": {
+      "n": 128,
+      "correct": 10.0,
+      "em": 0.078125,
+      "f1": 0.14843733931509667,
+      "answer_token_nll": 5.689652765387562,
+      "eos": 0.9921875,
+      "generated_tokens": 13.640625
+    },
+    "native_evidence": {
+      "n": 128,
+      "correct": 68.0,
+      "em": 0.53125,
+      "f1": 0.716235426644434,
+      "answer_token_nll": 2.620600922802626,
+      "eos": 1.0,
+      "generated_tokens": 7.8828125
+    },
+    "clean": {
+      "n": 128,
+      "correct": 17.0,
+      "em": 0.1328125,
+      "f1": 0.3027685759333378,
+      "answer_token_nll": 3.174168522686614,
+      "eos": 0.9921875,
+      "generated_tokens": 7.4453125
+    },
+    "wrong": {
+      "n": 128,
+      "correct": 5.0,
+      "em": 0.0390625,
+      "f1": 0.08104901051329623,
+      "answer_token_nll": 5.115792689903174,
+      "eos": 1.0,
+      "generated_tokens": 9.1328125
+    },
+    "partial_wrong": {
+      "n": 128,
+      "correct": 9.0,
+      "em": 0.0703125,
+      "f1": 0.15200563325563327,
+      "answer_token_nll": 3.9565023292670958,
+      "eos": 0.9921875,
+      "generated_tokens": 8.265625
+    }
+  },
+  "conditions": {
+    "clean": {
+      "n": 128,
+      "selected_rule": "question_gain_calibrated",
+      "accept_count": 126,
+      "em": 0.1328125,
+      "f1": 0.2996435759333378,
+      "gain_vs_always_accept": {
+        "em": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        },
+        "f1": {
+          "mean": -0.003125,
+          "ci95": [
+            -0.009375000000000001,
+            0.0
+          ],
+          "n": 128
+        }
+      },
+      "gain_vs_always_reject": {
+        "em": {
+          "mean": 0.0546875,
+          "ci95": [
+            -0.0078125,
+            0.1171875
+          ],
+          "n": 128
+        },
+        "f1": {
+          "mean": 0.1512062366182411,
+          "ci95": [
+            0.08296160683662432,
+            0.21946713997414077
+          ],
+          "n": 128
+        }
+      },
+      "clean_or_corrupt_useful_em": 12,
+      "clean_or_corrupt_harmful_em": 5,
+      "oracle_em": 0.171875,
+      "prediction_changes_vs_reject": 119
+    },
+    "wrong": {
+      "n": 128,
+      "selected_rule": "question_gain_calibrated",
+      "accept_count": 77,
+      "em": 0.0703125,
+      "f1": 0.12005671696126002,
+      "gain_vs_always_accept": {
+        "em": {
+          "mean": 0.03125,
+          "ci95": [
+            0.0078125,
+            0.0625
+          ],
+          "n": 128
+        },
+        "f1": {
+          "mean": 0.03900770644796381,
+          "ci95": [
+            0.011604247818919234,
+            0.0723919124941643
+          ],
+          "n": 128
+        }
+      },
+      "gain_vs_always_reject": {
+        "em": {
+          "mean": -0.0078125,
+          "ci95": [
+            -0.0234375,
+            0.0
+          ],
+          "n": 128
+        },
+        "f1": {
+          "mean": -0.02838062235383664,
+          "ci95": [
+            -0.05750387788055199,
+            -0.003815150468331296
+          ],
+          "n": 128
+        }
+      },
+      "clean_or_corrupt_useful_em": 0,
+      "clean_or_corrupt_harmful_em": 5,
+      "oracle_em": 0.078125,
+      "prediction_changes_vs_reject": 72
+    },
+    "partial_wrong": {
+      "n": 128,
+      "selected_rule": "question_gain_calibrated",
+      "accept_count": 118,
+      "em": 0.0859375,
+      "f1": 0.16085979992229993,
+      "gain_vs_always_accept": {
+        "em": {
+          "mean": 0.015625,
+          "ci95": [
+            0.0,
+            0.0390625
+          ],
+          "n": 128
+        },
+        "f1": {
+          "mean": 0.008854166666666666,
+          "ci95": [
+            -0.003125,
+            0.028645833333333336
+          ],
+          "n": 128
+        }
+      },
+      "gain_vs_always_reject": {
+        "em": {
+          "mean": 0.0078125,
+          "ci95": [
+            -0.046875,
+            0.0625
+          ],
+          "n": 128
+        },
+        "f1": {
+          "mean": 0.012422460607203254,
+          "ci95": [
+            -0.04424156272903975,
+            0.06876993589539544
+          ],
+          "n": 128
+        }
+      },
+      "clean_or_corrupt_useful_em": 6,
+      "clean_or_corrupt_harmful_em": 7,
+      "oracle_em": 0.125,
+      "prediction_changes_vs_reject": 110
+    }
+  },
+  "balanced_mixture": {
+    "always_reject": {
+      "accept_rate": 0.0,
+      "em": {
+        "score": {
+          "mean": 0.078125,
+          "ci95": [
+            0.03125,
+            0.125
+          ],
+          "n": 128
+        },
+        "gain_vs_accept": {
+          "mean": -0.0026041666666666644,
+          "ci95": [
+            -0.04427083333333333,
+            0.04427083333333333
+          ],
+          "n": 128
+        },
+        "gain_vs_reject": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        },
+        "matched_accept_rate_random_expected": 0.078125
+      },
+      "f1": {
+        "score": {
+          "mean": 0.14843733931509667,
+          "ci95": [
+            0.09960447949849376,
+            0.202474353446033
+          ],
+          "n": 128
+        },
+        "gain_vs_accept": {
+          "mean": -0.030170400585659073,
+          "ci95": [
+            -0.07567593811187104,
+            0.01753893232187462
+          ],
+          "n": 128
+        },
+        "gain_vs_reject": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        },
+        "matched_accept_rate_random_expected": 0.14843733931509667
+      }
+    },
+    "always_accept": {
+      "accept_rate": 1.0,
+      "em": {
+        "score": {
+          "mean": 0.08072916666666666,
+          "ci95": [
+            0.04427083333333333,
+            0.12239583333333333
+          ],
+          "n": 128
+        },
+        "gain_vs_accept": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        },
+        "gain_vs_reject": {
+          "mean": 0.0026041666666666644,
+          "ci95": [
+            -0.04427083333333333,
+            0.04427083333333333
+          ],
+          "n": 128
+        },
+        "matched_accept_rate_random_expected": 0.08072916666666666
+      },
+      "f1": {
+        "score": {
+          "mean": 0.17860773990075574,
+          "ci95": [
+            0.1372615518573756,
+            0.22419966288502136
+          ],
+          "n": 128
+        },
+        "gain_vs_accept": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        },
+        "gain_vs_reject": {
+          "mean": 0.030170400585659073,
+          "ci95": [
+            -0.01753893232187463,
+            0.07567593811187102
+          ],
+          "n": 128
+        },
+        "matched_accept_rate_random_expected": 0.17860773990075574
+      }
+    },
+    "question_gain_calibrated": {
+      "accept_rate": 0.8359375,
+      "em": {
+        "score": {
+          "mean": 0.09635416666666666,
+          "ci95": [
+            0.05729166666666666,
+            0.140625
+          ],
+          "n": 128
+        },
+        "gain_vs_accept": {
+          "mean": 0.015625,
+          "ci95": [
+            0.0026041666666666665,
+            0.03125
+          ],
+          "n": 128
+        },
+        "gain_vs_reject": {
+          "mean": 0.018229166666666664,
+          "ci95": [
+            -0.020833333333333332,
+            0.0546875
+          ],
+          "n": 128
+        },
+        "matched_accept_rate_random_expected": 0.08030192057291666
+      },
+      "f1": {
+        "score": {
+          "mean": 0.19352003093896591,
+          "ci95": [
+            0.1485307968734968,
+            0.24318942051046372
+          ],
+          "n": 128
+        },
+        "gain_vs_accept": {
+          "mean": 0.014912291038210155,
+          "ci95": [
+            0.004278610482654601,
+            0.02758284368434873
+          ],
+          "n": 128
+        },
+        "gain_vs_reject": {
+          "mean": 0.045082691623869235,
+          "ci95": [
+            0.0020753859330789708,
+            0.08665010857623444
+          ],
+          "n": 128
+        },
+        "matched_accept_rate_random_expected": 0.17365790855467103
+      }
+    },
+    "question_gain_zero": {
+      "accept_rate": 0.8359375,
+      "em": {
+        "score": {
+          "mean": 0.09635416666666666,
+          "ci95": [
+            0.05729166666666666,
+            0.140625
+          ],
+          "n": 128
+        },
+        "gain_vs_accept": {
+          "mean": 0.015625,
+          "ci95": [
+            0.0026041666666666665,
+            0.03125
+          ],
+          "n": 128
+        },
+        "gain_vs_reject": {
+          "mean": 0.018229166666666664,
+          "ci95": [
+            -0.020833333333333332,
+            0.0546875
+          ],
+          "n": 128
+        },
+        "matched_accept_rate_random_expected": 0.08030192057291666
+      },
+      "f1": {
+        "score": {
+          "mean": 0.19352003093896591,
+          "ci95": [
+            0.1485307968734968,
+            0.24318942051046372
+          ],
+          "n": 128
+        },
+        "gain_vs_accept": {
+          "mean": 0.014912291038210155,
+          "ci95": [
+            0.004278610482654601,
+            0.02758284368434873
+          ],
+          "n": 128
+        },
+        "gain_vs_reject": {
+          "mean": 0.045082691623869235,
+          "ci95": [
+            0.0020753859330789708,
+            0.08665010857623444
+          ],
+          "n": 128
+        },
+        "matched_accept_rate_random_expected": 0.17365790855467103
+      }
+    },
+    "first_token_entropy_gain_calibrated": {
+      "accept_rate": 1.0,
+      "em": {
+        "score": {
+          "mean": 0.08072916666666666,
+          "ci95": [
+            0.04427083333333333,
+            0.12239583333333333
+          ],
+          "n": 128
+        },
+        "gain_vs_accept": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        },
+        "gain_vs_reject": {
+          "mean": 0.0026041666666666644,
+          "ci95": [
+            -0.04427083333333333,
+            0.04427083333333333
+          ],
+          "n": 128
+        },
+        "matched_accept_rate_random_expected": 0.08072916666666666
+      },
+      "f1": {
+        "score": {
+          "mean": 0.17860773990075574,
+          "ci95": [
+            0.1372615518573756,
+            0.22419966288502136
+          ],
+          "n": 128
+        },
+        "gain_vs_accept": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        },
+        "gain_vs_reject": {
+          "mean": 0.030170400585659073,
+          "ci95": [
+            -0.01753893232187463,
+            0.07567593811187102
+          ],
+          "n": 128
+        },
+        "matched_accept_rate_random_expected": 0.17860773990075574
+      }
+    },
+    "first_token_entropy_gain_zero": {
+      "accept_rate": 0.2526041666666667,
+      "em": {
+        "score": {
+          "mean": 0.08333333333333331,
+          "ci95": [
+            0.041666666666666664,
+            0.13020833333333334
+          ],
+          "n": 128
+        },
+        "gain_vs_accept": {
+          "mean": 0.002604166666666667,
+          "ci95": [
+            -0.028645833333333332,
+            0.036458333333333336
+          ],
+          "n": 128
+        },
+        "gain_vs_reject": {
+          "mean": 0.005208333333333332,
+          "ci95": [
+            -0.0234375,
+            0.03125
+          ],
+          "n": 128
+        },
+        "matched_accept_rate_random_expected": 0.07878282335069445
+      },
+      "f1": {
+        "score": {
+          "mean": 0.15571846539217862,
+          "ci95": [
+            0.11185563620449879,
+            0.2053549983832038
+          ],
+          "n": 128
+        },
+        "gain_vs_accept": {
+          "mean": -0.02288927450857712,
+          "ci95": [
+            -0.056844153438806506,
+            0.011501408800639023
+          ],
+          "n": 128
+        },
+        "gain_vs_reject": {
+          "mean": 0.007281126077081958,
+          "ci95": [
+            -0.022683408894346398,
+            0.03569849918769951
+          ],
+          "n": 128
+        },
+        "matched_accept_rate_random_expected": 0.15605850821303657
+      }
+    }
+  },
+  "caveats": [
+    "128 heldout questions, fixed before calibration32 inference; not official full HotpotQA benchmark.",
+    "Short-answer generation uses entire normalized output EM/F1. No gold-dependent answer extraction.",
+    "Selected rule fixed on pilot F1. Other rules are diagnostics, not alternative test-selected winners.",
+    "Balanced synthetic clean/wrong/partial corruption is a controlled mixture, not an estimate of deployment prevalence.",
+    "Both accept and reject branches are computed: no compute savings claimed.",
+    "First-token entropy and question likelihood are proxies, not calibrated truth probabilities.",
+    "No Reader, training, or quantization. Bootstrap resamples questions with their corruption variants together."
+  ]
+}
