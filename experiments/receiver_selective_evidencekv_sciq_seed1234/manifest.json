@@ -1,0 +1,75 @@
+{
+  "config": {
+    "name": "receiver_selective_evidencekv_sciq_seed1234",
+    "seed": 1234,
+    "reference": "/hy-tmp/yezhe/异构模型/attention_mixed_precision_senderkv_2wiki128_l3_to_q4_frozen_klreader_seed1234",
+    "source_parquet": "/hy-tmp/yezhe/异构模型/decoupled_memory_reader_obqa_fact_l3_to_q4_seed1234/sciq_frozen64/data/test.parquet",
+    "previous_sciq": "/hy-tmp/yezhe/异构模型/decoupled_memory_reader_obqa_fact_l3_to_q4_seed1234/sciq_frozen64/prepared/test.jsonl",
+    "calibration_count": 32,
+    "test_count": 128,
+    "max_evidence_tokens": 384,
+    "max_total_tokens": 768,
+    "conditions": [
+      "clean",
+      "wrong",
+      "partial_wrong",
+      "gaussian"
+    ],
+    "partial_corruption_fraction": 0.5,
+    "reader": "No Q/O adapters installed or loaded. Original Qwen and existing grouped Stage-A + rank64 residual Stage-B frozen.",
+    "attention_backend": "sdpa",
+    "free_gpu_gib": 12,
+    "disk_reserve_gib": 10,
+    "selector": "Whole packet accept/reject. Features: change in mean native question token log probability, and decrease in candidate entropy. Global thresholds selected only on32 calibration questions across equal corruption conditions, then locked before test inference. Include fixed zero-threshold and always-accept/reject controls.",
+    "question_inputs": "Question and all options are read natively by Qwen after the evidence cache. Sender sees support only. No answer labels or target answers in Sender prompt or gate features.",
+    "scope": "Pilot using cached official SciQ test parquet split into disjoint calibration32 and evaluation128, excluding previous SciQ64 and exact known training/validation questions. Not an official SciQ leaderboard evaluation; oracle support supplied.",
+    "training": false,
+    "automatic_upload": false
+  },
+  "config_sha256": "328abe314fbce9cfef1f98211eae3d929839374b84eda7fcb8ab62fb21d2923d",
+  "prepared_sha256": "def1a0627010ea9c29767bdeb997ff3e53c2f81da975db434076c4dcff726d43",
+  "source_sha256": "3a719356a29b127fc54ef3c7f51a034db4bd105d5717215e8c85d2aa58d60667",
+  "previous_sciq_sha256": "828c86e1504ab77cc1a62a26445f41b4254599ddbf0931a17a19562eb83d64d8",
+  "reference_manifest_sha256": "5c938cb6d4974f4085817ce607057b3347abfddb3aaa8c2b3d51f39e62307b21",
+  "code": {
+    "run_experiment.py": "63925cec9445ff814e0574e934f894fbbb5a9d8606587c8829a9c034138af10a",
+    "run_pipeline.py": "b5078595d2d89c5f3aa257293812da691b234cedc1e5d03f1e5b8ac318527796",
+    "gate_rules.py": "dad07036dd86b066c2b095f021e17abb30a68e5735893fd78bccaa7fca315898",
+    "test_gate_rules.py": "dd6d58fd4e8b3754c99b441ff1eae8023b948707bff618c429f3b3bc65f0cd64"
+  },
+  "checkpoints": {
+    "stage_a": {
+      "path": "/hy-tmp/yezhe/异构模型/grouped_headmix4_l3_to_q4_seed1234/runs/stage_a/best.pt",
+      "sha256": "a9318f4b2f1d9e7981e0e50e2dc88654f0baaf89a080a0746017555c48ba5c84"
+    },
+    "stage_b": {
+      "path": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_l3_to_q4_seed1234/runs/stage_b/last.pt",
+      "sha256": "7e9f602d08409574c8ebe56242a08ba2c6861032b5ed70570a807c5777d775f2"
+    }
+  },
+  "anchor_ids": [
+    151644,
+    872,
+    198,
+    8856
+  ],
+  "anchor_text": "<|im_start|>user\nReference",
+  "no_reader_installed": true,
+  "no_target_answer_in_sender_prompt": true,
+  "counts": {
+    "calibration": 32,
+    "test": 128
+  },
+  "skips": {
+    "empty_duplicate_or_excluded": 26,
+    "token_boundary_or_length": 2
+  },
+  "known_question_exclusion_count": 2368,
+  "known_support_exclusion_count": 64,
+  "split_policy": "Seeded disjoint subsets of cached official test parquet; calibration is not official validation split.",
+  "corruption_policy": "Donors assigned within each split by support length without gold. Partial replacement affects identical K/V positions. Gaussian retains per-layer/head/channel target moments.",
+  "environment": {
+    "torch": "2.5.1+cu121",
+    "python": "3.10.20 (main, Mar 11 2026, 17:46:40) [GCC 14.3.0]"
+  }
+}

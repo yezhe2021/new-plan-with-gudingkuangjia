@@ -1,0 +1,22 @@
+{
+  "name": "receiver_selective_evidencekv_sciq_seed1234",
+  "seed": 1234,
+  "reference": "/hy-tmp/yezhe/异构模型/attention_mixed_precision_senderkv_2wiki128_l3_to_q4_frozen_klreader_seed1234",
+  "source_parquet": "/hy-tmp/yezhe/异构模型/decoupled_memory_reader_obqa_fact_l3_to_q4_seed1234/sciq_frozen64/data/test.parquet",
+  "previous_sciq": "/hy-tmp/yezhe/异构模型/decoupled_memory_reader_obqa_fact_l3_to_q4_seed1234/sciq_frozen64/prepared/test.jsonl",
+  "calibration_count": 32,
+  "test_count": 128,
+  "max_evidence_tokens": 384,
+  "max_total_tokens": 768,
+  "conditions": ["clean", "wrong", "partial_wrong", "gaussian"],
+  "partial_corruption_fraction": 0.5,
+  "reader": "No Q/O adapters installed or loaded. Original Qwen and existing grouped Stage-A + rank64 residual Stage-B frozen.",
+  "attention_backend": "sdpa",
+  "free_gpu_gib": 12,
+  "disk_reserve_gib": 10,
+  "selector": "Whole packet accept/reject. Features: change in mean native question token log probability, and decrease in candidate entropy. Global thresholds selected only on32 calibration questions across equal corruption conditions, then locked before test inference. Include fixed zero-threshold and always-accept/reject controls.",
+  "question_inputs": "Question and all options are read natively by Qwen after the evidence cache. Sender sees support only. No answer labels or target answers in Sender prompt or gate features.",
+  "scope": "Pilot using cached official SciQ test parquet split into disjoint calibration32 and evaluation128, excluding previous SciQ64 and exact known training/validation questions. Not an official SciQ leaderboard evaluation; oracle support supplied.",
+  "training": false,
+  "automatic_upload": false
+}

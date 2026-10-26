@@ -1,0 +1,860 @@
+{
+  "experiment": "receiver_selective_evidencekv_sciq_seed1234",
+  "status": "completed",
+  "timestamp": "2026-10-26 17:06:31",
+  "manifest_sha256": "e22f06b59ad3da36897fca2899e98af5659572866c68332fce56a4797e531de1",
+  "config": {
+    "name": "receiver_selective_evidencekv_sciq_seed1234",
+    "seed": 1234,
+    "reference": "/hy-tmp/yezhe/异构模型/attention_mixed_precision_senderkv_2wiki128_l3_to_q4_frozen_klreader_seed1234",
+    "source_parquet": "/hy-tmp/yezhe/异构模型/decoupled_memory_reader_obqa_fact_l3_to_q4_seed1234/sciq_frozen64/data/test.parquet",
+    "previous_sciq": "/hy-tmp/yezhe/异构模型/decoupled_memory_reader_obqa_fact_l3_to_q4_seed1234/sciq_frozen64/prepared/test.jsonl",
+    "calibration_count": 32,
+    "test_count": 128,
+    "max_evidence_tokens": 384,
+    "max_total_tokens": 768,
+    "conditions": [
+      "clean",
+      "wrong",
+      "partial_wrong",
+      "gaussian"
+    ],
+    "partial_corruption_fraction": 0.5,
+    "reader": "No Q/O adapters installed or loaded. Original Qwen and existing grouped Stage-A + rank64 residual Stage-B frozen.",
+    "attention_backend": "sdpa",
+    "free_gpu_gib": 12,
+    "disk_reserve_gib": 10,
+    "selector": "Whole packet accept/reject. Features: change in mean native question token log probability, and decrease in candidate entropy. Global thresholds selected only on32 calibration questions across equal corruption conditions, then locked before test inference. Include fixed zero-threshold and always-accept/reject controls.",
+    "question_inputs": "Question and all options are read natively by Qwen after the evidence cache. Sender sees support only. No answer labels or target answers in Sender prompt or gate features.",
+    "scope": "Pilot using cached official SciQ test parquet split into disjoint calibration32 and evaluation128, excluding previous SciQ64 and exact known training/validation questions. Not an official SciQ leaderboard evaluation; oracle support supplied.",
+    "training": false,
+    "automatic_upload": false
+  },
+  "selector": {
+    "rules": {
+      "always_accept": {
+        "kind": "always_accept"
+      },
+      "always_reject": {
+        "kind": "always_reject"
+      },
+      "question_gain_calibrated": {
+        "kind": "question_gain",
+        "threshold": 1e+30
+      },
+      "question_gain_zero": {
+        "kind": "question_gain",
+        "threshold": 0.0
+      },
+      "confidence_gain_calibrated": {
+        "kind": "confidence_gain",
+        "threshold": 0.0
+      },
+      "confidence_gain_zero": {
+        "kind": "confidence_gain",
+        "threshold": 0.0
+      }
+    },
+    "selected_rule": "confidence_gain_calibrated",
+    "calibration_scores": {
+      "always_reject": {
+        "correct": 124,
+        "accept_count": 0
+      },
+      "always_accept": {
+        "correct": 115,
+        "accept_count": 128
+      },
+      "question_gain_calibrated": {
+        "correct": 124,
+        "accept_count": 0
+      },
+      "confidence_gain_calibrated": {
+        "correct": 126,
+        "accept_count": 12
+      }
+    },
+    "n": 128,
+    "manifest_sha256": "e22f06b59ad3da36897fca2899e98af5659572866c68332fce56a4797e531de1",
+    "locked_at": "2026-10-26 17:04:19",
+    "calibration_only": true,
+    "thresholds_before_test": true,
+    "question_count": 32
+  },
+  "n_questions": 128,
+  "condition_count": 4,
+  "conditions": {
+    "clean": {
+      "always_accept": {
+        "n": 128,
+        "correct": 119,
+        "accuracy": 0.9296875,
+        "mean_choice_nll": 0.2233953326825614,
+        "accept_rate": 1.0,
+        "accuracy_gain_vs_accept": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        },
+        "accuracy_gain_vs_reject": {
+          "mean": -0.03125,
+          "ci95": [
+            -0.078125,
+            0.0078125
+          ],
+          "n": 128
+        }
+      },
+      "always_reject": {
+        "n": 128,
+        "correct": 123,
+        "accuracy": 0.9609375,
+        "mean_choice_nll": 0.2864568213494774,
+        "accept_rate": 0.0,
+        "accuracy_gain_vs_accept": {
+          "mean": 0.03125,
+          "ci95": [
+            -0.0078125,
+            0.078125
+          ],
+          "n": 128
+        },
+        "accuracy_gain_vs_reject": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        }
+      },
+      "question_gain_calibrated": {
+        "n": 128,
+        "correct": 123,
+        "accuracy": 0.9609375,
+        "mean_choice_nll": 0.2864568213494774,
+        "accept_rate": 0.0,
+        "accuracy_gain_vs_accept": {
+          "mean": 0.03125,
+          "ci95": [
+            -0.0078125,
+            0.078125
+          ],
+          "n": 128
+        },
+        "accuracy_gain_vs_reject": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        }
+      },
+      "question_gain_zero": {
+        "n": 128,
+        "correct": 119,
+        "accuracy": 0.9296875,
+        "mean_choice_nll": 0.22329203477589743,
+        "accept_rate": 0.9765625,
+        "accuracy_gain_vs_accept": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        },
+        "accuracy_gain_vs_reject": {
+          "mean": -0.03125,
+          "ci95": [
+            -0.078125,
+            0.0078125
+          ],
+          "n": 128
+        }
+      },
+      "confidence_gain_calibrated": {
+        "n": 128,
+        "correct": 123,
+        "accuracy": 0.9609375,
+        "mean_choice_nll": 0.29040904880386026,
+        "accept_rate": 0.109375,
+        "accuracy_gain_vs_accept": {
+          "mean": 0.03125,
+          "ci95": [
+            -0.0078125,
+            0.078125
+          ],
+          "n": 128
+        },
+        "accuracy_gain_vs_reject": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        }
+      },
+      "confidence_gain_zero": {
+        "n": 128,
+        "correct": 123,
+        "accuracy": 0.9609375,
+        "mean_choice_nll": 0.29040904880386026,
+        "accept_rate": 0.109375,
+        "accuracy_gain_vs_accept": {
+          "mean": 0.03125,
+          "ci95": [
+            -0.0078125,
+            0.078125
+          ],
+          "n": 128
+        },
+        "accuracy_gain_vs_reject": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        }
+      },
+      "oracle_best_of_two": {
+        "correct": 125,
+        "n": 128
+      },
+      "useful_packet_count": 2,
+      "harmful_packet_count": 6
+    },
+    "wrong": {
+      "always_accept": {
+        "n": 128,
+        "correct": 112,
+        "accuracy": 0.875,
+        "mean_choice_nll": 0.732188953010737,
+        "accept_rate": 1.0,
+        "accuracy_gain_vs_accept": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        },
+        "accuracy_gain_vs_reject": {
+          "mean": -0.0859375,
+          "ci95": [
+            -0.140625,
+            -0.03125
+          ],
+          "n": 128
+        }
+      },
+      "always_reject": {
+        "n": 128,
+        "correct": 123,
+        "accuracy": 0.9609375,
+        "mean_choice_nll": 0.2864568213494774,
+        "accept_rate": 0.0,
+        "accuracy_gain_vs_accept": {
+          "mean": 0.0859375,
+          "ci95": [
+            0.03125,
+            0.140625
+          ],
+          "n": 128
+        },
+        "accuracy_gain_vs_reject": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        }
+      },
+      "question_gain_calibrated": {
+        "n": 128,
+        "correct": 123,
+        "accuracy": 0.9609375,
+        "mean_choice_nll": 0.2864568213494774,
+        "accept_rate": 0.0,
+        "accuracy_gain_vs_accept": {
+          "mean": 0.0859375,
+          "ci95": [
+            0.03125,
+            0.140625
+          ],
+          "n": 128
+        },
+        "accuracy_gain_vs_reject": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        }
+      },
+      "question_gain_zero": {
+        "n": 128,
+        "correct": 122,
+        "accuracy": 0.953125,
+        "mean_choice_nll": 0.3697769692606312,
+        "accept_rate": 0.3671875,
+        "accuracy_gain_vs_accept": {
+          "mean": 0.078125,
+          "ci95": [
+            0.03125,
+            0.1328125
+          ],
+          "n": 128
+        },
+        "accuracy_gain_vs_reject": {
+          "mean": -0.0078125,
+          "ci95": [
+            -0.0234375,
+            0.0
+          ],
+          "n": 128
+        }
+      },
+      "confidence_gain_calibrated": {
+        "n": 128,
+        "correct": 123,
+        "accuracy": 0.9609375,
+        "mean_choice_nll": 0.3194557235769338,
+        "accept_rate": 0.09375,
+        "accuracy_gain_vs_accept": {
+          "mean": 0.0859375,
+          "ci95": [
+            0.03125,
+            0.140625
+          ],
+          "n": 128
+        },
+        "accuracy_gain_vs_reject": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        }
+      },
+      "confidence_gain_zero": {
+        "n": 128,
+        "correct": 123,
+        "accuracy": 0.9609375,
+        "mean_choice_nll": 0.3194557235769338,
+        "accept_rate": 0.09375,
+        "accuracy_gain_vs_accept": {
+          "mean": 0.0859375,
+          "ci95": [
+            0.03125,
+            0.140625
+          ],
+          "n": 128
+        },
+        "accuracy_gain_vs_reject": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        }
+      },
+      "oracle_best_of_two": {
+        "correct": 124,
+        "n": 128
+      },
+      "useful_packet_count": 1,
+      "harmful_packet_count": 12
+    },
+    "partial_wrong": {
+      "always_accept": {
+        "n": 128,
+        "correct": 116,
+        "accuracy": 0.90625,
+        "mean_choice_nll": 0.46589067014383495,
+        "accept_rate": 1.0,
+        "accuracy_gain_vs_accept": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        },
+        "accuracy_gain_vs_reject": {
+          "mean": -0.0546875,
+          "ci95": [
+            -0.1015625,
+            -0.0078125
+          ],
+          "n": 128
+        }
+      },
+      "always_reject": {
+        "n": 128,
+        "correct": 123,
+        "accuracy": 0.9609375,
+        "mean_choice_nll": 0.2864568213494774,
+        "accept_rate": 0.0,
+        "accuracy_gain_vs_accept": {
+          "mean": 0.0546875,
+          "ci95": [
+            0.0078125,
+            0.1015625
+          ],
+          "n": 128
+        },
+        "accuracy_gain_vs_reject": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        }
+      },
+      "question_gain_calibrated": {
+        "n": 128,
+        "correct": 123,
+        "accuracy": 0.9609375,
+        "mean_choice_nll": 0.2864568213494774,
+        "accept_rate": 0.0,
+        "accuracy_gain_vs_accept": {
+          "mean": 0.0546875,
+          "ci95": [
+            0.0078125,
+            0.1015625
+          ],
+          "n": 128
+        },
+        "accuracy_gain_vs_reject": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        }
+      },
+      "question_gain_zero": {
+        "n": 128,
+        "correct": 118,
+        "accuracy": 0.921875,
+        "mean_choice_nll": 0.5025440606918113,
+        "accept_rate": 0.9375,
+        "accuracy_gain_vs_accept": {
+          "mean": 0.015625,
+          "ci95": [
+            0.0,
+            0.0390625
+          ],
+          "n": 128
+        },
+        "accuracy_gain_vs_reject": {
+          "mean": -0.0390625,
+          "ci95": [
+            -0.0859375,
+            0.0078125
+          ],
+          "n": 128
+        }
+      },
+      "confidence_gain_calibrated": {
+        "n": 128,
+        "correct": 123,
+        "accuracy": 0.9609375,
+        "mean_choice_nll": 0.283739045872105,
+        "accept_rate": 0.0859375,
+        "accuracy_gain_vs_accept": {
+          "mean": 0.0546875,
+          "ci95": [
+            0.0078125,
+            0.1015625
+          ],
+          "n": 128
+        },
+        "accuracy_gain_vs_reject": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        }
+      },
+      "confidence_gain_zero": {
+        "n": 128,
+        "correct": 123,
+        "accuracy": 0.9609375,
+        "mean_choice_nll": 0.283739045872105,
+        "accept_rate": 0.0859375,
+        "accuracy_gain_vs_accept": {
+          "mean": 0.0546875,
+          "ci95": [
+            0.0078125,
+            0.1015625
+          ],
+          "n": 128
+        },
+        "accuracy_gain_vs_reject": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        }
+      },
+      "oracle_best_of_two": {
+        "correct": 125,
+        "n": 128
+      },
+      "useful_packet_count": 2,
+      "harmful_packet_count": 9
+    },
+    "gaussian": {
+      "always_accept": {
+        "n": 128,
+        "correct": 121,
+        "accuracy": 0.9453125,
+        "mean_choice_nll": 0.26223241028992345,
+        "accept_rate": 1.0,
+        "accuracy_gain_vs_accept": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        },
+        "accuracy_gain_vs_reject": {
+          "mean": -0.015625,
+          "ci95": [
+            -0.046875,
+            0.015625
+          ],
+          "n": 128
+        }
+      },
+      "always_reject": {
+        "n": 128,
+        "correct": 123,
+        "accuracy": 0.9609375,
+        "mean_choice_nll": 0.2864568213494774,
+        "accept_rate": 0.0,
+        "accuracy_gain_vs_accept": {
+          "mean": 0.015625,
+          "ci95": [
+            -0.015625,
+            0.046875
+          ],
+          "n": 128
+        },
+        "accuracy_gain_vs_reject": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        }
+      },
+      "question_gain_calibrated": {
+        "n": 128,
+        "correct": 123,
+        "accuracy": 0.9609375,
+        "mean_choice_nll": 0.2864568213494774,
+        "accept_rate": 0.0,
+        "accuracy_gain_vs_accept": {
+          "mean": 0.015625,
+          "ci95": [
+            -0.015625,
+            0.046875
+          ],
+          "n": 128
+        },
+        "accuracy_gain_vs_reject": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        }
+      },
+      "question_gain_zero": {
+        "n": 128,
+        "correct": 121,
+        "accuracy": 0.9453125,
+        "mean_choice_nll": 0.26219142715666394,
+        "accept_rate": 0.96875,
+        "accuracy_gain_vs_accept": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        },
+        "accuracy_gain_vs_reject": {
+          "mean": -0.015625,
+          "ci95": [
+            -0.046875,
+            0.015625
+          ],
+          "n": 128
+        }
+      },
+      "confidence_gain_calibrated": {
+        "n": 128,
+        "correct": 123,
+        "accuracy": 0.9609375,
+        "mean_choice_nll": 0.32539310372545033,
+        "accept_rate": 0.046875,
+        "accuracy_gain_vs_accept": {
+          "mean": 0.015625,
+          "ci95": [
+            -0.015625,
+            0.046875
+          ],
+          "n": 128
+        },
+        "accuracy_gain_vs_reject": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        }
+      },
+      "confidence_gain_zero": {
+        "n": 128,
+        "correct": 123,
+        "accuracy": 0.9609375,
+        "mean_choice_nll": 0.32539310372545033,
+        "accept_rate": 0.046875,
+        "accuracy_gain_vs_accept": {
+          "mean": 0.015625,
+          "ci95": [
+            -0.015625,
+            0.046875
+          ],
+          "n": 128
+        },
+        "accuracy_gain_vs_reject": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        }
+      },
+      "oracle_best_of_two": {
+        "correct": 124,
+        "n": 128
+      },
+      "useful_packet_count": 1,
+      "harmful_packet_count": 3
+    }
+  },
+  "balanced_mixture": {
+    "always_accept": {
+      "accuracy": 0.9140625,
+      "accept_rate": 1.0,
+      "question_bootstrap_accuracy": {
+        "mean": 0.9140625,
+        "ci95": [
+          0.873046875,
+          0.947265625
+        ],
+        "n": 128
+      },
+      "accuracy_gain_vs_accept": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n": 128
+      },
+      "accuracy_gain_vs_reject": {
+        "mean": -0.046875,
+        "ci95": [
+          -0.080078125,
+          -0.013671875
+        ],
+        "n": 128
+      },
+      "rate_matched_random_expected_accuracy": 0.9140625
+    },
+    "always_reject": {
+      "accuracy": 0.9609375,
+      "accept_rate": 0.0,
+      "question_bootstrap_accuracy": {
+        "mean": 0.9609375,
+        "ci95": [
+          0.921875,
+          0.9921875
+        ],
+        "n": 128
+      },
+      "accuracy_gain_vs_accept": {
+        "mean": 0.046875,
+        "ci95": [
+          0.013671875,
+          0.080078125
+        ],
+        "n": 128
+      },
+      "accuracy_gain_vs_reject": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n": 128
+      },
+      "rate_matched_random_expected_accuracy": 0.9609375
+    },
+    "question_gain_calibrated": {
+      "accuracy": 0.9609375,
+      "accept_rate": 0.0,
+      "question_bootstrap_accuracy": {
+        "mean": 0.9609375,
+        "ci95": [
+          0.921875,
+          0.9921875
+        ],
+        "n": 128
+      },
+      "accuracy_gain_vs_accept": {
+        "mean": 0.046875,
+        "ci95": [
+          0.013671875,
+          0.080078125
+        ],
+        "n": 128
+      },
+      "accuracy_gain_vs_reject": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n": 128
+      },
+      "rate_matched_random_expected_accuracy": 0.9609375
+    },
+    "question_gain_zero": {
+      "accuracy": 0.9375,
+      "accept_rate": 0.8125,
+      "question_bootstrap_accuracy": {
+        "mean": 0.9375,
+        "ci95": [
+          0.90234375,
+          0.966796875
+        ],
+        "n": 128
+      },
+      "accuracy_gain_vs_accept": {
+        "mean": 0.0234375,
+        "ci95": [
+          0.0078125,
+          0.041015625
+        ],
+        "n": 128
+      },
+      "accuracy_gain_vs_reject": {
+        "mean": -0.0234375,
+        "ci95": [
+          -0.046875,
+          0.0
+        ],
+        "n": 128
+      },
+      "rate_matched_random_expected_accuracy": 0.9228515625
+    },
+    "confidence_gain_calibrated": {
+      "accuracy": 0.9609375,
+      "accept_rate": 0.083984375,
+      "question_bootstrap_accuracy": {
+        "mean": 0.9609375,
+        "ci95": [
+          0.921875,
+          0.9921875
+        ],
+        "n": 128
+      },
+      "accuracy_gain_vs_accept": {
+        "mean": 0.046875,
+        "ci95": [
+          0.013671875,
+          0.080078125
+        ],
+        "n": 128
+      },
+      "accuracy_gain_vs_reject": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n": 128
+      },
+      "rate_matched_random_expected_accuracy": 0.957000732421875
+    },
+    "confidence_gain_zero": {
+      "accuracy": 0.9609375,
+      "accept_rate": 0.083984375,
+      "question_bootstrap_accuracy": {
+        "mean": 0.9609375,
+        "ci95": [
+          0.921875,
+          0.9921875
+        ],
+        "n": 128
+      },
+      "accuracy_gain_vs_accept": {
+        "mean": 0.046875,
+        "ci95": [
+          0.013671875,
+          0.080078125
+        ],
+        "n": 128
+      },
+      "accuracy_gain_vs_reject": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n": 128
+      },
+      "rate_matched_random_expected_accuracy": 0.957000732421875
+    }
+  },
+  "caveats": [
+    "No Reader installed; Translator frozen. Evidence-only interface differs from Translator training interface.",
+    "Candidate entropy and question likelihood are uncalibrated proxies; neither guarantees truth.",
+    "Gaussian retains target aggregate moments; partial replacement is synthetic corruption.",
+    "Calibration32 and evaluation128 come from disjoint subsets of official SciQ test, excluding prior64; not leaderboard scoring.",
+    "Selectors require accept and reject evaluations; this pilot does not claim inference compute savings.",
+    "Oracle is diagnostic and reads gold, unavailable at inference. Bootstrap by question; exploratory intervals."
+  ],
+  "native_clean_evidence": {
+    "n": 128,
+    "correct": 128
+  }
+}
