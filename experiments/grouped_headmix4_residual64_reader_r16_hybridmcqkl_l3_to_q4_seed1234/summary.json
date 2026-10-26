@@ -1,0 +1,698 @@
+{
+  "manifest_sha256": "247de9c8a048b9ff3b124f37f4cef2509e81ea6299e803880e99858e3277a21b",
+  "status": "completed",
+  "config": {
+    "seed": 1234,
+    "rank": 16,
+    "alpha": 16,
+    "expected_trainable_parameters": 7667712,
+    "epochs": 4,
+    "expected_updates": 1024,
+    "effective_batch": 8,
+    "learning_rate": 0.0001,
+    "weight_decay": 0,
+    "gradient_clip": 30,
+    "train_counts": {
+      "openbookqa": 512,
+      "arc_challenge": 512,
+      "gsm8k": 512,
+      "mmlu_pro": 512
+    },
+    "formal_counts": {
+      "openbookqa": 128,
+      "arc_challenge": 128,
+      "hellaswag": 64,
+      "gsm8k": 32,
+      "mmlu_pro": 128,
+      "sciq": 64
+    },
+    "evaluation_tasks": [
+      "openbookqa",
+      "arc_challenge",
+      "hellaswag",
+      "gsm8k",
+      "mmlu_pro",
+      "sciq"
+    ],
+    "base_parent": "/hy-tmp/yezhe/异构模型/grouped_headmix4_l3_to_q4_seed1234",
+    "base_stage_a_sha256": "a9318f4b2f1d9e7981e0e50e2dc88654f0baaf89a080a0746017555c48ba5c84",
+    "residual_parent": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_l3_to_q4_seed1234",
+    "frozen_stage_b_sha256": "7e9f602d08409574c8ebe56242a08ba2c6861032b5ed70570a807c5777d775f2",
+    "name": "grouped_headmix4_residual64_reader_r16_hybridmcqkl_l3_to_q4_seed1234",
+    "reference_reader": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_answerkl_l3_to_q4_seed1234",
+    "reference_reader_manifest_sha256": "9472f20d101851631929e5fc60de19dd6f9e59f8f51b5eb10694c0d4ddc47e10",
+    "kl_weight": 0.1,
+    "kl_temperature": 1,
+    "monitor_validation_per_task": 16,
+    "disk_reserve_gib": 20,
+    "queue_min_free_gpu_gib": 24,
+    "checkpoint_every_steps": 64,
+    "selection": "Fixed epoch4 step1024; no test checkpoint or hyperparameter selection",
+    "loss": "MCQ: correct-choice CE + 0.1 Native||Student candidate KL. GSM8K: unchanged old Reader full-vocabulary Native||Student KL with weight1; no gold-solution CE.",
+    "prefix_policy": "GSM epoch1 native greedy prefixes, epochs2-4 balanced native/student greedy prefixes, max64 tokens and up to8 supervised positions; exact old Reader objective and order. Teacher always scores same histories. MCQ answer boundary only.",
+    "initialization": "Fresh zero-up Q/O LoRA; identical initialization to previous Reader. Freeze exact existing Stage A+B and Qwen base. No upstream retraining.",
+    "automatic_upload": false,
+    "continuous_monitoring": false,
+    "caveats": [
+      "Goal is combining MCQ gains with restored GSM behavior; MCQ training can still interfere with GSM through shared Reader parameters.",
+      "GSM native/student mixture,64-token cap and8 positions restored together; not an attribution of the prior supervised run collapse.",
+      "Frozen native-cache Reader evaluation is an interface diagnostic: Reader is enabled only on suffix/continuation, just as for translated cache.",
+      "Diagnostic and generation validation use fixed validation rows, never the formal test split; no automatic test-based checkpoint selection.",
+      "MMLU-Pro remains the existing custom split; Full-Sync includes native body prefill."
+    ],
+    "supervised_reference": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_taskcekl_l3_to_q4_seed1234",
+    "supervised_manifest_sha256": "bd5b7a263c7e1393e4b4a931887edc389fb70b195b7e43a2fa6042d5902db5d1",
+    "supervised_checkpoint_sha256": "4637d5de199d16b194b31c8ef5159a997339547a95b60511ab8325844d34e26c",
+    "old_reader_checkpoint_sha256": "96cde5b41f1a15434d24ef57f8eaf34e3af89af109c0b5d6cf378e60ab577314",
+    "prefix_max_new_tokens": 64,
+    "supervised_positions_per_example_max": 8,
+    "gsm_kl_weight": 1.0,
+    "diagnostic_validation_n": 16,
+    "validation_generation_n": 16,
+    "generation_max_new_tokens": 4096,
+    "wait_for_experiment": "/hy-tmp/yezhe/异构模型/attention_mixed_precision_senderkv_2wiki128_l3_to_q4_frozen_klreader_seed1234",
+    "queue_retry_seconds": 60,
+    "scoring": "Remove literal chat control tokens <|...|> before the existing numeric extractor; apply to every compared arm. Prompt remains the historical boxed-answer instruction.",
+    "validation": "Fixed first16 validation questions/task; add free GSM generation on the same first16 at each epoch end. Diagnostic only; fixed final epoch4 primary."
+  },
+  "tasks": {
+    "openbookqa": {
+      "metrics": {
+        "qwen_native": {
+          "n": 128,
+          "correct": 103,
+          "accuracy": 0.8046875
+        },
+        "new_ufd_stage_b": {
+          "n": 128,
+          "correct": 84,
+          "accuracy": 0.65625
+        },
+        "grouped_full_stage_b": {
+          "n": 128,
+          "correct": 84,
+          "accuracy": 0.65625
+        },
+        "grouped_residual": {
+          "n": 128,
+          "correct": 88,
+          "accuracy": 0.6875
+        },
+        "grouped_residual_reader": {
+          "n": 128,
+          "correct": 92,
+          "accuracy": 0.71875
+        },
+        "task_supervised_reader": {
+          "n": 128,
+          "correct": 96,
+          "accuracy": 0.75
+        },
+        "hybrid_reader": {
+          "n": 128,
+          "correct": 96,
+          "accuracy": 0.75
+        }
+      },
+      "paired": {
+        "qwen_native": {
+          "both_correct": 84,
+          "new_only": 12,
+          "baseline_only": 19,
+          "both_wrong": 13
+        },
+        "grouped_residual": {
+          "both_correct": 81,
+          "new_only": 15,
+          "baseline_only": 7,
+          "both_wrong": 25
+        },
+        "grouped_residual_reader": {
+          "both_correct": 88,
+          "new_only": 8,
+          "baseline_only": 4,
+          "both_wrong": 28
+        },
+        "task_supervised_reader": {
+          "both_correct": 95,
+          "new_only": 1,
+          "baseline_only": 1,
+          "both_wrong": 31
+        }
+      }
+    },
+    "arc_challenge": {
+      "metrics": {
+        "qwen_native": {
+          "n": 128,
+          "correct": 111,
+          "accuracy": 0.8671875
+        },
+        "new_ufd_stage_b": {
+          "n": 128,
+          "correct": 83,
+          "accuracy": 0.6484375
+        },
+        "grouped_full_stage_b": {
+          "n": 128,
+          "correct": 81,
+          "accuracy": 0.6328125
+        },
+        "grouped_residual": {
+          "n": 128,
+          "correct": 82,
+          "accuracy": 0.640625
+        },
+        "grouped_residual_reader": {
+          "n": 128,
+          "correct": 86,
+          "accuracy": 0.671875
+        },
+        "task_supervised_reader": {
+          "n": 128,
+          "correct": 92,
+          "accuracy": 0.71875
+        },
+        "hybrid_reader": {
+          "n": 128,
+          "correct": 91,
+          "accuracy": 0.7109375
+        }
+      },
+      "paired": {
+        "qwen_native": {
+          "both_correct": 87,
+          "new_only": 4,
+          "baseline_only": 24,
+          "both_wrong": 13
+        },
+        "grouped_residual": {
+          "both_correct": 77,
+          "new_only": 14,
+          "baseline_only": 5,
+          "both_wrong": 32
+        },
+        "grouped_residual_reader": {
+          "both_correct": 80,
+          "new_only": 11,
+          "baseline_only": 6,
+          "both_wrong": 31
+        },
+        "task_supervised_reader": {
+          "both_correct": 90,
+          "new_only": 1,
+          "baseline_only": 2,
+          "both_wrong": 35
+        }
+      }
+    },
+    "hellaswag": {
+      "metrics": {
+        "qwen_native": {
+          "n": 64,
+          "correct": 23,
+          "accuracy": 0.359375
+        },
+        "new_ufd_stage_b": {
+          "n": 64,
+          "correct": 21,
+          "accuracy": 0.328125
+        },
+        "grouped_full_stage_b": {
+          "n": 64,
+          "correct": 20,
+          "accuracy": 0.3125
+        },
+        "grouped_residual": {
+          "n": 64,
+          "correct": 22,
+          "accuracy": 0.34375
+        },
+        "grouped_residual_reader": {
+          "n": 64,
+          "correct": 22,
+          "accuracy": 0.34375
+        },
+        "task_supervised_reader": {
+          "n": 64,
+          "correct": 23,
+          "accuracy": 0.359375
+        },
+        "hybrid_reader": {
+          "n": 64,
+          "correct": 21,
+          "accuracy": 0.328125
+        }
+      },
+      "paired": {
+        "qwen_native": {
+          "both_correct": 12,
+          "new_only": 9,
+          "baseline_only": 11,
+          "both_wrong": 32
+        },
+        "grouped_residual": {
+          "both_correct": 21,
+          "new_only": 0,
+          "baseline_only": 1,
+          "both_wrong": 42
+        },
+        "grouped_residual_reader": {
+          "both_correct": 21,
+          "new_only": 0,
+          "baseline_only": 1,
+          "both_wrong": 42
+        },
+        "task_supervised_reader": {
+          "both_correct": 19,
+          "new_only": 2,
+          "baseline_only": 4,
+          "both_wrong": 39
+        }
+      }
+    },
+    "gsm8k": {
+      "metrics": {
+        "qwen_native": {
+          "n": 32,
+          "correct": 31,
+          "accuracy": 0.96875,
+          "mean_generated_tokens": 296.375,
+          "cap_count": 0
+        },
+        "new_ufd_stage_b": {
+          "n": 32,
+          "correct": 9,
+          "accuracy": 0.28125,
+          "mean_generated_tokens": 444.78125,
+          "cap_count": 1
+        },
+        "grouped_full_stage_b": {
+          "n": 32,
+          "correct": 8,
+          "accuracy": 0.25,
+          "mean_generated_tokens": 815.53125,
+          "cap_count": 4
+        },
+        "grouped_residual": {
+          "n": 32,
+          "correct": 10,
+          "accuracy": 0.3125,
+          "mean_generated_tokens": 562.78125,
+          "cap_count": 1
+        },
+        "grouped_residual_reader": {
+          "n": 32,
+          "correct": 14,
+          "accuracy": 0.4375,
+          "mean_generated_tokens": 467.84375,
+          "cap_count": 1
+        },
+        "task_supervised_reader": {
+          "n": 32,
+          "correct": 1,
+          "accuracy": 0.03125,
+          "mean_generated_tokens": 211.5,
+          "cap_count": 1
+        },
+        "hybrid_reader": {
+          "n": 32,
+          "correct": 10,
+          "accuracy": 0.3125,
+          "mean_generated_tokens": 592.40625,
+          "cap_count": 2
+        }
+      },
+      "paired": {
+        "qwen_native": {
+          "both_correct": 10,
+          "new_only": 0,
+          "baseline_only": 21,
+          "both_wrong": 1
+        },
+        "grouped_residual": {
+          "both_correct": 8,
+          "new_only": 2,
+          "baseline_only": 2,
+          "both_wrong": 20
+        },
+        "grouped_residual_reader": {
+          "both_correct": 9,
+          "new_only": 1,
+          "baseline_only": 5,
+          "both_wrong": 17
+        },
+        "task_supervised_reader": {
+          "both_correct": 1,
+          "new_only": 9,
+          "baseline_only": 0,
+          "both_wrong": 22
+        }
+      }
+    },
+    "mmlu_pro": {
+      "metrics": {
+        "qwen_native": {
+          "n": 128,
+          "correct": 52,
+          "accuracy": 0.40625
+        },
+        "new_ufd_stage_b": {
+          "n": 128,
+          "correct": 24,
+          "accuracy": 0.1875
+        },
+        "grouped_full_stage_b": {
+          "n": 128,
+          "correct": 44,
+          "accuracy": 0.34375
+        },
+        "grouped_residual": {
+          "n": 128,
+          "correct": 33,
+          "accuracy": 0.2578125
+        },
+        "grouped_residual_reader": {
+          "n": 128,
+          "correct": 35,
+          "accuracy": 0.2734375
+        },
+        "task_supervised_reader": {
+          "n": 128,
+          "correct": 40,
+          "accuracy": 0.3125
+        },
+        "hybrid_reader": {
+          "n": 128,
+          "correct": 40,
+          "accuracy": 0.3125
+        }
+      },
+      "paired": {
+        "qwen_native": {
+          "both_correct": 23,
+          "new_only": 17,
+          "baseline_only": 29,
+          "both_wrong": 59
+        },
+        "grouped_residual": {
+          "both_correct": 23,
+          "new_only": 17,
+          "baseline_only": 10,
+          "both_wrong": 78
+        },
+        "grouped_residual_reader": {
+          "both_correct": 27,
+          "new_only": 13,
+          "baseline_only": 8,
+          "both_wrong": 80
+        },
+        "task_supervised_reader": {
+          "both_correct": 35,
+          "new_only": 5,
+          "baseline_only": 5,
+          "both_wrong": 83
+        }
+      }
+    },
+    "sciq": {
+      "metrics": {
+        "qwen_native": {
+          "n": 64,
+          "correct": 57,
+          "accuracy": 0.890625
+        },
+        "new_ufd_stage_b": {
+          "n": 64,
+          "correct": 58,
+          "accuracy": 0.90625
+        },
+        "grouped_full_stage_b": {
+          "n": 64,
+          "correct": 57,
+          "accuracy": 0.890625
+        },
+        "grouped_residual": {
+          "n": 64,
+          "correct": 56,
+          "accuracy": 0.875
+        },
+        "grouped_residual_reader": {
+          "n": 64,
+          "correct": 57,
+          "accuracy": 0.890625
+        },
+        "task_supervised_reader": {
+          "n": 64,
+          "correct": 52,
+          "accuracy": 0.8125
+        },
+        "hybrid_reader": {
+          "n": 64,
+          "correct": 54,
+          "accuracy": 0.84375
+        }
+      },
+      "paired": {
+        "qwen_native": {
+          "both_correct": 52,
+          "new_only": 2,
+          "baseline_only": 5,
+          "both_wrong": 5
+        },
+        "grouped_residual": {
+          "both_correct": 52,
+          "new_only": 2,
+          "baseline_only": 4,
+          "both_wrong": 6
+        },
+        "grouped_residual_reader": {
+          "both_correct": 54,
+          "new_only": 0,
+          "baseline_only": 3,
+          "both_wrong": 7
+        },
+        "task_supervised_reader": {
+          "both_correct": 52,
+          "new_only": 2,
+          "baseline_only": 0,
+          "both_wrong": 10
+        }
+      }
+    }
+  },
+  "training": {
+    "manifest_sha256": "247de9c8a048b9ff3b124f37f4cef2509e81ea6299e803880e99858e3277a21b",
+    "status": "completed",
+    "updates": 1024,
+    "checkpoint": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_hybridmcqkl_l3_to_q4_seed1234/runs/reader/epoch4_step1024.pt",
+    "checkpoint_sha256": "b158f8f8f32dacac043347046341143058efe914a531b66650e3e2374d5804b2",
+    "history": [
+      {
+        "epoch": 1,
+        "step": 256,
+        "validation": {
+          "tasks": {
+            "openbookqa": {
+              "n": 16,
+              "loss": 0.6495191113790497,
+              "ce": 0.610258188797161,
+              "kl": 0.3926092628389597,
+              "supervised_positions": 16,
+              "accuracy": 0.75
+            },
+            "arc_challenge": {
+              "n": 16,
+              "loss": 0.4887099989136914,
+              "ce": 0.4443976016045781,
+              "kl": 0.4431239921832457,
+              "supervised_positions": 16,
+              "accuracy": 0.875
+            },
+            "gsm8k": {
+              "n": 16,
+              "loss": 0.1870494121685624,
+              "ce": 0.0,
+              "kl": 0.1870494121685624,
+              "supervised_positions": 128
+            },
+            "mmlu_pro": {
+              "n": 16,
+              "loss": 1.8236248951288871,
+              "ce": 1.6782529831980355,
+              "kl": 1.453719081939198,
+              "supervised_positions": 16,
+              "accuracy": 0.4375
+            }
+          },
+          "macro_loss": 0.7872258543975477,
+          "gsm8k_free_generation": {
+            "n": 16,
+            "correct": 3,
+            "accuracy": 0.1875,
+            "mean_generated_tokens": 302.125,
+            "cap_count": 0,
+            "diagnostic_only": true
+          }
+        }
+      },
+      {
+        "epoch": 2,
+        "step": 512,
+        "validation": {
+          "tasks": {
+            "openbookqa": {
+              "n": 16,
+              "loss": 0.6425148274574894,
+              "ce": 0.6059402190585388,
+              "kl": 0.36574610722163925,
+              "supervised_positions": 16,
+              "accuracy": 0.75
+            },
+            "arc_challenge": {
+              "n": 16,
+              "loss": 0.5360628769230971,
+              "ce": 0.4873731807401782,
+              "kl": 0.48689705800097727,
+              "supervised_positions": 16,
+              "accuracy": 0.875
+            },
+            "gsm8k": {
+              "n": 16,
+              "loss": 0.1881562927737832,
+              "ce": 0.0,
+              "kl": 0.1881562927737832,
+              "supervised_positions": 128
+            },
+            "mmlu_pro": {
+              "n": 16,
+              "loss": 1.9513127608370269,
+              "ce": 1.796651807395392,
+              "kl": 1.5466096834279597,
+              "supervised_positions": 16,
+              "accuracy": 0.375
+            }
+          },
+          "macro_loss": 0.8295116894978491,
+          "gsm8k_free_generation": {
+            "n": 16,
+            "correct": 4,
+            "accuracy": 0.25,
+            "mean_generated_tokens": 317.6875,
+            "cap_count": 0,
+            "diagnostic_only": true
+          }
+        }
+      },
+      {
+        "epoch": 3,
+        "step": 768,
+        "validation": {
+          "tasks": {
+            "openbookqa": {
+              "n": 16,
+              "loss": 0.7321552947978489,
+              "ce": 0.6866016049170867,
+              "kl": 0.4555368207220454,
+              "supervised_positions": 16,
+              "accuracy": 0.6875
+            },
+            "arc_challenge": {
+              "n": 16,
+              "loss": 0.45613070128456457,
+              "ce": 0.4148168351384811,
+              "kl": 0.413138759919093,
+              "supervised_positions": 16,
+              "accuracy": 0.8125
+            },
+            "gsm8k": {
+              "n": 16,
+              "loss": 0.17896387935616076,
+              "ce": 0.0,
+              "kl": 0.17896387935616076,
+              "supervised_positions": 128
+            },
+            "mmlu_pro": {
+              "n": 16,
+              "loss": 1.874819237331394,
+              "ce": 1.7166655554901809,
+              "kl": 1.5815367774339393,
+              "supervised_positions": 16,
+              "accuracy": 0.5
+            }
+          },
+          "macro_loss": 0.8105172781924921,
+          "gsm8k_free_generation": {
+            "n": 16,
+            "correct": 3,
+            "accuracy": 0.1875,
+            "mean_generated_tokens": 304.9375,
+            "cap_count": 0,
+            "diagnostic_only": true
+          }
+        }
+      },
+      {
+        "epoch": 4,
+        "step": 1024,
+        "validation": {
+          "tasks": {
+            "openbookqa": {
+              "n": 16,
+              "loss": 0.6008014916860702,
+              "ce": 0.5801344422216062,
+              "kl": 0.20667047147981066,
+              "supervised_positions": 16,
+              "accuracy": 0.6875
+            },
+            "arc_challenge": {
+              "n": 16,
+              "loss": 0.3116066502261674,
+              "ce": 0.2832842996585896,
+              "kl": 0.28322348504116235,
+              "supervised_positions": 16,
+              "accuracy": 0.875
+            },
+            "gsm8k": {
+              "n": 16,
+              "loss": 0.18517280835658312,
+              "ce": 0.0,
+              "kl": 0.18517280835658312,
+              "supervised_positions": 128
+            },
+            "mmlu_pro": {
+              "n": 16,
+              "loss": 1.963226635256433,
+              "ce": 1.810885685696121,
+              "kl": 1.5234095458945376,
+              "supervised_positions": 16,
+              "accuracy": 0.375
+            }
+          },
+          "macro_loss": 0.7652018963813134,
+          "gsm8k_free_generation": {
+            "n": 16,
+            "correct": 3,
+            "accuracy": 0.1875,
+            "mean_generated_tokens": 307.25,
+            "cap_count": 0,
+            "diagnostic_only": true
+          }
+        }
+      }
+    ],
+    "frozen_ab_unchanged": true,
+    "memory": {
+      "peak_pytorch_allocated_gib": 9.131556034088135,
+      "peak_pytorch_reserved_gib": 9.591796875,
+      "scope": "This process CUDA allocator since load_all; not whole-GPU nvidia-smi peak"
+    }
+  },
+  "caveats": [
+    "Goal is combining MCQ gains with restored GSM behavior; MCQ training can still interfere with GSM through shared Reader parameters.",
+    "GSM native/student mixture,64-token cap and8 positions restored together; not an attribution of the prior supervised run collapse.",
+    "Frozen native-cache Reader evaluation is an interface diagnostic: Reader is enabled only on suffix/continuation, just as for translated cache.",
+    "Diagnostic and generation validation use fixed validation rows, never the formal test split; no automatic test-based checkpoint selection.",
+    "MMLU-Pro remains the existing custom split; Full-Sync includes native body prefill."
+  ]
+}
