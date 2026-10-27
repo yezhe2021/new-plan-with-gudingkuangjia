@@ -1,0 +1,146 @@
+{
+  "config": {
+    "name": "receiver_kv_utility_hotpotqa_overnight_seed1234",
+    "seed": 1234,
+    "reference": "/hy-tmp/yezhe/异构模型/attention_mixed_precision_senderkv_2wiki128_l3_to_q4_frozen_klreader_seed1234",
+    "source_json": "/hy-tmp/yezhe/异构模型/heterogeneous_multidoc_frozen_writers_v0_seed1234/data/hotpot_dev_distractor_v1.json",
+    "previous_hotpot": "/hy-tmp/yezhe/异构模型/nativechat_evidence_kv_baselines_v1_seed1234",
+    "max_evidence_tokens": 1024,
+    "max_sender_tokens": 1536,
+    "max_total_tokens": 1408,
+    "max_new_tokens": 64,
+    "conditions": [
+      "clean",
+      "wrong",
+      "partial50"
+    ],
+    "free_gpu_gib": 24,
+    "disk_reserve_gib": 10,
+    "attention_backend": "sdpa",
+    "training": "Only small CPU utility estimators; Llama, Qwen and Stage-A/B frozen; no Reader",
+    "reader": false,
+    "automatic_upload": false,
+    "automatic_test": true,
+    "scope": "New document-disjoint controlled HotpotQA bridge questions. Train/calibration from official train shard; test from official dev. All previously prepared known Hotpot IDs and document titles excluded. Gold selects complete paragraphs and supplies offline labels only.",
+    "previous_pilot": "/hy-tmp/yezhe/异构模型/receiver_selective_evidencekv_hotpotqa_seed1234",
+    "train_source": "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/data/calibration/sources/hotpot-distractor-train-00000-of-00002.parquet",
+    "counts": {
+      "train": 1024,
+      "calibration": 256,
+      "test": 512
+    },
+    "stress_conditions": [
+      "partial25",
+      "partial75",
+      "gaussian"
+    ],
+    "perturbations": [
+      {
+        "fraction": 0.05,
+        "kind": "random",
+        "seed_index": 0
+      },
+      {
+        "fraction": 0.05,
+        "kind": "block",
+        "seed_index": 0
+      },
+      {
+        "fraction": 0.1,
+        "kind": "random",
+        "seed_index": 0
+      },
+      {
+        "fraction": 0.1,
+        "kind": "block",
+        "seed_index": 0
+      },
+      {
+        "fraction": 0.05,
+        "kind": "random",
+        "seed_index": 1
+      },
+      {
+        "fraction": 0.05,
+        "kind": "block",
+        "seed_index": 1
+      },
+      {
+        "fraction": 0.1,
+        "kind": "random",
+        "seed_index": 1
+      },
+      {
+        "fraction": 0.1,
+        "kind": "block",
+        "seed_index": 1
+      }
+    ],
+    "perturb_generation_audit_count": 8,
+    "cache_cpu_gib": 8,
+    "fit_regularization": [
+      0.1,
+      1.0,
+      10.0
+    ],
+    "fit_threshold_quantiles": [
+      0.1,
+      0.25,
+      0.5,
+      0.75,
+      0.9
+    ],
+    "feature_groups": [
+      "output",
+      "cross",
+      "stability2",
+      "stability4",
+      "stability8"
+    ],
+    "primary_metric": "F1 net gain, EM secondary; independently report EM utility models",
+    "primary_model_family": "utility_stability8",
+    "question_disjoint": true,
+    "document_titles_disjoint": true,
+    "selector": "Output confidence, paired candidate cross-scoring, and receiver-only KV perturbation responses. Selector hyperparameters and threshold calibrated before independent test inference; no access to original evidence, native KV, gold NLL, or corruption identity.",
+    "shared_results": "/hy-tmp/yezhe/异构模型/EXPERIMENT_RESULTS.md",
+    "primary_comparison": "utility_stability8 versus utility_output, utility_cross, calibrated_confidence, and question_gain on the fixed equal clean/wrong/partial50 mixture; unknown corruptions are held-out stress tests"
+  },
+  "config_sha256": "fb36f2d4058896947faf159388803bfcd2cfe40878d639eb3101cee517503c6b",
+  "prepared_sha256": "879fb402bc77caab11c7acbd0b13d7c2131b542d26ddb405f75353bc7516916f",
+  "reference_manifest_sha256": "5c938cb6d4974f4085817ce607057b3347abfddb3aaa8c2b3d51f39e62307b21",
+  "code": {
+    "backend.py": "103e190d07eb8c318ad1838c7b7f915b404664272a7b4cef3da7f653ce2b188c",
+    "pilot_metrics.py": "bc18c033f095186909b3df0c9927e2ca58af30334a69e6e861ff4b296be66e4c",
+    "prepare.py": "640e3df883e13ca7269d83a52ad220e57c9d8bb0d4916d52abf23587c8da5564",
+    "collect.py": "bb4a061f7b677e043b6b4ec7c02311ec5f9012b9c7a3e690de7aa2d5b278053f",
+    "engine.py": "cbb15763208dfec9d5a429928b8a58cde21f648653814e0c9357ed875e9c2a43",
+    "estimators.py": "7c3c6fb4f1db11ac4ec2928f26d2d939fd4bc507fef2daeafe7fde28db6d2f73",
+    "report.py": "42a5ea5722400549600a48c062c99f16d65e7791f172541289fb8fcb28f8a660",
+    "run_pipeline.py": "4db2ea4a097dba35c2e9c9419cf7f78e54b4c024a1077cabcdfaa9b522365e0f"
+  },
+  "checkpoints": {
+    "stage_a": {
+      "path": "/hy-tmp/yezhe/异构模型/grouped_headmix4_l3_to_q4_seed1234/runs/stage_a/best.pt",
+      "sha256": "a9318f4b2f1d9e7981e0e50e2dc88654f0baaf89a080a0746017555c48ba5c84"
+    },
+    "stage_b": {
+      "path": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_l3_to_q4_seed1234/runs/stage_b/last.pt",
+      "sha256": "7e9f602d08409574c8ebe56242a08ba2c6861032b5ed70570a807c5777d775f2"
+    }
+  },
+  "anchor_ids": [
+    151644,
+    872,
+    198,
+    8856
+  ],
+  "data_manifest_sha256": "848763a1edc9c6e29f1f6ff79f6da2dc81b8185439cf1814e6e9e416f7a4ceff",
+  "no_reader_installed": true,
+  "models_frozen": true,
+  "counts": {
+    "train": 1024,
+    "calibration": 256,
+    "test": 512
+  },
+  "frozen_at": "2026-10-27 00:19:30"
+}

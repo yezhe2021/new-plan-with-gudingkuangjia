@@ -1,0 +1,3286 @@
+{
+  "id": "hotpot_5ab92f52554299131ca422a9",
+  "split": "test",
+  "question": "Of what ethnicity is the founder of the Orchestra which debuted on January 1, 1988?",
+  "answer": "Dutch",
+  "donor_id": "hotpot_5a7bf0d75542996dd594b85c",
+  "manifest_sha256": "5ac5a09548542cad2540538fbeb250042c1801a209b54a1d53a8675cd60adcfc",
+  "selector_sha256": "bb8ba610a6cb25da1860181e897fac69bc0e7b82fcbe79c5a678801ecc179c56",
+  "baselines": {
+    "reject": {
+      "prediction": "African American.",
+      "raw_output": "African American.<|im_end|>",
+      "generated_ids": [
+        32,
+        47793,
+        3693,
+        13,
+        151645
+      ],
+      "generated_tokens": 5,
+      "eos": true,
+      "question_logp": -3.214200735092163,
+      "first_entropy": 0.40477246046066284,
+      "mean_entropy": 0.08499095617917192,
+      "first_margin": 2.5,
+      "mean_logp": -0.020480327109294195,
+      "seconds": 0.24013924598693848,
+      "em": 0.0,
+      "f1": 0.0,
+      "answer_token_nll": 6.942492961883545
+    },
+    "compact": {
+      "prediction": "African American.",
+      "raw_output": "African American.<|im_end|>",
+      "generated_ids": [
+        32,
+        47793,
+        3693,
+        13,
+        151645
+      ],
+      "generated_tokens": 5,
+      "eos": true,
+      "question_logp": null,
+      "first_entropy": 0.502265989780426,
+      "mean_entropy": 0.10515963179350366,
+      "first_margin": 2.09375,
+      "mean_logp": -0.028211416849626404,
+      "seconds": 0.2460329532623291,
+      "em": 0.0,
+      "f1": 0.0,
+      "answer_token_nll": 6.630160331726074
+    },
+    "native": {
+      "prediction": "Dutch.",
+      "raw_output": "Dutch.<|im_end|>",
+      "generated_ids": [
+        35,
+        14061,
+        13,
+        151645
+      ],
+      "generated_tokens": 4,
+      "eos": true,
+      "question_logp": -2.4043078422546387,
+      "first_entropy": 0.0001679884153418243,
+      "mean_entropy": 0.0009570381880621426,
+      "first_margin": 11.40625,
+      "mean_logp": -0.00010670089244513292,
+      "seconds": 0.1968846321105957,
+      "em": 1.0,
+      "f1": 1.0,
+      "answer_token_nll": 7.271723006851971e-06
+    }
+  },
+  "conditions": {
+    "clean": {
+      "feature_groups": {
+        "output": {
+          "a_question_logp": -2.1483988761901855,
+          "a_first_entropy": 1.7564425468444824,
+          "a_mean_entropy": 0.5922366899321787,
+          "a_first_margin": 0.390625,
+          "a_mean_logp": -0.3500433722959618,
+          "a_generated_tokens": 3.0,
+          "a_eos": 1.0,
+          "r_question_logp": -3.214200735092163,
+          "r_first_entropy": 0.40477246046066284,
+          "r_mean_entropy": 0.08499095617917192,
+          "r_first_margin": 2.5,
+          "r_mean_logp": -0.020480327109294195,
+          "r_generated_tokens": 5.0,
+          "r_eos": 1.0,
+          "question_gain": 1.0658018589019775,
+          "entropy_gain": -1.3516700863838196,
+          "mean_logp_gain": -0.32956304518666757,
+          "answer_disagreement": 1.0,
+          "answer_overlap": 0.0
+        },
+        "cross": {
+          "accept_candidate0_mean": -0.5250482502160594,
+          "accept_candidate0_sum": -1.0500965004321188,
+          "accept_candidate1_mean": -0.41822504031006247,
+          "accept_candidate1_sum": -1.6729001612402499,
+          "accept_margin": -0.10682320990599692,
+          "reject_candidate0_mean": -5.456203331952565,
+          "reject_candidate0_sum": -10.91240666390513,
+          "reject_candidate1_mean": -0.025590448068214755,
+          "reject_candidate1_sum": -0.10236179227285902,
+          "reject_margin": -5.430612883884351,
+          "margin_gain": 5.323789673978354,
+          "accept_answer_support_gain": 4.931155081736506,
+          "reject_answer_support_gain": -0.3926345922418477
+        },
+        "stability2": {
+          "all_margin_mean": -0.06294750480446965,
+          "all_margin_std": 0.02292823523748666,
+          "all_margin_min": -0.0858757400419563,
+          "all_margin_max": -0.040019269566982985,
+          "all_margin_shift": 0.043875705101527274,
+          "all_margin_abs_shift": 0.043875705101527274,
+          "all_sign_flip": 0.0,
+          "all_accept_preference": 0.0,
+          "all_accept_support_shift": 0.04056977602886036,
+          "all_accept_support_std": 0.021622801257763058,
+          "all_reject_support_shift": -0.0033059290726669133,
+          "all_reject_support_std": 0.0013054339797236025,
+          "random_margin_mean": -0.0858757400419563,
+          "random_margin_std": 0.0,
+          "random_margin_min": -0.0858757400419563,
+          "random_margin_max": -0.0858757400419563,
+          "random_margin_shift": 0.020947469864040613,
+          "random_margin_abs_shift": 0.020947469864040613,
+          "random_sign_flip": 0.0,
+          "random_accept_preference": 0.0,
+          "random_accept_support_shift": 0.018946974771097302,
+          "random_accept_support_std": 0.0,
+          "random_reject_support_shift": -0.0020004950929433107,
+          "random_reject_support_std": 0.0,
+          "block_margin_mean": -0.040019269566982985,
+          "block_margin_std": 0.0,
+          "block_margin_min": -0.040019269566982985,
+          "block_margin_max": -0.040019269566982985,
+          "block_margin_shift": 0.06680394033901393,
+          "block_margin_abs_shift": 0.06680394033901393,
+          "block_sign_flip": 0.0,
+          "block_accept_preference": 0.0,
+          "block_accept_support_shift": 0.06219257728662342,
+          "block_accept_support_std": 0.0,
+          "block_reject_support_shift": -0.004611363052390516,
+          "block_reject_support_std": 0.0
+        },
+        "stability4": {
+          "all_margin_mean": 0.033881820971146226,
+          "all_margin_std": 0.1072549745686735,
+          "all_margin_min": -0.0858757400419563,
+          "all_margin_max": 0.19178256811574101,
+          "all_margin_shift": 0.14070503087714314,
+          "all_margin_abs_shift": 0.14070503087714314,
+          "all_sign_flip": 0.5,
+          "all_accept_preference": 0.5,
+          "all_accept_support_shift": 0.07547717427951284,
+          "all_accept_support_std": 0.06210342698879604,
+          "all_reject_support_shift": -0.06522785659763031,
+          "all_reject_support_std": 0.06220469236770296,
+          "random_margin_mean": 0.052953414036892354,
+          "random_margin_std": 0.13882915407884866,
+          "random_margin_min": -0.0858757400419563,
+          "random_margin_max": 0.19178256811574101,
+          "random_margin_shift": 0.15977662394288927,
+          "random_margin_abs_shift": 0.15977662394288927,
+          "random_sign_flip": 0.5,
+          "random_accept_preference": 0.5,
+          "random_accept_support_shift": 0.09933951316634193,
+          "random_accept_support_std": 0.08039253839524463,
+          "random_reject_support_shift": -0.06043711077654734,
+          "random_reject_support_std": 0.05843661568360403,
+          "block_margin_mean": 0.014810227905400097,
+          "block_margin_std": 0.05482949747238308,
+          "block_margin_min": -0.040019269566982985,
+          "block_margin_max": 0.06963972537778318,
+          "block_margin_shift": 0.12163343781139702,
+          "block_margin_abs_shift": 0.12163343781139702,
+          "block_sign_flip": 0.5,
+          "block_accept_preference": 0.5,
+          "block_accept_support_shift": 0.051614835392683744,
+          "block_accept_support_std": 0.010577741893939674,
+          "block_reject_support_shift": -0.07001860241871327,
+          "block_reject_support_std": 0.06540723936632276
+        },
+        "stability8": {
+          "all_margin_mean": -0.09400132831069641,
+          "all_margin_std": 0.2178391860557765,
+          "all_margin_min": -0.5586108893621713,
+          "all_margin_max": 0.19178256811574101,
+          "all_margin_shift": 0.01282188159530051,
+          "all_margin_abs_shift": 0.17268831896944903,
+          "all_sign_flip": 0.375,
+          "all_accept_preference": 0.375,
+          "all_accept_support_shift": -0.0054557729890802875,
+          "all_accept_support_std": 0.13700501765913484,
+          "all_reject_support_shift": -0.018277654584380798,
+          "all_reject_support_std": 0.08708117477909634,
+          "random_margin_mean": -0.15564282683772035,
+          "random_margin_std": 0.26840149262603225,
+          "random_margin_min": -0.5586108893621713,
+          "random_margin_max": 0.19178256811574101,
+          "random_margin_shift": -0.04881961693172343,
+          "random_margin_abs_shift": 0.2085962408746127,
+          "random_sign_flip": 0.25,
+          "random_accept_preference": 0.25,
+          "random_accept_support_shift": -0.040466719248797745,
+          "random_accept_support_std": 0.17006701096028365,
+          "random_reject_support_shift": 0.008352897682925686,
+          "random_reject_support_std": 0.09963020571640359,
+          "block_margin_mean": -0.03235982978367247,
+          "block_margin_std": 0.12356824850134517,
+          "block_margin_min": -0.23145724378991872,
+          "block_margin_max": 0.07239746884442866,
+          "block_margin_shift": 0.07446338012232445,
+          "block_margin_abs_shift": 0.13678039706428535,
+          "block_sign_flip": 0.5,
+          "block_accept_preference": 0.5,
+          "block_accept_support_shift": 0.02955517327063717,
+          "block_accept_support_std": 0.07852661201524491,
+          "block_reject_support_shift": -0.04490820685168728,
+          "block_reject_support_std": 0.06181999258005993
+        }
+      },
+      "candidate_scores": {
+        "accept": [
+          {
+            "mean": -0.5250482502160594,
+            "sum": -1.0500965004321188,
+            "tokens": 2
+          },
+          {
+            "mean": -0.41822504031006247,
+            "sum": -1.6729001612402499,
+            "tokens": 4
+          }
+        ],
+        "reject": [
+          {
+            "mean": -5.456203331952565,
+            "sum": -10.91240666390513,
+            "tokens": 2
+          },
+          {
+            "mean": -0.025590448068214755,
+            "sum": -0.10236179227285902,
+            "tokens": 4
+          }
+        ]
+      },
+      "perturbations": [
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "random",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            18,
+            27,
+            54,
+            66,
+            90,
+            147,
+            187,
+            193,
+            197,
+            208,
+            212
+          ],
+          "scores": [
+            {
+              "mean": -0.5061012754449621,
+              "sum": -1.0122025508899242,
+              "tokens": 2
+            },
+            {
+              "mean": -0.4202255354030058,
+              "sum": -1.6809021416120231,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "block",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            191,
+            192,
+            193,
+            194,
+            195,
+            196,
+            197,
+            198,
+            199,
+            200,
+            201
+          ],
+          "scores": [
+            {
+              "mean": -0.46285567292943597,
+              "sum": -0.9257113458588719,
+              "tokens": 2
+            },
+            {
+              "mean": -0.422836403362453,
+              "sum": -1.691345613449812,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "random",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            4,
+            30,
+            34,
+            36,
+            38,
+            60,
+            63,
+            67,
+            76,
+            79,
+            85,
+            94,
+            100,
+            119,
+            129,
+            150,
+            166,
+            175,
+            176,
+            188,
+            205,
+            214
+          ],
+          "scores": [
+            {
+              "mean": -0.34531619865447283,
+              "sum": -0.6906323973089457,
+              "tokens": 2
+            },
+            {
+              "mean": -0.5370987667702138,
+              "sum": -2.1483950670808554,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "block",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83
+          ],
+          "scores": [
+            {
+              "mean": -0.4840111567173153,
+              "sum": -0.9680223134346306,
+              "tokens": 2
+            },
+            {
+              "mean": -0.5536508820950985,
+              "sum": -2.214603528380394,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "random",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            4,
+            26,
+            31,
+            39,
+            60,
+            72,
+            77,
+            86,
+            92,
+            154,
+            207
+          ],
+          "scores": [
+            {
+              "mean": -0.5944561895448714,
+              "sum": -1.188912379089743,
+              "tokens": 2
+            },
+            {
+              "mean": -0.42458894348237664,
+              "sum": -1.6983557739295065,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "block",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            145,
+            146,
+            147,
+            148,
+            149,
+            150,
+            151,
+            152,
+            153,
+            154,
+            155
+          ],
+          "scores": [
+            {
+              "mean": -0.623607967980206,
+              "sum": -1.247215935960412,
+              "tokens": 2
+            },
+            {
+              "mean": -0.3921507241902873,
+              "sum": -1.5686028967611492,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "random",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            8,
+            9,
+            29,
+            30,
+            50,
+            59,
+            64,
+            72,
+            82,
+            107,
+            108,
+            128,
+            136,
+            140,
+            143,
+            163,
+            167,
+            171,
+            179,
+            184,
+            189,
+            213
+          ],
+          "scores": [
+            {
+              "mean": -0.8161862142151222,
+              "sum": -1.6323724284302443,
+              "tokens": 2
+            },
+            {
+              "mean": -0.25757532485295087,
+              "sum": -1.0303012994118035,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "block",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            166,
+            167,
+            168,
+            169,
+            170,
+            171,
+            172,
+            173,
+            174,
+            175,
+            176,
+            177,
+            178,
+            179,
+            180,
+            181,
+            182,
+            183,
+            184,
+            185,
+            186,
+            187
+          ],
+          "scores": [
+            {
+              "mean": -0.41149751015473157,
+              "sum": -0.8229950203094631,
+              "tokens": 2
+            },
+            {
+              "mean": -0.48389497899916023,
+              "sum": -1.935579915996641,
+              "tokens": 4
+            }
+          ]
+        }
+      ],
+      "feature_seconds": 1.565624713897705,
+      "forward_budget": {
+        "perturbations": 8,
+        "candidate_sequences_per_probe": 2
+      },
+      "generation_audit": false,
+      "accept": {
+        "prediction": "White.",
+        "raw_output": "White.<|im_end|>",
+        "generated_ids": [
+          14075,
+          13,
+          151645
+        ],
+        "generated_tokens": 3,
+        "eos": true,
+        "question_logp": -2.1483988761901855,
+        "first_entropy": 1.7564425468444824,
+        "mean_entropy": 0.5922366899321787,
+        "first_margin": 0.390625,
+        "mean_logp": -0.3500433722959618,
+        "seconds": 0.1505122184753418,
+        "em": 0.0,
+        "f1": 0.0,
+        "answer_token_nll": 4.18487024307251
+      },
+      "reject": {
+        "prediction": "African American.",
+        "raw_output": "African American.<|im_end|>",
+        "generated_ids": [
+          32,
+          47793,
+          3693,
+          13,
+          151645
+        ],
+        "generated_tokens": 5,
+        "eos": true,
+        "question_logp": -3.214200735092163,
+        "first_entropy": 0.40477246046066284,
+        "mean_entropy": 0.08499095617917192,
+        "first_margin": 2.5,
+        "mean_logp": -0.020480327109294195,
+        "seconds": 0.24013924598693848,
+        "em": 0.0,
+        "f1": 0.0,
+        "answer_token_nll": 6.942492961883545
+      },
+      "utility_em": 0.0,
+      "utility_f1": 0.0,
+      "case_seconds": 1.813615322113037
+    },
+    "wrong": {
+      "feature_groups": {
+        "output": {
+          "a_question_logp": -3.0709991455078125,
+          "a_first_entropy": 1.3260550498962402,
+          "a_mean_entropy": 0.28579238571983295,
+          "a_first_margin": 0.578125,
+          "a_mean_logp": -0.15376711466160486,
+          "a_generated_tokens": 5.0,
+          "a_eos": 1.0,
+          "r_question_logp": -3.214200735092163,
+          "r_first_entropy": 0.40477246046066284,
+          "r_mean_entropy": 0.08499095617917192,
+          "r_first_margin": 2.5,
+          "r_mean_logp": -0.020480327109294195,
+          "r_generated_tokens": 5.0,
+          "r_eos": 1.0,
+          "question_gain": 0.14320158958435059,
+          "entropy_gain": -0.9212825894355774,
+          "mean_logp_gain": -0.13328678755231066,
+          "answer_disagreement": 0.0,
+          "answer_overlap": 1.0
+        },
+        "cross": {
+          "accept_candidate0_mean": -0.19214395982271526,
+          "accept_candidate0_sum": -0.768575839290861,
+          "accept_candidate1_mean": -0.19214395982271526,
+          "accept_candidate1_sum": -0.768575839290861,
+          "accept_margin": 0.0,
+          "reject_candidate0_mean": -0.025590448068214755,
+          "reject_candidate0_sum": -0.10236179227285902,
+          "reject_candidate1_mean": -0.025590448068214755,
+          "reject_candidate1_sum": -0.10236179227285902,
+          "reject_margin": 0.0,
+          "margin_gain": 0.0,
+          "accept_answer_support_gain": -0.1665535117545005,
+          "reject_answer_support_gain": -0.1665535117545005
+        },
+        "stability2": {
+          "all_margin_mean": 0.0,
+          "all_margin_std": 0.0,
+          "all_margin_min": 0.0,
+          "all_margin_max": 0.0,
+          "all_margin_shift": 0.0,
+          "all_margin_abs_shift": 0.0,
+          "all_sign_flip": 0.0,
+          "all_accept_preference": 0.0,
+          "all_accept_support_shift": -0.0011736557717085816,
+          "all_accept_support_std": 0.0022768109556636773,
+          "all_reject_support_shift": -0.0011736557717085816,
+          "all_reject_support_std": 0.0022768109556636773,
+          "random_margin_mean": 0.0,
+          "random_margin_std": 0.0,
+          "random_margin_min": 0.0,
+          "random_margin_max": 0.0,
+          "random_margin_shift": 0.0,
+          "random_margin_abs_shift": 0.0,
+          "random_sign_flip": 0.0,
+          "random_accept_preference": 0.0,
+          "random_accept_support_shift": 0.0011031551839550957,
+          "random_accept_support_std": 0.0,
+          "random_reject_support_shift": 0.0011031551839550957,
+          "random_reject_support_std": 0.0,
+          "block_margin_mean": 0.0,
+          "block_margin_std": 0.0,
+          "block_margin_min": 0.0,
+          "block_margin_max": 0.0,
+          "block_margin_shift": 0.0,
+          "block_margin_abs_shift": 0.0,
+          "block_sign_flip": 0.0,
+          "block_accept_preference": 0.0,
+          "block_accept_support_shift": -0.003450466727372259,
+          "block_accept_support_std": 0.0,
+          "block_reject_support_shift": -0.003450466727372259,
+          "block_reject_support_std": 0.0
+        },
+        "stability4": {
+          "all_margin_mean": 0.0,
+          "all_margin_std": 0.0,
+          "all_margin_min": 0.0,
+          "all_margin_max": 0.0,
+          "all_margin_shift": 0.0,
+          "all_margin_abs_shift": 0.0,
+          "all_sign_flip": 0.0,
+          "all_accept_preference": 0.0,
+          "all_accept_support_shift": 0.013480426921887556,
+          "all_accept_support_std": 0.021451784584582897,
+          "all_reject_support_shift": 0.013480426921887556,
+          "all_reject_support_std": 0.021451784584582897,
+          "random_margin_mean": 0.0,
+          "random_margin_std": 0.0,
+          "random_margin_min": 0.0,
+          "random_margin_max": 0.0,
+          "random_margin_shift": 0.0,
+          "random_margin_abs_shift": 0.0,
+          "random_sign_flip": 0.0,
+          "random_accept_preference": 0.0,
+          "random_accept_support_shift": 0.025638019942562096,
+          "random_accept_support_std": 0.024534864758607,
+          "random_reject_support_shift": 0.025638019942562096,
+          "random_reject_support_std": 0.024534864758607,
+          "block_margin_mean": 0.0,
+          "block_margin_std": 0.0,
+          "block_margin_min": 0.0,
+          "block_margin_max": 0.0,
+          "block_margin_shift": 0.0,
+          "block_margin_abs_shift": 0.0,
+          "block_sign_flip": 0.0,
+          "block_accept_preference": 0.0,
+          "block_accept_support_shift": 0.0013228339012130164,
+          "block_accept_support_std": 0.004773300628585275,
+          "block_reject_support_shift": 0.0013228339012130164,
+          "block_reject_support_std": 0.004773300628585275
+        },
+        "stability8": {
+          "all_margin_mean": 0.0,
+          "all_margin_std": 0.0,
+          "all_margin_min": 0.0,
+          "all_margin_max": 0.0,
+          "all_margin_shift": 0.0,
+          "all_margin_abs_shift": 0.0,
+          "all_sign_flip": 0.0,
+          "all_accept_preference": 0.0,
+          "all_accept_support_shift": 0.0012703306783805601,
+          "all_accept_support_std": 0.027994936801710685,
+          "all_reject_support_shift": 0.0012703306783805601,
+          "all_reject_support_std": 0.027994936801710685,
+          "random_margin_mean": 0.0,
+          "random_margin_std": 0.0,
+          "random_margin_min": 0.0,
+          "random_margin_max": 0.0,
+          "random_margin_shift": 0.0,
+          "random_margin_abs_shift": 0.0,
+          "random_sign_flip": 0.0,
+          "random_accept_preference": 0.0,
+          "random_accept_support_shift": -0.0019901953237422276,
+          "random_accept_support_std": 0.0389749717373227,
+          "random_reject_support_shift": -0.0019901953237422276,
+          "random_reject_support_std": 0.0389749717373227,
+          "block_margin_mean": 0.0,
+          "block_margin_std": 0.0,
+          "block_margin_min": 0.0,
+          "block_margin_max": 0.0,
+          "block_margin_shift": 0.0,
+          "block_margin_abs_shift": 0.0,
+          "block_sign_flip": 0.0,
+          "block_accept_preference": 0.0,
+          "block_accept_support_shift": 0.004530856680503348,
+          "block_accept_support_std": 0.005207925836396858,
+          "block_reject_support_shift": 0.004530856680503348,
+          "block_reject_support_std": 0.005207925836396858
+        }
+      },
+      "candidate_scores": {
+        "accept": [
+          {
+            "mean": -0.19214395982271526,
+            "sum": -0.768575839290861,
+            "tokens": 4
+          },
+          {
+            "mean": -0.19214395982271526,
+            "sum": -0.768575839290861,
+            "tokens": 4
+          }
+        ],
+        "reject": [
+          {
+            "mean": -0.025590448068214755,
+            "sum": -0.10236179227285902,
+            "tokens": 4
+          },
+          {
+            "mean": -0.025590448068214755,
+            "sum": -0.10236179227285902,
+            "tokens": 4
+          }
+        ]
+      },
+      "perturbations": [
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "random",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            18,
+            27,
+            54,
+            66,
+            90,
+            147,
+            187,
+            193,
+            197,
+            208,
+            212
+          ],
+          "scores": [
+            {
+              "mean": -0.19104080463876016,
+              "sum": -0.7641632185550407,
+              "tokens": 4
+            },
+            {
+              "mean": -0.19104080463876016,
+              "sum": -0.7641632185550407,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "block",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            191,
+            192,
+            193,
+            194,
+            195,
+            196,
+            197,
+            198,
+            199,
+            200,
+            201
+          ],
+          "scores": [
+            {
+              "mean": -0.19559442655008752,
+              "sum": -0.7823777062003501,
+              "tokens": 4
+            },
+            {
+              "mean": -0.19559442655008752,
+              "sum": -0.7823777062003501,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "random",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            4,
+            30,
+            34,
+            36,
+            38,
+            60,
+            63,
+            67,
+            76,
+            79,
+            85,
+            94,
+            100,
+            119,
+            129,
+            150,
+            166,
+            175,
+            176,
+            188,
+            205,
+            214
+          ],
+          "scores": [
+            {
+              "mean": -0.14197107512154616,
+              "sum": -0.5678843004861847,
+              "tokens": 4
+            },
+            {
+              "mean": -0.14197107512154616,
+              "sum": -0.5678843004861847,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "block",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83
+          ],
+          "scores": [
+            {
+              "mean": -0.18604782529291697,
+              "sum": -0.7441913011716679,
+              "tokens": 4
+            },
+            {
+              "mean": -0.18604782529291697,
+              "sum": -0.7441913011716679,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "random",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            4,
+            26,
+            31,
+            39,
+            60,
+            72,
+            77,
+            86,
+            92,
+            154,
+            207
+          ],
+          "scores": [
+            {
+              "mean": -0.19160444114822894,
+              "sum": -0.7664177645929158,
+              "tokens": 4
+            },
+            {
+              "mean": -0.19160444114822894,
+              "sum": -0.7664177645929158,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "block",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            145,
+            146,
+            147,
+            148,
+            149,
+            150,
+            151,
+            152,
+            153,
+            154,
+            155
+          ],
+          "scores": [
+            {
+              "mean": -0.18110693484777585,
+              "sum": -0.7244277393911034,
+              "tokens": 4
+            },
+            {
+              "mean": -0.18110693484777585,
+              "sum": -0.7244277393911034,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "random",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            8,
+            9,
+            29,
+            30,
+            50,
+            59,
+            64,
+            72,
+            82,
+            107,
+            108,
+            128,
+            136,
+            140,
+            143,
+            163,
+            167,
+            171,
+            179,
+            184,
+            189,
+            213
+          ],
+          "scores": [
+            {
+              "mean": -0.2519202996772947,
+              "sum": -1.0076811987091787,
+              "tokens": 4
+            },
+            {
+              "mean": -0.2519202996772947,
+              "sum": -1.0076811987091787,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "block",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            166,
+            167,
+            168,
+            169,
+            170,
+            171,
+            172,
+            173,
+            174,
+            175,
+            176,
+            177,
+            178,
+            179,
+            180,
+            181,
+            182,
+            183,
+            184,
+            185,
+            186,
+            187
+          ],
+          "scores": [
+            {
+              "mean": -0.18770322587806731,
+              "sum": -0.7508129035122693,
+              "tokens": 4
+            },
+            {
+              "mean": -0.18770322587806731,
+              "sum": -0.7508129035122693,
+              "tokens": 4
+            }
+          ]
+        }
+      ],
+      "feature_seconds": 1.0417048931121826,
+      "forward_budget": {
+        "perturbations": 8,
+        "candidate_sequences_per_probe": 2
+      },
+      "generation_audit": false,
+      "accept": {
+        "prediction": "African American.",
+        "raw_output": "African American.<|im_end|>",
+        "generated_ids": [
+          32,
+          47793,
+          3693,
+          13,
+          151645
+        ],
+        "generated_tokens": 5,
+        "eos": true,
+        "question_logp": -3.0709991455078125,
+        "first_entropy": 1.3260550498962402,
+        "mean_entropy": 0.28579238571983295,
+        "first_margin": 0.578125,
+        "mean_logp": -0.15376711466160486,
+        "seconds": 0.24655747413635254,
+        "em": 0.0,
+        "f1": 0.0,
+        "answer_token_nll": 6.291439533233643
+      },
+      "reject": {
+        "prediction": "African American.",
+        "raw_output": "African American.<|im_end|>",
+        "generated_ids": [
+          32,
+          47793,
+          3693,
+          13,
+          151645
+        ],
+        "generated_tokens": 5,
+        "eos": true,
+        "question_logp": -3.214200735092163,
+        "first_entropy": 0.40477246046066284,
+        "mean_entropy": 0.08499095617917192,
+        "first_margin": 2.5,
+        "mean_logp": -0.020480327109294195,
+        "seconds": 0.24013924598693848,
+        "em": 0.0,
+        "f1": 0.0,
+        "answer_token_nll": 6.942492961883545
+      },
+      "utility_em": 0.0,
+      "utility_f1": 0.0,
+      "case_seconds": 1.413991928100586
+    },
+    "partial50": {
+      "feature_groups": {
+        "output": {
+          "a_question_logp": -2.446194648742676,
+          "a_first_entropy": 1.6732083559036255,
+          "a_mean_entropy": 0.36825939750124237,
+          "a_first_margin": 0.0,
+          "a_mean_logp": -0.22526972283194482,
+          "a_generated_tokens": 5.0,
+          "a_eos": 1.0,
+          "r_question_logp": -3.214200735092163,
+          "r_first_entropy": 0.40477246046066284,
+          "r_mean_entropy": 0.08499095617917192,
+          "r_first_margin": 2.5,
+          "r_mean_logp": -0.020480327109294195,
+          "r_generated_tokens": 5.0,
+          "r_eos": 1.0,
+          "question_gain": 0.7680060863494873,
+          "entropy_gain": -1.2684358954429626,
+          "mean_logp_gain": -0.20478939572265062,
+          "answer_disagreement": 0.0,
+          "answer_overlap": 1.0
+        },
+        "cross": {
+          "accept_candidate0_mean": -0.28168715626816265,
+          "accept_candidate0_sum": -1.1267486250726506,
+          "accept_candidate1_mean": -0.28168715626816265,
+          "accept_candidate1_sum": -1.1267486250726506,
+          "accept_margin": 0.0,
+          "reject_candidate0_mean": -0.025590448068214755,
+          "reject_candidate0_sum": -0.10236179227285902,
+          "reject_candidate1_mean": -0.025590448068214755,
+          "reject_candidate1_sum": -0.10236179227285902,
+          "reject_margin": 0.0,
+          "margin_gain": 0.0,
+          "accept_answer_support_gain": -0.2560967081999479,
+          "reject_answer_support_gain": -0.2560967081999479
+        },
+        "stability2": {
+          "all_margin_mean": 0.0,
+          "all_margin_std": 0.0,
+          "all_margin_min": 0.0,
+          "all_margin_max": 0.0,
+          "all_margin_shift": 0.0,
+          "all_margin_abs_shift": 0.0,
+          "all_sign_flip": 0.0,
+          "all_accept_preference": 0.0,
+          "all_accept_support_shift": -0.0066609823843464255,
+          "all_accept_support_std": 0.007486852759029716,
+          "all_reject_support_shift": -0.0066609823843464255,
+          "all_reject_support_std": 0.007486852759029716,
+          "random_margin_mean": 0.0,
+          "random_margin_std": 0.0,
+          "random_margin_min": 0.0,
+          "random_margin_max": 0.0,
+          "random_margin_shift": 0.0,
+          "random_margin_abs_shift": 0.0,
+          "random_sign_flip": 0.0,
+          "random_accept_preference": 0.0,
+          "random_accept_support_shift": 0.0008258703746832907,
+          "random_accept_support_std": 0.0,
+          "random_reject_support_shift": 0.0008258703746832907,
+          "random_reject_support_std": 0.0,
+          "block_margin_mean": 0.0,
+          "block_margin_std": 0.0,
+          "block_margin_min": 0.0,
+          "block_margin_max": 0.0,
+          "block_margin_shift": 0.0,
+          "block_margin_abs_shift": 0.0,
+          "block_sign_flip": 0.0,
+          "block_accept_preference": 0.0,
+          "block_accept_support_shift": -0.014147835143376142,
+          "block_accept_support_std": 0.0,
+          "block_reject_support_shift": -0.014147835143376142,
+          "block_reject_support_std": 0.0
+        },
+        "stability4": {
+          "all_margin_mean": 0.0,
+          "all_margin_std": 0.0,
+          "all_margin_min": 0.0,
+          "all_margin_max": 0.0,
+          "all_margin_shift": 0.0,
+          "all_margin_abs_shift": 0.0,
+          "all_sign_flip": 0.0,
+          "all_accept_preference": 0.0,
+          "all_accept_support_shift": 0.021643475265591405,
+          "all_accept_support_std": 0.03130187175259872,
+          "all_reject_support_shift": 0.021643475265591405,
+          "all_reject_support_std": 0.03130187175259872,
+          "random_margin_mean": 0.0,
+          "random_margin_std": 0.0,
+          "random_margin_min": 0.0,
+          "random_margin_max": 0.0,
+          "random_margin_shift": 0.0,
+          "random_margin_abs_shift": 0.0,
+          "random_sign_flip": 0.0,
+          "random_accept_preference": 0.0,
+          "random_accept_support_shift": 0.01670823901076801,
+          "random_accept_support_std": 0.01588236863608472,
+          "random_reject_support_shift": 0.01670823901076801,
+          "random_reject_support_std": 0.01588236863608472,
+          "block_margin_mean": 0.0,
+          "block_margin_std": 0.0,
+          "block_margin_min": 0.0,
+          "block_margin_max": 0.0,
+          "block_margin_shift": 0.0,
+          "block_margin_abs_shift": 0.0,
+          "block_sign_flip": 0.0,
+          "block_accept_preference": 0.0,
+          "block_accept_support_shift": 0.0265787115204148,
+          "block_accept_support_std": 0.04072654666379094,
+          "block_reject_support_shift": 0.0265787115204148,
+          "block_reject_support_std": 0.04072654666379094
+        },
+        "stability8": {
+          "all_margin_mean": 0.0,
+          "all_margin_std": 0.0,
+          "all_margin_min": 0.0,
+          "all_margin_max": 0.0,
+          "all_margin_shift": 0.0,
+          "all_margin_abs_shift": 0.0,
+          "all_sign_flip": 0.0,
+          "all_accept_preference": 0.0,
+          "all_accept_support_shift": -0.00037835216062376276,
+          "all_accept_support_std": 0.04187411553767914,
+          "all_reject_support_shift": -0.00037835216062376276,
+          "all_reject_support_std": 0.04187411553767914,
+          "random_margin_mean": 0.0,
+          "random_margin_std": 0.0,
+          "random_margin_min": 0.0,
+          "random_margin_max": 0.0,
+          "random_margin_shift": 0.0,
+          "random_margin_abs_shift": 0.0,
+          "random_sign_flip": 0.0,
+          "random_accept_preference": 0.0,
+          "random_accept_support_shift": -0.0015585419751005247,
+          "random_accept_support_std": 0.03004236967755522,
+          "random_reject_support_shift": -0.0015585419751005247,
+          "random_reject_support_std": 0.03004236967755522,
+          "block_margin_mean": 0.0,
+          "block_margin_std": 0.0,
+          "block_margin_min": 0.0,
+          "block_margin_max": 0.0,
+          "block_margin_shift": 0.0,
+          "block_margin_abs_shift": 0.0,
+          "block_sign_flip": 0.0,
+          "block_accept_preference": 0.0,
+          "block_accept_support_shift": 0.0008018376538529992,
+          "block_accept_support_std": 0.05100542551813997,
+          "block_reject_support_shift": 0.0008018376538529992,
+          "block_reject_support_std": 0.05100542551813997
+        }
+      },
+      "candidate_scores": {
+        "accept": [
+          {
+            "mean": -0.28168715626816265,
+            "sum": -1.1267486250726506,
+            "tokens": 4
+          },
+          {
+            "mean": -0.28168715626816265,
+            "sum": -1.1267486250726506,
+            "tokens": 4
+          }
+        ],
+        "reject": [
+          {
+            "mean": -0.025590448068214755,
+            "sum": -0.10236179227285902,
+            "tokens": 4
+          },
+          {
+            "mean": -0.025590448068214755,
+            "sum": -0.10236179227285902,
+            "tokens": 4
+          }
+        ]
+      },
+      "perturbations": [
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "random",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            18,
+            27,
+            54,
+            66,
+            90,
+            147,
+            187,
+            193,
+            197,
+            208,
+            212
+          ],
+          "scores": [
+            {
+              "mean": -0.28086128589347936,
+              "sum": -1.1234451435739174,
+              "tokens": 4
+            },
+            {
+              "mean": -0.28086128589347936,
+              "sum": -1.1234451435739174,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "block",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            191,
+            192,
+            193,
+            194,
+            195,
+            196,
+            197,
+            198,
+            199,
+            200,
+            201
+          ],
+          "scores": [
+            {
+              "mean": -0.2958349914115388,
+              "sum": -1.1833399656461552,
+              "tokens": 4
+            },
+            {
+              "mean": -0.2958349914115388,
+              "sum": -1.1833399656461552,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "random",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            4,
+            30,
+            34,
+            36,
+            38,
+            60,
+            63,
+            67,
+            76,
+            79,
+            85,
+            94,
+            100,
+            119,
+            129,
+            150,
+            166,
+            175,
+            176,
+            188,
+            205,
+            214
+          ],
+          "scores": [
+            {
+              "mean": -0.24909654862130992,
+              "sum": -0.9963861944852397,
+              "tokens": 4
+            },
+            {
+              "mean": -0.24909654862130992,
+              "sum": -0.9963861944852397,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "block",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83
+          ],
+          "scores": [
+            {
+              "mean": -0.2143818980839569,
+              "sum": -0.8575275923358276,
+              "tokens": 4
+            },
+            {
+              "mean": -0.2143818980839569,
+              "sum": -0.8575275923358276,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "random",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            4,
+            26,
+            31,
+            39,
+            60,
+            72,
+            77,
+            86,
+            92,
+            154,
+            207
+          ],
+          "scores": [
+            {
+              "mean": -0.3312696253124159,
+              "sum": -1.3250785012496635,
+              "tokens": 4
+            },
+            {
+              "mean": -0.3312696253124159,
+              "sum": -1.3250785012496635,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "block",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            145,
+            146,
+            147,
+            148,
+            149,
+            150,
+            151,
+            152,
+            153,
+            154,
+            155
+          ],
+          "scores": [
+            {
+              "mean": -0.2595924483903218,
+              "sum": -1.0383697935612872,
+              "tokens": 4
+            },
+            {
+              "mean": -0.2595924483903218,
+              "sum": -1.0383697935612872,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "random",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            8,
+            9,
+            29,
+            30,
+            50,
+            59,
+            64,
+            72,
+            82,
+            107,
+            108,
+            128,
+            136,
+            140,
+            143,
+            163,
+            167,
+            171,
+            179,
+            184,
+            189,
+            213
+          ],
+          "scores": [
+            {
+              "mean": -0.27175533314584754,
+              "sum": -1.0870213325833902,
+              "tokens": 4
+            },
+            {
+              "mean": -0.27175533314584754,
+              "sum": -1.0870213325833902,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "block",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            166,
+            167,
+            168,
+            169,
+            170,
+            171,
+            172,
+            173,
+            174,
+            175,
+            176,
+            177,
+            178,
+            179,
+            180,
+            181,
+            182,
+            183,
+            184,
+            185,
+            186,
+            187
+          ],
+          "scores": [
+            {
+              "mean": -0.3537319365714211,
+              "sum": -1.4149277462856844,
+              "tokens": 4
+            },
+            {
+              "mean": -0.3537319365714211,
+              "sum": -1.4149277462856844,
+              "tokens": 4
+            }
+          ]
+        }
+      ],
+      "feature_seconds": 1.0415620803833008,
+      "forward_budget": {
+        "perturbations": 8,
+        "candidate_sequences_per_probe": 2
+      },
+      "generation_audit": false,
+      "accept": {
+        "prediction": "African American.",
+        "raw_output": "African American.<|im_end|>",
+        "generated_ids": [
+          32,
+          47793,
+          3693,
+          13,
+          151645
+        ],
+        "generated_tokens": 5,
+        "eos": true,
+        "question_logp": -2.446194648742676,
+        "first_entropy": 1.6732083559036255,
+        "mean_entropy": 0.36825939750124237,
+        "first_margin": 0.0,
+        "mean_logp": -0.22526972283194482,
+        "seconds": 0.2498788833618164,
+        "em": 0.0,
+        "f1": 0.0,
+        "answer_token_nll": 4.6136040687561035
+      },
+      "reject": {
+        "prediction": "African American.",
+        "raw_output": "African American.<|im_end|>",
+        "generated_ids": [
+          32,
+          47793,
+          3693,
+          13,
+          151645
+        ],
+        "generated_tokens": 5,
+        "eos": true,
+        "question_logp": -3.214200735092163,
+        "first_entropy": 0.40477246046066284,
+        "mean_entropy": 0.08499095617917192,
+        "first_margin": 2.5,
+        "mean_logp": -0.020480327109294195,
+        "seconds": 0.24013924598693848,
+        "em": 0.0,
+        "f1": 0.0,
+        "answer_token_nll": 6.942492961883545
+      },
+      "utility_em": 0.0,
+      "utility_f1": 0.0,
+      "case_seconds": 1.4710161685943604
+    },
+    "partial25": {
+      "feature_groups": {
+        "output": {
+          "a_question_logp": -2.249072551727295,
+          "a_first_entropy": 1.4579859972000122,
+          "a_mean_entropy": 0.49173378934695694,
+          "a_first_margin": 0.8125,
+          "a_mean_logp": -0.21776740201433617,
+          "a_generated_tokens": 3.0,
+          "a_eos": 1.0,
+          "r_question_logp": -3.214200735092163,
+          "r_first_entropy": 0.40477246046066284,
+          "r_mean_entropy": 0.08499095617917192,
+          "r_first_margin": 2.5,
+          "r_mean_logp": -0.020480327109294195,
+          "r_generated_tokens": 5.0,
+          "r_eos": 1.0,
+          "question_gain": 0.9651281833648682,
+          "entropy_gain": -1.0532135367393494,
+          "mean_logp_gain": -0.19728707490504196,
+          "answer_disagreement": 1.0,
+          "answer_overlap": 0.0
+        },
+        "cross": {
+          "accept_candidate0_mean": -0.3266335795633495,
+          "accept_candidate0_sum": -0.653267159126699,
+          "accept_candidate1_mean": -0.37460138724418357,
+          "accept_candidate1_sum": -1.4984055489767343,
+          "accept_margin": 0.047967807680834085,
+          "reject_candidate0_mean": -5.456203331952565,
+          "reject_candidate0_sum": -10.91240666390513,
+          "reject_candidate1_mean": -0.025590448068214755,
+          "reject_candidate1_sum": -0.10236179227285902,
+          "reject_margin": -5.430612883884351,
+          "margin_gain": 5.478580691565185,
+          "accept_answer_support_gain": 5.129569752389216,
+          "reject_answer_support_gain": -0.3490109391759688
+        },
+        "stability2": {
+          "all_margin_mean": 0.015483207505894825,
+          "all_margin_std": 0.02849321541725658,
+          "all_margin_min": -0.013010007911361754,
+          "all_margin_max": 0.043976422923151404,
+          "all_margin_shift": -0.03248460017493926,
+          "all_margin_abs_shift": 0.03248460017493926,
+          "all_sign_flip": 0.5,
+          "all_accept_preference": 0.5,
+          "all_accept_support_shift": -0.022478976054117084,
+          "all_accept_support_std": 0.013071713503450155,
+          "all_reject_support_shift": 0.010005624120822176,
+          "all_reject_support_std": 0.015421501913806424,
+          "random_margin_mean": -0.013010007911361754,
+          "random_margin_std": 0.0,
+          "random_margin_min": -0.013010007911361754,
+          "random_margin_max": -0.013010007911361754,
+          "random_margin_shift": -0.06097781559219584,
+          "random_margin_abs_shift": 0.06097781559219584,
+          "random_sign_flip": 1.0,
+          "random_accept_preference": 0.0,
+          "random_accept_support_shift": -0.03555068955756724,
+          "random_accept_support_std": 0.0,
+          "random_reject_support_shift": 0.0254271260346286,
+          "random_reject_support_std": 0.0,
+          "block_margin_mean": 0.043976422923151404,
+          "block_margin_std": 0.0,
+          "block_margin_min": 0.043976422923151404,
+          "block_margin_max": 0.043976422923151404,
+          "block_margin_shift": -0.003991384757682681,
+          "block_margin_abs_shift": 0.003991384757682681,
+          "block_sign_flip": 0.0,
+          "block_accept_preference": 1.0,
+          "block_accept_support_shift": -0.009407262550666928,
+          "block_accept_support_std": 0.0,
+          "block_reject_support_shift": -0.005415877792984247,
+          "block_reject_support_std": 0.0
+        },
+        "stability4": {
+          "all_margin_mean": 0.07269637133867946,
+          "all_margin_std": 0.06444890130752624,
+          "all_margin_min": -0.013010007911361754,
+          "all_margin_max": 0.16071158385602757,
+          "all_margin_shift": 0.02472856365784537,
+          "all_margin_abs_shift": 0.05721316383278463,
+          "all_sign_flip": 0.25,
+          "all_accept_preference": 0.75,
+          "all_accept_support_shift": 0.0012650482531171292,
+          "all_accept_support_std": 0.030332744655811,
+          "all_reject_support_shift": -0.02346351540472824,
+          "all_reject_support_std": 0.035600887627301,
+          "random_margin_mean": 0.07385078797233291,
+          "random_margin_std": 0.08686079588369466,
+          "random_margin_min": -0.013010007911361754,
+          "random_margin_max": 0.16071158385602757,
+          "random_margin_shift": 0.025882980291498825,
+          "random_margin_abs_shift": 0.08686079588369466,
+          "random_sign_flip": 0.5,
+          "random_accept_preference": 0.5,
+          "random_accept_support_shift": 0.006366671063005924,
+          "random_accept_support_std": 0.04191736062057316,
+          "random_reject_support_shift": -0.0195163092284929,
+          "random_reject_support_std": 0.0449434352631215,
+          "block_margin_mean": 0.071541954705026,
+          "block_margin_std": 0.027565531781874597,
+          "block_margin_min": 0.043976422923151404,
+          "block_margin_max": 0.0991074864869006,
+          "block_margin_shift": 0.023574147024191916,
+          "block_margin_abs_shift": 0.027565531781874597,
+          "block_sign_flip": 0.0,
+          "block_accept_preference": 1.0,
+          "block_accept_support_shift": -0.003836574556771666,
+          "block_accept_support_std": 0.0055706879938952625,
+          "block_reject_support_shift": -0.027410721580963582,
+          "block_reject_support_std": 0.021994843787979335
+        },
+        "stability8": {
+          "all_margin_mean": 0.034627387052751146,
+          "all_margin_std": 0.08285924176072423,
+          "all_margin_min": -0.10293925201403908,
+          "all_margin_max": 0.16071158385602757,
+          "all_margin_shift": -0.013340420628082938,
+          "all_margin_abs_shift": 0.06856492505175993,
+          "all_sign_flip": 0.375,
+          "all_accept_preference": 0.625,
+          "all_accept_support_shift": -0.015963990364980418,
+          "all_accept_support_std": 0.040360153701896107,
+          "all_reject_support_shift": -0.0026235697368974797,
+          "all_reject_support_std": 0.04323930283946449,
+          "random_margin_mean": 0.026760269327496644,
+          "random_margin_std": 0.09696411470376942,
+          "random_margin_min": -0.10293925201403908,
+          "random_margin_max": 0.16071158385602757,
+          "random_margin_shift": -0.02120753835333744,
+          "random_margin_abs_shift": 0.08473489929019706,
+          "random_sign_flip": 0.5,
+          "random_accept_preference": 0.5,
+          "random_accept_support_shift": -0.017671172274276614,
+          "random_accept_support_std": 0.04770669456575394,
+          "random_reject_support_shift": 0.0035363660790608265,
+          "random_reject_support_std": 0.049280165931855885,
+          "block_margin_mean": 0.04249450477800565,
+          "block_margin_std": 0.06484971293253743,
+          "block_margin_min": -0.0637773149937857,
+          "block_margin_max": 0.0991074864869006,
+          "block_margin_shift": -0.005473302902828436,
+          "block_margin_abs_shift": 0.052394950813322794,
+          "block_sign_flip": 0.25,
+          "block_accept_preference": 0.75,
+          "block_accept_support_shift": -0.014256808455684222,
+          "block_accept_support_std": 0.031243021095092,
+          "block_reject_support_shift": -0.008783505552855786,
+          "block_reject_support_std": 0.03514043607158487
+        }
+      },
+      "candidate_scores": {
+        "accept": [
+          {
+            "mean": -0.3266335795633495,
+            "sum": -0.653267159126699,
+            "tokens": 2
+          },
+          {
+            "mean": -0.37460138724418357,
+            "sum": -1.4984055489767343,
+            "tokens": 4
+          }
+        ],
+        "reject": [
+          {
+            "mean": -5.456203331952565,
+            "sum": -10.91240666390513,
+            "tokens": 2
+          },
+          {
+            "mean": -0.025590448068214755,
+            "sum": -0.10236179227285902,
+            "tokens": 4
+          }
+        ]
+      },
+      "perturbations": [
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "random",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            18,
+            27,
+            54,
+            66,
+            90,
+            147,
+            187,
+            193,
+            197,
+            208,
+            212
+          ],
+          "scores": [
+            {
+              "mean": -0.3621842691209167,
+              "sum": -0.7243685382418334,
+              "tokens": 2
+            },
+            {
+              "mean": -0.34917426120955497,
+              "sum": -1.3966970448382199,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "block",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            191,
+            192,
+            193,
+            194,
+            195,
+            196,
+            197,
+            198,
+            199,
+            200,
+            201
+          ],
+          "scores": [
+            {
+              "mean": -0.3360408421140164,
+              "sum": -0.6720816842280328,
+              "tokens": 2
+            },
+            {
+              "mean": -0.3800172650371678,
+              "sum": -1.5200690601486713,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "random",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            4,
+            30,
+            34,
+            36,
+            38,
+            60,
+            63,
+            67,
+            76,
+            79,
+            85,
+            94,
+            100,
+            119,
+            129,
+            150,
+            166,
+            175,
+            176,
+            188,
+            205,
+            214
+          ],
+          "scores": [
+            {
+              "mean": -0.2783495478797704,
+              "sum": -0.5566990957595408,
+              "tokens": 2
+            },
+            {
+              "mean": -0.43906113173579797,
+              "sum": -1.7562445269431919,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "block",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83
+          ],
+          "scores": [
+            {
+              "mean": -0.3248994661262259,
+              "sum": -0.6497989322524518,
+              "tokens": 2
+            },
+            {
+              "mean": -0.4240069526131265,
+              "sum": -1.696027810452506,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "random",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            4,
+            26,
+            31,
+            39,
+            60,
+            72,
+            77,
+            86,
+            92,
+            154,
+            207
+          ],
+          "scores": [
+            {
+              "mean": -0.3278560978360474,
+              "sum": -0.6557121956720948,
+              "tokens": 2
+            },
+            {
+              "mean": -0.39013485121540725,
+              "sum": -1.560539404861629,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "block",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            145,
+            146,
+            147,
+            148,
+            149,
+            150,
+            151,
+            152,
+            153,
+            154,
+            155
+          ],
+          "scores": [
+            {
+              "mean": -0.39259085472440347,
+              "sum": -0.7851817094488069,
+              "tokens": 2
+            },
+            {
+              "mean": -0.3288135397306178,
+              "sum": -1.315254158922471,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "random",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            8,
+            9,
+            29,
+            30,
+            50,
+            59,
+            64,
+            72,
+            82,
+            107,
+            108,
+            128,
+            136,
+            140,
+            143,
+            163,
+            167,
+            171,
+            179,
+            184,
+            189,
+            213
+          ],
+          "scores": [
+            {
+              "mean": -0.40882909251376987,
+              "sum": -0.8176581850275397,
+              "tokens": 2
+            },
+            {
+              "mean": -0.3058898404997308,
+              "sum": -1.2235593619989231,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "block",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            166,
+            167,
+            168,
+            169,
+            170,
+            171,
+            172,
+            173,
+            174,
+            175,
+            176,
+            177,
+            178,
+            179,
+            180,
+            181,
+            182,
+            183,
+            184,
+            185,
+            186,
+            187
+          ],
+          "scores": [
+            {
+              "mean": -0.31003038911148906,
+              "sum": -0.6200607782229781,
+              "tokens": 2
+            },
+            {
+              "mean": -0.40070181380724534,
+              "sum": -1.6028072552289814,
+              "tokens": 4
+            }
+          ]
+        }
+      ],
+      "feature_seconds": 1.5854060649871826,
+      "forward_budget": {
+        "perturbations": 8,
+        "candidate_sequences_per_probe": 2
+      },
+      "generation_audit": false,
+      "accept": {
+        "prediction": "White.",
+        "raw_output": "White.<|im_end|>",
+        "generated_ids": [
+          14075,
+          13,
+          151645
+        ],
+        "generated_tokens": 3,
+        "eos": true,
+        "question_logp": -2.249072551727295,
+        "first_entropy": 1.4579859972000122,
+        "mean_entropy": 0.49173378934695694,
+        "first_margin": 0.8125,
+        "mean_logp": -0.21776740201433617,
+        "seconds": 0.15062594413757324,
+        "em": 0.0,
+        "f1": 0.0,
+        "answer_token_nll": 5.474573612213135
+      },
+      "reject": {
+        "prediction": "African American.",
+        "raw_output": "African American.<|im_end|>",
+        "generated_ids": [
+          32,
+          47793,
+          3693,
+          13,
+          151645
+        ],
+        "generated_tokens": 5,
+        "eos": true,
+        "question_logp": -3.214200735092163,
+        "first_entropy": 0.40477246046066284,
+        "mean_entropy": 0.08499095617917192,
+        "first_margin": 2.5,
+        "mean_logp": -0.020480327109294195,
+        "seconds": 0.24013924598693848,
+        "em": 0.0,
+        "f1": 0.0,
+        "answer_token_nll": 6.942492961883545
+      },
+      "utility_em": 0.0,
+      "utility_f1": 0.0,
+      "case_seconds": 1.8762142658233643
+    },
+    "partial75": {
+      "feature_groups": {
+        "output": {
+          "a_question_logp": -2.6168038845062256,
+          "a_first_entropy": 1.464159607887268,
+          "a_mean_entropy": 0.31996286344947295,
+          "a_first_margin": 1.203125,
+          "a_mean_logp": -0.12688972535197535,
+          "a_generated_tokens": 5.0,
+          "a_eos": 1.0,
+          "r_question_logp": -3.214200735092163,
+          "r_first_entropy": 0.40477246046066284,
+          "r_mean_entropy": 0.08499095617917192,
+          "r_first_margin": 2.5,
+          "r_mean_logp": -0.020480327109294195,
+          "r_generated_tokens": 5.0,
+          "r_eos": 1.0,
+          "question_gain": 0.5973968505859375,
+          "entropy_gain": -1.0593871474266052,
+          "mean_logp_gain": -0.10640939824268116,
+          "answer_disagreement": 0.0,
+          "answer_overlap": 1.0
+        },
+        "cross": {
+          "accept_candidate0_mean": -0.15866351564181969,
+          "accept_candidate0_sum": -0.6346540625672787,
+          "accept_candidate1_mean": -0.15866351564181969,
+          "accept_candidate1_sum": -0.6346540625672787,
+          "accept_margin": 0.0,
+          "reject_candidate0_mean": -0.025590448068214755,
+          "reject_candidate0_sum": -0.10236179227285902,
+          "reject_candidate1_mean": -0.025590448068214755,
+          "reject_candidate1_sum": -0.10236179227285902,
+          "reject_margin": 0.0,
+          "margin_gain": 0.0,
+          "accept_answer_support_gain": -0.13307306757360493,
+          "reject_answer_support_gain": -0.13307306757360493
+        },
+        "stability2": {
+          "all_margin_mean": 0.0,
+          "all_margin_std": 0.0,
+          "all_margin_min": 0.0,
+          "all_margin_max": 0.0,
+          "all_margin_shift": 0.0,
+          "all_margin_abs_shift": 0.0,
+          "all_sign_flip": 0.0,
+          "all_accept_preference": 0.0,
+          "all_accept_support_shift": -0.005638551258016378,
+          "all_accept_support_std": 0.005614558671368286,
+          "all_reject_support_shift": -0.005638551258016378,
+          "all_reject_support_std": 0.005614558671368286,
+          "random_margin_mean": 0.0,
+          "random_margin_std": 0.0,
+          "random_margin_min": 0.0,
+          "random_margin_max": 0.0,
+          "random_margin_shift": 0.0,
+          "random_margin_abs_shift": 0.0,
+          "random_sign_flip": 0.0,
+          "random_accept_preference": 0.0,
+          "random_accept_support_shift": -0.011253109929384664,
+          "random_accept_support_std": 0.0,
+          "random_reject_support_shift": -0.011253109929384664,
+          "random_reject_support_std": 0.0,
+          "block_margin_mean": 0.0,
+          "block_margin_std": 0.0,
+          "block_margin_min": 0.0,
+          "block_margin_max": 0.0,
+          "block_margin_shift": 0.0,
+          "block_margin_abs_shift": 0.0,
+          "block_sign_flip": 0.0,
+          "block_accept_preference": 0.0,
+          "block_accept_support_shift": -2.3992586648091674e-05,
+          "block_accept_support_std": 0.0,
+          "block_reject_support_shift": -2.3992586648091674e-05,
+          "block_reject_support_std": 0.0
+        },
+        "stability4": {
+          "all_margin_mean": 0.0,
+          "all_margin_std": 0.0,
+          "all_margin_min": 0.0,
+          "all_margin_max": 0.0,
+          "all_margin_shift": 0.0,
+          "all_margin_abs_shift": 0.0,
+          "all_sign_flip": 0.0,
+          "all_accept_preference": 0.0,
+          "all_accept_support_shift": -0.00038724294063285924,
+          "all_accept_support_std": 0.006963374119582928,
+          "all_reject_support_shift": -0.00038724294063285924,
+          "all_reject_support_std": 0.006963374119582928,
+          "random_margin_mean": 0.0,
+          "random_margin_std": 0.0,
+          "random_margin_min": 0.0,
+          "random_margin_max": 0.0,
+          "random_margin_shift": 0.0,
+          "random_margin_abs_shift": 0.0,
+          "random_sign_flip": 0.0,
+          "random_accept_preference": 0.0,
+          "random_accept_support_shift": -0.001589731706189923,
+          "random_accept_support_std": 0.00966337822319474,
+          "random_reject_support_shift": -0.001589731706189923,
+          "random_reject_support_std": 0.00966337822319474,
+          "block_margin_mean": 0.0,
+          "block_margin_std": 0.0,
+          "block_margin_min": 0.0,
+          "block_margin_max": 0.0,
+          "block_margin_shift": 0.0,
+          "block_margin_abs_shift": 0.0,
+          "block_sign_flip": 0.0,
+          "block_accept_preference": 0.0,
+          "block_accept_support_shift": 0.0008152458249242045,
+          "block_accept_support_std": 0.0008392384115722962,
+          "block_reject_support_shift": 0.0008152458249242045,
+          "block_reject_support_std": 0.0008392384115722962
+        },
+        "stability8": {
+          "all_margin_mean": 0.0,
+          "all_margin_std": 0.0,
+          "all_margin_min": 0.0,
+          "all_margin_max": 0.0,
+          "all_margin_shift": 0.0,
+          "all_margin_abs_shift": 0.0,
+          "all_sign_flip": 0.0,
+          "all_accept_preference": 0.0,
+          "all_accept_support_shift": -0.011527368336828658,
+          "all_accept_support_std": 0.023518327143539377,
+          "all_reject_support_shift": -0.011527368336828658,
+          "all_reject_support_std": 0.023518327143539377,
+          "random_margin_mean": 0.0,
+          "random_margin_std": 0.0,
+          "random_margin_min": 0.0,
+          "random_margin_max": 0.0,
+          "random_margin_shift": 0.0,
+          "random_margin_abs_shift": 0.0,
+          "random_sign_flip": 0.0,
+          "random_accept_preference": 0.0,
+          "random_accept_support_shift": -0.010642082535923691,
+          "random_accept_support_std": 0.019389252244046685,
+          "random_reject_support_shift": -0.010642082535923691,
+          "random_reject_support_std": 0.019389252244046685,
+          "block_margin_mean": 0.0,
+          "block_margin_std": 0.0,
+          "block_margin_min": 0.0,
+          "block_margin_max": 0.0,
+          "block_margin_shift": 0.0,
+          "block_margin_abs_shift": 0.0,
+          "block_sign_flip": 0.0,
+          "block_accept_preference": 0.0,
+          "block_accept_support_shift": -0.012412654137733625,
+          "block_accept_support_std": 0.026994682046270608,
+          "block_reject_support_shift": -0.012412654137733625,
+          "block_reject_support_std": 0.026994682046270608
+        }
+      },
+      "candidate_scores": {
+        "accept": [
+          {
+            "mean": -0.15866351564181969,
+            "sum": -0.6346540625672787,
+            "tokens": 4
+          },
+          {
+            "mean": -0.15866351564181969,
+            "sum": -0.6346540625672787,
+            "tokens": 4
+          }
+        ],
+        "reject": [
+          {
+            "mean": -0.025590448068214755,
+            "sum": -0.10236179227285902,
+            "tokens": 4
+          },
+          {
+            "mean": -0.025590448068214755,
+            "sum": -0.10236179227285902,
+            "tokens": 4
+          }
+        ]
+      },
+      "perturbations": [
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "random",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            18,
+            27,
+            54,
+            66,
+            90,
+            147,
+            187,
+            193,
+            197,
+            208,
+            212
+          ],
+          "scores": [
+            {
+              "mean": -0.16991662557120435,
+              "sum": -0.6796665022848174,
+              "tokens": 4
+            },
+            {
+              "mean": -0.16991662557120435,
+              "sum": -0.6796665022848174,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "block",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            191,
+            192,
+            193,
+            194,
+            195,
+            196,
+            197,
+            198,
+            199,
+            200,
+            201
+          ],
+          "scores": [
+            {
+              "mean": -0.15868750822846778,
+              "sum": -0.6347500329138711,
+              "tokens": 4
+            },
+            {
+              "mean": -0.15868750822846778,
+              "sum": -0.6347500329138711,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "random",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            4,
+            30,
+            34,
+            36,
+            38,
+            60,
+            63,
+            67,
+            76,
+            79,
+            85,
+            94,
+            100,
+            119,
+            129,
+            150,
+            166,
+            175,
+            176,
+            188,
+            205,
+            214
+          ],
+          "scores": [
+            {
+              "mean": -0.15058986912481487,
+              "sum": -0.6023594764992595,
+              "tokens": 4
+            },
+            {
+              "mean": -0.15058986912481487,
+              "sum": -0.6023594764992595,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "block",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83
+          ],
+          "scores": [
+            {
+              "mean": -0.15700903140532319,
+              "sum": -0.6280361256212927,
+              "tokens": 4
+            },
+            {
+              "mean": -0.15700903140532319,
+              "sum": -0.6280361256212927,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "random",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            4,
+            26,
+            31,
+            39,
+            60,
+            72,
+            77,
+            86,
+            92,
+            154,
+            207
+          ],
+          "scores": [
+            {
+              "mean": -0.15611800261831377,
+              "sum": -0.6244720104732551,
+              "tokens": 4
+            },
+            {
+              "mean": -0.15611800261831377,
+              "sum": -0.6244720104732551,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "block",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            145,
+            146,
+            147,
+            148,
+            149,
+            150,
+            151,
+            152,
+            153,
+            154,
+            155
+          ],
+          "scores": [
+            {
+              "mean": -0.15103596607514191,
+              "sum": -0.6041438643005677,
+              "tokens": 4
+            },
+            {
+              "mean": -0.15103596607514191,
+              "sum": -0.6041438643005677,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "random",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            8,
+            9,
+            29,
+            30,
+            50,
+            59,
+            64,
+            72,
+            82,
+            107,
+            108,
+            128,
+            136,
+            140,
+            143,
+            163,
+            167,
+            171,
+            179,
+            184,
+            189,
+            213
+          ],
+          "scores": [
+            {
+              "mean": -0.20059789539664052,
+              "sum": -0.8023915815865621,
+              "tokens": 4
+            },
+            {
+              "mean": -0.20059789539664052,
+              "sum": -0.8023915815865621,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "block",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            166,
+            167,
+            168,
+            169,
+            170,
+            171,
+            172,
+            173,
+            174,
+            175,
+            176,
+            177,
+            178,
+            179,
+            180,
+            181,
+            182,
+            183,
+            184,
+            185,
+            186,
+            187
+          ],
+          "scores": [
+            {
+              "mean": -0.21757217340928037,
+              "sum": -0.8702886936371215,
+              "tokens": 4
+            },
+            {
+              "mean": -0.21757217340928037,
+              "sum": -0.8702886936371215,
+              "tokens": 4
+            }
+          ]
+        }
+      ],
+      "feature_seconds": 1.0603773593902588,
+      "forward_budget": {
+        "perturbations": 8,
+        "candidate_sequences_per_probe": 2
+      },
+      "generation_audit": false,
+      "accept": {
+        "prediction": "African American.",
+        "raw_output": "African American.<|im_end|>",
+        "generated_ids": [
+          32,
+          47793,
+          3693,
+          13,
+          151645
+        ],
+        "generated_tokens": 5,
+        "eos": true,
+        "question_logp": -2.6168038845062256,
+        "first_entropy": 1.464159607887268,
+        "mean_entropy": 0.31996286344947295,
+        "first_margin": 1.203125,
+        "mean_logp": -0.12688972535197535,
+        "seconds": 0.24580645561218262,
+        "em": 0.0,
+        "f1": 0.0,
+        "answer_token_nll": 6.014551639556885
+      },
+      "reject": {
+        "prediction": "African American.",
+        "raw_output": "African American.<|im_end|>",
+        "generated_ids": [
+          32,
+          47793,
+          3693,
+          13,
+          151645
+        ],
+        "generated_tokens": 5,
+        "eos": true,
+        "question_logp": -3.214200735092163,
+        "first_entropy": 0.40477246046066284,
+        "mean_entropy": 0.08499095617917192,
+        "first_margin": 2.5,
+        "mean_logp": -0.020480327109294195,
+        "seconds": 0.24013924598693848,
+        "em": 0.0,
+        "f1": 0.0,
+        "answer_token_nll": 6.942492961883545
+      },
+      "utility_em": 0.0,
+      "utility_f1": 0.0,
+      "case_seconds": 1.4617094993591309
+    },
+    "gaussian": {
+      "feature_groups": {
+        "output": {
+          "a_question_logp": -2.7172389030456543,
+          "a_first_entropy": 1.577096700668335,
+          "a_mean_entropy": 0.39873194694519043,
+          "a_first_margin": 0.15625,
+          "a_mean_logp": -0.24716958427161445,
+          "a_generated_tokens": 5.0,
+          "a_eos": 1.0,
+          "r_question_logp": -3.214200735092163,
+          "r_first_entropy": 0.40477246046066284,
+          "r_mean_entropy": 0.08499095617917192,
+          "r_first_margin": 2.5,
+          "r_mean_logp": -0.020480327109294195,
+          "r_generated_tokens": 5.0,
+          "r_eos": 1.0,
+          "question_gain": 0.4969618320465088,
+          "entropy_gain": -1.1723242402076721,
+          "mean_logp_gain": -0.22668925716232025,
+          "answer_disagreement": 0.0,
+          "answer_overlap": 1.0
+        },
+        "cross": {
+          "accept_candidate0_mean": -0.30895599849463906,
+          "accept_candidate0_sum": -1.2358239939785562,
+          "accept_candidate1_mean": -0.30895599849463906,
+          "accept_candidate1_sum": -1.2358239939785562,
+          "accept_margin": 0.0,
+          "reject_candidate0_mean": -0.025590448068214755,
+          "reject_candidate0_sum": -0.10236179227285902,
+          "reject_candidate1_mean": -0.025590448068214755,
+          "reject_candidate1_sum": -0.10236179227285902,
+          "reject_margin": 0.0,
+          "margin_gain": 0.0,
+          "accept_answer_support_gain": -0.2833655504264243,
+          "reject_answer_support_gain": -0.2833655504264243
+        },
+        "stability2": {
+          "all_margin_mean": 0.0,
+          "all_margin_std": 0.0,
+          "all_margin_min": 0.0,
+          "all_margin_max": 0.0,
+          "all_margin_shift": 0.0,
+          "all_margin_abs_shift": 0.0,
+          "all_sign_flip": 0.0,
+          "all_accept_preference": 0.0,
+          "all_accept_support_shift": 0.08500463131349534,
+          "all_accept_support_std": 0.040543945200624876,
+          "all_reject_support_shift": 0.08500463131349534,
+          "all_reject_support_std": 0.040543945200624876,
+          "random_margin_mean": 0.0,
+          "random_margin_std": 0.0,
+          "random_margin_min": 0.0,
+          "random_margin_max": 0.0,
+          "random_margin_shift": 0.0,
+          "random_margin_abs_shift": 0.0,
+          "random_sign_flip": 0.0,
+          "random_accept_preference": 0.0,
+          "random_accept_support_shift": 0.04446068611287046,
+          "random_accept_support_std": 0.0,
+          "random_reject_support_shift": 0.04446068611287046,
+          "random_reject_support_std": 0.0,
+          "block_margin_mean": 0.0,
+          "block_margin_std": 0.0,
+          "block_margin_min": 0.0,
+          "block_margin_max": 0.0,
+          "block_margin_shift": 0.0,
+          "block_margin_abs_shift": 0.0,
+          "block_sign_flip": 0.0,
+          "block_accept_preference": 0.0,
+          "block_accept_support_shift": 0.1255485765141202,
+          "block_accept_support_std": 0.0,
+          "block_reject_support_shift": 0.1255485765141202,
+          "block_reject_support_std": 0.0
+        },
+        "stability4": {
+          "all_margin_mean": 0.0,
+          "all_margin_std": 0.0,
+          "all_margin_min": 0.0,
+          "all_margin_max": 0.0,
+          "all_margin_shift": 0.0,
+          "all_margin_abs_shift": 0.0,
+          "all_sign_flip": 0.0,
+          "all_accept_preference": 0.0,
+          "all_accept_support_shift": 0.04917212752843625,
+          "all_accept_support_std": 0.04665228942303425,
+          "all_reject_support_shift": 0.04917212752843625,
+          "all_reject_support_std": 0.04665228942303425,
+          "random_margin_mean": 0.0,
+          "random_margin_std": 0.0,
+          "random_margin_min": 0.0,
+          "random_margin_max": 0.0,
+          "random_margin_shift": 0.0,
+          "random_margin_abs_shift": 0.0,
+          "random_sign_flip": 0.0,
+          "random_accept_preference": 0.0,
+          "random_accept_support_shift": 0.022960372327361256,
+          "random_accept_support_std": 0.021500313785509206,
+          "random_reject_support_shift": 0.022960372327361256,
+          "random_reject_support_std": 0.021500313785509206,
+          "block_margin_mean": 0.0,
+          "block_margin_std": 0.0,
+          "block_margin_min": 0.0,
+          "block_margin_max": 0.0,
+          "block_margin_shift": 0.0,
+          "block_margin_abs_shift": 0.0,
+          "block_sign_flip": 0.0,
+          "block_accept_preference": 0.0,
+          "block_accept_support_shift": 0.07538388272951124,
+          "block_accept_support_std": 0.05016469378460897,
+          "block_reject_support_shift": 0.07538388272951124,
+          "block_reject_support_std": 0.05016469378460897
+        },
+        "stability8": {
+          "all_margin_mean": 0.0,
+          "all_margin_std": 0.0,
+          "all_margin_min": 0.0,
+          "all_margin_max": 0.0,
+          "all_margin_shift": 0.0,
+          "all_margin_abs_shift": 0.0,
+          "all_sign_flip": 0.0,
+          "all_accept_preference": 0.0,
+          "all_accept_support_shift": 0.025657271273303195,
+          "all_accept_support_std": 0.041167840574006874,
+          "all_reject_support_shift": 0.025657271273303195,
+          "all_reject_support_std": 0.041167840574006874,
+          "random_margin_mean": 0.0,
+          "random_margin_std": 0.0,
+          "random_margin_min": 0.0,
+          "random_margin_max": 0.0,
+          "random_margin_shift": 0.0,
+          "random_margin_abs_shift": 0.0,
+          "random_sign_flip": 0.0,
+          "random_accept_preference": 0.0,
+          "random_accept_support_shift": 0.01367387860591407,
+          "random_accept_support_std": 0.02047155215590259,
+          "random_reject_support_shift": 0.01367387860591407,
+          "random_reject_support_std": 0.02047155215590259,
+          "block_margin_mean": 0.0,
+          "block_margin_std": 0.0,
+          "block_margin_min": 0.0,
+          "block_margin_max": 0.0,
+          "block_margin_shift": 0.0,
+          "block_margin_abs_shift": 0.0,
+          "block_sign_flip": 0.0,
+          "block_accept_preference": 0.0,
+          "block_accept_support_shift": 0.03764066394069232,
+          "block_accept_support_std": 0.05180052458943039,
+          "block_reject_support_shift": 0.03764066394069232,
+          "block_reject_support_std": 0.05180052458943039
+        }
+      },
+      "candidate_scores": {
+        "accept": [
+          {
+            "mean": -0.30895599849463906,
+            "sum": -1.2358239939785562,
+            "tokens": 4
+          },
+          {
+            "mean": -0.30895599849463906,
+            "sum": -1.2358239939785562,
+            "tokens": 4
+          }
+        ],
+        "reject": [
+          {
+            "mean": -0.025590448068214755,
+            "sum": -0.10236179227285902,
+            "tokens": 4
+          },
+          {
+            "mean": -0.025590448068214755,
+            "sum": -0.10236179227285902,
+            "tokens": 4
+          }
+        ]
+      },
+      "perturbations": [
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "random",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            18,
+            27,
+            54,
+            66,
+            90,
+            147,
+            187,
+            193,
+            197,
+            208,
+            212
+          ],
+          "scores": [
+            {
+              "mean": -0.2644953123817686,
+              "sum": -1.0579812495270744,
+              "tokens": 4
+            },
+            {
+              "mean": -0.2644953123817686,
+              "sum": -1.0579812495270744,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "block",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            191,
+            192,
+            193,
+            194,
+            195,
+            196,
+            197,
+            198,
+            199,
+            200,
+            201
+          ],
+          "scores": [
+            {
+              "mean": -0.18340742198051885,
+              "sum": -0.7336296879220754,
+              "tokens": 4
+            },
+            {
+              "mean": -0.18340742198051885,
+              "sum": -0.7336296879220754,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "random",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            4,
+            30,
+            34,
+            36,
+            38,
+            60,
+            63,
+            67,
+            76,
+            79,
+            85,
+            94,
+            100,
+            119,
+            129,
+            150,
+            166,
+            175,
+            176,
+            188,
+            205,
+            214
+          ],
+          "scores": [
+            {
+              "mean": -0.307495939952787,
+              "sum": -1.229983759811148,
+              "tokens": 4
+            },
+            {
+              "mean": -0.307495939952787,
+              "sum": -1.229983759811148,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "block",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83
+          ],
+          "scores": [
+            {
+              "mean": -0.2837368095497368,
+              "sum": -1.1349472381989472,
+              "tokens": 4
+            },
+            {
+              "mean": -0.2837368095497368,
+              "sum": -1.1349472381989472,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "random",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            4,
+            26,
+            31,
+            39,
+            60,
+            72,
+            77,
+            86,
+            92,
+            154,
+            207
+          ],
+          "scores": [
+            {
+              "mean": -0.290305813352461,
+              "sum": -1.161223253409844,
+              "tokens": 4
+            },
+            {
+              "mean": -0.290305813352461,
+              "sum": -1.161223253409844,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "block",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            145,
+            146,
+            147,
+            148,
+            149,
+            150,
+            151,
+            152,
+            153,
+            154,
+            155
+          ],
+          "scores": [
+            {
+              "mean": -0.30806303142162506,
+              "sum": -1.2322521256865002,
+              "tokens": 4
+            },
+            {
+              "mean": -0.30806303142162506,
+              "sum": -1.2322521256865002,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "random",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            8,
+            9,
+            29,
+            30,
+            50,
+            59,
+            64,
+            72,
+            82,
+            107,
+            108,
+            128,
+            136,
+            140,
+            143,
+            163,
+            167,
+            171,
+            179,
+            184,
+            189,
+            213
+          ],
+          "scores": [
+            {
+              "mean": -0.3188314138678834,
+              "sum": -1.2753256554715335,
+              "tokens": 4
+            },
+            {
+              "mean": -0.3188314138678834,
+              "sum": -1.2753256554715335,
+              "tokens": 4
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "block",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            166,
+            167,
+            168,
+            169,
+            170,
+            171,
+            172,
+            173,
+            174,
+            175,
+            176,
+            177,
+            178,
+            179,
+            180,
+            181,
+            182,
+            183,
+            184,
+            185,
+            186,
+            187
+          ],
+          "scores": [
+            {
+              "mean": -0.31005407526390627,
+              "sum": -1.240216301055625,
+              "tokens": 4
+            },
+            {
+              "mean": -0.31005407526390627,
+              "sum": -1.240216301055625,
+              "tokens": 4
+            }
+          ]
+        }
+      ],
+      "feature_seconds": 1.0631029605865479,
+      "forward_budget": {
+        "perturbations": 8,
+        "candidate_sequences_per_probe": 2
+      },
+      "generation_audit": false,
+      "accept": {
+        "prediction": "African American.",
+        "raw_output": "African American.<|im_end|>",
+        "generated_ids": [
+          32,
+          47793,
+          3693,
+          13,
+          151645
+        ],
+        "generated_tokens": 5,
+        "eos": true,
+        "question_logp": -2.7172389030456543,
+        "first_entropy": 1.577096700668335,
+        "mean_entropy": 0.39873194694519043,
+        "first_margin": 0.15625,
+        "mean_logp": -0.24716958427161445,
+        "seconds": 0.2470862865447998,
+        "em": 0.0,
+        "f1": 0.0,
+        "answer_token_nll": 6.317960739135742
+      },
+      "reject": {
+        "prediction": "African American.",
+        "raw_output": "African American.<|im_end|>",
+        "generated_ids": [
+          32,
+          47793,
+          3693,
+          13,
+          151645
+        ],
+        "generated_tokens": 5,
+        "eos": true,
+        "question_logp": -3.214200735092163,
+        "first_entropy": 0.40477246046066284,
+        "mean_entropy": 0.08499095617917192,
+        "first_margin": 2.5,
+        "mean_logp": -0.020480327109294195,
+        "seconds": 0.24013924598693848,
+        "em": 0.0,
+        "f1": 0.0,
+        "answer_token_nll": 6.942492961883545
+      },
+      "utility_em": 0.0,
+      "utility_f1": 0.0,
+      "case_seconds": 2.1338436603546143
+    }
+  },
+  "complete": true,
+  "row_seconds": 11.634560585021973
+}

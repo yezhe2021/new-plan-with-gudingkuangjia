@@ -1,0 +1,3861 @@
+{
+  "id": "hotpot_5ab84f2c55429934fafe6d54",
+  "split": "test",
+  "question": "The Red Queen's Race is a science fiction short story that uses the Red Queen's race from a novel by Lewis Carroll that is the sequel to what?",
+  "answer": "Alice's Adventures in Wonderland",
+  "donor_id": "hotpot_5ab6390f5542995eadeeff7a",
+  "manifest_sha256": "5ac5a09548542cad2540538fbeb250042c1801a209b54a1d53a8675cd60adcfc",
+  "selector_sha256": "bb8ba610a6cb25da1860181e897fac69bc0e7b82fcbe79c5a678801ecc179c56",
+  "baselines": {
+    "reject": {
+      "prediction": "The Red Queen's Race is a science fiction short story that uses the Red Queen's race from a novel by Lewis Carroll that is the sequel to \"Through the Looking-Glass.\"",
+      "raw_output": "The Red Queen's Race is a science fiction short story that uses the Red Queen's race from a novel by Lewis Carroll that is the sequel to \"Through the Looking-Glass.\"<|im_end|>",
+      "generated_ids": [
+        785,
+        3731,
+        16259,
+        594,
+        23659,
+        374,
+        264,
+        8038,
+        16989,
+        2805,
+        3364,
+        429,
+        5711,
+        279,
+        3731,
+        16259,
+        594,
+        6957,
+        504,
+        264,
+        11514,
+        553,
+        20607,
+        46109,
+        429,
+        374,
+        279,
+        34761,
+        311,
+        330,
+        23857,
+        279,
+        21131,
+        12010,
+        447,
+        1189,
+        151645
+      ],
+      "generated_tokens": 37,
+      "eos": true,
+      "question_logp": -3.437107801437378,
+      "first_entropy": 0.07989119738340378,
+      "mean_entropy": 0.024460860939917093,
+      "first_margin": 4.296875,
+      "mean_logp": -0.010939160911021489,
+      "seconds": 1.684485912322998,
+      "em": 0.0,
+      "f1": 0.0,
+      "answer_token_nll": 0.8768765330314636
+    },
+    "compact": {
+      "prediction": "The sequel to \"Through the Looking-Glass\" by Lewis Carroll.",
+      "raw_output": "The sequel to \"Through the Looking-Glass\" by Lewis Carroll.<|im_end|>",
+      "generated_ids": [
+        785,
+        34761,
+        311,
+        330,
+        23857,
+        279,
+        21131,
+        12010,
+        447,
+        1,
+        553,
+        20607,
+        46109,
+        13,
+        151645
+      ],
+      "generated_tokens": 15,
+      "eos": true,
+      "question_logp": null,
+      "first_entropy": 0.4839182198047638,
+      "mean_entropy": 0.1147660721773543,
+      "first_margin": 1.53125,
+      "mean_logp": -0.06992272746586346,
+      "seconds": 0.7163431644439697,
+      "em": 0.0,
+      "f1": 0.0,
+      "answer_token_nll": 0.3480215072631836
+    },
+    "native": {
+      "prediction": "Alice's Adventures in Wonderland.",
+      "raw_output": "Alice's Adventures in Wonderland.<|im_end|>",
+      "generated_ids": [
+        61686,
+        594,
+        50579,
+        304,
+        88924,
+        13,
+        151645
+      ],
+      "generated_tokens": 7,
+      "eos": true,
+      "question_logp": -1.0103485584259033,
+      "first_entropy": 0.1926494687795639,
+      "mean_entropy": 0.027532332825358465,
+      "first_margin": 3.03125,
+      "mean_logp": -0.006825676453047436,
+      "seconds": 0.355426549911499,
+      "em": 1.0,
+      "f1": 1.0,
+      "answer_token_nll": 0.00984167493879795
+    }
+  },
+  "conditions": {
+    "clean": {
+      "feature_groups": {
+        "output": {
+          "a_question_logp": -1.7013392448425293,
+          "a_first_entropy": 0.27646031975746155,
+          "a_mean_entropy": 0.08191809854913222,
+          "a_first_margin": 4.015625,
+          "a_mean_logp": -0.040588097358211735,
+          "a_generated_tokens": 37.0,
+          "a_eos": 1.0,
+          "r_question_logp": -3.437107801437378,
+          "r_first_entropy": 0.07989119738340378,
+          "r_mean_entropy": 0.024460860939917093,
+          "r_first_margin": 4.296875,
+          "r_mean_logp": -0.010939160911021489,
+          "r_generated_tokens": 37.0,
+          "r_eos": 1.0,
+          "question_gain": 1.7357685565948486,
+          "entropy_gain": -0.19656912237405777,
+          "mean_logp_gain": -0.029648936447190244,
+          "answer_disagreement": 1.0,
+          "answer_overlap": 0.88
+        },
+        "cross": {
+          "accept_candidate0_mean": -0.041746352601342136,
+          "accept_candidate0_sum": -1.5028686936483169,
+          "accept_candidate1_mean": -0.07077241756457218,
+          "accept_candidate1_sum": -2.5478070323245987,
+          "accept_margin": 0.02902606496323005,
+          "reject_candidate0_mean": -0.23013946667571736,
+          "reject_candidate0_sum": -8.285020800325825,
+          "reject_candidate1_mean": -0.01124948772361931,
+          "reject_candidate1_sum": -0.4049815580502951,
+          "reject_margin": -0.21888997895209805,
+          "margin_gain": 0.2479160439153281,
+          "accept_answer_support_gain": 0.18839311407437523,
+          "reject_answer_support_gain": -0.05952292984095288
+        },
+        "stability2": {
+          "all_margin_mean": 0.023766154941174837,
+          "all_margin_std": 0.0012798855710422288,
+          "all_margin_min": 0.02248626937013261,
+          "all_margin_max": 0.025046040512217066,
+          "all_margin_shift": -0.005259910022055211,
+          "all_margin_abs_shift": 0.005259910022055211,
+          "all_sign_flip": 0.0,
+          "all_accept_preference": 1.0,
+          "all_accept_support_shift": -0.001068180392175537,
+          "all_accept_support_std": 9.885486799889043e-05,
+          "all_reject_support_shift": 0.004191729629879674,
+          "all_reject_support_std": 0.0013787404390411193,
+          "random_margin_mean": 0.02248626937013261,
+          "random_margin_std": 0.0,
+          "random_margin_min": 0.02248626937013261,
+          "random_margin_max": 0.02248626937013261,
+          "random_margin_shift": -0.00653979559309744,
+          "random_margin_abs_shift": 0.00653979559309744,
+          "random_sign_flip": 0.0,
+          "random_accept_preference": 1.0,
+          "random_accept_support_shift": -0.0009693255241766466,
+          "random_accept_support_std": 0.0,
+          "random_reject_support_shift": 0.005570470068920794,
+          "random_reject_support_std": 0.0,
+          "block_margin_mean": 0.025046040512217066,
+          "block_margin_std": 0.0,
+          "block_margin_min": 0.025046040512217066,
+          "block_margin_max": 0.025046040512217066,
+          "block_margin_shift": -0.003980024451012983,
+          "block_margin_abs_shift": 0.003980024451012983,
+          "block_sign_flip": 0.0,
+          "block_accept_preference": 1.0,
+          "block_accept_support_shift": -0.0011670352601744274,
+          "block_accept_support_std": 0.0,
+          "block_reject_support_shift": 0.002812989190838555,
+          "block_reject_support_std": 0.0
+        },
+        "stability4": {
+          "all_margin_mean": 0.016567241886157102,
+          "all_margin_std": 0.010717701384446922,
+          "all_margin_min": -0.001787451756070979,
+          "all_margin_max": 0.025046040512217066,
+          "all_margin_shift": -0.012458823077072944,
+          "all_margin_abs_shift": 0.012458823077072944,
+          "all_sign_flip": 0.25,
+          "all_accept_preference": 0.75,
+          "all_accept_support_shift": -0.004262754647103732,
+          "all_accept_support_std": 0.0059576348890138,
+          "all_reject_support_shift": 0.008196068429969212,
+          "all_reject_support_std": 0.005016500918820188,
+          "random_margin_mean": 0.010349408807030815,
+          "random_margin_std": 0.012136860563101794,
+          "random_margin_min": -0.001787451756070979,
+          "random_margin_max": 0.02248626937013261,
+          "random_margin_shift": -0.018676656156199234,
+          "random_margin_abs_shift": 0.018676656156199234,
+          "random_sign_flip": 0.5,
+          "random_accept_preference": 0.5,
+          "random_accept_support_shift": -0.007768831583659954,
+          "random_accept_support_std": 0.0067995060594833075,
+          "random_reject_support_shift": 0.01090782457253928,
+          "random_reject_support_std": 0.005337354503618486,
+          "block_margin_mean": 0.022785074965283394,
+          "block_margin_std": 0.002260965546933672,
+          "block_margin_min": 0.02052410941834972,
+          "block_margin_max": 0.025046040512217066,
+          "block_margin_shift": -0.006240989997946655,
+          "block_margin_abs_shift": 0.006240989997946655,
+          "block_sign_flip": 0.0,
+          "block_accept_preference": 1.0,
+          "block_accept_support_shift": -0.0007566777105475105,
+          "block_accept_support_std": 0.000410357549626917,
+          "block_reject_support_shift": 0.005484312287399144,
+          "block_reject_support_std": 0.002671323096560589
+        },
+        "stability8": {
+          "all_margin_mean": 0.00907903172914705,
+          "all_margin_std": 0.019464453265665458,
+          "all_margin_min": -0.031072394801324454,
+          "all_margin_max": 0.029000746537197808,
+          "all_margin_shift": -0.019947033234083,
+          "all_margin_abs_shift": 0.019947033234083,
+          "all_sign_flip": 0.375,
+          "all_accept_preference": 0.625,
+          "all_accept_support_shift": -0.009472067128329214,
+          "all_accept_support_std": 0.013467151222549338,
+          "all_reject_support_shift": 0.010474966105753785,
+          "all_reject_support_std": 0.006854616903710661,
+          "random_margin_mean": 0.010464354878669124,
+          "random_margin_std": 0.01559935041977243,
+          "random_margin_min": -0.007842144636582941,
+          "random_margin_max": 0.029000746537197808,
+          "random_margin_shift": -0.018561710084560923,
+          "random_margin_abs_shift": 0.018561710084560923,
+          "random_sign_flip": 0.5,
+          "random_accept_preference": 0.5,
+          "random_accept_support_shift": -0.009618680065370514,
+          "random_accept_support_std": 0.011147041699675255,
+          "random_reject_support_shift": 0.00894303001919041,
+          "random_reject_support_std": 0.005288480496424452,
+          "block_margin_mean": 0.007693708579624975,
+          "block_margin_std": 0.02259539572316652,
+          "block_margin_min": -0.031072394801324454,
+          "block_margin_max": 0.025046040512217066,
+          "block_margin_shift": -0.021332356383605075,
+          "block_margin_abs_shift": 0.021332356383605075,
+          "block_sign_flip": 0.25,
+          "block_accept_preference": 0.75,
+          "block_accept_support_shift": -0.009325454191287915,
+          "block_accept_support_std": 0.015441139684010036,
+          "block_reject_support_shift": 0.012006902192317159,
+          "block_reject_support_std": 0.007830061525018807
+        }
+      },
+      "candidate_scores": {
+        "accept": [
+          {
+            "mean": -0.041746352601342136,
+            "sum": -1.5028686936483169,
+            "tokens": 36
+          },
+          {
+            "mean": -0.07077241756457218,
+            "sum": -2.5478070323245987,
+            "tokens": 36
+          }
+        ],
+        "reject": [
+          {
+            "mean": -0.23013946667571736,
+            "sum": -8.285020800325825,
+            "tokens": 36
+          },
+          {
+            "mean": -0.01124948772361931,
+            "sum": -0.4049815580502951,
+            "tokens": 36
+          }
+        ]
+      },
+      "perturbations": [
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "random",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            37,
+            97,
+            100,
+            158,
+            175,
+            185,
+            193,
+            201,
+            205,
+            218,
+            232,
+            241,
+            252
+          ],
+          "scores": [
+            {
+              "mean": -0.04271567812551878,
+              "sum": -1.5377644125186762,
+              "tokens": 36
+            },
+            {
+              "mean": -0.06520194749565139,
+              "sum": -2.34727010984345,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "block",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107
+          ],
+          "scores": [
+            {
+              "mean": -0.042913387861516564,
+              "sum": -1.5448819630145962,
+              "tokens": 36
+            },
+            {
+              "mean": -0.06795942837373363,
+              "sum": -2.4465394214544105,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "random",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            9,
+            35,
+            45,
+            57,
+            71,
+            83,
+            93,
+            100,
+            109,
+            115,
+            116,
+            120,
+            122,
+            127,
+            147,
+            150,
+            151,
+            165,
+            179,
+            192,
+            213,
+            214,
+            217,
+            219,
+            243,
+            257,
+            262
+          ],
+          "scores": [
+            {
+              "mean": -0.0563146902444854,
+              "sum": -2.0273288488014742,
+              "tokens": 36
+            },
+            {
+              "mean": -0.05452723848841442,
+              "sum": -1.962980585582919,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "block",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            179,
+            180,
+            181,
+            182,
+            183,
+            184,
+            185,
+            186,
+            187,
+            188,
+            189,
+            190,
+            191,
+            192,
+            193,
+            194,
+            195,
+            196,
+            197,
+            198,
+            199,
+            200,
+            201,
+            202,
+            203,
+            204,
+            205
+          ],
+          "scores": [
+            {
+              "mean": -0.04209267276226273,
+              "sum": -1.5153362194414584,
+              "tokens": 36
+            },
+            {
+              "mean": -0.06261678218061245,
+              "sum": -2.2542041585020485,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "random",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            18,
+            41,
+            55,
+            105,
+            110,
+            111,
+            113,
+            171,
+            219,
+            233,
+            235,
+            268,
+            269
+          ],
+          "scores": [
+            {
+              "mean": -0.06719472077000235,
+              "sum": -2.4190099477200846,
+              "tokens": 36
+            },
+            {
+              "mean": -0.05935257613341941,
+              "sum": -2.136692740803099,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "block",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            253,
+            254,
+            255,
+            256,
+            257,
+            258,
+            259,
+            260,
+            261,
+            262,
+            263,
+            264,
+            265
+          ],
+          "scores": [
+            {
+              "mean": -0.041479048772951624,
+              "sum": -1.4932457558262584,
+              "tokens": 36
+            },
+            {
+              "mean": -0.05775612796220919,
+              "sum": -2.079220606639531,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "random",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            14,
+            22,
+            35,
+            42,
+            56,
+            57,
+            59,
+            62,
+            69,
+            97,
+            103,
+            111,
+            126,
+            144,
+            146,
+            167,
+            173,
+            181,
+            189,
+            190,
+            195,
+            201,
+            212,
+            224,
+            237,
+            254,
+            258
+          ],
+          "scores": [
+            {
+              "mean": -0.03923504152684407,
+              "sum": -1.4124614949663865,
+              "tokens": 36
+            },
+            {
+              "mean": -0.06823578806404187,
+              "sum": -2.4564883703055074,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "block",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109
+          ],
+          "scores": [
+            {
+              "mean": -0.07780211777378929,
+              "sum": -2.8008762398564144,
+              "tokens": 36
+            },
+            {
+              "mean": -0.04672972297246483,
+              "sum": -1.6822700270087338,
+              "tokens": 36
+            }
+          ]
+        }
+      ],
+      "feature_seconds": 1.5536115169525146,
+      "forward_budget": {
+        "perturbations": 8,
+        "candidate_sequences_per_probe": 2
+      },
+      "generation_audit": false,
+      "accept": {
+        "prediction": "The Red Queen's Race is a science fiction short story that uses the Red Queen's race from a novel by Lewis Carroll that is the sequel to *Alice's Adventures in Wonderland*.",
+        "raw_output": "The Red Queen's Race is a science fiction short story that uses the Red Queen's race from a novel by Lewis Carroll that is the sequel to *Alice's Adventures in Wonderland*.<|im_end|>",
+        "generated_ids": [
+          785,
+          3731,
+          16259,
+          594,
+          23659,
+          374,
+          264,
+          8038,
+          16989,
+          2805,
+          3364,
+          429,
+          5711,
+          279,
+          3731,
+          16259,
+          594,
+          6957,
+          504,
+          264,
+          11514,
+          553,
+          20607,
+          46109,
+          429,
+          374,
+          279,
+          34761,
+          311,
+          353,
+          61686,
+          594,
+          50579,
+          304,
+          88924,
+          19922,
+          151645
+        ],
+        "generated_tokens": 37,
+        "eos": true,
+        "question_logp": -1.7013392448425293,
+        "first_entropy": 0.27646031975746155,
+        "mean_entropy": 0.08191809854913222,
+        "first_margin": 4.015625,
+        "mean_logp": -0.040588097358211735,
+        "seconds": 1.7565877437591553,
+        "em": 0.0,
+        "f1": 0.26666666666666666,
+        "answer_token_nll": 1.0281939506530762
+      },
+      "reject": {
+        "prediction": "The Red Queen's Race is a science fiction short story that uses the Red Queen's race from a novel by Lewis Carroll that is the sequel to \"Through the Looking-Glass.\"",
+        "raw_output": "The Red Queen's Race is a science fiction short story that uses the Red Queen's race from a novel by Lewis Carroll that is the sequel to \"Through the Looking-Glass.\"<|im_end|>",
+        "generated_ids": [
+          785,
+          3731,
+          16259,
+          594,
+          23659,
+          374,
+          264,
+          8038,
+          16989,
+          2805,
+          3364,
+          429,
+          5711,
+          279,
+          3731,
+          16259,
+          594,
+          6957,
+          504,
+          264,
+          11514,
+          553,
+          20607,
+          46109,
+          429,
+          374,
+          279,
+          34761,
+          311,
+          330,
+          23857,
+          279,
+          21131,
+          12010,
+          447,
+          1189,
+          151645
+        ],
+        "generated_tokens": 37,
+        "eos": true,
+        "question_logp": -3.437107801437378,
+        "first_entropy": 0.07989119738340378,
+        "mean_entropy": 0.024460860939917093,
+        "first_margin": 4.296875,
+        "mean_logp": -0.010939160911021489,
+        "seconds": 1.684485912322998,
+        "em": 0.0,
+        "f1": 0.0,
+        "answer_token_nll": 0.8768765330314636
+      },
+      "utility_em": 0.0,
+      "utility_f1": 0.26666666666666666,
+      "case_seconds": 3.407701253890991
+    },
+    "wrong": {
+      "feature_groups": {
+        "output": {
+          "a_question_logp": -4.494561195373535,
+          "a_first_entropy": 1.8275411128997803,
+          "a_mean_entropy": 0.14893437109028151,
+          "a_first_margin": 0.578125,
+          "a_mean_logp": -0.06051186186013659,
+          "a_generated_tokens": 37.0,
+          "a_eos": 1.0,
+          "r_question_logp": -3.437107801437378,
+          "r_first_entropy": 0.07989119738340378,
+          "r_mean_entropy": 0.024460860939917093,
+          "r_first_margin": 4.296875,
+          "r_mean_logp": -0.010939160911021489,
+          "r_generated_tokens": 37.0,
+          "r_eos": 1.0,
+          "question_gain": -1.0574533939361572,
+          "entropy_gain": -1.7476499155163765,
+          "mean_logp_gain": -0.049572700949115096,
+          "answer_disagreement": 1.0,
+          "answer_overlap": 0.88
+        },
+        "cross": {
+          "accept_candidate0_mean": -0.06213432641351721,
+          "accept_candidate0_sum": -2.2368357508866197,
+          "accept_candidate1_mean": -0.09579498082120964,
+          "accept_candidate1_sum": -3.448619309563547,
+          "accept_margin": 0.033660654407692434,
+          "reject_candidate0_mean": -0.23013946667571736,
+          "reject_candidate0_sum": -8.285020800325825,
+          "reject_candidate1_mean": -0.01124948772361931,
+          "reject_candidate1_sum": -0.4049815580502951,
+          "reject_margin": -0.21888997895209805,
+          "margin_gain": 0.2525506333597905,
+          "accept_answer_support_gain": 0.16800514026220015,
+          "reject_answer_support_gain": -0.08454549309759034
+        },
+        "stability2": {
+          "all_margin_mean": 0.03839736685152989,
+          "all_margin_std": 0.007074990850077886,
+          "all_margin_min": 0.031322376001452004,
+          "all_margin_max": 0.04547235770160778,
+          "all_margin_shift": 0.004736712443837457,
+          "all_margin_abs_shift": 0.007074990850077886,
+          "all_sign_flip": 0.0,
+          "all_accept_preference": 1.0,
+          "all_accept_support_shift": 0.0036617660850089967,
+          "all_accept_support_std": 0.004975593296384417,
+          "all_reject_support_shift": -0.0010749463588284602,
+          "all_reject_support_std": 0.002099397553693469,
+          "random_margin_mean": 0.031322376001452004,
+          "random_margin_std": 0.0,
+          "random_margin_min": 0.031322376001452004,
+          "random_margin_max": 0.031322376001452004,
+          "random_margin_shift": -0.0023382784062404294,
+          "random_margin_abs_shift": 0.0023382784062404294,
+          "random_sign_flip": 0.0,
+          "random_accept_preference": 1.0,
+          "random_accept_support_shift": -0.0013138272113754207,
+          "random_accept_support_std": 0.0,
+          "random_reject_support_shift": 0.0010244511948650087,
+          "random_reject_support_std": 0.0,
+          "block_margin_mean": 0.04547235770160778,
+          "block_margin_std": 0.0,
+          "block_margin_min": 0.04547235770160778,
+          "block_margin_max": 0.04547235770160778,
+          "block_margin_shift": 0.011811703293915343,
+          "block_margin_abs_shift": 0.011811703293915343,
+          "block_sign_flip": 0.0,
+          "block_accept_preference": 1.0,
+          "block_accept_support_shift": 0.008637359381393414,
+          "block_accept_support_std": 0.0,
+          "block_reject_support_shift": -0.003174343912521929,
+          "block_reject_support_std": 0.0
+        },
+        "stability4": {
+          "all_margin_mean": 0.02931799506522677,
+          "all_margin_std": 0.011045408129783475,
+          "all_margin_min": 0.014846350853456466,
+          "all_margin_max": 0.04547235770160778,
+          "all_margin_shift": -0.004342659342465662,
+          "all_margin_abs_shift": 0.010248510989423334,
+          "all_sign_flip": 0.0,
+          "all_accept_preference": 1.0,
+          "all_accept_support_shift": -0.0046175115335690825,
+          "all_accept_support_std": 0.010683421725303567,
+          "all_reject_support_shift": -0.0002748521911034203,
+          "all_reject_support_std": 0.0025780347774731495,
+          "random_margin_mean": 0.023084363427454235,
+          "random_margin_std": 0.008238012573997769,
+          "random_margin_min": 0.014846350853456466,
+          "random_margin_max": 0.031322376001452004,
+          "random_margin_shift": -0.010576290980238198,
+          "random_margin_abs_shift": 0.010576290980238198,
+          "random_sign_flip": 0.0,
+          "random_accept_preference": 1.0,
+          "random_accept_support_shift": -0.011180280423978874,
+          "random_accept_support_std": 0.009866453212603453,
+          "random_reject_support_shift": -0.0006039894437406754,
+          "random_reject_support_std": 0.001628440638605684,
+          "block_margin_mean": 0.03555162670299931,
+          "block_margin_std": 0.00992073099860847,
+          "block_margin_min": 0.025630895704390838,
+          "block_margin_max": 0.04547235770160778,
+          "block_margin_shift": 0.0018909722953068739,
+          "block_margin_abs_shift": 0.00992073099860847,
+          "block_sign_flip": 0.0,
+          "block_accept_preference": 1.0,
+          "block_accept_support_shift": 0.0019452573568407086,
+          "block_accept_support_std": 0.0066921020245527055,
+          "block_reject_support_shift": 5.428506153383472e-05,
+          "block_reject_support_std": 0.003228628974055764
+        },
+        "stability8": {
+          "all_margin_mean": 0.02734276151286292,
+          "all_margin_std": 0.010831532608612452,
+          "all_margin_min": 0.009178879988162691,
+          "all_margin_max": 0.04547235770160778,
+          "all_margin_shift": -0.006317892894829516,
+          "all_margin_abs_shift": 0.009583049041041082,
+          "all_sign_flip": 0.0,
+          "all_accept_preference": 1.0,
+          "all_accept_support_shift": -0.005796612788863715,
+          "all_accept_support_std": 0.008250967091620428,
+          "all_reject_support_shift": 0.0005212801059658011,
+          "all_reject_support_std": 0.008031822010813865,
+          "random_margin_mean": 0.02626770028571437,
+          "random_margin_std": 0.00767879422267091,
+          "random_margin_min": 0.014846350853456466,
+          "random_margin_max": 0.03490957569862335,
+          "random_margin_shift": -0.007392954121978063,
+          "random_margin_abs_shift": 0.008017414767443522,
+          "random_sign_flip": 0.0,
+          "random_accept_preference": 1.0,
+          "random_accept_support_shift": -0.007044731402510808,
+          "random_accept_support_std": 0.008118117437049705,
+          "random_reject_support_shift": 0.00034822271946725533,
+          "random_reject_support_std": 0.004473894252127464,
+          "block_margin_mean": 0.028417822740011464,
+          "block_margin_std": 0.013166958772036512,
+          "block_margin_min": 0.009178879988162691,
+          "block_margin_max": 0.04547235770160778,
+          "block_margin_shift": -0.005242831667680969,
+          "block_margin_abs_shift": 0.011148683314638641,
+          "block_sign_flip": 0.0,
+          "block_accept_preference": 1.0,
+          "block_accept_support_shift": -0.004548494175216623,
+          "block_accept_support_std": 0.008193746702504992,
+          "block_reject_support_shift": 0.0006943374924643468,
+          "block_reject_support_std": 0.010437657885250196
+        }
+      },
+      "candidate_scores": {
+        "accept": [
+          {
+            "mean": -0.06213432641351721,
+            "sum": -2.2368357508866197,
+            "tokens": 36
+          },
+          {
+            "mean": -0.09579498082120964,
+            "sum": -3.448619309563547,
+            "tokens": 36
+          }
+        ],
+        "reject": [
+          {
+            "mean": -0.23013946667571736,
+            "sum": -8.285020800325825,
+            "tokens": 36
+          },
+          {
+            "mean": -0.01124948772361931,
+            "sum": -0.4049815580502951,
+            "tokens": 36
+          }
+        ]
+      },
+      "perturbations": [
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "random",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            37,
+            97,
+            100,
+            158,
+            175,
+            185,
+            193,
+            201,
+            205,
+            218,
+            232,
+            241,
+            252
+          ],
+          "scores": [
+            {
+              "mean": -0.06344815362489263,
+              "sum": -2.2841335304961348,
+              "tokens": 36
+            },
+            {
+              "mean": -0.09477052962634464,
+              "sum": -3.4117390665484066,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "block",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107
+          ],
+          "scores": [
+            {
+              "mean": -0.053496967032123796,
+              "sum": -1.9258908131564567,
+              "tokens": 36
+            },
+            {
+              "mean": -0.09896932473373157,
+              "sum": -3.5628956904143365,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "random",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            9,
+            35,
+            45,
+            57,
+            71,
+            83,
+            93,
+            100,
+            109,
+            115,
+            116,
+            120,
+            122,
+            127,
+            147,
+            150,
+            151,
+            165,
+            179,
+            192,
+            213,
+            214,
+            217,
+            219,
+            243,
+            257,
+            262
+          ],
+          "scores": [
+            {
+              "mean": -0.08318106005009954,
+              "sum": -2.994518161803583,
+              "tokens": 36
+            },
+            {
+              "mean": -0.098027410903556,
+              "sum": -3.5289867925280163,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "block",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            179,
+            180,
+            181,
+            182,
+            183,
+            184,
+            185,
+            186,
+            187,
+            188,
+            189,
+            190,
+            191,
+            192,
+            193,
+            194,
+            195,
+            196,
+            197,
+            198,
+            199,
+            200,
+            201,
+            202,
+            203,
+            204,
+            205
+          ],
+          "scores": [
+            {
+              "mean": -0.06688117108122921,
+              "sum": -2.4077221589242512,
+              "tokens": 36
+            },
+            {
+              "mean": -0.09251206678562005,
+              "sum": -3.3304344042823217,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "random",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            18,
+            41,
+            55,
+            105,
+            110,
+            111,
+            113,
+            171,
+            219,
+            233,
+            235,
+            268,
+            269
+          ],
+          "scores": [
+            {
+              "mean": -0.06453830484659741,
+              "sum": -2.3233789744775066,
+              "tokens": 36
+            },
+            {
+              "mean": -0.08853080343592307,
+              "sum": -3.1871089236932306,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "block",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            253,
+            254,
+            255,
+            256,
+            257,
+            258,
+            259,
+            260,
+            261,
+            262,
+            263,
+            264,
+            265
+          ],
+          "scores": [
+            {
+              "mean": -0.07090652308554841,
+              "sum": -2.552634831079743,
+              "tokens": 36
+            },
+            {
+              "mean": -0.0800854030737111,
+              "sum": -2.8830745106536,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "random",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            14,
+            22,
+            35,
+            42,
+            56,
+            57,
+            59,
+            62,
+            69,
+            97,
+            103,
+            111,
+            126,
+            144,
+            146,
+            167,
+            173,
+            181,
+            189,
+            190,
+            195,
+            201,
+            212,
+            224,
+            237,
+            254,
+            258
+          ],
+          "scores": [
+            {
+              "mean": -0.0655487127425225,
+              "sum": -2.35975365873081,
+              "tokens": 36
+            },
+            {
+              "mean": -0.10045828844114585,
+              "sum": -3.6164983838812503,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "block",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109
+          ],
+          "scores": [
+            {
+              "mean": -0.07544662115603391,
+              "sum": -2.716078361617221,
+              "tokens": 36
+            },
+            {
+              "mean": -0.10883577872191846,
+              "sum": -3.918088033989065,
+              "tokens": 36
+            }
+          ]
+        }
+      ],
+      "feature_seconds": 1.5546188354492188,
+      "forward_budget": {
+        "perturbations": 8,
+        "candidate_sequences_per_probe": 2
+      },
+      "generation_audit": false,
+      "accept": {
+        "prediction": "The Red Queen's Race is a science fiction short story that uses the Red Queen's race from a novel by Lewis Carroll that is the sequel to *Alice's Adventures in Wonderland*.",
+        "raw_output": "The Red Queen's Race is a science fiction short story that uses the Red Queen's race from a novel by Lewis Carroll that is the sequel to *Alice's Adventures in Wonderland*.<|im_end|>",
+        "generated_ids": [
+          785,
+          3731,
+          16259,
+          594,
+          23659,
+          374,
+          264,
+          8038,
+          16989,
+          2805,
+          3364,
+          429,
+          5711,
+          279,
+          3731,
+          16259,
+          594,
+          6957,
+          504,
+          264,
+          11514,
+          553,
+          20607,
+          46109,
+          429,
+          374,
+          279,
+          34761,
+          311,
+          353,
+          61686,
+          594,
+          50579,
+          304,
+          88924,
+          19922,
+          151645
+        ],
+        "generated_tokens": 37,
+        "eos": true,
+        "question_logp": -4.494561195373535,
+        "first_entropy": 1.8275411128997803,
+        "mean_entropy": 0.14893437109028151,
+        "first_margin": 0.578125,
+        "mean_logp": -0.06051186186013659,
+        "seconds": 1.7575023174285889,
+        "em": 0.0,
+        "f1": 0.26666666666666666,
+        "answer_token_nll": 0.8081744313240051
+      },
+      "reject": {
+        "prediction": "The Red Queen's Race is a science fiction short story that uses the Red Queen's race from a novel by Lewis Carroll that is the sequel to \"Through the Looking-Glass.\"",
+        "raw_output": "The Red Queen's Race is a science fiction short story that uses the Red Queen's race from a novel by Lewis Carroll that is the sequel to \"Through the Looking-Glass.\"<|im_end|>",
+        "generated_ids": [
+          785,
+          3731,
+          16259,
+          594,
+          23659,
+          374,
+          264,
+          8038,
+          16989,
+          2805,
+          3364,
+          429,
+          5711,
+          279,
+          3731,
+          16259,
+          594,
+          6957,
+          504,
+          264,
+          11514,
+          553,
+          20607,
+          46109,
+          429,
+          374,
+          279,
+          34761,
+          311,
+          330,
+          23857,
+          279,
+          21131,
+          12010,
+          447,
+          1189,
+          151645
+        ],
+        "generated_tokens": 37,
+        "eos": true,
+        "question_logp": -3.437107801437378,
+        "first_entropy": 0.07989119738340378,
+        "mean_entropy": 0.024460860939917093,
+        "first_margin": 4.296875,
+        "mean_logp": -0.010939160911021489,
+        "seconds": 1.684485912322998,
+        "em": 0.0,
+        "f1": 0.0,
+        "answer_token_nll": 0.8768765330314636
+      },
+      "utility_em": 0.0,
+      "utility_f1": 0.26666666666666666,
+      "case_seconds": 3.4475321769714355
+    },
+    "partial50": {
+      "feature_groups": {
+        "output": {
+          "a_question_logp": -3.571532964706421,
+          "a_first_entropy": 0.6117282509803772,
+          "a_mean_entropy": 0.35340568657953886,
+          "a_first_margin": 2.546875,
+          "a_mean_logp": -0.11040224127761823,
+          "a_generated_tokens": 11.0,
+          "a_eos": 1.0,
+          "r_question_logp": -3.437107801437378,
+          "r_first_entropy": 0.07989119738340378,
+          "r_mean_entropy": 0.024460860939917093,
+          "r_first_margin": 4.296875,
+          "r_mean_logp": -0.010939160911021489,
+          "r_generated_tokens": 37.0,
+          "r_eos": 1.0,
+          "question_gain": -0.13442516326904297,
+          "entropy_gain": -0.5318370535969734,
+          "mean_logp_gain": -0.09946308036659675,
+          "answer_disagreement": 1.0,
+          "answer_overlap": 0.2857142857142857
+        },
+        "cross": {
+          "accept_candidate0_mean": -0.12241833903535734,
+          "accept_candidate0_sum": -1.2241833903535735,
+          "accept_candidate1_mean": -0.11961359943218063,
+          "accept_candidate1_sum": -4.306089579558503,
+          "accept_margin": -0.0028047396031767174,
+          "reject_candidate0_mean": -0.7253953912047564,
+          "reject_candidate0_sum": -7.253953912047564,
+          "reject_candidate1_mean": -0.01124948772361931,
+          "reject_candidate1_sum": -0.4049815580502951,
+          "reject_margin": -0.714145903481137,
+          "margin_gain": 0.7113411638779603,
+          "accept_answer_support_gain": 0.602977052169399,
+          "reject_answer_support_gain": -0.10836411170856132
+        },
+        "stability2": {
+          "all_margin_mean": -0.001000171138885106,
+          "all_margin_std": 0.0035618677151190714,
+          "all_margin_min": -0.004562038854004177,
+          "all_margin_max": 0.0025616965762339655,
+          "all_margin_shift": 0.0018045684642916116,
+          "all_margin_abs_shift": 0.0035618677151190714,
+          "all_sign_flip": 0.5,
+          "all_accept_preference": 0.5,
+          "all_accept_support_shift": 0.0025293332060755264,
+          "all_accept_support_std": 0.0024967082443254213,
+          "all_reject_support_shift": 0.0007247647417839148,
+          "all_reject_support_std": 0.0010651594707936501,
+          "random_margin_mean": -0.004562038854004177,
+          "random_margin_std": 0.0,
+          "random_margin_min": -0.004562038854004177,
+          "random_margin_max": -0.004562038854004177,
+          "random_margin_shift": -0.0017572992508274599,
+          "random_margin_abs_shift": 0.0017572992508274599,
+          "random_sign_flip": 0.0,
+          "random_accept_preference": 0.0,
+          "random_accept_support_shift": 3.26249617501051e-05,
+          "random_accept_support_std": 0.0,
+          "random_reject_support_shift": 0.001789924212577565,
+          "random_reject_support_std": 0.0,
+          "block_margin_mean": 0.0025616965762339655,
+          "block_margin_std": 0.0,
+          "block_margin_min": 0.0025616965762339655,
+          "block_margin_max": 0.0025616965762339655,
+          "block_margin_shift": 0.005366436179410683,
+          "block_margin_abs_shift": 0.005366436179410683,
+          "block_sign_flip": 1.0,
+          "block_accept_preference": 1.0,
+          "block_accept_support_shift": 0.005026041450400948,
+          "block_accept_support_std": 0.0,
+          "block_reject_support_shift": -0.00034039472900973533,
+          "block_reject_support_std": 0.0
+        },
+        "stability4": {
+          "all_margin_mean": -0.004534648277596788,
+          "all_margin_std": 0.009216968768870163,
+          "all_margin_min": -0.01956838920424278,
+          "all_margin_max": 0.0034301383716258405,
+          "all_margin_shift": -0.0017299086744200706,
+          "all_margin_abs_shift": 0.007530565751526691,
+          "all_sign_flip": 0.5,
+          "all_accept_preference": 0.5,
+          "all_accept_support_shift": 0.0036498466768534812,
+          "all_accept_support_std": 0.010450262487925811,
+          "all_reject_support_shift": 0.005379755351273552,
+          "all_reject_support_std": 0.005165143629794211,
+          "random_margin_mean": -0.0005659502411891684,
+          "random_margin_std": 0.003996088612815009,
+          "random_margin_min": -0.004562038854004177,
+          "random_margin_max": 0.0034301383716258405,
+          "random_margin_shift": 0.002238789361987549,
+          "random_margin_abs_shift": 0.003996088612815009,
+          "random_sign_flip": 0.5,
+          "random_accept_preference": 0.5,
+          "random_accept_support_shift": 0.00964150842482922,
+          "random_accept_support_std": 0.009608883463079115,
+          "random_reject_support_shift": 0.007402719062841671,
+          "random_reject_support_std": 0.0056127948502641065,
+          "block_margin_mean": -0.008503346314004408,
+          "block_margin_std": 0.011065042890238373,
+          "block_margin_min": -0.01956838920424278,
+          "block_margin_max": 0.0025616965762339655,
+          "block_margin_shift": -0.00569860671082769,
+          "block_margin_abs_shift": 0.011065042890238373,
+          "block_sign_flip": 0.5,
+          "block_accept_preference": 0.5,
+          "block_accept_support_shift": -0.002341815071122258,
+          "block_accept_support_std": 0.007367856521523206,
+          "block_reject_support_shift": 0.0033567916397054323,
+          "block_reject_support_std": 0.0036971863687151676
+        },
+        "stability8": {
+          "all_margin_mean": -0.008037207763548583,
+          "all_margin_std": 0.014043885587512477,
+          "all_margin_min": -0.032199138125587445,
+          "all_margin_max": 0.011235749509201545,
+          "all_margin_shift": -0.005232468160371866,
+          "all_margin_abs_shift": 0.011644895966850182,
+          "all_sign_flip": 0.375,
+          "all_accept_preference": 0.375,
+          "all_accept_support_shift": 0.0033970538134099094,
+          "all_accept_support_std": 0.009128952997719061,
+          "all_reject_support_shift": 0.008629521973781775,
+          "all_reject_support_std": 0.010491392188992114,
+          "random_margin_mean": -0.006581895215998487,
+          "random_margin_std": 0.00960238721930072,
+          "random_margin_min": -0.022398848737760657,
+          "random_margin_max": 0.0034301383716258405,
+          "random_margin_shift": -0.00377715561282177,
+          "random_margin_abs_shift": 0.00689854857988393,
+          "random_sign_flip": 0.25,
+          "random_accept_preference": 0.25,
+          "random_accept_support_shift": 0.0034499812708418155,
+          "random_accept_support_std": 0.0092562936938896,
+          "random_reject_support_shift": 0.007227136883663585,
+          "random_reject_support_std": 0.007067046793411222,
+          "block_margin_mean": -0.009492520311098679,
+          "block_margin_std": 0.01726324810859121,
+          "block_margin_min": -0.032199138125587445,
+          "block_margin_max": 0.011235749509201545,
+          "block_margin_shift": -0.0066877807079219614,
+          "block_margin_abs_shift": 0.016391243353816434,
+          "block_sign_flip": 0.5,
+          "block_accept_preference": 0.5,
+          "block_accept_support_shift": 0.0033441263559780034,
+          "block_accept_support_std": 0.008999499435529003,
+          "block_reject_support_shift": 0.010031907063899965,
+          "block_reject_support_std": 0.012894266239854596
+        }
+      },
+      "candidate_scores": {
+        "accept": [
+          {
+            "mean": -0.12241833903535734,
+            "sum": -1.2241833903535735,
+            "tokens": 10
+          },
+          {
+            "mean": -0.11961359943218063,
+            "sum": -4.306089579558503,
+            "tokens": 36
+          }
+        ],
+        "reject": [
+          {
+            "mean": -0.7253953912047564,
+            "sum": -7.253953912047564,
+            "tokens": 10
+          },
+          {
+            "mean": -0.01124948772361931,
+            "sum": -0.4049815580502951,
+            "tokens": 36
+          }
+        ]
+      },
+      "perturbations": [
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "random",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            37,
+            97,
+            100,
+            158,
+            175,
+            185,
+            193,
+            201,
+            205,
+            218,
+            232,
+            241,
+            252
+          ],
+          "scores": [
+            {
+              "mean": -0.12238571407360724,
+              "sum": -1.2238571407360723,
+              "tokens": 10
+            },
+            {
+              "mean": -0.11782367521960306,
+              "sum": -4.24165230790571,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "block",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107
+          ],
+          "scores": [
+            {
+              "mean": -0.1173922975849564,
+              "sum": -1.173922975849564,
+              "tokens": 10
+            },
+            {
+              "mean": -0.11995399416119036,
+              "sum": -4.318343789802853,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "random",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            9,
+            35,
+            45,
+            57,
+            71,
+            83,
+            93,
+            100,
+            109,
+            115,
+            116,
+            120,
+            122,
+            127,
+            147,
+            150,
+            151,
+            165,
+            179,
+            192,
+            213,
+            214,
+            217,
+            219,
+            243,
+            257,
+            262
+          ],
+          "scores": [
+            {
+              "mean": -0.10316794714744901,
+              "sum": -1.0316794714744901,
+              "tokens": 10
+            },
+            {
+              "mean": -0.10659808551907485,
+              "sum": -3.8375310786866947,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "block",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            179,
+            180,
+            181,
+            182,
+            183,
+            184,
+            185,
+            186,
+            187,
+            188,
+            189,
+            190,
+            191,
+            192,
+            193,
+            194,
+            195,
+            196,
+            197,
+            198,
+            199,
+            200,
+            201,
+            202,
+            203,
+            204,
+            205
+          ],
+          "scores": [
+            {
+              "mean": -0.1321280106280028,
+              "sum": -1.3212801062800281,
+              "tokens": 10
+            },
+            {
+              "mean": -0.11255962142376003,
+              "sum": -4.052146371255361,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "random",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            18,
+            41,
+            55,
+            105,
+            110,
+            111,
+            113,
+            171,
+            219,
+            233,
+            235,
+            268,
+            269
+          ],
+          "scores": [
+            {
+              "mean": -0.12669523096774354,
+              "sum": -1.2669523096774356,
+              "tokens": 10
+            },
+            {
+              "mean": -0.10429638222998289,
+              "sum": -3.754669760279384,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "block",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            253,
+            254,
+            255,
+            256,
+            257,
+            258,
+            259,
+            260,
+            261,
+            262,
+            263,
+            264,
+            265
+          ],
+          "scores": [
+            {
+              "mean": -0.11994851596064109,
+              "sum": -1.1994851596064109,
+              "tokens": 10
+            },
+            {
+              "mean": -0.08774937783505364,
+              "sum": -3.158977602061931,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "random",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            14,
+            22,
+            35,
+            42,
+            56,
+            57,
+            59,
+            62,
+            69,
+            97,
+            103,
+            111,
+            126,
+            144,
+            146,
+            167,
+            173,
+            181,
+            189,
+            190,
+            195,
+            201,
+            212,
+            224,
+            237,
+            254,
+            258
+          ],
+          "scores": [
+            {
+              "mean": -0.12362453886926232,
+              "sum": -1.2362453886926232,
+              "tokens": 10
+            },
+            {
+              "mean": -0.12082770722540737,
+              "sum": -4.349797460114665,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "block",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109
+          ],
+          "scores": [
+            {
+              "mean": -0.10682802654391707,
+              "sum": -1.0682802654391708,
+              "tokens": 10
+            },
+            {
+              "mean": -0.11806377605311862,
+              "sum": -4.25029593791227,
+              "tokens": 36
+            }
+          ]
+        }
+      ],
+      "feature_seconds": 1.545283317565918,
+      "forward_budget": {
+        "perturbations": 8,
+        "candidate_sequences_per_probe": 2
+      },
+      "generation_audit": false,
+      "accept": {
+        "prediction": "The sequel to \"Through the Looking-Glass.\"",
+        "raw_output": "The sequel to \"Through the Looking-Glass.\"<|im_end|>",
+        "generated_ids": [
+          785,
+          34761,
+          311,
+          330,
+          23857,
+          279,
+          21131,
+          12010,
+          447,
+          1189,
+          151645
+        ],
+        "generated_tokens": 11,
+        "eos": true,
+        "question_logp": -3.571532964706421,
+        "first_entropy": 0.6117282509803772,
+        "mean_entropy": 0.35340568657953886,
+        "first_margin": 2.546875,
+        "mean_logp": -0.11040224127761823,
+        "seconds": 0.5294649600982666,
+        "em": 0.0,
+        "f1": 0.0,
+        "answer_token_nll": 1.5678925514221191
+      },
+      "reject": {
+        "prediction": "The Red Queen's Race is a science fiction short story that uses the Red Queen's race from a novel by Lewis Carroll that is the sequel to \"Through the Looking-Glass.\"",
+        "raw_output": "The Red Queen's Race is a science fiction short story that uses the Red Queen's race from a novel by Lewis Carroll that is the sequel to \"Through the Looking-Glass.\"<|im_end|>",
+        "generated_ids": [
+          785,
+          3731,
+          16259,
+          594,
+          23659,
+          374,
+          264,
+          8038,
+          16989,
+          2805,
+          3364,
+          429,
+          5711,
+          279,
+          3731,
+          16259,
+          594,
+          6957,
+          504,
+          264,
+          11514,
+          553,
+          20607,
+          46109,
+          429,
+          374,
+          279,
+          34761,
+          311,
+          330,
+          23857,
+          279,
+          21131,
+          12010,
+          447,
+          1189,
+          151645
+        ],
+        "generated_tokens": 37,
+        "eos": true,
+        "question_logp": -3.437107801437378,
+        "first_entropy": 0.07989119738340378,
+        "mean_entropy": 0.024460860939917093,
+        "first_margin": 4.296875,
+        "mean_logp": -0.010939160911021489,
+        "seconds": 1.684485912322998,
+        "em": 0.0,
+        "f1": 0.0,
+        "answer_token_nll": 0.8768765330314636
+      },
+      "utility_em": 0.0,
+      "utility_f1": 0.0,
+      "case_seconds": 2.227098226547241
+    },
+    "partial25": {
+      "feature_groups": {
+        "output": {
+          "a_question_logp": -2.5708019733428955,
+          "a_first_entropy": 0.20227423310279846,
+          "a_mean_entropy": 0.08618435885244935,
+          "a_first_margin": 4.09375,
+          "a_mean_logp": -0.0379912355063458,
+          "a_generated_tokens": 37.0,
+          "a_eos": 1.0,
+          "r_question_logp": -3.437107801437378,
+          "r_first_entropy": 0.07989119738340378,
+          "r_mean_entropy": 0.024460860939917093,
+          "r_first_margin": 4.296875,
+          "r_mean_logp": -0.010939160911021489,
+          "r_generated_tokens": 37.0,
+          "r_eos": 1.0,
+          "question_gain": 0.8663058280944824,
+          "entropy_gain": -0.12238303571939468,
+          "mean_logp_gain": -0.027052074595324306,
+          "answer_disagreement": 1.0,
+          "answer_overlap": 0.88
+        },
+        "cross": {
+          "accept_candidate0_mean": -0.03894949436700104,
+          "accept_candidate0_sum": -1.4021817972120374,
+          "accept_candidate1_mean": -0.09263146739106591,
+          "accept_candidate1_sum": -3.3347328260783726,
+          "accept_margin": 0.05368197302406487,
+          "reject_candidate0_mean": -0.23013946667571736,
+          "reject_candidate0_sum": -8.285020800325825,
+          "reject_candidate1_mean": -0.01124948772361931,
+          "reject_candidate1_sum": -0.4049815580502951,
+          "reject_margin": -0.21888997895209805,
+          "margin_gain": 0.2725719519761629,
+          "accept_answer_support_gain": 0.19118997230871632,
+          "reject_answer_support_gain": -0.0813819796674466
+        },
+        "stability2": {
+          "all_margin_mean": 0.05168321533381053,
+          "all_margin_std": 0.0012420160096682717,
+          "all_margin_min": 0.05044119932414226,
+          "all_margin_max": 0.052925231343478804,
+          "all_margin_shift": -0.0019987576902543366,
+          "all_margin_abs_shift": 0.0019987576902543366,
+          "all_sign_flip": 0.0,
+          "all_accept_preference": 1.0,
+          "all_accept_support_shift": 0.0005655988397606226,
+          "all_accept_support_std": 0.002126821361048137,
+          "all_reject_support_shift": 0.0025643565300149593,
+          "all_reject_support_std": 0.0008848053513798651,
+          "random_margin_mean": 0.05044119932414226,
+          "random_margin_std": 0.0,
+          "random_margin_min": 0.05044119932414226,
+          "random_margin_max": 0.05044119932414226,
+          "random_margin_shift": -0.0032407736999226083,
+          "random_margin_abs_shift": 0.0032407736999226083,
+          "random_sign_flip": 0.0,
+          "random_accept_preference": 1.0,
+          "random_accept_support_shift": -0.0015612225212875142,
+          "random_accept_support_std": 0.0,
+          "random_reject_support_shift": 0.0016795511786350942,
+          "random_reject_support_std": 0.0,
+          "block_margin_mean": 0.052925231343478804,
+          "block_margin_std": 0.0,
+          "block_margin_min": 0.052925231343478804,
+          "block_margin_max": 0.052925231343478804,
+          "block_margin_shift": -0.000756741680586065,
+          "block_margin_abs_shift": 0.000756741680586065,
+          "block_sign_flip": 0.0,
+          "block_accept_preference": 1.0,
+          "block_accept_support_shift": 0.0026924202008087594,
+          "block_accept_support_std": 0.0,
+          "block_reject_support_shift": 0.0034491618813948244,
+          "block_reject_support_std": 0.0
+        },
+        "stability4": {
+          "all_margin_mean": 0.03903443226237095,
+          "all_margin_std": 0.01883028378447652,
+          "all_margin_min": 0.006697247918535133,
+          "all_margin_max": 0.052925231343478804,
+          "all_margin_shift": -0.014647540761693922,
+          "all_margin_abs_shift": 0.014647540761693922,
+          "all_sign_flip": 0.0,
+          "all_accept_preference": 1.0,
+          "all_accept_support_shift": -0.005019797422782699,
+          "all_accept_support_std": 0.007963226772474694,
+          "all_reject_support_shift": 0.009627743338911223,
+          "all_reject_support_std": 0.011030127652543523,
+          "random_margin_mean": 0.028569223621338697,
+          "random_margin_std": 0.021871975702803564,
+          "random_margin_min": 0.006697247918535133,
+          "random_margin_max": 0.05044119932414226,
+          "random_margin_shift": -0.025112749402726172,
+          "random_margin_abs_shift": 0.025112749402726172,
+          "random_sign_flip": 0.0,
+          "random_accept_preference": 1.0,
+          "random_accept_support_shift": -0.00995326266812362,
+          "random_accept_support_std": 0.008392040146836106,
+          "random_reject_support_shift": 0.015159486734602552,
+          "random_reject_support_std": 0.013479935555967458,
+          "block_margin_mean": 0.0494996409034032,
+          "block_margin_std": 0.003425590440075607,
+          "block_margin_min": 0.04607405046332759,
+          "block_margin_max": 0.052925231343478804,
+          "block_margin_shift": -0.004182332120661672,
+          "block_margin_abs_shift": 0.004182332120661672,
+          "block_sign_flip": 0.0,
+          "block_accept_preference": 1.0,
+          "block_accept_support_shift": -8.633217744177801e-05,
+          "block_accept_support_std": 0.0027787523782505374,
+          "block_reject_support_shift": 0.004095999943219894,
+          "block_reject_support_std": 0.0006468380618250696
+        },
+        "stability8": {
+          "all_margin_mean": 0.03564909181436225,
+          "all_margin_std": 0.015915849521895828,
+          "all_margin_min": 0.006697247918535133,
+          "all_margin_max": 0.052925231343478804,
+          "all_margin_shift": -0.018032881209702617,
+          "all_margin_abs_shift": 0.018032881209702617,
+          "all_sign_flip": 0.0,
+          "all_accept_preference": 1.0,
+          "all_accept_support_shift": -0.004835357378298108,
+          "all_accept_support_std": 0.007798427642677363,
+          "all_reject_support_shift": 0.013197523831404507,
+          "all_reject_support_std": 0.009863402362436541,
+          "random_margin_mean": 0.03452914537021161,
+          "random_margin_std": 0.01698477251823625,
+          "random_margin_min": 0.006697247918535133,
+          "random_margin_max": 0.05044119932414226,
+          "random_margin_shift": -0.019152827653853267,
+          "random_margin_abs_shift": 0.019152827653853267,
+          "random_sign_flip": 0.0,
+          "random_accept_preference": 1.0,
+          "random_accept_support_shift": -0.006623733630039303,
+          "random_accept_support_std": 0.007533953868445606,
+          "random_reject_support_shift": 0.012529094023813962,
+          "random_reject_support_std": 0.009899507255368464,
+          "block_margin_mean": 0.0367690382585129,
+          "block_margin_std": 0.014684599907232702,
+          "block_margin_min": 0.01427094916092228,
+          "block_margin_max": 0.052925231343478804,
+          "block_margin_shift": -0.016912934765551967,
+          "block_margin_abs_shift": 0.016912934765551967,
+          "block_sign_flip": 0.0,
+          "block_accept_preference": 1.0,
+          "block_accept_support_shift": -0.003046981126556913,
+          "block_accept_support_std": 0.007646823344938637,
+          "block_reject_support_shift": 0.013865953638995052,
+          "block_reject_support_std": 0.009781593510885306
+        }
+      },
+      "candidate_scores": {
+        "accept": [
+          {
+            "mean": -0.03894949436700104,
+            "sum": -1.4021817972120374,
+            "tokens": 36
+          },
+          {
+            "mean": -0.09263146739106591,
+            "sum": -3.3347328260783726,
+            "tokens": 36
+          }
+        ],
+        "reject": [
+          {
+            "mean": -0.23013946667571736,
+            "sum": -8.285020800325825,
+            "tokens": 36
+          },
+          {
+            "mean": -0.01124948772361931,
+            "sum": -0.4049815580502951,
+            "tokens": 36
+          }
+        ]
+      },
+      "perturbations": [
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "random",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            37,
+            97,
+            100,
+            158,
+            175,
+            185,
+            193,
+            201,
+            205,
+            218,
+            232,
+            241,
+            252
+          ],
+          "scores": [
+            {
+              "mean": -0.040510716888288556,
+              "sum": -1.458385807978388,
+              "tokens": 36
+            },
+            {
+              "mean": -0.09095191621243082,
+              "sum": -3.2742689836475094,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "block",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107
+          ],
+          "scores": [
+            {
+              "mean": -0.03625707416619228,
+              "sum": -1.3052546699829222,
+              "tokens": 36
+            },
+            {
+              "mean": -0.08918230550967109,
+              "sum": -3.210562998348159,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "random",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            9,
+            35,
+            45,
+            57,
+            71,
+            83,
+            93,
+            100,
+            109,
+            115,
+            116,
+            120,
+            122,
+            127,
+            147,
+            150,
+            151,
+            165,
+            179,
+            192,
+            213,
+            214,
+            217,
+            219,
+            243,
+            257,
+            262
+          ],
+          "scores": [
+            {
+              "mean": -0.05729479718196077,
+              "sum": -2.0626126985505877,
+              "tokens": 36
+            },
+            {
+              "mean": -0.0639920451004959,
+              "sum": -2.3037136236178526,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "block",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            179,
+            180,
+            181,
+            182,
+            183,
+            184,
+            185,
+            186,
+            187,
+            188,
+            189,
+            190,
+            191,
+            192,
+            193,
+            194,
+            195,
+            196,
+            197,
+            198,
+            199,
+            200,
+            201,
+            202,
+            203,
+            204,
+            205
+          ],
+          "scores": [
+            {
+              "mean": -0.04181457892269336,
+              "sum": -1.5053248412169609,
+              "tokens": 36
+            },
+            {
+              "mean": -0.08788862938602095,
+              "sum": -3.163990657896754,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "random",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            18,
+            41,
+            55,
+            105,
+            110,
+            111,
+            113,
+            171,
+            219,
+            233,
+            235,
+            268,
+            269
+          ],
+          "scores": [
+            {
+              "mean": -0.04681787175048137,
+              "sum": -1.6854433830173292,
+              "tokens": 36
+            },
+            {
+              "mean": -0.0820590498327187,
+              "sum": -2.954125793977873,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "block",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            253,
+            254,
+            255,
+            256,
+            257,
+            258,
+            259,
+            260,
+            261,
+            262,
+            263,
+            264,
+            265
+          ],
+          "scores": [
+            {
+              "mean": -0.035381349520612164,
+              "sum": -1.273728582742038,
+              "tokens": 36
+            },
+            {
+              "mean": -0.0691872715869351,
+              "sum": -2.4907417771296636,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "random",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            14,
+            22,
+            35,
+            42,
+            56,
+            57,
+            59,
+            62,
+            69,
+            97,
+            103,
+            111,
+            126,
+            144,
+            146,
+            167,
+            173,
+            181,
+            189,
+            190,
+            195,
+            201,
+            212,
+            224,
+            237,
+            254,
+            258
+          ],
+          "scores": [
+            {
+              "mean": -0.03766952616743069,
+              "sum": -1.3561029420275048,
+              "tokens": 36
+            },
+            {
+              "mean": -0.08340648232336238,
+              "sum": -3.0026333636410456,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "block",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109
+          ],
+          "scores": [
+            {
+              "mean": -0.05453289936473402,
+              "sum": -1.9631843771304247,
+              "tokens": 36
+            },
+            {
+              "mean": -0.0688038485256563,
+              "sum": -2.476938546923627,
+              "tokens": 36
+            }
+          ]
+        }
+      ],
+      "feature_seconds": 1.5834243297576904,
+      "forward_budget": {
+        "perturbations": 8,
+        "candidate_sequences_per_probe": 2
+      },
+      "generation_audit": false,
+      "accept": {
+        "prediction": "The Red Queen's Race is a science fiction short story that uses the Red Queen's race from a novel by Lewis Carroll that is the sequel to *Alice's Adventures in Wonderland*.",
+        "raw_output": "The Red Queen's Race is a science fiction short story that uses the Red Queen's race from a novel by Lewis Carroll that is the sequel to *Alice's Adventures in Wonderland*.<|im_end|>",
+        "generated_ids": [
+          785,
+          3731,
+          16259,
+          594,
+          23659,
+          374,
+          264,
+          8038,
+          16989,
+          2805,
+          3364,
+          429,
+          5711,
+          279,
+          3731,
+          16259,
+          594,
+          6957,
+          504,
+          264,
+          11514,
+          553,
+          20607,
+          46109,
+          429,
+          374,
+          279,
+          34761,
+          311,
+          353,
+          61686,
+          594,
+          50579,
+          304,
+          88924,
+          19922,
+          151645
+        ],
+        "generated_tokens": 37,
+        "eos": true,
+        "question_logp": -2.5708019733428955,
+        "first_entropy": 0.20227423310279846,
+        "mean_entropy": 0.08618435885244935,
+        "first_margin": 4.09375,
+        "mean_logp": -0.0379912355063458,
+        "seconds": 1.7913973331451416,
+        "em": 0.0,
+        "f1": 0.26666666666666666,
+        "answer_token_nll": 2.201662540435791
+      },
+      "reject": {
+        "prediction": "The Red Queen's Race is a science fiction short story that uses the Red Queen's race from a novel by Lewis Carroll that is the sequel to \"Through the Looking-Glass.\"",
+        "raw_output": "The Red Queen's Race is a science fiction short story that uses the Red Queen's race from a novel by Lewis Carroll that is the sequel to \"Through the Looking-Glass.\"<|im_end|>",
+        "generated_ids": [
+          785,
+          3731,
+          16259,
+          594,
+          23659,
+          374,
+          264,
+          8038,
+          16989,
+          2805,
+          3364,
+          429,
+          5711,
+          279,
+          3731,
+          16259,
+          594,
+          6957,
+          504,
+          264,
+          11514,
+          553,
+          20607,
+          46109,
+          429,
+          374,
+          279,
+          34761,
+          311,
+          330,
+          23857,
+          279,
+          21131,
+          12010,
+          447,
+          1189,
+          151645
+        ],
+        "generated_tokens": 37,
+        "eos": true,
+        "question_logp": -3.437107801437378,
+        "first_entropy": 0.07989119738340378,
+        "mean_entropy": 0.024460860939917093,
+        "first_margin": 4.296875,
+        "mean_logp": -0.010939160911021489,
+        "seconds": 1.684485912322998,
+        "em": 0.0,
+        "f1": 0.0,
+        "answer_token_nll": 0.8768765330314636
+      },
+      "utility_em": 0.0,
+      "utility_f1": 0.26666666666666666,
+      "case_seconds": 3.5170199871063232
+    },
+    "partial75": {
+      "feature_groups": {
+        "output": {
+          "a_question_logp": -4.25963020324707,
+          "a_first_entropy": 1.1930015087127686,
+          "a_mean_entropy": 0.11484224172199534,
+          "a_first_margin": 2.1875,
+          "a_mean_logp": -0.03903121604030144,
+          "a_generated_tokens": 37.0,
+          "a_eos": 1.0,
+          "r_question_logp": -3.437107801437378,
+          "r_first_entropy": 0.07989119738340378,
+          "r_mean_entropy": 0.024460860939917093,
+          "r_first_margin": 4.296875,
+          "r_mean_logp": -0.010939160911021489,
+          "r_generated_tokens": 37.0,
+          "r_eos": 1.0,
+          "question_gain": -0.8225224018096924,
+          "entropy_gain": -1.1131103113293648,
+          "mean_logp_gain": -0.028092055129279953,
+          "answer_disagreement": 1.0,
+          "answer_overlap": 0.88
+        },
+        "cross": {
+          "accept_candidate0_mean": -0.040220802685478674,
+          "accept_candidate0_sum": -1.4479488966772323,
+          "accept_candidate1_mean": -0.08548306328614746,
+          "accept_candidate1_sum": -3.0773902783013085,
+          "accept_margin": 0.04526226060066879,
+          "reject_candidate0_mean": -0.23013946667571736,
+          "reject_candidate0_sum": -8.285020800325825,
+          "reject_candidate1_mean": -0.01124948772361931,
+          "reject_candidate1_sum": -0.4049815580502951,
+          "reject_margin": -0.21888997895209805,
+          "margin_gain": 0.26415223955276684,
+          "accept_answer_support_gain": 0.18991866399023868,
+          "reject_answer_support_gain": -0.07423357556252816
+        },
+        "stability2": {
+          "all_margin_mean": 0.04866728615636341,
+          "all_margin_std": 0.009194068946751344,
+          "all_margin_min": 0.03947321720961207,
+          "all_margin_max": 0.057861355103114756,
+          "all_margin_shift": 0.0034050255556946213,
+          "all_margin_abs_shift": 0.009194068946751344,
+          "all_sign_flip": 0.0,
+          "all_accept_preference": 1.0,
+          "all_accept_support_shift": -0.0007509841028685571,
+          "all_accept_support_std": 0.0014685975569770637,
+          "all_reject_support_shift": -0.004156009658563178,
+          "all_reject_support_std": 0.00772547138977428,
+          "random_margin_mean": 0.03947321720961207,
+          "random_margin_std": 0.0,
+          "random_margin_min": 0.03947321720961207,
+          "random_margin_max": 0.03947321720961207,
+          "random_margin_shift": -0.005789043391056722,
+          "random_margin_abs_shift": 0.005789043391056722,
+          "random_sign_flip": 0.0,
+          "random_accept_preference": 1.0,
+          "random_accept_support_shift": -0.002219581659845621,
+          "random_accept_support_std": 0.0,
+          "random_reject_support_shift": 0.0035694617312111016,
+          "random_reject_support_std": 0.0,
+          "block_margin_mean": 0.057861355103114756,
+          "block_margin_std": 0.0,
+          "block_margin_min": 0.057861355103114756,
+          "block_margin_max": 0.057861355103114756,
+          "block_margin_shift": 0.012599094502445965,
+          "block_margin_abs_shift": 0.012599094502445965,
+          "block_sign_flip": 0.0,
+          "block_accept_preference": 1.0,
+          "block_accept_support_shift": 0.0007176134541085066,
+          "block_accept_support_std": 0.0,
+          "block_reject_support_shift": -0.011881481048337458,
+          "block_reject_support_std": 0.0
+        },
+        "stability4": {
+          "all_margin_mean": 0.03446471487646778,
+          "all_margin_std": 0.020633393186054307,
+          "all_margin_min": 0.0011960254016701033,
+          "all_margin_max": 0.057861355103114756,
+          "all_margin_shift": -0.010797545724201014,
+          "all_margin_abs_shift": 0.017097092975423996,
+          "all_sign_flip": 0.0,
+          "all_accept_preference": 1.0,
+          "all_accept_support_shift": -0.008177332376921618,
+          "all_accept_support_std": 0.007582714461741801,
+          "all_reject_support_shift": 0.002620213347279396,
+          "all_reject_support_std": 0.015113468047856559,
+          "random_margin_mean": 0.020334621305641086,
+          "random_margin_std": 0.019138595903970983,
+          "random_margin_min": 0.0011960254016701033,
+          "random_margin_max": 0.03947321720961207,
+          "random_margin_shift": -0.024927639295027705,
+          "random_margin_abs_shift": 0.024927639295027705,
+          "random_sign_flip": 0.0,
+          "random_accept_preference": 1.0,
+          "random_accept_support_shift": -0.009708035741219985,
+          "random_accept_support_std": 0.007488454081374364,
+          "random_reject_support_shift": 0.01521960355380772,
+          "random_reject_support_std": 0.011650141822596619,
+          "block_margin_mean": 0.04859480844729447,
+          "block_margin_std": 0.009266546655820287,
+          "block_margin_min": 0.03932826179147418,
+          "block_margin_max": 0.057861355103114756,
+          "block_margin_shift": 0.0033325478466256775,
+          "block_margin_abs_shift": 0.009266546655820287,
+          "block_sign_flip": 0.0,
+          "block_accept_preference": 1.0,
+          "block_accept_support_shift": -0.006646629012623251,
+          "block_accept_support_std": 0.007364242466731757,
+          "block_reject_support_shift": -0.009979176859248928,
+          "block_reject_support_std": 0.00190230418908853
+        },
+        "stability8": {
+          "all_margin_mean": 0.03208134054548959,
+          "all_margin_std": 0.01498770678707243,
+          "all_margin_min": 0.0011960254016701033,
+          "all_margin_max": 0.057861355103114756,
+          "all_margin_shift": -0.013180920055179204,
+          "all_margin_abs_shift": 0.016330693680790695,
+          "all_sign_flip": 0.0,
+          "all_accept_preference": 1.0,
+          "all_accept_support_shift": -0.00955489651813811,
+          "all_accept_support_std": 0.010525270312356633,
+          "all_reject_support_shift": 0.003626023537041093,
+          "all_reject_support_std": 0.014023945071246373,
+          "random_margin_mean": 0.025779131857930595,
+          "random_margin_std": 0.014796022324379113,
+          "random_margin_min": 0.0011960254016701033,
+          "random_margin_max": 0.03947321720961207,
+          "random_margin_shift": -0.019483128742738196,
+          "random_margin_abs_shift": 0.019483128742738196,
+          "random_sign_flip": 0.0,
+          "random_accept_preference": 1.0,
+          "random_accept_support_shift": -0.0060095566923767454,
+          "random_accept_support_std": 0.007267755611976189,
+          "random_reject_support_shift": 0.01347357205036145,
+          "random_reject_support_std": 0.008464182012666894,
+          "block_margin_mean": 0.03838354923304858,
+          "block_margin_std": 0.012284330025031924,
+          "block_margin_min": 0.025451809928402402,
+          "block_margin_max": 0.057861355103114756,
+          "block_margin_shift": -0.006878711367620211,
+          "block_margin_abs_shift": 0.013178258618843194,
+          "block_sign_flip": 0.0,
+          "block_accept_preference": 1.0,
+          "block_accept_support_shift": -0.013100236343899476,
+          "block_accept_support_std": 0.011983467348838614,
+          "block_reject_support_shift": -0.006221524976279265,
+          "block_reject_support_std": 0.011302710742769678
+        }
+      },
+      "candidate_scores": {
+        "accept": [
+          {
+            "mean": -0.040220802685478674,
+            "sum": -1.4479488966772323,
+            "tokens": 36
+          },
+          {
+            "mean": -0.08548306328614746,
+            "sum": -3.0773902783013085,
+            "tokens": 36
+          }
+        ],
+        "reject": [
+          {
+            "mean": -0.23013946667571736,
+            "sum": -8.285020800325825,
+            "tokens": 36
+          },
+          {
+            "mean": -0.01124948772361931,
+            "sum": -0.4049815580502951,
+            "tokens": 36
+          }
+        ]
+      },
+      "perturbations": [
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "random",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            37,
+            97,
+            100,
+            158,
+            175,
+            185,
+            193,
+            201,
+            205,
+            218,
+            232,
+            241,
+            252
+          ],
+          "scores": [
+            {
+              "mean": -0.042440384345324295,
+              "sum": -1.5278538364316745,
+              "tokens": 36
+            },
+            {
+              "mean": -0.08191360155493636,
+              "sum": -2.948889655977709,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "block",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107
+          ],
+          "scores": [
+            {
+              "mean": -0.03950318923137017,
+              "sum": -1.4221148123293261,
+              "tokens": 36
+            },
+            {
+              "mean": -0.09736454433448492,
+              "sum": -3.5051235960414573,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "random",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            9,
+            35,
+            45,
+            57,
+            71,
+            83,
+            93,
+            100,
+            109,
+            115,
+            116,
+            120,
+            122,
+            127,
+            147,
+            150,
+            151,
+            165,
+            179,
+            192,
+            213,
+            214,
+            217,
+            219,
+            243,
+            257,
+            262
+          ],
+          "scores": [
+            {
+              "mean": -0.05741729250807302,
+              "sum": -2.067022530290629,
+              "tokens": 36
+            },
+            {
+              "mean": -0.058613317909743126,
+              "sum": -2.1100794447507525,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "block",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            179,
+            180,
+            181,
+            182,
+            183,
+            184,
+            185,
+            186,
+            187,
+            188,
+            189,
+            190,
+            191,
+            192,
+            193,
+            194,
+            195,
+            196,
+            197,
+            198,
+            199,
+            200,
+            201,
+            202,
+            203,
+            204,
+            205
+          ],
+          "scores": [
+            {
+              "mean": -0.05423167416483368,
+              "sum": -1.9523402699340124,
+              "tokens": 36
+            },
+            {
+              "mean": -0.09355993595630786,
+              "sum": -3.368157694427083,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "random",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            18,
+            41,
+            55,
+            105,
+            110,
+            111,
+            113,
+            171,
+            219,
+            233,
+            235,
+            268,
+            269
+          ],
+          "scores": [
+            {
+              "mean": -0.047244215651599655,
+              "sum": -1.7007917634575875,
+              "tokens": 36
+            },
+            {
+              "mean": -0.07496452967818633,
+              "sum": -2.698723068414708,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "block",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            253,
+            254,
+            255,
+            256,
+            257,
+            258,
+            259,
+            260,
+            261,
+            262,
+            263,
+            264,
+            265
+          ],
+          "scores": [
+            {
+              "mean": -0.04754039864696383,
+              "sum": -1.7114543512906977,
+              "tokens": 36
+            },
+            {
+              "mean": -0.07299220857536623,
+              "sum": -2.6277195087131844,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "random",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            14,
+            22,
+            35,
+            42,
+            56,
+            57,
+            59,
+            62,
+            69,
+            97,
+            103,
+            111,
+            126,
+            144,
+            146,
+            167,
+            173,
+            181,
+            189,
+            190,
+            195,
+            201,
+            212,
+            224,
+            237,
+            254,
+            258
+          ],
+          "scores": [
+            {
+              "mean": -0.037819545006424704,
+              "sum": -1.3615036202312893,
+              "tokens": 36
+            },
+            {
+              "mean": -0.07254651580027824,
+              "sum": -2.6116745688100167,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "block",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109
+          ],
+          "scores": [
+            {
+              "mean": -0.07200889407434492,
+              "sum": -2.5923201866764174,
+              "tokens": 36
+            },
+            {
+              "mean": -0.1029016641835479,
+              "sum": -3.7044599106077243,
+              "tokens": 36
+            }
+          ]
+        }
+      ],
+      "feature_seconds": 1.5514039993286133,
+      "forward_budget": {
+        "perturbations": 8,
+        "candidate_sequences_per_probe": 2
+      },
+      "generation_audit": false,
+      "accept": {
+        "prediction": "The Red Queen's Race is a science fiction short story that uses the Red Queen's race from a novel by Lewis Carroll that is the sequel to *Alice's Adventures in Wonderland*.",
+        "raw_output": "The Red Queen's Race is a science fiction short story that uses the Red Queen's race from a novel by Lewis Carroll that is the sequel to *Alice's Adventures in Wonderland*.<|im_end|>",
+        "generated_ids": [
+          785,
+          3731,
+          16259,
+          594,
+          23659,
+          374,
+          264,
+          8038,
+          16989,
+          2805,
+          3364,
+          429,
+          5711,
+          279,
+          3731,
+          16259,
+          594,
+          6957,
+          504,
+          264,
+          11514,
+          553,
+          20607,
+          46109,
+          429,
+          374,
+          279,
+          34761,
+          311,
+          353,
+          61686,
+          594,
+          50579,
+          304,
+          88924,
+          19922,
+          151645
+        ],
+        "generated_tokens": 37,
+        "eos": true,
+        "question_logp": -4.25963020324707,
+        "first_entropy": 1.1930015087127686,
+        "mean_entropy": 0.11484224172199534,
+        "first_margin": 2.1875,
+        "mean_logp": -0.03903121604030144,
+        "seconds": 1.754570722579956,
+        "em": 0.0,
+        "f1": 0.26666666666666666,
+        "answer_token_nll": 1.9727869033813477
+      },
+      "reject": {
+        "prediction": "The Red Queen's Race is a science fiction short story that uses the Red Queen's race from a novel by Lewis Carroll that is the sequel to \"Through the Looking-Glass.\"",
+        "raw_output": "The Red Queen's Race is a science fiction short story that uses the Red Queen's race from a novel by Lewis Carroll that is the sequel to \"Through the Looking-Glass.\"<|im_end|>",
+        "generated_ids": [
+          785,
+          3731,
+          16259,
+          594,
+          23659,
+          374,
+          264,
+          8038,
+          16989,
+          2805,
+          3364,
+          429,
+          5711,
+          279,
+          3731,
+          16259,
+          594,
+          6957,
+          504,
+          264,
+          11514,
+          553,
+          20607,
+          46109,
+          429,
+          374,
+          279,
+          34761,
+          311,
+          330,
+          23857,
+          279,
+          21131,
+          12010,
+          447,
+          1189,
+          151645
+        ],
+        "generated_tokens": 37,
+        "eos": true,
+        "question_logp": -3.437107801437378,
+        "first_entropy": 0.07989119738340378,
+        "mean_entropy": 0.024460860939917093,
+        "first_margin": 4.296875,
+        "mean_logp": -0.010939160911021489,
+        "seconds": 1.684485912322998,
+        "em": 0.0,
+        "f1": 0.0,
+        "answer_token_nll": 0.8768765330314636
+      },
+      "utility_em": 0.0,
+      "utility_f1": 0.26666666666666666,
+      "case_seconds": 3.4752912521362305
+    },
+    "gaussian": {
+      "feature_groups": {
+        "output": {
+          "a_question_logp": -2.629711866378784,
+          "a_first_entropy": 1.167877435684204,
+          "a_mean_entropy": 0.12278779387589732,
+          "a_first_margin": 0.765625,
+          "a_mean_logp": -0.053211901621546,
+          "a_generated_tokens": 37.0,
+          "a_eos": 1.0,
+          "r_question_logp": -3.437107801437378,
+          "r_first_entropy": 0.07989119738340378,
+          "r_mean_entropy": 0.024460860939917093,
+          "r_first_margin": 4.296875,
+          "r_mean_logp": -0.010939160911021489,
+          "r_generated_tokens": 37.0,
+          "r_eos": 1.0,
+          "question_gain": 0.8073959350585938,
+          "entropy_gain": -1.0879862383008003,
+          "mean_logp_gain": -0.04227274071052451,
+          "answer_disagreement": 0.0,
+          "answer_overlap": 1.0
+        },
+        "cross": {
+          "accept_candidate0_mean": -0.05453381674623338,
+          "accept_candidate0_sum": -1.9632174028644016,
+          "accept_candidate1_mean": -0.05453381674623338,
+          "accept_candidate1_sum": -1.9632174028644016,
+          "accept_margin": 0.0,
+          "reject_candidate0_mean": -0.01124948772361931,
+          "reject_candidate0_sum": -0.4049815580502951,
+          "reject_candidate1_mean": -0.01124948772361931,
+          "reject_candidate1_sum": -0.4049815580502951,
+          "reject_margin": 0.0,
+          "margin_gain": 0.0,
+          "accept_answer_support_gain": -0.043284329022614074,
+          "reject_answer_support_gain": -0.043284329022614074
+        },
+        "stability2": {
+          "all_margin_mean": 0.0,
+          "all_margin_std": 0.0,
+          "all_margin_min": 0.0,
+          "all_margin_max": 0.0,
+          "all_margin_shift": 0.0,
+          "all_margin_abs_shift": 0.0,
+          "all_sign_flip": 0.0,
+          "all_accept_preference": 0.0,
+          "all_accept_support_shift": -0.00024158253424132192,
+          "all_accept_support_std": 0.003841598498133751,
+          "all_reject_support_shift": -0.00024158253424132192,
+          "all_reject_support_std": 0.003841598498133751,
+          "random_margin_mean": 0.0,
+          "random_margin_std": 0.0,
+          "random_margin_min": 0.0,
+          "random_margin_max": 0.0,
+          "random_margin_shift": 0.0,
+          "random_margin_abs_shift": 0.0,
+          "random_sign_flip": 0.0,
+          "random_accept_preference": 0.0,
+          "random_accept_support_shift": -0.004083181032375073,
+          "random_accept_support_std": 0.0,
+          "random_reject_support_shift": -0.004083181032375073,
+          "random_reject_support_std": 0.0,
+          "block_margin_mean": 0.0,
+          "block_margin_std": 0.0,
+          "block_margin_min": 0.0,
+          "block_margin_max": 0.0,
+          "block_margin_shift": 0.0,
+          "block_margin_abs_shift": 0.0,
+          "block_sign_flip": 0.0,
+          "block_accept_preference": 0.0,
+          "block_accept_support_shift": 0.0036000159638924292,
+          "block_accept_support_std": 0.0,
+          "block_reject_support_shift": 0.0036000159638924292,
+          "block_reject_support_std": 0.0
+        },
+        "stability4": {
+          "all_margin_mean": 0.0,
+          "all_margin_std": 0.0,
+          "all_margin_min": 0.0,
+          "all_margin_max": 0.0,
+          "all_margin_shift": 0.0,
+          "all_margin_abs_shift": 0.0,
+          "all_sign_flip": 0.0,
+          "all_accept_preference": 0.0,
+          "all_accept_support_shift": 0.0011583285184304532,
+          "all_accept_support_std": 0.003198345172357471,
+          "all_reject_support_shift": 0.0011583285184304532,
+          "all_reject_support_std": 0.003198345172357471,
+          "random_margin_mean": 0.0,
+          "random_margin_std": 0.0,
+          "random_margin_min": 0.0,
+          "random_margin_max": 0.0,
+          "random_margin_shift": 0.0,
+          "random_margin_abs_shift": 0.0,
+          "random_sign_flip": 0.0,
+          "random_accept_preference": 0.0,
+          "random_accept_support_shift": -0.0014298242260636952,
+          "random_accept_support_std": 0.002653356806311378,
+          "random_reject_support_shift": -0.0014298242260636952,
+          "random_reject_support_std": 0.002653356806311378,
+          "block_margin_mean": 0.0,
+          "block_margin_std": 0.0,
+          "block_margin_min": 0.0,
+          "block_margin_max": 0.0,
+          "block_margin_shift": 0.0,
+          "block_margin_abs_shift": 0.0,
+          "block_sign_flip": 0.0,
+          "block_accept_preference": 0.0,
+          "block_accept_support_shift": 0.0037464812629246017,
+          "block_accept_support_std": 0.00014646529903217242,
+          "block_reject_support_shift": 0.0037464812629246017,
+          "block_reject_support_std": 0.00014646529903217242
+        },
+        "stability8": {
+          "all_margin_mean": 0.0,
+          "all_margin_std": 0.0,
+          "all_margin_min": 0.0,
+          "all_margin_max": 0.0,
+          "all_margin_shift": 0.0,
+          "all_margin_abs_shift": 0.0,
+          "all_sign_flip": 0.0,
+          "all_accept_preference": 0.0,
+          "all_accept_support_shift": 0.0023743019482874612,
+          "all_accept_support_std": 0.0030896777343917582,
+          "all_reject_support_shift": 0.0023743019482874612,
+          "all_reject_support_std": 0.0030896777343917582,
+          "random_margin_mean": 0.0,
+          "random_margin_std": 0.0,
+          "random_margin_min": 0.0,
+          "random_margin_max": 0.0,
+          "random_margin_shift": 0.0,
+          "random_margin_abs_shift": 0.0,
+          "random_sign_flip": 0.0,
+          "random_accept_preference": 0.0,
+          "random_accept_support_shift": 0.0015789779766905519,
+          "random_accept_support_std": 0.0037441157500603356,
+          "random_reject_support_shift": 0.0015789779766905519,
+          "random_reject_support_std": 0.0037441157500603356,
+          "block_margin_mean": 0.0,
+          "block_margin_std": 0.0,
+          "block_margin_min": 0.0,
+          "block_margin_max": 0.0,
+          "block_margin_shift": 0.0,
+          "block_margin_abs_shift": 0.0,
+          "block_sign_flip": 0.0,
+          "block_accept_preference": 0.0,
+          "block_accept_support_shift": 0.0031696259198843706,
+          "block_accept_support_std": 0.0019515977596188065,
+          "block_reject_support_shift": 0.0031696259198843706,
+          "block_reject_support_std": 0.0019515977596188065
+        }
+      },
+      "candidate_scores": {
+        "accept": [
+          {
+            "mean": -0.05453381674623338,
+            "sum": -1.9632174028644016,
+            "tokens": 36
+          },
+          {
+            "mean": -0.05453381674623338,
+            "sum": -1.9632174028644016,
+            "tokens": 36
+          }
+        ],
+        "reject": [
+          {
+            "mean": -0.01124948772361931,
+            "sum": -0.4049815580502951,
+            "tokens": 36
+          },
+          {
+            "mean": -0.01124948772361931,
+            "sum": -0.4049815580502951,
+            "tokens": 36
+          }
+        ]
+      },
+      "perturbations": [
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "random",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            37,
+            97,
+            100,
+            158,
+            175,
+            185,
+            193,
+            201,
+            205,
+            218,
+            232,
+            241,
+            252
+          ],
+          "scores": [
+            {
+              "mean": -0.05861699777860845,
+              "sum": -2.1102119200299043,
+              "tokens": 36
+            },
+            {
+              "mean": -0.05861699777860845,
+              "sum": -2.1102119200299043,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "block",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107
+          ],
+          "scores": [
+            {
+              "mean": -0.05093380078234095,
+              "sum": -1.8336168281642742,
+              "tokens": 36
+            },
+            {
+              "mean": -0.05093380078234095,
+              "sum": -1.8336168281642742,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "random",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            9,
+            35,
+            45,
+            57,
+            71,
+            83,
+            93,
+            100,
+            109,
+            115,
+            116,
+            120,
+            122,
+            127,
+            147,
+            150,
+            151,
+            165,
+            179,
+            192,
+            213,
+            214,
+            217,
+            219,
+            243,
+            257,
+            262
+          ],
+          "scores": [
+            {
+              "mean": -0.0533102841659857,
+              "sum": -1.9191702299754851,
+              "tokens": 36
+            },
+            {
+              "mean": -0.0533102841659857,
+              "sum": -1.9191702299754851,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "block",
+            "seed_index": 0
+          },
+          "blocked_positions": [
+            179,
+            180,
+            181,
+            182,
+            183,
+            184,
+            185,
+            186,
+            187,
+            188,
+            189,
+            190,
+            191,
+            192,
+            193,
+            194,
+            195,
+            196,
+            197,
+            198,
+            199,
+            200,
+            201,
+            202,
+            203,
+            204,
+            205
+          ],
+          "scores": [
+            {
+              "mean": -0.050640870184276605,
+              "sum": -1.8230713266339578,
+              "tokens": 36
+            },
+            {
+              "mean": -0.050640870184276605,
+              "sum": -1.8230713266339578,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "random",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            18,
+            41,
+            55,
+            105,
+            110,
+            111,
+            113,
+            171,
+            219,
+            233,
+            235,
+            268,
+            269
+          ],
+          "scores": [
+            {
+              "mean": -0.05164624883809567,
+              "sum": -1.859264958171444,
+              "tokens": 36
+            },
+            {
+              "mean": -0.05164624883809567,
+              "sum": -1.859264958171444,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.05,
+            "kind": "block",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            253,
+            254,
+            255,
+            256,
+            257,
+            258,
+            259,
+            260,
+            261,
+            262,
+            263,
+            264,
+            265
+          ],
+          "scores": [
+            {
+              "mean": -0.05457362881259146,
+              "sum": -1.9646506372532926,
+              "tokens": 36
+            },
+            {
+              "mean": -0.05457362881259146,
+              "sum": -1.9646506372532926,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "random",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            14,
+            22,
+            35,
+            42,
+            56,
+            57,
+            59,
+            62,
+            69,
+            97,
+            103,
+            111,
+            126,
+            144,
+            146,
+            167,
+            173,
+            181,
+            189,
+            190,
+            195,
+            201,
+            212,
+            224,
+            237,
+            254,
+            258
+          ],
+          "scores": [
+            {
+              "mean": -0.04824582429548149,
+              "sum": -1.7368496746373339,
+              "tokens": 36
+            },
+            {
+              "mean": -0.04824582429548149,
+              "sum": -1.7368496746373339,
+              "tokens": 36
+            }
+          ]
+        },
+        {
+          "spec": {
+            "fraction": 0.1,
+            "kind": "block",
+            "seed_index": 1
+          },
+          "blocked_positions": [
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109
+          ],
+          "scores": [
+            {
+              "mean": -0.04930846352618702,
+              "sum": -1.7751046869427327,
+              "tokens": 36
+            },
+            {
+              "mean": -0.04930846352618702,
+              "sum": -1.7751046869427327,
+              "tokens": 36
+            }
+          ]
+        }
+      ],
+      "feature_seconds": 1.053673267364502,
+      "forward_budget": {
+        "perturbations": 8,
+        "candidate_sequences_per_probe": 2
+      },
+      "generation_audit": false,
+      "accept": {
+        "prediction": "The Red Queen's Race is a science fiction short story that uses the Red Queen's race from a novel by Lewis Carroll that is the sequel to \"Through the Looking-Glass.\"",
+        "raw_output": "The Red Queen's Race is a science fiction short story that uses the Red Queen's race from a novel by Lewis Carroll that is the sequel to \"Through the Looking-Glass.\"<|im_end|>",
+        "generated_ids": [
+          785,
+          3731,
+          16259,
+          594,
+          23659,
+          374,
+          264,
+          8038,
+          16989,
+          2805,
+          3364,
+          429,
+          5711,
+          279,
+          3731,
+          16259,
+          594,
+          6957,
+          504,
+          264,
+          11514,
+          553,
+          20607,
+          46109,
+          429,
+          374,
+          279,
+          34761,
+          311,
+          330,
+          23857,
+          279,
+          21131,
+          12010,
+          447,
+          1189,
+          151645
+        ],
+        "generated_tokens": 37,
+        "eos": true,
+        "question_logp": -2.629711866378784,
+        "first_entropy": 1.167877435684204,
+        "mean_entropy": 0.12278779387589732,
+        "first_margin": 0.765625,
+        "mean_logp": -0.053211901621546,
+        "seconds": 1.7541084289550781,
+        "em": 0.0,
+        "f1": 0.0,
+        "answer_token_nll": 0.2545009255409241
+      },
+      "reject": {
+        "prediction": "The Red Queen's Race is a science fiction short story that uses the Red Queen's race from a novel by Lewis Carroll that is the sequel to \"Through the Looking-Glass.\"",
+        "raw_output": "The Red Queen's Race is a science fiction short story that uses the Red Queen's race from a novel by Lewis Carroll that is the sequel to \"Through the Looking-Glass.\"<|im_end|>",
+        "generated_ids": [
+          785,
+          3731,
+          16259,
+          594,
+          23659,
+          374,
+          264,
+          8038,
+          16989,
+          2805,
+          3364,
+          429,
+          5711,
+          279,
+          3731,
+          16259,
+          594,
+          6957,
+          504,
+          264,
+          11514,
+          553,
+          20607,
+          46109,
+          429,
+          374,
+          279,
+          34761,
+          311,
+          330,
+          23857,
+          279,
+          21131,
+          12010,
+          447,
+          1189,
+          151645
+        ],
+        "generated_tokens": 37,
+        "eos": true,
+        "question_logp": -3.437107801437378,
+        "first_entropy": 0.07989119738340378,
+        "mean_entropy": 0.024460860939917093,
+        "first_margin": 4.296875,
+        "mean_logp": -0.010939160911021489,
+        "seconds": 1.684485912322998,
+        "em": 0.0,
+        "f1": 0.0,
+        "answer_token_nll": 0.8768765330314636
+      },
+      "utility_em": 0.0,
+      "utility_f1": 0.0,
+      "case_seconds": 3.5628623962402344
+    }
+  },
+  "complete": true,
+  "row_seconds": 23.296905755996704
+}
