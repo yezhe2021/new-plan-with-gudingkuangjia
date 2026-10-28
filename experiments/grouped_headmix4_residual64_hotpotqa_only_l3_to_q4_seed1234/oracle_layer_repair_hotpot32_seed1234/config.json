@@ -1,0 +1,78 @@
+{
+  "name": "oracle_layer_repair_hotpot32_seed1234",
+  "seed": 1234,
+  "parent": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_hotpotqa_only_l3_to_q4_seed1234",
+  "parent_manifest_sha256": "60371d360b4373520749719f0b6693b9a0b6388fe2536ebc4b6e52c556bfd8b4",
+  "stage_a_sha256": "d5e04f7e3e12444ac15b7f9b511f8aa91130ab8e5137180b349c216209ebd9c0",
+  "stage_b_sha256": "811ccfad968c4c0a49361746aa5af899680b380eb4896937d336f325c2ec119e",
+  "n": 32,
+  "max_new_tokens": 64,
+  "max_context_tokens": 32768,
+  "training": false,
+  "reader": false,
+  "automatic_upload": false,
+  "continuous_monitoring": false,
+  "layer_groups": [
+    [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    [
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    [
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    [
+      24,
+      25,
+      26,
+      27,
+      28,
+      29
+    ],
+    [
+      30,
+      31,
+      32,
+      33,
+      34,
+      35
+    ]
+  ],
+  "expected_configurations": 27,
+  "reserved_confirmation_n": 128,
+  "caveats": [
+    "This is a new evidence-only transfer interface: Qwen natively reprocesses Question and answer continuation for every condition; previously reported full-prompt transfer scores cannot be reused as these baselines.",
+    "Frozen new Hotpot-only A+B checkpoints; no Reader, repair training, parameter updates or oracle-driven selection of pilot questions. Every original distractor paragraph is retained.",
+    "Native and translated evidence caches are assembled on the same Qwen token grid. Only post-RoPE physical cache states are replaced, with identical common native anchor (including first content token). Rejection blocks all transmitted evidence positions but retains this common anchor and absolute positions.",
+    "Qwen has36 layers,8 KV heads and32 query heads. Six groups of6 layers: K-only/V-only repair8.33% of transmitted K+V entries; KV repair16.67%. No head search in this first round.",
+    "Group masking is a per-layer causal attention mask over the transmitted evidence columns, from the first Question token and throughout continuation/gold scoring; K/V are not zeroed. One shared-position mask arm per group,27 total conditions including three baselines.",
+    "Gold NLL is answer-token mean cross-entropy, excludes EOS and is offline only. Gold labels never enter evidence, Question, generated context or layer selection policy. All27 arms receive full generation, no NLL filtering.",
+    "All32 questions are exploratory discovery data. Next128 dev IDs are reserved, not evaluated automatically. Candidate winners and bootstrap intervals do not establish confirmatory effects after multiple comparisons.",
+    "Recovery ratio is defined only for positive aggregate Native-minus-Translated F1, left unclipped. A beneficial hybrid need not imply erroneous local KV, and lack of single-group gain does not exclude interactions.",
+    "Oracle repairability does not establish that Native residuals can be predicted from translated KV and Question. Existing Stage B already supplies a residual; a new repair module needs evidence for query-conditioned/local functional value beyond it."
+  ]
+}
