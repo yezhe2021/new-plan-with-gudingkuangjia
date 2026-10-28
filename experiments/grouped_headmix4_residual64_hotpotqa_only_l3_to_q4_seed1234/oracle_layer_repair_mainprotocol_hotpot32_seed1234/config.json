@@ -1,0 +1,77 @@
+{
+  "name": "oracle_layer_repair_mainprotocol_hotpot32_seed1234",
+  "seed": 1234,
+  "parent": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_hotpotqa_only_l3_to_q4_seed1234",
+  "parent_manifest_sha256": "60371d360b4373520749719f0b6693b9a0b6388fe2536ebc4b6e52c556bfd8b4",
+  "stage_a_sha256": "d5e04f7e3e12444ac15b7f9b511f8aa91130ab8e5137180b349c216209ebd9c0",
+  "stage_b_sha256": "811ccfad968c4c0a49361746aa5af899680b380eb4896937d336f325c2ec119e",
+  "n": 32,
+  "max_new_tokens": 64,
+  "max_context_tokens": 32768,
+  "training": false,
+  "reader": false,
+  "automatic_upload": false,
+  "continuous_monitoring": false,
+  "layer_groups": [
+    [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    [
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    [
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    [
+      24,
+      25,
+      26,
+      27,
+      28,
+      29
+    ],
+    [
+      30,
+      31,
+      32,
+      33,
+      34,
+      35
+    ]
+  ],
+  "expected_configurations": 28,
+  "reserved_confirmation_n": 128,
+  "caveats": [
+    "Original HeteroFold/ours main input protocol preserved: exact existing full prompt, source/receiver frame IDs and suffix IDs. Same32 pilot IDs, fixed Hotpot A+B, no Reader, greedy64, same answer EM/F1. All32 translated and full-native outputs must reproduce saved main-protocol predictions and raw generation exactly.",
+    "Only fully-contained evidence paragraph/header token columns are replaced or masked; instruction/Question tokens and boundary-crossing mixed tokens remain unchanged. Native replacement is post-k_norm/post-RoPE at the identical physical positions.",
+    "Question KV remains precomputed translated KV under evidence interventions, and can retain evidence information. Mask-all blocks direct evidence-position access during suffix/generation/NLL, not all indirect evidence information; it is not a question-only baseline and does not reprocess Question.",
+    "Full native baseline replaces the complete cache. All-evidence-native control replaces evidence columns only, leaving Question/instruction translated; these endpoints need not agree. Four baselines plus6 groups x4 interventions =28 configurations (896 generations).",
+    "No new training or parameters. Per-layer attention masking, not zeroing. Six fixed groups of6 target layers; no head sweep. All configurations get full generation and answer-token-mean Gold NLL without NLL screening.",
+    "These32 pilot questions have already been inspected and remain exploratory; next128 IDs remain reserved and are not evaluated. Paired intervals are uncorrected for multiple comparisons. No confirmation/winner claim.",
+    "Recovery ratios use same-row full-native versus translated F1 gap when positive, unclipped. Native availability is Oracle information, not a deployable method. Negative single-group results cannot rule out group interactions."
+  ],
+  "old_oracle": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_hotpotqa_only_l3_to_q4_seed1234/oracle_layer_repair_hotpot32_seed1234"
+}
