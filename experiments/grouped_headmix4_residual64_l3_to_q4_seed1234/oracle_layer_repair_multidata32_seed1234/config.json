@@ -1,0 +1,35 @@
+{
+  "name": "oracle_layer_repair_multidata32_seed1234",
+  "seed": 1234,
+  "parent": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_l3_to_q4_seed1234",
+  "parent_manifest_sha256": "318e7ab9a56381345602cb82c4f1b78087c16e094901ea897f93555c864932f3",
+  "stage_a_sha256": "a9318f4b2f1d9e7981e0e50e2dc88654f0baaf89a080a0746017555c48ba5c84",
+  "stage_b_sha256": "7e9f602d08409574c8ebe56242a08ba2c6861032b5ed70570a807c5777d775f2",
+  "tasks": [
+    "openbookqa",
+    "arc_challenge",
+    "hellaswag",
+    "mmlu_pro",
+    "sciq",
+    "gsm8k"
+  ],
+  "n_per_task": 32,
+  "gsm8k_max_new_tokens": 4096,
+  "candidate_score_parity_abs_max": 0.0001,
+  "training": false,
+  "reader": false,
+  "automatic_upload": false,
+  "continuous_monitoring": false,
+  "caveats": [
+    "Keep existing full-prompt Full-Sync transfer interface, byte-identical prompt, token grids, suffix, option scoring/normalization and numeric answer extraction. Freeze existing multi-task Stage-A and residual-only Stage-B; no Reader or training.",
+    "Intervene on every translated Prompt body position after the immutable native anchor, including Question/options. This differs from the previous Hotpot evidence-only intervention scope and must not be conflated with it.",
+    "Native and translated K/V are mixed only after cache assembly in physical receiver post-k_norm/post-RoPE coordinates at identical token/cache positions. No rotation is added during replacement.",
+    "Six receiver groups correspond to human layers1-6,7-12,13-18,19-24,25-30,31-36. Each group has K-only,V-only,KV and attention-access mask. Three baselines: translated,native,all-transferred-body masked.27 configurations,32 questions/task,192 questions,5184 sample/configuration evaluations.",
+    "Masking forbids direct attention to original transferred-body positions in selected layers during suffix/candidate/generation forwards. It does not zero values, remove positions or recompute the cached body. Native header/anchor and new suffix/generated states remain accessible; this is not a literal no-information baseline.",
+    "GSM8K keeps formal greedy4096-token cap including for slow/capped conditions. Five other tasks retain original candidate scoring, not forced answer-label or new free-generation scoring. Mask-aware generation is checked against the existing generator; formal baselines are checked against historical outputs for every selected question.",
+    "Historical32/task are sampled using seed1234 before new interventions, without outcome/length filtering. These are discovery samples, not a fresh untouched test. Existing remaining IDs reserved but not evaluated. Original GSM8K subset has only32; any independent confirmation requires new disjoint examples.",
+    "Stage-B training tasks: OBQA/ARC/GSM8K/MMLU-Pro; HellaSwag/SciQ not in Stage-B training. This is not proof of absence from Stage-A calibration or pretraining. MMLU-Pro keeps the original custom split.",
+    "Oracle Native KV requires raw Prompt at the Receiver and is an offline diagnostic, not a deployable or prefill-free method. Group choices and confidence intervals across many configurations are exploratory; no formal claim from per-dataset best arms.",
+    "Inspect per-task accuracy, paired intervals, rescued/harmed questions, replacement-versus-mask, generation caps and equal-weight macro accuracy. No automatic second-phase layer selection, confirmation or repair training is launched."
+  ]
+}
