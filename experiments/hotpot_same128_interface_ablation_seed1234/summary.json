@@ -1,0 +1,409 @@
+{
+  "n": 128,
+  "manifest_sha256": "b625cb04061a9ccd2539988301f0b32184aaf8ac1c69e7b4c67ffdc8f164a6be",
+  "conditions": {
+    "A_original": {
+      "native": {
+        "correct": 60,
+        "em": 0.46875,
+        "f1": 0.6043092757936508,
+        "mean_generated_tokens": 5.28125,
+        "cap_count": 0
+      },
+      "translated": {
+        "correct": 28,
+        "em": 0.21875,
+        "f1": 0.350297254318394,
+        "mean_generated_tokens": 5.484375,
+        "cap_count": 0
+      }
+    },
+    "B_support_only": {
+      "native": {
+        "correct": 80,
+        "em": 0.625,
+        "f1": 0.7788175366300366,
+        "mean_generated_tokens": 5.8125,
+        "cap_count": 0
+      },
+      "translated": {
+        "correct": 41,
+        "em": 0.3203125,
+        "f1": 0.4638454861111111,
+        "mean_generated_tokens": 5.5,
+        "cap_count": 0
+      }
+    },
+    "C_selector_prompt": {
+      "native": {
+        "correct": 62,
+        "em": 0.484375,
+        "f1": 0.6615897437092169,
+        "mean_generated_tokens": 8.9765625,
+        "cap_count": 1
+      },
+      "translated": {
+        "correct": 29,
+        "em": 0.2265625,
+        "f1": 0.35346835813288013,
+        "mean_generated_tokens": 7.9140625,
+        "cap_count": 0
+      }
+    },
+    "D_evidence_only": {
+      "native": {
+        "correct": 62,
+        "em": 0.484375,
+        "f1": 0.6615897437092169,
+        "mean_generated_tokens": 8.9765625,
+        "cap_count": 1
+      },
+      "translated": {
+        "correct": 16,
+        "em": 0.125,
+        "f1": 0.22941301928339597,
+        "mean_generated_tokens": 20.3515625,
+        "cap_count": 15
+      }
+    },
+    "E_diagnostic_decoder": {
+      "native": {
+        "correct": 62,
+        "em": 0.484375,
+        "f1": 0.6615897437092169,
+        "mean_generated_tokens": 8.9765625,
+        "cap_count": 1
+      },
+      "translated": {
+        "correct": 16,
+        "em": 0.125,
+        "f1": 0.22941301928339597,
+        "mean_generated_tokens": 20.3515625,
+        "cap_count": 15
+      }
+    }
+  },
+  "contrasts": {
+    "B_support_only minus A_original": {
+      "native": {
+        "em": {
+          "mean": 0.15625,
+          "ci95": [
+            0.09375,
+            0.2265625
+          ],
+          "n": 128
+        },
+        "f1": {
+          "mean": 0.17450826083638585,
+          "ci95": [
+            0.11607525612408424,
+            0.2372823779952686
+          ],
+          "n": 128
+        },
+        "prediction_changed": 52
+      },
+      "translated": {
+        "em": {
+          "mean": 0.1015625,
+          "ci95": [
+            0.0390625,
+            0.171875
+          ],
+          "n": 128
+        },
+        "f1": {
+          "mean": 0.11354823179271709,
+          "ci95": [
+            0.05380769104516807,
+            0.17701404389880945
+          ],
+          "n": 128
+        },
+        "prediction_changed": 100
+      },
+      "translated_minus_native_change": {
+        "em": {
+          "mean": -0.0546875,
+          "ci95": [
+            -0.140625,
+            0.0390625
+          ],
+          "n": 128
+        },
+        "f1": {
+          "mean": -0.06096002904366875,
+          "ci95": [
+            -0.14086315696150256,
+            0.01916208019666199
+          ],
+          "n": 128
+        }
+      }
+    },
+    "C_selector_prompt minus B_support_only": {
+      "native": {
+        "em": {
+          "mean": -0.140625,
+          "ci95": [
+            -0.203125,
+            -0.0859375
+          ],
+          "n": 128
+        },
+        "f1": {
+          "mean": -0.11722779292081972,
+          "ci95": [
+            -0.1653025523882722,
+            -0.07383413750153785
+          ],
+          "n": 128
+        },
+        "prediction_changed": 62
+      },
+      "translated": {
+        "em": {
+          "mean": -0.09375,
+          "ci95": [
+            -0.15625,
+            -0.0390625
+          ],
+          "n": 128
+        },
+        "f1": {
+          "mean": -0.11037712797823092,
+          "ci95": [
+            -0.1740077067030192,
+            -0.048578659137023146
+          ],
+          "n": 128
+        },
+        "prediction_changed": 80
+      },
+      "translated_minus_native_change": {
+        "em": {
+          "mean": 0.046875,
+          "ci95": [
+            -0.03125,
+            0.1328125
+          ],
+          "n": 128
+        },
+        "f1": {
+          "mean": 0.006850664942588795,
+          "ci95": [
+            -0.06994217259734777,
+            0.08289241844202808
+          ],
+          "n": 128
+        }
+      }
+    },
+    "D_evidence_only minus C_selector_prompt": {
+      "native": {
+        "em": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        },
+        "f1": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        },
+        "prediction_changed": 0
+      },
+      "translated": {
+        "em": {
+          "mean": -0.1015625,
+          "ci95": [
+            -0.171875,
+            -0.03125
+          ],
+          "n": 128
+        },
+        "f1": {
+          "mean": -0.12405533884948419,
+          "ci95": [
+            -0.2002915112693254,
+            -0.04912671911403338
+          ],
+          "n": 128
+        },
+        "prediction_changed": 107
+      },
+      "translated_minus_native_change": {
+        "em": {
+          "mean": -0.1015625,
+          "ci95": [
+            -0.171875,
+            -0.03125
+          ],
+          "n": 128
+        },
+        "f1": {
+          "mean": -0.12405533884948419,
+          "ci95": [
+            -0.2002915112693254,
+            -0.04912671911403338
+          ],
+          "n": 128
+        }
+      }
+    },
+    "E_diagnostic_decoder minus D_evidence_only": {
+      "native": {
+        "em": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        },
+        "f1": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        },
+        "prediction_changed": 0
+      },
+      "translated": {
+        "em": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        },
+        "f1": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        },
+        "prediction_changed": 0
+      },
+      "translated_minus_native_change": {
+        "em": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        },
+        "f1": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 128
+        }
+      }
+    }
+  },
+  "reproduction": {
+    "manifest_sha256": "b625cb04061a9ccd2539988301f0b32184aaf8ac1c69e7b4c67ffdc8f164a6be",
+    "n": 128,
+    "mismatches": [],
+    "passed": true
+  },
+  "timing": {
+    "manifest_sha256": "b625cb04061a9ccd2539988301f0b32184aaf8ac1c69e7b4c67ffdc8f164a6be",
+    "n": 128,
+    "elapsed_seconds": 796.2645163536072,
+    "ablation_seconds": 564.7503445148468
+  },
+  "question_types": {
+    "bridge": 107,
+    "comparison": 21
+  },
+  "scope": "Exploratory ordered interface ablation, not a factorial interaction study or new independent selector test. All128 use the same checkpoint and condition order. Gold selects support documents in B-E and scores final answers, never selector inputs. No length exclusions/truncation; fail if a context exceeds model budget.",
+  "historical_full512": {
+    "qwen_native": {
+      "n": 512,
+      "em_correct": 256,
+      "em": 0.5,
+      "f1": 0.6235585885863728,
+      "cap_count": 1
+    },
+    "heterofold": {
+      "n": 512,
+      "em_correct": 138,
+      "em": 0.26953125,
+      "f1": 0.38902770839016004,
+      "cap_count": 1
+    },
+    "hotpot_stage_a": {
+      "n": 512,
+      "em_correct": 0,
+      "em": 0.0,
+      "f1": 0.00032639697636300895,
+      "cap_count": 512
+    },
+    "hotpot_stage_ab": {
+      "n": 512,
+      "em_correct": 141,
+      "em": 0.275390625,
+      "f1": 0.3987322381968523,
+      "cap_count": 0
+    }
+  },
+  "diagnostic_cleaning_changes": {
+    "native": 0,
+    "translated": 0
+  },
+  "total_change_E_minus_A": {
+    "native": {
+      "em": {
+        "mean": 0.015625,
+        "ci95": [
+          -0.0546875,
+          0.0859375
+        ],
+        "n": 128
+      },
+      "f1": {
+        "mean": 0.057280467915566124,
+        "ci95": [
+          -0.0017419279764299604,
+          0.12151744197474836
+        ],
+        "n": 128
+      }
+    },
+    "translated": {
+      "em": {
+        "mean": -0.09375,
+        "ci95": [
+          -0.171875,
+          -0.015625
+        ],
+        "n": 128
+      },
+      "f1": {
+        "mean": -0.12088423503499804,
+        "ci95": [
+          -0.19868062943577777,
+          -0.04153264728783278
+        ],
+        "n": 128
+      }
+    }
+  }
+}

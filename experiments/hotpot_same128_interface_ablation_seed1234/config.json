@@ -1,0 +1,29 @@
+{
+  "name": "hotpot_same128_interface_ablation_seed1234",
+  "seed": 1234,
+  "n": 128,
+  "parent": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_hotpotqa_only_l3_to_q4_seed1234",
+  "previous_diagnostic": "/hy-tmp/yezhe/异构模型/hotpot_trained_translator_evidencekv_diag128_seed1234",
+  "max_new_tokens": 64,
+  "max_context_tokens": 32768,
+  "reader": false,
+  "training": false,
+  "automatic_upload": false,
+  "conditions": [
+    "A_original",
+    "B_support_only",
+    "C_selector_prompt",
+    "D_evidence_only",
+    "E_diagnostic_decoder"
+  ],
+  "selection": "Uniform random 128 without replacement from the original fixed512, random.Random(1234); no outcome/type/length filtering; sort by original source_index",
+  "primary_contrasts": [
+    "B-A: document scope",
+    "C-B: prompt format and instructions",
+    "D-C: question KV routing",
+    "E-D: diagnostic decoding loop"
+  ],
+  "bootstrap": 5000,
+  "reproduction_policy": "Rerun A using original capture/map/cache/generator and reconcile all128 with stored per-question native and A+B predictions; if any prediction mismatch, stop before B-E and investigate. Never change checkpoint or select questions by reproduction results.",
+  "scope": "Exploratory ordered interface ablation, not a factorial interaction study or new independent selector test. All128 use the same checkpoint and condition order. Gold selects support documents in B-E and scores final answers, never selector inputs. No length exclusions/truncation; fail if a context exceeds model budget."
+}
