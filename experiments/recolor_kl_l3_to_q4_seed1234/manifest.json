@@ -1,0 +1,188 @@
+{
+  "config": {
+    "name": "Recolor-KL",
+    "folder": "recolor_kl_l3_to_q4_seed1234",
+    "seed": 1234,
+    "hf_root": "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825",
+    "recolor": "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/maps/llama3_to_qwen4/recolor.pt",
+    "recolor_sha256": "3009cc3434170e4806d064e0e65f49b04f108fa22c5cb8e2b5deaf58e38c0f32",
+    "historical_heterofold": "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/maps/llama3_to_qwen4/heterofold.pt",
+    "historical_heterofold_sha256": "dc2ea778b2b6ea4d6c74c678548946f59fb1e5970f935be3ecc5e4fb58ac718e",
+    "calibration": "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/data/calibration/openr1_hotpot.json",
+    "models": {
+      "sender": "/hy-tmp/yezhe/all_models/models/LLM-Research/Llama-3.2-3B-Instruct",
+      "receiver": "/hy-tmp/yezhe/all_models/models/Qwen/Qwen3-4B"
+    },
+    "arc_input": "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/evaluation_crossdataset_arc128_hellaswag64_seed1234/inputs/arc_rows.json",
+    "hellaswag_input": "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/evaluation_crossdataset_arc128_hellaswag64_seed1234/inputs/hellaswag_rows.json",
+    "historical_test_rows": "/hy-tmp/yezhe/异构模型/ufd_mixedprefix_stageb_4data_2048x4_l3_to_q4_seed1234/prepared/test.jsonl",
+    "hotpot_test_rows": "/hy-tmp/yezhe/异构模型/hotpotqa_distractor512_heterofold_three_readers_l3_to_q4_seed1234/prepared/test.jsonl",
+    "train_count": 1600,
+    "validation_count": 400,
+    "epochs": 4,
+    "effective_batch": 8,
+    "updates_per_arm": 800,
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001,
+    "gradient_clip": 1.0,
+    "checkpoint_every": 50,
+    "prefix_max_new_tokens": 64,
+    "supervised_positions_max": 8,
+    "lambda_k_output": 1.0,
+    "test_counts": {
+      "arc": 128,
+      "hellaswag": 64,
+      "gsm8k": 32,
+      "hotpotqa": 512
+    },
+    "max_new_tokens": {
+      "gsm8k": 4096,
+      "hotpotqa": 64
+    },
+    "selection": "Primary fixed epoch4/step800 for B/C/D/E; keep best own-validation-loss checkpoint diagnostic only, never test-selected.",
+    "arms": {
+      "A": {
+        "name": "Recolor-only",
+        "rank": 0,
+        "kind": "none",
+        "objective": "none"
+      },
+      "B": {
+        "name": "HeteroFold-R16",
+        "rank": 16,
+        "kind": "linear",
+        "objective": "attention"
+      },
+      "C": {
+        "name": "HeteroFold-R64",
+        "rank": 64,
+        "kind": "linear",
+        "objective": "attention"
+      },
+      "D": {
+        "name": "Recolor+Linear-R64 FullKL",
+        "rank": 64,
+        "kind": "linear",
+        "objective": "fullkl"
+      },
+      "E": {
+        "name": "Recolor+MLP-R64 FullKL",
+        "rank": 64,
+        "kind": "mlp",
+        "objective": "fullkl"
+      }
+    },
+    "training_order": [
+      "C",
+      "D",
+      "B",
+      "E"
+    ],
+    "stage_a_retrained": false,
+    "reader": false,
+    "automatic_upload": false,
+    "continuous_monitoring": false,
+    "disk_reserve_gib": 12,
+    "caveats": [
+      "Frozen exact same existing Recolor (fitted only on1600 train prompts), fixed raw-Sender capture/token alignment/depth stencil. No Grouped Stage-A, Full-Sync, old Stage-B weights or Reader modules are imported.",
+      "All residuals live in pre-k_norm/pre-RoPE Qwen1024-dimensional KV coordinates. Use one shared official finalize_layer for K normalization/RoPE in both calibration and actual KV inference; native chat-header cache only. LLMs FP16 on V100; Recolor constants and corrections FP32, base outputs FP16 as in official ExampleBuilder.",
+      "B/C use original attention KL + key-induced output MSE(nativeV fixed) + value output NMSE(detached routing) formula and native question-token probes. A common finalize_layer removes extra train/deployment rounding differences; an official-objective parity check records the small FP16 operator-order difference.",
+      "C/D linear residual structure/rank/initial factors and optimizer/data/order/budget match. Loss type, supervision positions, and D online prefix exposure differ together; this is not a loss-only same-position ablation.",
+      "D/E use full-vocabulary Native||Student KL, max64-token prefix/max8 scored positions, epoch1 Native and epochs2-4 per-batch balanced Native/Student prefixes. No gold answer loss. E differs by GELU activation with same rank64 factor shapes and initialization.",
+      "All four trained arms use4epochs,800updates,batch8,AdamWlr3e-4,wd1e-4,clip1. Fixed final checkpoint is primary; original HeteroFold best-validation selection is retained only as diagnostic and historical folded checkpoint is separately labeled.",
+      "No residual folding in primary inference for any trained arm, including linear ones: use the same explicit correction/finalize path as training; E is nonlinear and cannot be folded into a single affine map. Track folded-vs-explicit linear discrepancy as a diagnostic, not silently change the test path.",
+      "Calibration1600train/400validation are exactly original Open-R1problem-only+HotpotQAtrainfull-context rows,800+800train/200+200validation. TestARC128/HellaSwag64/GSM8K32 keep original shared sample IDs; HotpotQA512 fixed distractor-dev questions have no ID or normalized-question overlap with any calibration row.",
+      "HotpotQA test is independent of this Stage-2 optimization/tuning but has been evaluated in earlier research; this is not an untouched first-use benchmark. All passages preserved, no support-paragraph filtering/truncation. Answer EM/F1 only.",
+      "Native prompt KV is permitted as training/validation teacher only. Student test receives only Recolor Sender states plus public Receiver header, then original assistant suffix; no native body prefill or native Question hidden states are used in student inputs.",
+      "On-demand raw captures, no corpus-sized KV/attention cache. Reuse only token-prefix traces under this experiment manifest. All validation diagnostics include attention/output metrics and full-vocabulary same-prefix KL to check objective-task mismatch.",
+      "Previously paused translated+native fusion experiment remains paused and will not resume automatically."
+    ]
+  },
+  "config_sha256": "13546b0bfae10e466c2dc2ceb2a7ccbc20ca1831c6e7b7c874c8980f280bcd6e",
+  "code": {
+    "metrics.py": "7357d30ae0df58b8569773de2f5ea15bf6b09b82a64b464c7849bece318110b0",
+    "core.py": "54de3e5cf9df9a6fd56ac9b54156d93758fd5378cd9a8e2f11135b05b2f20968",
+    "residuals.py": "a393ae44a7cb943d564ca4256d3c0d3c7575d0f42afd5f98cc1c445241a544fd",
+    "run_pipeline.py": "488beb11afb232bddb4e00ebbf0449a1029dc8f8db4a2c4fb29aa1698029569f",
+    "train.py": "481ffbdc92dea5457045d706a1f5e6bdb1735fe48ad9fa5dfcf18ec8aaeb5c6f",
+    "evaluate.py": "eb20845bfad82980cda7612576df0de4b9d542e7c12e1642cf9b6f5b62e97cf3"
+  },
+  "references": {
+    "reference/heterofold/attention.py": "fd752812c10c085941266beaac34a7364e0dcb455b6aef0993cab0a1ab93fae7",
+    "reference/heterofold/maps.py": "bda861367721565827b4336a129ad5352ab1018f6181d3b2db50eb96e3914329",
+    "reference/heterofold/alignment.py": "d2009d9f7b95117190d3f1dad7abae42f58005d99101abe93127f7f65fb90d98",
+    "reference/heterofold/registry.py": "05ad2c6b9852c5228adcc970b420c541efc1a07058cd36582cda23fe7923d880",
+    "reference/heterofold/__init__.py": "661cd029667c445ad32248fbcfcec1d78e0323de5ef0b31f039c3c3435900ed8",
+    "reference/heterofold/transfer.py": "863bc71c2c06d9209b36f35208285de88aabd989703eedaa55f20ac2d3db5971",
+    "reference/heterofold/capture.py": "9e7dd3165c9d6b74d8e7a8d64fe5a4a844db44f87dc75962bae004916fae6b45",
+    "reference/heterofold/cli.py": "19fd2cc68dd39cd06f1ad0151286c571f3ff0884336e6c3724a7015935b06f1b",
+    "reference/heterofold/recolor.py": "c1dfb804363119d205145663d889b52b205a800d01bb42f24ac5cbda5075da90",
+    "reference/heterofold/modeling.py": "c36066d40ae9836cf31f324603af9fd1a1af3c70af2d61c0e492456a367749e8",
+    "reference/heterofold/__main__.py": "102942c02cdbea1e98069b7486b9c6e21d2694d84d78fca0ff104d352566d68b",
+    "reference/heterofold/calibration.py": "cbaca7d217422740039b5c940c3b82890f571dd3789a9bb5a298ffad3e176477",
+    "reference/heterofold/evaluation/run.py": "e10e0ca866053b3386bac1d86e7a18d9e24e0ee669735a2de1fef10f9c6fc552",
+    "reference/heterofold/evaluation/__init__.py": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "reference/heterofold/evaluation/summarize.py": "4976e5caf36fb8fa6a29b25ceab5d2ec0cc509ca6c4d960418e813bca142f85e",
+    "reference/heterofold/evaluation/runtime.py": "baed2e7fa47c1acc00c43d0c7baaea225beaa3e5f4b6b4e0601294103b84d8a1",
+    "reference/heterofold/evaluation/short_context.py": "5528df3b3a8f54697ab2fb4c8d5748e3e6050eb0155a76cfaa0ef4bb3719d383",
+    "reference/heterofold/evaluation/v100_sdpa.py": "f55205fc2ef0b6b5340e1c929656f70f4b31028a1eab74d9e5c1de0219aef877",
+    "reference/heterofold/evaluation/longbench.py": "9986ad2b9610ff031af3770d905a88c09e3659bd61331d0a32de386e1fcb9062",
+    "reference/heterofold/evaluation/quality.py": "1701217fa21ace201c56e21d2e37e8774612e54197d0e4775d5ded1d6bc7c254",
+    "reference/heterofold/data/calibration_corpus.py": "68df32724537383aa7e8b26b11e20feb8b1d30534eb470e8bfe8852e2e732cc8",
+    "reference/heterofold/data/__init__.py": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "reference/heterofold/data/benchmarks.py": "69733ad5eb86218ec5586e2d1a024fac2f1d3c0099be165f7b0b33531390d836"
+  },
+  "sources": {
+    "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/maps/llama3_to_qwen4/recolor.pt": "3009cc3434170e4806d064e0e65f49b04f108fa22c5cb8e2b5deaf58e38c0f32",
+    "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/maps/llama3_to_qwen4/heterofold.pt": "dc2ea778b2b6ea4d6c74c678548946f59fb1e5970f935be3ecc5e4fb58ac718e",
+    "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/data/calibration/openr1_hotpot.json": "2c2957268faf69aee8e4bbf0be7317666b3c008c4e5e89547577d353f1135b19",
+    "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/evaluation_crossdataset_arc128_hellaswag64_seed1234/inputs/arc_rows.json": "5a3b2cd346a0d614543f219b5632b810a7b1d934ff85b57c5e9ada9a2a4fb4f7",
+    "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/evaluation_crossdataset_arc128_hellaswag64_seed1234/inputs/hellaswag_rows.json": "247a50e7e18db3a41b975761c395b62bd67ab02cc372714537e5ffafe1fb022e",
+    "/hy-tmp/yezhe/异构模型/ufd_mixedprefix_stageb_4data_2048x4_l3_to_q4_seed1234/prepared/test.jsonl": "49fb3edbfee4eb3eadeaf146d1a81c709e6d22f14a04b0256953c2ce652c70d2",
+    "/hy-tmp/yezhe/异构模型/hotpotqa_distractor512_heterofold_three_readers_l3_to_q4_seed1234/prepared/test.jsonl": "e2a0396cf16e02d71b9c30ead7b0fd2f68c9b71d2926432b7592f5dfe1a52584"
+  },
+  "prepared": {
+    "train": "10d231666323dea3735909ce631706e26a8a4e6a64ad7bd9b7aa84273a4fc2f7",
+    "validation": "be1d90276b9e1e6f118f1c1a2a3390c632889fbf0e7e787072f2a1d08d878d75",
+    "test": "ae8514690e9f1f3e332d4fc1fe2948360d1115b21ebc0831320bf1ed81713062"
+  },
+  "counts": {
+    "train": 1600,
+    "validation": 400,
+    "test": 736
+  },
+  "geometry": {
+    "Ls": 28,
+    "Lr": 36,
+    "kv_width": 1024,
+    "source_space": "kv_prerope_joint",
+    "target_space": "kv_pre_norm"
+  },
+  "prefix_ids": [
+    151644,
+    872,
+    198
+  ],
+  "prefix": "<|im_start|>user\n",
+  "assistant": "<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+  "calibration_train_counts": {
+    "HotpotQA distractor train full-context:train": 800,
+    "HotpotQA distractor train full-context:validation": 200,
+    "Open-R1 prompt-only:train": 800,
+    "Open-R1 prompt-only:validation": 200
+  },
+  "maxima": {
+    "content_tokens": 3293,
+    "question_probes": 557
+  },
+  "stage1_fit_prompts": 1600,
+  "calibration_test_id_overlap": 0,
+  "calibration_test_question_overlap": 0,
+  "stage2_validation_selection": "fixed800 primary; own validation best diagnostic",
+  "training_order": [
+    "C",
+    "D",
+    "B",
+    "E"
+  ]
+}

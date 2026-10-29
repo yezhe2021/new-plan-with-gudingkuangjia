@@ -1,0 +1,44 @@
+2026-10-29 00:16:25 START ['core.py', 'prepare']
+2026-10-29 00:17:03 PREPARED {'train': 1600, 'validation': 400, 'test': 736} {'content_tokens': 3293, 'question_probes': 557}
+2026-10-29 00:17:04 START ['train.py', 'smoke']
+
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/398 [00:00<06:31,  1.01it/s]
+Loading weights:  34%|███▍      | 135/398 [00:01<00:01, 166.38it/s]
+Loading weights:  51%|█████     | 202/398 [00:01<00:01, 165.33it/s]
+Loading weights:  62%|██████▏   | 246/398 [00:01<00:00, 163.48it/s]
+Loading weights:  70%|███████   | 279/398 [00:02<00:00, 159.61it/s]
+Loading weights:  77%|███████▋  | 306/398 [00:02<00:00, 152.56it/s]
+Loading weights:  82%|████████▏ | 328/398 [00:02<00:00, 142.95it/s]
+Loading weights:  87%|████████▋ | 347/398 [00:02<00:00, 129.71it/s]
+Loading weights:  91%|█████████ | 363/398 [00:02<00:00, 125.00it/s]
+Loading weights:  95%|█████████▍| 378/398 [00:02<00:00, 112.16it/s]
+Loading weights:  98%|█████████▊| 391/398 [00:03<00:00, 111.46it/s]
+Loading weights: 100%|██████████| 398/398 [00:03<00:00, 129.61it/s]
+
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/254 [00:01<05:36,  1.33s/it]
+Loading weights:  44%|████▎     | 111/254 [00:01<00:01, 102.30it/s]
+Loading weights:  61%|██████    | 154/254 [00:02<00:01, 82.99it/s] 
+Loading weights:  71%|███████   | 180/254 [00:02<00:00, 75.04it/s]
+Loading weights:  78%|███████▊  | 198/254 [00:02<00:00, 72.78it/s]
+Loading weights:  83%|████████▎ | 212/254 [00:03<00:00, 66.71it/s]
+Loading weights:  88%|████████▊ | 223/254 [00:03<00:00, 67.47it/s]
+Loading weights:  92%|█████████▏| 233/254 [00:03<00:00, 66.27it/s]
+Loading weights:  95%|█████████▌| 242/254 [00:03<00:00, 62.30it/s]
+Loading weights:  98%|█████████▊| 250/254 [00:03<00:00, 64.38it/s]
+Loading weights: 100%|██████████| 254/254 [00:03<00:00, 66.42it/s]
+Traceback (most recent call last):
+  File "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234/train.py", line 183, in <module>
+    if sys.argv[1]=='smoke':smoke()
+  File "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234/train.py", line 81, in smoke
+    values.append(dict(online=online,grad=update(module,optimizer,scaler),**detail));engine.unchanged()
+TypeError: dict() got multiple values for keyword argument 'online'
+Traceback (most recent call last):
+  File "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234/run_pipeline.py", line 51, in <module>
+    else:run()
+  File "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234/run_pipeline.py", line 42, in run
+    subprocess.run([sys.executable,'-u',str(ROOT/action[0]),*action[1:]],cwd=ROOT,check=True)
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/hy-tmp/yezhe/data/miniconda3/envs/attnkv/bin/python', '-u', '/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234/train.py', 'smoke']' returned non-zero exit status 1.
