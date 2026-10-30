@@ -1,0 +1,36 @@
+{
+  "name": "layergroup_oracle_repair_acd_64_no_gsm_seed1234",
+  "seed": 1234,
+  "parent": "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234",
+  "parent_manifest_sha256": "f6b176c9915d2e968ce560fb2f981f6e2cefdd9405a9e2beeac9afa0a739b4c6",
+  "mask_experiment": "layergroup_kv_mask_acd_no_gsm_seed1234",
+  "mask_manifest_sha256": "e9eacea548e4aa04ebd91555a5c93bcb1952fe3cb9743edf07d48a9a4021971f",
+  "methods": [
+    "A",
+    "C",
+    "D"
+  ],
+  "test_counts": {
+    "arc": 64,
+    "hellaswag": 64,
+    "hotpotqa": 64
+  },
+  "training": false,
+  "gsm8k": false,
+  "reader": false,
+  "automatic_upload": false,
+  "continuous_monitoring": false,
+  "caveats": [
+    "Each dataset uses the first64 questions in the immutable parent order, selected without outcome-dependent filtering. Same prompts, token grid, public header, scoring and decoding limits as Recolor-KL. No GSM8K.",
+    "A/C/D and both LLMs are frozen; no Reader, Grouped Stage-A, Full-Sync, retraining, or automatic resume of other paused experiments.",
+    "Each method: unmasked plus6 independent groups times native K-only, native V-only, native KV, or attention-access mask:25 configurations. One shared native baseline/question.192 questions,14592 total configurations;4032 compatible unmasked/mask results reused with immutable provenance.",
+    "Groups are human layers1-6,7-12,13-18,19-24,25-30,31-36. Replace only ALL original transferred Prompt body positions including questions/options/evidence. Same range for masks. Public header and newly computed suffix/generated states retained.",
+    "Native Qwen KV is explicitly offline oracle information. Substitution occurs after cache assembly in post-k_norm/post-RoPE coordinates on matching Qwen token positions. No re-normalization/re-RoPE. Changes apply before reprocessing suffix/answer; independent cloned caches avoid cross-condition contamination.",
+    "No intervention recomputes original Prompt body states after mixing. Native higher-layer states contain effects of a fully native computation; results diagnose causal interventions in hybrid caches, not independent additive layer errors.",
+    "Smoke checks ordinary baseline historical parity, self-substitution bitwise logits, all-native endpoint vs native cached baseline, cached-native vs direct-prefill, protected positions/components, all6 groups, and complete scoring/generation.",
+    "Masking blocks attention access rather than zeroing caches. Both K/V access is blocked; K-only/V-only substitutions separate component effects. Mask dependency does not automatically imply translation error.",
+    "Report paired score changes, native-substitution minus same-group mask, rescued/harmed IDs, shared-correct retention and recovery ratios only when native exceeds translated. Many exploratory comparisons on64 questions require held-out confirmation; no per-dataset best mask is promoted as a universal method.",
+    "Native cached vs historical direct-prefill differences, if any, are explicitly recorded; current native baseline uses the same continuation/cache scoring protocol as hybrids.",
+    "Old larger mask run was stopped at user request and retained. Existing outputs are never overwritten. Pipeline fails on errors, saves per configuration, runs detached, no automatic upload or monitoring."
+  ]
+}

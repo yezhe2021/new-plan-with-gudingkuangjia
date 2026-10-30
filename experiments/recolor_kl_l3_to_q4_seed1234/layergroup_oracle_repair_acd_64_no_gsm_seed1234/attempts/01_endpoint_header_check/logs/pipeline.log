@@ -1,0 +1,43 @@
+2026-10-29 16:47:44 START ['experiment.py', 'prepare']
+2026-10-29 16:49:01 ORACLE64 PREPARED {'arc': 64, 'hellaswag': 64, 'hotpotqa': 64} reused 4032
+2026-10-29 16:49:02 START ['experiment.py', 'smoke']
+
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/398 [00:01<07:34,  1.14s/it]
+Loading weights:  34%|███▍      | 135/398 [00:01<00:01, 145.11it/s]
+Loading weights:  50%|████▉     | 198/398 [00:01<00:01, 147.57it/s]
+Loading weights:  60%|██████    | 239/398 [00:01<00:01, 146.13it/s]
+Loading weights:  68%|██████▊   | 270/398 [00:02<00:00, 144.35it/s]
+Loading weights:  74%|███████▍  | 295/398 [00:02<00:00, 147.89it/s]
+Loading weights:  80%|███████▉  | 317/398 [00:02<00:00, 149.10it/s]
+Loading weights:  85%|████████▍ | 337/398 [00:02<00:00, 146.26it/s]
+Loading weights:  89%|████████▉ | 355/398 [00:02<00:00, 142.15it/s]
+Loading weights:  95%|█████████▍| 377/398 [00:02<00:00, 146.25it/s]
+Loading weights:  99%|█████████▉| 394/398 [00:03<00:00, 147.25it/s]
+Loading weights: 100%|██████████| 398/398 [00:03<00:00, 130.74it/s]
+
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/254 [00:01<05:09,  1.22s/it]
+Loading weights:  47%|████▋     | 120/254 [00:01<00:01, 118.52it/s]
+Loading weights:  65%|██████▌   | 166/254 [00:01<00:00, 114.59it/s]
+Loading weights:  77%|███████▋  | 196/254 [00:02<00:00, 118.62it/s]
+Loading weights:  87%|████████▋ | 220/254 [00:02<00:00, 115.81it/s]
+Loading weights:  94%|█████████▍| 239/254 [00:02<00:00, 118.34it/s]
+Loading weights: 100%|██████████| 254/254 [00:02<00:00, 101.11it/s]
+2026-10-29 16:49:47 ORACLE64 SMOKE arc_0 PASSED
+Traceback (most recent call last):
+  File "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234/layergroup_oracle_repair_acd_64_no_gsm_seed1234/experiment.py", line 274, in <module>
+    elif action=='smoke': smoke()
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234/layergroup_oracle_repair_acd_64_no_gsm_seed1234/experiment.py", line 161, in smoke
+    else: assert max(abs(a-b) for a,b in zip(endpoint['scores'], native_value['scores'])) < .01
+AssertionError
+Traceback (most recent call last):
+  File "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234/layergroup_oracle_repair_acd_64_no_gsm_seed1234/run_pipeline.py", line 47, in <module>
+    else:run()
+  File "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234/layergroup_oracle_repair_acd_64_no_gsm_seed1234/run_pipeline.py", line 38, in run
+    subprocess.run([sys.executable,'-u',str(ROOT/action[0]),*action[1:]],cwd=ROOT,check=True)
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/hy-tmp/yezhe/data/miniconda3/envs/attnkv/bin/python', '-u', '/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234/layergroup_oracle_repair_acd_64_no_gsm_seed1234/experiment.py', 'smoke']' returned non-zero exit status 1.
