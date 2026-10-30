@@ -1,0 +1,77 @@
+{
+  "name": "prefix_native_sweep_acd_64_no_gsm_seed1234",
+  "seed": 1234,
+  "parent": "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234",
+  "parent_manifest_sha256": "f6b176c9915d2e968ce560fb2f981f6e2cefdd9405a9e2beeac9afa0a739b4c6",
+  "oracle_experiment": "layergroup_oracle_repair_acd_64_no_gsm_seed1234",
+  "oracle_manifest_sha256": "f824025ec02cc94fb39c3b804a3201eaffd115188b2b52c1bb4cc81d092c3ee2",
+  "methods": [
+    "A",
+    "C",
+    "D"
+  ],
+  "test_counts": {
+    "arc": 64,
+    "hellaswag": 64,
+    "hotpotqa": 64
+  },
+  "prefix_cuts": [
+    6,
+    12,
+    18,
+    24,
+    30,
+    36
+  ],
+  "mode": "kv",
+  "training": false,
+  "gsm8k": false,
+  "reader": false,
+  "automatic_upload": false,
+  "continuous_monitoring": false,
+  "decision_rule": {
+    "localized": "存在组 g，其边际增益 >= 2 × 各组边际中位数，且 >= 8pp",
+    "distributed": "所有组边际都在 [-3, +8]pp 内，且 准确率 vs k 的线性拟合 R^2 >= 0.9",
+    "ambiguous": "以上都不满足；如实报告，不宣称任何一侧",
+    "note": "本判据在运行前写定，不允许根据结果调整阈值或事后挑选解释。",
+    "primary_metrics": {
+      "arc": "correct",
+      "hellaswag": "correct",
+      "hotpotqa": "em"
+    },
+    "secondary_metrics": {
+      "hotpotqa": "f1"
+    },
+    "cuts_for_linear_fit": [
+      0,
+      6,
+      12,
+      18,
+      24,
+      30,
+      36
+    ],
+    "overlapping_or_no_unique_rules": "ambiguous",
+    "constant_curve_r2": null,
+    "overall": "Consensus only among primary curves with Native > Translated; if disagree or none applicable, ambiguous. Every method/task label is still reported.",
+    "units": "Scores are fractions:8pp=0.08, -3pp=-0.03; numerical comparison tolerance1e-12."
+  },
+  "caveats": [
+    "Same 192 questions, same immutable parent order as layergroup_oracle_repair_acd_64_no_gsm_seed1234; reused unmasked and native results are identity-checked, never recomputed.",
+    "Intervention is kv-only: each condition replaces body K and V with native Qwen values for layers 1..k, after cache assembly, in post-k_norm/post-RoPE coordinates on the matching Qwen token/position grid. Public header, positions and suffix are untouched.",
+    "prefix36 is not an independent measurement: it must equal the native baseline exactly and serves as a full-scale endpoint check.",
+    "Native KV is offline oracle information. This measures the potential value of perfect knowledge at a given depth, not a deployable repair.",
+    "Because the sweep is cumulative, group marginals are conditional on everything below already being native. They are NOT the same quantity as the isolated single-group effects in the parent experiment; do not compare the two as if they were.",
+    "Non-monotonicity is possible and reportable. No per-dataset best cut is promoted as a method.",
+    "No GSM8K in this sweep: generation cost and a different protocol. Add only after the curve is read.",
+    "Greedy decoding: 1 question = 1.56pp at n=64. Curve shape is the primary readout; individual point CIs are wide by design.",
+    "Pipeline fails on error, preserves partial results per configuration, no automatic upload or monitoring, does not resume other paused experiments.",
+    "localized/distributed are descriptive labels for cumulative hybrid-cache response curves, not proofs of intrinsic translator-error location, impossibility of distributed repair, or any deployable90% ceiling. No automatic follow-up training/interface changes are launched.",
+    "prefix24 versus isolated G4 V changes both K and lower1-18 layers, so a significant paired difference cannot by itself prove mismatch or show all previous substitutions underestimate recoverability. Report it as requested, alongside prefix24 versus G4 KV and the paired difference-in-differences (prefix24-prefix18)-(G4 KV-unmasked), all using existing results.",
+    "Native higher-layer body caches were computed under a fully native prefill; replacing a lower prefix does not recompute the retained translated upper body caches. The resulting cache can still contain a native/translated boundary. Marginals are conditional interventions, not independent layer-error estimates.",
+    "Native is already below translated on HellaSwag for these baselines. Always report that curve and its fixed-rule descriptive label, but leave recovery ratio undefined for nonpositive native-minus-translated gaps and exclude these curves from the overall recovery consensus.",
+    "Baseline native source JSON schema has id/task/result but no method/condition. Assert the actual schema, source manifest and ID/task, add explicit native metadata only to new copied records; never fabricate an upstream field assertion.",
+    "No native or unmasked answers are regenerated, even during smoke. prefix00 cache/logit identity plus reused baseline score equality anchors the zero endpoint; every newly evaluated prefix36 must equal the reused native result dictionary exactly. Native cached/direct-prefill parity is inherited from the identity-checked prior smoke, not recomputed.",
+    "The previous Transformer experiment remains paused. Results stay local/server until an explicit GitHub upload request. summary.json provides a suggested commit message containing the descriptive decision label for that later upload."
+  ]
+}
