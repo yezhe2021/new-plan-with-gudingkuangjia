@@ -1,0 +1,103 @@
+{
+  "name": "kv_functional_sensitivity_phase1_acd64_seed1234",
+  "seed": 1234,
+  "parent": "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234",
+  "parent_manifest_sha256": "f6b176c9915d2e968ce560fb2f981f6e2cefdd9405a9e2beeac9afa0a739b4c6",
+  "oracle_experiment": "layergroup_oracle_repair_acd_64_no_gsm_seed1234",
+  "oracle_manifest_sha256": "f824025ec02cc94fb39c3b804a3201eaffd115188b2b52c1bb4cc81d092c3ee2",
+  "phasefixed_donor_experiment": "wrongdonor_phasefix_acd_seed1234",
+  "phasefixed_donor_manifest_sha256": "ac564a2d0b61e4bbbd49a97c3ac5b06f5cfa18229d3ad8fd879a7b240ede8da1",
+  "methods": [
+    "A",
+    "C",
+    "D"
+  ],
+  "groups": {
+    "g1": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "g4": [
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "g5": [
+      24,
+      25,
+      26,
+      27,
+      28,
+      29
+    ]
+  },
+  "test_counts": {
+    "arc": 64,
+    "hotpotqa": 64
+  },
+  "phase": 1,
+  "training": false,
+  "gsm8k": false,
+  "reader": false,
+  "automatic_upload": false,
+  "continuous_monitoring": false,
+  "contexts": {
+    "gold_answer": "All literal gold-answer token prediction positions, identical tokens across native and four cases; no EOS added.",
+    "student_prefix": "Baseline translated receiver greedy rollout cap64; max8 deterministic positions including first/last, frozen across all interventions. Not independently generated hybrid prefixes."
+  },
+  "query_modes": [
+    "fixed_native_q_local",
+    "fixed_translated_q_local",
+    "actual_q_forward",
+    "clamped_native_q_forward"
+  ],
+  "case_definitions": {
+    "TT": "Translated K/Translated V",
+    "NT": "Native K/Translated V",
+    "TN": "Translated K/Native V",
+    "NN": "Native K/Native V"
+  },
+  "bootstrap_samples": 1000,
+  "statistics": {
+    "unit": "question",
+    "control": "rank residualization with group fixed effects; stratify task/method/context",
+    "primary_target": "clamped_native_q_nll_gain for joint KV repair versus the same-group clampedTT control",
+    "secondary_targets": [
+      "actual_q_nll_gain",
+      "actual_q_kl_gain",
+      "clamped_native_q_kl_gain",
+      "oracle_task_gain",
+      "K/V individual repair gains",
+      "K/V functional synergy",
+      "ARC correct-option margin gain"
+    ],
+    "primary_comparison": "Paired question-cluster bootstrap difference in partial Spearman: route KL vs joint RelativeL2; output NMSE vs joint RelativeL2.",
+    "exploratory_A": "In BOTH tasks, at least2/3 methods: gold-context route-vs-L2 delta-rho CI entirely positive, route rho positive, and student-prefix delta-rho positive.",
+    "exploratory_B": "In BOTH tasks, at least2/3 methods: gold-context output-vs-L2 delta-rho CI entirely positive AND signed local output-compatibility synergy rho with clamped functional NLL synergy CI entirely positive, with positive student-prefix synergy rho.",
+    "neither": "C_no_stable_signal_in_this_cohort: no stable exploratory support; not proof these mechanisms do not exist.",
+    "overlap": "Report A_and_B_exploratory_candidates if both qualify; do not force an exclusive mechanism."
+  },
+  "caveats": [
+    "Stage1 only: frozen existing A/C/D and Llama3.2-3B/Qwen3-4B; same historical ARC64 and HotpotQA64 IDs/order as the oracle experiment. No new training, Reader, Translator, MMLU-Pro,128-question confirmation, HellaSwag or GSM8K.",
+    "Question/options/evidence are already part of the transferred body cache. Probes are the Receiver actually processed answer/continuation positions, not native-prefill question queries mislabeled as translated inference queries.",
+    "All four local cases share the same Q, causal token grid, header and continuation tail KV within each fixed-Q reference. Native-Q and unmodified translated-Q references are separate; global intervention forwards additionally run with natural Q and with the selected group probe q_norm outputs clamped to Native. Clamping is post-q_norm/pre-RoPE: no repeated norm or rotation.",
+    "K/V replacements use only the same prompt and same body positions in finalized post-k_norm/post-RoPE coordinates. Header/positions retained, suffix and continuation recomputed. No wrong-donor intervention or length-resampled key enters this experiment.",
+    "Wrong-Donor phasefixed experiment already completed under manifest ac564a2d. Verify that source and independently test its exact reposition_key math against direct target-position rotation. Old unrephased donor results are excluded. Phase correction alone does not remove all resampling/context confounds.",
+    "Gold-answer context computes full answer-token mean NLL and full-vocabulary KL at every gold token. Student-prefix context uses actual unmodified translated greedy token IDs at up to8 fixed positions; target-token NLL there is NOT gold-answer NLL. Every compared method/condition shares that exact context.",
+    "Actual-Q forward queries and continuation tail states can change after repair. Its attention metrics include those changes and are not described as K-only isolation. Offline fixed-Q metrics hold both Q and nonbody tail fixed; query-clamped functional forwards fix selected probe queries but allow other states to recompute.",
+    "Fixed-Q NN route/output differences must be zero, NT/NN routes must coincide, and TT/TN routes must coincide. Reconstruct post-Wo outputs from post-RoPE queries and GQA8KV/32Q attention, and compare to real o_proj hook outputs. Self-Q clamping and tracing must preserve original logits bitwise.",
+    "Relative L2 is computed per layer and as group energy-weighted body K/V distances in the same finalized coordinates. RouteKL is NativeK||currentK attention probability divergence; output NMSE is post-Wo. Include per-head/per-probe diagnostics but never treat them as independent observations.",
+    "Task accuracy/Hotpot EM/F1 and ARC original candidate margins are reused from identity-checked historical four-condition oracle results. New matched-context functional NLL/KL and first-answer choice margins are separate outcomes, not substituted for free-generation task results.",
+    "Primary prediction features use the unmodified translated state, never pool all repaired states to inflate correlation mechanically. Partial Spearman removes layer-group mean rank effects; bootstrap resamples whole64-question clusters with their three groups. Report within-group associations as well.",
+    "K/V output interaction is O_NN-O_NT-O_TN+O_TT under fixed Q; signed synergy is damageNT+damageTN-damageTT-damageNN. Functional NLL/KL synergy uses the same sign. Association is exploratory, not a proven causal mechanism.",
+    "Both cohorts were used to identify sensitive layer groups. No held-out128-question confirmation exists in this phase, and no new method/loss/architecture follows automatically from A/B/C signals. Undefined correlations and inconclusive intervals are retained, not forced to zero or counted as support.",
+    "Only JSON metrics/token prefixes/logs are persisted, not KV/query/attention tensors or model weights. Full copies are discarded between conditions. The earlier Transformer and fusion experiments remain paused; detached fail-stop pipeline, no automatic upload or continuous notifications."
+  ]
+}
