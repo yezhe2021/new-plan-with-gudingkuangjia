@@ -1,0 +1,57 @@
+{
+  "name": "fixedq_attention_maps_acd_qwen64_seed1234",
+  "seed": 1234,
+  "parent": "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234",
+  "wait_for_experiment": "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234/kv_functional_sensitivity_phase1_acd64_seed1234",
+  "wait_for_manifest_sha256": "1b3877a749045c1aa149aeb8b8f96011f32fa8a40c73921e1bb43f8148877c72",
+  "min_free_gpu_mib": 24576,
+  "methods": [
+    "native",
+    "A",
+    "C",
+    "D"
+  ],
+  "test_counts": {
+    "arc": 64,
+    "hotpotqa": 64
+  },
+  "receiver_layers": 36,
+  "query_heads": 32,
+  "kv_heads": 8,
+  "query_reference": "Frozen Native Qwen q_norm output + normal Receiver RoPE at shared gold-answer prediction positions",
+  "fixed_nonbody_keys": "Native public header and Native continuation keys, identical across native/A/C/D",
+  "source_body_keys": "Frozen A/C/D finalized post-k_norm/post-RoPE body K, no second norm or rotation",
+  "example_indices": [
+    0,
+    32
+  ],
+  "example_layers": [
+    3,
+    21,
+    27
+  ],
+  "body_bins": 64,
+  "token_plot_selection": "Union of top8 body tokens per method, mean across Query heads at first answer probe, shared token columns and raw probability scale",
+  "bootstrap_samples": 1000,
+  "training": false,
+  "reader": false,
+  "gsm8k": false,
+  "actual_query_comparison": false,
+  "automatic_upload": false,
+  "continuous_monitoring": false,
+  "caveats": [
+    "User selected fixed-Q attention-map relationships only. No new actual-Q comparison or K/V four-condition functional rerun. Existing Phase1 actual-Q/functional analyses remain separate.",
+    "Same ARC64 and HotpotQA64 IDs/order and frozen A/C/D/Recolor/LLMs. All36 Receiver layers and32 Query heads are compared; these are Query heads, not independent KV heads in GQA(8KV,4queries perKV). No new datasets or training.",
+    "Within each question all4 sources use exactly the same Native Query, gold prefix, positions, causal mask and native nonbody(header+continuation) keys. Only body K changes. Attention probabilities depend on Q/K, not directly on V; V/output mechanisms belong to the preceding experiment.",
+    "Gold context includes every literal gold-answer prediction position, same tokens for all4 methods. Fixed Native Query is an offline diagnostic, not a deployable student feature or a comparison of each method independently generated sequences.",
+    "Native attention is a reference distribution, not ground-truth evidence attribution. Closer attention alone does not imply higher accuracy. Native can answer incorrectly and is not superior on every question.",
+    "All18 overlapping layer metrics must reproduce Phase1 fixed-Native-Q gold-context routeKL within1e-5. Native self distances must be zero, shared header/tail and body source positions are tensor-checked in smoke. Native token grid and cache RoPE conventions are unchanged.",
+    "Question is the statistical unit: average heads and gold probes within question; aggregate equal question weights and bootstrap64 complete questions1000 times. Head/probe/token counts never inflate sample size. Figures use the same scales across methods.",
+    "Per-question JSON stores per-layer/head KL/JS/TV/cosine/top10 overlap, full pairwise method relationships, attention-error residual alignment, and attention mass over header/body/continuation and textual question/choice/passage regions. Region labels are structural, not gold supporting facts.",
+    "Plot examples use immutable indices0 and32 in each task, layers3/21/27, without filtering on correctness or effect size. Token columns are a symmetric union of top8 body positions per method; this selection affects pictures only, not full-grid metrics. No probability renormalization after selecting tokens.",
+    "Body-bin pictures sum original probability mass into64 relative-position bins per head, averaged across gold probes. This is a visualization compression, not a full probability tensor and not a semantic token alignment across different questions.",
+    "Head-layer KL plots share a log color scale with floor1e-5 for visualization only; raw zero distances remain zero in JSON. Token panels share the same raw probability scale per layer; no per-method contrast enhancement.",
+    "Only compact attention-map summaries(example token/bin arrays), PNG/SVG figures and JSON diagnostics are persisted. No model weights, KV, full Query tensors or full T-by-T attention matrices are saved.",
+    "Background queue waits for prior mechanism experiment successful completion and GPU release. Dependency failure stops queue; errors stop evaluation. Transformer and fusion stay paused. No automatic upload, new architecture, follow-up training or ongoing notifications."
+  ]
+}
