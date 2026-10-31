@@ -1,0 +1,37 @@
+{
+  "name": "wrongdonor_probe_acd_seed1234",
+  "seed": 1234,
+  "parent": "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234",
+  "parent_manifest_sha256": "f6b176c9915d2e968ce560fb2f981f6e2cefdd9405a9e2beeac9afa0a739b4c6",
+  "oracle_experiment": "layergroup_oracle_repair_acd_64_no_gsm_seed1234",
+  "oracle_manifest_sha256": "f824025ec02cc94fb39c3b804a3201eaffd115188b2b52c1bb4cc81d092c3ee2",
+  "methods": ["A", "C", "D"],
+  "test_counts": {"arc": 128, "hellaswag": 64, "hotpotqa": 64},
+  "groups": [[0, 1, 2, 3, 4, 5], [6, 7, 8, 9, 10, 11], [12, 13, 14, 15, 16, 17],
+             [18, 19, 20, 21, 22, 23], [24, 25, 26, 27, 28, 29], [30, 31, 32, 33, 34, 35]],
+  "training": false,
+  "gsm8k": false,
+  "reader": false,
+  "automatic_upload": false,
+  "continuous_monitoring": false,
+  "disk_reserve_gib": 10,
+  "question": "Is 'no accuracy change when layers 1-18 are replaced by same-prompt native KV' caused by those layers being irrelevant, or by the translated KV there already being accurate?",
+  "design": "For each of 6 layer groups: translated (no injection), same-prompt native KV, and different-question (donor) native KV. Native KV from another question carries wrong content in the same shape and position grid.",
+  "decision_rule": {
+    "content_critical_translation_accurate": "group g shows donor well below translated while same-prompt native is within noise of translated",
+    "layers_irrelevant": "group g shows donor within noise of translated",
+    "translation_inaccurate": "group g shows same-prompt native well above translated while donor is not above translated",
+    "note": "Descriptive 2x3 readout frozen before inference; no thresholds tuned after seeing results. n=128 for ARC, 64 for HellaSwag and HotpotQA; 1 question = 0.78pp (ARC) / 1.56pp (others)."
+  },
+  "caveats": [
+    "Donor KV is same-prompt-format native KV from a DIFFERENT question of the same task, chosen by closest body token length with a deterministic id tiebreak; HotpotQA additionally requires a different question string. It carries the wrong content on the same positional grid, resampled nearest-neighbour to the target body length.",
+    "All injections replace body K and V only, after cache assembly, in post-k_norm/post-RoPE coordinates; the shared public header and all other layers stay untouched. No re-normalization or re-ROPE.",
+    "Native KV is offline oracle information. Neither the same-prompt nor the donor arm is deployable; they are controls that separate layer relevance from translation accuracy.",
+    "HellaSwag and HotpotQA rows are exactly the first 64 in immutable parent order, matching the reused 64-question anchors; ARC extends the same order to 128. The ARC first-64 subset is reported separately so it can be checked against the 64-question experiments.",
+    "The reused unmasked and same-prompt-native (g*_kv) results are identity-checked against the oracle manifest and never recomputed for HellaSwag/HotpotQA; ARC is recomputed in full because it extends to 128 questions.",
+    "Donor caches are recomputed per row and discarded; no KV is persisted to disk. Only per-config scores, per-sample records and aggregate distance statistics are kept.",
+    "Greedy decoding and fixed prompts; no task is used for tuning. Non-monotonicity and group non-additivity are expected and reportable.",
+    "Per-group K/V relative distances to the same-prompt native are recorded as a zero-cost side measurement; they are descriptive only and do not by themselves establish a mechanism.",
+    "No GSM8K, no Reader, no training. Pipeline fails on error, preserves per-configuration results, runs detached, no automatic upload or monitoring."
+  ]
+}
