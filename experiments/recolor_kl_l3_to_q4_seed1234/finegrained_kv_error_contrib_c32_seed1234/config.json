@@ -1,0 +1,57 @@
+{
+  "name": "finegrained_kv_error_contrib_c32_seed1234",
+  "seed": 1234,
+  "parent": "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234",
+  "method": "C",
+  "mechanism_experiment": "kv_functional_sensitivity_phase1_acd64_seed1234",
+  "mechanism_manifest_sha256": "1b3877a749045c1aa149aeb8b8f96011f32fa8a40c73921e1bb43f8148877c72",
+  "maps_experiment": "fixedq_attention_maps_acd_qwen64_seed1234",
+  "maps_manifest_sha256": "201af9d44e5771e7b3c7c347667725e67e9b20ad0b156326d70bd17e2000502f",
+  "test_counts": {
+    "arc": 32,
+    "hotpotqa": 32
+  },
+  "contexts": [
+    "gold_answer",
+    "student_prefix"
+  ],
+  "native_scale_floor_fraction": 0.05,
+  "token_chunk": 128,
+  "probe_chunk": 4,
+  "example_indices": [
+    0,
+    16
+  ],
+  "example_layers": [
+    3,
+    21,
+    27
+  ],
+  "example_kv_heads_zero_based": [
+    0,
+    4
+  ],
+  "bootstrap_samples": 500,
+  "disk_reserve_gib": 12,
+  "training": false,
+  "dimension_interventions": false,
+  "independent_validation": false,
+  "automatic_upload": false,
+  "continuous_monitoring": false,
+  "caveats": [
+    "Only experiments1/2: frozen C(Attention-R64), Llama3.2-3B→Qwen3-4B, original first32 ARC and first32 Hotpot questions. All36 layers/8KV heads/body tokens/128 dimensions computed. No new translator, dimension repair, random control, A/D sweep, MMLU-Pro or independent128-question confirmation.",
+    "Post-k_norm/post-RoPE K errors are the primary functional coordinates. A supplementary inverse-RoPE atlas remains post-k_norm and must not be called pre-normalization translator error. V has no RoPE. Token grids and public header are unchanged.",
+    "Native RMS normalization is per question/layer/KVhead/dimension across ALL body tokens, floored at max(5% of head RMS,1e-6). Store raw MAE/RMSE/signed bias, normalized metrics and floor fractions. Per-token/head and per-coordinate/head marginals are kept; they cannot reconstruct the entire joint error tensor.",
+    "Q_native and Q_C are captured from real receiver forwards under the same shared gold-answer context or the same immutable C-generated prefix from Phase1. Each Q is held fixed while comparing native and translated body states; native-Q and translated-Q references hold their own nonbody tail fixed. Gold context uses all gold probes; C-prefix context reuses at most8 positions from up to64 actual generated tokens.",
+    "Every Query head is matched to its actual shared KV head:32Q/8KV=4 associated queries per KV head. Signed coordinate C=q_post*deltaK_post*actual attention scaling. Contributions are NOT logits after softcap; assert this Qwen has no attention-logit softcap.",
+    "Sum of128 signed contributions must equal the attention-logit delta. Coordinate contributions can cancel; record delta-logit RMS, cancellation ratio, native-attention-weighted centered logit variance, Attention JS/KL and four local K/V post-Wo readouts. These are offline operator counterfactuals, not new whole-model repair interventions.",
+    "Mean absolute coordinate contribution factorizes exactly into mean abs Query times mean abs error. Its improvement over numerical error alone is not a causal mechanism. Signed sums, cancellation, Softmax and output readouts remain necessary.",
+    "RoPE pairs are(d,d+64). Paired signed contributions are invariant under a common key-coordinate change; individual coordinate rankings need not be. Store pair mean absolute signed contribution, paired error RMS and top4/top8 pair overlap(8/16 scalar dimensions), but do not use these selections for repair or deployability claims.",
+    "Per-question compressed NPZ files contain DERIVED error marginals, coordinate/pair contribution statistics and selected critical-token signed arrays, not native/translated KV, raw Query tensors or weights. Full H×P×T×D contributions are never allocated. Stream probe/token chunks and discard per-layer temporaries.",
+    "Figures use fixed examples0/16 per task, layers3/21/27, KV heads1/5 and fixed-stride token plots. Additional saved critical tokens are the union of fixed-stride, high-error, high-logit-change and Native-attention peaks; this is explicitly Oracle diagnostic selection, not a learned/deployable dimension policy.",
+    "Compare numerical and functional predictors using32-question cluster bootstrap500 times, ranking across questions separately within each layer/KV-head cell. Heads/tokens/dimensions are not independent experimental subjects. Constant/undefined correlations remain undefined.",
+    "All samples were used previously in exploratory evaluations. These results cannot establish final-answer causality or substitute for dimension interventions/independent validation. Later confirmation must exclude all previously inspected ARC128/Hotpot512 and calibration IDs, not simply reuse the unselected remainder.",
+    "All36 Gold/NativeQ routeKL values must agree with the prior full-map experiment within1e-5. Smoke checks exact GQA coordinate-sum identity, RoPE roundtrip/pair invariance, fixed-query output reconstruction and representative/long-body memory before full evaluation.",
+    "All older Transformer/fusion training stays paused. Detached fail-stop pipeline and resumable per-sample outputs. No automatic upload, repeated monitoring or automatic experiment3/algorithm training."
+  ]
+}
