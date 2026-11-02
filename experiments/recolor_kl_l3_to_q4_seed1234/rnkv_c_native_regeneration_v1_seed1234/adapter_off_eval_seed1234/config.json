@@ -1,0 +1,17 @@
+{
+  "seed":1234,
+  "parent":"/hy-tmp/yezhe/异构模型/rnkv_c_native_regeneration_v1_seed1234",
+  "parent_manifest_sha256":"d2d8608cc66bad29f13514d4bc1024cd9c3a7cbfdcbce0cf0bd3f9e5ff169abf",
+  "checkpoint_sha256":"291e2890014733b0894c6960f699d0c7426d89bd9b3fe45bd88d6c8fe193e5e1",
+  "test_counts":{"arc":64,"hotpotqa":64},
+  "disabled_adapters_after_layers":[6,12,18,24],
+  "intervention":"At inference, replace all four Memory.adapt calls by exact hidden-state identity. Keep trained32 prompt vectors, final epoch4/step1024 weights, construction/answer masks,19-30 replacement layers, cache positions and decoding/scoring unchanged.",
+  "training":false,
+  "caveats":[
+    "Inference-time ablation of the existing jointly trained checkpoint. This does not measure a model trained without adapters, or isolate the total value of adapters during learning.",
+    "Adapters are disabled only by exact bypass, with no zeroing, refitting, merging or checkpoint mutation. Learned memory embeddings remain unchanged. Every construction must bypass exactly one adapter at each of blocks6/12/18/24.",
+    "Same128 fixed test rows and original protocol as the completed RN-KV experiment. Reuse its immutable C/full-RN-KV/Native per-question baselines, with enabled-model parity checked before ablation. No GSM8K, new data, retraining or outcome-based checkpoint selection.",
+    "Memory still contains32 tokens at positions L..L+31; suffix starts L+32. Construction reads translated body; answer layers19-30 use memory and other layers retain body. No native body KV or hidden state enters student inference.",
+    "Paired intervals/rescued-harmed cases use whole questions, n64/task. Parent result files and weights remain unchanged. Detached fail-stop process; other paused experiments stay paused; no automatic upload or continuous monitoring."
+  ]
+}
