@@ -1,0 +1,35 @@
+{
+  "seed":1234,
+  "parent":"/hy-tmp/yezhe/异构模型/rnkv_c_native_regeneration_v1_seed1234",
+  "parent_manifest_sha256":"d2d8608cc66bad29f13514d4bc1024cd9c3a7cbfdcbce0cf0bd3f9e5ff169abf",
+  "parent_checkpoint_sha256":"291e2890014733b0894c6960f699d0c7426d89bd9b3fe45bd88d6c8fe193e5e1",
+  "cross_experiment":"cross_dataset5x64_seed1234",
+  "cross_manifest_sha256":"e18b93a34c8bb0264a509f6b375a00aa556a651f41f4ec99e2e55d931e787445",
+  "arms":{
+    "memory_only":{"train":true,"parameters":81920,"adapters":false,"replace_body":true,"description":"From original deterministic initialization, only32 learned memory embeddings train. No adapters in construction or answer; equivalent to frozen zero-up adapters/identity, not inference removal after joint training."},
+    "keep_both":{"train":true,"parameters":409600,"adapters":true,"replace_body":false,"description":"From original deterministic initialization, train32 embeddings+the original4 Rank16 adapters. At answer layers19-30 retain BOTH translated body and memory; all other masks/positions unchanged."}
+  },
+  "train_counts":{"arc":1024,"hotpotqa":1024},
+  "validation_counts":{"arc":64,"hotpotqa":64},
+  "test_counts":{"arc":64,"hotpotqa":64,"2wiki":64,"musique":64,"sciq":64,"mmlu_pro":64,"hellaswag":64},
+  "epochs":4,
+  "effective_batch":8,
+  "updates":1024,
+  "learning_rate":0.0001,
+  "weight_decay":0.0001,
+  "gradient_clip":1.0,
+  "checkpoint_every":32,
+  "lambda_kl":0.5,
+  "prefix_max_new_tokens":64,
+  "supervised_positions_max":8,
+  "prefix_quotas_per_batch":[{"gold":4,"native":4,"student":0},{"gold":3,"native":3,"student":2},{"gold":2,"native":2,"student":4},{"gold":2,"native":2,"student":4}],
+  "selection":"Each trained arm fixed epoch4/step1024; same source data, batch IDs, initial prompt values, optimizer and prefix schedule as original RN-KV. Student prefixes reflect each arm. Validation diagnostics never select checkpoints or extend training.",
+  "caveats":[
+    "Two structural ablations. Adapter-not-trained and memory-tokens-only refer to the same first arm. Its adapters are identity from initialization and never used; learned memory tokens are retrained from scratch, not copied from the jointly trained checkpoint.",
+    "Keep-both changes only answer routing within19-30: translated body plus memory are visible. Layers1-18/31-36 retain translated body and block memory as before. Construction, four adapter placements,32 memory positions L..L+31 and answer offset L+32 are unchanged. No learned gate or output fusion.",
+    "Both training arms use the identical original ARC1024+Hotpot1024,4epochs,batch8,1024 successful updates, lr1e-4 and task CE+0.5 full-vocabulary Native||Student KL. Sender, Recolor, all C corrections and Qwen weights freeze; gradients through Qwen to trainable memory parameters remain enabled.",
+    "All seven fixed64-question test cohorts are reused without new selection or task tuning. C/full-RN-KV/Native baselines reuse immutable per-question results; enabled full-checkpoint scorer parity is checked. ARC/SciQ/MMLU use label likelihood; HellaSwag uses length-normalized ending likelihood; Hotpot/2Wiki/MuSiQue retain their established answer scorers.",
+    "No comparison of absolute CE/KL scales alone establishes success. Report task-wise paired deltas, rescue/harm IDs, caps and answers. Previously inspected cohorts are architecture diagnostics, not a fresh independent confirmation set. No numerical-KV reconstruction claim or evidence-only interface claim.",
+    "One GPU, detached sequential pipeline, corrected AMP overflow reject/retry (no skipped examples), initial/early checkpoints, resumable validation/evaluation and question/batch pause boundaries. Other paused experiments stay paused; no automatic upload or continuous monitoring."
+  ]
+}
