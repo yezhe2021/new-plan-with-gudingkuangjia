@@ -1,0 +1,29 @@
+{
+  "seed":1234,
+  "parent":"/hy-tmp/yezhe/异构模型/rnkv_c_native_regeneration_v1_seed1234",
+  "parent_manifest_sha256":"d2d8608cc66bad29f13514d4bc1024cd9c3a7cbfdcbce0cf0bd3f9e5ff169abf",
+  "checkpoint_sha256":"291e2890014733b0894c6960f699d0c7426d89bd9b3fe45bd88d6c8fe193e5e1",
+  "test_counts":{"2wiki":64,"musique":64,"sciq":64,"mmlu_pro":64,"hellaswag":64},
+  "sources":{
+    "2wiki":"/hy-tmp/yezhe/all_models/datasets/voidful/2WikiMultihopQA/dev.json",
+    "musique":"/hy-tmp/yezhe/all_models/datasets/voidful/MuSiQue/musique_ans_v1.0_dev.jsonl",
+    "sciq":"/hy-tmp/yezhe/异构模型/decoupled_memory_reader_obqa_fact_l3_to_q4_seed1234/sciq_frozen64/data/test.parquet",
+    "mmlu_pro":"/hy-tmp/yezhe/异构模型/unified_fullbody_hub_l3_to_q4_seed1234/datasets/mmlu_pro/test-00000-of-00001.parquet",
+    "hellaswag":"/hy-tmp/yezhe/异构模型/unified_fullbody_hub_l3_to_q4_seed1234/datasets/hellaswag/hellaswag_val.jsonl"
+  },
+  "expected_counts":{"2wiki":12576,"musique":2417,"sciq":1000,"mmlu_pro":12032,"hellaswag":10042},
+  "arms":["C","rnkv","native"],
+  "max_new_tokens":64,
+  "max_context_tokens":32768,
+  "training":false,
+  "caveats":[
+    "Frozen original C and final RN-KV epoch4/step1024. Full32 learned memory tokens, four trained Rank16 adapters, construction/answer masks and layers19-30 replacement exactly retained. No retraining, recalibration, architecture changes or test-selected checkpoints.",
+    "Fixed64 per task, seed1234; MMLU-Pro uses near-equal category stratification. Exclude normalized questions/available source IDs in C calibration, RN training/validation and parent/dependency tests. No length, answerability, correctness or support-based selection; stop rather than truncate or silently resample if a selected item exceeds context.",
+    "All original 2Wiki and MuSiQue paragraphs retained, no supporting-fact/decomposition/evidence labels in prompts. SciQ uses its provided support (possibly empty) and all four choices with a fixed per-question seeded option permutation. MMLU-Pro uses every provided option, including items with fewer than10 choices; no chain-of-thought/answer field in the prompt.",
+    "SciQ/MMLU-Pro use candidate LABEL conditional log likelihood with the original ARC answer cue. HellaSwag uses the original short_context prompt and candidate ENDING log likelihood divided by its token count. Scores are computed with the same routine across all3 arms. Native canonical-cache vs official cached/direct-prefill scoring is diagnosed in smoke.",
+    "Generation uses the same Hotpot short-answer prompt and greedy64 limit. 2Wiki source has canonical answer only, so report original-format answer EM/F1, not v1.1 alias scoring. MuSiQue-Ans uses canonical+answer_aliases max EM/F1 and its empty-answer conventions. No supporting-fact/joint metrics or official full-benchmark/leaderboard claim.",
+    "All3 arms share prompt/tokenization/answer cue/metrics; Native and C retain original suffix positions while RN adds32 memory positions as in its trained architecture. Only the explicitly labeled Native baseline may prefill native body. No teacher KV or hidden states enter either student construction path.",
+    "New to RN supervised task mixture, not a guarantee against semantic/document overlap, unrelated historical evaluations or model pretraining. Question-level paired bootstrap intervals and rescued/harmed IDs, n64/task; do not average unlike task metrics into a universal score.",
+    "Detached fail-stop evaluation, pause at question boundaries; other paused experiments remain paused. Smoke predictions may be reused for the exact same fixed test rows after correctness gates, with provenance. No GSM8K, adapter-off sweep, automatic upload or continuous monitoring."
+  ]
+}
