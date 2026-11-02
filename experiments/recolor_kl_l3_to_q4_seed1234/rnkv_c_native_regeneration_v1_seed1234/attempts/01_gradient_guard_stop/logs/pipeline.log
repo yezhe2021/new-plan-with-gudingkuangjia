@@ -1,0 +1,24 @@
+2026-11-01 18:31:09 START ['smoke.py']
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<06:32,  1.01it/s]Loading weights:  34%|███▍      | 135/398 [00:01<00:01, 164.41it/s]Loading weights:  49%|████▉     | 197/398 [00:01<00:01, 165.53it/s]Loading weights:  60%|██████    | 239/398 [00:01<00:00, 162.18it/s]Loading weights:  68%|██████▊   | 270/398 [00:01<00:00, 158.70it/s]Loading weights:  74%|███████▍  | 296/398 [00:02<00:00, 164.73it/s]Loading weights:  80%|████████  | 320/398 [00:02<00:00, 167.49it/s]Loading weights:  86%|████████▌ | 342/398 [00:02<00:00, 166.02it/s]Loading weights:  91%|█████████ | 362/398 [00:02<00:00, 149.79it/s]Loading weights:  95%|█████████▌| 380/398 [00:02<00:00, 119.50it/s]Loading weights:  99%|█████████▉| 394/398 [00:02<00:00, 118.26it/s]Loading weights: 100%|██████████| 398/398 [00:02<00:00, 135.65it/s]
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<04:04,  1.03it/s]Loading weights:  47%|████▋     | 120/254 [00:01<00:00, 153.32it/s]Loading weights:  74%|███████▍  | 188/254 [00:01<00:00, 144.04it/s]Loading weights:  91%|█████████ | 231/254 [00:01<00:00, 136.04it/s]Loading weights: 100%|██████████| 254/254 [00:02<00:00, 111.67it/s]
+2026-11-01 18:31:44 RNKV GPU SMOKE PASSED arc_train_Mercury_7012618 47
+2026-11-01 18:31:46 RNKV GPU SMOKE PASSED hotpotqa_train_5ae1495155429920d5234390 136
+2026-11-01 18:31:49 RNKV GPU SMOKE PASSED hotpotqa_train_5a811d3c55429903bc27b92f 3208
+2026-11-01 18:31:52 START ['train.py']
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<06:36,  1.00it/s]Loading weights:  34%|███▍      | 135/398 [00:01<00:01, 165.81it/s]Loading weights:  52%|█████▏    | 205/398 [00:01<00:01, 166.04it/s]Loading weights:  63%|██████▎   | 251/398 [00:01<00:00, 167.79it/s]Loading weights:  72%|███████▏  | 286/398 [00:01<00:00, 170.01it/s]Loading weights:  79%|███████▉  | 315/398 [00:02<00:00, 163.96it/s]Loading weights:  85%|████████▌ | 339/398 [00:02<00:00, 167.09it/s]Loading weights:  91%|█████████ | 361/398 [00:02<00:00, 165.99it/s]Loading weights:  96%|█████████▌| 382/398 [00:02<00:00, 106.77it/s]Loading weights: 100%|██████████| 398/398 [00:03<00:00, 110.56it/s]Loading weights: 100%|██████████| 398/398 [00:03<00:00, 131.43it/s]
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:01<04:20,  1.03s/it]Loading weights:  44%|████▎     | 111/254 [00:01<00:01, 130.43it/s]Loading weights:  64%|██████▍   | 162/254 [00:01<00:00, 134.34it/s]Loading weights:  77%|███████▋  | 196/254 [00:01<00:00, 127.38it/s]Loading weights:  87%|████████▋ | 221/254 [00:02<00:00, 126.08it/s]Loading weights:  95%|█████████▌| 242/254 [00:02<00:00, 125.13it/s]Loading weights: 100%|██████████| 254/254 [00:02<00:00, 105.72it/s]
+2026-11-01 18:32:36 RNKV TRAIN {"epoch": 1, "step": 1, "total_steps": 1024, "batch": 1, "metrics": {"loss": 18.403223395347595, "task_loss": 14.644328013062477, "full_kl": 7.517790734767914, "positions": 5.0, "prefix_tokens": 5.25}, "prefix_counts": {"gold": 4, "native": 4, "student": 0}, "gradient_norm": 330.5295104980469, "elapsed_seconds": 14.022228002548218, "peak_allocated_gib": 18.316592693328857, "peak_reserved_gib": 19.158203125}
+Traceback (most recent call last):
+  File "/hy-tmp/yezhe/异构模型/rnkv_c_native_regeneration_v1_seed1234/train.py", line 80, in <module>
+    if __name__=='__main__':main()
+  File "/hy-tmp/yezhe/异构模型/rnkv_c_native_regeneration_v1_seed1234/train.py", line 60, in main
+    assert torch.isfinite(grad) and grad>0
+AssertionError
+Traceback (most recent call last):
+  File "/hy-tmp/yezhe/异构模型/rnkv_c_native_regeneration_v1_seed1234/run_pipeline.py", line 80, in <module>
+    else:run()
+  File "/hy-tmp/yezhe/异构模型/rnkv_c_native_regeneration_v1_seed1234/run_pipeline.py", line 72, in run
+    result.check_returncode()
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/subprocess.py", line 457, in check_returncode
+    raise CalledProcessError(self.returncode, self.args, self.stdout,
+subprocess.CalledProcessError: Command '['/hy-tmp/yezhe/data/miniconda3/envs/attnkv/bin/python', '-u', '/hy-tmp/yezhe/异构模型/rnkv_c_native_regeneration_v1_seed1234/train.py']' returned non-zero exit status 1.

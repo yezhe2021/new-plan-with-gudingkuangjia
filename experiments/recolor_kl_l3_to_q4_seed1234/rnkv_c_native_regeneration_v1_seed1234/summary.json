@@ -1,0 +1,190 @@
+{
+  "manifest_sha256": "d2d8608cc66bad29f13514d4bc1024cd9c3a7cbfdcbce0cf0bd3f9e5ff169abf",
+  "status": "completed",
+  "tasks": {
+    "arc": {
+      "manifest_sha256": "d2d8608cc66bad29f13514d4bc1024cd9c3a7cbfdcbce0cf0bd3f9e5ff169abf",
+      "status": "completed",
+      "n": 64,
+      "metrics": {
+        "C": {
+          "correct": 0.671875
+        },
+        "rnkv": {
+          "correct": 0.640625
+        },
+        "native": {
+          "correct": 0.875
+        }
+      },
+      "rnkv_minus_C": {
+        "correct": {
+          "n": 64,
+          "mean": -0.03125,
+          "ci95": [
+            -0.109375,
+            0.046875
+          ]
+        }
+      },
+      "rescued_ids": [
+        "arc_fresh_Mercury_7264093",
+        "arc_fresh_LEAP_2011_8_10434"
+      ],
+      "harmed_ids": [
+        "arc_fresh_Mercury_415081",
+        "arc_fresh_TIMSS_1995_8_L6",
+        "arc_fresh_Mercury_SC_402029",
+        "arc_fresh_Mercury_7024798"
+      ],
+      "recovery_ratio": {
+        "correct": -0.15384615384615385
+      }
+    },
+    "hotpotqa": {
+      "manifest_sha256": "d2d8608cc66bad29f13514d4bc1024cd9c3a7cbfdcbce0cf0bd3f9e5ff169abf",
+      "status": "completed",
+      "n": 64,
+      "metrics": {
+        "C": {
+          "em": 0.296875,
+          "f1": 0.46534898341466485
+        },
+        "rnkv": {
+          "em": 0.359375,
+          "f1": 0.49801396520146524
+        },
+        "native": {
+          "em": 0.5625,
+          "f1": 0.6851686507936506
+        }
+      },
+      "rnkv_minus_C": {
+        "em": {
+          "n": 64,
+          "mean": 0.0625,
+          "ci95": [
+            -0.03125,
+            0.15625
+          ]
+        },
+        "f1": {
+          "n": 64,
+          "mean": 0.03266498178680045,
+          "ci95": [
+            -0.08131813150010558,
+            0.1368661953528238
+          ]
+        }
+      },
+      "rescued_ids": [
+        "hotpotqa_fresh_5adfbd4655429942ec259b31",
+        "hotpotqa_fresh_5ab6f7415542991d322236f4",
+        "hotpotqa_fresh_5abe65e25542993f32c2a101",
+        "hotpotqa_fresh_5ab3d2595542992ade7c6ebf",
+        "hotpotqa_fresh_5a72c6f65542994cef4bc402",
+        "hotpotqa_fresh_5a7d07a455429907fabef0ae",
+        "hotpotqa_fresh_5a7bacf2554299294a54aa8d"
+      ],
+      "harmed_ids": [
+        "hotpotqa_fresh_5a74b55455429974ef308c39",
+        "hotpotqa_fresh_5ae3bb0d5542992f92d82357",
+        "hotpotqa_fresh_5ab51ddf5542990594ba9d11"
+      ],
+      "recovery_ratio": {
+        "em": 0.23529411764705882,
+        "f1": 0.14859899560526346
+      }
+    }
+  },
+  "config": {
+    "seed": 1234,
+    "parent": "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234",
+    "parent_manifest_sha256": "f6b176c9915d2e968ce560fb2f981f6e2cefdd9405a9e2beeac9afa0a739b4c6",
+    "c_checkpoint_sha256": "14a4c5f712d9c8440710555071a0f5b83aee9301493a6a7abe06222c25757425",
+    "dependency": "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234/c_local_functional_ft_l19_30_seed1234",
+    "dependency_manifest_sha256": "e43f1b3926ef0bf74370b32c26d6543b729421f4d3fef20023ff5be5d3a59b02",
+    "memory_tokens": 32,
+    "hidden_size": 2560,
+    "adapter_rank": 16,
+    "adapter_after_layers": [
+      6,
+      12,
+      18,
+      24
+    ],
+    "adapter": "Independent bias-free down2560x16, GELU, zero-initialized up16x2560; residual after the entire named decoder block, enabled for memory construction only.",
+    "replace_layers": [
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30
+    ],
+    "train_counts": {
+      "arc": 1024,
+      "hotpotqa": 1024
+    },
+    "validation_counts": {
+      "arc": 64,
+      "hotpotqa": 64
+    },
+    "test_counts": {
+      "arc": 64,
+      "hotpotqa": 64
+    },
+    "epochs": 4,
+    "effective_batch": 8,
+    "updates": 1024,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "gradient_clip": 1.0,
+    "checkpoint_every": 32,
+    "lambda_kl": 0.5,
+    "prefix_max_new_tokens": 64,
+    "supervised_positions_max": 8,
+    "prefix_quotas_per_batch": [
+      {
+        "gold": 4,
+        "native": 4,
+        "student": 0
+      },
+      {
+        "gold": 3,
+        "native": 3,
+        "student": 2
+      },
+      {
+        "gold": 2,
+        "native": 2,
+        "student": 4
+      },
+      {
+        "gold": 2,
+        "native": 2,
+        "student": 4
+      }
+    ],
+    "max_context_tokens": 32768,
+    "selection": "Fixed final epoch4/step1024; validation diagnostic only. No downstream-based early stopping, extension or checkpoint selection.",
+    "arc_zip": "/hy-tmp/yezhe/异构模型/unified_fullbody_hub_l3_to_q4_seed1234/datasets/arc/ARC-V1-Feb2018.zip",
+    "hotpot_parquet": "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/data/calibration/sources/hotpot-distractor-train-00000-of-00002.parquet",
+    "caveats": [
+      "Original C epoch4/step800, not the queued dependency's fine-tuned weights. Sender, Recolor, all C corrections and Qwen weights are frozen. Only32 prompt embeddings and4 memory-only Rank16 adapters train (409600 parameters).",
+      "Construction permits all translated body plus causal memory positions. Answer queries in19-30 forbid translated body and read memory; other layers forbid memory and retain body. Header and causal suffix/generated tokens remain visible everywhere. No blending, output fusion, physical cache replacement, or post-RoPE relocation.",
+      "Memory K/V are captured from Qwen's actual native projection/cache update at each layer's input state. Adapters after block l can affect later layers' memory states, never retroactively rebuild layer l K/V. Memory positions L..L+31; answer suffix starts L+32.",
+      "Task loss always uses gold context: ARC negative log likelihood of the gold option-label tokens with the official label cue (full-vocabulary CE, not option-normalized classification); Hotpot all gold answer tokens plus one im_end EOS. Generated wrong prefixes are used for KL only, not paired with misaligned gold CE.",
+      "KL compares Native and Student on the identical semantic prompt and generated/gold prefix, full vocabulary, at most8 of64 prefix positions. Native teacher has original positions; Student's suffix is necessarily shifted by32. No artificial memory or positional holes are added to Native/C baselines.",
+      "Train ARC official train1024 and Hotpot train1024; ARC validation from official dev and Hotpot validation from a disjoint train subset. Exclude parent calibration and all parent/dependency test questions/available source IDs. Preserve all distractor passages; no length-based selection or truncation. Fresh test ARC64/Hotpot64 exactly reuse dependency's fixed input rows for within-question comparisons.",
+      "Full Prompt transfer includes the question and ARC choices. This does not establish an evidence-only private communication protocol or generalization to tasks outside the supervised ARC/Hotpot mixture.",
+      "CPU-only data preparation/tests may run while dependency occupies GPU. GPU smoke and training wait for dependency completed markers, successful runner exit and GPU release. Dependency failure/pause stops the queue. Other paused experiments stay paused; no automatic upload or ongoing notifications."
+    ]
+  }
+}

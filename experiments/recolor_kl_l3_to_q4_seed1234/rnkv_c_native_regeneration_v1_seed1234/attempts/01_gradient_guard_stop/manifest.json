@@ -1,0 +1,136 @@
+{
+  "config": {
+    "seed": 1234,
+    "parent": "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234",
+    "parent_manifest_sha256": "f6b176c9915d2e968ce560fb2f981f6e2cefdd9405a9e2beeac9afa0a739b4c6",
+    "c_checkpoint_sha256": "14a4c5f712d9c8440710555071a0f5b83aee9301493a6a7abe06222c25757425",
+    "dependency": "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234/c_local_functional_ft_l19_30_seed1234",
+    "dependency_manifest_sha256": "e43f1b3926ef0bf74370b32c26d6543b729421f4d3fef20023ff5be5d3a59b02",
+    "memory_tokens": 32,
+    "hidden_size": 2560,
+    "adapter_rank": 16,
+    "adapter_after_layers": [
+      6,
+      12,
+      18,
+      24
+    ],
+    "adapter": "Independent bias-free down2560x16, GELU, zero-initialized up16x2560; residual after the entire named decoder block, enabled for memory construction only.",
+    "replace_layers": [
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30
+    ],
+    "train_counts": {
+      "arc": 1024,
+      "hotpotqa": 1024
+    },
+    "validation_counts": {
+      "arc": 64,
+      "hotpotqa": 64
+    },
+    "test_counts": {
+      "arc": 64,
+      "hotpotqa": 64
+    },
+    "epochs": 4,
+    "effective_batch": 8,
+    "updates": 1024,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "gradient_clip": 1.0,
+    "checkpoint_every": 32,
+    "lambda_kl": 0.5,
+    "prefix_max_new_tokens": 64,
+    "supervised_positions_max": 8,
+    "prefix_quotas_per_batch": [
+      {
+        "gold": 4,
+        "native": 4,
+        "student": 0
+      },
+      {
+        "gold": 3,
+        "native": 3,
+        "student": 2
+      },
+      {
+        "gold": 2,
+        "native": 2,
+        "student": 4
+      },
+      {
+        "gold": 2,
+        "native": 2,
+        "student": 4
+      }
+    ],
+    "max_context_tokens": 32768,
+    "selection": "Fixed final epoch4/step1024; validation diagnostic only. No downstream-based early stopping, extension or checkpoint selection.",
+    "arc_zip": "/hy-tmp/yezhe/异构模型/unified_fullbody_hub_l3_to_q4_seed1234/datasets/arc/ARC-V1-Feb2018.zip",
+    "hotpot_parquet": "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/data/calibration/sources/hotpot-distractor-train-00000-of-00002.parquet",
+    "caveats": [
+      "Original C epoch4/step800, not the queued dependency's fine-tuned weights. Sender, Recolor, all C corrections and Qwen weights are frozen. Only32 prompt embeddings and4 memory-only Rank16 adapters train (409600 parameters).",
+      "Construction permits all translated body plus causal memory positions. Answer queries in19-30 forbid translated body and read memory; other layers forbid memory and retain body. Header and causal suffix/generated tokens remain visible everywhere. No blending, output fusion, physical cache replacement, or post-RoPE relocation.",
+      "Memory K/V are captured from Qwen's actual native projection/cache update at each layer's input state. Adapters after block l can affect later layers' memory states, never retroactively rebuild layer l K/V. Memory positions L..L+31; answer suffix starts L+32.",
+      "Task loss always uses gold context: ARC negative log likelihood of the gold option-label tokens with the official label cue (full-vocabulary CE, not option-normalized classification); Hotpot all gold answer tokens plus one im_end EOS. Generated wrong prefixes are used for KL only, not paired with misaligned gold CE.",
+      "KL compares Native and Student on the identical semantic prompt and generated/gold prefix, full vocabulary, at most8 of64 prefix positions. Native teacher has original positions; Student's suffix is necessarily shifted by32. No artificial memory or positional holes are added to Native/C baselines.",
+      "Train ARC official train1024 and Hotpot train1024; ARC validation from official dev and Hotpot validation from a disjoint train subset. Exclude parent calibration and all parent/dependency test questions/available source IDs. Preserve all distractor passages; no length-based selection or truncation. Fresh test ARC64/Hotpot64 exactly reuse dependency's fixed input rows for within-question comparisons.",
+      "Full Prompt transfer includes the question and ARC choices. This does not establish an evidence-only private communication protocol or generalization to tasks outside the supervised ARC/Hotpot mixture.",
+      "CPU-only data preparation/tests may run while dependency occupies GPU. GPU smoke and training wait for dependency completed markers, successful runner exit and GPU release. Dependency failure/pause stops the queue. Other paused experiments stay paused; no automatic upload or ongoing notifications."
+    ]
+  },
+  "config_sha256": "799671e7e894cdb2b7b92919ddb8d74e055d7e92cb99c20c722eaa3522b14aa3",
+  "code": {
+    "attention.py": "b719e179e89fc2255b6e04680f6cf06760c955a4ddeafffd751486093e88fb03",
+    "memory.py": "54b5b8fa69fb63ec49d9c88db13a873eaa2c471113174cdc47fa57d0138f5019",
+    "cache.py": "210a92d178d37e50da896ff319b3c52420768554b78d49d05dc3307e5618791c",
+    "model.py": "56561f2d36ae8f1d2f00f056ce74dfbfd92789ceb26885e98e32ebf2de395357",
+    "run_pipeline.py": "e39fae0e9d8daa8eeb26ceaf68bbc90d406ae3d8b17aeeec26b5a98cdce62071",
+    "common.py": "0fe74ade8145cbf336a566c2fdf777573e763f268f3869ad193186dcda76052e",
+    "cpu_checks.py": "e934e7b5fcdbd70c3b71a8568d093b05ca88c3294c0894d7362031840f4a2d96",
+    "train.py": "a9b1b18f59dd06b36a09de672950734e5540db195ad613b781fa04e1edfbe371",
+    "evaluate.py": "dc38a2c931e27beb9415273e32fbfbc2b0af31d6ad47312045a0831f0b197427",
+    "prepare.py": "e936a3237b8eb20cee5221cf80346fee0a33541d737c609c4febce06a644d112",
+    "smoke.py": "da6f5719ffecbdb69bed6ab565aba54f89256d26db05b7b9d1140b88e8e274fc"
+  },
+  "sources": {
+    "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234/manifest.json": "f6b176c9915d2e968ce560fb2f981f6e2cefdd9405a9e2beeac9afa0a739b4c6",
+    "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234/core.py": "54de3e5cf9df9a6fd56ac9b54156d93758fd5378cd9a8e2f11135b05b2f20968",
+    "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234/train.py": "481ffbdc92dea5457045d706a1f5e6bdb1735fe48ad9fa5dfcf18ec8aaeb5c6f",
+    "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234/residuals.py": "a393ae44a7cb943d564ca4256d3c0d3c7575d0f42afd5f98cc1c445241a544fd",
+    "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234/metrics.py": "7357d30ae0df58b8569773de2f5ea15bf6b09b82a64b464c7849bece318110b0",
+    "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234/runs/C/epoch4_step800.pt": "14a4c5f712d9c8440710555071a0f5b83aee9301493a6a7abe06222c25757425",
+    "/hy-tmp/yezhe/异构模型/unified_fullbody_hub_l3_to_q4_seed1234/datasets/arc/ARC-V1-Feb2018.zip": "6d2d5ab50b2ceec6ba5f79c921be77cf2de712ea25a2b3f4fff3acc101cecfa0",
+    "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/data/calibration/sources/hotpot-distractor-train-00000-of-00002.parquet": "76d3bb3048a7cc73c1958107c0c5872a00d7e7d00c105b81e92f6769e7822e68",
+    "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234/c_local_functional_ft_l19_30_seed1234/manifest.json": "e43f1b3926ef0bf74370b32c26d6543b729421f4d3fef20023ff5be5d3a59b02",
+    "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234/c_local_functional_ft_l19_30_seed1234/prepared/test.jsonl": "1f25178669725cb6538066ffd9bfee2d328e1618d75e94ea4d3a8ee99941a404",
+    "/hy-tmp/yezhe/异构模型/rnkv_c_native_regeneration_v1_seed1234/prepared/train.jsonl": "b2635fad237897e61a4bbc78499a6f44e6c7987f17aa61d4fbf887d1e4a0cf7c",
+    "/hy-tmp/yezhe/异构模型/rnkv_c_native_regeneration_v1_seed1234/prepared/validation.jsonl": "ec11b648da02fed9b60d5fefa366c424a8fe719bbb7871b19173cd07fe58f5b5",
+    "/hy-tmp/yezhe/异构模型/rnkv_c_native_regeneration_v1_seed1234/prepared/test.jsonl": "55262131fdfc3926e88dd6b6077be8a4c9e5c42e56931c6041347bdfc247c83d"
+  },
+  "counts": {
+    "train": 2048,
+    "validation": 128,
+    "test": 128
+  },
+  "maxima": {
+    "train": 3208,
+    "validation": 2148,
+    "test": 2427
+  },
+  "trainable_parameters": 409600,
+  "train_validation_test_question_overlap": 0,
+  "excluded_parent_calibration": true,
+  "original_C_checkpoint": true,
+  "test_selection": "Exact fixed dependency ARC64/Hotpot64, no outcome-based filtering."
+}
