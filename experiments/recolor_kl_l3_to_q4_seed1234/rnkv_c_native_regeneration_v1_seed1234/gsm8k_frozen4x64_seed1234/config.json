@@ -1,0 +1,28 @@
+{
+  "seed":1234,
+  "parent":"/hy-tmp/yezhe/异构模型/rnkv_c_native_regeneration_v1_seed1234",
+  "parent_manifest_sha256":"d2d8608cc66bad29f13514d4bc1024cd9c3a7cbfdcbce0cf0bd3f9e5ff169abf",
+  "rnkv_checkpoint_sha256":"291e2890014733b0894c6960f699d0c7426d89bd9b3fe45bd88d6c8fe193e5e1",
+  "structural_manifest_sha256":"d7b54f3bfd141d6da9e420fb5bdd9fb9d1f1f47e8dc6e8727d21b07c4002298c",
+  "keep_both_checkpoint_sha256":"e61f921c28b098a52dfa4538f339345a2b3ac9c2ec5904fdf361dcf4e9497c93",
+  "source":"/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/hf_cache/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866/gsm8k-test.arrow",
+  "expected_source_count":1319,
+  "test_count":64,
+  "arms":["C","rnkv","keep_both","native"],
+  "initial_max_new_tokens":512,
+  "extension_max_new_tokens":1024,
+  "extension_trigger_count":4,
+  "length_policy":"Run all64x4 at512. If any arm has at least4 unfinished length-limited outputs, run the identical64x4 at1024. Report BOTH budgets;1024 is a length diagnostic, never select a separate best budget per arm. Stop at1024 even if still length-limited.",
+  "decoding":"greedy, unchanged parent thinking=False chat affixes and official GSM8K reasoning/boxed-answer prompt; EOS/im_end stopping; no sampling or answer-based stopping",
+  "primary_metric":"Exact numeric accuracy from explicit completed boxed/answer markers or numeric-only output. Missing/malformed final answer is incorrect. No arbitrary last-number fallback in primary.",
+  "secondary_metric":"Legacy official extract_numeric_answer accuracy, labelled as fallback-inclusive and reported separately",
+  "training":false,
+  "max_context_tokens":32768,
+  "caveats":[
+    "Fresh64 exclude normalized questions in C calibration, original RN train/validation/test, structural tests and the parent historical32 GSM8K questions. This is not a claim of decontamination from foundation-model pretraining or every older project evaluation.",
+    "C calibration includes Open-R1 math problem prompts. GSM8K is unseen by the RN ARC/Hotpot task supervision, not a wholly math-unseen pipeline.",
+    "Memory is constructed once from translated full-prompt KV before answer generation. Subsequent reasoning tokens use normal Qwen-generated KV. No native body prefill supplies student inputs, no new parameters or training.",
+    "Native and C retain original positions. RN and Keep-both use their established32 extra memory positions and distinct trained routing. Keep-both retains translated body, never native evidence KV.",
+    "Historical32-question4096-token GSM8K scores are not directly comparable to this new shared64-question512/1024-token protocol. All other task configurations and paused experiments remain unchanged."
+  ]
+}
