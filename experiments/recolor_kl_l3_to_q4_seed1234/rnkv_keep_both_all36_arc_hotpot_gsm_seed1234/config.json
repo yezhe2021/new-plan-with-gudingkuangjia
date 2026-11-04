@@ -1,0 +1,133 @@
+{
+  "seed": 1234,
+  "parent": "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234",
+  "parent_manifest_sha256": "f6b176c9915d2e968ce560fb2f981f6e2cefdd9405a9e2beeac9afa0a739b4c6",
+  "c_checkpoint_sha256": "14a4c5f712d9c8440710555071a0f5b83aee9301493a6a7abe06222c25757425",
+  "memory_tokens": 32,
+  "hidden_size": 2560,
+  "adapter_rank": 16,
+  "adapter_after_layers": [
+    6,
+    12,
+    18,
+    24
+  ],
+  "adapter": "Independent bias-free down2560x16, GELU, zero-initialized up16x2560; residual after the entire named decoder block, enabled for memory construction only.",
+  "replace_layers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36
+  ],
+  "train_counts": {
+    "arc": 1024,
+    "hotpotqa": 1024,
+    "gsm8k": 1024
+  },
+  "validation_counts": {
+    "arc": 64,
+    "hotpotqa": 64,
+    "gsm8k": 64
+  },
+  "test_counts": {
+    "arc": 64,
+    "hotpotqa": 64,
+    "2wiki": 64,
+    "musique": 64,
+    "sciq": 64,
+    "mmlu_pro": 64,
+    "hellaswag": 64,
+    "gsm8k": 64
+  },
+  "epochs": 4,
+  "effective_batch": 8,
+  "updates": 1536,
+  "learning_rate": 0.0001,
+  "weight_decay": 0.0001,
+  "gradient_clip": 1.0,
+  "checkpoint_every": 32,
+  "lambda_kl": 0.5,
+  "prefix_max_new_tokens": 64,
+  "supervised_positions_max": 8,
+  "prefix_quotas_per_batch": [
+    {
+      "gold": 4,
+      "native": 4,
+      "student": 0
+    },
+    {
+      "gold": 3,
+      "native": 3,
+      "student": 2
+    },
+    {
+      "gold": 2,
+      "native": 2,
+      "student": 4
+    },
+    {
+      "gold": 2,
+      "native": 2,
+      "student": 4
+    }
+  ],
+  "max_context_tokens": 32768,
+  "original_rn": "/hy-tmp/yezhe/异构模型/rnkv_c_native_regeneration_v1_seed1234",
+  "original_rn_manifest_sha256": "d2d8608cc66bad29f13514d4bc1024cd9c3a7cbfdcbce0cf0bd3f9e5ff169abf",
+  "structural_manifest_sha256": "d7b54f3bfd141d6da9e420fb5bdd9fb9d1f1f47e8dc6e8727d21b07c4002298c",
+  "gsm_experiment_manifest_sha256": "dc488f2e27f521d0a2f433b8609f17e4a0ee518f7cf0d0345ad51c1cf546786e",
+  "routing": "Every layer reads translated body AND memory during answering; construction unchanged.",
+  "updates_per_epoch": 384,
+  "gsm_train_source": "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/hf_cache/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866/gsm8k-train.arrow",
+  "initialization": "Original seed1234 fresh32 Memory Tokens + four zero-up Rank16 adapters; no previous learned RN or Keep-both weights loaded.",
+  "gsm_target": "Full official training rationale with calculator annotations removed; replace #### final marker by final boxed numeric answer; append one im_end EOS. No target truncation.",
+  "selection": "Fixed final epoch4/step1536; validation diagnostic only.",
+  "evaluation_generation_caps": {
+    "hotpotqa": 64,
+    "2wiki": 64,
+    "musique": 64,
+    "gsm8k": 512
+  },
+  "gsm_scoring": "Report legacy official numeric accuracy and unchanged strict explicit-final-answer accuracy separately; neither is silently substituted for the other. Keep complete outputs and cap flags.",
+  "gsm_length_policy": "Only512 tokens, matching completed frozen4x64 GSM8K baseline; no automatic1024 expansion or resumption of the paused old experiment.",
+  "caveats": [
+    "Combines adding GSM8K training with all-layer memory access. Does not isolate data vs routing effects; adds512 updates to retain4 epochs as training count grows from2048 to3072.",
+    "ARC/Hotpot train and validation rows are byte-for-byte reused individually. Add1024 GSM8K official-train samples and64 disjoint held-out official-train samples, excluding normalized question overlap with C calibration, RN data and all eight test cohorts. GSM8K test uses the already frozen64 official-test questions.",
+    "Full gold task CE covers math reasoning and final answer, mean over tokens then equally over8 examples. KL retains max64 Native/Student rollout tokens and8 full-vocabulary positions; gold prefixes use full targets as in original RN. Both sides see identical text prefixes.",
+    "Answer layers1-36 retain translated body and native-projected Memory KV. Native evidence body never enters student test. Memory is constructed once; generated answer tokens use normal Qwen KV. Four adapters only act on memory construction after blocks6/12/18/24.",
+    "C Sender/Recolor/Translator and Qwen weights freeze; only409600 memory/adapter parameters train. Frozen Qwen must remain differentiable to inputs. AMP rejects and retries overflowing identical batches without skipping samples.",
+    "Reuse seven64-question fixed evaluation cohorts and original scorers; additionally GSM64 at512. Reuse baseline predictions with provenance hashes. Previous datasets have been inspected; not an untouched confirmation set. Other paused jobs remain paused. No automatic upload or continuous monitoring."
+  ]
+}

@@ -1,0 +1,1852 @@
+{
+  "config": {
+    "seed": 1234,
+    "parent": "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234",
+    "parent_manifest_sha256": "ca045f531bf9596c883f1f22dd9f02232f1fbdaa5e0d553f9934a546561e262c",
+    "checkpoint_sha256": "129e0148299ebfa0e76468ef2d9c473733a7bc7fcde01382f9c5938c5b328032",
+    "wait_for": "/hy-tmp/yezhe/异构模型/rnkv_gemma_qwen_keep_both_3task_l19_30_then_all36_seed1234",
+    "diagnostics": "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234/kv_functional_sensitivity_phase1_acd64_seed1234/diagnostics.py",
+    "test_counts": {
+      "hotpotqa": 64,
+      "2wiki": 64,
+      "musique": 64
+    },
+    "max_new_tokens": 64,
+    "memory_tokens": 32,
+    "layer_groups": {
+      "G1": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "G2": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "G3": [
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "G4": [
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "G5": [
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ],
+      "G6": [
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ]
+    },
+    "training": false,
+    "counterfactual_pairs": 16,
+    "caveats": [
+      "Use latest Llama3.2-3B→Qwen3-4B Recolor+C frozen translator and3-task Keep-both epoch4/step1536. No Gemma mapping, new training, checkpoint selection or Reader. Answer-time Memory is open at all36 layers, matching training; focus groups19-24/25-30 while reporting all36.",
+      "All192 existing QA examples remain primary, with old C-vs-Keep rescue/harm/both-correct/both-wrong strata reported separately. Hotpot is a seen task with held-out questions;2Wiki/MuSiQue were not Memory training tasks. Historical cohorts have been inspected.",
+      "Functional alignment uses full canonical answer tokens under identical semantic gold prefixes. EOS is scored separately. Compare Native, C, position-shifted C with Memory masked, Keep-both, position-shifted Native with masked slots. Report Native-original and Native-shifted KL, gold NLL/logprob, top1 match, per-question paired differences; closeness to Native alone is not success.",
+      "Counterfactual Memory changes only the32 Memory entries. Correct, length-bucketed same-task wrong donor, all-Memory masked, and position-matched header-only construction are compared. Donor is a fixed derangement, not correctness-selected. Rephase post-RoPE donor K from donor memory positions to recipient positions; leave V unchanged; never k_norm again. Rephasing does not erase donor hidden-state history.",
+      "Fixed-Q analysis holds Q, positions and ALL non-Memory K/V including gold-prefix states fixed within each local operator comparison. Use Native-shifted and real Keep queries separately. Native-body reference under Keep Q/tail is a local hybrid oracle, not actual Native inference. Analyze all36 layers and32Query/8KV GQA heads without storing full attention matrices.",
+      "Decompose fixed-Q output into background dilution and Memory-value addition, check identity before output projection, and check native/Keep reconstruction against actual model outputs. Attention mass/cosine correlations are diagnostic. Independently mask each predeclared6-layer Memory group and rerun the complete gold suffix/prefix to measure functional effects; do not add group effects as independent contributions.",
+      "Counterfactual evidence addendum uses16 synthetic two-hop pairs with an unchanged question and one same-token-length city fact swapped. Both Native endpoints must answer their respective known fact before semantic interpretation. Use2x2 original/counterfactual body and memory combinations. These are controlled synthetic probes, not new Hotpot evidence or benchmark scores.",
+      "No claim Memory creates facts absent from translated KV, no Native-state recovery requirement, and no private evidence-only protocol claim. Native body KV is offline diagnostic reference only and never supplies student Memory inputs. Other jobs including Gemma all36 remain held. No automatic upload or continual monitoring."
+    ]
+  },
+  "config_sha256": "46541f2d1f9c1615a1f4d5b6d3fa65f63e0038150c0ad910cbfbf12e0027c51f",
+  "code": {
+    "attention_analysis.py": "c7cfea37ef35ce2eb6274899aa719ce4cbbbceb91f66c91d452c163c93163fa8",
+    "common_diag.py": "84d226a5eddb50532c9c24ee26b866540cdee1d92370e4b5ce9140b224e9fd26",
+    "cpu_checks.py": "4defed6cccc0df16299806a6d8d9b57e4dffee0331309e959b8a4c50080323d5",
+    "experiment.py": "2fb75107a5b43ef4ba4028d8eef4aab5a5f1a9e8793af50b6495fb5a26d37421",
+    "interventions.py": "a6f7d4ca9498af2f32ac573c8f79e787ca6c4454b2216a3609835a93066d0164",
+    "prepare.py": "567cce295a4722c1a3e0238910f31f78977e5c4790acc7f2b46533eb0c1698cf",
+    "run_pipeline.py": "1f2770583e8d1efc32244c66fece0b47ad96c44f760e4666ce314c947fdce65f",
+    "summarize.py": "d6ad2ce1d55165506d3d32e329b0a0ff0f0001d37fbaf911a2e9f9b50080651a"
+  },
+  "sources": {
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/manifest.json": "ca045f531bf9596c883f1f22dd9f02232f1fbdaa5e0d553f9934a546561e262c",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/runs/epoch4_step1536.pt": "129e0148299ebfa0e76468ef2d9c473733a7bc7fcde01382f9c5938c5b328032",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/prepared/test.jsonl": "46480ddc5afab78d7b7b39a680c6c2f800e330649eaf380719cb9f7f5ea3aae3",
+    "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234/kv_functional_sensitivity_phase1_acd64_seed1234/diagnostics.py": "e377d6dd23e80737fb3a9f0ce39c44e1b05d017f310ffd78636a53741d30beb3",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/cpu_checks.py": "39fc318fa9968fcb9d7e6559de843d0a39c0fedabf05284cb63ab60123758657",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluate_new.py": "c220ddd70e1890371bdd5bb72acd2f5f892edeb81ca51978dc86b6fe8616b13c",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/experiment_common.py": "4ab176ec2830b2351a4c98c455ffc1d0c01088d94782ff231fd3de9805c7ce1b",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/prepare.py": "0303c86d01a737bd7bb64f5f6388b303312860c43ee517c3c13da04176c2fa3f",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/run_pipeline.py": "1d2180e97f5c502b000fec2962fdd478a8fa61e8c8552d1d0ac295a6179d7520",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/runtime_new.py": "ac79c75ab9dc99c9c51c8b1a93e541ef13ef96285c5ac4de5b7de3773d3b45fc",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/smoke.py": "8d7dd5f75bc6ff17028e4ea02f7ce430092af10d35cdc334c6c15733d4465245",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/train_new.py": "0ff0f1b6b14c00fc5fe32a81577d265299ca3640e937ef14ef5b5dee321306e1",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5a8ba67755429971feec4748.json": "ada8c7fd831cd544b27332112cc2bbf6ff87d8f1208f1f26ed3bff999565fb33",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5ae72e79554299572ea54763.json": "4292c85b3f3e0458045184ef8b330037fefbdbf1a86ae5d3e54598c3a8ccd8f4",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5a79257b55429974737f79a7.json": "0b948a22329dfb191fca936b8b60f93bb1784e6b82dff2ed09e03009bed2bf2e",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5adfbd4655429942ec259b31.json": "ee058a7b887029918177122a46a9b636afb3fc344da84d5983b76c9a15d8f876",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5abccb235542996583600497.json": "ec2e3897eb4dae95ff29421dd3c2402f2938d97efebbff1e41acbc300aea327c",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5a75d35d5542992d0ec05ffe.json": "56d8dd6d1e3f886276eaa3d970d1912963e289c6ac907a443ff89523be7e55de",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5ade0cc85542990dbb2f7f37.json": "6cf4efda01954e52e0fe9d83418957dc02a53c3148694f304276c382aa67f51e",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5adcd5005542994d58a2f6f0.json": "698710abfe36562cdf7ff1775782022c0b285bc910c7ed706215e1c4ccc58bc8",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5a7100435542994082a3e4a3.json": "ee41fb231f1cc1b58f3447599ce20a41303d8e255bd2dc99eb8de83a99487be4",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5ae33c4d5542992f92d82262.json": "49ff272f58496b7e33eba82b3f2deccb36df3879d091f39a04057761151ef3dc",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5a89e8035542992e4fca846d.json": "3e89899330cb243ab4c756c6eb10c80de3046e1d97899deb384f5195edfc47a5",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5add8f055542990dbb2f7e6d.json": "e31e2ce8da62cbc2d4d2e7e966d309fa1a33ed5fdd2662b16d39cc792a2fd64a",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5ab527205542996a3a96a03d.json": "8a3ad35ba55d088fe7840bd797401b2c0cff6cd126f3effe2605706cb4d2dc25",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5a758ce05542992db947367c.json": "4fd375daa9947cf75120da4c886cd77ae614c42daac436623a2e7ebe589bb8e1",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5ac5630e5542993e66e823d5.json": "3707279d9296bf3687377365220e4e646321256f2fad20e9ee581c775a22ae0f",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5ab6f7415542991d322236f4.json": "4bc92346d068299b417cdff9726393777e9c9027c7c78b5ef27cd58813dd5802",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5ab7fd6b5542990e739ec7b5.json": "7eb2ffd5bfde94928e8161dc35d43aefe9b52372a2b824c79ae4f42f85c8c3ff",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5ae3305c55429928c423965f.json": "d1b9c766b7b7e25dd672caa5969ed6238d691a0fb2e3042323e4b6f144bf6690",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5abbdaac5542992ccd8e7fc0.json": "33c043984b7d535b765bcf852f4ff6ac9d1da3bbeaa3e6a45d2463b103089c65",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5abe65e25542993f32c2a101.json": "17984f0fc01c52b0b008a4c07bf00fc757fb90a10acac1a307848b73e5182455",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5a8b04df55429950cd6afc49.json": "60e6f363e9c52805ba9dd87c6322f8c864930d83ed6bf2f7d2397e623e4d28ec",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5a74b55455429974ef308c39.json": "2911315037725bf97776f6f50ec704b110b42bdd94e004b8bd15e260817a9b15",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5ab72a025542992aa3b8c7b8.json": "ba38753422a288d29eba358574e46d7e95f70f28e766b1045ba5466fe47179a6",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5ab3d2595542992ade7c6ebf.json": "a58ca1746b78b40ac745243a2a59ed5f18a7623a60052a8e7bed63e9210f25e5",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5a7f40055542992e7d278cc0.json": "b6f4292f9fcac5bcb8384a47cd97eed67bbcab1bd1d76f14cb085a3d34326cef",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5ab48f245542990594ba9c66.json": "d5e4b3326106949396888afd1d87eb06eb7326d7da017ee7b47605098b80d9cc",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5a72c6f65542994cef4bc402.json": "d7cd582e3bc8e2e2ee94fe50f5d1a8fcda4b56dc738032b51ab9cc7e88166e80",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5ab5487b554299494045ef68.json": "7c8f04e149b33d85332a099223092143be461dcc74dfc28e0bb35e8903bd2083",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5ae0cddc55429945ae959459.json": "b23779b07cd15b501143a79ead5d2a258f670f382f31894699f05cb4747bc590",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5ae0e5655542990adbacf6b8.json": "2b805a625ee5fdc9593ca1920ffff63b2292b8d9b39fb9f669681659ad1388ea",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5a7d07a455429907fabef0ae.json": "676bb46f7d1c4bb83a5bbdaf86c2e9b32ca6852cd6ea6a272f9028d753b9d3ec",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5ae7739c5542997b22f6a775.json": "6d91c6a8f456315a0715001c7b761d4030d0efe2a3b2f5a2d8503aa1e81de77e",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5a72339855429971e9dc934d.json": "ae5ca2c7856579bb7e8dd0e2ab563c9534e20f673522831588e4423fb88084df",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5a7bacf2554299294a54aa8d.json": "e19f1d03de94f80470a7387f74a3397985cd3b1694e29c8a3e971b7d2f4d6e5b",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5a74a62b55429916b01641a0.json": "26ed2b314f21080044da8f52b444b870f5efeeab2b0371bd8a9f363a03c04a95",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5ae678915542996d980e7b70.json": "cf9e530890cfb228921db2012a8126c8d0e35b5680e1069467c99c3932381b27",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5ae362105542991a06ce99ae.json": "3337ad39997ab29eb1420a3e4f1cc0472e941cc93fc65be59b9063960b19690f",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5ae180d855429901ffe4aecc.json": "8b4511c15909bc5438ac0c4e2a9937c9568bc8705cf2a1da4be20fcebb130d5a",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5ac2ae4155429921a00ab030.json": "14615a1535fca834baf975743711ba06aa0cdf38e1194b0be607ce6e794c4d29",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5ae3bb0d5542992f92d82357.json": "9c2a64a6cc888e9ac9dd4ba959bf0da992e8e5108e76e5854fadbc4354a3cb79",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5ae0800055429924de1b70db.json": "bdaec7429e65e77246ed44e71317739c9c40597a623a96b149dc2ae11e2362f5",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5a7217f255429971e9dc9260.json": "4cb0d2ab9c855d57bcdecd3c3f3f9b252e1f47b27da6389cba999ff8c2840ad1",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5a87d8215542994775f60800.json": "4b96280057362e4b5df99dd27cad79adfbf28d73df4e3d9d1fb76109acb750c4",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5a7e86245542991319bc94ce.json": "faf30bdb79e0b6d5339d654d749a7ad1b3b392bca8f28714f50f7ee895b5f487",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5addf9e05542997dc79070f9.json": "d360e39bae993d6cbb3d405fb0762a3703da266494df12e8c9853a25142188e0",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5a714de95542994082a3e7a8.json": "7b91f23739a54034d2303826d50217d4963593cc01cb1114a4a536563b096e98",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5ab51ddf5542990594ba9d11.json": "6618c0068bba103fb4cda8ca8730b96f16f91c0cd3547777b5d21b9606b54f9f",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5add7ce55542992ae4cec585.json": "628925a0ad642c697edd15fa2237e6f71e495d8a3f8781c287d35bb29b56cdb5",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5a8f5bb45542992414482a77.json": "d7f248911d9126991f3aadbcea36d51e95c4610f68e33d7aa0fb57eb20e4fa89",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5a778e8755429949eeb29ef4.json": "5a8d7e3a244ac3d236e0dac2a0e1d67b31e80bf8a535ecc394b685fc8f9c386a",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5a81a63c5542990a1d231e45.json": "e42ef74c84600ee219951a4ba92043c3f1ef47f43fb931c8dc0a8030d92f96ee",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5a8135eb55429938b61422fa.json": "38feaf28c9a6bfe8c13bc4bc4fe3ef5ebb0bb4008bafd6b92651c3de0210db14",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5a713f395542994082a3e6ea.json": "7fc803dd4ca248bcec65ce24c8d49dc7ff35f13ca43f44665871f7642b57fd5f",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5ab7ba7555429928e1fe38b5.json": "f9d77369725a6631b6339daff67e4b9cc942ff841572d9ab1c724642b640cddb",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5abd455c55429924427fcf5a.json": "2062e3d73b519dd98377eba4a573e60e5d4a020688b209868f6b5e1a28a57a87",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5a7568805542992db9473658.json": "994b667eee1084f1749535ea3f11a090f40ae9af0685b2e5f6848b3e812c620a",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5ae1b53b5542997283cd2255.json": "6f0b29fd9e0dae98d232a603afa9d36a72d145ee0eb79bf719285d3438f6ea9d",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5ac261265542992f1f2b3896.json": "1d06faa5bd68b6ce6113082232d38686cf419a5376a093b962e09eb128a8d7d4",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5ae56fb85542993aec5ec1a9.json": "eec27d7cda446c96a63f18528e857e0f3e560b64c9a1c206a36a209b364c2046",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5ac3e0f7554299194317388b.json": "322d2ab0e7b2377348c0f7e4c8d29d3f114c1e13904a264c13237e41def8cbe2",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5ac4c16b5542997ea680cab4.json": "22db523a17990a89cf76995b751147a6608385d2120d956e423eeab0b95d342b",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5a7b3f4d5542992d025e67bb.json": "1f5de372f6e5d6a16cf5332dcc52766f45f08d40b50ebe4a1d85fdfbadc01ffd",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5ac2ada255429967731025f9.json": "a26c5771177dd8325828ab6924f070df34527561ff7c397f37f2d6881f2851bd",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/hotpotqa/per_sample/hotpotqa_fresh_5a7c6ed3554299683c1c6306.json": "98735e79bf4d1cb11dc92a1eef050937b0050fa1d8798a1b9311b46596eb2d35",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_66eae2780bdd11eba7f7acde48001122.json": "87bf84527c03b50d056497eba4ea695768b1b9d829a0351f5292f3e82168cd33",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_a7632b4c086a11ebbd5fac1f6bf848b6.json": "162f1f79f6c579b4f67a75ca68e24c4f4b55348c969119be6dd59e690dbcfb93",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_82ef6eec0bda11eba7f7acde48001122.json": "f140b0ad9697112202948c5a5914bce753d38767149bcab2edef9f529d799a01",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_38056cd40bde11eba7f7acde48001122.json": "76c65fdf4221f7d92a000366c704c69f054078e6f68d335c9ca71c5cada49424",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_528f7ff9093c11ebbdaeac1f6bf848b6.json": "7860963e93be0ff3422a0569ce724fa26b216d9687650b7e1e2383939b53be94",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_654e76b808e111ebbda2ac1f6bf848b6.json": "3070fafa90ee78dd794b7409d7478767261971da9f84fb91d1b08c1271c385ec",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_c218f9d20bdd11eba7f7acde48001122.json": "44f6ff8db2c4397689baa810353e1bd468c929e3eea75b9608597a65094812b1",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_f178e982098311ebbdb0ac1f6bf848b6.json": "4a5404e40f673d15492b5fd72e109a6e1450b90dbf5107c93bbe14d129e0abc1",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_0bbded440bda11eba7f7acde48001122.json": "f254a9963dab5692047df3b2d13fe0178a1d845103596c9d10594e13be4d82db",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_96e142e40bdb11eba7f7acde48001122.json": "ed37e87e259a1a7bbc0dd97056beb4245a1916cda1a2ab75a628140b689803fe",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_ffee28d80bae11ebab90acde48001122.json": "cec7d71aad7ad17d6be1c479f3ab9600d1ab512a311594cbcc248e19081eeb7b",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_341347220bde11eba7f7acde48001122.json": "eaad971094bd4ab8d182455738196b8763c875a9de081d3e3055b12e102378d1",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_6e31b2920bdc11eba7f7acde48001122.json": "85bfb35beee627aa52a08f4fdd6e02c697d1fb3906f16317a7e1dfdb12d222b3",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_75af4f140bde11eba7f7acde48001122.json": "b1f7a2103c2017166fefe85a62d1db1eec1169fe89c4744393e2374ffb416a09",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_179f51c60bde11eba7f7acde48001122.json": "3436daaa090126b20f21a7c322e82865866d568472db05d6edd1f7349c98ecc7",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_17874a43097411ebbdb0ac1f6bf848b6.json": "f22b665977d06ace0e3f6d7c0838852d32725f6730fe1fad485e37e28a6287e7",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_6b6ef0280bb011ebab90acde48001122.json": "46086210e21b187d72309353cdd91ef748044d87d724ab0438ee0e5b68f6aa3e",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_3a13d0620baf11ebab90acde48001122.json": "46306a80905b514b6552e73326d6365965fe9751fd78360a019aee0706857fd6",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_a8cbc4c40bdc11eba7f7acde48001122.json": "6052fa1dbe98af1e049453d6892b7f08c01b055e35afbdb390ea8dd804d104f8",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_161e9e380bde11eba7f7acde48001122.json": "99dddbd520f9f5ae75972a6d87421b4b2472ed1ba2e3353939fc5b403594a3c8",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_615178b20bde11eba7f7acde48001122.json": "5f14fd183ba0f3a051a3c68bf1466bc797013c2f7a5327a3f04e8543bc2b3c0d",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_71530df00bdb11eba7f7acde48001122.json": "c701df85621a9ba05f045f4e2d7abad3dd39b5546e1d9614243bff077ad8b6f1",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_fd56936708a811ebbd7fac1f6bf848b6.json": "9c90e72a03e9844bca59a685b3ede4ce6421d92c65b5bbe1e948a70bd43823ca",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_067dd55a0bdb11eba7f7acde48001122.json": "1c86bd1e980d25960c5711560e9920313a294220824bafdf438c80c3f7ee4bf1",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_90c88e000bd911eba7f7acde48001122.json": "8f861d91e0435afddf672e3bd705347e76372d3ea4be298f343c0516a0be5ec2",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_97f5e2360bd911eba7f7acde48001122.json": "e3190ece981f6970fd5a42e2d6b8193184785089a3faed965867333088787a21",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_374ff12e0bde11eba7f7acde48001122.json": "c2d56e0dad6f879871d5670603ad449a1fb1a9153fd0a94fd0f02014d7308bc5",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_94198d580bb011ebab90acde48001122.json": "d193d03644a5e18875549470609ffb1211dfc4bcd6c494aaf5bde877530d217c",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_46811f9c0bde11eba7f7acde48001122.json": "3081d0d279209dc0cb2eda1d8fe169c8a35ad28aba4eb533af65a3ef6699834c",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_146c16520bdd11eba7f7acde48001122.json": "f887854549bba84a252ac49d3855f7103c08ed32440624224eb4b216e4fe112c",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_fc297f8f086311ebbd5eac1f6bf848b6.json": "103dbd3d73b7ee018cc62b49768cb539e15cb489c46b1a5eaa6bbee0ac0a0ab5",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_588ade020bda11eba7f7acde48001122.json": "85e0bc18a6a5816abdf93658f009676e62b8458e52b3b75a58cf498e531982e1",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_563e2020088b11ebbd6fac1f6bf848b6.json": "7199ca4ee925b1786a9871a2e7a3ac746d57f13f4a8df7a8fffbe9c5259ad56f",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_38ad21b40bdd11eba7f7acde48001122.json": "ad7298467fe952f99cda56e0cfa4a43b6e653842b4d1bbd90477aa5dd3a46965",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_bf847e1a086511ebbd5eac1f6bf848b6.json": "c1caf3c07bd95489e4bce9f80c5fff03c8e7c91b190c75e22e2206ac32941cc2",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_11562eb0090711ebbdadac1f6bf848b6.json": "26206eae1bc83f46e2a48f16baa75ec1a2022a90c06d4ed17a197ac699f527c7",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_d1a722500bda11eba7f7acde48001122.json": "6c5d9b926d029019d00752d34010b995b6edae2f99da9162add355261af6ac49",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_2935f1640bda11eba7f7acde48001122.json": "854e4204ae343c793fb0ec88dcabf734085bc8303708a3cb9ae15496798a8136",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_f09faf260bdd11eba7f7acde48001122.json": "b9b203eaee33b0f2665c8fc5af79484ad78dd713a82f0def64f9b75488aa88d3",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_1c4cfe1808d611ebbd98ac1f6bf848b6.json": "3de9330a38d7b1b62da8880640ca74124edadafdb71f5af161de557b0120eeab",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_993e1eb0085f11ebbd5dac1f6bf848b6.json": "8d6d74820bcb1334f85337a05e152e4670d6e41adf60fcbc540ffa3e8dd671c4",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_dd17999f08d811ebbd9cac1f6bf848b6.json": "8ccd14656a5a5f1a35103047c5b2f4785c44b80bb6f8fac433afa484d05de3a1",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_46a7af5c08bb11ebbd88ac1f6bf848b6.json": "e07623d4a69c688c5ff308d4cd8a8dcf22988c3c1da17c3fb3f4a4bc43e6ee50",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_54eff598089711ebbd76ac1f6bf848b6.json": "43853d844c2cb11e5ea2a264c652b8c788a541aa4a858d19276649a00c7ff1be",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_32edaabe0bb011ebab90acde48001122.json": "ff1e6c9b643d19c2d1eae1540e22bb9aabd859a4bd40d7561c696a87084bc06f",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_8ea950d80bdd11eba7f7acde48001122.json": "d7585b4b39cd539a10efee19e384d5c1f77ea8f85ea80f59d932d0d69123bf4b",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_36a710500bb011ebab90acde48001122.json": "8ee3eebbff24c14258daa0e8f932c53d5e3521e60aa8e6dbe2434dc3ae3b3079",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_d523d9e80bdd11eba7f7acde48001122.json": "07720c4bdc0dcbc37d3966bd9fc8e913c6c8888bafbf4676ed4184f4bdec3cd0",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_6aac7fba0bde11eba7f7acde48001122.json": "8c0c51944bbfa02503e9ec34fcec198118105e5c8a06185677fdd09b245a14c4",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_f3c5a94808d711ebbd9aac1f6bf848b6.json": "61a86af7954a9ac9b2c5ad7c0bf26dbec94fadc41c819d624e9b23c1e3fa20b1",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_767b64380bb011ebab90acde48001122.json": "81f4a6ca2798ecada559bee3bf55aa27fe2685f5aae18e121280600d6f25454e",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_3cfafc9a088211ebbd6dac1f6bf848b6.json": "3118cc5542dd1760af5e6fcb4ffa3b729113b18069e01e35c5495c8bff2999cc",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_6b6f51940bb011ebab90acde48001122.json": "325cebae4cc662851e0f26a81a434fc82ab3d99fca5649378b89e00a8b2608c5",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_3640eba008a811ebbd7fac1f6bf848b6.json": "f3462915bcc617f1fa595f5f46f569dc69024dd16a9754156c957979f1705229",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_057f68740bdd11eba7f7acde48001122.json": "ecfa7a9a74ba74aa1b3a03b8ed1ca4b148bafe3e89ff771404401bf87568b818",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_f1bb0b420bda11eba7f7acde48001122.json": "4b10eef2cb67e5ea492922528097f1fd710b9623299c4e295a58b8f4026ed977",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_91325e4e089511ebbd75ac1f6bf848b6.json": "40f21d0d081232dc33f8884f9941eb2379b14c0e533213ff877a8571a132ff10",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_b5ece0840bdc11eba7f7acde48001122.json": "96a950471f7b27801daaf8b324fbcebb3d9289576952fc82b5526386f243fe67",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_f6dce6440bae11ebab90acde48001122.json": "ba4d5a3bf852641914e344391ec8c406325dd79a9c94d66a52e221c824a696f3",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_c5c305b5084a11ebbd56ac1f6bf848b6.json": "0aacc0566d4ad25a49763b30b160aeea8c012c8a65b4df5c3531275a82252957",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_627f38e00bda11eba7f7acde48001122.json": "d33f63043950139707b951969f45c8bf6183cb2d8877493c51de5845e8b2e271",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_a352b1e60bdd11eba7f7acde48001122.json": "1c0a29084ba86a2db9845288b48539f6d5bef12202f0449c18eef33ac65832f1",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_e06e9794084d11ebbd56ac1f6bf848b6.json": "79c3bdaa955c3686444d9411725b5c16f9f89ad5a79db55b6fd97f5be9d256e7",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/2wiki/per_sample/2wiki_6d6fd49108e611ebbda5ac1f6bf848b6.json": "d74f614fc4ff922094fd8e409f75b2e0680c98212e3685ea1d45e7e25bcf3683",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_2hop__82051_7298.json": "1aaaca48ddc41ae349a33da6216340c4857681a08b868ebba88524092eb6137e",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_2hop__810884_22402.json": "0a73a0ca9bbafd6939942c086b5a0d10c3abf9c74aa87fffe7c9c2707cad7824",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_2hop__433694_20273.json": "b08c4b1d5d8799256010e028938304f7643064e2c49386db170648b76fbef8bc",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_4hop1__73810_32392_823060_610794.json": "da00c71b305018c3f977e99817ec20c0e8f0be2463e528927a566bf6d0e73bab",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_4hop3__719125_132409_223216_35031.json": "4c08a9f0398a984328bfeb784bffce6245b742f5a0969417fad7011cab4cf70e",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_4hop2__71753_648517_70784_61381.json": "af15702f4392c2992415b4762863e2f17b5c3b12de05047e36609bee21fe8cf0",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_2hop__176712_8311.json": "8561735f6bffff9ac6f11e79bd3599847f2999c7cae8e2beaf7f9e30d5de04f7",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_4hop1__178366_229349_66759_75165.json": "e138e2089444357714c4c5db48663080200b96a5e0f2739e425b267a2d469d69",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_2hop__431934_30351.json": "d083b09100f0e354b8c2f9aa55ab7745791ebbb44cb59891196dad5632ec4544",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_2hop__800166_156034.json": "04991c803eb1dfac9fa90bd7934980bb6efd1543c73a07b848a048d9889bea32",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_4hop1__159467_725495_49925_267352.json": "bc43eaeb5fe3c6ba7fc9b4f09e17fef358e2e90286745233cf115ffa6b438e03",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_2hop__752214_639679.json": "4a7adc56cb46a75decf36c742a2532c638d44e417fe1d23c3dfb2a12bc7938bd",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_2hop__728887_159109.json": "37c01edfd8e0ca263e10db5654a8e2a703cc151b3c80dab6bdc545b9a3137d8d",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_2hop__365236_19320.json": "8d8ce6613bfc5acc24c4faad74a72323ff57f6c64cce5ac2f73416024e267d4d",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_3hop1__127821_157828_239539.json": "e248a6f0f0ddeb93602072999cacbc392decf0a5914d5ab74fd7ee2a5b0b0bb1",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_2hop__257831_123283.json": "11725f38d237a858de83f814a42daa42d17799a53322bcbc701352a6d2939cac",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_3hop1__346812_15840_36002.json": "2df1a0badf5fd11a7c69a3113d623cc0c8328af27de24bef0b6593294be7e77e",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_3hop2__159979_30587_44003.json": "0f9daefaca62f6ba4131f496d908021cd0a9cb256abce7781c4e71322eac414c",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_4hop3__323121_88460_30152_20999.json": "1b31b000a5bcc0d15edcec5b5ff417f911bef4def5c0a87e88e48c7a1dab5636",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_2hop__13539_13493.json": "8306710381f9dd145069ab8e201ff17ac89fda1a14f5f2e0756ec038f6b6cc87",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_2hop__136067_160249.json": "b6c254cd60f131c05d0a2cafa77de434ad553098e712ba2ba465d336497ee695",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_2hop__611538_152907.json": "6b7374ab05e6ecaeef411c7e091a801afe3fc7fed8ce78873a1482eb2a2332bd",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_3hop2__106842_30645_84681.json": "a8240032cc1348270ffc06f89be0a8ba7a08166c326f8b88296780304793b0d6",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_3hop1__558449_503371_21711.json": "60da8971631798a4a23893a4e59e66d09f48b0e7c4da2b233f9d610c66085584",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_2hop__547045_131879.json": "cb7b5beed561baa0a68a535855e2376b01f6ab908b995a2e21b06686082279c4",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_3hop2__11282_57233_56883.json": "f19870892b912f38760d5aedc6347549398df764fc67e19d5b7c98830fd14e87",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_4hop1__15567_59747_211319_557671.json": "f64fef064bb811466e314efbaa0767f46618c2c87ed493854ad771e5c106c06b",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_2hop__250030_7298.json": "e1d14cfb65d0ed278c143284ef4dd5b89a1efc0bb4aebce9b95ecf38af6cb4f1",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_3hop1__813285_774554_64412.json": "a330aa34de11aeb948aa3e3b24b09c3337a45f12feb1fe0d0eb085a34d7d99fb",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_4hop2__105527_39078_8987_8974.json": "e9188cc72852ca8fe951d33f93aa799b6cd11238a91105b27195f032eaf24789",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_3hop1__765565_326948_10972.json": "29c46c8b5c35866eea2b6e4bef28722d6efe8261d1b6ff19f15bab332829b392",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_3hop2__90098_156850_10557.json": "4114abc7d8e214476eae0fa03909c46ad6eeb3d4b501ae3e2d9b7babdb2c6dcc",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_4hop1__105002_17130_70784_61381.json": "dbe510a6b85269752d6121204f700a062872920d185c20692b94e332a006dfe6",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_4hop2__161602_426860_88460_126088.json": "ad1e4928825a0c0a077f5a5d2e2b8f481b9f9f0788019c0904aea597870d7155",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_2hop__703767_37168.json": "dc0de2413807a2a7bdad46a59bc9cb1e4f8b211122501ab23ea2e9c57ebd975c",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_2hop__31585_61048.json": "207727f08667f215f2d234f354b060aa1d2a9ab349d3ca2ffb6dc3b3cec80ea0",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_3hop1__6362_14336_21111.json": "322ba4f940c89e158caf875f0545bf67b6ac950d6e61e128c94a07df4f892691",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_2hop__153532_72380.json": "6f1a92b477e844febbce69149f0b98fea67275dfa0e1dfef9e9b834c870b9fa6",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_3hop2__92991_38326_76291.json": "feabe0d688b274a09a60d194698c89e2832b35592d5cf2f2e1a945ecbf51fada",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_4hop3__312119_132409_146285_35031.json": "07230cf8428f40520db9426a19871d7c5c585c3d30c78670d678e1701ee36129",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_2hop__411091_625230.json": "a197c3eaa23679eb1e58211d5ec53dff3bdb3a9c31ca3f72e7cacf1c5f35ad0a",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_4hop2__567956_39078_8987_8974.json": "17b497119c09124e166a07687fde54931db504538adf699bb15b51bd74e54472",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_3hop1__273571_834494_34109.json": "180bcb9c73f589963124250c13b45383cc188246baa57bdde765c90a2cd4c39b",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_2hop__195917_575657.json": "38f2a7a94040bb5d4f80e410b56c2032e04b990de782fbd9092fc04a6a5ac6cc",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_2hop__29191_80144.json": "7f6c53b5128442cf496c812d37ecf947afc9c58300cde4ab1603ef24564838a3",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_3hop1__801799_547811_80702.json": "1754964cc2588ddba9da28ee042cba964acef1f6a7f7bee172f79225b2ae4101",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_2hop__215896_460425.json": "83e1641d9ad6aa015d410574f79474d1b46646c1e5643668660b9c30087cab52",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_3hop1__524212_831637_91775.json": "eb01852d222dd97b3528865bd0f019fe045275fed781cd83e74d1daee44e1845",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_3hop1__389955_132457_47686.json": "cf844998e44ecee53be213ea1e698b4b4d2623184598e57ac055e24e8ac5646a",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_4hop1__57467_53706_795904_580996.json": "ceaa3c85849c11765a1533bed8ed9dd89c2d1b74bd35739cf7c3529774112a0e",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_3hop1__491648_339990_15538.json": "7442dc1106ec0e90a7e2287c3162ace4aa10280804496255d50b62bac46fc2e5",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_2hop__726892_131968.json": "987e87160afa33b6bdda7c2bf738246ab04b28cafe6205ca18685d325b1c9729",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_3hop1__617062_127905_80487.json": "c93b79f6f5e5c46fe97edc0cc15d762bc9081513cd98d8a7c0aa63bdb16ef098",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_3hop1__593288_720914_41132.json": "1e498f7d57a96e018bfafce083cba097c77683ea7e6dff2e02c320faa80fcdf8",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_3hop1__49236_89752_49923.json": "4f77f1852dcbb61c200a014e692d257e7596fea3e98aee31ed5ad0f5a10ba8d0",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_2hop__194469_83289.json": "c04990df8a19eef3571e20aa3f2cb4eff8c2cdc3c2af23203993ba21b29100c3",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_4hop3__238811_88460_30152_20999.json": "28909f0f31e76ef6d4befe36b2e2c273212c7ecb8b22440bb53965efc75bc9ad",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_3hop1__582007_160713_77246.json": "008aced8fbed8155308c657ee27703d74062d483dd5043cf78b1813c1467b9ae",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_2hop__506099_20057.json": "4b2ce518dfd9b8104909f4a4732db5645bd5271daa3a83801e973fba10fb5ae6",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_3hop2__88342_93066_90766.json": "b94f99829a2522809108cc1e84f190d2c2d19fd572fdce5a448580149ad79081",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_2hop__84937_21969.json": "4641366419b987db26685ef42eefb161fcd0b3518744a8d8b149a8e95b442dc1",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_2hop__657913_88628.json": "34e47eac65658dea5949545bb0854541e1637aef70fa14b88a9d7b3202fe3af8",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_4hop1__310029_153080_33897_81096.json": "c57cf9e42987693727e343f950b18a81beddd91db635835863bf6b605310267d",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluation/musique/per_sample/musique_4hop1__636860_49925_13759_736921.json": "ec6514ab5e636b83a2de4372d962befbba70153d81d66e50c21d352c96647539",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/mechanism_alignment_counterfactual_attention3qa64_seed1234/prepared/test.jsonl": "2481b2f7067474ba2139ffb8cc1bd199410ac64de4f4620ef4c195e103c9af22",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/mechanism_alignment_counterfactual_attention3qa64_seed1234/prepared/donors.json": "c84e35eb38d891334cb391704369184506f78eb7821859aa0759a101eab331d9",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/mechanism_alignment_counterfactual_attention3qa64_seed1234/prepared/strata.json": "678f8f52d21eabb708f5a10f8f1be7940268fa5167dad049ee7bcb7308599b27",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/mechanism_alignment_counterfactual_attention3qa64_seed1234/prepared/counterfactual.jsonl": "e5871f78a4054b06e8ff16d3cf9d7597f504e8267d8d6c2780d41ac09ce64e72",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/mechanism_alignment_counterfactual_attention3qa64_seed1234/prepared/counterfactual_pairs.json": "590e85b9a3208ca608249baeb898cd7508cdbf230a416e6c76aebac8dbfe7879"
+  },
+  "counts": {
+    "hotpotqa": 64,
+    "2wiki": 64,
+    "musique": 64
+  },
+  "donor_assignments": [
+    {
+      "id": "hotpotqa_fresh_5ae3305c55429928c423965f",
+      "donor": "hotpotqa_fresh_5a8f5bb45542992414482a77",
+      "task": "hotpotqa",
+      "body_tokens": 881,
+      "donor_body_tokens": 1084,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5a7f40055542992e7d278cc0",
+      "donor": "hotpotqa_fresh_5ae3305c55429928c423965f",
+      "task": "hotpotqa",
+      "body_tokens": 946,
+      "donor_body_tokens": 881,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5a79257b55429974737f79a7",
+      "donor": "hotpotqa_fresh_5a7f40055542992e7d278cc0",
+      "task": "hotpotqa",
+      "body_tokens": 981,
+      "donor_body_tokens": 946,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5a89e8035542992e4fca846d",
+      "donor": "hotpotqa_fresh_5a79257b55429974737f79a7",
+      "task": "hotpotqa",
+      "body_tokens": 988,
+      "donor_body_tokens": 981,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5ae0800055429924de1b70db",
+      "donor": "hotpotqa_fresh_5a89e8035542992e4fca846d",
+      "task": "hotpotqa",
+      "body_tokens": 1012,
+      "donor_body_tokens": 988,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5ae56fb85542993aec5ec1a9",
+      "donor": "hotpotqa_fresh_5ae0800055429924de1b70db",
+      "task": "hotpotqa",
+      "body_tokens": 1012,
+      "donor_body_tokens": 1012,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5a778e8755429949eeb29ef4",
+      "donor": "hotpotqa_fresh_5ae56fb85542993aec5ec1a9",
+      "task": "hotpotqa",
+      "body_tokens": 1069,
+      "donor_body_tokens": 1012,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5a8f5bb45542992414482a77",
+      "donor": "hotpotqa_fresh_5a778e8755429949eeb29ef4",
+      "task": "hotpotqa",
+      "body_tokens": 1084,
+      "donor_body_tokens": 1069,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5ae33c4d5542992f92d82262",
+      "donor": "hotpotqa_fresh_5a7217f255429971e9dc9260",
+      "task": "hotpotqa",
+      "body_tokens": 1101,
+      "donor_body_tokens": 1127,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5a7217f255429971e9dc9260",
+      "donor": "hotpotqa_fresh_5ade0cc85542990dbb2f7f37",
+      "task": "hotpotqa",
+      "body_tokens": 1127,
+      "donor_body_tokens": 1131,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5ade0cc85542990dbb2f7f37",
+      "donor": "hotpotqa_fresh_5a75d35d5542992d0ec05ffe",
+      "task": "hotpotqa",
+      "body_tokens": 1131,
+      "donor_body_tokens": 1140,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5a75d35d5542992d0ec05ffe",
+      "donor": "hotpotqa_fresh_5ac2ae4155429921a00ab030",
+      "task": "hotpotqa",
+      "body_tokens": 1140,
+      "donor_body_tokens": 1177,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5ac2ae4155429921a00ab030",
+      "donor": "hotpotqa_fresh_5a713f395542994082a3e6ea",
+      "task": "hotpotqa",
+      "body_tokens": 1177,
+      "donor_body_tokens": 1183,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5a713f395542994082a3e6ea",
+      "donor": "hotpotqa_fresh_5a72c6f65542994cef4bc402",
+      "task": "hotpotqa",
+      "body_tokens": 1183,
+      "donor_body_tokens": 1190,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5a72c6f65542994cef4bc402",
+      "donor": "hotpotqa_fresh_5ae1b53b5542997283cd2255",
+      "task": "hotpotqa",
+      "body_tokens": 1190,
+      "donor_body_tokens": 1191,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5ae1b53b5542997283cd2255",
+      "donor": "hotpotqa_fresh_5ae33c4d5542992f92d82262",
+      "task": "hotpotqa",
+      "body_tokens": 1191,
+      "donor_body_tokens": 1101,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5ae3bb0d5542992f92d82357",
+      "donor": "hotpotqa_fresh_5a7d07a455429907fabef0ae",
+      "task": "hotpotqa",
+      "body_tokens": 1214,
+      "donor_body_tokens": 1262,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5a87d8215542994775f60800",
+      "donor": "hotpotqa_fresh_5ae3bb0d5542992f92d82357",
+      "task": "hotpotqa",
+      "body_tokens": 1231,
+      "donor_body_tokens": 1214,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5ac2ada255429967731025f9",
+      "donor": "hotpotqa_fresh_5a87d8215542994775f60800",
+      "task": "hotpotqa",
+      "body_tokens": 1239,
+      "donor_body_tokens": 1231,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5ae7739c5542997b22f6a775",
+      "donor": "hotpotqa_fresh_5ac2ada255429967731025f9",
+      "task": "hotpotqa",
+      "body_tokens": 1243,
+      "donor_body_tokens": 1239,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5a7e86245542991319bc94ce",
+      "donor": "hotpotqa_fresh_5ae7739c5542997b22f6a775",
+      "task": "hotpotqa",
+      "body_tokens": 1245,
+      "donor_body_tokens": 1243,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5a7b3f4d5542992d025e67bb",
+      "donor": "hotpotqa_fresh_5a7e86245542991319bc94ce",
+      "task": "hotpotqa",
+      "body_tokens": 1253,
+      "donor_body_tokens": 1245,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5ab5487b554299494045ef68",
+      "donor": "hotpotqa_fresh_5a7b3f4d5542992d025e67bb",
+      "task": "hotpotqa",
+      "body_tokens": 1261,
+      "donor_body_tokens": 1253,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5a7d07a455429907fabef0ae",
+      "donor": "hotpotqa_fresh_5ab5487b554299494045ef68",
+      "task": "hotpotqa",
+      "body_tokens": 1262,
+      "donor_body_tokens": 1261,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5a74a62b55429916b01641a0",
+      "donor": "hotpotqa_fresh_5a8ba67755429971feec4748",
+      "task": "hotpotqa",
+      "body_tokens": 1273,
+      "donor_body_tokens": 1345,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5a8b04df55429950cd6afc49",
+      "donor": "hotpotqa_fresh_5a74a62b55429916b01641a0",
+      "task": "hotpotqa",
+      "body_tokens": 1273,
+      "donor_body_tokens": 1273,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5ae0cddc55429945ae959459",
+      "donor": "hotpotqa_fresh_5a8b04df55429950cd6afc49",
+      "task": "hotpotqa",
+      "body_tokens": 1274,
+      "donor_body_tokens": 1273,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5addf9e05542997dc79070f9",
+      "donor": "hotpotqa_fresh_5ae0cddc55429945ae959459",
+      "task": "hotpotqa",
+      "body_tokens": 1282,
+      "donor_body_tokens": 1274,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5adcd5005542994d58a2f6f0",
+      "donor": "hotpotqa_fresh_5addf9e05542997dc79070f9",
+      "task": "hotpotqa",
+      "body_tokens": 1306,
+      "donor_body_tokens": 1282,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5ae678915542996d980e7b70",
+      "donor": "hotpotqa_fresh_5adcd5005542994d58a2f6f0",
+      "task": "hotpotqa",
+      "body_tokens": 1336,
+      "donor_body_tokens": 1306,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5a7568805542992db9473658",
+      "donor": "hotpotqa_fresh_5ae678915542996d980e7b70",
+      "task": "hotpotqa",
+      "body_tokens": 1345,
+      "donor_body_tokens": 1336,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5a8ba67755429971feec4748",
+      "donor": "hotpotqa_fresh_5a7568805542992db9473658",
+      "task": "hotpotqa",
+      "body_tokens": 1345,
+      "donor_body_tokens": 1345,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5a758ce05542992db947367c",
+      "donor": "hotpotqa_fresh_5ac3e0f7554299194317388b",
+      "task": "hotpotqa",
+      "body_tokens": 1357,
+      "donor_body_tokens": 1359,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5ac3e0f7554299194317388b",
+      "donor": "hotpotqa_fresh_5adfbd4655429942ec259b31",
+      "task": "hotpotqa",
+      "body_tokens": 1359,
+      "donor_body_tokens": 1366,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5adfbd4655429942ec259b31",
+      "donor": "hotpotqa_fresh_5ac4c16b5542997ea680cab4",
+      "task": "hotpotqa",
+      "body_tokens": 1366,
+      "donor_body_tokens": 1368,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5ac4c16b5542997ea680cab4",
+      "donor": "hotpotqa_fresh_5ab3d2595542992ade7c6ebf",
+      "task": "hotpotqa",
+      "body_tokens": 1368,
+      "donor_body_tokens": 1393,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5ab3d2595542992ade7c6ebf",
+      "donor": "hotpotqa_fresh_5abd455c55429924427fcf5a",
+      "task": "hotpotqa",
+      "body_tokens": 1393,
+      "donor_body_tokens": 1405,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5abd455c55429924427fcf5a",
+      "donor": "hotpotqa_fresh_5ac5630e5542993e66e823d5",
+      "task": "hotpotqa",
+      "body_tokens": 1405,
+      "donor_body_tokens": 1406,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5ac5630e5542993e66e823d5",
+      "donor": "hotpotqa_fresh_5add7ce55542992ae4cec585",
+      "task": "hotpotqa",
+      "body_tokens": 1406,
+      "donor_body_tokens": 1420,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5add7ce55542992ae4cec585",
+      "donor": "hotpotqa_fresh_5a758ce05542992db947367c",
+      "task": "hotpotqa",
+      "body_tokens": 1420,
+      "donor_body_tokens": 1357,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5a8135eb55429938b61422fa",
+      "donor": "hotpotqa_fresh_5a74b55455429974ef308c39",
+      "task": "hotpotqa",
+      "body_tokens": 1426,
+      "donor_body_tokens": 1443,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5a74b55455429974ef308c39",
+      "donor": "hotpotqa_fresh_5a7bacf2554299294a54aa8d",
+      "task": "hotpotqa",
+      "body_tokens": 1443,
+      "donor_body_tokens": 1470,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5a7bacf2554299294a54aa8d",
+      "donor": "hotpotqa_fresh_5abbdaac5542992ccd8e7fc0",
+      "task": "hotpotqa",
+      "body_tokens": 1470,
+      "donor_body_tokens": 1489,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5abbdaac5542992ccd8e7fc0",
+      "donor": "hotpotqa_fresh_5ae0e5655542990adbacf6b8",
+      "task": "hotpotqa",
+      "body_tokens": 1489,
+      "donor_body_tokens": 1503,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5ae0e5655542990adbacf6b8",
+      "donor": "hotpotqa_fresh_5ab7ba7555429928e1fe38b5",
+      "task": "hotpotqa",
+      "body_tokens": 1503,
+      "donor_body_tokens": 1506,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5ab7ba7555429928e1fe38b5",
+      "donor": "hotpotqa_fresh_5add8f055542990dbb2f7e6d",
+      "task": "hotpotqa",
+      "body_tokens": 1506,
+      "donor_body_tokens": 1513,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5add8f055542990dbb2f7e6d",
+      "donor": "hotpotqa_fresh_5a7100435542994082a3e4a3",
+      "task": "hotpotqa",
+      "body_tokens": 1513,
+      "donor_body_tokens": 1566,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5a7100435542994082a3e4a3",
+      "donor": "hotpotqa_fresh_5a8135eb55429938b61422fa",
+      "task": "hotpotqa",
+      "body_tokens": 1566,
+      "donor_body_tokens": 1426,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5ab527205542996a3a96a03d",
+      "donor": "hotpotqa_fresh_5abccb235542996583600497",
+      "task": "hotpotqa",
+      "body_tokens": 1590,
+      "donor_body_tokens": 1746,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5ab48f245542990594ba9c66",
+      "donor": "hotpotqa_fresh_5ab527205542996a3a96a03d",
+      "task": "hotpotqa",
+      "body_tokens": 1610,
+      "donor_body_tokens": 1590,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5ab72a025542992aa3b8c7b8",
+      "donor": "hotpotqa_fresh_5ab48f245542990594ba9c66",
+      "task": "hotpotqa",
+      "body_tokens": 1622,
+      "donor_body_tokens": 1610,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5ae180d855429901ffe4aecc",
+      "donor": "hotpotqa_fresh_5ab72a025542992aa3b8c7b8",
+      "task": "hotpotqa",
+      "body_tokens": 1627,
+      "donor_body_tokens": 1622,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5a7c6ed3554299683c1c6306",
+      "donor": "hotpotqa_fresh_5ae180d855429901ffe4aecc",
+      "task": "hotpotqa",
+      "body_tokens": 1657,
+      "donor_body_tokens": 1627,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5ae362105542991a06ce99ae",
+      "donor": "hotpotqa_fresh_5a7c6ed3554299683c1c6306",
+      "task": "hotpotqa",
+      "body_tokens": 1690,
+      "donor_body_tokens": 1657,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5a714de95542994082a3e7a8",
+      "donor": "hotpotqa_fresh_5ae362105542991a06ce99ae",
+      "task": "hotpotqa",
+      "body_tokens": 1702,
+      "donor_body_tokens": 1690,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5abccb235542996583600497",
+      "donor": "hotpotqa_fresh_5a714de95542994082a3e7a8",
+      "task": "hotpotqa",
+      "body_tokens": 1746,
+      "donor_body_tokens": 1702,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5ab51ddf5542990594ba9d11",
+      "donor": "hotpotqa_fresh_5a81a63c5542990a1d231e45",
+      "task": "hotpotqa",
+      "body_tokens": 1795,
+      "donor_body_tokens": 1875,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5a81a63c5542990a1d231e45",
+      "donor": "hotpotqa_fresh_5a72339855429971e9dc934d",
+      "task": "hotpotqa",
+      "body_tokens": 1875,
+      "donor_body_tokens": 1986,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5a72339855429971e9dc934d",
+      "donor": "hotpotqa_fresh_5abe65e25542993f32c2a101",
+      "task": "hotpotqa",
+      "body_tokens": 1986,
+      "donor_body_tokens": 2057,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5abe65e25542993f32c2a101",
+      "donor": "hotpotqa_fresh_5ae72e79554299572ea54763",
+      "task": "hotpotqa",
+      "body_tokens": 2057,
+      "donor_body_tokens": 2112,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5ae72e79554299572ea54763",
+      "donor": "hotpotqa_fresh_5ab6f7415542991d322236f4",
+      "task": "hotpotqa",
+      "body_tokens": 2112,
+      "donor_body_tokens": 2205,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5ab6f7415542991d322236f4",
+      "donor": "hotpotqa_fresh_5ab7fd6b5542990e739ec7b5",
+      "task": "hotpotqa",
+      "body_tokens": 2205,
+      "donor_body_tokens": 2272,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5ab7fd6b5542990e739ec7b5",
+      "donor": "hotpotqa_fresh_5ac261265542992f1f2b3896",
+      "task": "hotpotqa",
+      "body_tokens": 2272,
+      "donor_body_tokens": 2427,
+      "same_gold": false
+    },
+    {
+      "id": "hotpotqa_fresh_5ac261265542992f1f2b3896",
+      "donor": "hotpotqa_fresh_5ab51ddf5542990594ba9d11",
+      "task": "hotpotqa",
+      "body_tokens": 2427,
+      "donor_body_tokens": 1795,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_e06e9794084d11ebbd56ac1f6bf848b6",
+      "donor": "2wiki_a8cbc4c40bdc11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 400,
+      "donor_body_tokens": 702,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_97f5e2360bd911eba7f7acde48001122",
+      "donor": "2wiki_e06e9794084d11ebbd56ac1f6bf848b6",
+      "task": "2wiki",
+      "body_tokens": 501,
+      "donor_body_tokens": 400,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_6d6fd49108e611ebbda5ac1f6bf848b6",
+      "donor": "2wiki_97f5e2360bd911eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 599,
+      "donor_body_tokens": 501,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_17874a43097411ebbdb0ac1f6bf848b6",
+      "donor": "2wiki_6d6fd49108e611ebbda5ac1f6bf848b6",
+      "task": "2wiki",
+      "body_tokens": 602,
+      "donor_body_tokens": 599,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_563e2020088b11ebbd6fac1f6bf848b6",
+      "donor": "2wiki_17874a43097411ebbdb0ac1f6bf848b6",
+      "task": "2wiki",
+      "body_tokens": 617,
+      "donor_body_tokens": 602,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_993e1eb0085f11ebbd5dac1f6bf848b6",
+      "donor": "2wiki_563e2020088b11ebbd6fac1f6bf848b6",
+      "task": "2wiki",
+      "body_tokens": 631,
+      "donor_body_tokens": 617,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_341347220bde11eba7f7acde48001122",
+      "donor": "2wiki_993e1eb0085f11ebbd5dac1f6bf848b6",
+      "task": "2wiki",
+      "body_tokens": 689,
+      "donor_body_tokens": 631,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_a8cbc4c40bdc11eba7f7acde48001122",
+      "donor": "2wiki_341347220bde11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 702,
+      "donor_body_tokens": 689,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_38ad21b40bdd11eba7f7acde48001122",
+      "donor": "2wiki_46a7af5c08bb11ebbd88ac1f6bf848b6",
+      "task": "2wiki",
+      "body_tokens": 704,
+      "donor_body_tokens": 714,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_46a7af5c08bb11ebbd88ac1f6bf848b6",
+      "donor": "2wiki_a7632b4c086a11ebbd5fac1f6bf848b6",
+      "task": "2wiki",
+      "body_tokens": 714,
+      "donor_body_tokens": 724,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_a7632b4c086a11ebbd5fac1f6bf848b6",
+      "donor": "2wiki_96e142e40bdb11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 724,
+      "donor_body_tokens": 762,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_96e142e40bdb11eba7f7acde48001122",
+      "donor": "2wiki_3640eba008a811ebbd7fac1f6bf848b6",
+      "task": "2wiki",
+      "body_tokens": 762,
+      "donor_body_tokens": 812,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_3640eba008a811ebbd7fac1f6bf848b6",
+      "donor": "2wiki_1c4cfe1808d611ebbd98ac1f6bf848b6",
+      "task": "2wiki",
+      "body_tokens": 812,
+      "donor_body_tokens": 830,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_1c4cfe1808d611ebbd98ac1f6bf848b6",
+      "donor": "2wiki_bf847e1a086511ebbd5eac1f6bf848b6",
+      "task": "2wiki",
+      "body_tokens": 830,
+      "donor_body_tokens": 843,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_bf847e1a086511ebbd5eac1f6bf848b6",
+      "donor": "2wiki_057f68740bdd11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 843,
+      "donor_body_tokens": 847,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_057f68740bdd11eba7f7acde48001122",
+      "donor": "2wiki_38ad21b40bdd11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 847,
+      "donor_body_tokens": 704,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_6e31b2920bdc11eba7f7acde48001122",
+      "donor": "2wiki_38056cd40bde11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 858,
+      "donor_body_tokens": 937,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_dd17999f08d811ebbd9cac1f6bf848b6",
+      "donor": "2wiki_6e31b2920bdc11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 862,
+      "donor_body_tokens": 858,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_146c16520bdd11eba7f7acde48001122",
+      "donor": "2wiki_dd17999f08d811ebbd9cac1f6bf848b6",
+      "task": "2wiki",
+      "body_tokens": 875,
+      "donor_body_tokens": 862,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_0bbded440bda11eba7f7acde48001122",
+      "donor": "2wiki_146c16520bdd11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 896,
+      "donor_body_tokens": 875,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_3cfafc9a088211ebbd6dac1f6bf848b6",
+      "donor": "2wiki_0bbded440bda11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 903,
+      "donor_body_tokens": 896,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_2935f1640bda11eba7f7acde48001122",
+      "donor": "2wiki_3cfafc9a088211ebbd6dac1f6bf848b6",
+      "task": "2wiki",
+      "body_tokens": 910,
+      "donor_body_tokens": 903,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_c5c305b5084a11ebbd56ac1f6bf848b6",
+      "donor": "2wiki_2935f1640bda11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 933,
+      "donor_body_tokens": 910,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_38056cd40bde11eba7f7acde48001122",
+      "donor": "2wiki_c5c305b5084a11ebbd56ac1f6bf848b6",
+      "task": "2wiki",
+      "body_tokens": 937,
+      "donor_body_tokens": 933,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_f09faf260bdd11eba7f7acde48001122",
+      "donor": "2wiki_66eae2780bdd11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 944,
+      "donor_body_tokens": 972,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_66eae2780bdd11eba7f7acde48001122",
+      "donor": "2wiki_82ef6eec0bda11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 972,
+      "donor_body_tokens": 991,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_82ef6eec0bda11eba7f7acde48001122",
+      "donor": "2wiki_588ade020bda11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 991,
+      "donor_body_tokens": 1020,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_588ade020bda11eba7f7acde48001122",
+      "donor": "2wiki_d1a722500bda11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 1020,
+      "donor_body_tokens": 1020,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_d1a722500bda11eba7f7acde48001122",
+      "donor": "2wiki_71530df00bdb11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 1020,
+      "donor_body_tokens": 1027,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_71530df00bdb11eba7f7acde48001122",
+      "donor": "2wiki_8ea950d80bdd11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 1027,
+      "donor_body_tokens": 1048,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_8ea950d80bdd11eba7f7acde48001122",
+      "donor": "2wiki_46811f9c0bde11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 1048,
+      "donor_body_tokens": 1068,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_46811f9c0bde11eba7f7acde48001122",
+      "donor": "2wiki_f09faf260bdd11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 1068,
+      "donor_body_tokens": 944,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_067dd55a0bdb11eba7f7acde48001122",
+      "donor": "2wiki_fd56936708a811ebbd7fac1f6bf848b6",
+      "task": "2wiki",
+      "body_tokens": 1071,
+      "donor_body_tokens": 1211,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_ffee28d80bae11ebab90acde48001122",
+      "donor": "2wiki_067dd55a0bdb11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 1120,
+      "donor_body_tokens": 1071,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_528f7ff9093c11ebbdaeac1f6bf848b6",
+      "donor": "2wiki_ffee28d80bae11ebab90acde48001122",
+      "task": "2wiki",
+      "body_tokens": 1130,
+      "donor_body_tokens": 1120,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_615178b20bde11eba7f7acde48001122",
+      "donor": "2wiki_528f7ff9093c11ebbdaeac1f6bf848b6",
+      "task": "2wiki",
+      "body_tokens": 1174,
+      "donor_body_tokens": 1130,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_654e76b808e111ebbda2ac1f6bf848b6",
+      "donor": "2wiki_615178b20bde11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 1182,
+      "donor_body_tokens": 1174,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_f178e982098311ebbdb0ac1f6bf848b6",
+      "donor": "2wiki_654e76b808e111ebbda2ac1f6bf848b6",
+      "task": "2wiki",
+      "body_tokens": 1197,
+      "donor_body_tokens": 1182,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_6b6ef0280bb011ebab90acde48001122",
+      "donor": "2wiki_f178e982098311ebbdb0ac1f6bf848b6",
+      "task": "2wiki",
+      "body_tokens": 1204,
+      "donor_body_tokens": 1197,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_fd56936708a811ebbd7fac1f6bf848b6",
+      "donor": "2wiki_6b6ef0280bb011ebab90acde48001122",
+      "task": "2wiki",
+      "body_tokens": 1211,
+      "donor_body_tokens": 1204,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_6aac7fba0bde11eba7f7acde48001122",
+      "donor": "2wiki_627f38e00bda11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 1213,
+      "donor_body_tokens": 1214,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_627f38e00bda11eba7f7acde48001122",
+      "donor": "2wiki_f6dce6440bae11ebab90acde48001122",
+      "task": "2wiki",
+      "body_tokens": 1214,
+      "donor_body_tokens": 1224,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_f6dce6440bae11ebab90acde48001122",
+      "donor": "2wiki_90c88e000bd911eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 1224,
+      "donor_body_tokens": 1231,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_90c88e000bd911eba7f7acde48001122",
+      "donor": "2wiki_54eff598089711ebbd76ac1f6bf848b6",
+      "task": "2wiki",
+      "body_tokens": 1231,
+      "donor_body_tokens": 1242,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_54eff598089711ebbd76ac1f6bf848b6",
+      "donor": "2wiki_94198d580bb011ebab90acde48001122",
+      "task": "2wiki",
+      "body_tokens": 1242,
+      "donor_body_tokens": 1247,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_94198d580bb011ebab90acde48001122",
+      "donor": "2wiki_161e9e380bde11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 1247,
+      "donor_body_tokens": 1264,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_161e9e380bde11eba7f7acde48001122",
+      "donor": "2wiki_374ff12e0bde11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 1264,
+      "donor_body_tokens": 1289,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_374ff12e0bde11eba7f7acde48001122",
+      "donor": "2wiki_6aac7fba0bde11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 1289,
+      "donor_body_tokens": 1213,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_f1bb0b420bda11eba7f7acde48001122",
+      "donor": "2wiki_f3c5a94808d711ebbd9aac1f6bf848b6",
+      "task": "2wiki",
+      "body_tokens": 1295,
+      "donor_body_tokens": 1346,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_f3c5a94808d711ebbd9aac1f6bf848b6",
+      "donor": "2wiki_179f51c60bde11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 1346,
+      "donor_body_tokens": 1383,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_179f51c60bde11eba7f7acde48001122",
+      "donor": "2wiki_91325e4e089511ebbd75ac1f6bf848b6",
+      "task": "2wiki",
+      "body_tokens": 1383,
+      "donor_body_tokens": 1399,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_91325e4e089511ebbd75ac1f6bf848b6",
+      "donor": "2wiki_36a710500bb011ebab90acde48001122",
+      "task": "2wiki",
+      "body_tokens": 1399,
+      "donor_body_tokens": 1406,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_36a710500bb011ebab90acde48001122",
+      "donor": "2wiki_b5ece0840bdc11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 1406,
+      "donor_body_tokens": 1428,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_b5ece0840bdc11eba7f7acde48001122",
+      "donor": "2wiki_c218f9d20bdd11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 1428,
+      "donor_body_tokens": 1536,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_c218f9d20bdd11eba7f7acde48001122",
+      "donor": "2wiki_11562eb0090711ebbdadac1f6bf848b6",
+      "task": "2wiki",
+      "body_tokens": 1536,
+      "donor_body_tokens": 1545,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_11562eb0090711ebbdadac1f6bf848b6",
+      "donor": "2wiki_f1bb0b420bda11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 1545,
+      "donor_body_tokens": 1295,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_3a13d0620baf11ebab90acde48001122",
+      "donor": "2wiki_d523d9e80bdd11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 1621,
+      "donor_body_tokens": 2079,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_32edaabe0bb011ebab90acde48001122",
+      "donor": "2wiki_3a13d0620baf11ebab90acde48001122",
+      "task": "2wiki",
+      "body_tokens": 1681,
+      "donor_body_tokens": 1621,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_6b6f51940bb011ebab90acde48001122",
+      "donor": "2wiki_32edaabe0bb011ebab90acde48001122",
+      "task": "2wiki",
+      "body_tokens": 1780,
+      "donor_body_tokens": 1681,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_75af4f140bde11eba7f7acde48001122",
+      "donor": "2wiki_6b6f51940bb011ebab90acde48001122",
+      "task": "2wiki",
+      "body_tokens": 1888,
+      "donor_body_tokens": 1780,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_fc297f8f086311ebbd5eac1f6bf848b6",
+      "donor": "2wiki_75af4f140bde11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 1940,
+      "donor_body_tokens": 1888,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_a352b1e60bdd11eba7f7acde48001122",
+      "donor": "2wiki_fc297f8f086311ebbd5eac1f6bf848b6",
+      "task": "2wiki",
+      "body_tokens": 1941,
+      "donor_body_tokens": 1940,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_767b64380bb011ebab90acde48001122",
+      "donor": "2wiki_a352b1e60bdd11eba7f7acde48001122",
+      "task": "2wiki",
+      "body_tokens": 1971,
+      "donor_body_tokens": 1941,
+      "same_gold": false
+    },
+    {
+      "id": "2wiki_d523d9e80bdd11eba7f7acde48001122",
+      "donor": "2wiki_767b64380bb011ebab90acde48001122",
+      "task": "2wiki",
+      "body_tokens": 2079,
+      "donor_body_tokens": 1971,
+      "same_gold": false
+    },
+    {
+      "id": "musique_2hop__728887_159109",
+      "donor": "musique_2hop__547045_131879",
+      "task": "musique",
+      "body_tokens": 1765,
+      "donor_body_tokens": 1819,
+      "same_gold": false
+    },
+    {
+      "id": "musique_2hop__547045_131879",
+      "donor": "musique_2hop__433694_20273",
+      "task": "musique",
+      "body_tokens": 1819,
+      "donor_body_tokens": 1945,
+      "same_gold": false
+    },
+    {
+      "id": "musique_2hop__433694_20273",
+      "donor": "musique_4hop1__57467_53706_795904_580996",
+      "task": "musique",
+      "body_tokens": 1945,
+      "donor_body_tokens": 1957,
+      "same_gold": false
+    },
+    {
+      "id": "musique_4hop1__57467_53706_795904_580996",
+      "donor": "musique_2hop__250030_7298",
+      "task": "musique",
+      "body_tokens": 1957,
+      "donor_body_tokens": 1974,
+      "same_gold": false
+    },
+    {
+      "id": "musique_2hop__250030_7298",
+      "donor": "musique_2hop__215896_460425",
+      "task": "musique",
+      "body_tokens": 1974,
+      "donor_body_tokens": 2031,
+      "same_gold": false
+    },
+    {
+      "id": "musique_2hop__215896_460425",
+      "donor": "musique_2hop__136067_160249",
+      "task": "musique",
+      "body_tokens": 2031,
+      "donor_body_tokens": 2045,
+      "same_gold": false
+    },
+    {
+      "id": "musique_2hop__136067_160249",
+      "donor": "musique_2hop__506099_20057",
+      "task": "musique",
+      "body_tokens": 2045,
+      "donor_body_tokens": 2143,
+      "same_gold": false
+    },
+    {
+      "id": "musique_2hop__506099_20057",
+      "donor": "musique_2hop__728887_159109",
+      "task": "musique",
+      "body_tokens": 2143,
+      "donor_body_tokens": 1765,
+      "same_gold": false
+    },
+    {
+      "id": "musique_3hop1__524212_831637_91775",
+      "donor": "musique_2hop__82051_7298",
+      "task": "musique",
+      "body_tokens": 2170,
+      "donor_body_tokens": 2451,
+      "same_gold": false
+    },
+    {
+      "id": "musique_2hop__726892_131968",
+      "donor": "musique_3hop1__524212_831637_91775",
+      "task": "musique",
+      "body_tokens": 2197,
+      "donor_body_tokens": 2170,
+      "same_gold": false
+    },
+    {
+      "id": "musique_3hop1__765565_326948_10972",
+      "donor": "musique_2hop__726892_131968",
+      "task": "musique",
+      "body_tokens": 2218,
+      "donor_body_tokens": 2197,
+      "same_gold": false
+    },
+    {
+      "id": "musique_4hop2__71753_648517_70784_61381",
+      "donor": "musique_3hop1__765565_326948_10972",
+      "task": "musique",
+      "body_tokens": 2243,
+      "donor_body_tokens": 2218,
+      "same_gold": false
+    },
+    {
+      "id": "musique_3hop1__813285_774554_64412",
+      "donor": "musique_4hop2__71753_648517_70784_61381",
+      "task": "musique",
+      "body_tokens": 2388,
+      "donor_body_tokens": 2243,
+      "same_gold": false
+    },
+    {
+      "id": "musique_3hop1__389955_132457_47686",
+      "donor": "musique_3hop1__813285_774554_64412",
+      "task": "musique",
+      "body_tokens": 2415,
+      "donor_body_tokens": 2388,
+      "same_gold": false
+    },
+    {
+      "id": "musique_3hop1__273571_834494_34109",
+      "donor": "musique_3hop1__389955_132457_47686",
+      "task": "musique",
+      "body_tokens": 2426,
+      "donor_body_tokens": 2415,
+      "same_gold": false
+    },
+    {
+      "id": "musique_2hop__82051_7298",
+      "donor": "musique_3hop1__273571_834494_34109",
+      "task": "musique",
+      "body_tokens": 2451,
+      "donor_body_tokens": 2426,
+      "same_gold": false
+    },
+    {
+      "id": "musique_2hop__176712_8311",
+      "donor": "musique_3hop1__491648_339990_15538",
+      "task": "musique",
+      "body_tokens": 2490,
+      "donor_body_tokens": 2583,
+      "same_gold": false
+    },
+    {
+      "id": "musique_3hop1__558449_503371_21711",
+      "donor": "musique_2hop__176712_8311",
+      "task": "musique",
+      "body_tokens": 2532,
+      "donor_body_tokens": 2490,
+      "same_gold": false
+    },
+    {
+      "id": "musique_2hop__153532_72380",
+      "donor": "musique_3hop1__558449_503371_21711",
+      "task": "musique",
+      "body_tokens": 2535,
+      "donor_body_tokens": 2532,
+      "same_gold": false
+    },
+    {
+      "id": "musique_4hop1__310029_153080_33897_81096",
+      "donor": "musique_2hop__153532_72380",
+      "task": "musique",
+      "body_tokens": 2536,
+      "donor_body_tokens": 2535,
+      "same_gold": false
+    },
+    {
+      "id": "musique_3hop2__159979_30587_44003",
+      "donor": "musique_4hop1__310029_153080_33897_81096",
+      "task": "musique",
+      "body_tokens": 2549,
+      "donor_body_tokens": 2536,
+      "same_gold": false
+    },
+    {
+      "id": "musique_2hop__800166_156034",
+      "donor": "musique_3hop2__159979_30587_44003",
+      "task": "musique",
+      "body_tokens": 2556,
+      "donor_body_tokens": 2549,
+      "same_gold": false
+    },
+    {
+      "id": "musique_2hop__657913_88628",
+      "donor": "musique_2hop__800166_156034",
+      "task": "musique",
+      "body_tokens": 2577,
+      "donor_body_tokens": 2556,
+      "same_gold": false
+    },
+    {
+      "id": "musique_3hop1__491648_339990_15538",
+      "donor": "musique_2hop__657913_88628",
+      "task": "musique",
+      "body_tokens": 2583,
+      "donor_body_tokens": 2577,
+      "same_gold": false
+    },
+    {
+      "id": "musique_4hop3__238811_88460_30152_20999",
+      "donor": "musique_4hop3__719125_132409_223216_35031",
+      "task": "musique",
+      "body_tokens": 2598,
+      "donor_body_tokens": 2610,
+      "same_gold": false
+    },
+    {
+      "id": "musique_4hop3__719125_132409_223216_35031",
+      "donor": "musique_3hop1__801799_547811_80702",
+      "task": "musique",
+      "body_tokens": 2610,
+      "donor_body_tokens": 2639,
+      "same_gold": false
+    },
+    {
+      "id": "musique_3hop1__801799_547811_80702",
+      "donor": "musique_4hop2__105527_39078_8987_8974",
+      "task": "musique",
+      "body_tokens": 2639,
+      "donor_body_tokens": 2693,
+      "same_gold": false
+    },
+    {
+      "id": "musique_4hop2__105527_39078_8987_8974",
+      "donor": "musique_2hop__752214_639679",
+      "task": "musique",
+      "body_tokens": 2693,
+      "donor_body_tokens": 2697,
+      "same_gold": false
+    },
+    {
+      "id": "musique_2hop__752214_639679",
+      "donor": "musique_2hop__365236_19320",
+      "task": "musique",
+      "body_tokens": 2697,
+      "donor_body_tokens": 2708,
+      "same_gold": false
+    },
+    {
+      "id": "musique_2hop__365236_19320",
+      "donor": "musique_4hop2__161602_426860_88460_126088",
+      "task": "musique",
+      "body_tokens": 2708,
+      "donor_body_tokens": 2732,
+      "same_gold": false
+    },
+    {
+      "id": "musique_4hop2__161602_426860_88460_126088",
+      "donor": "musique_4hop1__178366_229349_66759_75165",
+      "task": "musique",
+      "body_tokens": 2732,
+      "donor_body_tokens": 2743,
+      "same_gold": false
+    },
+    {
+      "id": "musique_4hop1__178366_229349_66759_75165",
+      "donor": "musique_4hop3__238811_88460_30152_20999",
+      "task": "musique",
+      "body_tokens": 2743,
+      "donor_body_tokens": 2598,
+      "same_gold": false
+    },
+    {
+      "id": "musique_3hop2__11282_57233_56883",
+      "donor": "musique_2hop__257831_123283",
+      "task": "musique",
+      "body_tokens": 2774,
+      "donor_body_tokens": 2885,
+      "same_gold": false
+    },
+    {
+      "id": "musique_4hop1__105002_17130_70784_61381",
+      "donor": "musique_3hop2__11282_57233_56883",
+      "task": "musique",
+      "body_tokens": 2820,
+      "donor_body_tokens": 2774,
+      "same_gold": false
+    },
+    {
+      "id": "musique_3hop1__49236_89752_49923",
+      "donor": "musique_4hop1__105002_17130_70784_61381",
+      "task": "musique",
+      "body_tokens": 2821,
+      "donor_body_tokens": 2820,
+      "same_gold": false
+    },
+    {
+      "id": "musique_3hop2__90098_156850_10557",
+      "donor": "musique_3hop1__49236_89752_49923",
+      "task": "musique",
+      "body_tokens": 2835,
+      "donor_body_tokens": 2821,
+      "same_gold": false
+    },
+    {
+      "id": "musique_2hop__431934_30351",
+      "donor": "musique_3hop2__90098_156850_10557",
+      "task": "musique",
+      "body_tokens": 2856,
+      "donor_body_tokens": 2835,
+      "same_gold": false
+    },
+    {
+      "id": "musique_2hop__195917_575657",
+      "donor": "musique_2hop__431934_30351",
+      "task": "musique",
+      "body_tokens": 2879,
+      "donor_body_tokens": 2856,
+      "same_gold": false
+    },
+    {
+      "id": "musique_2hop__411091_625230",
+      "donor": "musique_2hop__195917_575657",
+      "task": "musique",
+      "body_tokens": 2879,
+      "donor_body_tokens": 2879,
+      "same_gold": false
+    },
+    {
+      "id": "musique_2hop__257831_123283",
+      "donor": "musique_2hop__411091_625230",
+      "task": "musique",
+      "body_tokens": 2885,
+      "donor_body_tokens": 2879,
+      "same_gold": false
+    },
+    {
+      "id": "musique_2hop__611538_152907",
+      "donor": "musique_4hop1__15567_59747_211319_557671",
+      "task": "musique",
+      "body_tokens": 2894,
+      "donor_body_tokens": 3031,
+      "same_gold": false
+    },
+    {
+      "id": "musique_4hop2__567956_39078_8987_8974",
+      "donor": "musique_2hop__611538_152907",
+      "task": "musique",
+      "body_tokens": 2909,
+      "donor_body_tokens": 2894,
+      "same_gold": false
+    },
+    {
+      "id": "musique_3hop1__593288_720914_41132",
+      "donor": "musique_4hop2__567956_39078_8987_8974",
+      "task": "musique",
+      "body_tokens": 2937,
+      "donor_body_tokens": 2909,
+      "same_gold": false
+    },
+    {
+      "id": "musique_3hop2__92991_38326_76291",
+      "donor": "musique_3hop1__593288_720914_41132",
+      "task": "musique",
+      "body_tokens": 2955,
+      "donor_body_tokens": 2937,
+      "same_gold": false
+    },
+    {
+      "id": "musique_2hop__29191_80144",
+      "donor": "musique_3hop2__92991_38326_76291",
+      "task": "musique",
+      "body_tokens": 2967,
+      "donor_body_tokens": 2955,
+      "same_gold": false
+    },
+    {
+      "id": "musique_3hop1__6362_14336_21111",
+      "donor": "musique_2hop__29191_80144",
+      "task": "musique",
+      "body_tokens": 2999,
+      "donor_body_tokens": 2967,
+      "same_gold": false
+    },
+    {
+      "id": "musique_4hop1__636860_49925_13759_736921",
+      "donor": "musique_3hop1__6362_14336_21111",
+      "task": "musique",
+      "body_tokens": 3016,
+      "donor_body_tokens": 2999,
+      "same_gold": false
+    },
+    {
+      "id": "musique_4hop1__15567_59747_211319_557671",
+      "donor": "musique_4hop1__636860_49925_13759_736921",
+      "task": "musique",
+      "body_tokens": 3031,
+      "donor_body_tokens": 3016,
+      "same_gold": false
+    },
+    {
+      "id": "musique_4hop1__159467_725495_49925_267352",
+      "donor": "musique_3hop1__127821_157828_239539",
+      "task": "musique",
+      "body_tokens": 3053,
+      "donor_body_tokens": 3301,
+      "same_gold": false
+    },
+    {
+      "id": "musique_3hop2__106842_30645_84681",
+      "donor": "musique_4hop1__159467_725495_49925_267352",
+      "task": "musique",
+      "body_tokens": 3055,
+      "donor_body_tokens": 3053,
+      "same_gold": false
+    },
+    {
+      "id": "musique_2hop__194469_83289",
+      "donor": "musique_3hop2__106842_30645_84681",
+      "task": "musique",
+      "body_tokens": 3082,
+      "donor_body_tokens": 3055,
+      "same_gold": false
+    },
+    {
+      "id": "musique_2hop__810884_22402",
+      "donor": "musique_2hop__194469_83289",
+      "task": "musique",
+      "body_tokens": 3100,
+      "donor_body_tokens": 3082,
+      "same_gold": false
+    },
+    {
+      "id": "musique_4hop3__323121_88460_30152_20999",
+      "donor": "musique_2hop__810884_22402",
+      "task": "musique",
+      "body_tokens": 3128,
+      "donor_body_tokens": 3100,
+      "same_gold": false
+    },
+    {
+      "id": "musique_3hop1__346812_15840_36002",
+      "donor": "musique_4hop3__323121_88460_30152_20999",
+      "task": "musique",
+      "body_tokens": 3133,
+      "donor_body_tokens": 3128,
+      "same_gold": false
+    },
+    {
+      "id": "musique_2hop__84937_21969",
+      "donor": "musique_3hop1__346812_15840_36002",
+      "task": "musique",
+      "body_tokens": 3151,
+      "donor_body_tokens": 3133,
+      "same_gold": false
+    },
+    {
+      "id": "musique_3hop1__127821_157828_239539",
+      "donor": "musique_2hop__84937_21969",
+      "task": "musique",
+      "body_tokens": 3301,
+      "donor_body_tokens": 3151,
+      "same_gold": false
+    },
+    {
+      "id": "musique_2hop__13539_13493",
+      "donor": "musique_2hop__703767_37168",
+      "task": "musique",
+      "body_tokens": 3314,
+      "donor_body_tokens": 3330,
+      "same_gold": false
+    },
+    {
+      "id": "musique_2hop__703767_37168",
+      "donor": "musique_3hop2__88342_93066_90766",
+      "task": "musique",
+      "body_tokens": 3330,
+      "donor_body_tokens": 3403,
+      "same_gold": false
+    },
+    {
+      "id": "musique_3hop2__88342_93066_90766",
+      "donor": "musique_4hop3__312119_132409_146285_35031",
+      "task": "musique",
+      "body_tokens": 3403,
+      "donor_body_tokens": 3462,
+      "same_gold": false
+    },
+    {
+      "id": "musique_4hop3__312119_132409_146285_35031",
+      "donor": "musique_3hop1__582007_160713_77246",
+      "task": "musique",
+      "body_tokens": 3462,
+      "donor_body_tokens": 3755,
+      "same_gold": false
+    },
+    {
+      "id": "musique_3hop1__582007_160713_77246",
+      "donor": "musique_2hop__31585_61048",
+      "task": "musique",
+      "body_tokens": 3755,
+      "donor_body_tokens": 3812,
+      "same_gold": false
+    },
+    {
+      "id": "musique_2hop__31585_61048",
+      "donor": "musique_4hop1__73810_32392_823060_610794",
+      "task": "musique",
+      "body_tokens": 3812,
+      "donor_body_tokens": 4293,
+      "same_gold": false
+    },
+    {
+      "id": "musique_4hop1__73810_32392_823060_610794",
+      "donor": "musique_3hop1__617062_127905_80487",
+      "task": "musique",
+      "body_tokens": 4293,
+      "donor_body_tokens": 4418,
+      "same_gold": false
+    },
+    {
+      "id": "musique_3hop1__617062_127905_80487",
+      "donor": "musique_2hop__13539_13493",
+      "task": "musique",
+      "body_tokens": 4418,
+      "donor_body_tokens": 3314,
+      "same_gold": false
+    }
+  ],
+  "strata_counts": {
+    "both_wrong": 122,
+    "rescued": 44,
+    "harmed": 5,
+    "both_correct": 21
+  },
+  "training": false,
+  "synthetic_pairs": 16
+}
