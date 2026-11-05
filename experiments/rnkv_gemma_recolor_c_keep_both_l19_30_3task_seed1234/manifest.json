@@ -1,0 +1,208 @@
+{
+  "config": {
+    "seed": 1234,
+    "memory_tokens": 32,
+    "hidden_size": 2560,
+    "adapter_rank": 16,
+    "adapter_after_layers": [
+      6,
+      12,
+      18,
+      24
+    ],
+    "adapter": "Independent bias-free down2560x16, GELU, zero-initialized up16x2560; residual after the entire named decoder block, enabled for memory construction only.",
+    "replace_layers": [
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30
+    ],
+    "train_counts": {
+      "arc": 1024,
+      "hotpotqa": 1024,
+      "gsm8k": 1024
+    },
+    "validation_counts": {
+      "arc": 64,
+      "hotpotqa": 64,
+      "gsm8k": 64
+    },
+    "test_counts": {
+      "arc": 64,
+      "hotpotqa": 64,
+      "2wiki": 64,
+      "musique": 64,
+      "sciq": 64,
+      "mmlu_pro": 64,
+      "hellaswag": 64,
+      "gsm8k": 64
+    },
+    "epochs": 4,
+    "effective_batch": 8,
+    "updates": 1536,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "gradient_clip": 1.0,
+    "checkpoint_every": 32,
+    "lambda_kl": 0.5,
+    "prefix_max_new_tokens": 64,
+    "supervised_positions_max": 8,
+    "prefix_quotas_per_batch": [
+      {
+        "gold": 4,
+        "native": 4,
+        "student": 0
+      },
+      {
+        "gold": 3,
+        "native": 3,
+        "student": 2
+      },
+      {
+        "gold": 2,
+        "native": 2,
+        "student": 4
+      },
+      {
+        "gold": 2,
+        "native": 2,
+        "student": 4
+      }
+    ],
+    "max_context_tokens": 32768,
+    "updates_per_epoch": 384,
+    "gsm_train_source": "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/hf_cache/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866/gsm8k-train.arrow",
+    "gsm_target": "Full official training rationale with calculator annotations removed; replace #### final marker by final boxed numeric answer; append one im_end EOS. No target truncation.",
+    "selection": "Fixed final epoch4/step1536; validation diagnostic only.",
+    "evaluation_generation_caps": {
+      "hotpotqa": 64,
+      "2wiki": 64,
+      "musique": 64,
+      "gsm8k": 512
+    },
+    "gsm_scoring": "Report legacy official numeric accuracy and unchanged strict explicit-final-answer accuracy separately; neither is silently substituted for the other. Keep complete outputs and cap flags.",
+    "gsm_length_policy": "Only512 tokens, matching completed frozen4x64 GSM8K baseline; no automatic1024 expansion or resumption of the paused old experiment.",
+    "data_reference": "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234",
+    "data_reference_manifest_sha256": "ca045f531bf9596c883f1f22dd9f02232f1fbdaa5e0d553f9934a546561e262c",
+    "wait_for": "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/mechanism_alignment_counterfactual_attention3qa64_seed1234",
+    "sender": "/hy-tmp/yezhe/all_models/models/LLM-Research/gemma-3-4b-it",
+    "receiver": "/hy-tmp/yezhe/all_models/models/Qwen/Qwen3-4B",
+    "calibration": "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/data/calibration/openr1_hotpot.json",
+    "source_dtype": "float32",
+    "recolor": {
+      "span": 1,
+      "stride": 4,
+      "moment_weighting": "equal_effective_aligned_token_mass_per_corpus",
+      "train_prompts": 1600
+    },
+    "calibration_c": {
+      "rank": 64,
+      "kind": "linear",
+      "epochs": 4,
+      "updates": 800,
+      "effective_batch": 8,
+      "learning_rate": 0.0003,
+      "weight_decay": 0.0001,
+      "gradient_clip": 1.0,
+      "lambda_k_output": 1.0
+    },
+    "base_cache_budget_gib": 40,
+    "disk_reserve_gib": 8,
+    "caveats": [
+      "Redo ONLY19-30 Keep-both after all Llama mechanism diagnostics finish. Prior Gemma all36 remains held.",
+      "Build a NEW Gemma RAW HeteroFold Recolor from the same1600 train Open-R1+Hotpot calibration prompts and equal effective token weighting, span1/stride4, then train fresh linearR64 C with Attention+Output objective for4epochs/800 updates on1600train/400val. No old grouped A/B or old Reader weights, no old Full-Sync/chat anchor interface.",
+      "Recolor fits pre-k_norm/pre-RoPE source/receiver projections. C residuals are pre-Qwen-k_norm/pre-RoPE. Apply Qwen k_norm and RoPE once at cache assembly. Native header only, no native first-content-token anchor.",
+      "Gemma forward uses FP32 due prior FP16 nonfinite audit; receiver isFP16. Stream teacher attention targets to host and use one layer at a time without changing query positions/objective. Sender,receiver,Recolor freeze during C calibration. Fix final epoch4/step800, no test selection.",
+      "After C completes, freeze Recolor+C and train fresh32 Memory Tokens/fourRank16 adapters,409600 parameters. ARC/Hotpot/GSM1024each,4epochs,1536 updates,batch8,lr1e-4,full gold CE+0.5full-vocab KL,original mixed-prefix schedule. Answer retains translated body everywhere; Memory readable only19-30.",
+      "Copy canonical Llama3-task train/validation/test cohorts byte-for-byte; old grouped Gemma calibration data is not used, so old grouped-model contamination replacements are not needed. Exclude Recolor/C calibration questions from downstream train/validation/test.",
+      "Evaluate8tasks64each under same label/ending scoring,QA64/GSM512 caps and both numeric extraction metrics. Recompute NEW Gemma Recolor+C baseline; reuse pinned Native only after parity checks. This matches translator family/recipe to Llama, while chosen Memory access19-30 and FP32 Gemma adaptation must still be disclosed in pair comparisons.",
+      "Optional bounded40GiB exact FP16 Recolor-output cache; misses always compute source normally. No sample skipping, truncation, weight quantization, source-interface substitution or reuse of old grouped-model caches. Cache scope includes learned Recolor hash.",
+      "All training phases save initial/early/periodic/epoch checkpoints and retry overflowing identical batches with RNG restored. Single GPU, detached dependency gate, pause/failure controls; no automatic upload or continual monitoring."
+    ],
+    "routing": "Keep translated body at every layer; memory readable only at layers19-30 during answering; construction unchanged."
+  },
+  "config_sha256": "023d36dc6a4829e9c996c6b35db99051fe7d9097ae650c4938d858e890eb850e",
+  "code": {
+    "calibrate_c.py": "cf6cfc19cc51a3081683289f3b8086d1ffadedb8b028a432fc7fd7a556f903d7",
+    "cpu_checks.py": "b438bc38684a7399c46ad155a26d3232378df4b61314de718d6497763b2f9188",
+    "engine_new.py": "84cd32a90d202a877f934802eae8ceab295a3aa3b95875d6870c268624ad88a5",
+    "evaluate_new.py": "d8ba940cad56cf00f2ab8e3f4d285e841ab3d81146643f74001e36c773d691b1",
+    "experiment_common.py": "2b35d43118da393490c2447ba97784397d47dd410bf66b64b6755a599765dc52",
+    "fit_recolor.py": "c38387c4801f9a622c2dda382e837833c3f8520f01a2579fdeabdefa669442f5",
+    "prepare.py": "c9ed7a208aed9de946973aa40d4bce88fd2bc3e859fe0fe881fc86f7d911f203",
+    "run_pipeline.py": "80d1a17783d59048a7e3d7ec26777d5b939ab9f6567291e76fe6769c6e8e821d",
+    "runtime_new.py": "caeec89cbf4d03a357fe116c3a30af999e75284efad6476ec45667e564379668",
+    "smoke.py": "b548edc8e8f1a88320c5ade8426f609f0eb23ad3d7a28ef5664fcfe4a783ff9d",
+    "smoke_c.py": "950d2e553807c573b90fbd89986fc0af09a11e33300723512a9cde9445929e04",
+    "train_new.py": "1ca678f2c118dd2b4f59940521dc5776f9053f9379b328420dbeeb79c0469a70"
+  },
+  "sources": {
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/manifest.json": "ca045f531bf9596c883f1f22dd9f02232f1fbdaa5e0d553f9934a546561e262c",
+    "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234/manifest.json": "f6b176c9915d2e968ce560fb2f981f6e2cefdd9405a9e2beeac9afa0a739b4c6",
+    "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/data/calibration/openr1_hotpot.json": "2c2957268faf69aee8e4bbf0be7317666b3c008c4e5e89547577d353f1135b19",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/cpu_checks.py": "39fc318fa9968fcb9d7e6559de843d0a39c0fedabf05284cb63ab60123758657",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/evaluate_new.py": "c220ddd70e1890371bdd5bb72acd2f5f892edeb81ca51978dc86b6fe8616b13c",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/experiment_common.py": "4ab176ec2830b2351a4c98c455ffc1d0c01088d94782ff231fd3de9805c7ce1b",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/prepare.py": "0303c86d01a737bd7bb64f5f6388b303312860c43ee517c3c13da04176c2fa3f",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/run_pipeline.py": "1d2180e97f5c502b000fec2962fdd478a8fa61e8c8552d1d0ac295a6179d7520",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/runtime_new.py": "ac79c75ab9dc99c9c51c8b1a93e541ef13ef96285c5ac4de5b7de3773d3b45fc",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/smoke.py": "8d7dd5f75bc6ff17028e4ea02f7ce430092af10d35cdc334c6c15733d4465245",
+    "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234/train_new.py": "0ff0f1b6b14c00fc5fe32a81577d265299ca3640e937ef14ef5b5dee321306e1",
+    "/hy-tmp/yezhe/异构模型/rnkv_gemma_recolor_c_keep_both_l19_30_3task_seed1234/prepared/train.jsonl": "f2f883777686dbe4f605df13b98c88c7cf088c88a8e66986f3f8b318d47a3b83",
+    "/hy-tmp/yezhe/异构模型/rnkv_gemma_recolor_c_keep_both_l19_30_3task_seed1234/prepared/validation.jsonl": "4ac6d09e4c6116fead63d8cf03273087b7f835977f98f9328a9ce8ae238dc9bf",
+    "/hy-tmp/yezhe/异构模型/rnkv_gemma_recolor_c_keep_both_l19_30_3task_seed1234/prepared/test.jsonl": "46480ddc5afab78d7b7b39a680c6c2f800e330649eaf380719cb9f7f5ea3aae3",
+    "/hy-tmp/yezhe/异构模型/rnkv_gemma_recolor_c_keep_both_l19_30_3task_seed1234/prepared/calibration_train.jsonl": "10d231666323dea3735909ce631706e26a8a4e6a64ad7bd9b7aa84273a4fc2f7",
+    "/hy-tmp/yezhe/异构模型/rnkv_gemma_recolor_c_keep_both_l19_30_3task_seed1234/prepared/calibration_validation.jsonl": "be1d90276b9e1e6f118f1c1a2a3390c632889fbf0e7e787072f2a1d08d878d75",
+    "/hy-tmp/yezhe/all_models/models/LLM-Research/gemma-3-4b-it/config.json": "9059f680f4dbd1957f35cb44b9fdd6948f4792db7a7a35ee353ea42e68adf7ff",
+    "/hy-tmp/yezhe/all_models/models/LLM-Research/gemma-3-4b-it/tokenizer_config.json": "bfe25c2735e395407beb78456ea9a6984a1f00d8c16fa04a8b75f2a614cf53e1",
+    "/hy-tmp/yezhe/all_models/models/LLM-Research/gemma-3-4b-it/tokenizer.json": "4667f2089529e8e7657cfb6d1c19910ae71ff5f28aa7ab2ff2763330affad795",
+    "/hy-tmp/yezhe/all_models/models/Qwen/Qwen3-4B/config.json": "8ba006f74fecfaaeb392872a60f4a480e7ec9860153d2e1b769ec81f9a147f8a",
+    "/hy-tmp/yezhe/all_models/models/Qwen/Qwen3-4B/tokenizer_config.json": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+    "/hy-tmp/yezhe/all_models/models/Qwen/Qwen3-4B/tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+  },
+  "prefix_ids": [
+    151644,
+    872,
+    198
+  ],
+  "calibration_alignment": {
+    "train": {
+      "min_pairs": 20,
+      "total_pairs": 1176009,
+      "n": 1600
+    },
+    "validation": {
+      "min_pairs": 17,
+      "total_pairs": 289811,
+      "n": 400
+    }
+  },
+  "min_aligned_pairs": 17,
+  "counts": {
+    "train": 3072,
+    "validation": 192,
+    "test": 512
+  },
+  "calibration_counts": {
+    "train": 1600,
+    "validation": 400
+  },
+  "canonical_split_byte_identical": true,
+  "question_overlap": 0,
+  "memory_trainable_parameters": 409600,
+  "c_trainable_parameters": 9437184,
+  "batch_schedules": {
+    "1": "8cc1581ddb859b3d890573e3553c67d090bcd7ea00b07b768e922f5e42f28d9f",
+    "2": "09021ea31149aafedff2c5f2bc6c7c289f92b5a545e817738a4dadf298302152",
+    "3": "d1ae595b0abe0ac6b344c5ffc2c5144189b39afe823da965464a0de90390d140",
+    "4": "f10060b692b1be6fb19a5bfef3755c8aae8f53433d4afebaa260e10356657ef6"
+  }
+}
