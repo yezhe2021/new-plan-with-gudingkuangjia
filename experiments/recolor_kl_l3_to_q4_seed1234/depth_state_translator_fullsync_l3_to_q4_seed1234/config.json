@@ -1,0 +1,93 @@
+{
+  "seed": 1234,
+  "data_reference": "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234",
+  "data_reference_manifest_sha256": "ca045f531bf9596c883f1f22dd9f02232f1fbdaa5e0d553f9934a546561e262c",
+  "model": {
+    "sender_layers": 28,
+    "receiver_layers": 36,
+    "source_width": 1024,
+    "target_width": 1024,
+    "state_width": 256,
+    "carry_state": true
+  },
+  "token_chunk": 128,
+  "stage1": {
+    "epochs": 4,
+    "learning_rate": 0.0003,
+    "objective": "mean per-layer K/V normalized MSE in native pre-k_norm/pre-RoPE space; full-body tokens; sample-weighted accumulation"
+  },
+  "stage2": {
+    "epochs": 4,
+    "learning_rate": 0.0001,
+    "lambda_kl": 0.5
+  },
+  "effective_batch": 8,
+  "weight_decay": 0.0001,
+  "gradient_clip": 1.0,
+  "checkpoint_every": 32,
+  "minimum_free_gpu_mib": 30720,
+  "disk_reserve_gib": 8,
+  "static_memory": false,
+  "train_counts": {
+    "arc": 1024,
+    "hotpotqa": 1024,
+    "gsm8k": 1024
+  },
+  "validation_counts": {
+    "arc": 64,
+    "hotpotqa": 64,
+    "gsm8k": 64
+  },
+  "test_counts": {
+    "arc": 64,
+    "hotpotqa": 64,
+    "2wiki": 64,
+    "musique": 64,
+    "sciq": 64,
+    "mmlu_pro": 64,
+    "hellaswag": 64,
+    "gsm8k": 64
+  },
+  "updates_per_epoch": 384,
+  "prefix_quotas_per_batch": [
+    {
+      "gold": 4,
+      "native": 4,
+      "student": 0
+    },
+    {
+      "gold": 3,
+      "native": 3,
+      "student": 2
+    },
+    {
+      "gold": 2,
+      "native": 2,
+      "student": 4
+    },
+    {
+      "gold": 2,
+      "native": 2,
+      "student": 4
+    }
+  ],
+  "prefix_max_new_tokens": 64,
+  "supervised_positions_max": 8,
+  "evaluation_generation_caps": {
+    "hotpotqa": 64,
+    "2wiki": 64,
+    "musique": 64,
+    "gsm8k": 512
+  },
+  "max_context_tokens": 32768,
+  "protocol": "RAW Sender body without added BOS; fixed native Qwen public header only. Full-Sync maps every Receiver body token. Teacher raw Native K/V from k_proj/v_proj on header+same body. DST raw output passes Qwen k_norm and RoPE exactly once. No Qwen body prefill in student evaluation.",
+  "selection": "Fixed final epoch4 at each stage; validation diagnostic only; no test checkpoint selection.",
+  "launch_scope": "Implementation and disposable correctness tests; full training requires user choice of budget.",
+  "caveats": [
+    "Full-Sync+new DST changes both alignment and architecture relative to the historical HeteroFold baseline. Historical data/training budgets also differ. End-to-end differences do not isolate the benefit of depth recurrence.",
+    "carry_state=false provides the same allocated parameter structure and local readouts with recurrence reset per Receiver layer; effective use of recurrent parameters changes. This control must be trained separately at the same budget before causal architecture claims.",
+    "Full-Sync guarantees shared synchronization-unit boundaries. Ordered Copy/Drop can select a source state whose end exceeds an individual target token end inside that unit. Audit and report intra-unit lookahead rather than claim strict per-token causality.",
+    "Sender/Receiver remain frozen. Only DST trains in both stages. No Recolor/C initialization or residual wrapper is used; complete RAW Sender features feed layer-specific direct full-width K/V projections plus the joint depth latent. All heads may mix in each dense projection.",
+    "Static Memory is disabled for the initial independent-translator comparison. Existing Native/Recolor+C baselines use identical scoring and rows but historical training differs. Eight64-question cohorts, single seed exploratory; original labels and both GSM scorers retained."
+  ]
+}
