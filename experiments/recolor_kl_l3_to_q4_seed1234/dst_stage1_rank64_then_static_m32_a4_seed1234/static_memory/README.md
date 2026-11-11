@@ -1,0 +1,1 @@
+D: fresh Static Memory matched to the previous DST-specific Static experiment, with only its frozen translator replaced by B. See parent README and config. No B weights exist until the parent finishes; prepare pins their exact SHA at that time.
