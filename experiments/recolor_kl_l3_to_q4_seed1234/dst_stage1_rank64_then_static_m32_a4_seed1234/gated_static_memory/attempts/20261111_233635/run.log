@@ -1,0 +1,26 @@
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:01<12:30,  1.89s/it]Loading weights:  33%|███▎      | 133/398 [00:01<00:02, 93.21it/s]Loading weights:  53%|█████▎    | 211/398 [00:02<00:02, 92.92it/s]Loading weights:  65%|██████▍   | 258/398 [00:03<00:01, 88.23it/s]Loading weights:  73%|███████▎  | 290/398 [00:03<00:01, 87.92it/s]Loading weights:  79%|███████▉  | 314/398 [00:04<00:00, 86.47it/s]Loading weights:  83%|████████▎ | 332/398 [00:04<00:00, 92.83it/s]Loading weights:  88%|████████▊ | 349/398 [00:04<00:00, 85.59it/s]Loading weights:  91%|█████████ | 363/398 [00:04<00:00, 84.35it/s]Loading weights:  94%|█████████▍| 375/398 [00:04<00:00, 86.26it/s]Loading weights:  97%|█████████▋| 387/398 [00:04<00:00, 85.36it/s]Loading weights: 100%|██████████| 398/398 [00:05<00:00, 85.58it/s]Loading weights: 100%|██████████| 398/398 [00:05<00:00, 78.55it/s]
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:01<06:14,  1.48s/it]Loading weights:  44%|████▎     | 111/254 [00:01<00:01, 96.95it/s]Loading weights:  68%|██████▊   | 173/254 [00:02<00:00, 103.39it/s]Loading weights:  83%|████████▎ | 212/254 [00:02<00:00, 88.37it/s] Loading weights:  94%|█████████▎| 238/254 [00:03<00:00, 87.09it/s]Loading weights: 100%|██████████| 254/254 [00:03<00:00, 80.06it/s]
+Zero-gate parity: arc
+Zero-gate parity: hotpotqa
+Traceback (most recent call last):
+  File "/hy-tmp/yezhe/异构模型/dst_stage1_rank64_then_static_m32_a4_seed1234/gated_static_memory/experiment.py", line 168, in <module>
+    {"prepare": G.prepare, "smoke": smoke, "train": train, "evaluate": evaluate}[sys.argv[1]]()
+  File "/hy-tmp/yezhe/异构模型/dst_stage1_rank64_then_static_m32_a4_seed1234/gated_static_memory/experiment.py", line 64, in smoke
+    _, outcome, retries = runtime.backward_batch(engine, correction, module, optimizer, scaler, batch, 1, step, scope="smoke")
+  File "/hy-tmp/yezhe/异构模型/dst_stage1_rank64_then_static_m32_a4_seed1234/static_memory/runtime_new.py", line 67, in backward_batch
+    loss,detail=losses(engine,module,row,translated,native,kind,epoch)
+  File "/hy-tmp/yezhe/异构模型/dst_stage1_rank64_then_static_m32_a4_seed1234/static_memory/runtime_new.py", line 53, in losses
+    tokens=target if prefix_kind=='gold' else native_prefix(module,row,native) if prefix_kind=='native' else module.rollout(row,memory,rn=True,cap=CFG['prefix_max_new_tokens'])
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/hy-tmp/yezhe/异构模型/dst_stage1_rank64_then_static_m32_a4_seed1234/static_memory/runtime_new.py", line 38, in native_prefix
+    value=C.read(source);assert value['manifest_sha256']==N.identity() and value['id']==row['id']
+NameError: name 'N' is not defined
+Traceback (most recent call last):
+  File "/hy-tmp/yezhe/异构模型/dst_stage1_rank64_then_static_m32_a4_seed1234/gated_static_memory/job.py", line 71, in <module>
+    {"launch": launch, "run": run}[sys.argv[1]]()
+  File "/hy-tmp/yezhe/异构模型/dst_stage1_rank64_then_static_m32_a4_seed1234/gated_static_memory/job.py", line 63, in run
+    result.check_returncode()
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/subprocess.py", line 457, in check_returncode
+    raise CalledProcessError(self.returncode, self.args, self.stdout,
+subprocess.CalledProcessError: Command '['/hy-tmp/yezhe/data/miniconda3/envs/attnkv/bin/python', '-u', 'experiment.py', 'smoke']' returned non-zero exit status 1.
