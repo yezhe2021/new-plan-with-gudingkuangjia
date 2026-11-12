@@ -1,0 +1,538 @@
+{
+  "status": "completed",
+  "manifest": {
+    "input_ids": [
+      "b1d6affa66af82b7_8192",
+      "0624f51b2a05581b_8192"
+    ],
+    "chunks": [
+      128,
+      512,
+      1024,
+      2048,
+      8192
+    ],
+    "paths": [
+      "legacy",
+      "gpu_index",
+      "gpu_aligned"
+    ],
+    "trials": 3,
+    "prior_run_sha256": "aa523fb46923db3fe01454f2e65f54eea0f80094aa7792ad654247c407e0eb95",
+    "script_sha256": "c4dafeec78245888482257920b52361bac8219dd67da3e7a86a837d64fc2c111",
+    "dst_checkpoint_sha256": "aaae0362577395681095d5f72fbc07c4bc9920e0506f79dc21e531ac618958a9",
+    "device": "Tesla V100-SXM2-32GB",
+    "input_residency": "compatible CPU raw K/V, upload included in all handoff arms",
+    "cache_check": "first token exact; all K/V values within atol=rtol=0.003"
+  },
+  "articles": 2,
+  "native": {
+    "ready": {
+      "n": 6,
+      "p50": 2375.1712292432785,
+      "p95": 2383.242018520832
+    },
+    "handoff_ttft": {
+      "n": 6,
+      "p50": 2390.6225450336933,
+      "p95": 2401.3031348586082
+    }
+  },
+  "variants": {
+    "legacy_128": {
+      "path": "legacy",
+      "chunk": 128,
+      "per_article_status": [
+        "completed",
+        "completed"
+      ],
+      "articles": 2,
+      "parity": [
+        {
+          "cache_within_tolerance": true,
+          "max_abs_cache_error": 0.0,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": true,
+          "max_abs_cache_error": 0.0,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ],
+      "ready": {
+        "latency_ms": {
+          "n": 6,
+          "p50": 3492.4199767410755,
+          "p95": 4668.7270030379295
+        },
+        "paired_native_speedup": {
+          "n": 2,
+          "p50": 0.6356276618048321,
+          "p95": 0.7208891327593888
+        },
+        "peak_allocated_bytes": 20554843648,
+        "peak_delta_bytes": 4564082688,
+        "peak_reserved_bytes": 29102178304
+      },
+      "handoff_ttft": {
+        "latency_ms": {
+          "n": 6,
+          "p50": 3441.899199038744,
+          "p95": 4275.436766445637
+        },
+        "paired_native_speedup": {
+          "n": 2,
+          "p50": 0.7005491315800865,
+          "p95": 0.7119216318494879
+        },
+        "peak_allocated_bytes": 20554843648,
+        "peak_delta_bytes": 4564082688,
+        "peak_reserved_bytes": 29102178304
+      },
+      "handoff_stage_p50_ms": {
+        "alignment": 267.6936872303486,
+        "host_to_device": 221.65507078170776,
+        "mapping": 1893.186777830124,
+        "cache_finalize": 919.1637672483921,
+        "cache_assemble": 14.053873717784882,
+        "receiver_suffix": 66.70235842466354,
+        "first_token_head": 1.362621784210205
+      }
+    },
+    "legacy_512": {
+      "path": "legacy",
+      "chunk": 512,
+      "per_article_status": [
+        "parity_failed",
+        "parity_failed"
+      ],
+      "articles": 0,
+      "parity": [
+        {
+          "cache_within_tolerance": false,
+          "max_abs_cache_error": 0.25,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": false,
+          "max_abs_cache_error": 0.25,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ]
+    },
+    "legacy_1024": {
+      "path": "legacy",
+      "chunk": 1024,
+      "per_article_status": [
+        "parity_failed",
+        "parity_failed"
+      ],
+      "articles": 0,
+      "parity": [
+        {
+          "cache_within_tolerance": false,
+          "max_abs_cache_error": 0.25,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": false,
+          "max_abs_cache_error": 0.25,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ]
+    },
+    "legacy_2048": {
+      "path": "legacy",
+      "chunk": 2048,
+      "per_article_status": [
+        "parity_failed",
+        "parity_failed"
+      ],
+      "articles": 0,
+      "parity": [
+        {
+          "cache_within_tolerance": false,
+          "max_abs_cache_error": 0.25,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": false,
+          "max_abs_cache_error": 0.25,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ]
+    },
+    "legacy_8192": {
+      "path": "legacy",
+      "chunk": 8192,
+      "per_article_status": [
+        "parity_failed",
+        "parity_failed"
+      ],
+      "articles": 0,
+      "parity": [
+        {
+          "cache_within_tolerance": false,
+          "max_abs_cache_error": 0.25,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": false,
+          "max_abs_cache_error": 0.25,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ]
+    },
+    "gpu_index_128": {
+      "path": "gpu_index",
+      "chunk": 128,
+      "per_article_status": [
+        "completed",
+        "completed"
+      ],
+      "articles": 2,
+      "parity": [
+        {
+          "cache_within_tolerance": true,
+          "max_abs_cache_error": 0.0,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": true,
+          "max_abs_cache_error": 0.0,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ],
+      "ready": {
+        "latency_ms": {
+          "n": 6,
+          "p50": 3284.5447324216366,
+          "p95": 3992.4975857138634
+        },
+        "paired_native_speedup": {
+          "n": 2,
+          "p50": 0.7055897325460156,
+          "p95": 0.7239268189532622
+        },
+        "peak_allocated_bytes": 20554909184,
+        "peak_delta_bytes": 4564148224,
+        "peak_reserved_bytes": 29102178304
+      },
+      "handoff_ttft": {
+        "latency_ms": {
+          "n": 6,
+          "p50": 3251.4495104551315,
+          "p95": 4217.788964509964
+        },
+        "paired_native_speedup": {
+          "n": 2,
+          "p50": 0.7358351222714525,
+          "p95": 0.760833193011445
+        },
+        "peak_allocated_bytes": 20554909184,
+        "peak_delta_bytes": 4564148224,
+        "peak_reserved_bytes": 29102178304
+      },
+      "handoff_stage_p50_ms": {
+        "alignment": 285.50659865140915,
+        "host_to_device": 223.86204078793526,
+        "gpu_index_upload": 0.9203851222991943,
+        "mapping": 1769.155077636242,
+        "cache_finalize": 920.8316169679165,
+        "cache_assemble": 14.163505285978317,
+        "receiver_suffix": 66.63322448730469,
+        "first_token_head": 1.4008879661560059
+      }
+    },
+    "gpu_index_512": {
+      "path": "gpu_index",
+      "chunk": 512,
+      "per_article_status": [
+        "parity_failed",
+        "parity_failed"
+      ],
+      "articles": 0,
+      "parity": [
+        {
+          "cache_within_tolerance": false,
+          "max_abs_cache_error": 0.25,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": false,
+          "max_abs_cache_error": 0.25,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ]
+    },
+    "gpu_index_1024": {
+      "path": "gpu_index",
+      "chunk": 1024,
+      "per_article_status": [
+        "parity_failed",
+        "parity_failed"
+      ],
+      "articles": 0,
+      "parity": [
+        {
+          "cache_within_tolerance": false,
+          "max_abs_cache_error": 0.25,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": false,
+          "max_abs_cache_error": 0.25,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ]
+    },
+    "gpu_index_2048": {
+      "path": "gpu_index",
+      "chunk": 2048,
+      "per_article_status": [
+        "parity_failed",
+        "parity_failed"
+      ],
+      "articles": 0,
+      "parity": [
+        {
+          "cache_within_tolerance": false,
+          "max_abs_cache_error": 0.25,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": false,
+          "max_abs_cache_error": 0.25,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ]
+    },
+    "gpu_index_8192": {
+      "path": "gpu_index",
+      "chunk": 8192,
+      "per_article_status": [
+        "parity_failed",
+        "parity_failed"
+      ],
+      "articles": 0,
+      "parity": [
+        {
+          "cache_within_tolerance": false,
+          "max_abs_cache_error": 0.25,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": false,
+          "max_abs_cache_error": 0.25,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ]
+    },
+    "gpu_aligned_128": {
+      "path": "gpu_aligned",
+      "chunk": 128,
+      "per_article_status": [
+        "completed",
+        "completed"
+      ],
+      "articles": 2,
+      "parity": [
+        {
+          "cache_within_tolerance": true,
+          "max_abs_cache_error": 0.0,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": true,
+          "max_abs_cache_error": 0.0,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ],
+      "ready": {
+        "latency_ms": {
+          "n": 6,
+          "p50": 3071.3505148887634,
+          "p95": 3782.339945435524
+        },
+        "paired_native_speedup": {
+          "n": 2,
+          "p50": 0.769276371617732,
+          "p95": 0.7962775710201793
+        },
+        "peak_allocated_bytes": 21494638080,
+        "peak_delta_bytes": 5503877120,
+        "peak_reserved_bytes": 29102178304
+      },
+      "handoff_ttft": {
+        "latency_ms": {
+          "n": 6,
+          "p50": 3232.84912109375,
+          "p95": 4111.363373696804
+        },
+        "paired_native_speedup": {
+          "n": 2,
+          "p50": 0.6996378458192951,
+          "p95": 0.7666424770044759
+        },
+        "peak_allocated_bytes": 21494638080,
+        "peak_delta_bytes": 5503877120,
+        "peak_reserved_bytes": 29102178304
+      },
+      "handoff_stage_p50_ms": {
+        "alignment": 305.2190952003002,
+        "host_to_device": 223.99897873401642,
+        "gpu_index_upload": 0.9091980755329132,
+        "gpu_prealignment": 11.553008109331131,
+        "mapping": 1617.1245872974396,
+        "cache_finalize": 910.4971885681152,
+        "cache_assemble": 14.95734229683876,
+        "receiver_suffix": 66.56543910503387,
+        "first_token_head": 1.3593658804893494
+      }
+    },
+    "gpu_aligned_512": {
+      "path": "gpu_aligned",
+      "chunk": 512,
+      "per_article_status": [
+        "parity_failed",
+        "parity_failed"
+      ],
+      "articles": 0,
+      "parity": [
+        {
+          "cache_within_tolerance": false,
+          "max_abs_cache_error": 0.25,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": false,
+          "max_abs_cache_error": 0.25,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ]
+    },
+    "gpu_aligned_1024": {
+      "path": "gpu_aligned",
+      "chunk": 1024,
+      "per_article_status": [
+        "parity_failed",
+        "parity_failed"
+      ],
+      "articles": 0,
+      "parity": [
+        {
+          "cache_within_tolerance": false,
+          "max_abs_cache_error": 0.25,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": false,
+          "max_abs_cache_error": 0.25,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ]
+    },
+    "gpu_aligned_2048": {
+      "path": "gpu_aligned",
+      "chunk": 2048,
+      "per_article_status": [
+        "parity_failed",
+        "parity_failed"
+      ],
+      "articles": 0,
+      "parity": [
+        {
+          "cache_within_tolerance": false,
+          "max_abs_cache_error": 0.25,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": false,
+          "max_abs_cache_error": 0.25,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ]
+    },
+    "gpu_aligned_8192": {
+      "path": "gpu_aligned",
+      "chunk": 8192,
+      "per_article_status": [
+        "parity_failed",
+        "parity_failed"
+      ],
+      "articles": 0,
+      "parity": [
+        {
+          "cache_within_tolerance": false,
+          "max_abs_cache_error": 0.25,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": false,
+          "max_abs_cache_error": 0.25,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ]
+    }
+  }
+}

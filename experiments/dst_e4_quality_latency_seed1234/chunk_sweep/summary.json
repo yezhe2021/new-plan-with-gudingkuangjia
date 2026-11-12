@@ -1,0 +1,868 @@
+{
+  "status": "completed",
+  "manifest": {
+    "input_ids": [
+      "b1d6affa66af82b7_8192",
+      "0624f51b2a05581b_8192"
+    ],
+    "chunks": [
+      128,
+      512,
+      1024,
+      2048,
+      8192
+    ],
+    "paths": [
+      "legacy",
+      "gpu_index",
+      "gpu_aligned"
+    ],
+    "trials": 3,
+    "prior_run_sha256": "aa523fb46923db3fe01454f2e65f54eea0f80094aa7792ad654247c407e0eb95",
+    "script_sha256": "d7c8fdc70fb1a2ead16aaae2319abbe7413a5af853c58f76562e2b776f5dc055",
+    "dst_checkpoint_sha256": "aaae0362577395681095d5f72fbc07c4bc9920e0506f79dc21e531ac618958a9",
+    "device": "Tesla V100-SXM2-32GB",
+    "input_residency": "compatible CPU raw K/V, upload included in all handoff arms",
+    "cache_check": "first token exact, max layer/role K/V relative L2 and logits relative L2 <= 0.003; record original pointwise failures separately"
+  },
+  "articles": 2,
+  "native": {
+    "ready": {
+      "n": 6,
+      "p50": 2385.61137765646,
+      "p95": 2388.5150849819183
+    },
+    "handoff_ttft": {
+      "n": 6,
+      "p50": 2396.2185345590115,
+      "p95": 2405.695900321007
+    }
+  },
+  "variants": {
+    "legacy_128": {
+      "path": "legacy",
+      "chunk": 128,
+      "per_article_status": [
+        "completed",
+        "completed"
+      ],
+      "articles": 2,
+      "parity": [
+        {
+          "cache_within_tolerance": true,
+          "elements_outside_pointwise_tolerance": 0,
+          "max_abs_cache_error": 0.0,
+          "max_layer_kv_relative_l2": 0.0,
+          "first_token_logits_relative_l2": 0.0,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": true,
+          "elements_outside_pointwise_tolerance": 0,
+          "max_abs_cache_error": 0.0,
+          "max_layer_kv_relative_l2": 0.0,
+          "first_token_logits_relative_l2": 0.0,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ],
+      "ready": {
+        "latency_ms": {
+          "n": 6,
+          "p50": 3343.784049153328,
+          "p95": 3719.7728157043457
+        },
+        "paired_native_speedup": {
+          "n": 2,
+          "p50": 0.7138183089238438,
+          "p95": 0.7301758188194314
+        },
+        "peak_allocated_bytes": 20554843648,
+        "peak_delta_bytes": 4564082688,
+        "peak_reserved_bytes": 29060235264
+      },
+      "handoff_ttft": {
+        "latency_ms": {
+          "n": 6,
+          "p50": 3474.590338766575,
+          "p95": 3567.6096826791763
+        },
+        "paired_native_speedup": {
+          "n": 2,
+          "p50": 0.7050545164702313,
+          "p95": 0.7272159728718539
+        },
+        "peak_allocated_bytes": 20554843648,
+        "peak_delta_bytes": 4564082688,
+        "peak_reserved_bytes": 29060235264
+      },
+      "handoff_stage_p50_ms": {
+        "alignment": 171.49347811937332,
+        "host_to_device": 221.91065177321434,
+        "mapping": 1898.44386652112,
+        "cache_finalize": 906.7380167543888,
+        "cache_assemble": 14.050278812646866,
+        "receiver_suffix": 66.7465403676033,
+        "first_token_head": 1.342128962278366
+      }
+    },
+    "legacy_512": {
+      "path": "legacy",
+      "chunk": 512,
+      "per_article_status": [
+        "completed",
+        "parity_failed"
+      ],
+      "articles": 1,
+      "parity": [
+        {
+          "cache_within_tolerance": true,
+          "elements_outside_pointwise_tolerance": 30,
+          "max_abs_cache_error": 0.25,
+          "max_layer_kv_relative_l2": 4.8489502660231665e-05,
+          "first_token_logits_relative_l2": 0.0022655182983726263,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": false,
+          "elements_outside_pointwise_tolerance": 30,
+          "max_abs_cache_error": 0.25,
+          "max_layer_kv_relative_l2": 5.0823182391468436e-05,
+          "first_token_logits_relative_l2": 0.008324545808136463,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ],
+      "ready": {
+        "latency_ms": {
+          "n": 3,
+          "p50": 1217.3848748207092,
+          "p95": 1313.1686970591545
+        },
+        "paired_native_speedup": {
+          "n": 1,
+          "p50": 1.9599956686459565,
+          "p95": 1.9599956686459565
+        },
+        "peak_allocated_bytes": 20554843648,
+        "peak_delta_bytes": 4564082688,
+        "peak_reserved_bytes": 29060235264
+      },
+      "handoff_ttft": {
+        "latency_ms": {
+          "n": 3,
+          "p50": 1256.2547475099564,
+          "p95": 1534.6677750349045
+        },
+        "paired_native_speedup": {
+          "n": 1,
+          "p50": 1.9074040775994268,
+          "p95": 1.9074040775994268
+        },
+        "peak_allocated_bytes": 20554843648,
+        "peak_delta_bytes": 4564082688,
+        "peak_reserved_bytes": 29060235264
+      },
+      "handoff_stage_p50_ms": {
+        "alignment": 376.1212229728699,
+        "host_to_device": 226.84422880411148,
+        "mapping": 557.0864975452423,
+        "cache_finalize": 230.26864230632782,
+        "cache_assemble": 13.070940971374512,
+        "receiver_suffix": 66.02358818054199,
+        "first_token_head": 1.370742917060852
+      }
+    },
+    "legacy_1024": {
+      "path": "legacy",
+      "chunk": 1024,
+      "per_article_status": [
+        "parity_failed",
+        "parity_failed"
+      ],
+      "articles": 0,
+      "parity": [
+        {
+          "cache_within_tolerance": false,
+          "elements_outside_pointwise_tolerance": 28,
+          "max_abs_cache_error": 0.25,
+          "max_layer_kv_relative_l2": 4.828458986594342e-05,
+          "first_token_logits_relative_l2": 0.005760328844189644,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": false,
+          "elements_outside_pointwise_tolerance": 29,
+          "max_abs_cache_error": 0.25,
+          "max_layer_kv_relative_l2": 5.071544728707522e-05,
+          "first_token_logits_relative_l2": 0.00411378825083375,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ]
+    },
+    "legacy_2048": {
+      "path": "legacy",
+      "chunk": 2048,
+      "per_article_status": [
+        "completed",
+        "completed"
+      ],
+      "articles": 2,
+      "parity": [
+        {
+          "cache_within_tolerance": true,
+          "elements_outside_pointwise_tolerance": 34,
+          "max_abs_cache_error": 0.25,
+          "max_layer_kv_relative_l2": 5.141302972333506e-05,
+          "first_token_logits_relative_l2": 0.0025024213828146458,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": true,
+          "elements_outside_pointwise_tolerance": 24,
+          "max_abs_cache_error": 0.25,
+          "max_layer_kv_relative_l2": 5.40836263098754e-05,
+          "first_token_logits_relative_l2": 0.0023228393401950598,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ],
+      "ready": {
+        "latency_ms": {
+          "n": 6,
+          "p50": 941.2877559661865,
+          "p95": 1112.1520549058914
+        },
+        "paired_native_speedup": {
+          "n": 2,
+          "p50": 2.5095351545418314,
+          "p95": 2.544629125979853
+        },
+        "peak_allocated_bytes": 20554843648,
+        "peak_delta_bytes": 4564082688,
+        "peak_reserved_bytes": 29060235264
+      },
+      "handoff_ttft": {
+        "latency_ms": {
+          "n": 6,
+          "p50": 827.1282687783241,
+          "p95": 1217.5697311758995
+        },
+        "paired_native_speedup": {
+          "n": 2,
+          "p50": 2.907522078343378,
+          "p95": 2.9386028316714676
+        },
+        "peak_allocated_bytes": 20554843648,
+        "peak_delta_bytes": 4564082688,
+        "peak_reserved_bytes": 29060235264
+      },
+      "handoff_stage_p50_ms": {
+        "alignment": 282.2911851108074,
+        "host_to_device": 223.71436282992363,
+        "mapping": 287.2539646923542,
+        "cache_finalize": 62.28024512529373,
+        "cache_assemble": 13.309985399246216,
+        "receiver_suffix": 66.10432267189026,
+        "first_token_head": 1.3373903930187225
+      }
+    },
+    "legacy_8192": {
+      "path": "legacy",
+      "chunk": 8192,
+      "per_article_status": [
+        "parity_failed",
+        "parity_failed"
+      ],
+      "articles": 0,
+      "parity": [
+        {
+          "cache_within_tolerance": false,
+          "elements_outside_pointwise_tolerance": 35,
+          "max_abs_cache_error": 0.25,
+          "max_layer_kv_relative_l2": 5.385615077102557e-05,
+          "first_token_logits_relative_l2": 0.0040429444052278996,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": false,
+          "elements_outside_pointwise_tolerance": 28,
+          "max_abs_cache_error": 0.25,
+          "max_layer_kv_relative_l2": 5.478546518133953e-05,
+          "first_token_logits_relative_l2": 0.003498477628454566,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ]
+    },
+    "gpu_index_128": {
+      "path": "gpu_index",
+      "chunk": 128,
+      "per_article_status": [
+        "completed",
+        "completed"
+      ],
+      "articles": 2,
+      "parity": [
+        {
+          "cache_within_tolerance": true,
+          "elements_outside_pointwise_tolerance": 0,
+          "max_abs_cache_error": 0.0,
+          "max_layer_kv_relative_l2": 0.0,
+          "first_token_logits_relative_l2": 0.0,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": true,
+          "elements_outside_pointwise_tolerance": 0,
+          "max_abs_cache_error": 0.0,
+          "max_layer_kv_relative_l2": 0.0,
+          "first_token_logits_relative_l2": 0.0,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ],
+      "ready": {
+        "latency_ms": {
+          "n": 6,
+          "p50": 3285.9076149761677,
+          "p95": 3373.3859062194824
+        },
+        "paired_native_speedup": {
+          "n": 2,
+          "p50": 0.7260367670879708,
+          "p95": 0.7302681153279048
+        },
+        "peak_allocated_bytes": 20554909184,
+        "peak_delta_bytes": 4564148224,
+        "peak_reserved_bytes": 29060235264
+      },
+      "handoff_ttft": {
+        "latency_ms": {
+          "n": 6,
+          "p50": 3164.6589897572994,
+          "p95": 3338.978625833988
+        },
+        "paired_native_speedup": {
+          "n": 2,
+          "p50": 0.7571882925230706,
+          "p95": 0.7595999239274563
+        },
+        "peak_allocated_bytes": 20554909184,
+        "peak_delta_bytes": 4564148224,
+        "peak_reserved_bytes": 29060235264
+      },
+      "handoff_stage_p50_ms": {
+        "alignment": 177.57568880915642,
+        "host_to_device": 224.11074861884117,
+        "gpu_index_upload": 0.8752830326557159,
+        "mapping": 1755.2937380969524,
+        "cache_finalize": 905.2515737712383,
+        "cache_assemble": 14.71613347530365,
+        "receiver_suffix": 66.29764288663864,
+        "first_token_head": 1.3727471232414246
+      }
+    },
+    "gpu_index_512": {
+      "path": "gpu_index",
+      "chunk": 512,
+      "per_article_status": [
+        "completed",
+        "parity_failed"
+      ],
+      "articles": 1,
+      "parity": [
+        {
+          "cache_within_tolerance": true,
+          "elements_outside_pointwise_tolerance": 30,
+          "max_abs_cache_error": 0.25,
+          "max_layer_kv_relative_l2": 4.8489502660231665e-05,
+          "first_token_logits_relative_l2": 0.0022655182983726263,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": false,
+          "elements_outside_pointwise_tolerance": 30,
+          "max_abs_cache_error": 0.25,
+          "max_layer_kv_relative_l2": 5.0823182391468436e-05,
+          "first_token_logits_relative_l2": 0.008324545808136463,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ],
+      "ready": {
+        "latency_ms": {
+          "n": 3,
+          "p50": 1287.0682999491692,
+          "p95": 1403.2193273305893
+        },
+        "paired_native_speedup": {
+          "n": 1,
+          "p50": 1.853879146753847,
+          "p95": 1.853879146753847
+        },
+        "peak_allocated_bytes": 20554909184,
+        "peak_delta_bytes": 4564148224,
+        "peak_reserved_bytes": 29060235264
+      },
+      "handoff_ttft": {
+        "latency_ms": {
+          "n": 3,
+          "p50": 1259.6361562609673,
+          "p95": 1401.2837037444115
+        },
+        "paired_native_speedup": {
+          "n": 1,
+          "p50": 1.9022837793230947,
+          "p95": 1.9022837793230947
+        },
+        "peak_allocated_bytes": 20554909184,
+        "peak_delta_bytes": 4564148224,
+        "peak_reserved_bytes": 29060235264
+      },
+      "handoff_stage_p50_ms": {
+        "alignment": 416.47520661354065,
+        "host_to_device": 225.32014548778534,
+        "gpu_index_upload": 0.9275525808334351,
+        "mapping": 447.7044716477394,
+        "cache_finalize": 229.76874560117722,
+        "cache_assemble": 13.06653767824173,
+        "receiver_suffix": 66.17118418216705,
+        "first_token_head": 1.3793110847473145
+      }
+    },
+    "gpu_index_1024": {
+      "path": "gpu_index",
+      "chunk": 1024,
+      "per_article_status": [
+        "parity_failed",
+        "parity_failed"
+      ],
+      "articles": 0,
+      "parity": [
+        {
+          "cache_within_tolerance": false,
+          "elements_outside_pointwise_tolerance": 28,
+          "max_abs_cache_error": 0.25,
+          "max_layer_kv_relative_l2": 4.828458986594342e-05,
+          "first_token_logits_relative_l2": 0.005760328844189644,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": false,
+          "elements_outside_pointwise_tolerance": 29,
+          "max_abs_cache_error": 0.25,
+          "max_layer_kv_relative_l2": 5.071544728707522e-05,
+          "first_token_logits_relative_l2": 0.00411378825083375,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ]
+    },
+    "gpu_index_2048": {
+      "path": "gpu_index",
+      "chunk": 2048,
+      "per_article_status": [
+        "completed",
+        "completed"
+      ],
+      "articles": 2,
+      "parity": [
+        {
+          "cache_within_tolerance": true,
+          "elements_outside_pointwise_tolerance": 34,
+          "max_abs_cache_error": 0.25,
+          "max_layer_kv_relative_l2": 5.141302972333506e-05,
+          "first_token_logits_relative_l2": 0.0025024213828146458,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": true,
+          "elements_outside_pointwise_tolerance": 24,
+          "max_abs_cache_error": 0.25,
+          "max_layer_kv_relative_l2": 5.40836263098754e-05,
+          "first_token_logits_relative_l2": 0.0023228393401950598,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ],
+      "ready": {
+        "latency_ms": {
+          "n": 6,
+          "p50": 753.1408928334713,
+          "p95": 975.7524952292442
+        },
+        "paired_native_speedup": {
+          "n": 2,
+          "p50": 2.8877042124711165,
+          "p95": 3.207028389501258
+        },
+        "peak_allocated_bytes": 20554909184,
+        "peak_delta_bytes": 4564148224,
+        "peak_reserved_bytes": 29060235264
+      },
+      "handoff_ttft": {
+        "latency_ms": {
+          "n": 6,
+          "p50": 808.7082430720329,
+          "p95": 982.5730472803116
+        },
+        "paired_native_speedup": {
+          "n": 2,
+          "p50": 2.981582651094694,
+          "p95": 3.0032551037985358
+        },
+        "peak_allocated_bytes": 20554909184,
+        "peak_delta_bytes": 4564148224,
+        "peak_reserved_bytes": 29060235264
+      },
+      "handoff_stage_p50_ms": {
+        "alignment": 289.2708331346512,
+        "host_to_device": 225.04595667123795,
+        "gpu_index_upload": 0.942230224609375,
+        "mapping": 269.98549327254295,
+        "cache_finalize": 62.94384226202965,
+        "cache_assemble": 13.277802616357803,
+        "receiver_suffix": 65.91816991567612,
+        "first_token_head": 1.339837908744812
+      }
+    },
+    "gpu_index_8192": {
+      "path": "gpu_index",
+      "chunk": 8192,
+      "per_article_status": [
+        "parity_failed",
+        "parity_failed"
+      ],
+      "articles": 0,
+      "parity": [
+        {
+          "cache_within_tolerance": false,
+          "elements_outside_pointwise_tolerance": 35,
+          "max_abs_cache_error": 0.25,
+          "max_layer_kv_relative_l2": 5.385615077102557e-05,
+          "first_token_logits_relative_l2": 0.0040429444052278996,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": false,
+          "elements_outside_pointwise_tolerance": 28,
+          "max_abs_cache_error": 0.25,
+          "max_layer_kv_relative_l2": 5.478546518133953e-05,
+          "first_token_logits_relative_l2": 0.003498477628454566,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ]
+    },
+    "gpu_aligned_128": {
+      "path": "gpu_aligned",
+      "chunk": 128,
+      "per_article_status": [
+        "completed",
+        "completed"
+      ],
+      "articles": 2,
+      "parity": [
+        {
+          "cache_within_tolerance": true,
+          "elements_outside_pointwise_tolerance": 0,
+          "max_abs_cache_error": 0.0,
+          "max_layer_kv_relative_l2": 0.0,
+          "first_token_logits_relative_l2": 0.0,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": true,
+          "elements_outside_pointwise_tolerance": 0,
+          "max_abs_cache_error": 0.0,
+          "max_layer_kv_relative_l2": 0.0,
+          "first_token_logits_relative_l2": 0.0,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ],
+      "ready": {
+        "latency_ms": {
+          "n": 6,
+          "p50": 3169.6957163512707,
+          "p95": 3464.383341372013
+        },
+        "paired_native_speedup": {
+          "n": 2,
+          "p50": 0.7746909513100074,
+          "p95": 0.8011775308491167
+        },
+        "peak_allocated_bytes": 21494638080,
+        "peak_delta_bytes": 5503877120,
+        "peak_reserved_bytes": 29060235264
+      },
+      "handoff_ttft": {
+        "latency_ms": {
+          "n": 6,
+          "p50": 3049.209125339985,
+          "p95": 3318.8934549689293
+        },
+        "paired_native_speedup": {
+          "n": 2,
+          "p50": 0.7713055485267268,
+          "p95": 0.790426859002139
+        },
+        "peak_allocated_bytes": 21494638080,
+        "peak_delta_bytes": 5503877120,
+        "peak_reserved_bytes": 29060235264
+      },
+      "handoff_stage_p50_ms": {
+        "alignment": 290.7799519598484,
+        "host_to_device": 228.11103612184525,
+        "gpu_index_upload": 0.8914507925510406,
+        "gpu_prealignment": 11.565133929252625,
+        "mapping": 1628.3404789865017,
+        "cache_finalize": 905.9393033385277,
+        "cache_assemble": 14.09560814499855,
+        "receiver_suffix": 66.15118309855461,
+        "first_token_head": 1.3509877026081085
+      }
+    },
+    "gpu_aligned_512": {
+      "path": "gpu_aligned",
+      "chunk": 512,
+      "per_article_status": [
+        "completed",
+        "parity_failed"
+      ],
+      "articles": 1,
+      "parity": [
+        {
+          "cache_within_tolerance": true,
+          "elements_outside_pointwise_tolerance": 30,
+          "max_abs_cache_error": 0.25,
+          "max_layer_kv_relative_l2": 4.8489502660231665e-05,
+          "first_token_logits_relative_l2": 0.0022655182983726263,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": false,
+          "elements_outside_pointwise_tolerance": 30,
+          "max_abs_cache_error": 0.25,
+          "max_layer_kv_relative_l2": 5.0823182391468436e-05,
+          "first_token_logits_relative_l2": 0.008324545808136463,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ],
+      "ready": {
+        "latency_ms": {
+          "n": 3,
+          "p50": 1180.8001846075058,
+          "p95": 1360.7822507619858
+        },
+        "paired_native_speedup": {
+          "n": 1,
+          "p50": 2.0207221448875465,
+          "p95": 2.0207221448875465
+        },
+        "peak_allocated_bytes": 21494638080,
+        "peak_delta_bytes": 5503877120,
+        "peak_reserved_bytes": 29060235264
+      },
+      "handoff_ttft": {
+        "latency_ms": {
+          "n": 3,
+          "p50": 1241.1424964666367,
+          "p95": 1340.4460847377777
+        },
+        "paired_native_speedup": {
+          "n": 1,
+          "p50": 1.930628783339336,
+          "p95": 1.930628783339336
+        },
+        "peak_allocated_bytes": 21494638080,
+        "peak_delta_bytes": 5503877120,
+        "peak_reserved_bytes": 29060235264
+      },
+      "handoff_stage_p50_ms": {
+        "alignment": 170.6703081727028,
+        "host_to_device": 227.4761125445366,
+        "gpu_index_upload": 0.8751824498176575,
+        "gpu_prealignment": 11.54416799545288,
+        "mapping": 442.59364157915115,
+        "cache_finalize": 236.4487126469612,
+        "cache_assemble": 13.07927817106247,
+        "receiver_suffix": 66.02839380502701,
+        "first_token_head": 1.3886988162994385
+      }
+    },
+    "gpu_aligned_1024": {
+      "path": "gpu_aligned",
+      "chunk": 1024,
+      "per_article_status": [
+        "parity_failed",
+        "parity_failed"
+      ],
+      "articles": 0,
+      "parity": [
+        {
+          "cache_within_tolerance": false,
+          "elements_outside_pointwise_tolerance": 28,
+          "max_abs_cache_error": 0.25,
+          "max_layer_kv_relative_l2": 4.828458986594342e-05,
+          "first_token_logits_relative_l2": 0.005760328844189644,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": false,
+          "elements_outside_pointwise_tolerance": 29,
+          "max_abs_cache_error": 0.25,
+          "max_layer_kv_relative_l2": 5.071544728707522e-05,
+          "first_token_logits_relative_l2": 0.00411378825083375,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ]
+    },
+    "gpu_aligned_2048": {
+      "path": "gpu_aligned",
+      "chunk": 2048,
+      "per_article_status": [
+        "completed",
+        "completed"
+      ],
+      "articles": 2,
+      "parity": [
+        {
+          "cache_within_tolerance": true,
+          "elements_outside_pointwise_tolerance": 34,
+          "max_abs_cache_error": 0.25,
+          "max_layer_kv_relative_l2": 5.141302972333506e-05,
+          "first_token_logits_relative_l2": 0.0025024213828146458,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": true,
+          "elements_outside_pointwise_tolerance": 24,
+          "max_abs_cache_error": 0.25,
+          "max_layer_kv_relative_l2": 5.40836263098754e-05,
+          "first_token_logits_relative_l2": 0.0023228393401950598,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ],
+      "ready": {
+        "latency_ms": {
+          "n": 6,
+          "p50": 740.8644072711468,
+          "p95": 1010.3662237524986
+        },
+        "paired_native_speedup": {
+          "n": 2,
+          "p50": 3.2210355755811895,
+          "p95": 3.230422133135752
+        },
+        "peak_allocated_bytes": 21494638080,
+        "peak_delta_bytes": 5503877120,
+        "peak_reserved_bytes": 29060235264
+      },
+      "handoff_ttft": {
+        "latency_ms": {
+          "n": 6,
+          "p50": 916.3563512265682,
+          "p95": 1082.5200751423836
+        },
+        "paired_native_speedup": {
+          "n": 2,
+          "p50": 2.656675956079847,
+          "p95": 3.005269602820641
+        },
+        "peak_allocated_bytes": 21494638080,
+        "peak_delta_bytes": 5503877120,
+        "peak_reserved_bytes": 29060235264
+      },
+      "handoff_stage_p50_ms": {
+        "alignment": 175.91604590415955,
+        "host_to_device": 223.99087995290756,
+        "gpu_index_upload": 0.9069442749023438,
+        "gpu_prealignment": 11.533867567777634,
+        "mapping": 254.3266974389553,
+        "cache_finalize": 66.78162515163422,
+        "cache_assemble": 13.30675184726715,
+        "receiver_suffix": 66.38555228710175,
+        "first_token_head": 1.3684853911399841
+      }
+    },
+    "gpu_aligned_8192": {
+      "path": "gpu_aligned",
+      "chunk": 8192,
+      "per_article_status": [
+        "parity_failed",
+        "parity_failed"
+      ],
+      "articles": 0,
+      "parity": [
+        {
+          "cache_within_tolerance": false,
+          "elements_outside_pointwise_tolerance": 35,
+          "max_abs_cache_error": 0.25,
+          "max_layer_kv_relative_l2": 5.385615077102557e-05,
+          "first_token_logits_relative_l2": 0.0040429444052278996,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        },
+        {
+          "cache_within_tolerance": false,
+          "elements_outside_pointwise_tolerance": 28,
+          "max_abs_cache_error": 0.25,
+          "max_layer_kv_relative_l2": 5.478546518133953e-05,
+          "first_token_logits_relative_l2": 0.003498477628454566,
+          "first_token": 785,
+          "reference_token": 785,
+          "first_token_matches": true
+        }
+      ]
+    }
+  }
+}
