@@ -1,0 +1,75 @@
+{
+  "config": {
+    "seed": 1234,
+    "reference": "dst_stage1_rank64_then_static_m32_a4_seed1234",
+    "historical_c": "recolor_kl_l3_to_q4_seed1234",
+    "protocol": "dst-fullbody-chat-v1",
+    "prepared_sha256": {
+      "train": "d21e80820aa044aa9967078169bf2cdf696b48cc5954e0635ca07ed0904fc62c",
+      "validation": "f54e86d4e665dd66f0625dd3e7c6673a687fb1130ab492d18eaf451517e32033",
+      "test": "de54be31b2d6830e3e09e70d056c2011d2ad3c81a62109513ceb90aee3f4b625"
+    },
+    "rank64_checkpoint_sha256": "aaae0362577395681095d5f72fbc07c4bc9920e0506f79dc21e531ac618958a9",
+    "train_counts": {
+      "arc": 1024,
+      "hotpotqa": 1024,
+      "gsm8k": 1024
+    },
+    "validation_counts": {
+      "arc": 64,
+      "hotpotqa": 64,
+      "gsm8k": 64
+    },
+    "test_counts": {
+      "arc": 64,
+      "hotpotqa": 64,
+      "2wiki": 64,
+      "musique": 64,
+      "sciq": 64,
+      "mmlu_pro": 64,
+      "hellaswag": 64,
+      "gsm8k": 64
+    },
+    "recolor": {
+      "span": 1,
+      "stride": 4,
+      "balance": "equal aligned token mass by task"
+    },
+    "stage2": {
+      "rank": 64,
+      "epochs": 4,
+      "effective_batch": 8,
+      "updates_per_epoch": 384,
+      "learning_rate": 0.0003,
+      "weight_decay": 0.0001,
+      "gradient_clip": 1.0,
+      "checkpoint_every": 32
+    },
+    "selection": "Fixed final checkpoint. Validation is diagnostic."
+  },
+  "prefix_ids": [
+    151644,
+    872,
+    198
+  ],
+  "sources": {
+    "/hy-tmp/yezhe/异构模型/dst_stage1_rank64_then_static_m32_a4_seed1234/manifest.json": "28800234ee77722a274642a5c09a74c7cceb77b4dba2110913fa09ac778bceee",
+    "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234/manifest.json": "f6b176c9915d2e968ce560fb2f981f6e2cefdd9405a9e2beeac9afa0a739b4c6",
+    "/hy-tmp/yezhe/异构模型/dst_stage1_rank64_then_static_m32_a4_seed1234/prepared/train.jsonl": "d21e80820aa044aa9967078169bf2cdf696b48cc5954e0635ca07ed0904fc62c",
+    "/hy-tmp/yezhe/异构模型/dst_stage1_rank64_then_static_m32_a4_seed1234/prepared/validation.jsonl": "f54e86d4e665dd66f0625dd3e7c6673a687fb1130ab492d18eaf451517e32033",
+    "/hy-tmp/yezhe/异构模型/dst_stage1_rank64_then_static_m32_a4_seed1234/prepared/test.jsonl": "de54be31b2d6830e3e09e70d056c2011d2ad3c81a62109513ceb90aee3f4b625"
+  },
+  "local_files": {
+    "config.json": "4203cd5cccc7fb1376036ae321759e7516dc9382c860bf96eca0cdcbaa28702d",
+    "experiment.py": "29c81e6ee4dbe409b8bad045f905b5ef1b3d6aca1fd6e14d14de416d394d454e",
+    "run.py": "368f810c85cfda655528bc0792e7b0d9a30db553b567f9cfd357664a9d5f1155",
+    "prepared/probes.json": "2b6aef8f427a0ca13b4da0ba6b3644e16dc037ab276a011ac51e256f0aff2364"
+  },
+  "minimum_exact_end_pairs": {
+    "arc": 47,
+    "hotpotqa": 135,
+    "gsm8k": 45
+  },
+  "stage1": "Official RAW whitening/recoloring, span1 stride4, equal task moment weights",
+  "stage2": "Original C question-query attention KL and output calibration, fresh linear Rank64"
+}
