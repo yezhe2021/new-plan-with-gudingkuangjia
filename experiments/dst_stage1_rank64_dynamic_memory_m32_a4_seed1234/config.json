@@ -1,0 +1,15 @@
+{
+  "static_reference": "dst_stage1_rank64_then_static_m32_a4_seed1234/static_memory",
+  "static_reference_manifest_sha256": "9483aed905205d8ce1fdec925c1d2d9dbe0d1855abd861795db2d186e1346ab5",
+  "static_reference_checkpoint_sha256": "fd0ffcecb6349efabacaaee708ddf94eeff52b4adf815e357daa9bd58b887564",
+  "rank64_checkpoint_sha256": "aaae0362577395681095d5f72fbc07c4bc9920e0506f79dc21e531ac618958a9",
+  "dynamic_implementation": "dst_stage2_dynamic_memory_m32_a4_3task_seed1234",
+  "minimum_free_gpu_mib": 30720,
+  "construction": "Native Qwen Memory reads the current full frozen DST Stage 1 + Rank64 cache",
+  "caveats": [
+    "Dynamic and Static use the same frozen Rank64 translator, parameter shapes and initialization, data, accepted-update budget, answer masks and positions.",
+    "Dynamic construction reads the translated body. The 32 Memory positions are appended, and all 36 answer layers can read body and Memory.",
+    "Fixed final epoch 4; validation is diagnostic. Paired test results use the same eight previously inspected 64-question cohorts and one training seed.",
+    "The no-Memory comparison also changes the answer positions by 32 tokens."
+  ]
+}
