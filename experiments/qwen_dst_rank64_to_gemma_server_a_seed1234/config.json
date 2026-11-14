@@ -1,0 +1,92 @@
+{
+  "seed": 1234,
+  "data_reference": "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234",
+  "data_reference_manifest_sha256": "ca045f531bf9596c883f1f22dd9f02232f1fbdaa5e0d553f9934a546561e262c",
+  "model": {
+    "sender_layers": 36,
+    "receiver_layers": 34,
+    "source_width": 1024,
+    "target_width": 1024,
+    "state_width": 256,
+    "carry_state": true
+  },
+  "token_chunk": 128,
+  "stage1": {
+    "epochs": 4,
+    "learning_rate": 0.0003,
+    "objective": "mean per-layer K/V normalized MSE in native pre-k_norm/pre-RoPE space; full-body tokens; sample-weighted accumulation"
+  },
+  "stage2": {
+    "epochs": 4,
+    "learning_rate": 0.0001,
+    "lambda_kl": 0.5
+  },
+  "effective_batch": 8,
+  "weight_decay": 0.0001,
+  "gradient_clip": 1.0,
+  "checkpoint_every": 32,
+  "minimum_free_gpu_mib": 30720,
+  "disk_reserve_gib": 8,
+  "static_memory": false,
+  "train_counts": {
+    "arc": 1024,
+    "hotpotqa": 1024,
+    "gsm8k": 1024
+  },
+  "validation_counts": {
+    "arc": 64,
+    "hotpotqa": 64,
+    "gsm8k": 64
+  },
+  "test_counts": {
+    "arc": 64,
+    "hotpotqa": 64,
+    "2wiki": 64,
+    "musique": 64,
+    "sciq": 64,
+    "mmlu_pro": 64,
+    "hellaswag": 64,
+    "gsm8k": 64
+  },
+  "updates_per_epoch": 384,
+  "prefix_quotas_per_batch": [
+    {
+      "gold": 4,
+      "native": 4,
+      "student": 0
+    },
+    {
+      "gold": 3,
+      "native": 3,
+      "student": 2
+    },
+    {
+      "gold": 2,
+      "native": 2,
+      "student": 4
+    },
+    {
+      "gold": 2,
+      "native": 2,
+      "student": 4
+    }
+  ],
+  "prefix_max_new_tokens": 64,
+  "supervised_positions_max": 8,
+  "evaluation_generation_caps": {
+    "hotpotqa": 64,
+    "2wiki": 64,
+    "musique": 64,
+    "gsm8k": 512
+  },
+  "max_context_tokens": 32768,
+  "selection": "Fixed final epoch4 at each stage; validation diagnostic only; no test checkpoint selection.",
+  "sender": "/hy-tmp/yezhe/all_models/models/Qwen/Qwen3-4B",
+  "receiver": "/hy-tmp/yezhe/all_models/models/LLM-Research/gemma-3-4b-it",
+  "source_dtype": "float16",
+  "rank": 64,
+  "host": "server-a",
+  "receiver_dtype": "float32",
+  "protocol": "Qwen RAW body to Gemma Full-Sync; Gemma public header and suffix; native sliding and full attention; no student native body prefill",
+  "launch_scope": "Server A, Stage1 then frozen-base Rank64 Stage2, same raw rows, no Memory"
+}
