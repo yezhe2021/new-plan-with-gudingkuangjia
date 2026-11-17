@@ -1,0 +1,55 @@
+Terminated
+WORKER_EXIT=143
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:01<09:43,  1.47s/it]Loading weights:  34%|███▍      | 135/398 [00:01<00:02, 118.21it/s]Loading weights:  52%|█████▏    | 206/398 [00:02<00:01, 119.60it/s]Loading weights:  63%|██████▎   | 251/398 [00:03<00:01, 79.25it/s] Loading weights:  70%|███████   | 280/398 [00:03<00:01, 68.62it/s]Loading weights:  75%|███████▌  | 300/398 [00:04<00:01, 65.32it/s]Loading weights:  79%|███████▉  | 315/398 [00:04<00:01, 65.76it/s]Loading weights:  82%|████████▏ | 328/398 [00:04<00:01, 64.93it/s]Loading weights:  85%|████████▌ | 339/398 [00:04<00:00, 64.09it/s]Loading weights:  87%|████████▋ | 348/398 [00:05<00:00, 62.73it/s]Loading weights:  89%|████████▉ | 356/398 [00:05<00:00, 47.85it/s]Loading weights:  92%|█████████▏| 366/398 [00:05<00:00, 49.77it/s]Loading weights:  95%|█████████▍| 377/398 [00:05<00:00, 50.95it/s]Loading weights:  97%|█████████▋| 388/398 [00:05<00:00, 53.21it/s]Loading weights: 100%|██████████| 398/398 [00:05<00:00, 66.35it/s]
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:01<06:45,  1.60s/it]Loading weights:  44%|████▎     | 111/254 [00:01<00:01, 85.87it/s]Loading weights:  59%|█████▉    | 150/254 [00:02<00:01, 59.50it/s]Loading weights:  68%|██████▊   | 173/254 [00:03<00:01, 61.04it/s]Loading weights:  75%|███████▍  | 190/254 [00:03<00:01, 57.97it/s]Loading weights:  80%|███████▉  | 203/254 [00:03<00:00, 52.58it/s]Loading weights:  84%|████████▍ | 213/254 [00:04<00:00, 50.14it/s]Loading weights:  87%|████████▋ | 221/254 [00:04<00:00, 50.69it/s]Loading weights:  90%|████████▉ | 228/254 [00:04<00:00, 47.53it/s]Loading weights:  92%|█████████▏| 234/254 [00:04<00:00, 43.23it/s]Loading weights:  94%|█████████▍| 239/254 [00:04<00:00, 37.69it/s]Loading weights:  97%|█████████▋| 246/254 [00:05<00:00, 38.31it/s]Loading weights: 100%|██████████| 254/254 [00:05<00:00, 49.66it/s]
+native 4096 1 [2726.8, 2735.9, 2662.1]
+native 4096 2 [2705.2, 2722.1, 2711.3]
+native 16384 1 [17925.1, 17876.6, 18020.5]
+native 16384 2 [18037.3, 18103.8, 18017.7]
+Traceback (most recent call last):
+  File "/hy-tmp/yezhe/异构模型/dst_rank64_gated_dynamic_latency_seed1234/batch2_quality/benchmark_baselines.py", line 297, in <module>
+    main()
+  File "/hy-tmp/yezhe/异构模型/dst_rank64_gated_dynamic_latency_seed1234/batch2_quality/benchmark_baselines.py", line 280, in main
+    result = (native_test(engine, rows) if recolor is None else
+  File "/hy-tmp/yezhe/异构模型/dst_rank64_gated_dynamic_latency_seed1234/batch2_quality/benchmark_baselines.py", line 168, in native_test
+    trials = [measure(engine, rows, block=block, decode=True) for _ in range(B.TRIALS)]
+  File "/hy-tmp/yezhe/异构模型/dst_rank64_gated_dynamic_latency_seed1234/batch2_quality/benchmark_baselines.py", line 168, in <listcomp>
+    trials = [measure(engine, rows, block=block, decode=True) for _ in range(B.TRIALS)]
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/hy-tmp/yezhe/异构模型/dst_rank64_gated_dynamic_latency_seed1234/batch2_quality/benchmark_baselines.py", line 139, in measure
+    body, logits = clock.measure("native_tokenizer_prefill_and_head", native_first, engine, rows, block)
+  File "/hy-tmp/yezhe/异构模型/dst_e4_quality_latency_seed1234/benchmark.py", line 44, in measure
+    return fn(*args)
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/hy-tmp/yezhe/异构模型/dst_rank64_gated_dynamic_latency_seed1234/batch2_quality/benchmark_baselines.py", line 31, in native_first
+    out = C.decoder(engine.model)(input_ids=inputs[:, start:end], position_ids=positions[:, start:end],
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/transformers/utils/generic.py", line 1032, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/transformers/utils/output_capturing.py", line 252, in wrapper
+    outputs = func(self, *args, **kwargs)
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/transformers/models/qwen3/modeling_qwen3.py", line 424, in forward
+    hidden_states = decoder_layer(
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/transformers/modeling_layers.py", line 93, in __call__
+    return super().__call__(*args, **kwargs)
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/transformers/models/qwen3/modeling_qwen3.py", line 318, in forward
+    hidden_states, _ = self.self_attn(
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/transformers/models/qwen3/modeling_qwen3.py", line 277, in forward
+    attn_output, attn_weights = attention_interface(
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/transformers/integrations/sdpa_attention.py", line 92, in sdpa_attention_forward
+    attn_output = torch.nn.functional.scaled_dot_product_attention(
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 512.00 MiB. GPU 0 has a total capacity of 31.73 GiB of which 48.44 MiB is free. Process 2154051 has 4.77 GiB memory in use. Process 2216105 has 26.91 GiB memory in use. Of the allocated memory 24.20 GiB is allocated by PyTorch, and 2.34 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+WORKER_EXIT=1
