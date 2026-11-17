@@ -71,6 +71,15 @@ checkpoints, four arms interleaved per trial. Recolor folding saves 0.56 s at 16
 `batch2_quality/affine_folding/RESULTS.md`; that run unloads the Sender, so its peaks and
 absolute times are not comparable to the table above.
 
+`batch2_quality/heterofold_r16/` adds the official HeteroFold map as a competitor, both on the
+512-row accuracy cohort and on this handoff benchmark. On accuracy it lands at 45.12 macro,
+6.4 pp under `dst_rank64`; on latency it is 0.5–0.9 s faster per handoff because a single fixed
+map needs no per-tap alignment. See `batch2_quality/heterofold_r16/RESULTS.md`.
+
+The long-document counterpart is `experiments/long_qa_quality_leval_full64_seed1234/`, where the
+ordering among translators inverts and `recolor_c` leads. That directory carries its own
+`RESULTS.md`.
+
 ## Caveats
 
 - The 32k column runs with the raw body in file-backed CPU memory. Per-trial storage reads were

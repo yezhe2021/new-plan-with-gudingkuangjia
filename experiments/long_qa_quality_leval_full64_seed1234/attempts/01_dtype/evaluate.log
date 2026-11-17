@@ -1,0 +1,26 @@
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:02<18:30,  2.80s/it]Loading weights:  32%|███▏      | 126/398 [00:02<00:04, 59.55it/s]Loading weights:  44%|████▎     | 174/398 [00:03<00:03, 63.21it/s]Loading weights:  51%|█████▏    | 204/398 [00:04<00:03, 63.90it/s]Loading weights:  57%|█████▋    | 225/398 [00:04<00:02, 65.57it/s]Loading weights:  61%|██████    | 241/398 [00:04<00:02, 68.86it/s]Loading weights:  64%|██████▍   | 255/398 [00:04<00:02, 71.01it/s]Loading weights:  67%|██████▋   | 267/398 [00:05<00:02, 61.55it/s]Loading weights:  70%|██████▉   | 278/398 [00:05<00:01, 63.74it/s]Loading weights:  73%|███████▎  | 289/398 [00:05<00:01, 63.79it/s]Loading weights:  75%|███████▌  | 300/398 [00:05<00:01, 63.19it/s]Loading weights:  78%|███████▊  | 311/398 [00:05<00:01, 64.73it/s]Loading weights:  81%|████████  | 322/398 [00:05<00:01, 64.24it/s]Loading weights:  84%|████████▎ | 333/398 [00:05<00:00, 68.58it/s]Loading weights:  86%|████████▋ | 344/398 [00:06<00:00, 71.24it/s]Loading weights:  89%|████████▉ | 355/398 [00:06<00:00, 73.65it/s]Loading weights:  92%|█████████▏| 366/398 [00:06<00:00, 75.66it/s]Loading weights:  95%|█████████▍| 377/398 [00:06<00:00, 76.93it/s]Loading weights:  97%|█████████▋| 388/398 [00:06<00:00, 77.33it/s]Loading weights: 100%|██████████| 398/398 [00:06<00:00, 59.53it/s]
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:01<05:36,  1.33s/it]Loading weights:  44%|████▍     | 113/254 [00:01<00:01, 108.78it/s]Loading weights:  70%|██████▉   | 177/254 [00:02<00:00, 87.69it/s] Loading weights:  85%|████████▍ | 215/254 [00:02<00:00, 82.84it/s]Loading weights:  95%|█████████▍| 241/254 [00:03<00:00, 78.04it/s]Loading weights: 100%|██████████| 254/254 [00:03<00:00, 74.61it/s]
+Traceback (most recent call last):
+  File "/hy-tmp/yezhe/异构模型/long_qa_quality_leval_full64_seed1234/evaluate.py", line 316, in <module>
+    main()
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/hy-tmp/yezhe/异构模型/long_qa_quality_leval_full64_seed1234/evaluate.py", line 282, in main
+    conditions = score_row(engine, memory, maps, row, task, item["gold"], prefill_chunk, transfer_chunk)
+  File "/hy-tmp/yezhe/异构模型/long_qa_quality_leval_full64_seed1234/evaluate.py", line 208, in score_row
+    body = transferred(engine, length, raw, dst, None, transfer_chunk)
+  File "/hy-tmp/yezhe/异构模型/long_qa_quality_leval_full64_seed1234/evaluate.py", line 146, in transferred
+    k, v, z = rank.base.layers[layer](features[0][tap], features[1][tap], z)
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/hy-tmp/yezhe/异构模型/depth_state_translator_fullsync_l3_to_q4_seed1234/translator.py", line 36, in forward
+    delta=self.update(torch.nn.functional.gelu(self.input(torch.cat([kn,vn],-1))+self.previous(self.state_norm(z))))
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: mat1 and mat2 must have the same dtype, but got Half and Float
