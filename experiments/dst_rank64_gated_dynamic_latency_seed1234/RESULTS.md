@@ -61,6 +61,16 @@ speedup has to come from moving fewer bytes or moving them asynchronously.
 Receiver cache bytes grow 1.13 → 4.50 → 9.00 GiB across the three lengths while the memory bank
 stays at 9 MiB, i.e. the bank is 0.1% of the handoff at 32k.
 
+## Follow-up: affine folding and fused readout
+
+`batch2_quality/affine_folding/` runs two code-level changes against their own originals —
+a pre-folded recolor affine and an in-place `addmm_` residual readout — on the same prompts and
+checkpoints, four arms interleaved per trial. Recolor folding saves 0.56 s at 16k
+(−8.1%, interval [−736, −321] ms) and is inside the noise elsewhere; DST fusion is bit-exact
+(0.0 logit drift) but never separates from zero at n=6. Neither moves peak memory. See
+`batch2_quality/affine_folding/RESULTS.md`; that run unloads the Sender, so its peaks and
+absolute times are not comparable to the table above.
+
 ## Caveats
 
 - The 32k column runs with the raw body in file-backed CPU memory. Per-trial storage reads were
