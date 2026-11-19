@@ -1,0 +1,47 @@
+{
+  "name": "hotpotqa_distractor512_heterofold_three_readers_l3_to_q4_seed1234",
+  "seed": 1234,
+  "n": 512,
+  "source_json": "/hy-tmp/yezhe/异构模型/heterogeneous_multidoc_frozen_writers_v0_seed1234/data/hotpot_dev_distractor_v1.json",
+  "reference_reader": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_answerkl_l3_to_q4_seed1234",
+  "reference_reader_manifest_sha256": "9472f20d101851631929e5fc60de19dd6f9e59f8f51b5eb10694c0d4ddc47e10",
+  "heterofold_map": "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/maps/llama3_to_qwen4/heterofold.pt",
+  "heterofold_calibration_json": "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/data/calibration/openr1_hotpot.json",
+  "readers": {
+    "old_kl_reader": {
+      "root": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_answerkl_l3_to_q4_seed1234",
+      "manifest_sha256": "9472f20d101851631929e5fc60de19dd6f9e59f8f51b5eb10694c0d4ddc47e10",
+      "checkpoint_sha256": "96cde5b41f1a15434d24ef57f8eaf34e3af89af109c0b5d6cf378e60ab577314"
+    },
+    "taskce_reader": {
+      "root": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_taskcekl_l3_to_q4_seed1234",
+      "manifest_sha256": "bd5b7a263c7e1393e4b4a931887edc389fb70b195b7e43a2fa6042d5902db5d1",
+      "checkpoint_sha256": "4637d5de199d16b194b31c8ef5159a997339547a95b60511ab8325844d34e26c"
+    },
+    "hybrid_reader": {
+      "root": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_hybridmcqkl_l3_to_q4_seed1234",
+      "manifest_sha256": "247de9c8a048b9ff3b124f37f4cef2509e81ea6299e803880e99858e3277a21b",
+      "checkpoint_sha256": "b158f8f8f32dacac043347046341143058efe914a531b66650e3e2374d5804b2"
+    }
+  },
+  "max_new_tokens": 64,
+  "max_context_tokens": 32768,
+  "training": false,
+  "automatic_upload": false,
+  "continuous_monitoring": false,
+  "conditions": [
+    "qwen_native",
+    "heterofold",
+    "old_kl_reader",
+    "taskce_reader",
+    "hybrid_reader"
+  ],
+  "caveats": [
+    "Standard HotpotQA distractor dev subset, n512; seeded random sample, all original passages retained, no prompt truncation or gold paragraph selection. Answer EM/F1 only; supporting-fact/joint metrics are not evaluated.",
+    "Existing HeteroFold calibration includes HotpotQA train questions; Readers trained on OBQA/ARC/GSM8K/MMLU-Pro and never on HotpotQA. This is an existing-checkpoint comparison, not equal-domain or equal-budget training.",
+    "Llama3.2-3B-Instruct to Qwen3-4B, FP16 V100. Existing official calibrated HeteroFold map; fixed final epoch4/step1024 Readers with exact frozen grouped Stage-A and residual Stage-B.",
+    "HeteroFold keeps its official bare-text pre-norm Sender capture and native-header cache construction. Our method keeps chat Sender capture, post-k-norm/pre-RoPE mapping and native body prefill/anchor. Same semantic prompt and Qwen continuation suffix, but different existing transfer interfaces; no prefill-free or speed superiority claim.",
+    "Qwen thinking disabled, common greedy decoding capped at64 new tokens. Strip only chat control tokens/outer whitespace before scoring the entire answer; no gold-based or fuzzy answer extraction.",
+    "V100 SDPA uses explicit KV-head repeat for all conditions without changing attention geometry. No finetuning, recalibration, checkpoint selection, or automatic upload."
+  ]
+}

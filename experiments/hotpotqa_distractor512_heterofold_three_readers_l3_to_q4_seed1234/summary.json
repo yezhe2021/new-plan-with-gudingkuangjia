@@ -1,0 +1,204 @@
+{
+  "manifest_sha256": "34065a9505fd3d373b05849ee558584600099ead201beadb4cc36d9f9f5c7c60",
+  "status": "completed",
+  "metrics": {
+    "qwen_native": {
+      "n": 512,
+      "em": 0.5,
+      "f1": 0.6235585885863728,
+      "em_correct": 256,
+      "cap_count": 1,
+      "mean_generated_tokens": 5.51953125
+    },
+    "heterofold": {
+      "n": 512,
+      "em": 0.26953125,
+      "f1": 0.38902770839016004,
+      "em_correct": 138,
+      "cap_count": 1,
+      "mean_generated_tokens": 5.701171875
+    },
+    "old_kl_reader": {
+      "n": 512,
+      "em": 0.017578125,
+      "f1": 0.08168948188856698,
+      "em_correct": 9,
+      "cap_count": 81,
+      "mean_generated_tokens": 23.23828125
+    },
+    "taskce_reader": {
+      "n": 512,
+      "em": 0.033203125,
+      "f1": 0.09891359978490458,
+      "em_correct": 17,
+      "cap_count": 26,
+      "mean_generated_tokens": 13.3046875
+    },
+    "hybrid_reader": {
+      "n": 512,
+      "em": 0.025390625,
+      "f1": 0.08856111887538191,
+      "em_correct": 13,
+      "cap_count": 72,
+      "mean_generated_tokens": 20.216796875
+    }
+  },
+  "paired": {
+    "heterofold_minus_qwen_native": {
+      "em": {
+        "n": 512,
+        "mean": -0.23046875,
+        "ci95": [
+          -0.2734375,
+          -0.189453125
+        ]
+      },
+      "f1": {
+        "n": 512,
+        "mean": -0.23453088019621238,
+        "ci95": [
+          -0.2757185700300877,
+          -0.1976006839783677
+        ]
+      }
+    },
+    "old_kl_reader_minus_qwen_native": {
+      "em": {
+        "n": 512,
+        "mean": -0.482421875,
+        "ci95": [
+          -0.52734375,
+          -0.44135742187500027
+        ]
+      },
+      "f1": {
+        "n": 512,
+        "mean": -0.5418691066978052,
+        "ci95": [
+          -0.5814997614998878,
+          -0.5031100179940847
+        ]
+      }
+    },
+    "taskce_reader_minus_qwen_native": {
+      "em": {
+        "n": 512,
+        "mean": -0.466796875,
+        "ci95": [
+          -0.51171875,
+          -0.42573242187500027
+        ]
+      },
+      "f1": {
+        "n": 512,
+        "mean": -0.5246449888014677,
+        "ci95": [
+          -0.5659051669130516,
+          -0.48521288474082314
+        ]
+      }
+    },
+    "hybrid_reader_minus_qwen_native": {
+      "em": {
+        "n": 512,
+        "mean": -0.474609375,
+        "ci95": [
+          -0.51953125,
+          -0.43359375
+        ]
+      },
+      "f1": {
+        "n": 512,
+        "mean": -0.5349974697109903,
+        "ci95": [
+          -0.5752994186621718,
+          -0.49563896069650143
+        ]
+      }
+    },
+    "qwen_native_minus_heterofold": {
+      "em": {
+        "n": 512,
+        "mean": 0.23046875,
+        "ci95": [
+          0.189453125,
+          0.2734375
+        ]
+      },
+      "f1": {
+        "n": 512,
+        "mean": 0.23453088019621238,
+        "ci95": [
+          0.19760068397836766,
+          0.2757185700300877
+        ]
+      }
+    },
+    "old_kl_reader_minus_heterofold": {
+      "em": {
+        "n": 512,
+        "mean": -0.251953125,
+        "ci95": [
+          -0.29296875,
+          -0.216796875
+        ]
+      },
+      "f1": {
+        "n": 512,
+        "mean": -0.30733822650159287,
+        "ci95": [
+          -0.34388183869402067,
+          -0.2700287488584725
+        ]
+      }
+    },
+    "taskce_reader_minus_heterofold": {
+      "em": {
+        "n": 512,
+        "mean": -0.236328125,
+        "ci95": [
+          -0.277392578125,
+          -0.19921875
+        ]
+      },
+      "f1": {
+        "n": 512,
+        "mean": -0.2901141086052553,
+        "ci95": [
+          -0.3297983312324445,
+          -0.2520192860812189
+        ]
+      }
+    },
+    "hybrid_reader_minus_heterofold": {
+      "em": {
+        "n": 512,
+        "mean": -0.244140625,
+        "ci95": [
+          -0.283251953125,
+          -0.20703125
+        ]
+      },
+      "f1": {
+        "n": 512,
+        "mean": -0.300466589514778,
+        "ci95": [
+          -0.339034437555464,
+          -0.2628028262514228
+        ]
+      }
+    }
+  },
+  "training": false,
+  "prompt_truncation": false,
+  "frozen_models_unchanged": true,
+  "elapsed_seconds": 2834.1293086856604,
+  "caveats": [
+    "Standard HotpotQA distractor dev subset, n512; seeded random sample, all original passages retained, no prompt truncation or gold paragraph selection. Answer EM/F1 only; supporting-fact/joint metrics are not evaluated.",
+    "Existing HeteroFold calibration includes HotpotQA train questions; Readers trained on OBQA/ARC/GSM8K/MMLU-Pro and never on HotpotQA. This is an existing-checkpoint comparison, not equal-domain or equal-budget training.",
+    "Llama3.2-3B-Instruct to Qwen3-4B, FP16 V100. Existing official calibrated HeteroFold map; fixed final epoch4/step1024 Readers with exact frozen grouped Stage-A and residual Stage-B.",
+    "HeteroFold keeps its official bare-text pre-norm Sender capture and native-header cache construction. Our method keeps chat Sender capture, post-k-norm/pre-RoPE mapping and native body prefill/anchor. Same semantic prompt and Qwen continuation suffix, but different existing transfer interfaces; no prefill-free or speed superiority claim.",
+    "Qwen thinking disabled, common greedy decoding capped at64 new tokens. Strip only chat control tokens/outer whitespace before scoring the entire answer; no gold-based or fuzzy answer extraction.",
+    "V100 SDPA uses explicit KV-head repeat for all conditions without changing attention geometry. No finetuning, recalibration, checkpoint selection, or automatic upload."
+  ]
+}
