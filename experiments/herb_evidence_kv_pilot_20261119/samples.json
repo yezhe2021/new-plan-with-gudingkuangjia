@@ -1,0 +1,279 @@
+{
+  "dataset": "Salesforce/HERB",
+  "revision": "a00bca08f9118e482e6de9951fdcb654fbed5343",
+  "selection": "Handwritten incident QA using paired Slack issue/closure messages and a linked PR summary.",
+  "samples": [
+    {
+      "id": "herb_01",
+      "product": "ActionGenie",
+      "product_git_blob": "661f891bbd1fcdc0fcfa10be4abde0bd35fa79e9",
+      "question": "For the ActionGenie incident involving UI freezing during bulk action suggestions, which customer ID was affected, what was the root cause, and what did the fix change?",
+      "evidence": [
+        {
+          "source": "slack",
+          "text": "Thanks, @eid_92294e45! Lastly, we have a UI issue titled 'UI Freezes During Bulk Action Suggestions'. The interface becomes unresponsive when suggesting multiple actions in busy channels. This affects our User Interface & Frontend Performance, and it's impacting customer CUST-0088. @eid_92294e45, since you're already on the logging issue, can you also take this one?\n\nHi team, the bug titled 'UI Freezes During Bulk Action Suggestions' has been resolved. You can check the details in the PR here: https://github.com/salesforce/ActionGenie/pull/41."
+        },
+        {
+          "source": "github_pr",
+          "text": "https://github.com/salesforce/ActionGenie/pull/41\n\n### Summary\nThe user interface was freezing when ActionGenie attempted to suggest multiple actions simultaneously in a busy Slack channel. This was due to the UI thread being blocked by synchronous processing of action suggestions.\n\n### Changes Made\n- Refactored the action suggestion logic to process asynchronously, ensuring the UI thread remains responsive.\n- Implemented a callback mechanism to update the UI once suggestions are ready.\n- Added error handling to manage any potential issues during asynchronous processing."
+        }
+      ],
+      "ground_truth": "CUST-0088. Synchronous processing blocked the UI thread. Process suggestions asynchronously and update the UI with a callback.",
+      "required_facts": {
+        "customer": "CUST-0088",
+        "cause": "Synchronous processing blocked the UI thread.",
+        "fix": "Process suggestions asynchronously and update the UI with a callback."
+      },
+      "citations": [
+        "20261230-5-473fe",
+        "20270118-0-0b5c5",
+        "github_com_salesforce_ActionGenie_pull_41"
+      ],
+      "official_qa_citing_all_selected_records": [
+        18,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "herb_02",
+      "product": "ActionGenie",
+      "product_git_blob": "661f891bbd1fcdc0fcfa10be4abde0bd35fa79e9",
+      "question": "For the ActionGenie incident involving delayed task creation in high-traffic channels, which customer ID was affected, what was the root cause, and what did the fix change?",
+      "evidence": [
+        {
+          "source": "slack",
+          "text": "First up, we have a problem with delayed task creation in high-traffic channels. This is affecting our backend processing and task queue management. Users are experiencing slow response times, which is frustrating, especially for CUST-0088. @eid_f73462f7, can you take this one?\n\nHi team, the bug titled 'Delayed Task Creation in High-Traffic Channels' has been resolved. You can check out the details in the PR here: https://github.com/salesforce/ActionGenie/pull/49."
+        },
+        {
+          "source": "github_pr",
+          "text": "https://github.com/salesforce/ActionGenie/pull/49\n\n### Summary\nThis PR addresses the issue of delayed task creation in Slack channels with high message traffic when using ActionGenie.\n\n### Issue\nThe root cause of the delay was identified as an overloaded backend processing queue due to inefficient task prioritization and handling under high load conditions.\n\n### Fix\n- Implemented a more efficient task prioritization algorithm to ensure critical tasks are processed promptly.\n- Enhanced the backend queue management to better handle high traffic scenarios."
+        }
+      ],
+      "ground_truth": "CUST-0088. Inefficient prioritization overloaded the backend task queue under high traffic. Improve task prioritization and backend queue management.",
+      "required_facts": {
+        "customer": "CUST-0088",
+        "cause": "Inefficient prioritization overloaded the backend task queue under high traffic.",
+        "fix": "Improve task prioritization and backend queue management."
+      },
+      "citations": [
+        "20270203-1-a41f0",
+        "20270228-0-7dfc3",
+        "github_com_salesforce_ActionGenie_pull_49"
+      ],
+      "official_qa_citing_all_selected_records": [
+        14,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "herb_03",
+      "product": "ActionGenie",
+      "product_git_blob": "661f891bbd1fcdc0fcfa10be4abde0bd35fa79e9",
+      "question": "For the ActionGenie incident involving duplicate log entries for manual actions, which customer ID was affected, what was the root cause, and what did the fix change?",
+      "evidence": [
+        {
+          "source": "slack",
+          "text": "First up, we have a bug titled 'Duplicate Log Entries for Manual Actions'. This is affecting our Database Management & Logging System. Users and admins are facing challenges in auditing past actions, which is causing accountability issues. This is impacting customer CUST-0047. @eid_0ac476e4, this one's for you!\n\nHi team, the bug titled 'Duplicate Log Entries for Manual Actions' has been resolved. You can check the details in the PR here: https://github.com/salesforce/ActionGenie/pull/32."
+        },
+        {
+          "source": "github_pr",
+          "text": "https://github.com/salesforce/ActionGenie/pull/32\n\n### Summary\nThis pull request addresses the issue of duplicate log entries for manual actions, which was causing redundancy and confusion in the action history.\n\n### Issue\nThe root cause of the problem was identified as a bug in the manual action logging function, which was triggered multiple times under certain conditions, such as network retries.\n\n### Changes Made\n- Updated the manual action logging function to ensure it logs actions only once, even in the event of network retries.\n- Added a check to prevent duplicate entries by verifying the uniqueness of each log entry before logging."
+        }
+      ],
+      "ground_truth": "CUST-0047. Network retries could trigger the manual-action logger repeatedly. Log each action once and verify entry uniqueness before logging.",
+      "required_facts": {
+        "customer": "CUST-0047",
+        "cause": "Network retries could trigger the manual-action logger repeatedly.",
+        "fix": "Log each action once and verify entry uniqueness before logging."
+      },
+      "citations": [
+        "20261117-1-a77c3",
+        "20261123-0-80236",
+        "github_com_salesforce_ActionGenie_pull_32"
+      ],
+      "official_qa_citing_all_selected_records": [
+        20,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "herb_04",
+      "product": "AnomalyForce",
+      "product_git_blob": "9ba61ab114761f93498fd2b463fac08830a96222",
+      "question": "For the AnomalyForce incident involving gradual time-series drift generating false anomaly alerts, which customer ID was affected, what was the root cause, and what did the fix change?",
+      "evidence": [
+        {
+          "source": "slack",
+          "text": "Great, thanks! Next, we have a 'Time Series Drift Misinterpretation'. The anomaly detection algorithm is misinterpreting gradual drifts as anomalies, leading to false positives for CUST-0025. @eid_63ea0ec4, can you take this one?\n\nHi team, the bug about incorrect anomaly detection due to time series drift misinterpretation has been resolved. You can check the details in the PR here: https://github.com/salesforce/AnomalyForce/pull/29."
+        },
+        {
+          "source": "github_pr",
+          "text": "https://github.com/salesforce/AnomalyForce/pull/29\n\n### Summary of the Issue\nThe anomaly detection algorithm was incorrectly flagging gradual drifts in time series data as anomalies, resulting in false positive alerts. This was due to the algorithm's high sensitivity to slow-moving trends, which were not being adequately distinguished from sudden anomalies.\n\n### Changes Made\n- Implemented enhanced temporal smoothing techniques to better differentiate between gradual drifts and sudden anomalies.\n- Adjusted the sensitivity parameters of the anomaly detection algorithm to reduce false positives.\n- Updated the documentation to reflect the changes in the algorithm's behavior."
+        }
+      ],
+      "ground_truth": "CUST-0025. The detector was too sensitive to gradual trends and confused them with sudden anomalies. Improve temporal smoothing and adjust detector sensitivity.",
+      "required_facts": {
+        "customer": "CUST-0025",
+        "cause": "The detector was too sensitive to gradual trends and confused them with sudden anomalies.",
+        "fix": "Improve temporal smoothing and adjust detector sensitivity."
+      },
+      "citations": [
+        "20260906-3-40719",
+        "20260911-0-64110",
+        "github_com_salesforce_AnomalyForce_pull_29"
+      ],
+      "official_qa_citing_all_selected_records": [
+        22,
+        31,
+        32,
+        33,
+        34
+      ]
+    },
+    {
+      "id": "herb_05",
+      "product": "AnomalyForce",
+      "product_git_blob": "9ba61ab114761f93498fd2b463fac08830a96222",
+      "question": "For the AnomalyForce incident involving inconsistent refresh rates across dashboard data sources, which customer ID was affected, what was the root cause, and what did the fix change?",
+      "evidence": [
+        {
+          "source": "slack",
+          "text": "Awesome, thanks! Lastly, there's an issue with 'Inconsistent Data Refresh Rates in Multi-Source Dashboards'. This is causing outdated anomaly detection results for Customer CUST-0058. It's also in the User Interface & Data Visualization area. @eid_f0c7a505, looks like you're up again!\n\nHi team, the bug about inconsistent data refresh rates in multi-source dashboards has been resolved. You can check the details in the PR here: https://github.com/salesforce/AnomalyForce/pull/33."
+        },
+        {
+          "source": "github_pr",
+          "text": "https://github.com/salesforce/AnomalyForce/pull/33\n\n### Summary\nThis pull request addresses the issue of inconsistent data refresh rates in multi-source dashboards within AnomalyForce. The problem was identified as asynchronous data fetching mechanisms that were not properly synchronized, leading to outdated anomaly detection results.\n\n### Changes Made\n- Implemented a synchronization mechanism for data fetching processes across different data streams.\n- Introduced a centralized refresh controller to manage and harmonize the update intervals of all data sources.\n- Refactored existing asynchronous calls to ensure they align with the new synchronization strategy."
+        }
+      ],
+      "ground_truth": "CUST-0058. Asynchronous data fetching was not synchronized across streams. Synchronize fetching and coordinate update intervals with a central refresh controller.",
+      "required_facts": {
+        "customer": "CUST-0058",
+        "cause": "Asynchronous data fetching was not synchronized across streams.",
+        "fix": "Synchronize fetching and coordinate update intervals with a central refresh controller."
+      },
+      "citations": [
+        "20260925-5-5564e",
+        "20261003-0-06ef8",
+        "github_com_salesforce_AnomalyForce_pull_33"
+      ],
+      "official_qa_citing_all_selected_records": [
+        24,
+        31,
+        32,
+        33,
+        34
+      ]
+    },
+    {
+      "id": "herb_06",
+      "product": "AnomalyForce",
+      "product_git_blob": "9ba61ab114761f93498fd2b463fac08830a96222",
+      "question": "For the AnomalyForce incident involving incorrect data aggregation across time zones, which customer ID was affected, what was the root cause, and what did the fix change?",
+      "evidence": [
+        {
+          "source": "slack",
+          "text": "Great, thanks! Next, we have 'Time Zone Misalignment in Data Aggregation'. AnomalyForce is incorrectly aggregating data across different time zones, leading to skewed results. This affects our Data Processing Pipeline and impacts customer CUST-0059. @eid_76d9cb07, can you handle this?\n\nHi team, the bug about incorrect data aggregation across different time zones has been resolved. You can check the details in the PR here: https://github.com/salesforce/AnomalyForce/pull/27."
+        },
+        {
+          "source": "github_pr",
+          "text": "https://github.com/salesforce/AnomalyForce/pull/27\n\n### Summary\nThis pull request addresses the issue of incorrect data aggregation across different time zones in AnomalyForce, which was leading to skewed anomaly detection results.\n\n### Changes Made\n- Updated the time zone handling module to ensure timestamps are normalized before aggregation.\n- Added unit tests to verify the correct normalization of timestamps across various time zones.\n- Refactored existing code to improve readability and maintainability."
+        }
+      ],
+      "ground_truth": "CUST-0059. Timestamps were not normalized before aggregation. Normalize timestamps before aggregation.",
+      "required_facts": {
+        "customer": "CUST-0059",
+        "cause": "Timestamps were not normalized before aggregation.",
+        "fix": "Normalize timestamps before aggregation."
+      },
+      "citations": [
+        "20260830-3-3b439",
+        "20260902-0-e1407",
+        "github_com_salesforce_AnomalyForce_pull_27"
+      ],
+      "official_qa_citing_all_selected_records": [
+        28,
+        31,
+        32,
+        33,
+        34
+      ]
+    },
+    {
+      "id": "herb_07",
+      "product": "CollaborationForce",
+      "product_git_blob": "394e30b2be58cbe59f155967c5185a92c034818e",
+      "question": "For the CollaborationForce incident involving slow document retrieval caused by inefficient query plans, which customer ID was affected, what was the root cause, and what did the fix change?",
+      "evidence": [
+        {
+          "source": "slack",
+          "text": "First up, we have an issue titled 'Inefficient Query Execution Plan'. The database optimizer is generating suboptimal query execution plans, leading to longer processing times for document retrieval queries. This affects the Database Query System and is impacting Customer CUST-0061. @eid_2542cff3, this one's for you.\n\nHi team, the bug titled 'Inefficient Query Execution Plan' has been resolved. You can check out the details in the approved PR here: https://github.com/salesforce/CollaborationForce/pull/24."
+        },
+        {
+          "source": "github_pr",
+          "text": "https://github.com/salesforce/CollaborationForce/pull/24\n\n### Summary\nThe query execution plan was inefficient due to outdated statistics and missing indexes, causing full table scans and longer processing times.\n\n### Changes Made\n- Updated database statistics to ensure the optimizer has the latest data for decision-making.\n- Added necessary indexes to improve query performance and reduce full table scans."
+        }
+      ],
+      "ground_truth": "CUST-0061. Outdated database statistics and missing indexes led to inefficient plans and full table scans. Update the database statistics and add the missing indexes.",
+      "required_facts": {
+        "customer": "CUST-0061",
+        "cause": "Outdated database statistics and missing indexes led to inefficient plans and full table scans.",
+        "fix": "Update the database statistics and add the missing indexes."
+      },
+      "citations": [
+        "20261110-1-d2c0f",
+        "20261119-0-28c95",
+        "github_com_salesforce_CollaborationForce_pull_24"
+      ],
+      "official_qa_citing_all_selected_records": [
+        17,
+        24,
+        25,
+        26,
+        27
+      ]
+    },
+    {
+      "id": "herb_08",
+      "product": "CollaborationForce",
+      "product_git_blob": "394e30b2be58cbe59f155967c5185a92c034818e",
+      "question": "For the CollaborationForce incident involving conversation threads appearing out of chronological order, which customer ID was affected, what was the root cause, and what did the fix change?",
+      "evidence": [
+        {
+          "source": "slack",
+          "text": "Great, thanks! Next, we have an 'Incorrect Thread Sorting Order' issue. Conversations are not in the right chronological order, which is confusing users. This is a User Interface problem affecting customer CUST-0032. @eid_51f0b41f, can you take this one?\n\nHi team, the bug about incorrect thread sorting order has been resolved. You can check the details in the approved PR here: https://github.com/salesforce/CollaborationForce/pull/28."
+        },
+        {
+          "source": "github_pr",
+          "text": "https://github.com/salesforce/CollaborationForce/pull/28\n\n### Summary\nThis pull request addresses the issue of conversation threads being displayed in an incorrect chronological order due to a bug in the timestamp parsing logic.\n\n### Changes Made\n- Updated the timestamp parsing logic to correctly handle time zones, ensuring that messages are sorted based on the correct chronological order.\n- Added unit tests to verify the correct parsing and sorting of timestamps across different time zones."
+        }
+      ],
+      "ground_truth": "CUST-0032. Timestamp parsing mishandled time zones. Correct time-zone handling in the timestamp parser so chronological sorting works.",
+      "required_facts": {
+        "customer": "CUST-0032",
+        "cause": "Timestamp parsing mishandled time zones.",
+        "fix": "Correct time-zone handling in the timestamp parser so chronological sorting works."
+      },
+      "citations": [
+        "20261121-3-af6ce",
+        "20261209-0-15934",
+        "github_com_salesforce_CollaborationForce_pull_28"
+      ],
+      "official_qa_citing_all_selected_records": [
+        21,
+        24,
+        25,
+        26,
+        27
+      ]
+    }
+  ]
+}
