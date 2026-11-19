@@ -1,0 +1,112 @@
+{
+  "config": {
+    "name": "fusion_concatproj_l3_g3_to_q4_frozenab_seed1234",
+    "seed": 1234,
+    "equal_parent": "/hy-tmp/yezhe/异构模型/fusion_equal50_l3_g3_to_q4_frozenab_seed1234",
+    "feature_cache": "/dev/shm/yezhe_fusion_concatproj_l3_g3_to_q4_frozenab_seed1234",
+    "layers": 36,
+    "heads": 8,
+    "dim": 128,
+    "expected_parameters": 150994944,
+    "initialization": "Separate K/V and target-layer matrices [0.5I,0.5I], bias-free; exact equal mean at initialization.",
+    "train_counts": {
+      "openbookqa": 512,
+      "arc_challenge": 512,
+      "gsm8k": 512,
+      "mmlu_pro": 512
+    },
+    "validation_counts": {
+      "openbookqa": 64,
+      "arc_challenge": 64,
+      "gsm8k": 64,
+      "mmlu_pro": 64
+    },
+    "formal_counts": {
+      "openbookqa": 128,
+      "arc_challenge": 128,
+      "hellaswag": 64,
+      "gsm8k": 32,
+      "mmlu_pro": 128,
+      "sciq": 64
+    },
+    "epochs": 4,
+    "expected_updates": 1024,
+    "effective_batch": 8,
+    "learning_rate": 0.0001,
+    "weight_decay": 0,
+    "gradient_clip": 30,
+    "chunk_tokens": 64,
+    "prefix_max_new_tokens": 64,
+    "supervised_positions_per_example_max": 8,
+    "warmup_native_epochs": 1,
+    "student_fraction_after_warmup": 0.5,
+    "monitor_validation_per_task": 16,
+    "checkpoint_every_steps": 64,
+    "max_new_tokens": 4096,
+    "selection": "Fixed final epoch4 step1024; epoch checkpoints diagnostic only, no test selection.",
+    "loss": "Full-vocabulary forward KL Native||Student, temperature1. Same mixed64-token Native/student prefixes and up to8 positions as residual Stage B. No gold CE.",
+    "reader": false,
+    "trainable_scope": "Only new concat K/V projection; both existing Stage A+B branches and receiver frozen.",
+    "disk_reserve_gib": 20,
+    "feature_cache_reserve_gib": 12,
+    "min_free_gpu_gib": 22,
+    "automatic_upload": false,
+    "continuous_monitoring": false,
+    "caveats": [
+      "Adds1024 training updates over the untrained equal-average baseline; not an equal-training-budget fusion comparison.",
+      "Llama and Gemma branches retain their existing different Stage-A data mixtures.",
+      "Full-Sync accuracy interface; no prefill-free latency claim.",
+      "MMLU-Pro is the existing custom split."
+    ]
+  },
+  "config_sha256": "99c58e5895113df4af17c51df6acdbec225e2a9ce96114cc4f72abf1dfe1b49f",
+  "code": {
+    "test_projection.py": "10f8f99adc75f88f43a2ef9aa46b2837e3e739844ebc4740a55f21a8c55212c3",
+    "features.py": "50a44fbe19518a13a5f042312d1cd01723c5dd3f074efd7d7f0a424befefa74d",
+    "runtime.py": "35f5fc7267aeedd41f55f7e2ddf0b2a0bf1ec4159fb9c34fd954718ec6100be4",
+    "run_pipeline.py": "17006e737ba136e1215035b4ca52e6e135e61ef78621699672151beb01f71b1a",
+    "train.py": "91293c79ad958f78e6e19119659614220bed7a054533a7354e4d72cf61b5bd99",
+    "evaluate.py": "5d37e5102a7e0c618829f97d1ce047262ffc3f9ed6760cea67a4f3657237ab66",
+    "projection.py": "e556bb95ff3256f6c185a4ffb460dd0eb5fda35967c4497e7baa87cdbd79ac7d"
+  },
+  "dependencies": {
+    "/hy-tmp/yezhe/异构模型/ufd_mixedprefix_stageb_4data_2048x4_l3_to_q4_seed1234/prepared/train.jsonl": "0c0770cb787787e85b96a7a8804b67b60ad33866bb04a1a6dc17e9ecb9e2200b",
+    "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_answerkl_gemma3_4b_to_qwen3_4b_mix4_seed1234/prepared/train.jsonl": "5a7bf6f72c2fa91b7987301754ba311adf571e4c497b0ab89946a8a06e9b745d",
+    "/hy-tmp/yezhe/异构模型/ufd_mixedprefix_stageb_4data_2048x4_l3_to_q4_seed1234/prepared/validation.jsonl": "f36f9a49b7643bad1f342f9db5ba8fa95988ca1011ed8c74c4832da0e039910b",
+    "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_answerkl_gemma3_4b_to_qwen3_4b_mix4_seed1234/prepared/validation.jsonl": "066b36c6eb8f2ac8bd7a9a777417438e6062e13bbd1daab23d70a77af9dc7423",
+    "/hy-tmp/yezhe/异构模型/fusion_equal50_l3_g3_to_q4_frozenab_seed1234/test_fusion.py": "504034cbaee240064186a9a9daaa83d27a94e26ecfd8841f510b56b8e2a27bb5",
+    "/hy-tmp/yezhe/异构模型/fusion_equal50_l3_g3_to_q4_frozenab_seed1234/experiment.py": "77196d398f82ce9d00d5317507bb8c7c229d64cb10d508b558e900022ab80774",
+    "/hy-tmp/yezhe/异构模型/fusion_equal50_l3_g3_to_q4_frozenab_seed1234/fusion.py": "1a86a8186aef47517e0610aea1dfc9fce947cb91e837a7f4e7982de7e7bcc9d3",
+    "/hy-tmp/yezhe/异构模型/fusion_equal50_l3_g3_to_q4_frozenab_seed1234/manifest.json": "59a50bf123b7778b7af00927f42ca8292a719d49a141c7d641ce323c15985e84",
+    "/hy-tmp/yezhe/异构模型/fusion_equal50_l3_g3_to_q4_frozenab_seed1234/config.json": "a235b929c4a0c987af18483a7d7e8da55d1b16dbd4d3e27011dcad5d9da3bafd",
+    "/hy-tmp/yezhe/异构模型/fusion_equal50_l3_g3_to_q4_frozenab_seed1234/summary.json": "d698cdbb7b7b9950bad13aa10de0ca157660880aba82079910bca720f28a6fb0",
+    "/hy-tmp/yezhe/异构模型/fusion_equal50_l3_g3_to_q4_frozenab_seed1234/evaluation/per_sample.jsonl": "4ced2987740dbffccd4dbdbb9671779a833c43f8f17b2259da62b1e68ad3ffc0"
+  },
+  "equal_manifest_sha256": "59a50bf123b7778b7af00927f42ca8292a719d49a141c7d641ce323c15985e84",
+  "weights": {
+    "llama_a": {
+      "path": "/hy-tmp/yezhe/异构模型/grouped_headmix4_l3_to_q4_seed1234/runs/stage_a/best.pt",
+      "sha256": "a9318f4b2f1d9e7981e0e50e2dc88654f0baaf89a080a0746017555c48ba5c84"
+    },
+    "llama_b": {
+      "path": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_l3_to_q4_seed1234/runs/stage_b/last.pt",
+      "sha256": "7e9f602d08409574c8ebe56242a08ba2c6861032b5ed70570a807c5777d775f2"
+    },
+    "gemma_a": {
+      "path": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_answerkl_gemma3_4b_to_qwen3_4b_mix4_seed1234/runs/stage_a/best.pt",
+      "sha256": "9960d1b24a3809c3562d345a4fb567d271fa538dc8d0bd4a76ae65554bd15948"
+    },
+    "gemma_b": {
+      "path": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_answerkl_gemma3_4b_to_qwen3_4b_mix4_seed1234/runs/stage_b/last.pt",
+      "sha256": "94ecc30703c5c243955f3776a630a615e7b4ad55e1deab64618a22d31e74b466"
+    }
+  },
+  "prepared_sha256": {
+    "train": "93e53399c0d0187c9e878af42aac3cea5124b3b12f15cb068ca3d354ca0b2889",
+    "validation": "45f8a7e361a4308679bdf953694fdef998372da04eba38ad2c3b4f1ffa14ba7b",
+    "test": "4a7af7640b4bb98cd15627f5c05678c1d696f89847e8985ac267899b60c95595"
+  },
+  "feature_cache_gib": 69.14932250976562,
+  "feature_cache_policy": "Regenerable FP16 frozen A+B outputs on task-specific tmpfs; models/checkpoints/metrics remain on persistent disk.",
+  "all_receiver_inputs_identical": true
+}

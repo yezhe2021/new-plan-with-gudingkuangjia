@@ -1,0 +1,60 @@
+{
+  "name": "fusion_concatproj_l3_g3_to_q4_frozenab_seed1234",
+  "seed": 1234,
+  "equal_parent": "/hy-tmp/yezhe/异构模型/fusion_equal50_l3_g3_to_q4_frozenab_seed1234",
+  "feature_cache": "/dev/shm/yezhe_fusion_concatproj_l3_g3_to_q4_frozenab_seed1234",
+  "layers": 36,
+  "heads": 8,
+  "dim": 128,
+  "expected_parameters": 150994944,
+  "initialization": "Separate K/V and target-layer matrices [0.5I,0.5I], bias-free; exact equal mean at initialization.",
+  "train_counts": {
+    "openbookqa": 512,
+    "arc_challenge": 512,
+    "gsm8k": 512,
+    "mmlu_pro": 512
+  },
+  "validation_counts": {
+    "openbookqa": 64,
+    "arc_challenge": 64,
+    "gsm8k": 64,
+    "mmlu_pro": 64
+  },
+  "formal_counts": {
+    "openbookqa": 128,
+    "arc_challenge": 128,
+    "hellaswag": 64,
+    "gsm8k": 32,
+    "mmlu_pro": 128,
+    "sciq": 64
+  },
+  "epochs": 4,
+  "expected_updates": 1024,
+  "effective_batch": 8,
+  "learning_rate": 0.0001,
+  "weight_decay": 0,
+  "gradient_clip": 30,
+  "chunk_tokens": 64,
+  "prefix_max_new_tokens": 64,
+  "supervised_positions_per_example_max": 8,
+  "warmup_native_epochs": 1,
+  "student_fraction_after_warmup": 0.5,
+  "monitor_validation_per_task": 16,
+  "checkpoint_every_steps": 64,
+  "max_new_tokens": 4096,
+  "selection": "Fixed final epoch4 step1024; epoch checkpoints diagnostic only, no test selection.",
+  "loss": "Full-vocabulary forward KL Native||Student, temperature1. Same mixed64-token Native/student prefixes and up to8 positions as residual Stage B. No gold CE.",
+  "reader": false,
+  "trainable_scope": "Only new concat K/V projection; both existing Stage A+B branches and receiver frozen.",
+  "disk_reserve_gib": 20,
+  "feature_cache_reserve_gib": 12,
+  "min_free_gpu_gib": 22,
+  "automatic_upload": false,
+  "continuous_monitoring": false,
+  "caveats": [
+    "Adds1024 training updates over the untrained equal-average baseline; not an equal-training-budget fusion comparison.",
+    "Llama and Gemma branches retain their existing different Stage-A data mixtures.",
+    "Full-Sync accuracy interface; no prefill-free latency claim.",
+    "MMLU-Pro is the existing custom split."
+  ]
+}
