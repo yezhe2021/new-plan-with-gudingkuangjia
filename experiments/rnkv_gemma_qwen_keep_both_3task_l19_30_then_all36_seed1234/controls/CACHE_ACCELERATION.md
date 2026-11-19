@@ -1,0 +1,13 @@
+# User-authorized storage reuse and lossless frozen-feature cache
+
+2026-11-04: user requested deleting old prestored KV and using the space for the current experiment. Deleted only regenerable `.pt` KV tensors from the completed old MCQ Llama/Qwen cache and old UFD source cache. Preserved model/optimizer checkpoints, datasets, scripts, results, and the Gemma historical source tensor still needed by smoke checks. Cleanup records are under `/hy-tmp/yezhe/异构模型/cleanup_records/kv_reuse_20261104_093110`.
+
+Full36-layer translated training KV would require228.01 GiB. Instead cache the frozen Grouped Stage-A encoder activations: K and V each `[4,T,1024]` in the original FP16 compute/storage values. Expected payload: train25.33 GiB,validation1.53 GiB,test5.75 GiB. These are sufficient for the unchanged per-layer output heads and residual Stage-B to reconstruct exactly the same translated KV. No quantization, new training or approximation is introduced.
+
+The unchanged original `Engine.base()` runs on each cache miss. Forward hooks capture only group encoder activations. Before saving each row, reconstruct its full K/V with the exact original output heads/residual in64-token chunks and require bitwise equality with the original outputs. A real GPU proof on the longest combined prompt/target example of each training task passed both miss and hit equality. Cache entries are scoped by pinned parent manifest, Stage-A/B identities, row hash, FP32 Sender and FP16 latent conventions.
+
+The first arm paused at a complete batch boundary: epoch4,step1303,batch151. The cache queue resumes exactly that saved optimizer/scaler/RNG checkpoint. Data, original training/evaluation scripts, original manifest identity, parameter scope, initial weights and1536-update budget remain unchanged. The separately pinned cache extension lives entirely under `controls/`, with `cache_manifest.json` and `cache_proof.json` documenting its code and numerical checks.
+
+`cached_queue.py` resumes the first training, evaluates it, then runs the second arm's original CPU/GPU checks, fresh training, evaluation and paired summary. Cache outputs are shared between arms because the Gemma Sender and translator are frozen and independent of memory parameters. First visits populate the cache; later visits skip Gemma forward and group encoders. Speedup grows as the cache warms. Other paused experiments are not resumed.
+
+Large regenerable latent tensors live under `source_latent_cache/`; exclude that directory when uploading scripts/results. `controls/cache_status.json` reports hit/miss counts for the active phase. Runner output is in `logs/cached_pipeline.log`, while original scientific outputs remain in their arm folders.

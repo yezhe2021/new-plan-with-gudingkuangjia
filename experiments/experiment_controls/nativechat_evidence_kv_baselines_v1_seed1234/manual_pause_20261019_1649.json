@@ -1,0 +1,77 @@
+{
+  "phase": "paused_by_user_processes_stopped",
+  "timestamp_utc": "2026-10-19T08:49:49.056606+00:00",
+  "instruction": "Pause server B training tasks",
+  "processes_before": [
+    {
+      "pid": 737594,
+      "state": "S",
+      "ppid": 1,
+      "start_ticks": "3566822102",
+      "cwd": "/hy-tmp/yezhe/异构模型/nativechat_evidence_kv_baselines_v1_seed1234",
+      "cmd": "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/bin/python -u /hy-tmp/yezhe/异构模型/nativechat_evidence_kv_baselines_v1_seed1234/run_pipeline.py"
+    },
+    {
+      "pid": 737658,
+      "state": "R",
+      "ppid": 737594,
+      "start_ticks": "3566822303",
+      "cwd": "/hy-tmp/yezhe/异构模型/nativechat_evidence_kv_baselines_v1_seed1234",
+      "cmd": "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/bin/python -u /hy-tmp/yezhe/异构模型/nativechat_evidence_kv_baselines_v1_seed1234/train.py llama our_b"
+    }
+  ],
+  "processes_after": [
+    {
+      "pid": 737594,
+      "state": "T",
+      "ppid": 1,
+      "start_ticks": "3566822102",
+      "cwd": "/hy-tmp/yezhe/异构模型/nativechat_evidence_kv_baselines_v1_seed1234",
+      "cmd": "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/bin/python -u /hy-tmp/yezhe/异构模型/nativechat_evidence_kv_baselines_v1_seed1234/run_pipeline.py"
+    },
+    {
+      "pid": 737658,
+      "state": "T",
+      "ppid": 737594,
+      "start_ticks": "3566822303",
+      "cwd": "/hy-tmp/yezhe/异构模型/nativechat_evidence_kv_baselines_v1_seed1234",
+      "cmd": "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/bin/python -u /hy-tmp/yezhe/异构模型/nativechat_evidence_kv_baselines_v1_seed1234/train.py llama our_b"
+    }
+  ],
+  "previous_training_status": {
+    "phase": "training",
+    "family": "llama",
+    "stage": "our_b",
+    "epoch": 1,
+    "batch": 128,
+    "batches": 128,
+    "step": 128,
+    "loss": 0.4333615303039551,
+    "pre_clip_grad_norm": 3.250688314437866
+  },
+  "existing_checkpoints_preserved": [
+    {
+      "path": "/hy-tmp/yezhe/异构模型/nativechat_evidence_kv_baselines_v1_seed1234/training/llama/our_b/selection.json",
+      "bytes": 201,
+      "mtime_ns": 1792387825039683865
+    },
+    {
+      "path": "/hy-tmp/yezhe/异构模型/nativechat_evidence_kv_baselines_v1_seed1234/training/llama/our_b/steps.jsonl",
+      "bytes": 15779,
+      "mtime_ns": 1792398827075527183
+    },
+    {
+      "path": "/dev/shm/nativechat_evidence_kv_baselines_v1_seed1234/resume_latest.pt",
+      "bytes": 114639470,
+      "mtime_ns": 1792398827843529605
+    },
+    {
+      "path": "/dev/shm/nativechat_evidence_kv_baselines_v1_seed1234/best.pt",
+      "bytes": 38158858,
+      "mtime_ns": 1792387824815681922
+    }
+  ],
+  "pause_method": "SIGSTOP dispatcher and trainer; process memory retained; GPU memory not released",
+  "unrelated_processes_modified": false,
+  "resume_requires_user_instruction": true
+}

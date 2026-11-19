@@ -1,0 +1,99 @@
+{
+  "passed": true,
+  "source_signature": "bd03f2f2147d1fdfc59ff1037393a2acee70da01b930e168043725c43ffb7842",
+  "native": {
+    "passed": true,
+    "native": [
+      {
+        "id": "5ae261be554299495565da52",
+        "qwen_body_tokens": 171,
+        "max_logit_drift": 4.076957702636719e-05,
+        "greedy_16_token_identity": true,
+        "native_generate_identity": true
+      },
+      {
+        "id": "5ae7e2d1554299540e5a567b",
+        "qwen_body_tokens": 557,
+        "max_logit_drift": 0.00011444091796875,
+        "greedy_16_token_identity": true,
+        "native_generate_identity": true
+      }
+    ],
+    "sources": [
+      {
+        "family": "llama",
+        "finite_native_capture": true,
+        "question_absent_from_sender": true,
+        "native_key_normalization_drift": 0.0,
+        "body_tokens": 544,
+        "fullsync_mapped_tokens": 557
+      },
+      {
+        "family": "gemma",
+        "finite_native_capture": true,
+        "question_absent_from_sender": true,
+        "native_key_normalization_drift": 0.0,
+        "body_tokens": 546,
+        "fullsync_mapped_tokens": 557
+      }
+    ],
+    "model_dtype": "float32",
+    "native_cache_injection_compared_to_same_joint_prefill": true,
+    "native_independent_is_not_required_to_equal_joint": true
+  },
+  "algorithm_smokes": {
+    "recolor": {
+      "passed": true,
+      "synthetic_fit_mse": 1.4217765356721636e-07,
+      "not_a_benchmark_result": true
+    },
+    "llama": {
+      "family": "llama",
+      "passed": true,
+      "fit16_initial_loss": 4.002887793948103,
+      "fit16_after_32_updates_loss": 1.5227005332110923,
+      "writer_b_kl": 16.622512817382812,
+      "writer_b_gradient_norm": 14.327798843383789,
+      "heterofold_objective": {
+        "routing_kl": 2.3000462212496333,
+        "k_post_wo_mse": 0.006185058978947684,
+        "post_wo_nmse": 0.41448789659059704,
+        "loss": 2.7207191768191783
+      },
+      "heterofold_role_gradient_norms": {
+        "k": 0.06376430987615982,
+        "v": 0.004211342238864019
+      },
+      "folding_max_abs_error": 1.52587890625e-05,
+      "frozen_model_parameter_gradients": false,
+      "peak_allocated_gpu_gib": 16.45408058166504,
+      "smoke_weights_discarded": true,
+      "small_fit_is_not_generalization_evidence": true
+    },
+    "gemma": {
+      "family": "gemma",
+      "passed": true,
+      "fit16_initial_loss": 4.061838936556425,
+      "fit16_after_32_updates_loss": 1.2316776921533334,
+      "writer_b_kl": 16.342632293701172,
+      "writer_b_gradient_norm": 63.330162048339844,
+      "heterofold_objective": {
+        "routing_kl": 2.348132618599468,
+        "k_post_wo_mse": 0.006092183140076991,
+        "post_wo_nmse": 199.16763851957188,
+        "loss": 201.52186332131143
+      },
+      "heterofold_role_gradient_norms": {
+        "k": 0.059779868844397954,
+        "v": 27.121165102365374
+      },
+      "folding_max_abs_error": 0.000152587890625,
+      "frozen_model_parameter_gradients": false,
+      "peak_allocated_gpu_gib": 16.456058502197266,
+      "smoke_weights_discarded": true,
+      "small_fit_is_not_generalization_evidence": true
+    }
+  },
+  "smoke_parameters_never_used_for_formal_training": true,
+  "volatile_optimizer_statistics_storage": true
+}

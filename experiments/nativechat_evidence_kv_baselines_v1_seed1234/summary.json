@@ -1,0 +1,217 @@
+{
+  "experiment": "nativechat_evidence_kv_baselines_v1_seed1234",
+  "timestamp_utc": "2026-10-19T02:04:41.455249+00:00",
+  "server": "B",
+  "status": "paused_by_user_after_llama_stage_a",
+  "full_experiment_complete": false,
+  "configuration": {
+    "name": "nativechat_evidence_kv_baselines_v1_seed1234",
+    "protocol": "nativechat_evidence_only_qwen_grid_v1",
+    "seed": 1234,
+    "server": "B",
+    "model_dtype": "float32",
+    "map_dtype": "float32",
+    "moment_dtype": "float64",
+    "attention_implementation": "eager",
+    "cpu_threads": 8,
+    "models": {
+      "llama": "/hy-tmp/yezhe/all_models/models/LLM-Research/Llama-3.2-3B-Instruct",
+      "gemma": "/hy-tmp/yezhe/all_models/models/LLM-Research/gemma-3-4b-it",
+      "qwen": "/hy-tmp/yezhe/all_models/models/Qwen/Qwen3-4B"
+    },
+    "train_data": "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/data/calibration/sources/hotpot-distractor-train-00000-of-00002.parquet",
+    "dev_data": "/hy-tmp/yezhe/异构模型/heterogeneous_multidoc_frozen_writers_v0_seed1234/data/hotpot_dev_distractor_v1.json",
+    "old_pilot_manifests": [
+      "/hy-tmp/yezhe/异构模型/heterogeneous_multidoc_fullsync_writers_v1_seed1234/reference_sample_ids.json",
+      "/hy-tmp/yezhe/异构模型/heterogeneous_multidoc_frozen_writers_v0_seed1234/manifest.json"
+    ],
+    "train_count": 512,
+    "validation_count": 64,
+    "pilot_count": 128,
+    "max_evidence_qwen_tokens": 1024,
+    "max_sender_tokens": 1536,
+    "max_new_tokens": 128,
+    "generation": "greedy_native_eos_no_custom_answer_parser",
+    "thinking": false,
+    "capture_batch_questions": 4,
+    "cpu_kv_cache_gib": 4,
+    "min_initial_free_gpu_gib": 23,
+    "model_activation_reserve_gib": 3,
+    "our_stage_a": {
+      "epochs": 4,
+      "learning_rate": 0.001,
+      "effective_batch": 8,
+      "chunk_tokens": 64,
+      "gradient_clip": 30.0,
+      "loss": "post_k_norm_pre_rope_K_and_V_NMSE_plus_cosine",
+      "hidden_dim": 1024
+    },
+    "our_stage_b": {
+      "epochs": 2,
+      "learning_rate": 0.0001,
+      "effective_batch": 4,
+      "gradient_clip": 30.0,
+      "rank": 64,
+      "loss": "native_Qwen_full_vocabulary_KL_only_on_teacher_greedy_prefix",
+      "projection_chunk_tokens": 8,
+      "teacher_max_new_tokens": 128
+    },
+    "heterofold": {
+      "rank": 16,
+      "epochs": 4,
+      "learning_rate": 0.0003,
+      "weight_decay": 0.0001,
+      "effective_batch": 8,
+      "gradient_clip": 1.0,
+      "lambda_k_output": 1.0,
+      "layer_offsets": [
+        -4,
+        0,
+        4
+      ],
+      "moment_mass": "natural_exact_end_aligned_token_mass",
+      "loss": "native_attention_KL_plus_per_head_key_post_WO_MSE_plus_value_post_WO_NMSE_detached_routing"
+    },
+    "checkpoint_selection": "heldout_loss_only_including_epoch_zero",
+    "validation_gate": {
+      "min_f1_gain_over_question_only": 0.05,
+      "paired_bootstrap_lower_bound_positive": true,
+      "correct_memory_better_than_wrong": true,
+      "bootstrap_replicates": 2000
+    },
+    "calibration_units": [
+      "0",
+      "1",
+      "joint"
+    ],
+    "single_source": "one_sender_jointly_encodes_both_complete_gold_paragraphs",
+    "fusion_assignments": [
+      "llama_llama",
+      "gemma_gemma",
+      "llama_gemma",
+      "gemma_llama"
+    ],
+    "receiver_trainable": false,
+    "old_checkpoints_loaded": false,
+    "automatic_github_upload": false,
+    "persistent_kv_tensors": false,
+    "native_template_date": "18 Oct 2026",
+    "scratch_directory": "/dev/shm/nativechat_evidence_kv_baselines_v1_seed1234",
+    "scratch_max_gib": 60,
+    "durable_stage_a_directory": "/root/nativechat_evidence_kv_baselines_v1_seed1234_selected",
+    "native_logit_atol": 0.001,
+    "checkpoint_interval_batches": 16
+  },
+  "checkpoint_selection": "held-out Stage A loss only, including epoch zero",
+  "pause_request": {
+    "requested_utc": "2026-10-19T01:28:25.783748+00:00",
+    "instruction": "Finish current Llama Stage A, preserve results, then pause all later stages.",
+    "dispatcher": {
+      "pid": 675276,
+      "state": "S",
+      "ppid": 1,
+      "start_ticks": "3561847542",
+      "cmd": "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/bin/python -u /hy-tmp/yezhe/异构模型/nativechat_evidence_kv_baselines_v1_seed1234/run_pipeline.py"
+    },
+    "trainer": {
+      "pid": 680806,
+      "state": "R",
+      "ppid": 675276,
+      "start_ticks": "3561995680",
+      "cmd": "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/bin/python -u /hy-tmp/yezhe/异构模型/nativechat_evidence_kv_baselines_v1_seed1234/train.py llama our_a"
+    },
+    "controller_pid": 724789,
+    "frozen_sources_changed": false,
+    "phase": "paused_after_stage_a",
+    "dispatcher_stopped": true,
+    "stage_a_training_continues": false,
+    "completed_utc": "2026-10-19T02:04:41.453739+00:00",
+    "selected_checkpoint_verified": true,
+    "last_update_checkpoint": {
+      "path": "/root/nativechat_evidence_kv_baselines_v1_seed1234_selected/our_llama_stage_a_last.pt",
+      "sha256": "5bd07b09be9e97dba2ed2898209493df377fda41729179d77b798d7f106119db",
+      "persistent": true,
+      "selected_for_stage_b": false,
+      "purpose": "Archive final Stage A update; validation-selected checkpoint remains authoritative"
+    }
+  },
+  "llama_stage_a": {
+    "completed": true,
+    "checkpoint": {
+      "path": "/root/nativechat_evidence_kv_baselines_v1_seed1234_selected/our_llama_stage_a.pt",
+      "sha256": "91b86f9c1391de16008214b101dc5c885e0878f9fd249a6734e67060d7cd00cb",
+      "persistent": true
+    },
+    "selection": {
+      "best": {
+        "epoch": 4,
+        "validation_loss": 0.8411352104699859,
+        "step": 768
+      },
+      "epochs": [
+        {
+          "epoch": 0,
+          "validation_loss": 4.00296828975103,
+          "step": 0
+        },
+        {
+          "epoch": 1,
+          "validation_loss": 1.0495939680796689,
+          "step": 192
+        },
+        {
+          "epoch": 2,
+          "validation_loss": 0.9271993857997698,
+          "step": 384
+        },
+        {
+          "epoch": 3,
+          "validation_loss": 0.873126953459638,
+          "step": 576
+        },
+        {
+          "epoch": 4,
+          "validation_loss": 0.8411352104699859,
+          "step": 768
+        }
+      ]
+    },
+    "updates": 768
+  },
+  "last_epoch_archive": {
+    "path": "/root/nativechat_evidence_kv_baselines_v1_seed1234_selected/our_llama_stage_a_last.pt",
+    "sha256": "5bd07b09be9e97dba2ed2898209493df377fda41729179d77b798d7f106119db",
+    "persistent": true,
+    "selected_for_stage_b": false,
+    "purpose": "Archive final Stage A update; validation-selected checkpoint remains authoritative"
+  },
+  "error": null,
+  "evaluation": {
+    "evaluation/validation/native/summary.json": {
+      "completed": true,
+      "split": "validation",
+      "pilot_not_official_full_benchmark": true,
+      "arms": {
+        "native_joint": {
+          "n": 64,
+          "em": 0.6875,
+          "f1": 0.7840844051781554,
+          "eos_rate": 1.0,
+          "mean_generated_tokens": 5.6875
+        },
+        "question_only": {
+          "n": 64,
+          "em": 0.125,
+          "f1": 0.20846025910364144,
+          "eos_rate": 1.0,
+          "mean_generated_tokens": 7.640625
+        }
+      }
+    }
+  },
+  "paths": {
+    "experiment": "/hy-tmp/yezhe/异构模型/nativechat_evidence_kv_baselines_v1_seed1234",
+    "logs": "/hy-tmp/yezhe/异构模型/nativechat_evidence_kv_baselines_v1_seed1234/logs/pipeline.log",
+    "pause_controller_log": "/hy-tmp/yezhe/异构模型/experiment_controls/nativechat_evidence_kv_baselines_v1_seed1234/pause.log"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "seed": 1234,
+  "train": false,
+  "count": 64,
+  "selection": "first32 official test rows per dataset; smoke first1 each",
+  "weights": {
+    "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/runs/mcq/stage_a/best.pt": "62beafbd377374ed8b6a3f15752150a2c23ef81e114c72147d93d3edd527671e",
+    "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/runs/mcq/stage_b/best.pt": "663c212151816abf1a44e0db441741389555743b6bcda84cae58c117307f1fc9"
+  },
+  "memory": "Full-Sync all option tokens except receiver-native token0; no Top32 budget",
+  "reader": "Options memory -> native Question -> Answer; no chat template; 0shot",
+  "scoring": "candidate answer-text summed likelihood and character-length normalized likelihood",
+  "primary_comparison": "query_aware_memory vs evidence_only_memory; identical reader/mapping/gold",
+  "old_protocol": "original official task context + legacy full-context frozen Writer",
+  "scope": "changed prompt mechanism diagnostic, not an official benchmark score"
+}

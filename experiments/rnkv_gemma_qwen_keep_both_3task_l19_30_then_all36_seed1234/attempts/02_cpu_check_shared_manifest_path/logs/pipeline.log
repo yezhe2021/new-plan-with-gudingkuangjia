@@ -1,0 +1,52 @@
+2026-11-03 23:33:23 START None prepare.py
+2026-11-03 23:33:58 GEMMA ALIGN train 128 3072
+2026-11-03 23:33:59 GEMMA ALIGN train 256 3072
+2026-11-03 23:33:59 GEMMA ALIGN train 384 3072
+2026-11-03 23:34:00 GEMMA ALIGN train 512 3072
+2026-11-03 23:34:00 GEMMA ALIGN train 640 3072
+2026-11-03 23:34:01 GEMMA ALIGN train 768 3072
+2026-11-03 23:34:01 GEMMA ALIGN train 896 3072
+2026-11-03 23:34:01 GEMMA ALIGN train 1024 3072
+2026-11-03 23:34:08 GEMMA ALIGN train 1152 3072
+2026-11-03 23:34:15 GEMMA ALIGN train 1280 3072
+2026-11-03 23:34:22 GEMMA ALIGN train 1408 3072
+2026-11-03 23:34:29 GEMMA ALIGN train 1536 3072
+2026-11-03 23:34:36 GEMMA ALIGN train 1664 3072
+2026-11-03 23:34:43 GEMMA ALIGN train 1792 3072
+2026-11-03 23:34:52 GEMMA ALIGN train 1920 3072
+2026-11-03 23:35:00 GEMMA ALIGN train 2048 3072
+2026-11-03 23:35:00 GEMMA ALIGN train 2176 3072
+2026-11-03 23:35:01 GEMMA ALIGN train 2304 3072
+2026-11-03 23:35:01 GEMMA ALIGN train 2432 3072
+2026-11-03 23:35:02 GEMMA ALIGN train 2560 3072
+2026-11-03 23:35:02 GEMMA ALIGN train 2688 3072
+2026-11-03 23:35:03 GEMMA ALIGN train 2816 3072
+2026-11-03 23:35:03 GEMMA ALIGN train 2944 3072
+2026-11-03 23:35:04 GEMMA ALIGN train 3072 3072
+2026-11-03 23:35:09 GEMMA ALIGN validation 128 192
+2026-11-03 23:35:13 GEMMA ALIGN test 128 512
+2026-11-03 23:35:24 GEMMA ALIGN test 256 512
+2026-11-03 23:35:25 GEMMA ALIGN test 384 512
+2026-11-03 23:35:25 GEMMA ALIGN test 512 512
+2026-11-03 23:35:48 GEMMA TWO-ARM PREPARED {'train': 3072, 'validation': 192, 'test': 512}
+2026-11-03 23:35:50 START restricted_19_30 cpu_checks.py
+Traceback (most recent call last):
+  File "/hy-tmp/yezhe/异构模型/rnkv_gemma_qwen_keep_both_3task_l19_30_then_all36_seed1234/cpu_checks.py", line 41, in <module>
+    if __name__=='__main__':main()
+  File "/hy-tmp/yezhe/异构模型/rnkv_gemma_qwen_keep_both_3task_l19_30_then_all36_seed1234/cpu_checks.py", line 34, in main
+    assert C.digest([[(r['id'],k) for r,k in b] for b in bb])==C.read(ROOT/'manifest.json')['batch_schedules'][str(epoch)]
+  File "/hy-tmp/yezhe/异构模型/recolor_kl_l3_to_q4_seed1234/core.py", line 32, in read
+    def read(path):return json.loads(Path(path).read_text())
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/pathlib.py", line 1134, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+FileNotFoundError: [Errno 2] No such file or directory: '/hy-tmp/yezhe/异构模型/rnkv_gemma_qwen_keep_both_3task_l19_30_then_all36_seed1234/arms/restricted_19_30/manifest.json'
+Traceback (most recent call last):
+  File "/hy-tmp/yezhe/异构模型/rnkv_gemma_qwen_keep_both_3task_l19_30_then_all36_seed1234/run_pipeline.py", line 52, in <module>
+    else:run()
+  File "/hy-tmp/yezhe/异构模型/rnkv_gemma_qwen_keep_both_3task_l19_30_then_all36_seed1234/run_pipeline.py", line 44, in run
+    result.check_returncode()
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/subprocess.py", line 457, in check_returncode
+    raise CalledProcessError(self.returncode, self.args, self.stdout,
+subprocess.CalledProcessError: Command '['/hy-tmp/yezhe/data/miniconda3/envs/attnkv/bin/python', '-u', '/hy-tmp/yezhe/异构模型/rnkv_gemma_qwen_keep_both_3task_l19_30_then_all36_seed1234/cpu_checks.py']' returned non-zero exit status 1.

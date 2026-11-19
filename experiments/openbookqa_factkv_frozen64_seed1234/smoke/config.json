@@ -1,0 +1,23 @@
+{
+  "training": false,
+  "count": 2,
+  "seed": 1234,
+  "source": {
+    "archive": "/hy-tmp/yezhe/异构模型/openbookqa_factkv_frozen64_seed1234/data/OpenBookQA-V1-Sep2018.zip",
+    "sha256": "82368cf05df2e3b309c17d162e10b888b4d768fad6e171e0a041954c8553be46",
+    "member": "OpenBookQA-V1-Sep2018/Data/Additional/test_complete.jsonl",
+    "alignment": "exact ID/question/choices/answerKey equality"
+  },
+  "selection": "first64 Main official test IDs joined to official Additional fact1",
+  "checkpoints": {
+    "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/runs/mcq/stage_a/best.pt": "62beafbd377374ed8b6a3f15752150a2c23ef81e114c72147d93d3edd527671e",
+    "/hy-tmp/yezhe/异构模型/lm_eval_fullsync_legacy_reproduction_l3_to_q4_seed1234/runs/mcq/stage_b/best.pt": "663c212151816abf1a44e0db441741389555743b6bcda84cae58c117307f1fc9"
+  },
+  "sender": "newline + fact1 only; BOS added; never question/choices/answerKey",
+  "receiver": "native newline token0 + optional translated fact KV + native Question/Options/Answer",
+  "alignment": "Full-Sync copy/drop, all fact tokens excluding fixed native newline anchor",
+  "baseline": "identical native newline anchor + identical Question/Options/Answer; no fact text or fact KV",
+  "scoring": "answer-text summed likelihood and character-length-normalized likelihood; 0shot, no chat template",
+  "scope": "gold supporting-fact diagnostic, not retrieval or standard closed-book benchmark",
+  "position_protocol": "contiguous actual positions; question shifted by inserted memory length"
+}

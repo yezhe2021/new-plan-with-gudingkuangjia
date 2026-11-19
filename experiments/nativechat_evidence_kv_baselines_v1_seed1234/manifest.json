@@ -1,0 +1,183 @@
+{
+  "configuration": {
+    "name": "nativechat_evidence_kv_baselines_v1_seed1234",
+    "protocol": "nativechat_evidence_only_qwen_grid_v1",
+    "seed": 1234,
+    "server": "B",
+    "model_dtype": "float32",
+    "map_dtype": "float32",
+    "moment_dtype": "float64",
+    "attention_implementation": "eager",
+    "cpu_threads": 8,
+    "models": {
+      "llama": "/hy-tmp/yezhe/all_models/models/LLM-Research/Llama-3.2-3B-Instruct",
+      "gemma": "/hy-tmp/yezhe/all_models/models/LLM-Research/gemma-3-4b-it",
+      "qwen": "/hy-tmp/yezhe/all_models/models/Qwen/Qwen3-4B"
+    },
+    "train_data": "/hy-tmp/yezhe/异构模型/heterofold_official_l3_to_q4_seed20260825/data/calibration/sources/hotpot-distractor-train-00000-of-00002.parquet",
+    "dev_data": "/hy-tmp/yezhe/异构模型/heterogeneous_multidoc_frozen_writers_v0_seed1234/data/hotpot_dev_distractor_v1.json",
+    "old_pilot_manifests": [
+      "/hy-tmp/yezhe/异构模型/heterogeneous_multidoc_fullsync_writers_v1_seed1234/reference_sample_ids.json",
+      "/hy-tmp/yezhe/异构模型/heterogeneous_multidoc_frozen_writers_v0_seed1234/manifest.json"
+    ],
+    "train_count": 512,
+    "validation_count": 64,
+    "pilot_count": 128,
+    "max_evidence_qwen_tokens": 1024,
+    "max_sender_tokens": 1536,
+    "max_new_tokens": 128,
+    "generation": "greedy_native_eos_no_custom_answer_parser",
+    "thinking": false,
+    "capture_batch_questions": 4,
+    "cpu_kv_cache_gib": 4,
+    "min_initial_free_gpu_gib": 23,
+    "model_activation_reserve_gib": 3,
+    "our_stage_a": {
+      "epochs": 4,
+      "learning_rate": 0.001,
+      "effective_batch": 8,
+      "chunk_tokens": 64,
+      "gradient_clip": 30.0,
+      "loss": "post_k_norm_pre_rope_K_and_V_NMSE_plus_cosine",
+      "hidden_dim": 1024
+    },
+    "our_stage_b": {
+      "epochs": 2,
+      "learning_rate": 0.0001,
+      "effective_batch": 4,
+      "gradient_clip": 30.0,
+      "rank": 64,
+      "loss": "native_Qwen_full_vocabulary_KL_only_on_teacher_greedy_prefix",
+      "projection_chunk_tokens": 8,
+      "teacher_max_new_tokens": 128
+    },
+    "heterofold": {
+      "rank": 16,
+      "epochs": 4,
+      "learning_rate": 0.0003,
+      "weight_decay": 0.0001,
+      "effective_batch": 8,
+      "gradient_clip": 1.0,
+      "lambda_k_output": 1.0,
+      "layer_offsets": [
+        -4,
+        0,
+        4
+      ],
+      "moment_mass": "natural_exact_end_aligned_token_mass",
+      "loss": "native_attention_KL_plus_per_head_key_post_WO_MSE_plus_value_post_WO_NMSE_detached_routing"
+    },
+    "checkpoint_selection": "heldout_loss_only_including_epoch_zero",
+    "validation_gate": {
+      "min_f1_gain_over_question_only": 0.05,
+      "paired_bootstrap_lower_bound_positive": true,
+      "correct_memory_better_than_wrong": true,
+      "bootstrap_replicates": 2000
+    },
+    "calibration_units": [
+      "0",
+      "1",
+      "joint"
+    ],
+    "single_source": "one_sender_jointly_encodes_both_complete_gold_paragraphs",
+    "fusion_assignments": [
+      "llama_llama",
+      "gemma_gemma",
+      "llama_gemma",
+      "gemma_llama"
+    ],
+    "receiver_trainable": false,
+    "old_checkpoints_loaded": false,
+    "automatic_github_upload": false,
+    "persistent_kv_tensors": false,
+    "native_template_date": "18 Oct 2026",
+    "scratch_directory": "/dev/shm/nativechat_evidence_kv_baselines_v1_seed1234",
+    "scratch_max_gib": 60,
+    "durable_stage_a_directory": "/root/nativechat_evidence_kv_baselines_v1_seed1234_selected",
+    "native_logit_atol": 0.001,
+    "checkpoint_interval_batches": 16
+  },
+  "source_sha256": {
+    "algorithms.py": "2ec8646300a4337968a1abb91e6684e951b3e1e1e271eff1db7c99457a819c1b",
+    "common.py": "f640cc96db036c9a3f311e75c71edc2fbb749dbcf89a50ae411f82a3a2fe790c",
+    "config.json": "a5f30ff9ac49560754b720a82fb0342c3500a0121c6f28f9bb40d1fe4918d532",
+    "evaluate.py": "a4a94b70923329c2e29eebc784fdd738228f51ad57d7e72045d4e83539a981ee",
+    "models.py": "287b646ebf0d7a21431fd3bd8fd3ee9c3370e0cae0753893e6ee8bbb9e30ffe3",
+    "prepare.py": "fea7dd865639958f9d36e9a2b943dbc2744f806ac3ad7f1975f1895eca5c9972",
+    "protocol.py": "9da88c47cb20e5388a5d9a8844046cc6b6a60f7afeb2c752ae6977cb6009296b",
+    "run_pipeline.py": "35edd06aef9c8dd952804af72456127c28cbdf66aa341d21e0db9b8f24d7d0b5",
+    "smoke.py": "fb5a2677cb5600fa141b628dff78dbfca4cd1c57bcdd90ec67fa18490bc823ee",
+    "startup.py": "ed4fb2a547a1f8ba8dee63dd01aa14a971c8e4363ca308a39bb0bd223d628522",
+    "train.py": "6eef2ae6831fa1f03d9c3de43e06d294c934aa4c187b3e036e166fa13c64c7ef",
+    "vendor/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "vendor/heterofold/__init__.py": "661cd029667c445ad32248fbcfcec1d78e0323de5ef0b31f039c3c3435900ed8",
+    "vendor/heterofold/alignment.py": "d2009d9f7b95117190d3f1dad7abae42f58005d99101abe93127f7f65fb90d98",
+    "vendor/heterofold/attention.py": "fd752812c10c085941266beaac34a7364e0dcb455b6aef0993cab0a1ab93fae7",
+    "vendor/heterofold/calibration.py": "cbaca7d217422740039b5c940c3b82890f571dd3789a9bb5a298ffad3e176477",
+    "vendor/heterofold/capture.py": "9e7dd3165c9d6b74d8e7a8d64fe5a4a844db44f87dc75962bae004916fae6b45",
+    "vendor/heterofold/maps.py": "bda861367721565827b4336a129ad5352ab1018f6181d3b2db50eb96e3914329",
+    "vendor/heterofold/modeling.py": "c36066d40ae9836cf31f324603af9fd1a1af3c70af2d61c0e492456a367749e8",
+    "vendor/heterofold/recolor.py": "c1dfb804363119d205145663d889b52b205a800d01bb42f24ac5cbda5075da90",
+    "vendor/our_gemma.py": "b0adba12116cec2b76d4bef4dd00b2cff83ab387ab9e1de9c06b4aa29a2cc673",
+    "vendor/our_llama.py": "4ea6ebad82e374f93069cd893f0ce0f546558cc26a6c238ad746fecf43ba2842"
+  },
+  "prepared_sha256": {
+    "prepared/data_manifest.json": "4ce0e61a88a18b0e4974ebeee72966e37440722fe8b5d630af5cad089a9f55b2",
+    "prepared/pilot.jsonl": "13d4499df318daaea406958fffaee01f31fff758cf045c54d1451038dbb3c510",
+    "prepared/token_audit.jsonl": "afe3c747cb8ecd1e5f775ffbab92d05c9449f6ae4f3272c5bf5488e8421864b9",
+    "prepared/train.jsonl": "fc026c6ab208ee9d92d7df3de6bb4cb7924b0114389fee023e139dac3dfe5a1e",
+    "prepared/validation.jsonl": "c07b2e894e39c90cc4426e4de4f058bba3f6a6f23eb0f98f91b8237a2c3a6a6b"
+  },
+  "model_files": {
+    "llama/config.json": "39fb36dc5416f445ebc4e71cb71fbcf6727e80a35836d8ba1a1474c318467b7a",
+    "llama/model.safetensors.index.json": "0a57c30afc07c81610ae7fe013bea3b9d50365f9a8145ae98e8714220f3d7c7c",
+    "llama/tokenizer_config.json": "9823dcfdc1121869029da45192238e85cf44f0b232a6d9dc20e4fe6f4242a14e",
+    "llama/tokenizer.json": "79e3e522635f3171300913bb421464a87de6222182a0570b9b2ccba2a964b2b4",
+    "gemma/config.json": "9059f680f4dbd1957f35cb44b9fdd6948f4792db7a7a35ee353ea42e68adf7ff",
+    "gemma/model.safetensors.index.json": "77f4b67de084c31c7bcd373b039908108eee6c6181607e6d53da730e5f0bc659",
+    "gemma/tokenizer_config.json": "bfe25c2735e395407beb78456ea9a6984a1f00d8c16fa04a8b75f2a614cf53e1",
+    "gemma/tokenizer.json": "4667f2089529e8e7657cfb6d1c19910ae71ff5f28aa7ab2ff2763330affad795",
+    "qwen/config.json": "8ba006f74fecfaaeb392872a60f4a480e7ec9860153d2e1b769ec81f9a147f8a",
+    "qwen/model.safetensors.index.json": "6dc0981b8829fead746441f68f38f24c5ca4a3a66351f652c26c6df0efc43ab2",
+    "qwen/tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+    "qwen/tokenizer_config.json": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101"
+  },
+  "startup_report_sha256": "c37d37eb1d6df60f5b9b017577b921e66aad7e72c7dcc539460d72884662d622",
+  "model_weights": {
+    "/hy-tmp/yezhe/all_models/models/LLM-Research/Llama-3.2-3B-Instruct/model-00001-of-00002.safetensors": {
+      "sha256": "13cbd6d16e927a0c5bad54102514e6e18b4a47b3a6eb911e39d678d328d19f55",
+      "bytes": 4965799096,
+      "mtime_ns": 1790563899747981857
+    },
+    "/hy-tmp/yezhe/all_models/models/LLM-Research/Llama-3.2-3B-Instruct/model-00002-of-00002.safetensors": {
+      "sha256": "7b770216613ac5c34d7c54bdff1fa616bc4e338a9d0b20af6303e48c295ee23c",
+      "bytes": 1459729952,
+      "mtime_ns": 1790563482276276584
+    },
+    "/hy-tmp/yezhe/all_models/models/LLM-Research/gemma-3-4b-it/model-00001-of-00002.safetensors": {
+      "sha256": "eb5fd5e97ddd07b56778733e9653c07312529cb00980a318fc3e1c4e3b5a8f1f",
+      "bytes": 4961251752,
+      "mtime_ns": 1775155301000000000
+    },
+    "/hy-tmp/yezhe/all_models/models/LLM-Research/gemma-3-4b-it/model-00002-of-00002.safetensors": {
+      "sha256": "fdde0e5aa5ced0fa203b3d50f4ab78168b7e3a3e08c6349f5cc9326666e1bb13",
+      "bytes": 3639026128,
+      "mtime_ns": 1775155231000000000
+    },
+    "/hy-tmp/yezhe/all_models/models/Qwen/Qwen3-4B/model-00001-of-00003.safetensors": {
+      "sha256": "328a91d3122359d5547f9d79521205bc0a46e1f79a792dfe650e99fc2d651223",
+      "bytes": 3957900840,
+      "mtime_ns": 1789960326137505001
+    },
+    "/hy-tmp/yezhe/all_models/models/Qwen/Qwen3-4B/model-00002-of-00003.safetensors": {
+      "sha256": "6cd087b316306a68c562436b5492edbcf6e16c6dba3a1308279caa5a58e21ca5",
+      "bytes": 3987450520,
+      "mtime_ns": 1789960682289445564
+    },
+    "/hy-tmp/yezhe/all_models/models/Qwen/Qwen3-4B/model-00003-of-00003.safetensors": {
+      "sha256": "e4bf436957184f4eeb86a80e9db394503f1f56446b2e6b7edeac5b81470f4ca1",
+      "bytes": 99630640,
+      "mtime_ns": 1789960691569547899
+    }
+  }
+}
