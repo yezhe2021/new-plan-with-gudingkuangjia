@@ -1,0 +1,998 @@
+PIPELINE START prepare.py
+PREPARED INTERNAL VALIDATION 16
+PIPELINE FINISH prepare.py
+PIPELINE START tests.py
+CPU IDENTITY/ROLE/PARAMETER TESTS PASSED
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<01:34,  2.67it/s]Loading weights:  37%|███▋      | 93/254 [00:00<00:00, 251.23it/s]Loading weights:  57%|█████▋    | 144/254 [00:00<00:00, 241.66it/s]Loading weights:  72%|███████▏  | 183/254 [00:00<00:00, 226.78it/s]Loading weights:  85%|████████▍ | 215/254 [00:01<00:00, 213.98it/s]Loading weights:  95%|█████████▌| 242/254 [00:01<00:00, 220.06it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 210.59it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<03:21,  1.97it/s]Loading weights:  31%|███       | 124/398 [00:00<00:01, 265.87it/s]Loading weights:  48%|████▊     | 190/398 [00:00<00:00, 242.87it/s]Loading weights:  59%|█████▉    | 236/398 [00:01<00:00, 238.29it/s]Loading weights:  69%|██████▊   | 273/398 [00:01<00:00, 230.85it/s]Loading weights:  77%|███████▋  | 305/398 [00:01<00:00, 235.67it/s]Loading weights:  84%|████████▍ | 335/398 [00:01<00:00, 214.94it/s]Loading weights:  91%|█████████ | 361/398 [00:01<00:00, 222.52it/s]Loading weights:  97%|█████████▋| 388/398 [00:01<00:00, 223.12it/s]Loading weights: 100%|██████████| 398/398 [00:01<00:00, 217.58it/s]
+Traceback (most recent call last):
+  File "/hy-tmp/yezhe/异构模型/qasper_crossrole_studentstate_v0_seed1234/tests.py", line 112, in <module>
+    if __name__=='__main__': main()
+  File "/hy-tmp/yezhe/异构模型/qasper_crossrole_studentstate_v0_seed1234/tests.py", line 57, in main
+    assert any(branch[0].weight.grad.abs().sum()>0 for layer in residual.k for branch in layer)
+AssertionError
+Traceback (most recent call last):
+  File "/hy-tmp/yezhe/异构模型/qasper_crossrole_studentstate_v0_seed1234/run_pipeline.py", line 18, in <module>
+    if not (ROOT/'smoke/completed.json').exists(): run('tests.py')
+  File "/hy-tmp/yezhe/异构模型/qasper_crossrole_studentstate_v0_seed1234/run_pipeline.py", line 9, in run
+    subprocess.run([sys.executable,'-u',str(ROOT/script),*args],cwd=ROOT,check=True)
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/hy-tmp/yezhe/data/miniconda3/envs/attnkv/bin/python', '-u', '/hy-tmp/yezhe/异构模型/qasper_crossrole_studentstate_v0_seed1234/tests.py']' returned non-zero exit status 1.
+PIPELINE START prepare.py
+PIPELINE FINISH prepare.py
+PIPELINE START tests.py
+CPU IDENTITY/ROLE/PARAMETER TESTS PASSED
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<02:25,  1.74it/s]Loading weights:  40%|████      | 102/254 [00:00<00:00, 201.89it/s]Loading weights:  63%|██████▎   | 161/254 [00:00<00:00, 199.51it/s]Loading weights:  80%|███████▉  | 202/254 [00:01<00:00, 194.37it/s]Loading weights:  92%|█████████▏| 234/254 [00:01<00:00, 191.18it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 172.04it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<03:08,  2.11it/s]Loading weights:  30%|███       | 121/398 [00:00<00:01, 262.98it/s]Loading weights:  44%|████▍     | 177/398 [00:00<00:00, 253.86it/s]Loading weights:  55%|█████▌    | 219/398 [00:01<00:00, 241.63it/s]Loading weights:  64%|██████▎   | 253/398 [00:01<00:00, 225.49it/s]Loading weights:  71%|███████   | 282/398 [00:01<00:00, 228.21it/s]Loading weights:  78%|███████▊  | 309/398 [00:01<00:00, 234.24it/s]Loading weights:  84%|████████▍ | 336/398 [00:01<00:00, 230.07it/s]Loading weights:  91%|█████████ | 363/398 [00:01<00:00, 239.36it/s]Loading weights:  98%|█████████▊| 389/398 [00:01<00:00, 209.64it/s]Loading weights: 100%|██████████| 398/398 [00:01<00:00, 218.07it/s]
+GPU SMOKE PASSED 1 1810.10797 797 8.770933163759764e-06
+GPU SMOKE PASSED 2 1909.00694 4094 1.1328300388413481e-05
+ALL NEW MODULE IDENTITY/REPLAY/GRADIENT TESTS PASSED
+PIPELINE FINISH tests.py
+PIPELINE START train_a.py self
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<01:32,  2.74it/s]Loading weights:  30%|██▉       | 76/254 [00:00<00:00, 206.95it/s]Loading weights:  46%|████▌     | 117/254 [00:00<00:00, 211.65it/s]Loading weights:  59%|█████▊    | 149/254 [00:00<00:00, 193.99it/s]Loading weights:  69%|██████▉   | 175/254 [00:01<00:00, 181.53it/s]Loading weights:  79%|███████▉  | 201/254 [00:01<00:00, 191.67it/s]Loading weights:  90%|████████▉ | 228/254 [00:01<00:00, 203.77it/s]Loading weights:  99%|█████████▉| 251/254 [00:01<00:00, 206.41it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 186.60it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   9%|▉         | 36/398 [00:00<00:01, 312.37it/s]Loading weights:  17%|█▋        | 69/398 [00:00<00:01, 296.86it/s]Loading weights:  25%|██▍       | 99/398 [00:00<00:01, 288.75it/s]Loading weights:  32%|███▏      | 128/398 [00:00<00:01, 224.30it/s]Loading weights:  39%|███▉      | 157/398 [00:00<00:01, 233.28it/s]Loading weights:  46%|████▌     | 182/398 [00:00<00:00, 237.51it/s]Loading weights:  53%|█████▎    | 212/398 [00:00<00:00, 212.12it/s]Loading weights:  62%|██████▏   | 245/398 [00:01<00:00, 233.12it/s]Loading weights:  68%|██████▊   | 270/398 [00:01<00:00, 231.43it/s]Loading weights:  75%|███████▌  | 300/398 [00:01<00:00, 210.38it/s]Loading weights:  83%|████████▎ | 330/398 [00:01<00:00, 229.40it/s]Loading weights:  89%|████████▉ | 355/398 [00:01<00:00, 225.46it/s]Loading weights:  97%|█████████▋| 385/398 [00:01<00:00, 243.80it/s]Loading weights: 100%|██████████| 398/398 [00:01<00:00, 242.15it/s]
+A_self step=1/128 epoch=1 loss=0.709771 gradient=0.00125
+A_self step=2/128 epoch=1 loss=0.712868 gradient=0.00120
+A_self step=3/128 epoch=1 loss=0.706170 gradient=0.00126
+A_self step=4/128 epoch=1 loss=0.681704 gradient=0.00122
+A_self step=5/128 epoch=1 loss=0.703139 gradient=0.00119
+A_self step=6/128 epoch=1 loss=0.710194 gradient=0.00116
+A_self step=7/128 epoch=1 loss=0.692909 gradient=0.00118
+A_self step=8/128 epoch=1 loss=0.729056 gradient=0.00122
+A_self step=9/128 epoch=1 loss=0.672650 gradient=0.00116
+A_self step=10/128 epoch=1 loss=0.709853 gradient=0.00116
+A_self step=11/128 epoch=1 loss=0.716999 gradient=0.00119
+A_self step=12/128 epoch=1 loss=0.699756 gradient=0.00118
+A_self step=13/128 epoch=1 loss=0.715294 gradient=0.00117
+A_self step=14/128 epoch=1 loss=0.693495 gradient=0.00113
+A_self step=15/128 epoch=1 loss=0.715466 gradient=0.00114
+A_self step=16/128 epoch=1 loss=0.682135 gradient=0.00112
+A_self step=17/128 epoch=1 loss=0.693794 gradient=0.00114
+A_self step=18/128 epoch=1 loss=0.683357 gradient=0.00110
+A_self step=19/128 epoch=1 loss=0.697643 gradient=0.00117
+A_self step=20/128 epoch=1 loss=0.706919 gradient=0.00117
+A_self step=21/128 epoch=1 loss=0.729803 gradient=0.00112
+A_self step=22/128 epoch=1 loss=0.699330 gradient=0.00114
+A_self step=23/128 epoch=1 loss=0.700333 gradient=0.00115
+A_self step=24/128 epoch=1 loss=0.733652 gradient=0.00115
+A_self step=25/128 epoch=1 loss=0.684928 gradient=0.00110
+A_self step=26/128 epoch=1 loss=0.721615 gradient=0.00109
+A_self step=27/128 epoch=1 loss=0.720386 gradient=0.00113
+A_self step=28/128 epoch=1 loss=0.707945 gradient=0.00115
+A_self step=29/128 epoch=1 loss=0.699626 gradient=0.00109
+A_self step=30/128 epoch=1 loss=0.694304 gradient=0.00105
+A_self step=31/128 epoch=1 loss=0.720755 gradient=0.00107
+A_self step=32/128 epoch=1 loss=0.737176 gradient=0.00109
+A INTERNAL VALIDATION self 32 {'k_nmse': 0.06454907637089491, 'k_cosine': 0.9288663007318974, 'v_nmse': 0.355432054027915, 'v_cosine': 0.7930703461170197, 'total': 0.6980444835498929}
+A_self step=33/128 epoch=2 loss=0.691791 gradient=0.00108
+A_self step=34/128 epoch=2 loss=0.718486 gradient=0.00106
+A_self step=35/128 epoch=2 loss=0.707773 gradient=0.00110
+A_self step=36/128 epoch=2 loss=0.702602 gradient=0.00110
+A_self step=37/128 epoch=2 loss=0.717292 gradient=0.00109
+A_self step=38/128 epoch=2 loss=0.684356 gradient=0.00106
+A_self step=39/128 epoch=2 loss=0.714137 gradient=0.00105
+A_self step=40/128 epoch=2 loss=0.693263 gradient=0.00108
+A_self step=41/128 epoch=2 loss=0.699821 gradient=0.00103
+A_self step=42/128 epoch=2 loss=0.693739 gradient=0.00107
+A_self step=43/128 epoch=2 loss=0.723345 gradient=0.00106
+A_self step=44/128 epoch=2 loss=0.768644 gradient=0.00108
+A_self step=45/128 epoch=2 loss=0.696757 gradient=0.00106
+A_self step=46/128 epoch=2 loss=0.702590 gradient=0.00104
+A_self step=47/128 epoch=2 loss=0.712146 gradient=0.00104
+A_self step=48/128 epoch=2 loss=0.662176 gradient=0.00104
+A_self step=49/128 epoch=2 loss=0.687216 gradient=0.00103
+A_self step=50/128 epoch=2 loss=0.702431 gradient=0.00102
+A_self step=51/128 epoch=2 loss=0.699081 gradient=0.00107
+A_self step=52/128 epoch=2 loss=0.717862 gradient=0.00104
+A_self step=53/128 epoch=2 loss=0.676262 gradient=0.00098
+A_self step=54/128 epoch=2 loss=0.708168 gradient=0.00104
+A_self step=55/128 epoch=2 loss=0.701723 gradient=0.00100
+A_self step=56/128 epoch=2 loss=0.689372 gradient=0.00104
+A_self step=57/128 epoch=2 loss=0.721754 gradient=0.00110
+A_self step=58/128 epoch=2 loss=0.683325 gradient=0.00107
+A_self step=59/128 epoch=2 loss=0.680381 gradient=0.00104
+A_self step=60/128 epoch=2 loss=0.682770 gradient=0.00104
+A_self step=61/128 epoch=2 loss=0.729015 gradient=0.00104
+A_self step=62/128 epoch=2 loss=0.692573 gradient=0.00103
+A_self step=63/128 epoch=2 loss=0.731392 gradient=0.00108
+A_self step=64/128 epoch=2 loss=0.728432 gradient=0.00107
+A INTERNAL VALIDATION self 64 {'k_nmse': 0.06390264420770109, 'k_cosine': 0.9296749942004681, 'v_nmse': 0.3552631363272667, 'v_cosine': 0.7934681810438633, 'total': 0.6960226052906364}
+A_self step=65/128 epoch=3 loss=0.708922 gradient=0.00112
+A_self step=66/128 epoch=3 loss=0.703087 gradient=0.00110
+A_self step=67/128 epoch=3 loss=0.710169 gradient=0.00110
+A_self step=68/128 epoch=3 loss=0.718589 gradient=0.00110
+A_self step=69/128 epoch=3 loss=0.668723 gradient=0.00109
+A_self step=70/128 epoch=3 loss=0.694333 gradient=0.00110
+A_self step=71/128 epoch=3 loss=0.703279 gradient=0.00109
+A_self step=72/128 epoch=3 loss=0.693666 gradient=0.00114
+A_self step=73/128 epoch=3 loss=0.671157 gradient=0.00110
+A_self step=74/128 epoch=3 loss=0.691841 gradient=0.00111
+A_self step=75/128 epoch=3 loss=0.686052 gradient=0.00111
+A_self step=76/128 epoch=3 loss=0.691956 gradient=0.00112
+A_self step=77/128 epoch=3 loss=0.697395 gradient=0.00114
+A_self step=78/128 epoch=3 loss=0.719317 gradient=0.00113
+A_self step=79/128 epoch=3 loss=0.742998 gradient=0.00110
+A_self step=80/128 epoch=3 loss=0.704632 gradient=0.00118
+A_self step=81/128 epoch=3 loss=0.719065 gradient=0.00117
+A_self step=82/128 epoch=3 loss=0.703232 gradient=0.00119
+A_self step=83/128 epoch=3 loss=0.674670 gradient=0.00116
+A_self step=84/128 epoch=3 loss=0.691379 gradient=0.00114
+A_self step=85/128 epoch=3 loss=0.681256 gradient=0.00113
+A_self step=86/128 epoch=3 loss=0.698952 gradient=0.00119
+A_self step=87/128 epoch=3 loss=0.697445 gradient=0.00119
+A_self step=88/128 epoch=3 loss=0.693870 gradient=0.00117
+A_self step=89/128 epoch=3 loss=0.715858 gradient=0.00119
+A_self step=90/128 epoch=3 loss=0.679485 gradient=0.00118
+A_self step=91/128 epoch=3 loss=0.722257 gradient=0.00117
+A_self step=92/128 epoch=3 loss=0.705132 gradient=0.00121
+A_self step=93/128 epoch=3 loss=0.699807 gradient=0.00118
+A_self step=94/128 epoch=3 loss=0.711536 gradient=0.00120
+A_self step=95/128 epoch=3 loss=0.726360 gradient=0.00117
+A_self step=96/128 epoch=3 loss=0.714140 gradient=0.00116
+A INTERNAL VALIDATION self 96 {'k_nmse': 0.0630222880281508, 'k_cosine': 0.9307710528373718, 'v_nmse': 0.3548578266054392, 'v_cosine': 0.7939051426947117, 'total': 0.6932039191015065}
+A_self step=97/128 epoch=4 loss=0.670842 gradient=0.00114
+A_self step=98/128 epoch=4 loss=0.717653 gradient=0.00117
+A_self step=99/128 epoch=4 loss=0.690485 gradient=0.00117
+A_self step=100/128 epoch=4 loss=0.705898 gradient=0.00116
+A_self step=101/128 epoch=4 loss=0.712282 gradient=0.00114
+A_self step=102/128 epoch=4 loss=0.662630 gradient=0.00117
+A_self step=103/128 epoch=4 loss=0.705425 gradient=0.00116
+A_self step=104/128 epoch=4 loss=0.692699 gradient=0.00115
+A_self step=105/128 epoch=4 loss=0.679815 gradient=0.00116
+A_self step=106/128 epoch=4 loss=0.709653 gradient=0.00112
+A_self step=107/128 epoch=4 loss=0.710550 gradient=0.00111
+A_self step=108/128 epoch=4 loss=0.712931 gradient=0.00112
+A_self step=109/128 epoch=4 loss=0.662796 gradient=0.00111
+A_self step=110/128 epoch=4 loss=0.715178 gradient=0.00114
+A_self step=111/128 epoch=4 loss=0.734729 gradient=0.00113
+A_self step=112/128 epoch=4 loss=0.699646 gradient=0.00114
+A_self step=113/128 epoch=4 loss=0.723298 gradient=0.00110
+A_self step=114/128 epoch=4 loss=0.691985 gradient=0.00116
+A_self step=115/128 epoch=4 loss=0.690093 gradient=0.00108
+A_self step=116/128 epoch=4 loss=0.666599 gradient=0.00108
+A_self step=117/128 epoch=4 loss=0.713385 gradient=0.00110
+A_self step=118/128 epoch=4 loss=0.689095 gradient=0.00110
+A_self step=119/128 epoch=4 loss=0.698843 gradient=0.00112
+A_self step=120/128 epoch=4 loss=0.671434 gradient=0.00109
+A_self step=121/128 epoch=4 loss=0.687808 gradient=0.00102
+A_self step=122/128 epoch=4 loss=0.743001 gradient=0.00114
+A_self step=123/128 epoch=4 loss=0.698644 gradient=0.00109
+A_self step=124/128 epoch=4 loss=0.726074 gradient=0.00115
+A_self step=125/128 epoch=4 loss=0.678781 gradient=0.00110
+A_self step=126/128 epoch=4 loss=0.700128 gradient=0.00109
+A_self step=127/128 epoch=4 loss=0.668161 gradient=0.00112
+A_self step=128/128 epoch=4 loss=0.732507 gradient=0.00107
+A INTERNAL VALIDATION self 128 {'k_nmse': 0.06243717041797936, 'k_cosine': 0.9314082711935043, 'v_nmse': 0.35444917902350426, 'v_cosine': 0.7941901162266731, 'total': 0.6912879620213062}
+PIPELINE FINISH train_a.py self
+PIPELINE START train_a.py cross
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<02:11,  1.92it/s]Loading weights:  40%|████      | 102/254 [00:00<00:00, 217.03it/s]Loading weights:  63%|██████▎   | 160/254 [00:00<00:00, 208.64it/s]Loading weights:  79%|███████▉  | 201/254 [00:01<00:00, 207.94it/s]Loading weights:  92%|█████████▏| 234/254 [00:01<00:00, 221.45it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 191.80it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   9%|▉         | 36/398 [00:00<00:01, 330.82it/s]Loading weights:  18%|█▊        | 70/398 [00:00<00:01, 294.55it/s]Loading weights:  25%|██▌       | 100/398 [00:00<00:01, 295.31it/s]Loading weights:  33%|███▎      | 130/398 [00:00<00:01, 236.72it/s]Loading weights:  39%|███▉      | 157/398 [00:00<00:01, 237.13it/s]Loading weights:  46%|████▋     | 185/398 [00:00<00:00, 249.34it/s]Loading weights:  53%|█████▎    | 211/398 [00:00<00:00, 249.72it/s]Loading weights:  60%|█████▉    | 237/398 [00:00<00:00, 237.78it/s]Loading weights:  67%|██████▋   | 267/398 [00:01<00:00, 250.33it/s]Loading weights:  74%|███████▎  | 293/398 [00:01<00:00, 222.24it/s]Loading weights:  81%|████████  | 322/398 [00:01<00:00, 233.92it/s]Loading weights:  89%|████████▉ | 355/398 [00:01<00:00, 249.56it/s]Loading weights:  97%|█████████▋| 388/398 [00:01<00:00, 265.72it/s]Loading weights: 100%|██████████| 398/398 [00:01<00:00, 257.74it/s]
+A_cross step=1/128 epoch=1 loss=0.709771 gradient=0.00596
+A_cross step=2/128 epoch=1 loss=0.712752 gradient=0.00487
+A_cross step=3/128 epoch=1 loss=0.705967 gradient=0.00440
+A_cross step=4/128 epoch=1 loss=0.681436 gradient=0.00400
+A_cross step=5/128 epoch=1 loss=0.702854 gradient=0.00359
+A_cross step=6/128 epoch=1 loss=0.709915 gradient=0.00345
+A_cross step=7/128 epoch=1 loss=0.692573 gradient=0.00336
+A_cross step=8/128 epoch=1 loss=0.728753 gradient=0.00341
+A_cross step=9/128 epoch=1 loss=0.672300 gradient=0.00309
+A_cross step=10/128 epoch=1 loss=0.709507 gradient=0.00306
+A_cross step=11/128 epoch=1 loss=0.716651 gradient=0.00306
+A_cross step=12/128 epoch=1 loss=0.699384 gradient=0.00290
+A_cross step=13/128 epoch=1 loss=0.714965 gradient=0.00284
+A_cross step=14/128 epoch=1 loss=0.693170 gradient=0.00256
+A_cross step=15/128 epoch=1 loss=0.715200 gradient=0.00256
+A_cross step=16/128 epoch=1 loss=0.681851 gradient=0.00258
+A_cross step=17/128 epoch=1 loss=0.693533 gradient=0.00248
+A_cross step=18/128 epoch=1 loss=0.683053 gradient=0.00247
+A_cross step=19/128 epoch=1 loss=0.697400 gradient=0.00240
+A_cross step=20/128 epoch=1 loss=0.706710 gradient=0.00245
+A_cross step=21/128 epoch=1 loss=0.729602 gradient=0.00235
+A_cross step=22/128 epoch=1 loss=0.699098 gradient=0.00239
+A_cross step=23/128 epoch=1 loss=0.700183 gradient=0.00239
+A_cross step=24/128 epoch=1 loss=0.733572 gradient=0.00244
+A_cross step=25/128 epoch=1 loss=0.684771 gradient=0.00215
+A_cross step=26/128 epoch=1 loss=0.721534 gradient=0.00223
+A_cross step=27/128 epoch=1 loss=0.720312 gradient=0.00232
+A_cross step=28/128 epoch=1 loss=0.707885 gradient=0.00235
+A_cross step=29/128 epoch=1 loss=0.699599 gradient=0.00228
+A_cross step=30/128 epoch=1 loss=0.694263 gradient=0.00218
+A_cross step=31/128 epoch=1 loss=0.720785 gradient=0.00217
+A_cross step=32/128 epoch=1 loss=0.737287 gradient=0.00226
+A INTERNAL VALIDATION cross 32 {'k_nmse': 0.06524633220396936, 'k_cosine': 0.9280074313282967, 'v_nmse': 0.3548800963908434, 'v_cosine': 0.7940561175346375, 'total': 0.6980628797318786}
+A_cross step=33/128 epoch=2 loss=0.691788 gradient=0.00216
+A_cross step=34/128 epoch=2 loss=0.718546 gradient=0.00217
+A_cross step=35/128 epoch=2 loss=0.707788 gradient=0.00209
+A_cross step=36/128 epoch=2 loss=0.702743 gradient=0.00221
+A_cross step=37/128 epoch=2 loss=0.717371 gradient=0.00225
+A_cross step=38/128 epoch=2 loss=0.684460 gradient=0.00228
+A_cross step=39/128 epoch=2 loss=0.714324 gradient=0.00216
+A_cross step=40/128 epoch=2 loss=0.693458 gradient=0.00212
+A_cross step=41/128 epoch=2 loss=0.700065 gradient=0.00213
+A_cross step=42/128 epoch=2 loss=0.694003 gradient=0.00220
+A_cross step=43/128 epoch=2 loss=0.723631 gradient=0.00212
+A_cross step=44/128 epoch=2 loss=0.768921 gradient=0.00259
+A_cross step=45/128 epoch=2 loss=0.697028 gradient=0.00229
+A_cross step=46/128 epoch=2 loss=0.702954 gradient=0.00226
+A_cross step=47/128 epoch=2 loss=0.712479 gradient=0.00224
+A_cross step=48/128 epoch=2 loss=0.662395 gradient=0.00240
+A_cross step=49/128 epoch=2 loss=0.687441 gradient=0.00225
+A_cross step=50/128 epoch=2 loss=0.702789 gradient=0.00229
+A_cross step=51/128 epoch=2 loss=0.699404 gradient=0.00256
+A_cross step=52/128 epoch=2 loss=0.718398 gradient=0.00230
+A_cross step=53/128 epoch=2 loss=0.676723 gradient=0.00211
+A_cross step=54/128 epoch=2 loss=0.708621 gradient=0.00233
+A_cross step=55/128 epoch=2 loss=0.702388 gradient=0.00244
+A_cross step=56/128 epoch=2 loss=0.689832 gradient=0.00243
+A_cross step=57/128 epoch=2 loss=0.722372 gradient=0.00245
+A_cross step=58/128 epoch=2 loss=0.683929 gradient=0.00239
+A_cross step=59/128 epoch=2 loss=0.681106 gradient=0.00249
+A_cross step=60/128 epoch=2 loss=0.683485 gradient=0.00240
+A_cross step=61/128 epoch=2 loss=0.729957 gradient=0.00263
+A_cross step=62/128 epoch=2 loss=0.693404 gradient=0.00233
+A_cross step=63/128 epoch=2 loss=0.732429 gradient=0.00250
+A_cross step=64/128 epoch=2 loss=0.729491 gradient=0.00269
+A INTERNAL VALIDATION cross 64 {'k_nmse': 0.06519230967387557, 'k_cosine': 0.9280799999833107, 'v_nmse': 0.3542695138603449, 'v_cosine': 0.7943457923829556, 'total': 0.6970360311679542}
+A_cross step=65/128 epoch=3 loss=0.710076 gradient=0.00254
+A_cross step=66/128 epoch=3 loss=0.704253 gradient=0.00264
+A_cross step=67/128 epoch=3 loss=0.711271 gradient=0.00253
+A_cross step=68/128 epoch=3 loss=0.719968 gradient=0.00273
+A_cross step=69/128 epoch=3 loss=0.669954 gradient=0.00259
+A_cross step=70/128 epoch=3 loss=0.695632 gradient=0.00257
+A_cross step=71/128 epoch=3 loss=0.704762 gradient=0.00246
+A_cross step=72/128 epoch=3 loss=0.695230 gradient=0.00255
+A_cross step=73/128 epoch=3 loss=0.672866 gradient=0.00240
+A_cross step=74/128 epoch=3 loss=0.693634 gradient=0.00255
+A_cross step=75/128 epoch=3 loss=0.687780 gradient=0.00245
+A_cross step=76/128 epoch=3 loss=0.693815 gradient=0.00249
+A_cross step=77/128 epoch=3 loss=0.699203 gradient=0.00262
+A_cross step=78/128 epoch=3 loss=0.721291 gradient=0.00271
+A_cross step=79/128 epoch=3 loss=0.745206 gradient=0.00266
+A_cross step=80/128 epoch=3 loss=0.706834 gradient=0.00271
+A_cross step=81/128 epoch=3 loss=0.721387 gradient=0.00277
+A_cross step=82/128 epoch=3 loss=0.705534 gradient=0.00273
+A_cross step=83/128 epoch=3 loss=0.677042 gradient=0.00233
+A_cross step=84/128 epoch=3 loss=0.693979 gradient=0.00248
+A_cross step=85/128 epoch=3 loss=0.683870 gradient=0.00241
+A_cross step=86/128 epoch=3 loss=0.701808 gradient=0.00252
+A_cross step=87/128 epoch=3 loss=0.700304 gradient=0.00267
+A_cross step=88/128 epoch=3 loss=0.696739 gradient=0.00247
+A_cross step=89/128 epoch=3 loss=0.718830 gradient=0.00268
+A_cross step=90/128 epoch=3 loss=0.682591 gradient=0.00255
+A_cross step=91/128 epoch=3 loss=0.725353 gradient=0.00264
+A_cross step=92/128 epoch=3 loss=0.708374 gradient=0.00260
+A_cross step=93/128 epoch=3 loss=0.702997 gradient=0.00267
+A_cross step=94/128 epoch=3 loss=0.714845 gradient=0.00273
+A_cross step=95/128 epoch=3 loss=0.729704 gradient=0.00281
+A_cross step=96/128 epoch=3 loss=0.717598 gradient=0.00280
+A INTERNAL VALIDATION cross 96 {'k_nmse': 0.06512035243213177, 'k_cosine': 0.9281810261309147, 'v_nmse': 0.35415311343967915, 'v_cosine': 0.7944633848965168, 'total': 0.6966290548443794}
+A_cross step=97/128 epoch=4 loss=0.674151 gradient=0.00255
+A_cross step=98/128 epoch=4 loss=0.721285 gradient=0.00270
+A_cross step=99/128 epoch=4 loss=0.694041 gradient=0.00250
+A_cross step=100/128 epoch=4 loss=0.709544 gradient=0.00253
+A_cross step=101/128 epoch=4 loss=0.715961 gradient=0.00252
+A_cross step=102/128 epoch=4 loss=0.666376 gradient=0.00271
+A_cross step=103/128 epoch=4 loss=0.709206 gradient=0.00272
+A_cross step=104/128 epoch=4 loss=0.696776 gradient=0.00256
+A_cross step=105/128 epoch=4 loss=0.683671 gradient=0.00255
+A_cross step=106/128 epoch=4 loss=0.713558 gradient=0.00255
+A_cross step=107/128 epoch=4 loss=0.714531 gradient=0.00255
+A_cross step=108/128 epoch=4 loss=0.717242 gradient=0.00266
+A_cross step=109/128 epoch=4 loss=0.666928 gradient=0.00251
+A_cross step=110/128 epoch=4 loss=0.719253 gradient=0.00268
+A_cross step=111/128 epoch=4 loss=0.739001 gradient=0.00275
+A_cross step=112/128 epoch=4 loss=0.703972 gradient=0.00269
+A_cross step=113/128 epoch=4 loss=0.727659 gradient=0.00278
+A_cross step=114/128 epoch=4 loss=0.696439 gradient=0.00291
+A_cross step=115/128 epoch=4 loss=0.694539 gradient=0.00254
+A_cross step=116/128 epoch=4 loss=0.671110 gradient=0.00257
+A_cross step=117/128 epoch=4 loss=0.717849 gradient=0.00278
+A_cross step=118/128 epoch=4 loss=0.693493 gradient=0.00264
+A_cross step=119/128 epoch=4 loss=0.703426 gradient=0.00284
+A_cross step=120/128 epoch=4 loss=0.676019 gradient=0.00248
+A_cross step=121/128 epoch=4 loss=0.692384 gradient=0.00255
+A_cross step=122/128 epoch=4 loss=0.747786 gradient=0.00285
+A_cross step=123/128 epoch=4 loss=0.703473 gradient=0.00283
+A_cross step=124/128 epoch=4 loss=0.730865 gradient=0.00318
+A_cross step=125/128 epoch=4 loss=0.683689 gradient=0.00273
+A_cross step=126/128 epoch=4 loss=0.705022 gradient=0.00286
+A_cross step=127/128 epoch=4 loss=0.673011 gradient=0.00288
+A_cross step=128/128 epoch=4 loss=0.737306 gradient=0.00276
+A INTERNAL VALIDATION cross 128 {'k_nmse': 0.06498909229412675, 'k_cosine': 0.928373608738184, 'v_nmse': 0.35407484136521816, 'v_cosine': 0.7945503145456314, 'total': 0.6961400103755295}
+PIPELINE FINISH train_a.py cross
+PIPELINE START report.py A
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<01:53,  2.22it/s]Loading weights:  40%|████      | 102/254 [00:00<00:00, 240.88it/s]Loading weights:  62%|██████▏   | 158/254 [00:00<00:00, 217.59it/s]Loading weights:  78%|███████▊  | 198/254 [00:01<00:00, 216.97it/s]Loading weights:  91%|█████████ | 231/254 [00:01<00:00, 221.33it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 199.50it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   9%|▉         | 36/398 [00:00<00:01, 276.48it/s]Loading weights:  16%|█▌        | 64/398 [00:00<00:01, 274.47it/s]Loading weights:  23%|██▎       | 92/398 [00:00<00:01, 258.71it/s]Loading weights:  31%|███       | 124/398 [00:00<00:01, 263.28it/s]Loading weights:  38%|███▊      | 151/398 [00:00<00:00, 262.79it/s]Loading weights:  48%|████▊     | 190/398 [00:00<00:00, 255.31it/s]Loading weights:  56%|█████▌    | 223/398 [00:00<00:00, 269.84it/s]Loading weights:  63%|██████▎   | 251/398 [00:00<00:00, 272.09it/s]Loading weights:  70%|███████   | 279/398 [00:01<00:00, 267.53it/s]Loading weights:  78%|███████▊  | 311/398 [00:01<00:00, 276.68it/s]Loading weights:  86%|████████▋ | 344/398 [00:01<00:00, 280.12it/s]Loading weights:  94%|█████████▎| 373/398 [00:01<00:00, 281.13it/s]Loading weights: 100%|██████████| 398/398 [00:01<00:00, 271.14it/s]
+EVALUATE fixed_dev paper=1/8
+EVALUATE fixed_dev paper=2/8
+EVALUATE fixed_dev paper=3/8
+EVALUATE fixed_dev paper=4/8
+EVALUATE fixed_dev paper=5/8
+EVALUATE fixed_dev paper=6/8
+EVALUATE fixed_dev paper=7/8
+EVALUATE fixed_dev paper=8/8
+FINAL REPORT COMPLETE A
+PIPELINE FINISH report.py A
+PIPELINE START train_b.py native_matched
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<01:47,  2.35it/s]Loading weights:  37%|███▋      | 93/254 [00:00<00:00, 224.95it/s]Loading weights:  56%|█████▌    | 141/254 [00:00<00:00, 220.79it/s]Loading weights:  70%|██████▉   | 177/254 [00:00<00:00, 215.93it/s]Loading weights:  81%|████████▏ | 207/254 [00:01<00:00, 224.31it/s]Loading weights:  93%|█████████▎| 236/254 [00:01<00:00, 233.88it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 202.55it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   6%|▋         | 25/398 [00:00<00:01, 219.86it/s]Loading weights:  15%|█▍        | 58/398 [00:00<00:01, 260.69it/s]Loading weights:  21%|██▏       | 85/398 [00:00<00:01, 259.63it/s]Loading weights:  28%|██▊       | 113/398 [00:00<00:01, 259.79it/s]Loading weights:  35%|███▍      | 139/398 [00:00<00:01, 255.74it/s]Loading weights:  42%|████▏     | 168/398 [00:00<00:00, 258.66it/s]Loading weights:  49%|████▊     | 194/398 [00:00<00:00, 229.40it/s]Loading weights:  55%|█████▍    | 218/398 [00:00<00:00, 231.57it/s]Loading weights:  62%|██████▏   | 245/398 [00:01<00:00, 227.70it/s]Loading weights:  69%|██████▉   | 275/398 [00:01<00:00, 247.19it/s]Loading weights:  76%|███████▌  | 301/398 [00:01<00:00, 243.71it/s]Loading weights:  84%|████████▎ | 333/398 [00:01<00:00, 253.62it/s]Loading weights:  90%|█████████ | 359/398 [00:01<00:00, 225.13it/s]Loading weights:  97%|█████████▋| 388/398 [00:01<00:00, 241.31it/s]Loading weights: 100%|██████████| 398/398 [00:01<00:00, 247.10it/s]
+START B_native_matched fresh rank64; 316 updates; frozen Stage-A512; detached query/suffix
+B_native_matched step=1/316 epoch=1 loss=0.519673 gradient=0.27085
+B_native_matched step=2/316 epoch=1 loss=0.942762 gradient=0.54183
+B_native_matched step=3/316 epoch=1 loss=0.525419 gradient=0.37945
+B_native_matched step=4/316 epoch=1 loss=0.458801 gradient=0.24514
+B_native_matched step=5/316 epoch=1 loss=0.571902 gradient=0.28552
+B_native_matched step=6/316 epoch=1 loss=0.745217 gradient=0.37983
+B_native_matched step=7/316 epoch=1 loss=0.537579 gradient=0.24423
+B_native_matched step=8/316 epoch=1 loss=0.873770 gradient=0.43896
+B_native_matched step=9/316 epoch=1 loss=0.445912 gradient=0.27709
+B_native_matched step=10/316 epoch=1 loss=0.872569 gradient=0.39997
+B_native_matched step=11/316 epoch=1 loss=0.609235 gradient=0.25513
+B_native_matched step=12/316 epoch=1 loss=0.607876 gradient=0.25755
+B_native_matched step=13/316 epoch=1 loss=0.995707 gradient=0.35684
+B_native_matched step=14/316 epoch=1 loss=0.648134 gradient=0.20694
+B_native_matched step=15/316 epoch=1 loss=0.313544 gradient=0.09993
+B_native_matched step=16/316 epoch=1 loss=0.966634 gradient=0.31646
+B_native_matched step=17/316 epoch=1 loss=0.729422 gradient=0.20691
+B_native_matched step=18/316 epoch=1 loss=0.360714 gradient=0.08092
+B_native_matched step=19/316 epoch=1 loss=0.942743 gradient=0.21726
+B_native_matched step=20/316 epoch=1 loss=0.545607 gradient=0.09647
+B_native_matched step=21/316 epoch=1 loss=0.605616 gradient=0.10203
+B_native_matched step=22/316 epoch=1 loss=0.824454 gradient=0.15286
+B_native_matched step=23/316 epoch=1 loss=0.607301 gradient=0.10658
+B_native_matched step=24/316 epoch=1 loss=0.358845 gradient=0.06251
+B_native_matched step=25/316 epoch=1 loss=0.836325 gradient=0.15495
+B_native_matched step=26/316 epoch=1 loss=0.462094 gradient=0.06161
+B_native_matched step=27/316 epoch=1 loss=0.562118 gradient=0.07019
+B_native_matched step=28/316 epoch=1 loss=0.899980 gradient=0.11441
+B_native_matched step=29/316 epoch=1 loss=0.386721 gradient=0.06515
+B_native_matched step=30/316 epoch=1 loss=0.731794 gradient=0.09891
+B_native_matched step=31/316 epoch=1 loss=0.611735 gradient=0.07525
+B_native_matched step=32/316 epoch=1 loss=0.703899 gradient=0.09104
+B INTERNAL VALIDATION native_matched 32 {'total': 0.6268149322372025, 'route_kl': 0.5049906580001806, 'output_nmse': 0.12181072639759805, 'anchor_nmse': 0.0013551073639569546, 'actual_student_replay_nmse': 0.12181596204792625}
+B_native_matched step=33/316 epoch=1 loss=0.424214 gradient=0.05117
+B_native_matched step=34/316 epoch=1 loss=0.805481 gradient=0.08831
+B_native_matched step=35/316 epoch=1 loss=0.636430 gradient=0.07654
+B_native_matched step=36/316 epoch=1 loss=0.565205 gradient=0.05946
+B_native_matched step=37/316 epoch=1 loss=0.309978 gradient=0.04308
+B_native_matched step=38/316 epoch=1 loss=0.484717 gradient=0.05339
+B_native_matched step=39/316 epoch=1 loss=0.656962 gradient=0.07333
+B_native_matched step=40/316 epoch=1 loss=0.574675 gradient=0.05652
+B_native_matched step=41/316 epoch=1 loss=0.694720 gradient=0.06754
+B_native_matched step=42/316 epoch=1 loss=0.777672 gradient=0.08385
+B_native_matched step=43/316 epoch=1 loss=0.540909 gradient=0.05075
+B_native_matched step=44/316 epoch=1 loss=1.063993 gradient=0.10058
+B_native_matched step=45/316 epoch=1 loss=0.681140 gradient=0.06073
+B_native_matched step=46/316 epoch=1 loss=0.865154 gradient=0.08420
+B_native_matched step=47/316 epoch=1 loss=0.656257 gradient=0.06042
+B_native_matched step=48/316 epoch=1 loss=0.391742 gradient=0.03957
+B_native_matched step=49/316 epoch=1 loss=0.767200 gradient=0.06566
+B_native_matched step=50/316 epoch=1 loss=0.761323 gradient=0.08829
+B_native_matched step=51/316 epoch=1 loss=0.935483 gradient=0.07895
+B_native_matched step=52/316 epoch=1 loss=0.693098 gradient=0.06066
+B_native_matched step=53/316 epoch=1 loss=0.750000 gradient=0.06536
+B_native_matched step=54/316 epoch=1 loss=0.760192 gradient=0.06897
+B_native_matched step=55/316 epoch=1 loss=0.366031 gradient=0.03749
+B_native_matched step=56/316 epoch=1 loss=0.357933 gradient=0.04185
+B_native_matched step=57/316 epoch=1 loss=0.496631 gradient=0.04555
+B_native_matched step=58/316 epoch=1 loss=0.724518 gradient=0.06850
+B_native_matched step=59/316 epoch=1 loss=0.545025 gradient=0.04644
+B_native_matched step=60/316 epoch=1 loss=0.525764 gradient=0.04115
+B_native_matched step=61/316 epoch=1 loss=0.539485 gradient=0.04802
+B_native_matched step=62/316 epoch=1 loss=0.734305 gradient=0.06817
+B_native_matched step=63/316 epoch=1 loss=0.655569 gradient=0.05287
+B_native_matched step=64/316 epoch=1 loss=0.854036 gradient=0.07060
+B INTERNAL VALIDATION native_matched 64 {'total': 0.5715844492735211, 'route_kl': 0.4709068865339591, 'output_nmse': 0.10061740528714533, 'anchor_nmse': 0.0060158063081164285, 'actual_student_replay_nmse': 0.10062257384631301}
+B_native_matched step=65/316 epoch=1 loss=0.720624 gradient=0.05637
+B_native_matched step=66/316 epoch=1 loss=0.588058 gradient=0.05063
+B_native_matched step=67/316 epoch=1 loss=0.473591 gradient=0.04112
+B_native_matched step=68/316 epoch=1 loss=0.800461 gradient=0.06147
+B_native_matched step=69/316 epoch=1 loss=0.993790 gradient=0.07551
+B_native_matched step=70/316 epoch=1 loss=0.689049 gradient=0.06319
+B_native_matched step=71/316 epoch=1 loss=0.743287 gradient=0.06031
+B_native_matched step=72/316 epoch=1 loss=0.395249 gradient=0.03701
+B_native_matched step=73/316 epoch=1 loss=0.513913 gradient=0.04231
+B_native_matched step=74/316 epoch=1 loss=0.840231 gradient=0.07198
+B_native_matched step=75/316 epoch=1 loss=0.862446 gradient=0.07786
+B_native_matched step=76/316 epoch=1 loss=0.690387 gradient=0.06447
+B_native_matched step=77/316 epoch=1 loss=0.804461 gradient=0.07179
+B_native_matched step=78/316 epoch=1 loss=0.653390 gradient=0.05339
+B_native_matched step=79/316 epoch=1 loss=0.550134 gradient=0.05412
+B INTERNAL VALIDATION native_matched 79 {'total': 0.5487361055804219, 'route_kl': 0.45401459722564097, 'output_nmse': 0.09462654094910519, 'anchor_nmse': 0.009496775062871162, 'actual_student_replay_nmse': 0.09463147116452833}
+B_native_matched step=80/316 epoch=2 loss=0.848039 gradient=0.06427
+B_native_matched step=81/316 epoch=2 loss=0.244256 gradient=0.02204
+B_native_matched step=82/316 epoch=2 loss=0.624789 gradient=0.05419
+B_native_matched step=83/316 epoch=2 loss=0.804370 gradient=0.06673
+B_native_matched step=84/316 epoch=2 loss=0.501197 gradient=0.03953
+B_native_matched step=85/316 epoch=2 loss=0.767708 gradient=0.06081
+B_native_matched step=86/316 epoch=2 loss=0.296678 gradient=0.02851
+B_native_matched step=87/316 epoch=2 loss=0.356995 gradient=0.03888
+B_native_matched step=88/316 epoch=2 loss=0.597890 gradient=0.04652
+B_native_matched step=89/316 epoch=2 loss=0.804953 gradient=0.06250
+B_native_matched step=90/316 epoch=2 loss=0.641793 gradient=0.04895
+B_native_matched step=91/316 epoch=2 loss=0.691363 gradient=0.05387
+B_native_matched step=92/316 epoch=2 loss=0.514690 gradient=0.04172
+B_native_matched step=93/316 epoch=2 loss=0.855874 gradient=0.07013
+B_native_matched step=94/316 epoch=2 loss=0.818337 gradient=0.07571
+B_native_matched step=95/316 epoch=2 loss=0.581044 gradient=0.04192
+B_native_matched step=96/316 epoch=2 loss=0.612898 gradient=0.05741
+B INTERNAL VALIDATION native_matched 96 {'total': 0.5255036341804684, 'route_kl': 0.435704139907978, 'output_nmse': 0.08966095753664072, 'anchor_nmse': 0.013853721614092743, 'actual_student_replay_nmse': 0.08966568739819598}
+B_native_matched step=97/316 epoch=2 loss=0.734388 gradient=0.05946
+B_native_matched step=98/316 epoch=2 loss=0.629979 gradient=0.05154
+B_native_matched step=99/316 epoch=2 loss=0.545405 gradient=0.05186
+B_native_matched step=100/316 epoch=2 loss=0.621628 gradient=0.05656
+B_native_matched step=101/316 epoch=2 loss=0.702285 gradient=0.05320
+B_native_matched step=102/316 epoch=2 loss=0.379257 gradient=0.03592
+B_native_matched step=103/316 epoch=2 loss=0.423883 gradient=0.03399
+B_native_matched step=104/316 epoch=2 loss=0.655172 gradient=0.04978
+B_native_matched step=105/316 epoch=2 loss=0.492828 gradient=0.04553
+B_native_matched step=106/316 epoch=2 loss=0.313534 gradient=0.02747
+B_native_matched step=107/316 epoch=2 loss=0.496887 gradient=0.04831
+B_native_matched step=108/316 epoch=2 loss=0.904400 gradient=0.07701
+B_native_matched step=109/316 epoch=2 loss=0.692989 gradient=0.05743
+B_native_matched step=110/316 epoch=2 loss=0.767386 gradient=0.05952
+B_native_matched step=111/316 epoch=2 loss=0.527979 gradient=0.04045
+B_native_matched step=112/316 epoch=2 loss=0.365966 gradient=0.04095
+B_native_matched step=113/316 epoch=2 loss=0.529896 gradient=0.04964
+B_native_matched step=114/316 epoch=2 loss=0.602225 gradient=0.05059
+B_native_matched step=115/316 epoch=2 loss=0.433315 gradient=0.03688
+B_native_matched step=116/316 epoch=2 loss=0.447130 gradient=0.03848
+B_native_matched step=117/316 epoch=2 loss=0.593168 gradient=0.04895
+B_native_matched step=118/316 epoch=2 loss=0.323213 gradient=0.03116
+B_native_matched step=119/316 epoch=2 loss=0.211412 gradient=0.01789
+B_native_matched step=120/316 epoch=2 loss=0.357979 gradient=0.03010
+B_native_matched step=121/316 epoch=2 loss=0.649726 gradient=0.04604
+B_native_matched step=122/316 epoch=2 loss=0.687421 gradient=0.05460
+B_native_matched step=123/316 epoch=2 loss=0.523111 gradient=0.04078
+B_native_matched step=124/316 epoch=2 loss=0.808500 gradient=0.05608
+B_native_matched step=125/316 epoch=2 loss=0.759070 gradient=0.06061
+B_native_matched step=126/316 epoch=2 loss=0.554557 gradient=0.05408
+B_native_matched step=127/316 epoch=2 loss=0.254946 gradient=0.02462
+B_native_matched step=128/316 epoch=2 loss=0.547878 gradient=0.05765
+B INTERNAL VALIDATION native_matched 128 {'total': 0.49063985082946066, 'route_kl': 0.4068741447207113, 'output_nmse': 0.08353591347599662, 'anchor_nmse': 0.022979193834342167, 'actual_student_replay_nmse': 0.08354047956314321}
+B_native_matched step=129/316 epoch=2 loss=0.609845 gradient=0.04888
+B_native_matched step=130/316 epoch=2 loss=0.594874 gradient=0.04251
+B_native_matched step=131/316 epoch=2 loss=0.531714 gradient=0.05190
+B_native_matched step=132/316 epoch=2 loss=0.359788 gradient=0.03855
+B_native_matched step=133/316 epoch=2 loss=0.619889 gradient=0.05615
+B_native_matched step=134/316 epoch=2 loss=0.272341 gradient=0.02353
+B_native_matched step=135/316 epoch=2 loss=0.633443 gradient=0.04243
+B_native_matched step=136/316 epoch=2 loss=0.430491 gradient=0.04427
+B_native_matched step=137/316 epoch=2 loss=0.425015 gradient=0.03455
+B_native_matched step=138/316 epoch=2 loss=0.420809 gradient=0.03516
+B_native_matched step=139/316 epoch=2 loss=0.375281 gradient=0.04381
+B_native_matched step=140/316 epoch=2 loss=0.248151 gradient=0.03101
+B_native_matched step=141/316 epoch=2 loss=0.429820 gradient=0.06010
+B_native_matched step=142/316 epoch=2 loss=0.412077 gradient=0.03607
+B_native_matched step=143/316 epoch=2 loss=0.425489 gradient=0.05814
+B_native_matched step=144/316 epoch=2 loss=0.395454 gradient=0.03531
+B_native_matched step=145/316 epoch=2 loss=0.365957 gradient=0.03601
+B_native_matched step=146/316 epoch=2 loss=0.634016 gradient=0.04565
+B_native_matched step=147/316 epoch=2 loss=0.568616 gradient=0.04781
+B_native_matched step=148/316 epoch=2 loss=0.206522 gradient=0.02236
+B_native_matched step=149/316 epoch=2 loss=0.689925 gradient=0.06358
+B_native_matched step=150/316 epoch=2 loss=0.800950 gradient=0.05526
+B_native_matched step=151/316 epoch=2 loss=0.567692 gradient=0.05249
+B_native_matched step=152/316 epoch=2 loss=0.669790 gradient=0.06694
+B_native_matched step=153/316 epoch=2 loss=0.211381 gradient=0.02695
+B_native_matched step=154/316 epoch=2 loss=0.374307 gradient=0.02930
+B_native_matched step=155/316 epoch=2 loss=0.625337 gradient=0.05061
+B_native_matched step=156/316 epoch=2 loss=0.314091 gradient=0.04436
+B_native_matched step=157/316 epoch=2 loss=0.635165 gradient=0.04607
+B_native_matched step=158/316 epoch=2 loss=0.623054 gradient=0.04316
+B INTERNAL VALIDATION native_matched 158 {'total': 0.4671285740596769, 'route_kl': 0.38652318017179993, 'output_nmse': 0.0803012992975575, 'anchor_nmse': 0.030409531223186705, 'actual_student_replay_nmse': 0.08030580274063578}
+B_native_matched step=159/316 epoch=3 loss=0.611483 gradient=0.04949
+B_native_matched step=160/316 epoch=3 loss=0.341986 gradient=0.04220
+B INTERNAL VALIDATION native_matched 160 {'total': 0.4657843677113609, 'route_kl': 0.385347783878657, 'output_nmse': 0.08012623150653209, 'anchor_nmse': 0.031035255162148844, 'actual_student_replay_nmse': 0.08013070564624354}
+B_native_matched step=161/316 epoch=3 loss=0.763555 gradient=0.04706
+B_native_matched step=162/316 epoch=3 loss=0.470909 gradient=0.09515
+B_native_matched step=163/316 epoch=3 loss=0.698363 gradient=0.05961
+B_native_matched step=164/316 epoch=3 loss=0.465454 gradient=0.03326
+B_native_matched step=165/316 epoch=3 loss=0.425671 gradient=0.05852
+B_native_matched step=166/316 epoch=3 loss=0.492655 gradient=0.04006
+B_native_matched step=167/316 epoch=3 loss=0.727129 gradient=0.05635
+B_native_matched step=168/316 epoch=3 loss=0.170179 gradient=0.01681
+B_native_matched step=169/316 epoch=3 loss=0.443964 gradient=0.04573
+B_native_matched step=170/316 epoch=3 loss=0.536685 gradient=0.04832
+B_native_matched step=171/316 epoch=3 loss=0.524697 gradient=0.05047
+B_native_matched step=172/316 epoch=3 loss=0.395967 gradient=0.04673
+B_native_matched step=173/316 epoch=3 loss=0.692429 gradient=0.05471
+B_native_matched step=174/316 epoch=3 loss=0.752762 gradient=0.06889
+B_native_matched step=175/316 epoch=3 loss=0.304929 gradient=0.02286
+B_native_matched step=176/316 epoch=3 loss=0.373193 gradient=0.02931
+B_native_matched step=177/316 epoch=3 loss=0.717645 gradient=0.04773
+B_native_matched step=178/316 epoch=3 loss=0.732949 gradient=0.05456
+B_native_matched step=179/316 epoch=3 loss=0.376422 gradient=0.03182
+B_native_matched step=180/316 epoch=3 loss=0.302679 gradient=0.03042
+B_native_matched step=181/316 epoch=3 loss=0.415316 gradient=0.03558
+B_native_matched step=182/316 epoch=3 loss=0.561927 gradient=0.04140
+B_native_matched step=183/316 epoch=3 loss=0.659616 gradient=0.05491
+B_native_matched step=184/316 epoch=3 loss=0.223103 gradient=0.02413
+B_native_matched step=185/316 epoch=3 loss=0.469086 gradient=0.04077
+B_native_matched step=186/316 epoch=3 loss=0.495150 gradient=0.04834
+B_native_matched step=187/316 epoch=3 loss=0.592472 gradient=0.05421
+B_native_matched step=188/316 epoch=3 loss=0.435446 gradient=0.03532
+B_native_matched step=189/316 epoch=3 loss=0.550699 gradient=0.03958
+B_native_matched step=190/316 epoch=3 loss=0.618226 gradient=0.04389
+B_native_matched step=191/316 epoch=3 loss=0.606152 gradient=0.05597
+B_native_matched step=192/316 epoch=3 loss=0.788207 gradient=0.04988
+B INTERNAL VALIDATION native_matched 192 {'total': 0.4468273737040969, 'route_kl': 0.3689115049906023, 'output_nmse': 0.07752716829552271, 'anchor_nmse': 0.03887003790360823, 'actual_student_replay_nmse': 0.07753163412797694}
+B_native_matched step=193/316 epoch=3 loss=0.393091 gradient=0.03804
+B_native_matched step=194/316 epoch=3 loss=0.681742 gradient=0.04454
+B_native_matched step=195/316 epoch=3 loss=0.628472 gradient=0.04656
+B_native_matched step=196/316 epoch=3 loss=0.480540 gradient=0.05889
+B_native_matched step=197/316 epoch=3 loss=0.582386 gradient=0.04149
+B_native_matched step=198/316 epoch=3 loss=0.470569 gradient=0.04041
+B_native_matched step=199/316 epoch=3 loss=0.405749 gradient=0.03987
+B_native_matched step=200/316 epoch=3 loss=0.192551 gradient=0.02670
+B_native_matched step=201/316 epoch=3 loss=0.487450 gradient=0.04241
+B_native_matched step=202/316 epoch=3 loss=0.458116 gradient=0.04640
+B_native_matched step=203/316 epoch=3 loss=0.408080 gradient=0.03672
+B_native_matched step=204/316 epoch=3 loss=0.419322 gradient=0.03837
+B_native_matched step=205/316 epoch=3 loss=0.528289 gradient=0.06295
+B_native_matched step=206/316 epoch=3 loss=0.520782 gradient=0.03812
+B_native_matched step=207/316 epoch=3 loss=0.198712 gradient=0.02240
+B_native_matched step=208/316 epoch=3 loss=0.330792 gradient=0.03032
+B_native_matched step=209/316 epoch=3 loss=0.386487 gradient=0.04933
+B_native_matched step=210/316 epoch=3 loss=0.316690 gradient=0.03384
+B_native_matched step=211/316 epoch=3 loss=0.265454 gradient=0.02371
+B_native_matched step=212/316 epoch=3 loss=0.416604 gradient=0.04864
+B_native_matched step=213/316 epoch=3 loss=0.332785 gradient=0.02817
+B_native_matched step=214/316 epoch=3 loss=0.724016 gradient=0.04904
+B_native_matched step=215/316 epoch=3 loss=0.324116 gradient=0.03184
+B_native_matched step=216/316 epoch=3 loss=0.527935 gradient=0.04351
+B_native_matched step=217/316 epoch=3 loss=0.587363 gradient=0.06779
+B_native_matched step=218/316 epoch=3 loss=0.618321 gradient=0.05390
+B_native_matched step=219/316 epoch=3 loss=0.308180 gradient=0.02475
+B_native_matched step=220/316 epoch=3 loss=0.452652 gradient=0.03562
+B_native_matched step=221/316 epoch=3 loss=0.706706 gradient=0.06260
+B_native_matched step=222/316 epoch=3 loss=0.340135 gradient=0.02450
+B_native_matched step=223/316 epoch=3 loss=0.667593 gradient=0.06591
+B_native_matched step=224/316 epoch=3 loss=0.647345 gradient=0.06612
+B INTERNAL VALIDATION native_matched 224 {'total': 0.4336021366453712, 'route_kl': 0.357630762052442, 'output_nmse': 0.0755144050187516, 'anchor_nmse': 0.04569701975722435, 'actual_student_replay_nmse': 0.0755190262208594}
+B_native_matched step=225/316 epoch=3 loss=0.469094 gradient=0.03876
+B_native_matched step=226/316 epoch=3 loss=0.168039 gradient=0.01938
+B_native_matched step=227/316 epoch=3 loss=0.318577 gradient=0.04202
+B_native_matched step=228/316 epoch=3 loss=0.253473 gradient=0.02638
+B_native_matched step=229/316 epoch=3 loss=0.424615 gradient=0.04797
+B_native_matched step=230/316 epoch=3 loss=0.245933 gradient=0.02822
+B_native_matched step=231/316 epoch=3 loss=0.476961 gradient=0.04340
+B_native_matched step=232/316 epoch=3 loss=0.506033 gradient=0.03855
+B_native_matched step=233/316 epoch=3 loss=0.612280 gradient=0.05455
+B_native_matched step=234/316 epoch=3 loss=0.306713 gradient=0.04647
+B_native_matched step=235/316 epoch=3 loss=0.617159 gradient=0.04562
+B_native_matched step=236/316 epoch=3 loss=0.330169 gradient=0.04693
+B_native_matched step=237/316 epoch=3 loss=0.358188 gradient=0.07848
+B INTERNAL VALIDATION native_matched 237 {'total': 0.42928897635095015, 'route_kl': 0.35375096824244345, 'output_nmse': 0.07506129888476643, 'anchor_nmse': 0.04767087951768189, 'actual_student_replay_nmse': 0.07506584332781874}
+B_native_matched step=238/316 epoch=4 loss=0.581324 gradient=0.04631
+B_native_matched step=239/316 epoch=4 loss=0.533859 gradient=0.03748
+B_native_matched step=240/316 epoch=4 loss=0.574260 gradient=0.04670
+B_native_matched step=241/316 epoch=4 loss=0.320338 gradient=0.03713
+B_native_matched step=242/316 epoch=4 loss=0.615215 gradient=0.08380
+B_native_matched step=243/316 epoch=4 loss=0.598679 gradient=0.05486
+B_native_matched step=244/316 epoch=4 loss=0.216991 gradient=0.02201
+B_native_matched step=245/316 epoch=4 loss=0.600272 gradient=0.04193
+B_native_matched step=246/316 epoch=4 loss=0.438042 gradient=0.05588
+B_native_matched step=247/316 epoch=4 loss=0.224270 gradient=0.02112
+B_native_matched step=248/316 epoch=4 loss=0.513715 gradient=0.05022
+B_native_matched step=249/316 epoch=4 loss=0.222674 gradient=0.04024
+B_native_matched step=250/316 epoch=4 loss=0.267819 gradient=0.05646
+B_native_matched step=251/316 epoch=4 loss=0.556702 gradient=0.03912
+B_native_matched step=252/316 epoch=4 loss=0.425876 gradient=0.03866
+B_native_matched step=253/316 epoch=4 loss=0.527824 gradient=0.04804
+B_native_matched step=254/316 epoch=4 loss=0.186003 gradient=0.02285
+B_native_matched step=255/316 epoch=4 loss=0.360082 gradient=0.02716
+B_native_matched step=256/316 epoch=4 loss=0.622348 gradient=0.08254
+B INTERNAL VALIDATION native_matched 256 {'total': 0.4239304703071766, 'route_kl': 0.3491511175187986, 'output_nmse': 0.0742698093238249, 'anchor_nmse': 0.05095432909244361, 'actual_student_replay_nmse': 0.07427431406908404}
+B_native_matched step=257/316 epoch=4 loss=0.565026 gradient=0.04784
+B_native_matched step=258/316 epoch=4 loss=0.515069 gradient=0.05004
+B_native_matched step=259/316 epoch=4 loss=0.375885 gradient=0.03508
+B_native_matched step=260/316 epoch=4 loss=0.522525 gradient=0.03755
+B_native_matched step=261/316 epoch=4 loss=0.547807 gradient=0.03692
+B_native_matched step=262/316 epoch=4 loss=0.411291 gradient=0.03691
+B_native_matched step=263/316 epoch=4 loss=0.335017 gradient=0.02266
+B_native_matched step=264/316 epoch=4 loss=0.404597 gradient=0.04201
+B_native_matched step=265/316 epoch=4 loss=0.503876 gradient=0.04786
+B_native_matched step=266/316 epoch=4 loss=0.538524 gradient=0.05121
+B_native_matched step=267/316 epoch=4 loss=0.376874 gradient=0.02989
+B_native_matched step=268/316 epoch=4 loss=0.336363 gradient=0.07104
+B_native_matched step=269/316 epoch=4 loss=0.326397 gradient=0.02818
+B_native_matched step=270/316 epoch=4 loss=0.615053 gradient=0.05865
+B_native_matched step=271/316 epoch=4 loss=0.535461 gradient=0.05220
+B_native_matched step=272/316 epoch=4 loss=0.417343 gradient=0.04018
+B_native_matched step=273/316 epoch=4 loss=0.424574 gradient=0.03406
+B_native_matched step=274/316 epoch=4 loss=0.691978 gradient=0.06503
+B_native_matched step=275/316 epoch=4 loss=0.493604 gradient=0.03933
+B_native_matched step=276/316 epoch=4 loss=0.660916 gradient=0.04627
+B_native_matched step=277/316 epoch=4 loss=0.613584 gradient=0.04910
+B_native_matched step=278/316 epoch=4 loss=0.489486 gradient=0.05995
+B_native_matched step=279/316 epoch=4 loss=0.589690 gradient=0.05643
+B_native_matched step=280/316 epoch=4 loss=0.647489 gradient=0.05539
+B_native_matched step=281/316 epoch=4 loss=0.260419 gradient=0.02550
+B_native_matched step=282/316 epoch=4 loss=0.507984 gradient=0.05139
+B_native_matched step=283/316 epoch=4 loss=0.422118 gradient=0.05683
+B_native_matched step=284/316 epoch=4 loss=0.232696 gradient=0.02802
+B_native_matched step=285/316 epoch=4 loss=0.344720 gradient=0.03545
+B_native_matched step=286/316 epoch=4 loss=0.338344 gradient=0.03007
+B_native_matched step=287/316 epoch=4 loss=0.592238 gradient=0.06580
+B_native_matched step=288/316 epoch=4 loss=0.405565 gradient=0.03298
+B INTERNAL VALIDATION native_matched 288 {'total': 0.41598588159702354, 'route_kl': 0.3423746506151036, 'output_nmse': 0.07305897025210101, 'anchor_nmse': 0.05522610683692619, 'actual_student_replay_nmse': 0.0730635552785518}
+B_native_matched step=289/316 epoch=4 loss=0.698384 gradient=0.05454
+B_native_matched step=290/316 epoch=4 loss=0.339888 gradient=0.03852
+B_native_matched step=291/316 epoch=4 loss=0.551714 gradient=0.04233
+B_native_matched step=292/316 epoch=4 loss=0.515926 gradient=0.05015
+B_native_matched step=293/316 epoch=4 loss=0.242917 gradient=0.03659
+B_native_matched step=294/316 epoch=4 loss=0.209779 gradient=0.03082
+B_native_matched step=295/316 epoch=4 loss=0.365601 gradient=0.03192
+B_native_matched step=296/316 epoch=4 loss=0.241279 gradient=0.02400
+B_native_matched step=297/316 epoch=4 loss=0.465290 gradient=0.03725
+B_native_matched step=298/316 epoch=4 loss=0.378981 gradient=0.04566
+B_native_matched step=299/316 epoch=4 loss=0.524621 gradient=0.04111
+B_native_matched step=300/316 epoch=4 loss=0.431117 gradient=0.03453
+B_native_matched step=301/316 epoch=4 loss=0.317228 gradient=0.03366
+B_native_matched step=302/316 epoch=4 loss=0.498501 gradient=0.04329
+B_native_matched step=303/316 epoch=4 loss=0.383972 gradient=0.03837
+B_native_matched step=304/316 epoch=4 loss=0.364591 gradient=0.03575
+B_native_matched step=305/316 epoch=4 loss=0.516576 gradient=0.03254
+B_native_matched step=306/316 epoch=4 loss=0.472595 gradient=0.04688
+B_native_matched step=307/316 epoch=4 loss=0.475331 gradient=0.03981
+B_native_matched step=308/316 epoch=4 loss=0.405712 gradient=0.05329
+B_native_matched step=309/316 epoch=4 loss=0.667775 gradient=0.06204
+B_native_matched step=310/316 epoch=4 loss=0.345722 gradient=0.05156
+B_native_matched step=311/316 epoch=4 loss=0.245830 gradient=0.03095
+B_native_matched step=312/316 epoch=4 loss=0.468763 gradient=0.04203
+B_native_matched step=313/316 epoch=4 loss=0.732338 gradient=0.05947
+B_native_matched step=314/316 epoch=4 loss=0.410924 gradient=0.04502
+B_native_matched step=315/316 epoch=4 loss=0.279178 gradient=0.02218
+B_native_matched step=316/316 epoch=4 loss=0.318541 gradient=0.04318
+B INTERNAL VALIDATION native_matched 316 {'total': 0.4100481924894093, 'route_kl': 0.3372554586702285, 'output_nmse': 0.07221151207463494, 'anchor_nmse': 0.058122283819506654, 'actual_student_replay_nmse': 0.0722160271704356}
+PIPELINE FINISH train_b.py native_matched
+PIPELINE START train_b.py student
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<01:53,  2.23it/s]Loading weights:  44%|████▎     | 111/254 [00:00<00:00, 265.69it/s]Loading weights:  69%|██████▊   | 174/254 [00:00<00:00, 233.51it/s]Loading weights:  86%|████████▌ | 218/254 [00:01<00:00, 232.52it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 213.62it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 201.76it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   9%|▉         | 37/398 [00:00<00:01, 347.82it/s]Loading weights:  18%|█▊        | 72/398 [00:00<00:01, 250.62it/s]Loading weights:  26%|██▌       | 102/398 [00:00<00:01, 267.88it/s]Loading weights:  34%|███▍      | 135/398 [00:00<00:00, 269.52it/s]Loading weights:  42%|████▏     | 168/398 [00:00<00:00, 279.73it/s]Loading weights:  51%|█████     | 201/398 [00:00<00:00, 282.02it/s]Loading weights:  59%|█████▉    | 234/398 [00:00<00:00, 252.50it/s]Loading weights:  66%|██████▌   | 261/398 [00:00<00:00, 249.19it/s]Loading weights:  73%|███████▎  | 289/398 [00:01<00:00, 249.00it/s]Loading weights:  79%|███████▉  | 315/398 [00:01<00:00, 249.30it/s]Loading weights:  86%|████████▋ | 344/398 [00:01<00:00, 224.71it/s]Loading weights:  92%|█████████▏| 368/398 [00:01<00:00, 224.53it/s]Loading weights: 100%|██████████| 398/398 [00:01<00:00, 260.45it/s]
+START B_student fresh rank64; 316 updates; frozen Stage-A512; detached query/suffix
+B_student step=1/316 epoch=1 loss=0.492469 gradient=0.27672
+B_student step=2/316 epoch=1 loss=0.879508 gradient=0.55174
+B_student step=3/316 epoch=1 loss=0.504905 gradient=0.38717
+B_student step=4/316 epoch=1 loss=0.424711 gradient=0.24983
+B_student step=5/316 epoch=1 loss=0.573146 gradient=0.29266
+B_student step=6/316 epoch=1 loss=0.735295 gradient=0.39307
+B_student step=7/316 epoch=1 loss=0.535099 gradient=0.25118
+B_student step=8/316 epoch=1 loss=0.834713 gradient=0.44999
+B_student step=9/316 epoch=1 loss=0.424325 gradient=0.28378
+B_student step=10/316 epoch=1 loss=0.789185 gradient=0.41072
+B_student step=11/316 epoch=1 loss=0.589026 gradient=0.26508
+B_student step=12/316 epoch=1 loss=0.601510 gradient=0.26766
+B_student step=13/316 epoch=1 loss=0.947571 gradient=0.37165
+B_student step=14/316 epoch=1 loss=0.602359 gradient=0.21704
+B_student step=15/316 epoch=1 loss=0.295254 gradient=0.10670
+B_student step=16/316 epoch=1 loss=0.899515 gradient=0.33517
+B_student step=17/316 epoch=1 loss=0.712543 gradient=0.22038
+B_student step=18/316 epoch=1 loss=0.340007 gradient=0.08769
+B_student step=19/316 epoch=1 loss=0.893942 gradient=0.23250
+B_student step=20/316 epoch=1 loss=0.546361 gradient=0.10914
+B_student step=21/316 epoch=1 loss=0.590887 gradient=0.11623
+B_student step=22/316 epoch=1 loss=0.804941 gradient=0.17289
+B_student step=23/316 epoch=1 loss=0.615526 gradient=0.11936
+B_student step=24/316 epoch=1 loss=0.350820 gradient=0.07104
+B_student step=25/316 epoch=1 loss=0.844190 gradient=0.17289
+B_student step=26/316 epoch=1 loss=0.452331 gradient=0.06997
+B_student step=27/316 epoch=1 loss=0.561844 gradient=0.08256
+B_student step=28/316 epoch=1 loss=0.897101 gradient=0.13536
+B_student step=29/316 epoch=1 loss=0.370208 gradient=0.07103
+B_student step=30/316 epoch=1 loss=0.728233 gradient=0.11792
+B_student step=31/316 epoch=1 loss=0.591946 gradient=0.09096
+B_student step=32/316 epoch=1 loss=0.693657 gradient=0.10490
+B INTERNAL VALIDATION student 32 {'total': 0.6218656463227321, 'route_kl': 0.512682535429485, 'output_nmse': 0.10916945386980606, 'anchor_nmse': 0.00136572661014927, 'actual_student_replay_nmse': 4.645523150561177e-06}
+B_student step=33/316 epoch=1 loss=0.415096 gradient=0.06074
+B_student step=34/316 epoch=1 loss=0.802732 gradient=0.10782
+B_student step=35/316 epoch=1 loss=0.617847 gradient=0.08746
+B_student step=36/316 epoch=1 loss=0.549894 gradient=0.07070
+B_student step=37/316 epoch=1 loss=0.297155 gradient=0.05129
+B_student step=38/316 epoch=1 loss=0.489361 gradient=0.06343
+B_student step=39/316 epoch=1 loss=0.651003 gradient=0.08982
+B_student step=40/316 epoch=1 loss=0.564971 gradient=0.06728
+B_student step=41/316 epoch=1 loss=0.698770 gradient=0.08113
+B_student step=42/316 epoch=1 loss=0.732102 gradient=0.09654
+B_student step=43/316 epoch=1 loss=0.518844 gradient=0.06054
+B_student step=44/316 epoch=1 loss=1.051622 gradient=0.11822
+B_student step=45/316 epoch=1 loss=0.672645 gradient=0.07168
+B_student step=46/316 epoch=1 loss=0.851950 gradient=0.10120
+B_student step=47/316 epoch=1 loss=0.637066 gradient=0.07081
+B_student step=48/316 epoch=1 loss=0.381542 gradient=0.04514
+B_student step=49/316 epoch=1 loss=0.772862 gradient=0.07418
+B_student step=50/316 epoch=1 loss=0.759214 gradient=0.09604
+B_student step=51/316 epoch=1 loss=0.906552 gradient=0.08834
+B_student step=52/316 epoch=1 loss=0.701573 gradient=0.07303
+B_student step=53/316 epoch=1 loss=0.747442 gradient=0.07675
+B_student step=54/316 epoch=1 loss=0.742938 gradient=0.07872
+B_student step=55/316 epoch=1 loss=0.354005 gradient=0.04059
+B_student step=56/316 epoch=1 loss=0.350323 gradient=0.04875
+B_student step=57/316 epoch=1 loss=0.486268 gradient=0.04601
+B_student step=58/316 epoch=1 loss=0.709670 gradient=0.07405
+B_student step=59/316 epoch=1 loss=0.529241 gradient=0.05267
+B_student step=60/316 epoch=1 loss=0.528534 gradient=0.04654
+B_student step=61/316 epoch=1 loss=0.541952 gradient=0.05218
+B_student step=62/316 epoch=1 loss=0.728104 gradient=0.07866
+B_student step=63/316 epoch=1 loss=0.647960 gradient=0.05856
+B_student step=64/316 epoch=1 loss=0.833137 gradient=0.07685
+B INTERNAL VALIDATION student 64 {'total': 0.5662969841427791, 'route_kl': 0.47233534859319826, 'output_nmse': 0.09390079009185515, 'anchor_nmse': 0.006084569979672475, 'actual_student_replay_nmse': 4.518284584014853e-06}
+B_student step=65/316 epoch=1 loss=0.701364 gradient=0.06199
+B_student step=66/316 epoch=1 loss=0.569046 gradient=0.05746
+B_student step=67/316 epoch=1 loss=0.468941 gradient=0.04683
+B_student step=68/316 epoch=1 loss=0.781955 gradient=0.06576
+B_student step=69/316 epoch=1 loss=0.963283 gradient=0.08186
+B_student step=70/316 epoch=1 loss=0.687544 gradient=0.06939
+B_student step=71/316 epoch=1 loss=0.745153 gradient=0.06848
+B_student step=72/316 epoch=1 loss=0.381497 gradient=0.04241
+B_student step=73/316 epoch=1 loss=0.499570 gradient=0.04729
+B_student step=74/316 epoch=1 loss=0.826040 gradient=0.08115
+B_student step=75/316 epoch=1 loss=0.858490 gradient=0.08597
+B_student step=76/316 epoch=1 loss=0.681626 gradient=0.07001
+B_student step=77/316 epoch=1 loss=0.794650 gradient=0.08086
+B_student step=78/316 epoch=1 loss=0.642967 gradient=0.06079
+B_student step=79/316 epoch=1 loss=0.555658 gradient=0.06096
+B INTERNAL VALIDATION student 79 {'total': 0.5431760030801849, 'route_kl': 0.4535671097919543, 'output_nmse': 0.08951290774054574, 'anchor_nmse': 0.009598526702676382, 'actual_student_replay_nmse': 4.515874260456825e-06}
+B_student step=80/316 epoch=2 loss=0.828367 gradient=0.07001
+B_student step=81/316 epoch=2 loss=0.237868 gradient=0.02409
+B_student step=82/316 epoch=2 loss=0.617941 gradient=0.06310
+B_student step=83/316 epoch=2 loss=0.793486 gradient=0.07323
+B_student step=84/316 epoch=2 loss=0.495186 gradient=0.04426
+B_student step=85/316 epoch=2 loss=0.747879 gradient=0.06515
+B_student step=86/316 epoch=2 loss=0.296203 gradient=0.03207
+B_student step=87/316 epoch=2 loss=0.352945 gradient=0.04331
+B_student step=88/316 epoch=2 loss=0.596678 gradient=0.05038
+B_student step=89/316 epoch=2 loss=0.796710 gradient=0.07011
+B_student step=90/316 epoch=2 loss=0.625101 gradient=0.05075
+B_student step=91/316 epoch=2 loss=0.661380 gradient=0.05833
+B_student step=92/316 epoch=2 loss=0.509469 gradient=0.04515
+B_student step=93/316 epoch=2 loss=0.852123 gradient=0.07661
+B_student step=94/316 epoch=2 loss=0.808361 gradient=0.08492
+B_student step=95/316 epoch=2 loss=0.580055 gradient=0.04627
+B_student step=96/316 epoch=2 loss=0.598001 gradient=0.06254
+B INTERNAL VALIDATION student 96 {'total': 0.5178746377593294, 'route_kl': 0.4318400636057722, 'output_nmse': 0.08589547155015342, 'anchor_nmse': 0.013910208027583497, 'actual_student_replay_nmse': 4.462234325566497e-06}
+B_student step=97/316 epoch=2 loss=0.707255 gradient=0.06469
+B_student step=98/316 epoch=2 loss=0.614322 gradient=0.05592
+B_student step=99/316 epoch=2 loss=0.541758 gradient=0.05780
+B_student step=100/316 epoch=2 loss=0.607684 gradient=0.06468
+B_student step=101/316 epoch=2 loss=0.675100 gradient=0.05513
+B_student step=102/316 epoch=2 loss=0.382907 gradient=0.03933
+B_student step=103/316 epoch=2 loss=0.418634 gradient=0.03561
+B_student step=104/316 epoch=2 loss=0.651211 gradient=0.05304
+B_student step=105/316 epoch=2 loss=0.481216 gradient=0.04968
+B_student step=106/316 epoch=2 loss=0.303922 gradient=0.02747
+B_student step=107/316 epoch=2 loss=0.493100 gradient=0.05315
+B_student step=108/316 epoch=2 loss=0.870756 gradient=0.08214
+B_student step=109/316 epoch=2 loss=0.679370 gradient=0.06229
+B_student step=110/316 epoch=2 loss=0.766803 gradient=0.06531
+B_student step=111/316 epoch=2 loss=0.506738 gradient=0.04320
+B_student step=112/316 epoch=2 loss=0.343166 gradient=0.04235
+B_student step=113/316 epoch=2 loss=0.530996 gradient=0.05844
+B_student step=114/316 epoch=2 loss=0.595377 gradient=0.05432
+B_student step=115/316 epoch=2 loss=0.417019 gradient=0.03944
+B_student step=116/316 epoch=2 loss=0.439922 gradient=0.04111
+B_student step=117/316 epoch=2 loss=0.586990 gradient=0.05256
+B_student step=118/316 epoch=2 loss=0.315545 gradient=0.03413
+B_student step=119/316 epoch=2 loss=0.202895 gradient=0.01795
+B_student step=120/316 epoch=2 loss=0.356891 gradient=0.03127
+B_student step=121/316 epoch=2 loss=0.638615 gradient=0.04976
+B_student step=122/316 epoch=2 loss=0.676872 gradient=0.06040
+B_student step=123/316 epoch=2 loss=0.512372 gradient=0.04343
+B_student step=124/316 epoch=2 loss=0.785827 gradient=0.05967
+B_student step=125/316 epoch=2 loss=0.744061 gradient=0.06154
+B_student step=126/316 epoch=2 loss=0.534212 gradient=0.05814
+B_student step=127/316 epoch=2 loss=0.248946 gradient=0.02756
+B_student step=128/316 epoch=2 loss=0.523292 gradient=0.05929
+B INTERNAL VALIDATION student 128 {'total': 0.4804610877862649, 'route_kl': 0.39883978896692424, 'output_nmse': 0.08139136350675673, 'anchor_nmse': 0.022993621730064567, 'actual_student_replay_nmse': 4.499192892093234e-06}
+B_student step=129/316 epoch=2 loss=0.584473 gradient=0.04968
+B_student step=130/316 epoch=2 loss=0.582814 gradient=0.04437
+B_student step=131/316 epoch=2 loss=0.516319 gradient=0.05663
+B_student step=132/316 epoch=2 loss=0.358179 gradient=0.04349
+B_student step=133/316 epoch=2 loss=0.600170 gradient=0.06154
+B_student step=134/316 epoch=2 loss=0.261062 gradient=0.02451
+B_student step=135/316 epoch=2 loss=0.607503 gradient=0.04246
+B_student step=136/316 epoch=2 loss=0.411666 gradient=0.04639
+B_student step=137/316 epoch=2 loss=0.416672 gradient=0.03613
+B_student step=138/316 epoch=2 loss=0.400715 gradient=0.03485
+B_student step=139/316 epoch=2 loss=0.374609 gradient=0.04650
+B_student step=140/316 epoch=2 loss=0.244726 gradient=0.03396
+B_student step=141/316 epoch=2 loss=0.424722 gradient=0.06216
+B_student step=142/316 epoch=2 loss=0.409045 gradient=0.03902
+B_student step=143/316 epoch=2 loss=0.418788 gradient=0.06170
+B_student step=144/316 epoch=2 loss=0.386066 gradient=0.03561
+B_student step=145/316 epoch=2 loss=0.369657 gradient=0.04005
+B_student step=146/316 epoch=2 loss=0.606097 gradient=0.05030
+B_student step=147/316 epoch=2 loss=0.552264 gradient=0.04897
+B_student step=148/316 epoch=2 loss=0.204362 gradient=0.02359
+B_student step=149/316 epoch=2 loss=0.677875 gradient=0.06420
+B_student step=150/316 epoch=2 loss=0.778390 gradient=0.05697
+B_student step=151/316 epoch=2 loss=0.566296 gradient=0.06125
+B_student step=152/316 epoch=2 loss=0.644204 gradient=0.06830
+B_student step=153/316 epoch=2 loss=0.202444 gradient=0.02738
+B_student step=154/316 epoch=2 loss=0.368109 gradient=0.02900
+B_student step=155/316 epoch=2 loss=0.614418 gradient=0.05268
+B_student step=156/316 epoch=2 loss=0.306589 gradient=0.04720
+B_student step=157/316 epoch=2 loss=0.634513 gradient=0.04696
+B_student step=158/316 epoch=2 loss=0.602305 gradient=0.04442
+B INTERNAL VALIDATION student 158 {'total': 0.4568533807740701, 'route_kl': 0.3777102463779522, 'output_nmse': 0.07883906668733591, 'anchor_nmse': 0.030406800079314657, 'actual_student_replay_nmse': 4.441762680690503e-06}
+B_student step=159/316 epoch=3 loss=0.596388 gradient=0.04998
+B_student step=160/316 epoch=3 loss=0.325602 gradient=0.04655
+B INTERNAL VALIDATION student 160 {'total': 0.45548999823071495, 'route_kl': 0.37654839330331286, 'output_nmse': 0.07863126550487154, 'anchor_nmse': 0.03103402632081674, 'actual_student_replay_nmse': 4.469383722280032e-06}
+B_student step=161/316 epoch=3 loss=0.748205 gradient=0.04893
+B_student step=162/316 epoch=3 loss=0.444312 gradient=0.09466
+B_student step=163/316 epoch=3 loss=0.678631 gradient=0.06167
+B_student step=164/316 epoch=3 loss=0.465071 gradient=0.03515
+B_student step=165/316 epoch=3 loss=0.422886 gradient=0.05952
+B_student step=166/316 epoch=3 loss=0.485677 gradient=0.04117
+B_student step=167/316 epoch=3 loss=0.712661 gradient=0.05664
+B_student step=168/316 epoch=3 loss=0.167117 gradient=0.01650
+B_student step=169/316 epoch=3 loss=0.424740 gradient=0.04651
+B_student step=170/316 epoch=3 loss=0.517131 gradient=0.04880
+B_student step=171/316 epoch=3 loss=0.519903 gradient=0.05689
+B_student step=172/316 epoch=3 loss=0.391636 gradient=0.05516
+B_student step=173/316 epoch=3 loss=0.684868 gradient=0.06054
+B_student step=174/316 epoch=3 loss=0.745925 gradient=0.06707
+B_student step=175/316 epoch=3 loss=0.296067 gradient=0.02288
+B_student step=176/316 epoch=3 loss=0.352871 gradient=0.02990
+B_student step=177/316 epoch=3 loss=0.691745 gradient=0.04900
+B_student step=178/316 epoch=3 loss=0.726201 gradient=0.05548
+B_student step=179/316 epoch=3 loss=0.363533 gradient=0.03303
+B_student step=180/316 epoch=3 loss=0.302453 gradient=0.03283
+B_student step=181/316 epoch=3 loss=0.411059 gradient=0.03662
+B_student step=182/316 epoch=3 loss=0.545373 gradient=0.04367
+B_student step=183/316 epoch=3 loss=0.632004 gradient=0.05953
+B_student step=184/316 epoch=3 loss=0.213581 gradient=0.02378
+B_student step=185/316 epoch=3 loss=0.461956 gradient=0.04178
+B_student step=186/316 epoch=3 loss=0.489833 gradient=0.04742
+B_student step=187/316 epoch=3 loss=0.582360 gradient=0.05333
+B_student step=188/316 epoch=3 loss=0.413825 gradient=0.03533
+B_student step=189/316 epoch=3 loss=0.539673 gradient=0.04149
+B_student step=190/316 epoch=3 loss=0.623870 gradient=0.04536
+B_student step=191/316 epoch=3 loss=0.594535 gradient=0.05443
+B_student step=192/316 epoch=3 loss=0.768952 gradient=0.05138
+B INTERNAL VALIDATION student 192 {'total': 0.43693788473481415, 'route_kl': 0.3598314089486074, 'output_nmse': 0.07671479773955611, 'anchor_nmse': 0.039167846181145355, 'actual_student_replay_nmse': 4.478882827342652e-06}
+B_student step=193/316 epoch=3 loss=0.379425 gradient=0.03843
+B_student step=194/316 epoch=3 loss=0.674075 gradient=0.04306
+B_student step=195/316 epoch=3 loss=0.620427 gradient=0.04718
+B_student step=196/316 epoch=3 loss=0.482168 gradient=0.06411
+B_student step=197/316 epoch=3 loss=0.575803 gradient=0.04052
+B_student step=198/316 epoch=3 loss=0.459878 gradient=0.03852
+B_student step=199/316 epoch=3 loss=0.393532 gradient=0.04005
+B_student step=200/316 epoch=3 loss=0.189062 gradient=0.02558
+B_student step=201/316 epoch=3 loss=0.479897 gradient=0.04736
+B_student step=202/316 epoch=3 loss=0.443748 gradient=0.04582
+B_student step=203/316 epoch=3 loss=0.394939 gradient=0.03878
+B_student step=204/316 epoch=3 loss=0.414496 gradient=0.04094
+B_student step=205/316 epoch=3 loss=0.518144 gradient=0.06725
+B_student step=206/316 epoch=3 loss=0.505514 gradient=0.03698
+B_student step=207/316 epoch=3 loss=0.200067 gradient=0.02353
+B_student step=208/316 epoch=3 loss=0.322269 gradient=0.03317
+B_student step=209/316 epoch=3 loss=0.383590 gradient=0.05091
+B_student step=210/316 epoch=3 loss=0.301442 gradient=0.03470
+B_student step=211/316 epoch=3 loss=0.261419 gradient=0.02377
+B_student step=212/316 epoch=3 loss=0.411733 gradient=0.04880
+B_student step=213/316 epoch=3 loss=0.329021 gradient=0.02798
+B_student step=214/316 epoch=3 loss=0.714530 gradient=0.04931
+B_student step=215/316 epoch=3 loss=0.316642 gradient=0.03232
+B_student step=216/316 epoch=3 loss=0.517975 gradient=0.04270
+B_student step=217/316 epoch=3 loss=0.561828 gradient=0.07003
+B_student step=218/316 epoch=3 loss=0.599836 gradient=0.05771
+B_student step=219/316 epoch=3 loss=0.304453 gradient=0.02513
+B_student step=220/316 epoch=3 loss=0.452238 gradient=0.03515
+B_student step=221/316 epoch=3 loss=0.699976 gradient=0.05905
+B_student step=222/316 epoch=3 loss=0.332315 gradient=0.02404
+B_student step=223/316 epoch=3 loss=0.662208 gradient=0.06884
+B_student step=224/316 epoch=3 loss=0.639758 gradient=0.06611
+B INTERNAL VALIDATION student 224 {'total': 0.4254336206946324, 'route_kl': 0.3498352150030702, 'output_nmse': 0.07513358257174668, 'anchor_nmse': 0.0464822242825499, 'actual_student_replay_nmse': 4.4205821279608985e-06}
+B_student step=225/316 epoch=3 loss=0.461136 gradient=0.04109
+B_student step=226/316 epoch=3 loss=0.166030 gradient=0.01987
+B_student step=227/316 epoch=3 loss=0.313007 gradient=0.04097
+B_student step=228/316 epoch=3 loss=0.248464 gradient=0.02737
+B_student step=229/316 epoch=3 loss=0.418051 gradient=0.04845
+B_student step=230/316 epoch=3 loss=0.244882 gradient=0.02805
+B_student step=231/316 epoch=3 loss=0.464870 gradient=0.04393
+B_student step=232/316 epoch=3 loss=0.504406 gradient=0.03823
+B_student step=233/316 epoch=3 loss=0.600519 gradient=0.05637
+B_student step=234/316 epoch=3 loss=0.295173 gradient=0.04611
+B_student step=235/316 epoch=3 loss=0.595444 gradient=0.04521
+B_student step=236/316 epoch=3 loss=0.334303 gradient=0.04902
+B_student step=237/316 epoch=3 loss=0.340445 gradient=0.07580
+B INTERNAL VALIDATION student 237 {'total': 0.42092572126130107, 'route_kl': 0.34559655873206263, 'output_nmse': 0.07484215735777171, 'anchor_nmse': 0.04870049274824042, 'actual_student_replay_nmse': 4.4180890192221015e-06}
+B_student step=238/316 epoch=4 loss=0.567489 gradient=0.04358
+B_student step=239/316 epoch=4 loss=0.523442 gradient=0.03558
+B_student step=240/316 epoch=4 loss=0.551135 gradient=0.04687
+B_student step=241/316 epoch=4 loss=0.310271 gradient=0.03930
+B_student step=242/316 epoch=4 loss=0.612498 gradient=0.09618
+B_student step=243/316 epoch=4 loss=0.572161 gradient=0.05481
+B_student step=244/316 epoch=4 loss=0.216134 gradient=0.02271
+B_student step=245/316 epoch=4 loss=0.593846 gradient=0.04352
+B_student step=246/316 epoch=4 loss=0.440235 gradient=0.05981
+B_student step=247/316 epoch=4 loss=0.220292 gradient=0.02206
+B_student step=248/316 epoch=4 loss=0.500461 gradient=0.05334
+B_student step=249/316 epoch=4 loss=0.215825 gradient=0.03949
+B_student step=250/316 epoch=4 loss=0.265488 gradient=0.06132
+B_student step=251/316 epoch=4 loss=0.550358 gradient=0.03883
+B_student step=252/316 epoch=4 loss=0.430136 gradient=0.03875
+B_student step=253/316 epoch=4 loss=0.514426 gradient=0.04632
+B_student step=254/316 epoch=4 loss=0.184205 gradient=0.02296
+B_student step=255/316 epoch=4 loss=0.364241 gradient=0.02774
+B_student step=256/316 epoch=4 loss=0.605351 gradient=0.08228
+B INTERNAL VALIDATION student 256 {'total': 0.41611616977358984, 'route_kl': 0.3414638981947468, 'output_nmse': 0.0741303264106035, 'anchor_nmse': 0.05219459542260867, 'actual_student_replay_nmse': 4.436133039265044e-06}
+B_student step=257/316 epoch=4 loss=0.564058 gradient=0.05334
+B_student step=258/316 epoch=4 loss=0.495856 gradient=0.04827
+B_student step=259/316 epoch=4 loss=0.370360 gradient=0.03588
+B_student step=260/316 epoch=4 loss=0.509241 gradient=0.03528
+B_student step=261/316 epoch=4 loss=0.544530 gradient=0.03683
+B_student step=262/316 epoch=4 loss=0.405723 gradient=0.03715
+B_student step=263/316 epoch=4 loss=0.329842 gradient=0.02405
+B_student step=264/316 epoch=4 loss=0.398560 gradient=0.04266
+B_student step=265/316 epoch=4 loss=0.495222 gradient=0.04921
+B_student step=266/316 epoch=4 loss=0.521747 gradient=0.05029
+B_student step=267/316 epoch=4 loss=0.367947 gradient=0.03252
+B_student step=268/316 epoch=4 loss=0.317754 gradient=0.06035
+B_student step=269/316 epoch=4 loss=0.322132 gradient=0.02712
+B_student step=270/316 epoch=4 loss=0.603566 gradient=0.05751
+B_student step=271/316 epoch=4 loss=0.523607 gradient=0.05213
+B_student step=272/316 epoch=4 loss=0.417559 gradient=0.04224
+B_student step=273/316 epoch=4 loss=0.418368 gradient=0.03541
+B_student step=274/316 epoch=4 loss=0.665635 gradient=0.06259
+B_student step=275/316 epoch=4 loss=0.489286 gradient=0.03749
+B_student step=276/316 epoch=4 loss=0.659480 gradient=0.04616
+B_student step=277/316 epoch=4 loss=0.596341 gradient=0.04904
+B_student step=278/316 epoch=4 loss=0.480796 gradient=0.05897
+B_student step=279/316 epoch=4 loss=0.581030 gradient=0.06036
+B_student step=280/316 epoch=4 loss=0.629585 gradient=0.05597
+B_student step=281/316 epoch=4 loss=0.256833 gradient=0.02577
+B_student step=282/316 epoch=4 loss=0.508102 gradient=0.05081
+B_student step=283/316 epoch=4 loss=0.421949 gradient=0.05815
+B_student step=284/316 epoch=4 loss=0.229367 gradient=0.02772
+B_student step=285/316 epoch=4 loss=0.340388 gradient=0.03713
+B_student step=286/316 epoch=4 loss=0.331338 gradient=0.02738
+B_student step=287/316 epoch=4 loss=0.593331 gradient=0.06910
+B_student step=288/316 epoch=4 loss=0.399000 gradient=0.03211
+B INTERNAL VALIDATION student 288 {'total': 0.4101421291675824, 'route_kl': 0.3359082448042938, 'output_nmse': 0.07366602441760296, 'anchor_nmse': 0.05678601564917092, 'actual_student_replay_nmse': 4.3700219542244895e-06}
+B_student step=289/316 epoch=4 loss=0.682430 gradient=0.05535
+B_student step=290/316 epoch=4 loss=0.335458 gradient=0.04052
+B_student step=291/316 epoch=4 loss=0.543474 gradient=0.04247
+B_student step=292/316 epoch=4 loss=0.518215 gradient=0.04834
+B_student step=293/316 epoch=4 loss=0.244478 gradient=0.03828
+B_student step=294/316 epoch=4 loss=0.211874 gradient=0.03732
+B_student step=295/316 epoch=4 loss=0.351251 gradient=0.03150
+B_student step=296/316 epoch=4 loss=0.232332 gradient=0.02297
+B_student step=297/316 epoch=4 loss=0.463779 gradient=0.03882
+B_student step=298/316 epoch=4 loss=0.368597 gradient=0.04756
+B_student step=299/316 epoch=4 loss=0.521981 gradient=0.04149
+B_student step=300/316 epoch=4 loss=0.434162 gradient=0.03479
+B_student step=301/316 epoch=4 loss=0.311835 gradient=0.03544
+B_student step=302/316 epoch=4 loss=0.498121 gradient=0.04815
+B_student step=303/316 epoch=4 loss=0.381517 gradient=0.03998
+B_student step=304/316 epoch=4 loss=0.355411 gradient=0.03654
+B_student step=305/316 epoch=4 loss=0.524632 gradient=0.03267
+B_student step=306/316 epoch=4 loss=0.474190 gradient=0.04709
+B_student step=307/316 epoch=4 loss=0.469739 gradient=0.03883
+B_student step=308/316 epoch=4 loss=0.398884 gradient=0.05570
+B_student step=309/316 epoch=4 loss=0.673547 gradient=0.06428
+B_student step=310/316 epoch=4 loss=0.334605 gradient=0.05140
+B_student step=311/316 epoch=4 loss=0.241295 gradient=0.03035
+B_student step=312/316 epoch=4 loss=0.472374 gradient=0.04863
+B_student step=313/316 epoch=4 loss=0.723167 gradient=0.05811
+B_student step=314/316 epoch=4 loss=0.405030 gradient=0.04202
+B_student step=315/316 epoch=4 loss=0.274398 gradient=0.02156
+B_student step=316/316 epoch=4 loss=0.315269 gradient=0.04076
+B INTERNAL VALIDATION student 316 {'total': 0.4028199667516337, 'route_kl': 0.3299118844923753, 'output_nmse': 0.07231139101832351, 'anchor_nmse': 0.05966912802088902, 'actual_student_replay_nmse': 4.415765046671281e-06}
+PIPELINE FINISH train_b.py student
+PIPELINE START report.py B
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<01:39,  2.53it/s]Loading weights:  30%|███       | 77/254 [00:00<00:00, 201.72it/s]Loading weights:  48%|████▊     | 121/254 [00:00<00:00, 214.45it/s]Loading weights:  61%|██████▏   | 156/254 [00:00<00:00, 229.98it/s]Loading weights:  74%|███████▍  | 188/254 [00:00<00:00, 217.55it/s]Loading weights:  85%|████████▍ | 215/254 [00:01<00:00, 229.15it/s]Loading weights:  95%|█████████▌| 242/254 [00:01<00:00, 234.98it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 210.00it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   9%|▉         | 36/398 [00:00<00:01, 291.23it/s]Loading weights:  17%|█▋        | 69/398 [00:00<00:01, 309.44it/s]Loading weights:  25%|██▌       | 101/398 [00:00<00:00, 311.62it/s]Loading weights:  33%|███▎      | 133/398 [00:00<00:00, 306.33it/s]Loading weights:  41%|████      | 164/398 [00:00<00:00, 291.62it/s]Loading weights:  49%|████▊     | 194/398 [00:00<00:00, 288.00it/s]Loading weights:  56%|█████▌    | 223/398 [00:00<00:00, 288.01it/s]Loading weights:  63%|██████▎   | 252/398 [00:00<00:00, 279.32it/s]Loading weights:  70%|███████   | 280/398 [00:01<00:00, 240.47it/s]Loading weights:  78%|███████▊  | 310/398 [00:01<00:00, 256.32it/s]Loading weights:  85%|████████▍ | 337/398 [00:01<00:00, 250.82it/s]Loading weights:  92%|█████████▏| 366/398 [00:01<00:00, 256.95it/s]Loading weights:  99%|█████████▊| 393/398 [00:01<00:00, 255.80it/s]Loading weights: 100%|██████████| 398/398 [00:01<00:00, 274.33it/s]
+EVALUATE fixed_dev paper=1/8
+EVALUATE fixed_dev paper=2/8
+EVALUATE fixed_dev paper=3/8
+EVALUATE fixed_dev paper=4/8
+EVALUATE fixed_dev paper=5/8
+EVALUATE fixed_dev paper=6/8
+EVALUATE fixed_dev paper=7/8
+EVALUATE fixed_dev paper=8/8
+FINAL REPORT COMPLETE B
+PIPELINE FINISH report.py B
+ALL CROSS-ROLE AND STUDENT-STATE V0 EXPERIMENTS COMPLETED
