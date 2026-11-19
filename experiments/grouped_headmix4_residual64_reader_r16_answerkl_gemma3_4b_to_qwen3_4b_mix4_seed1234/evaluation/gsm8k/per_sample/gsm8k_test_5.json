@@ -1,0 +1,31 @@
+{
+  "manifest_sha256": "dd7d71b1cd1f8863a0f36b02836971977b190f3e4f4015dc9b0817038040d45c",
+  "id": "gsm8k_test_5",
+  "task": "gsm8k",
+  "prompt": "Solve the following math problem carefully. Show your reasoning and finish with the final numeric answer in \\boxed{...}.\n\nProblem: Kylar went to the store to buy glasses for his new apartment. One glass costs $5, but every second glass costs only 60% of the price. Kylar wants to buy 16 glasses. How much does he need to pay for them?",
+  "gold": "64",
+  "conditions": {
+    "qwen_native": {
+      "prediction": "64",
+      "correct": 1,
+      "generation": "We are given that:\n\n- One glass costs **$5**.\n- **Every second glass** costs **60% of the price**, i.e., **$5 × 0.6 = $3**.\n- Kylar wants to buy **16 glasses**.\n\n---\n\n### Step 1: Understand the pricing pattern\n\nThe pricing alternates between:\n\n- **First glass**: $5  \n- **Second glass**: $3  \n- **Third glass**: $5  \n- **Fourth glass**: $3  \n- ... and so on.\n\nSo, for every **pair of glasses**, the total cost is:\n\n$$\n5 + 3 = 8 \\text{ dollars}\n$$\n\n---\n\n### Step 2: How many such pairs are in 16 glasses?\n\n$$\n\\frac{16}{2} = 8 \\text{ pairs}\n$$\n\n---\n\n### Step 3: Total cost for 8 pairs\n\n$$\n8 \\times 8 = 64 \\text{ dollars}\n$$\n\n---\n\n### ✅ Final Answer:\n\n$$\n\\boxed{64}\n$$",
+      "generated_tokens": 227,
+      "reached_cap": 0
+    },
+    "grouped_residual": {
+      "prediction": "64",
+      "correct": 1,
+      "generation": "We are given the following information:\n\n- **Price of one glass**: $5  \n- **Discount for every second glass**: 60% of the price of the first glass  \n- **Kiley wants to buy 16 glasses**\n\n---\n\n### Step 1: Understand the pricing pattern\n\nThe problem says:\n\n> \"Every second glass costs only 60% of the price of the first glass.\"\n\nThis means:\n\n- **Glass 1**: $5  \n- **Glass 2**: 60% of $5 = $3  \n- **Glass 3**: $5  \n- **Glass 4**: $3  \n- ... and so on.\n\nSo the pattern is: **$5, $3, $5, $3, ...**\n\n---\n\n### Step 2: Count how many of each price\n\nSince the pattern repeats every 2 glasses:\n\n- **Number of pairs** = 16 ÷ 2 = **8 pairs**\n\nEach pair consists of:\n- 1 glass at $5  \n- 1 glass at $3\n\nSo, for each pair:\n- Total cost = $5 + $3 = **$8**\n\n---\n\n### Step 3: Total cost for 8 pairs\n\n- Total cost = 8 × $8 = **$64**\n\n---\n\n### ✅ Final Answer:\n\n$$\n\\boxed{64}\n$$<|im_end|>",
+      "generated_tokens": 283,
+      "reached_cap": 0
+    },
+    "grouped_residual_reader": {
+      "prediction": "64",
+      "correct": 1,
+      "generation": "We are given the following information:\n\n- One glass costs **$5**.\n- Every **second glass** costs **60% of the price** of the first glass.\n- Kaly wants to buy **16 glasses**.\n\n---\n\n### Step 1: Determine the price of the second glass\n\nThe second glass costs 60% of the first glass:\n\n$$\n\\text{Price of second glass} = 5 \\times 0.60 = 3\n$$\n\nSo, the second glass costs **$3**.\n\n---\n\n### Step 2: Determine the pattern of prices\n\nWe are told that **every second glass** costs 60% of the first glass. This implies that the **even-numbered glasses** (2nd, 4th, 6th, etc.) cost **$3**, and the **odd-numbered glasses** (1st, 3rd, 5th, etc.) cost **$5**.\n\nSo, for 16 glasses:\n\n- Odd-numbered glasses: 1st, 3rd, 5th, 7th, 9th, 11th, 13th, 15th → 8 glasses\n- Even-numbered glasses: 2nd, 4th, 6th, 8th, 10th, 12th, 14th, 16th → 8 glasses\n\n---\n\n### Step 3: Calculate the total cost\n\n- Cost of 8 odd-numbered glasses:  \n  $$\n  8 \\times 5 = 40\n  $$\n\n- Cost of 8 even-numbered glasses:  \n  $$\n  8 \\times 3 = 24\n  $$\n\n---\n\n### Step 4: Add the two amounts\n\n$$\n40 + 24 = \\boxed{64}\n$$\n\n---\n\n### ✅ Final Answer:\n\n$$\n\\boxed{64}\n$$<|im_end|>",
+      "generated_tokens": 413,
+      "reached_cap": 0
+    }
+  },
+  "native_source": "/hy-tmp/yezhe/异构模型/ufd_mixedprefix_stageb_4data_2048x4_l3_to_q4_seed1234/evaluation/gsm8k/per_sample/gsm8k_test_5.json"
+}

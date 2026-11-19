@@ -1,0 +1,349 @@
+{
+  "manifest_sha256": "dd7d71b1cd1f8863a0f36b02836971977b190f3e4f4015dc9b0817038040d45c",
+  "status": "completed",
+  "tasks": {
+    "openbookqa": {
+      "metrics": {
+        "qwen_native": {
+          "n": 128,
+          "correct": 103,
+          "accuracy": 0.8046875
+        },
+        "grouped_residual": {
+          "n": 128,
+          "correct": 75,
+          "accuracy": 0.5859375
+        },
+        "grouped_residual_reader": {
+          "n": 128,
+          "correct": 82,
+          "accuracy": 0.640625
+        }
+      }
+    },
+    "arc_challenge": {
+      "metrics": {
+        "qwen_native": {
+          "n": 128,
+          "correct": 111,
+          "accuracy": 0.8671875
+        },
+        "grouped_residual": {
+          "n": 128,
+          "correct": 71,
+          "accuracy": 0.5546875
+        },
+        "grouped_residual_reader": {
+          "n": 128,
+          "correct": 77,
+          "accuracy": 0.6015625
+        }
+      }
+    },
+    "hellaswag": {
+      "metrics": {
+        "qwen_native": {
+          "n": 64,
+          "correct": 23,
+          "accuracy": 0.359375
+        },
+        "grouped_residual": {
+          "n": 64,
+          "correct": 20,
+          "accuracy": 0.3125
+        },
+        "grouped_residual_reader": {
+          "n": 64,
+          "correct": 21,
+          "accuracy": 0.328125
+        }
+      }
+    },
+    "gsm8k": {
+      "metrics": {
+        "qwen_native": {
+          "n": 32,
+          "correct": 31,
+          "accuracy": 0.96875,
+          "mean_generated_tokens": 296.375,
+          "cap_count": 0
+        },
+        "grouped_residual": {
+          "n": 32,
+          "correct": 22,
+          "accuracy": 0.6875,
+          "mean_generated_tokens": 434.21875,
+          "cap_count": 1
+        },
+        "grouped_residual_reader": {
+          "n": 32,
+          "correct": 21,
+          "accuracy": 0.65625,
+          "mean_generated_tokens": 374.375,
+          "cap_count": 0
+        }
+      }
+    },
+    "mmlu_pro": {
+      "metrics": {
+        "qwen_native": {
+          "n": 128,
+          "correct": 52,
+          "accuracy": 0.40625
+        },
+        "grouped_residual": {
+          "n": 128,
+          "correct": 37,
+          "accuracy": 0.2890625
+        },
+        "grouped_residual_reader": {
+          "n": 128,
+          "correct": 39,
+          "accuracy": 0.3046875
+        }
+      }
+    },
+    "sciq": {
+      "metrics": {
+        "qwen_native": {
+          "n": 64,
+          "correct": 57,
+          "accuracy": 0.890625
+        },
+        "grouped_residual": {
+          "n": 64,
+          "correct": 52,
+          "accuracy": 0.8125
+        },
+        "grouped_residual_reader": {
+          "n": 64,
+          "correct": 52,
+          "accuracy": 0.8125
+        }
+      }
+    }
+  },
+  "config": {
+    "name": "grouped_headmix4_residual64_reader_r16_answerkl_gemma3_4b_to_qwen3_4b_mix4_seed1234",
+    "seed": 1234,
+    "sender": "/hy-tmp/yezhe/all_models/models/LLM-Research/gemma-3-4b-it",
+    "receiver": "/hy-tmp/yezhe/all_models/models/Qwen/Qwen3-4B",
+    "ufd_parent": "/hy-tmp/yezhe/异构模型/ufd_mixedprefix_stageb_4data_2048x4_l3_to_q4_seed1234",
+    "mcq_parent": "/hy-tmp/yezhe/异构模型/mcq_heterofold_chat_fullsync_l3_to_q4_seed1234",
+    "reference_reader": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_answerkl_l3_to_q4_seed1234",
+    "architecture": {
+      "source_layers": 34,
+      "target_layers": 36,
+      "source_heads": 4,
+      "target_heads": 8,
+      "source_dim": 256,
+      "target_dim": 128,
+      "groups": 4,
+      "hidden_dim": 1024
+    },
+    "stage_a": {
+      "name": "grouped_headmix4_residual64_reader_r16_answerkl_gemma3_4b_to_qwen3_4b_mix4_seed1234",
+      "seed": 1234,
+      "ufd_parent": "/hy-tmp/yezhe/异构模型/ufd_mixedprefix_stageb_4data_2048x4_l3_to_q4_seed1234",
+      "mcq_parent": "/hy-tmp/yezhe/异构模型/mcq_heterofold_chat_fullsync_l3_to_q4_seed1234",
+      "architecture": {
+        "source_layers": 34,
+        "target_layers": 36,
+        "source_heads": 4,
+        "target_heads": 8,
+        "source_dim": 256,
+        "target_dim": 128,
+        "groups": 4,
+        "hidden_dim": 1024
+      },
+      "expected_parameters": 146800640,
+      "stage_a_epochs": 2,
+      "stage_b_epochs": 4,
+      "stage_a_learning_rate": 0.001,
+      "stage_b_learning_rate": 0.0001,
+      "effective_batch": 8,
+      "gradient_clip": 30.0,
+      "weight_decay": 0.0,
+      "chunk_tokens": 64,
+      "checkpoint_every_steps": 64,
+      "stage_a_selection": "Minimum epoch-end reconstruction loss on four-task held-out64each; four-task train512each,2epochs512updates",
+      "stage_b_selection": "Fixed epoch4 step1024 last checkpoint, never test-selected",
+      "stage_b_objective": "Not used: Stage B is residual-only in stage_b.py",
+      "stage_b_train_counts": {
+        "openbookqa": 512,
+        "arc_challenge": 512,
+        "gsm8k": 512,
+        "mmlu_pro": 512
+      },
+      "evaluation_tasks": [
+        "openbookqa",
+        "arc_challenge",
+        "hellaswag",
+        "gsm8k",
+        "mmlu_pro",
+        "sciq"
+      ],
+      "monitor_validation_per_task": 16,
+      "queue_min_free_gpu_gib": 20,
+      "disk_reserve_gib": 20,
+      "caveats": [
+        "Architecture and trainable Stage-B parameter scope both change; not a grouping-only ablation.",
+        "Reuse Full-Sync accuracy interface; no zero-prefill latency claim.",
+        "Existing test sets are historical and MMLU-Pro is a custom split."
+      ],
+      "base_parent": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_answerkl_gemma3_4b_to_qwen3_4b_mix4_seed1234",
+      "residual_parent": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_answerkl_gemma3_4b_to_qwen3_4b_mix4_seed1234"
+    },
+    "stage_b": {
+      "name": "grouped_headmix4_residual64_reader_r16_answerkl_gemma3_4b_to_qwen3_4b_mix4_seed1234",
+      "seed": 1234,
+      "ufd_parent": "/hy-tmp/yezhe/异构模型/ufd_mixedprefix_stageb_4data_2048x4_l3_to_q4_seed1234",
+      "mcq_parent": "/hy-tmp/yezhe/异构模型/mcq_heterofold_chat_fullsync_l3_to_q4_seed1234",
+      "architecture": {
+        "source_layers": 34,
+        "target_layers": 36,
+        "source_heads": 4,
+        "target_heads": 8,
+        "source_dim": 256,
+        "target_dim": 128,
+        "groups": 4,
+        "hidden_dim": 1024
+      },
+      "expected_parameters": 146800640,
+      "stage_a_epochs": 2,
+      "stage_b_epochs": 4,
+      "stage_a_learning_rate": 0.001,
+      "stage_b_learning_rate": 0.0001,
+      "effective_batch": 8,
+      "gradient_clip": 30.0,
+      "weight_decay": 0.0,
+      "chunk_tokens": 64,
+      "checkpoint_every_steps": 64,
+      "stage_a_selection": "Reuse frozen grouped Stage-A best.pt; do not use previous fully tuned Stage-B",
+      "stage_b_selection": "Fixed epoch4 step1024 last checkpoint, never test-selected",
+      "stage_b_objective": "Same UFD full-vocabulary forward KL and mixed prefixes. Freeze Stage-A translator and both LLMs. Train only zero-up per-target-layer CROSS-HEAD rank64 K/V residuals; no Reader.",
+      "stage_b_train_counts": {
+        "openbookqa": 512,
+        "arc_challenge": 512,
+        "gsm8k": 512,
+        "mmlu_pro": 512
+      },
+      "evaluation_tasks": [
+        "openbookqa",
+        "arc_challenge",
+        "hellaswag",
+        "gsm8k",
+        "mmlu_pro",
+        "sciq"
+      ],
+      "monitor_validation_per_task": 16,
+      "queue_min_free_gpu_gib": 20,
+      "disk_reserve_gib": 20,
+      "caveats": [
+        "Same grouped Stage-A and Stage-B data/objective/budget as full-translator run; trainable scope and residual parameterization change together.",
+        "Stage-B residuals mix heads within each target layer; source-layer grouping remains in the frozen translator.",
+        "Reuse historical evaluation subsets and Full-Sync accuracy interface; no zero-prefill latency claim.",
+        "MMLU-Pro remains a custom split."
+      ],
+      "base_parent": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_answerkl_gemma3_4b_to_qwen3_4b_mix4_seed1234",
+      "residual_rank": 64,
+      "expected_trainable_parameters": 9437184,
+      "stage_a_retrained": false,
+      "residual_parent": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_answerkl_gemma3_4b_to_qwen3_4b_mix4_seed1234"
+    },
+    "reader": {
+      "name": "grouped_headmix4_residual64_reader_r16_answerkl_gemma3_4b_to_qwen3_4b_mix4_seed1234",
+      "seed": 1234,
+      "parent": "/hy-tmp/yezhe/异构模型/ufd_mixedprefix_stageb_4data_2048x4_l3_to_q4_seed1234",
+      "rank": 16,
+      "alpha": 16,
+      "dropout": 0,
+      "layers": 36,
+      "targets": [
+        "q_proj",
+        "o_proj"
+      ],
+      "expected_trainable_parameters": 7667712,
+      "epochs": 4,
+      "expected_updates": 1024,
+      "effective_batch": 8,
+      "learning_rate": 0.0001,
+      "weight_decay": 0,
+      "gradient_clip": 30,
+      "checkpoint_every_steps": 64,
+      "validation_every_steps": 256,
+      "monitor_validation_per_task": 16,
+      "prefix_max_new_tokens": 64,
+      "supervised_positions_per_example_max": 8,
+      "train_counts": {
+        "openbookqa": 512,
+        "arc_challenge": 512,
+        "gsm8k": 512,
+        "mmlu_pro": 512
+      },
+      "formal_counts": {
+        "openbookqa": 128,
+        "arc_challenge": 128,
+        "hellaswag": 64,
+        "gsm8k": 32,
+        "mmlu_pro": 128,
+        "sciq": 64
+      },
+      "loss": "Full-vocabulary forward KL(Native||StageA+Residual+Reader), temperature1, FP32 loss. MCQ: ONLY answer-label prediction boundary, all labels audited single-token. GSM8K: unchanged up-to8 positions in max64-token same-prefix continuation. Equal example weighting. No gold CE or reward.",
+      "prefix_sampling": "Same parent balanced question order. MCQ has no generated answer prefix or rollout. GSM8K epoch1 native prefixes; epochs2-4 one native and one online Student example per batch. Teacher always scores identical histories with Reader disabled.",
+      "interface": "Frozen grouped Stage-A best.pt + frozen cross-head residual Stage-B last.pt, both pinned by SHA256. Fresh all36 Q/O LoRA; no old Reader weights. Native teacher/prefill Reader disabled; only translated-cache suffix/continuation enables Reader.",
+      "selection": "Primary fixed epoch4/step1024. Keep epoch1/2/3/4 Reader checkpoints. Best macro validation KL checkpoint is diagnostic only, never test-selected.",
+      "validation_task_metrics": "On fixed16 validation rows/task: KL plus same-prefix next-token agreement for all4 tasks; label accuracy on3 MCQ tasks. Full GSM8K free-generation accuracy only in final test, using unchanged4096 cap.",
+      "queue_min_free_gpu_gib": 20,
+      "queue_retry_seconds": 300,
+      "disk_reserve_gib": 20,
+      "continuous_monitoring": false,
+      "automatic_upload": false,
+      "base_parent": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_answerkl_gemma3_4b_to_qwen3_4b_mix4_seed1234",
+      "architecture": {
+        "source_layers": 34,
+        "target_layers": 36,
+        "source_heads": 4,
+        "target_heads": 8,
+        "source_dim": 256,
+        "target_dim": 128,
+        "groups": 4,
+        "hidden_dim": 1024
+      },
+      "expected_translator_parameters": 146800640,
+      "chunk_tokens": 64,
+      "residual_parent": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_answerkl_gemma3_4b_to_qwen3_4b_mix4_seed1234",
+      "evaluation_tasks": [
+        "openbookqa",
+        "arc_challenge",
+        "hellaswag",
+        "gsm8k",
+        "mmlu_pro",
+        "sciq"
+      ],
+      "caveats": [
+        "Sender and Stage-A data mixture both differ from the Llama run; not a sender-only ablation.",
+        "Stage A uses the same four-task train512each and validation64each rows as B/Reader, without answers or CoT in the input.",
+        "MMLU-Pro remains the existing custom split of official test.",
+        "Full-Sync accuracy interface; no prefill-free latency claim."
+      ],
+      "residual_rank": 64,
+      "expected_residual_parameters": 9437184
+    },
+    "source_compute_dtype": "float32",
+    "source_storage_dtype": "float16",
+    "receiver_dtype": "float16",
+    "attention": "sdpa",
+    "disk_reserve_gib": 20,
+    "queue_min_free_gpu_gib": 24,
+    "source_cache_policy": "Train/validation source shared by A/B/Reader; deterministic Qwen reconstruction targets computed on demand. Delete ONLY own regenerable train/validation source caches after all three training completion gates, before test capture.",
+    "continuous_monitoring": false,
+    "automatic_upload": false
+  },
+  "caveats": [
+    "Sender and Stage-A data mixture both differ from the Llama run; not a sender-only ablation.",
+    "Stage A uses the same four-task train512each and validation64each rows as B/Reader, without answers or CoT in the input.",
+    "MMLU-Pro remains the existing custom split of official test.",
+    "Full-Sync accuracy interface; no prefill-free latency claim."
+  ]
+}

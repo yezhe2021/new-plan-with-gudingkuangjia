@@ -1,0 +1,35 @@
+{
+  "name": "oracle_layer_repair_multidata32_seed1234",
+  "seed": 1234,
+  "parent": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_answerkl_gemma3_4b_to_qwen3_4b_mix4_seed1234",
+  "parent_manifest_sha256": "dd7d71b1cd1f8863a0f36b02836971977b190f3e4f4015dc9b0817038040d45c",
+  "stage_a_sha256": "9960d1b24a3809c3562d345a4fb567d271fa538dc8d0bd4a76ae65554bd15948",
+  "stage_b_sha256": "94ecc30703c5c243955f3776a630a615e7b4ad55e1deab64618a22d31e74b466",
+  "reference_oracle": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_l3_to_q4_seed1234/oracle_layer_repair_multidata32_seed1234",
+  "reference_oracle_manifest_sha256": "41120143ca5847b705103d9b88ef28398940ac52e1ee9cbb292e28fe6e77a28a",
+  "tasks": [
+    "openbookqa",
+    "arc_challenge",
+    "hellaswag",
+    "mmlu_pro",
+    "sciq"
+  ],
+  "n_per_task": 32,
+  "candidate_score_parity_abs_max": 0.0001,
+  "training": false,
+  "reader": false,
+  "gsm8k": false,
+  "automatic_upload": false,
+  "continuous_monitoring": false,
+  "caveats": [
+    "Frozen existing Gemma3-4B-it to Qwen3-4B grouped Stage-A and rank64 cross-head residual Stage-B. No Reader, training, recalibration or new Gemma source capture. Original Gemma features computed in FP32 and stored in FP16 remain unchanged.",
+    "Exactly the same five-task32 question IDs and original Qwen prompt/frame/body/suffix/candidate scoring/normalization as the previous Llama Oracle, checked field-by-field. GSM8K excluded entirely from this experiment.",
+    "Six Qwen receiver groups: human layers1-6,7-12,13-18,19-24,25-30,31-36. Each group independently replaces K,V,KV with corresponding native Qwen entries or masks direct attention access to original transferred-body positions. Full translation,native,and all-transferred-body mask baselines;27 configurations/160 questions/4320 sample configurations.",
+    "Intervention scope is all original translated body token columns after the native anchor, including Question/options, not the earlier Hotpot evidence-only scope. Original cache positions, GQA8KV/32Query heads, header/anchor, suffix and RoPE remain unchanged. Replacement occurs in physical post-RoPE cache space.",
+    "Masking forbids direct attention to selected original cache positions in selected layers; it does not zero tensors, remove token positions or recompute existing body states. Native anchor and newly processed suffix remain accessible, so this is not a literal no-information baseline.",
+    "Native teacher cache is available during this offline Oracle diagnosis. This does not supply an inference-time repair mechanism without original text and is not a prefill-free claim.",
+    "Per-task historical translated and native candidate predictions and scores must reproduce before accepting each sample. GPU smoke also checks native full/cached parity, all-native/all-translated assembly, K/V/layer isolation, fixed anchor and masked-content invariance.",
+    "These32/task are historical exploratory examples. Multiple layer/role searches are not independently confirmed. Existing Gemma and Llama Stage-A training mixtures differ, so cross-pair comparisons are not a sender-only controlled ablation.",
+    "Previous translated+native concatenation training is paused at a saved optimizer/scaler checkpoint and is not automatically resumed after this evaluation."
+  ]
+}
