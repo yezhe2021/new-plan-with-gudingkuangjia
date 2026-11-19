@@ -1,0 +1,24 @@
+{
+  "name": "known_tasks_obqa_arc128_seed1234",
+  "seed": 1234,
+  "tasks": {
+    "openbookqa": 128,
+    "arc_challenge": 128
+  },
+  "training": false,
+  "automatic_upload": false,
+  "protected_fraction": 0.1,
+  "group_size": 64,
+  "random_seeds": [
+    1234,
+    1235,
+    1236
+  ],
+  "free_gpu_gib": 12,
+  "disk_reserve_gib": 12,
+  "scoring": "Original fixed single-token candidate labels; one causal suffix forward gives all option log probabilities. Primary: candidate-normalized gold NLL and accuracy; full-vocabulary gold-label NLL diagnostic. No free generation.",
+  "ranking": "Unquantized Llama last existing answer-cue query, query-head/layer mean on unique transmitted Sender positions; top/bottom/random10% of all transmitted prompt tokens, shared across layers, heads and K/V.",
+  "scope": "Existing held-out128 OpenBookQA and128 ARC-Challenge from old KL-only Reader evaluation; within previously adapted tasks, not proof of cross-task generalization.",
+  "baseline": "First replay every unquantized translated+KL-only Reader sample using original cached Sender states; compare historical candidate scores/predictions. Stop before quantization if either task accuracy below50%.",
+  "optimization": "Reuse fixed per-question min/range and both INT4/INT8 codebooks across allocation variants; actual wire encoding/decoding retained. Evaluate all single-token labels in one forward rather than4 repeated forwards."
+}

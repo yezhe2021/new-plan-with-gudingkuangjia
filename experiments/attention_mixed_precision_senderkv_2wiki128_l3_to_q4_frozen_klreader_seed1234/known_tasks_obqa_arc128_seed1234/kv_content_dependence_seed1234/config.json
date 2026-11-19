@@ -1,0 +1,40 @@
+{
+  "name": "kv_content_dependence_seed1234",
+  "seed": 1234,
+  "tasks": {
+    "openbookqa": 128,
+    "arc_challenge": 128
+  },
+  "training": false,
+  "automatic_upload": false,
+  "reader": "Original fixed KL-only epoch4/step1024; A+B and all model parameters frozen",
+  "attention_backend": "sdpa",
+  "repeats": 3,
+  "free_gpu_gib": 12,
+  "disk_reserve_gib": 12,
+  "arms": [
+    "true",
+    "masked",
+    "wrong_0",
+    "wrong_1",
+    "wrong_2",
+    "random_target_stats_0",
+    "random_target_stats_1",
+    "random_target_stats_2",
+    "random_donor_stats_0",
+    "random_donor_stats_1",
+    "random_donor_stats_2"
+  ],
+  "permutation_arms": [
+    "reordered_true",
+    "reordered_masked",
+    "reordered_old_kv"
+  ],
+  "donors": "Seeded no-self assignments within task and option count minimizing length distance; singleton option-count bucket falls back to same-task nearest-length donors and is reported separately. No gold labels used.",
+  "resize": "Same monotone nearest-neighbor map for K/V before receiver RoPE. Report exact-length/same-option-count donor subsets.",
+  "noise": "Independent Gaussian K/V with per-layer/head/channel moments over token axis, three seeded repeats; compare target-derived vs donor-derived moments to expose retained aggregate target information.",
+  "input": "Qwen prefills ONLY the common native anchor. Question/options enter solely via intervened KV. Same suffix, absolute positions and token count within each question; blocked condition masks all transferred columns.",
+  "permutation": "Seeded full derangement of option content positions, independent of gold; remap gold label and regenerate Llama Sender states. Compare fresh reordered KV, masked KV and original-order KV resized to reordered length.",
+  "scoring": "Original single-token labels, one forward with a fixed dummy candidate appended and score at preceding position. Audit agreement with legacy per-candidate scorer and dummy-token independence. Primary accuracy, choice NLL, paired prediction changes; uniform/majority-label baselines reported.",
+  "scope": "Existing previously inspected held-out OBQA128 and ARC128. Test KV-content dependence and option-label binding, not whether world knowledge resides only in KV."
+}

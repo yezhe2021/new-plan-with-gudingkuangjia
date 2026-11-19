@@ -1,0 +1,102 @@
+{
+  "config": {
+    "name": "kv_content_dependence_seed1234",
+    "seed": 1234,
+    "tasks": {
+      "openbookqa": 128,
+      "arc_challenge": 128
+    },
+    "training": false,
+    "automatic_upload": false,
+    "reader": "Original fixed KL-only epoch4/step1024; A+B and all model parameters frozen",
+    "attention_backend": "sdpa",
+    "repeats": 3,
+    "free_gpu_gib": 12,
+    "disk_reserve_gib": 12,
+    "arms": [
+      "true",
+      "masked",
+      "wrong_0",
+      "wrong_1",
+      "wrong_2",
+      "random_target_stats_0",
+      "random_target_stats_1",
+      "random_target_stats_2",
+      "random_donor_stats_0",
+      "random_donor_stats_1",
+      "random_donor_stats_2"
+    ],
+    "permutation_arms": [
+      "reordered_true",
+      "reordered_masked",
+      "reordered_old_kv"
+    ],
+    "donors": "Seeded no-self assignments within task and option count minimizing length distance; singleton option-count bucket falls back to same-task nearest-length donors and is reported separately. No gold labels used.",
+    "resize": "Same monotone nearest-neighbor map for K/V before receiver RoPE. Report exact-length/same-option-count donor subsets.",
+    "noise": "Independent Gaussian K/V with per-layer/head/channel moments over token axis, three seeded repeats; compare target-derived vs donor-derived moments to expose retained aggregate target information.",
+    "input": "Qwen prefills ONLY the common native anchor. Question/options enter solely via intervened KV. Same suffix, absolute positions and token count within each question; blocked condition masks all transferred columns.",
+    "permutation": "Seeded full derangement of option content positions, independent of gold; remap gold label and regenerate Llama Sender states. Compare fresh reordered KV, masked KV and original-order KV resized to reordered length.",
+    "scoring": "Original single-token labels, one forward with a fixed dummy candidate appended and score at preceding position. Audit agreement with legacy per-candidate scorer and dummy-token independence. Primary accuracy, choice NLL, paired prediction changes; uniform/majority-label baselines reported.",
+    "scope": "Existing previously inspected held-out OBQA128 and ARC128. Test KV-content dependence and option-label binding, not whether world knowledge resides only in KV."
+  },
+  "config_sha256": "39c338ad6d76ea82791a863396cf2e735af70ce7e82da2c3351cd81b56072445",
+  "prepared_sha256": "ae9bf04d5bfd66a0594b986c375a4f6cc226ba0a4f874291f7a6c1f1f6dd01ab",
+  "code": {
+    "run_pipeline.py": "ab7b7762c93a3b7730b5140ff1567174136637aeca05b883089b5517daa78821",
+    "run_experiment.py": "64c9036ca367a1ad5001dd6797e27a5a85b3cc32307134044c781fddbb2705a0",
+    "._controls.py": "9085fa93e0c19f6d5eb1d79978e4bbaaf50fcb24835e2bd9ffe11968d2247966",
+    "controls.py": "648986dc9ab1320b396a6327b88a06b55bf2995af3495252b20068be58d2b5e6",
+    "._test_controls.py": "9085fa93e0c19f6d5eb1d79978e4bbaaf50fcb24835e2bd9ffe11968d2247966",
+    "test_controls.py": "318e7461b2f1b9558a47126d7af42d4364185d8935888143cdae9dc245d00d90"
+  },
+  "parent_manifest_sha256": "051c1233659dd011688671ead87eefd75f745b87779d8be2715682f3a457324f",
+  "parent_code_sha256": "01111ce20ded514188dd7dc048c00e1be19276ca0124de200d25ee3994ae0929",
+  "checkpoints": {
+    "reader": {
+      "path": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_answerkl_l3_to_q4_seed1234/runs/reader/epoch4_step1024.pt",
+      "sha256": "96cde5b41f1a15434d24ef57f8eaf34e3af89af109c0b5d6cf378e60ab577314"
+    },
+    "stage_a": {
+      "path": "/hy-tmp/yezhe/异构模型/grouped_headmix4_l3_to_q4_seed1234/runs/stage_a/best.pt",
+      "sha256": "a9318f4b2f1d9e7981e0e50e2dc88654f0baaf89a080a0746017555c48ba5c84"
+    },
+    "stage_b": {
+      "path": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_l3_to_q4_seed1234/runs/stage_b/last.pt",
+      "sha256": "7e9f602d08409574c8ebe56242a08ba2c6861032b5ed70570a807c5777d775f2"
+    }
+  },
+  "direct_inputs": {
+    "anchor_ids": [
+      151644,
+      872,
+      198,
+      16141
+    ],
+    "suffix_ids": [
+      13,
+      151645,
+      198,
+      151644,
+      77091,
+      198,
+      151667,
+      271,
+      151668,
+      271,
+      785,
+      4396,
+      2999,
+      374,
+      220
+    ],
+    "anchor_text": "<|im_start|>user\nAnswer",
+    "suffix_text": ".<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\nThe correct option is ",
+    "question_option_text_directly_prefilled": false,
+    "dummy_candidate": 32
+  },
+  "source_reference_backend": "sdpa",
+  "reordered_capture_backend": "sdpa",
+  "n": 256,
+  "donor_fallback_pairs": 3,
+  "donor_exact_length_pairs": 451
+}

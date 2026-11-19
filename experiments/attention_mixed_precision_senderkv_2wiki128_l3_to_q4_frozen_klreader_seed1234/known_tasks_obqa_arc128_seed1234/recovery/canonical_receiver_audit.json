@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "id": "arc_22",
+  "mapped_tensors_bitwise_equal": true,
+  "score_max_error": 0.07811546325683594,
+  "identical_prefix_helper_score_error": 0.0,
+  "legacy_candidate_prefix_shape_scores": [
+    -20.024045944213867,
+    -28.731077194213867,
+    -29.063108444213867,
+    -32.6705322265625
+  ],
+  "new_prefix_only_scores": [
+    -20.086536407470703,
+    -28.809192657470703,
+    -29.133411407470703,
+    -32.7447395324707
+  ],
+  "explanation": "Original per-candidate scoring appends a future label token; optimized scoring uses only the causal prefix. Both are causally equivalent, but FP16 GEMM shapes differ. At identical prefix length the original helper matches the optimized implementation.",
+  "cached_reference_prediction": 0,
+  "new_prediction": 0,
+  "raw_score_max_deviation": 0.12108421325683594
+}

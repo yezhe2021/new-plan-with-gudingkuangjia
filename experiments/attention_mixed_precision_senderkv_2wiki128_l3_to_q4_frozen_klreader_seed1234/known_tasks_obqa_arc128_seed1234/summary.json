@@ -1,0 +1,895 @@
+{
+  "experiment": "known_tasks_obqa_arc128_seed1234",
+  "timestamp": "2026-10-26 09:38:44",
+  "status": "completed",
+  "manifest_sha256": "051c1233659dd011688671ead87eefd75f745b87779d8be2715682f3a457324f",
+  "config": {
+    "name": "known_tasks_obqa_arc128_seed1234",
+    "seed": 1234,
+    "tasks": {
+      "openbookqa": 128,
+      "arc_challenge": 128
+    },
+    "training": false,
+    "automatic_upload": false,
+    "protected_fraction": 0.1,
+    "group_size": 64,
+    "random_seeds": [
+      1234,
+      1235,
+      1236
+    ],
+    "free_gpu_gib": 12,
+    "disk_reserve_gib": 12,
+    "scoring": "Original fixed single-token candidate labels; one causal suffix forward gives all option log probabilities. Primary: candidate-normalized gold NLL and accuracy; full-vocabulary gold-label NLL diagnostic. No free generation.",
+    "ranking": "Unquantized Llama last existing answer-cue query, query-head/layer mean on unique transmitted Sender positions; top/bottom/random10% of all transmitted prompt tokens, shared across layers, heads and K/V.",
+    "scope": "Existing held-out128 OpenBookQA and128 ARC-Challenge from old KL-only Reader evaluation; within previously adapted tasks, not proof of cross-task generalization.",
+    "baseline": "First replay every unquantized translated+KL-only Reader sample using original cached Sender states; compare historical candidate scores/predictions. Stop before quantization if either task accuracy below50%.",
+    "optimization": "Reuse fixed per-question min/range and both INT4/INT8 codebooks across allocation variants; actual wire encoding/decoding retained. Evaluate all single-token labels in one forward rather than4 repeated forwards."
+  },
+  "checkpoints": {
+    "reader": {
+      "path": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_answerkl_l3_to_q4_seed1234/runs/reader/epoch4_step1024.pt",
+      "sha256": "96cde5b41f1a15434d24ef57f8eaf34e3af89af109c0b5d6cf378e60ab577314"
+    },
+    "stage_a": {
+      "path": "/hy-tmp/yezhe/异构模型/grouped_headmix4_l3_to_q4_seed1234/runs/stage_a/best.pt",
+      "sha256": "a9318f4b2f1d9e7981e0e50e2dc88654f0baaf89a080a0746017555c48ba5c84"
+    },
+    "stage_b": {
+      "path": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_l3_to_q4_seed1234/runs/stage_b/last.pt",
+      "sha256": "7e9f602d08409574c8ebe56242a08ba2c6861032b5ed70570a807c5777d775f2"
+    }
+  },
+  "baseline": {
+    "status": "completed",
+    "manifest_sha256": "051c1233659dd011688671ead87eefd75f745b87779d8be2715682f3a457324f",
+    "tasks": {
+      "openbookqa": {
+        "n": 128,
+        "correct": 92,
+        "accuracy": 0.71875,
+        "historical_prediction_matches": 127,
+        "max_historical_score_error": 0.09713935852050781
+      },
+      "arc_challenge": {
+        "n": 128,
+        "correct": 86,
+        "accuracy": 0.671875,
+        "historical_prediction_matches": 128,
+        "max_historical_score_error": 0.09763908386230469
+      }
+    }
+  },
+  "tasks": {
+    "openbookqa": {
+      "llama": {
+        "arms": {
+          "fp16": {
+            "n": 128,
+            "correct": 97.0,
+            "accuracy": 0.7578125,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            },
+            "mean_wire_bytes": 6922212.3046875,
+            "mean_effective_bits": 16.001425870171822
+          },
+          "int4": {
+            "n": 128,
+            "correct": 93.0,
+            "accuracy": 0.7265625,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": 0.0036286283041704337,
+              "ci95": [
+                -0.01359510784196516,
+                0.019058954994122246
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": -0.022637411952018738,
+              "ci95": [
+                -0.04699337892234325,
+                0.003653606772422786
+              ]
+            },
+            "mean_wire_bytes": 1993289.21875,
+            "mean_effective_bits": 4.602559916566274
+          },
+          "attention_top": {
+            "n": 128,
+            "correct": 94.0,
+            "accuracy": 0.734375,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": 0.006919456156197157,
+              "ci95": [
+                -0.002078156719633739,
+                0.016486235631595035
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": -0.01647966355085373,
+              "ci95": [
+                -0.030611450783908367,
+                -0.0004268841817975102
+              ]
+            },
+            "mean_wire_bytes": 2179897.015625,
+            "mean_effective_bits": 5.034620899836887
+          },
+          "random_0": {
+            "n": 128,
+            "correct": 94.0,
+            "accuracy": 0.734375,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": 0.0033427189727603945,
+              "ci95": [
+                -0.012301731857380104,
+                0.017327512534453148
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": -0.021116182208061218,
+              "ci95": [
+                -0.04271480720490217,
+                0.00146548617631196
+              ]
+            },
+            "mean_wire_bytes": 2179897.015625,
+            "mean_effective_bits": 5.034620899836887
+          },
+          "random_1": {
+            "n": 128,
+            "correct": 93.0,
+            "accuracy": 0.7265625,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": 0.0032478841458214447,
+              "ci95": [
+                -0.01393834496857096,
+                0.019528156578024886
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": -0.023868680000305176,
+              "ci95": [
+                -0.04675509911030531,
+                0.001914618164300911
+              ]
+            },
+            "mean_wire_bytes": 2179897.015625,
+            "mean_effective_bits": 5.034620899836887
+          },
+          "random_2": {
+            "n": 128,
+            "correct": 94.0,
+            "accuracy": 0.734375,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": 0.004673248010249154,
+              "ci95": [
+                -0.011681860441876779,
+                0.020321494025685633
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": -0.017326287925243378,
+              "ci95": [
+                -0.03968162313103676,
+                0.008192687667906281
+              ]
+            },
+            "mean_wire_bytes": 2179897.015625,
+            "mean_effective_bits": 5.034620899836887
+          },
+          "attention_bottom": {
+            "n": 128,
+            "correct": 93.0,
+            "accuracy": 0.7265625,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": 0.004338092536102067,
+              "ci95": [
+                -0.012884641947793795,
+                0.01989269699959095
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": -0.02248246967792511,
+              "ci95": [
+                -0.04653852432966232,
+                0.004116121865808963
+              ]
+            },
+            "mean_wire_bytes": 2179897.015625,
+            "mean_effective_bits": 5.034620899836887
+          },
+          "random_mean": {
+            "n": 128,
+            "correct": 93.66666666666667,
+            "accuracy": 0.7317708333333334,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": 0.0037546170429436643,
+              "ci95": [
+                -0.011858805659060563,
+                0.01781652620176856
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": -0.02077038337786992,
+              "ci95": [
+                -0.04308765046298504,
+                0.003005666472017761
+              ]
+            },
+            "mean_wire_bytes": 2179897.015625,
+            "mean_effective_bits": 5.034620899836887
+          }
+        },
+        "paired_choice_nll_contrasts": {
+          "top_minus_random_mean": {
+            "n": 128,
+            "mean": 0.0031648391132534917,
+            "ci95": [
+              -0.00889026822423773,
+              0.016498873855770545
+            ]
+          },
+          "top_minus_attention_bottom": {
+            "n": 128,
+            "mean": 0.0025813636200950896,
+            "ci95": [
+              -0.010723245226176913,
+              0.016808704239929282
+            ]
+          }
+        }
+      },
+      "qwen": {
+        "arms": {
+          "fp16": {
+            "n": 128,
+            "correct": 92.0,
+            "accuracy": 0.71875,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            },
+            "mean_wire_bytes": 6922212.3046875,
+            "mean_effective_bits": 16.001425870171822
+          },
+          "int4": {
+            "n": 128,
+            "correct": 90.0,
+            "accuracy": 0.703125,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": -0.010550060802813732,
+              "ci95": [
+                -0.023182070417635713,
+                0.0009549380704029877
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": 0.001951649785041809,
+              "ci95": [
+                -0.02053266130387783,
+                0.02630281150341034
+              ]
+            },
+            "mean_wire_bytes": 1993289.21875,
+            "mean_effective_bits": 4.602559916566274
+          },
+          "attention_top": {
+            "n": 128,
+            "correct": 92.0,
+            "accuracy": 0.71875,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": -0.005954808477810047,
+              "ci95": [
+                -0.014875358284926676,
+                0.002547606592928271
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": 0.010270670056343079,
+              "ci95": [
+                -0.007335486635565758,
+                0.02761272843927145
+              ]
+            },
+            "mean_wire_bytes": 2179897.015625,
+            "mean_effective_bits": 5.034620899836887
+          },
+          "random_0": {
+            "n": 128,
+            "correct": 91.0,
+            "accuracy": 0.7109375,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": -0.010819724338887227,
+              "ci95": [
+                -0.02205640191669289,
+                -7.11216605544992e-05
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": -0.0006339326500892639,
+              "ci95": [
+                -0.021096020936965942,
+                0.021188536286354052
+              ]
+            },
+            "mean_wire_bytes": 2179897.015625,
+            "mean_effective_bits": 5.034620899836887
+          },
+          "random_1": {
+            "n": 128,
+            "correct": 90.0,
+            "accuracy": 0.703125,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": -0.014183301194123032,
+              "ci95": [
+                -0.026912583108641284,
+                -0.002275984850594175
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": -0.001020766794681549,
+              "ci95": [
+                -0.022043761610984803,
+                0.020418697036802765
+              ]
+            },
+            "mean_wire_bytes": 2179897.015625,
+            "mean_effective_bits": 5.034620899836887
+          },
+          "random_2": {
+            "n": 128,
+            "correct": 90.0,
+            "accuracy": 0.703125,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": -0.014567760548175102,
+              "ci95": [
+                -0.02987306161814516,
+                -0.0007029452585058517
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": -0.003783084452152252,
+              "ci95": [
+                -0.028542053326964377,
+                0.020747092366218557
+              ]
+            },
+            "mean_wire_bytes": 2179897.015625,
+            "mean_effective_bits": 5.034620899836887
+          },
+          "attention_bottom": {
+            "n": 128,
+            "correct": 90.0,
+            "accuracy": 0.703125,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": -0.012007538184462874,
+              "ci95": [
+                -0.02417075484022675,
+                -0.0003080265199002992
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": -0.008489027619361877,
+              "ci95": [
+                -0.03020941633731127,
+                0.015790183655917642
+              ]
+            },
+            "mean_wire_bytes": 2179897.015625,
+            "mean_effective_bits": 5.034620899836887
+          },
+          "random_mean": {
+            "n": 128,
+            "correct": 90.33333333333334,
+            "accuracy": 0.7057291666666666,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": -0.013190262027061786,
+              "ci95": [
+                -0.025553084163553307,
+                -0.0019655214130494887
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": -0.0018125946323076878,
+              "ci95": [
+                -0.022959416235486665,
+                0.01977528582016627
+              ]
+            },
+            "mean_wire_bytes": 2179897.015625,
+            "mean_effective_bits": 5.034620899836887
+          }
+        },
+        "paired_choice_nll_contrasts": {
+          "top_minus_random_mean": {
+            "n": 128,
+            "mean": 0.007235453549251739,
+            "ci95": [
+              -0.0011781706798695767,
+              0.016738361862703256
+            ]
+          },
+          "top_minus_attention_bottom": {
+            "n": 128,
+            "mean": 0.006052729706652826,
+            "ci95": [
+              -0.003901956147203833,
+              0.016831457481085006
+            ]
+          }
+        }
+      }
+    },
+    "arc_challenge": {
+      "llama": {
+        "arms": {
+          "fp16": {
+            "n": 128,
+            "correct": 99.0,
+            "accuracy": 0.7734375,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            },
+            "mean_wire_bytes": 9588899.421875,
+            "mean_effective_bits": 16.001354843594797
+          },
+          "int4": {
+            "n": 128,
+            "correct": 99.0,
+            "accuracy": 0.7734375,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": 0.0002573067644107141,
+              "ci95": [
+                -0.014296489562815396,
+                0.014710029959894655
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": -0.02435095456894487,
+              "ci95": [
+                -0.05095792078936938,
+                0.0012062316614901607
+              ]
+            },
+            "mean_wire_bytes": 2757321.6875,
+            "mean_effective_bits": 4.604225321582973
+          },
+          "attention_top": {
+            "n": 128,
+            "correct": 98.0,
+            "accuracy": 0.765625,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": -0.0013368119654160182,
+              "ci95": [
+                -0.0089138040095321,
+                0.006436493496289583
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": -0.011885703424923122,
+              "ci95": [
+                -0.024435229619848543,
+                0.0019908131827833095
+              ]
+            },
+            "mean_wire_bytes": 3010681.4375,
+            "mean_effective_bits": 5.029042128333167
+          },
+          "random_0": {
+            "n": 128,
+            "correct": 99.0,
+            "accuracy": 0.7734375,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": 0.00026661859442356217,
+              "ci95": [
+                -0.01493739293802605,
+                0.015054927907596034
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": -0.018142331624403596,
+              "ci95": [
+                -0.043390674190595745,
+                0.0063134386320598404
+              ]
+            },
+            "mean_wire_bytes": 3010681.4375,
+            "mean_effective_bits": 5.029042128333167
+          },
+          "random_1": {
+            "n": 128,
+            "correct": 99.0,
+            "accuracy": 0.7734375,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": -0.000843557813368534,
+              "ci95": [
+                -0.015545618635837853,
+                0.012999523129178663
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": -0.017622720275539905,
+              "ci95": [
+                -0.04178869184106588,
+                0.0067147271271096485
+              ]
+            },
+            "mean_wire_bytes": 3010681.4375,
+            "mean_effective_bits": 5.029042128333167
+          },
+          "random_2": {
+            "n": 128,
+            "correct": 99.0,
+            "accuracy": 0.7734375,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": 0.005225871910397473,
+              "ci95": [
+                -0.008669653754901674,
+                0.019604475649396137
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": -0.009488474577665329,
+              "ci95": [
+                -0.03337244698777795,
+                0.015493340883404011
+              ]
+            },
+            "mean_wire_bytes": 3010681.4375,
+            "mean_effective_bits": 5.029042128333167
+          },
+          "attention_bottom": {
+            "n": 128,
+            "correct": 99.0,
+            "accuracy": 0.7734375,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": 6.967100466681586e-05,
+              "ci95": [
+                -0.014634811090883205,
+                0.014639729933543316
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": -0.023804662807378918,
+              "ci95": [
+                -0.050155441065726336,
+                0.0022971295067691242
+              ]
+            },
+            "mean_wire_bytes": 3010681.4375,
+            "mean_effective_bits": 5.029042128333167
+          },
+          "random_mean": {
+            "n": 128,
+            "correct": 99.0,
+            "accuracy": 0.7734375,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": 0.0015496442304841684,
+              "ci95": [
+                -0.012968119077485575,
+                0.015872755996516233
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": -0.01508450882586961,
+              "ci95": [
+                -0.03895825793345769,
+                0.008902510876456896
+              ]
+            },
+            "mean_wire_bytes": 3010681.4375,
+            "mean_effective_bits": 5.029042128333167
+          }
+        },
+        "paired_choice_nll_contrasts": {
+          "top_minus_random_mean": {
+            "n": 128,
+            "mean": -0.0028864561959001875,
+            "ci95": [
+              -0.016538835099444787,
+              0.010885656165848443
+            ]
+          },
+          "top_minus_attention_bottom": {
+            "n": 128,
+            "mean": -0.001406482970082834,
+            "ci95": [
+              -0.015435287253930596,
+              0.012494694908303922
+            ]
+          }
+        }
+      },
+      "qwen": {
+        "arms": {
+          "fp16": {
+            "n": 128,
+            "correct": 86.0,
+            "accuracy": 0.671875,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ]
+            },
+            "mean_wire_bytes": 9588899.421875,
+            "mean_effective_bits": 16.001354843594797
+          },
+          "int4": {
+            "n": 128,
+            "correct": 86.0,
+            "accuracy": 0.671875,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": -0.01372914716057494,
+              "ci95": [
+                -0.029175320850856678,
+                0.0005784690455683962
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": -0.025672728617792018,
+              "ci95": [
+                -0.04773418350268912,
+                -0.002782078509335407
+              ]
+            },
+            "mean_wire_bytes": 2757321.6875,
+            "mean_effective_bits": 4.604225321582973
+          },
+          "attention_top": {
+            "n": 128,
+            "correct": 85.0,
+            "accuracy": 0.6640625,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": -0.0038347185835334585,
+              "ci95": [
+                -0.009815471478826509,
+                0.002500117520671096
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": 0.0013249630137579516,
+              "ci95": [
+                -0.009871558099985123,
+                0.013150493800640106
+              ]
+            },
+            "mean_wire_bytes": 3010681.4375,
+            "mean_effective_bits": 5.029042128333167
+          },
+          "random_0": {
+            "n": 128,
+            "correct": 86.0,
+            "accuracy": 0.671875,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": -0.010446806562583788,
+              "ci95": [
+                -0.02385575933808326,
+                0.002306689517033076
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": -0.024450807613902725,
+              "ci95": [
+                -0.044735337013480606,
+                -0.0030189886369044014
+              ]
+            },
+            "mean_wire_bytes": 3010681.4375,
+            "mean_effective_bits": 5.029042128333167
+          },
+          "random_1": {
+            "n": 128,
+            "correct": 86.0,
+            "accuracy": 0.671875,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": -0.01592284496331331,
+              "ci95": [
+                -0.03136903930426911,
+                -0.0016210844433089764
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": -0.02992591577640269,
+              "ci95": [
+                -0.05175731956733216,
+                -0.007615670826999122
+              ]
+            },
+            "mean_wire_bytes": 3010681.4375,
+            "mean_effective_bits": 5.029042128333167
+          },
+          "random_2": {
+            "n": 128,
+            "correct": 86.0,
+            "accuracy": 0.671875,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": -0.011167973605353154,
+              "ci95": [
+                -0.02648931150363012,
+                0.0037298012672550823
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": -0.024957003683084622,
+              "ci95": [
+                -0.04641522037782124,
+                -0.004003857076168077
+              ]
+            },
+            "mean_wire_bytes": 3010681.4375,
+            "mean_effective_bits": 5.029042128333167
+          },
+          "attention_bottom": {
+            "n": 128,
+            "correct": 86.0,
+            "accuracy": 0.671875,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": -0.01290229587880276,
+              "ci95": [
+                -0.027502593268062016,
+                0.001557109830162061
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": -0.03440221195342019,
+              "ci95": [
+                -0.055218125073588455,
+                -0.012366520189971204
+              ]
+            },
+            "mean_wire_bytes": 3010681.4375,
+            "mean_effective_bits": 5.029042128333167
+          },
+          "random_mean": {
+            "n": 128,
+            "correct": 86.0,
+            "accuracy": 0.671875,
+            "delta_choice_nll": {
+              "n": 128,
+              "mean": -0.012512541710416748,
+              "ci95": [
+                -0.026862759634345444,
+                0.0011196676563874535
+              ]
+            },
+            "delta_full_vocab_nll": {
+              "n": 128,
+              "mean": -0.026444575691130016,
+              "ci95": [
+                -0.04667934015402958,
+                -0.00609696556639392
+              ]
+            },
+            "mean_wire_bytes": 3010681.4375,
+            "mean_effective_bits": 5.029042128333167
+          }
+        },
+        "paired_choice_nll_contrasts": {
+          "top_minus_random_mean": {
+            "n": 128,
+            "mean": 0.008677823126883292,
+            "ci95": [
+              -0.002910854669570521,
+              0.02199686272092264
+            ]
+          },
+          "top_minus_attention_bottom": {
+            "n": 128,
+            "mean": 0.009067577295269302,
+            "ci95": [
+              -0.0031336049262343122,
+              0.022347788126796785
+            ]
+          }
+        }
+      }
+    }
+  },
+  "uncertainty": "Paired question bootstrap; average random repetitions within each question; exploratory uncorrected95% intervals."
+}

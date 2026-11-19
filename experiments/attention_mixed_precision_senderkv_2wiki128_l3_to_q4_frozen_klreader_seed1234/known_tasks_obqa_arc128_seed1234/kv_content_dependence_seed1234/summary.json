@@ -1,0 +1,631 @@
+{
+  "experiment": "kv_content_dependence_seed1234",
+  "status": "completed",
+  "timestamp": "2026-10-26 10:58:37",
+  "manifest_sha256": "853655e532ecfff53f84ef6152218d595d8bc346a6a48ded775fa734e3d7dff1",
+  "config": {
+    "name": "kv_content_dependence_seed1234",
+    "seed": 1234,
+    "tasks": {
+      "openbookqa": 128,
+      "arc_challenge": 128
+    },
+    "training": false,
+    "automatic_upload": false,
+    "reader": "Original fixed KL-only epoch4/step1024; A+B and all model parameters frozen",
+    "attention_backend": "sdpa",
+    "repeats": 3,
+    "free_gpu_gib": 12,
+    "disk_reserve_gib": 12,
+    "arms": [
+      "true",
+      "masked",
+      "wrong_0",
+      "wrong_1",
+      "wrong_2",
+      "random_target_stats_0",
+      "random_target_stats_1",
+      "random_target_stats_2",
+      "random_donor_stats_0",
+      "random_donor_stats_1",
+      "random_donor_stats_2"
+    ],
+    "permutation_arms": [
+      "reordered_true",
+      "reordered_masked",
+      "reordered_old_kv"
+    ],
+    "donors": "Seeded no-self assignments within task and option count minimizing length distance; singleton option-count bucket falls back to same-task nearest-length donors and is reported separately. No gold labels used.",
+    "resize": "Same monotone nearest-neighbor map for K/V before receiver RoPE. Report exact-length/same-option-count donor subsets.",
+    "noise": "Independent Gaussian K/V with per-layer/head/channel moments over token axis, three seeded repeats; compare target-derived vs donor-derived moments to expose retained aggregate target information.",
+    "input": "Qwen prefills ONLY the common native anchor. Question/options enter solely via intervened KV. Same suffix, absolute positions and token count within each question; blocked condition masks all transferred columns.",
+    "permutation": "Seeded full derangement of option content positions, independent of gold; remap gold label and regenerate Llama Sender states. Compare fresh reordered KV, masked KV and original-order KV resized to reordered length.",
+    "scoring": "Original single-token labels, one forward with a fixed dummy candidate appended and score at preceding position. Audit agreement with legacy per-candidate scorer and dummy-token independence. Primary accuracy, choice NLL, paired prediction changes; uniform/majority-label baselines reported.",
+    "scope": "Existing previously inspected held-out OBQA128 and ARC128. Test KV-content dependence and option-label binding, not whether world knowledge resides only in KV."
+  },
+  "checkpoint_identity": {
+    "reader": {
+      "path": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_answerkl_l3_to_q4_seed1234/runs/reader/epoch4_step1024.pt",
+      "sha256": "96cde5b41f1a15434d24ef57f8eaf34e3af89af109c0b5d6cf378e60ab577314"
+    },
+    "stage_a": {
+      "path": "/hy-tmp/yezhe/异构模型/grouped_headmix4_l3_to_q4_seed1234/runs/stage_a/best.pt",
+      "sha256": "a9318f4b2f1d9e7981e0e50e2dc88654f0baaf89a080a0746017555c48ba5c84"
+    },
+    "stage_b": {
+      "path": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_l3_to_q4_seed1234/runs/stage_b/last.pt",
+      "sha256": "7e9f602d08409574c8ebe56242a08ba2c6861032b5ed70570a807c5777d775f2"
+    }
+  },
+  "direct_inputs": {
+    "anchor_ids": [
+      151644,
+      872,
+      198,
+      16141
+    ],
+    "suffix_ids": [
+      13,
+      151645,
+      198,
+      151644,
+      77091,
+      198,
+      151667,
+      271,
+      151668,
+      271,
+      785,
+      4396,
+      2999,
+      374,
+      220
+    ],
+    "anchor_text": "<|im_start|>user\nAnswer",
+    "suffix_text": ".<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\nThe correct option is ",
+    "question_option_text_directly_prefilled": false,
+    "dummy_candidate": 32
+  },
+  "tasks": {
+    "openbookqa": {
+      "n": 128,
+      "uniform_random_accuracy": 0.25,
+      "majority_label_accuracy": 0.3125,
+      "gold_label_counts": {
+        "1": 28,
+        "0": 40,
+        "2": 34,
+        "3": 26
+      },
+      "arms": {
+        "true": {
+          "n": 128,
+          "correct": 92.0,
+          "accuracy": 0.71875,
+          "mean_choice_nll": 1.1677082279989577,
+          "delta_choice_nll": {
+            "n": 128,
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "accuracy_drop_vs_true": {
+            "n": 128,
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "prediction_changed_vs_true": 0.0,
+          "predicted_label_counts": {
+            "1": 25,
+            "0": 36,
+            "2": 27,
+            "3": 40
+          }
+        },
+        "masked": {
+          "n": 128,
+          "correct": 26.0,
+          "accuracy": 0.203125,
+          "mean_choice_nll": 2.0542682979721576,
+          "delta_choice_nll": {
+            "n": 128,
+            "mean": 0.8865600699731999,
+            "ci95": [
+              0.4904378237924647,
+              1.250516724416647
+            ]
+          },
+          "accuracy_drop_vs_true": {
+            "n": 128,
+            "mean": 0.515625,
+            "ci95": [
+              0.4140625,
+              0.6171875
+            ]
+          },
+          "prediction_changed_vs_true": 0.6875,
+          "predicted_label_counts": {
+            "3": 128
+          }
+        },
+        "wrong": {
+          "n": 128,
+          "correct": 35.00000000000001,
+          "accuracy": 0.2734375,
+          "mean_choice_nll": 4.433161296212404,
+          "delta_choice_nll": {
+            "n": 128,
+            "mean": 3.2654530682134464,
+            "ci95": [
+              2.778766388798389,
+              3.7486016406254623
+            ]
+          },
+          "accuracy_drop_vs_true": {
+            "n": 128,
+            "mean": 0.4453125,
+            "ci95": [
+              0.3541666666666667,
+              0.5364583333333333
+            ]
+          },
+          "prediction_changed_vs_true": 0.7135416666666665,
+          "predicted_label_counts": {
+            "3": 120,
+            "2": 81,
+            "0": 108,
+            "1": 75
+          }
+        },
+        "random_target_stats": {
+          "n": 128,
+          "correct": 31.999999999999996,
+          "accuracy": 0.25,
+          "mean_choice_nll": 1.7623620374167028,
+          "delta_choice_nll": {
+            "n": 128,
+            "mean": 0.594653809417745,
+            "ci95": [
+              0.20302191536866018,
+              0.9325773217463913
+            ]
+          },
+          "accuracy_drop_vs_true": {
+            "n": 128,
+            "mean": 0.46875,
+            "ci95": [
+              0.3775390625,
+              0.5521484375
+            ]
+          },
+          "prediction_changed_vs_true": 0.7421875,
+          "predicted_label_counts": {
+            "3": 152,
+            "1": 94,
+            "2": 96,
+            "0": 42
+          }
+        },
+        "random_donor_stats": {
+          "n": 128,
+          "correct": 30.666666666666654,
+          "accuracy": 0.23958333333333331,
+          "mean_choice_nll": 1.7927458666381426,
+          "delta_choice_nll": {
+            "n": 128,
+            "mean": 0.6250376386391849,
+            "ci95": [
+              0.23474691139504905,
+              0.9772042587696143
+            ]
+          },
+          "accuracy_drop_vs_true": {
+            "n": 128,
+            "mean": 0.47916666666666663,
+            "ci95": [
+              0.39583333333333337,
+              0.5598958333333334
+            ]
+          },
+          "prediction_changed_vs_true": 0.7526041666666665,
+          "predicted_label_counts": {
+            "3": 132,
+            "1": 97,
+            "2": 106,
+            "0": 49
+          }
+        },
+        "reordered_true": {
+          "n": 128,
+          "correct": 86.0,
+          "accuracy": 0.671875,
+          "mean_choice_nll": 1.2369179111750697,
+          "delta_choice_nll": {
+            "n": 128,
+            "mean": 0.06920968317611198,
+            "ci95": [
+              -0.28450580926974567,
+              0.4534373493105675
+            ]
+          },
+          "accuracy_drop_vs_true": {
+            "n": 128,
+            "mean": 0.046875,
+            "ci95": [
+              -0.0390625,
+              0.1328125
+            ]
+          },
+          "prediction_changed_vs_true": 0.859375,
+          "predicted_label_counts": {
+            "3": 42,
+            "0": 19,
+            "1": 30,
+            "2": 37
+          }
+        },
+        "reordered_masked": {
+          "n": 128,
+          "correct": 25.0,
+          "accuracy": 0.1953125,
+          "mean_choice_nll": 2.005897948052734,
+          "delta_choice_nll": {
+            "n": 128,
+            "mean": 0.8381897200537765,
+            "ci95": [
+              0.42776314714805325,
+              1.2228276526500026
+            ]
+          },
+          "accuracy_drop_vs_true": {
+            "n": 128,
+            "mean": 0.5234375,
+            "ci95": [
+              0.4140625,
+              0.625
+            ]
+          },
+          "prediction_changed_vs_true": 0.6875,
+          "predicted_label_counts": {
+            "3": 128
+          }
+        },
+        "reordered_old_kv": {
+          "n": 128,
+          "correct": 15.0,
+          "accuracy": 0.1171875,
+          "mean_choice_nll": 5.574689677575407,
+          "delta_choice_nll": {
+            "n": 128,
+            "mean": 4.406981449576449,
+            "ci95": [
+              3.6318560020522823,
+              5.136236726593758
+            ]
+          },
+          "accuracy_drop_vs_true": {
+            "n": 128,
+            "mean": 0.6015625,
+            "ci95": [
+              0.484375,
+              0.7111328124999998
+            ]
+          },
+          "prediction_changed_vs_true": 0.0,
+          "predicted_label_counts": {
+            "1": 25,
+            "0": 36,
+            "2": 27,
+            "3": 40
+          }
+        }
+      },
+      "option_reordering": {
+        "gold_label_changed": 128,
+        "content_prediction_tracking": {
+          "n": 128,
+          "mean": 0.671875,
+          "ci95": [
+            0.59375,
+            0.75
+          ]
+        },
+        "same_label_rate": 0.140625,
+        "original_correct_n": 92,
+        "original_correct_retained": 72,
+        "old_kv_keeps_original_prediction": 1.0
+      },
+      "wrong_exact_length_subset": {
+        "question_count": 116,
+        "donor_pair_count": 286,
+        "true_accuracy": 0.7241379310344828,
+        "wrong_accuracy": 0.24425287356321837
+      },
+      "wrong_same_option_count_subset": {
+        "question_count": 128,
+        "donor_pair_count": 384,
+        "true_accuracy": 0.71875,
+        "wrong_accuracy": 0.2734375
+      },
+      "true_baseline_usable": true
+    },
+    "arc_challenge": {
+      "n": 128,
+      "uniform_random_accuracy": 0.25065104166666663,
+      "majority_label_accuracy": 0.2890625,
+      "gold_label_counts": {
+        "2": 37,
+        "1": 34,
+        "3": 24,
+        "0": 33
+      },
+      "arms": {
+        "true": {
+          "n": 128,
+          "correct": 86.0,
+          "accuracy": 0.671875,
+          "mean_choice_nll": 1.0236651278380577,
+          "delta_choice_nll": {
+            "n": 128,
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "accuracy_drop_vs_true": {
+            "n": 128,
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "prediction_changed_vs_true": 0.0,
+          "predicted_label_counts": {
+            "2": 42,
+            "1": 25,
+            "0": 26,
+            "3": 35
+          }
+        },
+        "masked": {
+          "n": 128,
+          "correct": 25.0,
+          "accuracy": 0.1953125,
+          "mean_choice_nll": 2.0054005237761885,
+          "delta_choice_nll": {
+            "n": 128,
+            "mean": 0.9817353959381308,
+            "ci95": [
+              0.6647459606509287,
+              1.2600391815590612
+            ]
+          },
+          "accuracy_drop_vs_true": {
+            "n": 128,
+            "mean": 0.4765625,
+            "ci95": [
+              0.375,
+              0.5703125
+            ]
+          },
+          "prediction_changed_vs_true": 0.71875,
+          "predicted_label_counts": {
+            "3": 126,
+            "1": 1,
+            "2": 1
+          }
+        },
+        "wrong": {
+          "n": 128,
+          "correct": 29.33333333333332,
+          "accuracy": 0.22916666666666666,
+          "mean_choice_nll": 4.4757791804547455,
+          "delta_choice_nll": {
+            "n": 128,
+            "mean": 3.4521140526166882,
+            "ci95": [
+              3.022503400142962,
+              3.8617167726977755
+            ]
+          },
+          "accuracy_drop_vs_true": {
+            "n": 128,
+            "mean": 0.44270833333333337,
+            "ci95": [
+              0.3488932291666667,
+              0.5365234375
+            ]
+          },
+          "prediction_changed_vs_true": 0.7994791666666666,
+          "predicted_label_counts": {
+            "2": 126,
+            "1": 78,
+            "3": 103,
+            "0": 77
+          }
+        },
+        "random_target_stats": {
+          "n": 128,
+          "correct": 30.999999999999993,
+          "accuracy": 0.2421875,
+          "mean_choice_nll": 1.770614922589933,
+          "delta_choice_nll": {
+            "n": 128,
+            "mean": 0.7469497947518751,
+            "ci95": [
+              0.45771783741512967,
+              1.0045517616870232
+            ]
+          },
+          "accuracy_drop_vs_true": {
+            "n": 128,
+            "mean": 0.4296875,
+            "ci95": [
+              0.34375,
+              0.5156901041666666
+            ]
+          },
+          "prediction_changed_vs_true": 0.7083333333333333,
+          "predicted_label_counts": {
+            "3": 169,
+            "0": 28,
+            "2": 117,
+            "1": 70
+          }
+        },
+        "random_donor_stats": {
+          "n": 128,
+          "correct": 31.666666666666657,
+          "accuracy": 0.24739583333333331,
+          "mean_choice_nll": 1.7981842238611232,
+          "delta_choice_nll": {
+            "n": 128,
+            "mean": 0.7745190960230655,
+            "ci95": [
+              0.4641844692855618,
+              1.0436069257503837
+            ]
+          },
+          "accuracy_drop_vs_true": {
+            "n": 128,
+            "mean": 0.4244791666666667,
+            "ci95": [
+              0.33333333333333337,
+              0.5104817708333333
+            ]
+          },
+          "prediction_changed_vs_true": 0.7369791666666666,
+          "predicted_label_counts": {
+            "3": 149,
+            "0": 24,
+            "1": 95,
+            "2": 116
+          }
+        },
+        "reordered_true": {
+          "n": 128,
+          "correct": 86.0,
+          "accuracy": 0.671875,
+          "mean_choice_nll": 0.9766372547577191,
+          "delta_choice_nll": {
+            "n": 128,
+            "mean": -0.04702787308033862,
+            "ci95": [
+              -0.3602581996167579,
+              0.2920883509659944
+            ]
+          },
+          "accuracy_drop_vs_true": {
+            "n": 128,
+            "mean": 0.0,
+            "ci95": [
+              -0.0859375,
+              0.09375
+            ]
+          },
+          "prediction_changed_vs_true": 0.828125,
+          "predicted_label_counts": {
+            "0": 37,
+            "1": 29,
+            "3": 40,
+            "2": 22
+          }
+        },
+        "reordered_masked": {
+          "n": 128,
+          "correct": 31.0,
+          "accuracy": 0.2421875,
+          "mean_choice_nll": 1.9466236690059304,
+          "delta_choice_nll": {
+            "n": 128,
+            "mean": 0.9229585411678727,
+            "ci95": [
+              0.5493076286498507,
+              1.286344468736523
+            ]
+          },
+          "accuracy_drop_vs_true": {
+            "n": 128,
+            "mean": 0.4296875,
+            "ci95": [
+              0.3046875,
+              0.546875
+            ]
+          },
+          "prediction_changed_vs_true": 0.71875,
+          "predicted_label_counts": {
+            "3": 126,
+            "1": 1,
+            "2": 1
+          }
+        },
+        "reordered_old_kv": {
+          "n": 128,
+          "correct": 15.0,
+          "accuracy": 0.1171875,
+          "mean_choice_nll": 5.434759765641502,
+          "delta_choice_nll": {
+            "n": 128,
+            "mean": 4.411094637803444,
+            "ci95": [
+              3.6903200311773348,
+              5.09949439172415
+            ]
+          },
+          "accuracy_drop_vs_true": {
+            "n": 128,
+            "mean": 0.5546875,
+            "ci95": [
+              0.4296875,
+              0.671875
+            ]
+          },
+          "prediction_changed_vs_true": 0.0,
+          "predicted_label_counts": {
+            "2": 42,
+            "1": 25,
+            "0": 26,
+            "3": 35
+          }
+        }
+      },
+      "option_reordering": {
+        "gold_label_changed": 128,
+        "content_prediction_tracking": {
+          "n": 128,
+          "mean": 0.65625,
+          "ci95": [
+            0.5703125,
+            0.7421875
+          ]
+        },
+        "same_label_rate": 0.171875,
+        "original_correct_n": 86,
+        "original_correct_retained": 69,
+        "old_kv_keeps_original_prediction": 1.0
+      },
+      "wrong_exact_length_subset": {
+        "question_count": 88,
+        "donor_pair_count": 165,
+        "true_accuracy": 0.6931818181818182,
+        "wrong_accuracy": 0.2234848484848485
+      },
+      "wrong_same_option_count_subset": {
+        "question_count": 127,
+        "donor_pair_count": 381,
+        "true_accuracy": 0.6692913385826772,
+        "wrong_accuracy": 0.22572178477690286
+      },
+      "true_baseline_usable": true
+    }
+  },
+  "interpretation": "Target-moment Gaussian noise retains aggregate target information; compare donor-moment noise and mismatched natural KV before attributing effects to model priors. MCQ questions/options themselves enter through KV.",
+  "uncertainty": "Question-level paired bootstrap, average repeats within question; uncorrected exploratory95% intervals."
+}

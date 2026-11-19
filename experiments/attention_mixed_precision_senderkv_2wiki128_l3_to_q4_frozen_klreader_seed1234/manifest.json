@@ -1,0 +1,186 @@
+{
+  "config": {
+    "name": "attention_mixed_precision_senderkv_2wiki128_l3_to_q4_frozen_klreader_seed1234",
+    "seed": 1234,
+    "n": 128,
+    "dataset": "/hy-tmp/yezhe/all_models/datasets/voidful/2WikiMultihopQA/dev.json",
+    "reader_experiment": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_answerkl_l3_to_q4_seed1234",
+    "reference_reader": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_answerkl_l3_to_q4_seed1234",
+    "reader_checkpoint": "runs/reader/epoch4_step1024.pt",
+    "models": {
+      "llama": "/hy-tmp/yezhe/all_models/models/LLM-Research/Llama-3.2-3B-Instruct",
+      "qwen": "/hy-tmp/yezhe/all_models/models/Qwen/Qwen3-4B"
+    },
+    "excluded_ids": [
+      "66eae2780bdd11eba7f7acde48001122",
+      "82ef6eec0bda11eba7f7acde48001122",
+      "38056cd40bde11eba7f7acde48001122",
+      "528f7ff9093c11ebbdaeac1f6bf848b6",
+      "654e76b808e111ebbda2ac1f6bf848b6",
+      "c218f9d20bdd11eba7f7acde48001122",
+      "0bbded440bda11eba7f7acde48001122",
+      "96e142e40bdb11eba7f7acde48001122",
+      "ffee28d80bae11ebab90acde48001122",
+      "341347220bde11eba7f7acde48001122",
+      "6e31b2920bdc11eba7f7acde48001122",
+      "75af4f140bde11eba7f7acde48001122",
+      "179f51c60bde11eba7f7acde48001122",
+      "6b6ef0280bb011ebab90acde48001122",
+      "3a13d0620baf11ebab90acde48001122",
+      "a8cbc4c40bdc11eba7f7acde48001122",
+      "161e9e380bde11eba7f7acde48001122",
+      "615178b20bde11eba7f7acde48001122",
+      "71530df00bdb11eba7f7acde48001122",
+      "fd56936708a811ebbd7fac1f6bf848b6",
+      "067dd55a0bdb11eba7f7acde48001122",
+      "90c88e000bd911eba7f7acde48001122",
+      "97f5e2360bd911eba7f7acde48001122",
+      "374ff12e0bde11eba7f7acde48001122"
+    ],
+    "excluded_question_keys": [
+      "when is victor levasseur (cartographer)'s father's birthday?",
+      "where did the director of film the tracker (2002 film) graduate from?",
+      "when did thomas knox, 3rd earl of ranfurly's father die?",
+      "which album was released more recently, epistemological despondency or tonight the stars revolt!?",
+      "who lived longer, rolf billberg or yeo woon-kay?",
+      "where was the place of death of the composer of song i've got a crush on you?",
+      "which country the director of film daadagiri is from?",
+      "where was the director of film bangarada mane born?",
+      "who is the mother-in-law of catherine i, latin empress?",
+      "where was the performer of song the name of love born?",
+      "where did the director of film a.w.o.l. (2006 film) die?",
+      "what nationality is henry clifford, 2nd earl of cumberland's wife?",
+      "what is the date of death of andrew, duke of slavonia's father?",
+      "who is the uncle of bermudo i of asturias?",
+      "who is the paternal grandmother of jacques d'armagnac?",
+      "where was the director of film the half-way girl born?",
+      "where did the composer of song that certain feeling die?",
+      "what nationality is adolf, duke of holstein-gottorp's father?",
+      "who is the spouse of the director of film aladdin aur jadui chirag?",
+      "who is older, marius mitu or bea palya?",
+      "where was the director of film caresses born?",
+      "where was the performer of song la ballade des gens heureux born?",
+      "what nationality is the director of film that summer of white roses?",
+      "when is philipp, prince of hohenlohe-langenburg's father's birthday?"
+    ],
+    "max_prompt_tokens": 768,
+    "max_gold_tokens": 16,
+    "max_answer_characters": 48,
+    "max_new_tokens": 32,
+    "distractor_sentences": 8,
+    "answer_prefix": "The answer is:",
+    "group_size": 64,
+    "protected_fraction": 0.1,
+    "random_seeds": [
+      1234,
+      1235,
+      1236
+    ],
+    "free_gpu_gib": 12,
+    "disk_reserve_gib": 12,
+    "attention_backend": "eager",
+    "automatic_upload": false,
+    "training": false,
+    "wait_for_previous_experiment": false,
+    "reader_selection": "Original completed KL-only Reader, fixed epoch4/step1024; taskCEKL Reader explicitly excluded.",
+    "quantizer": "Fixed shared asymmetric FP16 min/range; K grouped over64 transmitted source positions per channel, V over64 channels per token. Identical quantization ranges for INT4 and INT8; per-token bit allocation. KIVI-inspired axes, NOT an unmodified KIVI/KVTuner reproduction.",
+    "wire_policy": "Unique original Sender positions used by the existing Full-Sync map. Quantize once before alignment expansion. Same decoded tensors replace those positions in native Llama or feed the fixed Translator after original map. Other native cache positions / Qwen anchor unchanged.",
+    "scope": "128 previously unseen 2Wiki controlled evidence questions, oracle supporting sentences plus8 distractors; exploratory diagnostic, not official full-context benchmark.",
+    "ranking": "FP16 Llama last forced-prefix query, query-head/layer mean projected to evidence text units then to original transmitted Llama token positions. No gold answer in ranking; top/bottom/random protect identical ceil(0.1*Nwire) evidence-overlapping positions across all layers/KV heads and K,V.",
+    "bytes": "Actual packed packet length including FP16 quantization min/range, bitmask, source positions, receiver mapping, dimensions and section lengths. C/D/E exact byte matched; INT4 is lower-budget reference."
+  },
+  "config_sha256": "427e80e11e243e850696f3a5c58d0b2265ce0a0dd9424b3c0a5f9209a3fbb2ff",
+  "prepared_sha256": "bb92675dfdce6be93ef943537f2d04464157f8a4c6c729e5eee972555efdb620",
+  "dataset_sha256": "48b9bdc69654dc580fda5f935a48b88cb89f11887587310af60d406c8d0111a6",
+  "code": {
+    "metrics.py": "93e796e03e96ef9ef1d8e66816ea16f46aa78f506ca2ecb4fb1360750fbd2d3f",
+    "quantization.py": "1a44e85836f5acb5d5cfb3aef7589805db66fcfd05596687001993c81a72c92b",
+    "experiment.py": "56527117544fe19c16748b8a3de9a887e48d9d828563234b292adce87c9345a3",
+    "test_quantization.py": "c4b0363033ac4d1db1df80d98025008ae7f035deb359a9272d28682759708149",
+    "run_pipeline.py": "4369b1bd5f289a7be4c8a0a9719c082b76b86fe8f7916d82f7274c83310b0520"
+  },
+  "dependencies": {
+    "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_answerkl_l3_to_q4_seed1234/experiment.py": "a69625ab5be729fbc570d094984554f9f6f6784251f27f9a2940e7c2f95567ef",
+    "/hy-tmp/yezhe/异构模型/ufd_mixedprefix_stageb_4data_2048x4_l3_to_q4_seed1234/experiment.py": "7fdedf47b4e9557d009c322326d1b11230eeed4c28f8067c30e85798aa7f2f49",
+    "/hy-tmp/yezhe/异构模型/mcq_heterofold_chat_fullsync_l3_to_q4_seed1234/core.py": "27417f5480e067af53c9e1871a0e7dc22f11f27ddc55dfedfaf9747380edcbfc",
+    "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_answerkl_l3_to_q4_seed1234/grouped_translator.py": "a76172d17189b2b536eb41b0507aa18e3174124621b1141774f7aaad09ebce09",
+    "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_answerkl_l3_to_q4_seed1234/residual_translator.py": "19a79376d606ba147ed854dda19c194417d49c9719b0ab5c883cadaa3ceea292",
+    "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_answerkl_l3_to_q4_seed1234/reader.py": "c79fcefd607d5e330831c546670faa23b1b629f5d10e130ee8c27c8d912cefac"
+  },
+  "checkpoints": {
+    "reader": {
+      "path": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_reader_r16_answerkl_l3_to_q4_seed1234/runs/reader/epoch4_step1024.pt",
+      "sha256": "96cde5b41f1a15434d24ef57f8eaf34e3af89af109c0b5d6cf378e60ab577314"
+    },
+    "stage_a": {
+      "path": "/hy-tmp/yezhe/异构模型/grouped_headmix4_l3_to_q4_seed1234/runs/stage_a/best.pt",
+      "sha256": "a9318f4b2f1d9e7981e0e50e2dc88654f0baaf89a080a0746017555c48ba5c84"
+    },
+    "stage_b": {
+      "path": "/hy-tmp/yezhe/异构模型/grouped_headmix4_residual64_l3_to_q4_seed1234/runs/stage_b/last.pt",
+      "sha256": "7e9f602d08409574c8ebe56242a08ba2c6861032b5ed70570a807c5777d775f2"
+    }
+  },
+  "reference_reader_manifest_sha256": "9472f20d101851631929e5fc60de19dd6f9e59f8f51b5eb10694c0d4ddc47e10",
+  "models": {
+    "llama": {
+      "path": "/hy-tmp/yezhe/all_models/models/LLM-Research/Llama-3.2-3B-Instruct",
+      "files": {
+        "config.json": "39fb36dc5416f445ebc4e71cb71fbcf6727e80a35836d8ba1a1474c318467b7a",
+        "model.safetensors.index.json": "0a57c30afc07c81610ae7fe013bea3b9d50365f9a8145ae98e8714220f3d7c7c",
+        "tokenizer_config.json": "9823dcfdc1121869029da45192238e85cf44f0b232a6d9dc20e4fe6f4242a14e",
+        "tokenizer.json": "79e3e522635f3171300913bb421464a87de6222182a0570b9b2ccba2a964b2b4"
+      },
+      "weights": [
+        {
+          "name": "model-00001-of-00002.safetensors",
+          "size": 4965799096,
+          "mtime_ns": 1790563899747981857
+        },
+        {
+          "name": "model-00002-of-00002.safetensors",
+          "size": 1459729952,
+          "mtime_ns": 1790563482276276584
+        }
+      ]
+    },
+    "qwen": {
+      "path": "/hy-tmp/yezhe/all_models/models/Qwen/Qwen3-4B",
+      "files": {
+        "config.json": "8ba006f74fecfaaeb392872a60f4a480e7ec9860153d2e1b769ec81f9a147f8a",
+        "model.safetensors.index.json": "6dc0981b8829fead746441f68f38f24c5ca4a3a66351f652c26c6df0efc43ab2",
+        "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+        "tokenizer_config.json": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101"
+      },
+      "weights": [
+        {
+          "name": "model-00001-of-00003.safetensors",
+          "size": 3957900840,
+          "mtime_ns": 1789960326137505001
+        },
+        {
+          "name": "model-00002-of-00003.safetensors",
+          "size": 3987450520,
+          "mtime_ns": 1789960682289445564
+        },
+        {
+          "name": "model-00003-of-00003.safetensors",
+          "size": 99630640,
+          "mtime_ns": 1789960691569547899
+        }
+      ]
+    }
+  },
+  "n": 128,
+  "rejected": {
+    "excluded_duplicate_answer_filter": 41
+  },
+  "official_benchmark": false,
+  "training": false,
+  "minmax_axes": "Key: token groups64; Value: channel groups64",
+  "llama_template_date": "19 Oct 2026",
+  "environment": {
+    "torch": "2.5.1+cu121",
+    "python": "3.10.20 (main, Mar 11 2026, 17:46:40) [GCC 14.3.0]"
+  }
+}
