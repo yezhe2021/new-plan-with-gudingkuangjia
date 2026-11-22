@@ -1,4 +1,4 @@
-"""Append local digit tokens between two transmitted pieces of an evidence cache."""
+"""Append locally prefetched tokens between two transmitted evidence-cache blocks."""
 
 from dataclasses import dataclass
 
@@ -9,19 +9,19 @@ from heterofold.transfer import _cache_layer, _rotary_tables, finalize_layer
 
 
 @dataclass(frozen=True)
-class DigitHandoff:
+class TokenHandoff:
     before: tuple
     token_ids: list
     after: tuple
 
 
-def digit_handoff(raw_kv, ids, slots, header_length):
+def make_handoff(raw_kv, ids, slots, header_length):
     begin, end = slots[0] - header_length, slots[-1] + 1 - header_length
     assert 0 < begin < end <= len(ids)
     assert slots == list(range(header_length + begin, header_length + end))
     assert all(t.shape[1] == len(ids) for t in raw_kv)
     # Use independent buffers so the packet never retains the omitted KV rows.
-    return DigitHandoff(
+    return TokenHandoff(
         tuple(t[:, :begin].clone().contiguous() for t in raw_kv),
         ids[begin:end],
         tuple(t[:, end:].clone().contiguous() for t in raw_kv),
@@ -43,7 +43,7 @@ def append_raw(model, cache, raw):
     return DynamicCache(ddp_cache_data=pairs, config=model.config)
 
 
-def assemble_digit_handoff(model, forward, header, handoff, raw_pr):
+def assemble_handoff(model, forward, header, handoff, raw_pr):
     prefix = append_raw(model, header, handoff.before)
     start = prefix.get_seq_length()
     local = forward(handoff.token_ids, prefix).past_key_values

@@ -132,9 +132,9 @@ def run(args):
         translate, pins = make_writer(args, args.method, "llama", st, llama, tgt, None, torch)
         assert pins == manifest["checkpoints"]["llama"]
         translated_slack = {r["id"]: translate(r["pieces"][0]) for r in rows}
-        digit_handoffs = {}
+        handoffs = {}
         if args.receiver_prefill:
-            from receiver_prefill import assemble_digit_handoff, assert_only_local_slots_changed, digit_handoff
+            from receiver_prefill import assemble_handoff, assert_only_local_slots_changed, make_handoff
 
             align = sys.modules["herb_dst_alignment"]
             for row in rows:
@@ -142,13 +142,17 @@ def run(args):
                 slack = row["pieces"][0]
                 customer, = CUSTOMER.findall(slack["text"])
                 audit = select_slots(tgt, slack, customer, h)
-                digit_slots = audit["id_slots"][-4:]
-                split_span = select_split_span(align, st, tgt, slack, customer, h)
-                assert split_span["slots"] == digit_slots[:3]
-                arms = {"split_span": digit_slots[:3], "all_digits": digit_slots}
-                digit_handoffs[rid] = {
-                    name: (slots, digit_handoff(translated_slack[rid], slack["ids"], slots, h))
-                    for name, slots in arms.items()
+                if args.receiver_prefill_scope == "full-id":
+                    spans = {"full_id": (audit["id_slots"], " " + customer)}
+                else:
+                    digit_slots = audit["id_slots"][-4:]
+                    split_span = select_split_span(align, st, tgt, slack, customer, h)
+                    assert split_span["slots"] == digit_slots[:3]
+                    spans = {"split_span": (digit_slots[:3], customer[-4:-1]),
+                             "all_digits": (digit_slots, customer[-4:])}
+                handoffs[rid] = {
+                    name: (slots, text, make_handoff(translated_slack[rid], slack["ids"], slots, h))
+                    for name, (slots, text) in spans.items()
                 }
         del translate, llama
         gc.collect()
@@ -293,12 +297,12 @@ def run(args):
                 arms["D_restore_non_id"] = cache_copy(translated, native, audit["control_slots"])
             if args.receiver_prefill:
                 audit["receiver_prefill"] = {}
-                for name, (slots, handoff) in digit_handoffs[rid].items():
+                for name, (slots, expected_text, handoff) in handoffs[rid].items():
                     text = tgt.decode(handoff.token_ids)
-                    assert text == customer[-4:][:len(slots)]
+                    assert text == expected_text
                     sent_slots = handoff.before[0].shape[1] + handoff.after[0].shape[1]
                     assert sent_slots + len(handoff.token_ids) == len(slack["ids"])
-                    filled = assemble_digit_handoff(model, forward, header, handoff, raw_pr)
+                    filled = assemble_handoff(model, forward, header, handoff, raw_pr)
                     change = assert_only_local_slots_changed(translated, filled, slots, layers)
                     assert all(delta > 0 for delta in change.values())
                     donor = cache_copy(translated, native, slots)
@@ -383,6 +387,7 @@ def run(args):
              eligible=[r["id"] for r in eligible], checkpoints=pins, probe_label=LABEL,
              native_prior_token_parity=None if args.heldout_rewrites else native_token_parity,
              heldout_id_rewrites=args.heldout_rewrites, receiver_prefill=args.receiver_prefill,
+             receiver_prefill_scope=args.receiver_prefill_scope if args.receiver_prefill else None,
              earlier_summary_sha256=sha(earlier / "summary.json"),
              input_sha256=sha(input_path), samples_sha256=sha(sample_path), gpu=torch.cuda.get_device_name(),
              mapper_sha256=mapper_hashes))
@@ -400,6 +405,7 @@ if __name__ == "__main__":
     parser.add_argument("--mapper-training", type=Path)
     parser.add_argument("--heldout-rewrites", action="store_true")
     parser.add_argument("--receiver-prefill", action="store_true")
+    parser.add_argument("--receiver-prefill-scope", choices=("digits", "full-id"), default="digits")
     args = parser.parse_args()
     if args.span_oracle and (args.method != "dst_rank64" or args.output is None):
         parser.error("--span-oracle requires dst_rank64 and --output")
@@ -409,4 +415,6 @@ if __name__ == "__main__":
         parser.error("--heldout-rewrites requires --mapper-training")
     if args.receiver_prefill and (args.method != "dst_rank64" or args.output is None or args.span_oracle):
         parser.error("--receiver-prefill requires dst_rank64 and --output, and runs separately from --span-oracle")
+    if args.receiver_prefill_scope != "digits" and not args.receiver_prefill:
+        parser.error("--receiver-prefill-scope requires --receiver-prefill")
     run(args)
