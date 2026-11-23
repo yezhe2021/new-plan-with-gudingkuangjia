@@ -1,0 +1,101 @@
+{
+  "seed": 1234,
+  "data_reference": "/hy-tmp/yezhe/异构模型/rnkv_keep_both_all36_arc_hotpot_gsm_seed1234",
+  "data_reference_manifest_sha256": "ca045f531bf9596c883f1f22dd9f02232f1fbdaa5e0d553f9934a546561e262c",
+  "model": {
+    "sender_layers": 34,
+    "receiver_layers": 36,
+    "source_width": 1024,
+    "target_width": 1024,
+    "state_width": 256,
+    "carry_state": true
+  },
+  "token_chunk": 128,
+  "stage1": {
+    "epochs": 4,
+    "learning_rate": 0.0003,
+    "objective": "mean per-layer K/V normalized MSE in native pre-k_norm/pre-RoPE space; full-body tokens; sample-weighted accumulation"
+  },
+  "stage2": {
+    "epochs": 4,
+    "learning_rate": 0.0001,
+    "lambda_kl": 0.5
+  },
+  "effective_batch": 8,
+  "weight_decay": 0.0001,
+  "gradient_clip": 1.0,
+  "checkpoint_every": 32,
+  "minimum_free_gpu_mib": 30720,
+  "disk_reserve_gib": 8,
+  "static_memory": false,
+  "train_counts": {
+    "arc": 1024,
+    "hotpotqa": 1024,
+    "gsm8k": 1024
+  },
+  "validation_counts": {
+    "arc": 64,
+    "hotpotqa": 64,
+    "gsm8k": 64
+  },
+  "test_counts": {
+    "arc": 64,
+    "hotpotqa": 64,
+    "2wiki": 64,
+    "musique": 64,
+    "sciq": 64,
+    "mmlu_pro": 64,
+    "hellaswag": 64,
+    "gsm8k": 64
+  },
+  "updates_per_epoch": 384,
+  "prefix_quotas_per_batch": [
+    {
+      "gold": 4,
+      "native": 4,
+      "student": 0
+    },
+    {
+      "gold": 3,
+      "native": 3,
+      "student": 2
+    },
+    {
+      "gold": 2,
+      "native": 2,
+      "student": 4
+    },
+    {
+      "gold": 2,
+      "native": 2,
+      "student": 4
+    }
+  ],
+  "prefix_max_new_tokens": 64,
+  "supervised_positions_max": 8,
+  "evaluation_generation_caps": {
+    "hotpotqa": 64,
+    "2wiki": 64,
+    "musique": 64,
+    "gsm8k": 512
+  },
+  "max_context_tokens": 32768,
+  "protocol": "RAW Sender body without added BOS; fixed native Qwen public header only. Full-Sync maps every Receiver body token. Teacher raw Native K/V from k_proj/v_proj on header+same body. DST raw output passes Qwen k_norm and RoPE exactly once. No Qwen body prefill in student evaluation.",
+  "selection": "Fixed final epoch4 at each stage; validation diagnostic only; no test checkpoint selection.",
+  "launch_scope": "User authorized Stage1 then frozen-base Rank64 Stage2 only on server A. No Memory.",
+  "caveats": [
+    "Fresh Gemma3-4B -> Qwen3-4B DST Stage1; 34 Sender layers, 36 Receiver layers, 256 depth state. No Llama weights or Recolor weights initialize DST.",
+    "Stage1 trains all DST parameters using Native raw KV NMSE; Stage2 freezes exactly its final epoch4 checkpoint and trains only 9,437,184 bias-free Rank64 GELU K/V residual parameters. No Memory stage.",
+    "Same ARC/HotpotQA/GSM8K rows, 4 epochs and1536updates per stage, effective batch8, seed1234; Stage2 CE+.5full-vocabulary Native||Student KL with unchanged prefix schedule.",
+    "RAW Gemma body with no added BOS; shared-unit-boundary Full-Sync Copy/Drop, not strict individual-target-token causality; audit every row.",
+    "Gemma FP32 raw projection capture; Qwen FP16; residual before exactly one Qwen k_norm and RoPE. No native body or question input on student evaluation.",
+    "Historical Gemma Recolor+C comparison shares task rows and scorers, but alignment and training budgets differ. This is not a recurrence-only ablation.",
+    "Fixed final epoch4 checkpoint, validation diagnostic only, 8 tasks each64, GSM512 generation cap with strict and legacy scoring; no test checkpoint selection."
+  ],
+  "sender": "/hy-tmp/yezhe/all_models/models/LLM-Research/gemma-3-4b-it",
+  "receiver": "/hy-tmp/yezhe/all_models/models/Qwen/Qwen3-4B",
+  "source_dtype": "float32",
+  "rank": 64,
+  "host": "server-a",
+  "baseline_manifest_sha256": "c5c47d3d384d35b574ea2bf775da628de7b678fc5661ecef55aae4ed837b671e"
+}
