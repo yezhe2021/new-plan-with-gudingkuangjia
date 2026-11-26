@@ -1,0 +1,43 @@
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   0%|          | 1/398 [00:00<05:09,  1.28it/s]Loading weights:  34%|███▍      | 135/398 [00:00<00:01, 204.11it/s]Loading weights:  52%|█████▏    | 205/398 [00:01<00:00, 207.60it/s]Loading weights:  64%|██████▎   | 253/398 [00:01<00:00, 211.20it/s]Loading weights:  73%|███████▎  | 291/398 [00:01<00:00, 203.21it/s]Loading weights:  81%|████████  | 322/398 [00:01<00:00, 202.63it/s]Loading weights:  89%|████████▉ | 355/398 [00:01<00:00, 215.47it/s]Loading weights:  97%|█████████▋| 388/398 [00:02<00:00, 226.35it/s]Loading weights: 100%|██████████| 398/398 [00:02<00:00, 192.02it/s]
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<02:30,  1.68it/s]Loading weights:  48%|████▊     | 122/254 [00:00<00:00, 227.30it/s]Loading weights:  72%|███████▏  | 182/254 [00:00<00:00, 241.65it/s]Loading weights:  89%|████████▉ | 227/254 [00:01<00:00, 238.88it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 202.43it/s]
+stage1 1/8 arc_train_Mercury_7044818 gold
+stage1 2/8 arc_train_Mercury_SC_LBS10951 gold
+stage1 3/8 hotpotqa_train_5a825c6555429940e5e1a879 gold
+stage1 4/8 hotpotqa_train_5a76ca8955429972597f13d1 gold
+stage1 5/8 hotpotqa_train_5a88e39c5542993b751ca8b2 gold
+stage1 6/8 gsm8k_train_1333 gold
+stage1 7/8 gsm8k_train_4631 gold
+stage1 8/8 gsm8k_train_6833 gold
+stage2 1/8 arc_train_Mercury_7044818 native
+stage2 2/8 arc_train_Mercury_SC_LBS10951 gold
+stage2 3/8 hotpotqa_train_5a825c6555429940e5e1a879 native
+stage2 4/8 hotpotqa_train_5a76ca8955429972597f13d1 gold
+stage2 5/8 hotpotqa_train_5a88e39c5542993b751ca8b2 gold
+stage2 6/8 gsm8k_train_1333 gold
+stage2 7/8 gsm8k_train_4631 native
+stage2 8/8 gsm8k_train_6833 native
+stage2 1/8 arc_train_Mercury_7044818 native
+stage2 2/8 arc_train_Mercury_SC_LBS10951 gold
+stage2 3/8 hotpotqa_train_5a825c6555429940e5e1a879 native
+stage2 4/8 hotpotqa_train_5a76ca8955429972597f13d1 gold
+stage2 5/8 hotpotqa_train_5a88e39c5542993b751ca8b2 gold
+stage2 6/8 gsm8k_train_1333 gold
+2026-11-25 22:05:08 checked paired rollout True
+Traceback (most recent call last):
+  File "/hy-tmp/yezhe/异构模型/fullsync_rgst_dense_all_heads_dst_protocol_seed1234/smoke.py", line 159, in <module>
+    main()
+  File "/hy-tmp/yezhe/异构模型/fullsync_rgst_dense_all_heads_dst_protocol_seed1234/smoke.py", line 145, in main
+    results["stage2_stress"] = run_batch(experiment, model, optimizer, scale, stage, stress_batch)
+  File "/hy-tmp/yezhe/异构模型/fullsync_rgst_dense_all_heads_dst_protocol_seed1234/smoke.py", line 78, in run_batch
+    metrics = locked.functional(experiment, models, row, source, kind, 1, backward)
+  File "/hy-tmp/yezhe/异构模型/fullsync_rgst_r16_r32_dst_protocol_seed1234/train.py", line 325, in functional
+    backward(key, loss)
+  File "/hy-tmp/yezhe/异构模型/fullsync_rgst_dense_all_heads_dst_protocol_seed1234/smoke.py", line 72, in backward
+    scale.scale(loss / len(batch)).backward()
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/_tensor.py", line 581, in backward
+    torch.autograd.backward(
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/autograd/__init__.py", line 347, in backward
+    _engine_run_backward(
+  File "/hy-tmp/yezhe/data/miniconda3/envs/attnkv/lib/python3.10/site-packages/torch/autograd/graph.py", line 825, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.12 GiB. GPU 0 has a total capacity of 47.50 GiB of which 662.25 MiB is free. Process 165258 has 23.19 GiB memory in use. Process 207143 has 23.65 GiB memory in use. Of the allocated memory 22.25 GiB is allocated by PyTorch, and 954.14 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
